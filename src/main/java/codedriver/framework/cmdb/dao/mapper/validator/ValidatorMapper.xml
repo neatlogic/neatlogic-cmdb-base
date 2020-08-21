@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="codedriver.framework.cmdb.dao.mapper.validator.ValidatorMapper">
+	<select id="getValidatorById" parameterType="java.lang.Long" resultType="codedriver.framework.cmdb.dto.validator.ValidatorVo">
+		SELECT
+		`id`,
+		`name`,
+		`handler`,
+		`config`,
+		`description`,
+		`error_template` AS errorTemplate,
+		`is_active` AS isActive
+		FROM
+		`cmdb_validator`
+		WHERE
+		id = #{value}
+	</select>
+
+	<sql id="searchValidatorCondition">
+		<where>
+			<if test="keyword != null and keyword != ''">
+				AND name LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="isActive != null ">
+				AND is_active = #{isActive}
+			</if>
+			<if test="handler != null and handler != '' ">
+				AND handler = #{handler}
+			</if>
+		</where>
+	</sql>
+
+	<select id="searchValidator" parameterType="codedriver.framework.cmdb.dto.validator.ValidatorVo" resultType="codedriver.framework.cmdb.dto.validator.ValidatorVo">
+		SELECT
+		`id`,
+		`name`,
+		`handler`,
+		`config`,
+		`description`,
+		`error_template` AS errorTemplate,
+		`is_active` AS isActive
+		FROM
+		`cmdb_validator`
+		<include refid="searchValidatorCondition"></include>
+		<if test="needPage == true">
+			LIMIT #{startNum}, #{pageSize}
+		</if>
+	</select>
+
+	<select id="searchValidatorCount" parameterType="codedriver.framework.cmdb.dto.validator.ValidatorVo" resultType="int">
+		SELECT
+		COUNT(1)
+		FROM
+		`cmdb_validator`
+		<include refid="searchValidatorCondition"></include>
+	</select>
+
+</mapper>
