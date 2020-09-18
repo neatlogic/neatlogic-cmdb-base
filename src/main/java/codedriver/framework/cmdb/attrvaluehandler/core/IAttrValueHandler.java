@@ -1,7 +1,5 @@
 package codedriver.framework.cmdb.attrvaluehandler.core;
 
-import java.util.List;
-
 /**
  * @Author:chenqiwei
  * @Time:Sep 1, 2020

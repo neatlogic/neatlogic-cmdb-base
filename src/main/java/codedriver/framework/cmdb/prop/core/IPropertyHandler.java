@@ -33,12 +33,13 @@ public interface IPropertyHandler {
 
     /**
      * @Author: chenqiwei
-     * @Time:Sep 2, 2020
-     * @Description: 转换value到valueList里
+     * @Time:Sep 17, 2020
+     * @Description: 将数据库中的值转换成页面显示的值
      * @param @param
-     *            value
+     *            valueList
      * @param @return
      * @return List<String>
      */
-    public List<String> transferValue(Object value);
+    public List<String> getDisplayValue(List<String> valueList);
+
 }

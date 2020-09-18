@@ -1,7 +1,7 @@
 package codedriver.framework.cmdb.constvalue;
 
 public enum RelRuleType {
-    OZ("0:1", "零或一个"), ZN("0:N", "零或多个"), ON("1:N", "一或多个"), OO("1:1", "必须一个");
+    ZO("0:1", "零或一个"), ZN("0:N", "零或多个"), ON("1:N", "一或多个"), OO("1:1", "必须一个");
 
     private String value;
     private String text;
