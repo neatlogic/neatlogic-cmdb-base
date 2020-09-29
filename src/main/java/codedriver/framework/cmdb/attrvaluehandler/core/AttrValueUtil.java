@@ -1,5 +1,6 @@
 package codedriver.framework.cmdb.attrvaluehandler.core;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -19,7 +20,7 @@ public class AttrValueUtil {
         if (CollectionUtils.isNotEmpty(valueList)) {
             return valueList.stream().map(v -> getActualValue(v)).collect(Collectors.toList());
         } else {
-            return valueList;
+            return new ArrayList<>();
         }
     }
 
@@ -40,7 +41,7 @@ public class AttrValueUtil {
                 }
             }).collect(Collectors.toList());
         } else {
-            return valueList;
+            return new ArrayList<>();
         }
     }
 
