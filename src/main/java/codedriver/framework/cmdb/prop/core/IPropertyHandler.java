@@ -3,6 +3,7 @@ package codedriver.framework.cmdb.prop.core;
 import java.util.List;
 
 import codedriver.framework.cmdb.constvalue.SearchExpression;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * @Author:chenqiwei
@@ -41,5 +42,13 @@ public interface IPropertyHandler {
      * @return List<String>
      */
     public List<String> getDisplayValue(List<String> valueList);
+
+    /**
+     * 将Excel中读取的值转换成数据库中的值
+     * @param values
+     * @param config
+     * @return
+     */
+    public Object getActualValue(List<String> values, JSONObject config) throws Exception;
 
 }
