@@ -15,8 +15,8 @@ public class ValidatorFactory implements ApplicationListener<ContextRefreshedEve
 
     private static final Map<String, IValidator> componentMap = new HashMap<>();
 
-    public static IValidator getValidator(String className) {
-        return componentMap.get(className);
+    public static IValidator getValidator(String handler) {
+        return componentMap.get(handler);
     }
 
     @Override
