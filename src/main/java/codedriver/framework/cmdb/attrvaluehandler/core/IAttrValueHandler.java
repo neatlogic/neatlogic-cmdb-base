@@ -9,7 +9,7 @@ package codedriver.framework.cmdb.attrvaluehandler.core;
 public interface IAttrValueHandler {
     public String getProtocol();
 
-    public String getTransferedValue(String value);
+    public String getTransferedValue(String propHandler, String value);
 
     public String getActualValue(String value);
 }

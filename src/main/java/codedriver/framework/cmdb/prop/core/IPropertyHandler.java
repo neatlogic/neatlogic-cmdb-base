@@ -1,6 +1,11 @@
 package codedriver.framework.cmdb.prop.core;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.DigestUtils;
 
 import codedriver.framework.cmdb.constvalue.SearchExpression;
 import com.alibaba.fastjson.JSONObject;
@@ -41,10 +46,31 @@ public interface IPropertyHandler {
      * @param @return
      * @return List<String>
      */
-    public List<String> getDisplayValue(List<String> valueList);
+    public default List<String> getDisplayValueList(List<String> dataList) {
+        if (CollectionUtils.isNotEmpty(dataList)) {
+            return dataList.stream().collect(Collectors.toList());
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 返回真实value值的hash值，用于精确匹配检索，例如select的原始值是{value:'v',text:'t'}，真实值就是v
+     * 
+     * @param dataList
+     * @return
+     */
+    public default String getValueHash(String value) {
+        if (StringUtils.isNotBlank(value)) {
+            return DigestUtils.md5DigestAsHex(value.toLowerCase().getBytes());
+        } else {
+            return null;
+        }
+    }
 
     /**
      * 将Excel中读取的值转换成数据库中的值
+     * 
      * @param values
      * @param config
      * @return

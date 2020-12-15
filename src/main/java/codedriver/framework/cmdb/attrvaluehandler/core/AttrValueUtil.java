@@ -16,25 +16,23 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class AttrValueUtil {
 
-    public static List<String> getActualValueList(List<String> valueList) {
-        if (CollectionUtils.isNotEmpty(valueList)) {
-            return valueList.stream().map(v -> getActualValue(v)).collect(Collectors.toList());
+    public static List<String> getValueList(List<String> hashList) {
+        if (CollectionUtils.isNotEmpty(hashList)) {
+            return hashList.stream().map(v -> getValue(v)).collect(Collectors.toList());
         } else {
             return new ArrayList<>();
         }
     }
 
-    public static List<String> getTransferValueList(List<String> valueList) {
+    public static List<String> getHashList(String propHandler, List<String> valueList) {
         if (CollectionUtils.isNotEmpty(valueList)) {
             return valueList.stream().map(new Function<String, String>() {
                 @Override
                 public String apply(String s) {
                     if (StringUtils.isNotBlank(s)) {
-                        if (s.length() > 1000) {
-                            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler("hash");
-                            if (handler != null) {
-                                return handler.getTransferedValue(s);
-                            }
+                        IAttrValueHandler handler = AttrValueHandlerFactory.getHandler("hash");
+                        if (handler != null) {
+                            return handler.getTransferedValue(propHandler, s);
                         }
                     }
                     return s;
@@ -45,16 +43,12 @@ public class AttrValueUtil {
         }
     }
 
-    private static String getActualValue(String value) {
-        int endindex = value.indexOf("}");
-        if (value.startsWith("{") && endindex > -1) {
-            String protocol = value.substring(1, endindex);
-            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(protocol);
-            if (handler != null) {
-                return handler.getActualValue(value.substring(endindex + 1));
-            }
+    private static String getValue(String hash) {
+        IAttrValueHandler handler = AttrValueHandlerFactory.getHandler("hash");
+        if (handler != null) {
+            return handler.getActualValue(hash);
         }
-        return value;
+        return hash;
     }
 
 }

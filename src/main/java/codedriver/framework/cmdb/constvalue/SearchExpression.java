@@ -1,13 +1,10 @@
 package codedriver.framework.cmdb.constvalue;
 
 public enum SearchExpression {
-    EQ("eq", "include", "等于"),
-    LT("lt", "less-than", "小于"), 
-    GT("gt", "greater-than", "大于"),
-    NE("ne", "exclude", "不等于"),
-    NL("nl", "notlike", "不包含"), 
-    LI("li", "like", "包含"),
-    NULL("null", "is-null", "为空"),
+    EQ("eq", "equal", "等于"),
+    // LT("lt", "less-than", "小于"),
+    // GT("gt", "greater-than", "大于"),
+    NE("ne", "notequal", "不等于"), NL("nl", "notlike", "不包含"), LI("li", "like", "包含"), NULL("null", "is-null", "为空"),
     NOTNULL("notnull", "is-not-null", "不为空");
 
     private String value;
