@@ -1,12 +1,12 @@
 package codedriver.framework.cmdb.attrvaluehandler.core;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * @Author:chenqiwei
@@ -18,7 +18,7 @@ public class AttrValueUtil {
 
     public static List<String> getValueList(List<String> hashList) {
         if (CollectionUtils.isNotEmpty(hashList)) {
-            return hashList.stream().map(v -> getValue(v)).collect(Collectors.toList());
+            return hashList.stream().map(AttrValueUtil::getValue).collect(Collectors.toList());
         } else {
             return new ArrayList<>();
         }
