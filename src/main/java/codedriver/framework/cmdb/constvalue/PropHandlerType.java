@@ -1,6 +1,12 @@
 package codedriver.framework.cmdb.constvalue;
 
-public enum PropHandlerType {
+import codedriver.framework.common.constvalue.IEnum;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
+import java.util.List;
+
+public enum PropHandlerType implements IEnum {
     TEXT("text", "文本框", "ts-code"), MTEXT("mtext", "多文本框", "ts-bars"), DATE("date", "日期", "ts-calendar"),
     TEXTAREA("textarea", "文本域", "ts-textmodule"), SELECT("select", "下拉框", "ts-list"),
     CHECKBOX("checkbox", "复选框", "ts-check-square-o"), RADIO("radio", "单选框", "ts-round-s"),
@@ -54,5 +60,20 @@ public enum PropHandlerType {
             }
         }
         return "";
+    }
+
+
+    @Override
+    public List getValueTextList() {
+        JSONArray array = new JSONArray();
+        for(PropHandlerType type : PropHandlerType.values()){
+            array.add(new JSONObject(){
+                {
+                    this.put("value",type.getValue());
+                    this.put("text",type.getText());
+                }
+            });
+        }
+        return array;
     }
 }

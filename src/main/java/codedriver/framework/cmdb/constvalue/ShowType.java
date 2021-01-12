@@ -1,6 +1,12 @@
 package codedriver.framework.cmdb.constvalue;
 
-public enum ShowType {
+import codedriver.framework.common.constvalue.IEnum;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
+import java.util.List;
+
+public enum ShowType implements IEnum {
 
     NONE("none", "不显示"), LIST("list", "仅列表"), ALL("all", "全展示"), DETAIL("detail", "仅明细");
 
@@ -36,5 +42,20 @@ public enum ShowType {
             }
         }
         return "";
+    }
+
+
+    @Override
+    public List getValueTextList() {
+        JSONArray array = new JSONArray();
+        for(ShowType type : ShowType.values()){
+            array.add(new JSONObject(){
+                {
+                    this.put("value",type.getValue());
+                    this.put("text",type.getText());
+                }
+            });
+        }
+        return array;
     }
 }
