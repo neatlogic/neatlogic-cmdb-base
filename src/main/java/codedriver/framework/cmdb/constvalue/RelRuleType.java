@@ -1,6 +1,12 @@
 package codedriver.framework.cmdb.constvalue;
 
-public enum RelRuleType {
+import codedriver.framework.common.constvalue.IEnum;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
+import java.util.List;
+
+public enum RelRuleType implements IEnum {
     ZO("0:1", "零或一个"), ZN("0:N", "零或多个"), ON("1:N", "一或多个"), OO("1:1", "必须一个");
 
     private String value;
@@ -35,5 +41,20 @@ public enum RelRuleType {
             }
         }
         return "";
+    }
+
+
+    @Override
+    public List getValueTextList() {
+        JSONArray array = new JSONArray();
+        for(RelRuleType type : RelRuleType.values()){
+            array.add(new JSONObject(){
+                {
+                    this.put("value",type.getValue());
+                    this.put("text",type.getText());
+                }
+            });
+        }
+        return array;
     }
 }
