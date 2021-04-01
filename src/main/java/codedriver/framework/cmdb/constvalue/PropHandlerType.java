@@ -11,7 +11,7 @@ public enum PropHandlerType implements IEnum {
     TEXTAREA("textarea", "文本域", "ts-textmodule"), SELECT("select", "下拉框", "ts-list"),
     CHECKBOX("checkbox", "复选框", "ts-check-square-o"), RADIO("radio", "单选框", "ts-round-s"),
     FILE("file", "附件", "ts-file"), URL("url", "链接", "ts-link"), PASSWORD("password", "密码", "ts-eye-close"),
-    USER("user", "用户", "ts-user"), TEAM("team", "组织", "ts-team"), TABLE("table", "表格", "ts-tablechart");
+    /*USER("user", "用户", "ts-user"), TEAM("team", "组织", "ts-team"),*/ TABLE("table", "表格", "ts-tablechart");
 
     private String type;
     private String text;

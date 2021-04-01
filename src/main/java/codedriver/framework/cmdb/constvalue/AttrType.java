@@ -1,12 +1,13 @@
 package codedriver.framework.cmdb.constvalue;
 
 public enum AttrType {
-    PROPERTY("property", "属性定义"), EXPRESSION("expression", "表达式"), CUSTOM("custom", "自定义");
+    PROPERTY("property", "属性定义"), EXPRESSION("expression", "表达式"), CUSTOM("custom", "自定义"),
+    BASIC("basic", "基础属性");
 
-    private String value;
-    private String text;
+    private final String value;
+    private final String text;
 
-    private AttrType(String _value, String _text) {
+    AttrType(String _value, String _text) {
         this.value = _value;
         this.text = _text;
     }

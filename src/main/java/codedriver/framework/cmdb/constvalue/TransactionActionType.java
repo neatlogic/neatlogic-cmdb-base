@@ -3,8 +3,8 @@ package codedriver.framework.cmdb.constvalue;
 public enum TransactionActionType {
     INSERT("insert", "新增"), UPDATE("update", "修改"), DELETE("delete", "删除"), RECOVER("recover", "恢复");
 
-    private String value;
-    private String text;
+    private final String value;
+    private final String text;
 
     private TransactionActionType(String _value, String _text) {
         this.value = _value;

@@ -1,3 +1,8 @@
+/*
+ * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
+ */
+
 package codedriver.framework.cmdb.constvalue;
 
 import codedriver.framework.common.constvalue.IEnum;
@@ -7,10 +12,10 @@ import com.alibaba.fastjson.JSONObject;
 import java.util.List;
 
 public enum RelRuleType implements IEnum {
-    ZO("0:1", "零或一个"), ZN("0:N", "零或多个"), ON("1:N", "一或多个"), OO("1:1", "必须一个");
+    O("O", "一个"), N("N", "多个");
 
-    private String value;
-    private String text;
+    private final String value;
+    private final String text;
 
     private RelRuleType(String _value, String _text) {
         this.value = _value;
@@ -47,11 +52,11 @@ public enum RelRuleType implements IEnum {
     @Override
     public List getValueTextList() {
         JSONArray array = new JSONArray();
-        for(RelRuleType type : RelRuleType.values()){
-            array.add(new JSONObject(){
+        for (RelRuleType type : RelRuleType.values()) {
+            array.add(new JSONObject() {
                 {
-                    this.put("value",type.getValue());
-                    this.put("text",type.getText());
+                    this.put("value", type.getValue());
+                    this.put("text", type.getText());
                 }
             });
         }
