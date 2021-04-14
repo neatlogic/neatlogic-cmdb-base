@@ -1,13 +1,8 @@
 package codedriver.framework.cmdb.validator.core;
 
-import java.util.List;
-
-import org.springframework.util.ClassUtils;
-
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-
 import codedriver.framework.cmdb.exception.validator.AttrInValidatedException;
+import com.alibaba.fastjson.JSONArray;
+import org.springframework.util.ClassUtils;
 
 /**
  * @Author:chenqiwei
@@ -30,7 +25,7 @@ public interface IValidator {
      *            AttrInValidatedException
      * @return boolean
      */
-    public boolean valid(String attrLabel, List<String> valueList, Long validatorId) throws AttrInValidatedException;
+    public boolean valid(String attrLabel, JSONArray valueList, Long validatorId) throws AttrInValidatedException;
 
     public default String getClassName() {
         return ClassUtils.getUserClass(this.getClass()).getName();

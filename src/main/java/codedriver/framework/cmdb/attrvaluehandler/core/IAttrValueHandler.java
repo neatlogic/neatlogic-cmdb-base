@@ -5,7 +5,8 @@
 
 package codedriver.framework.cmdb.attrvaluehandler.core;
 
-import com.alibaba.fastjson.JSONObject;
+import codedriver.framework.cmdb.dto.ci.AttrVo;
+import com.alibaba.fastjson.JSONArray;
 
 public interface IAttrValueHandler {
     /**
@@ -15,10 +16,13 @@ public interface IAttrValueHandler {
      */
     String getType();
 
+
     /**
-     * @param config Attr的Config属性
-     * @param value  值
-     * @return 真实值
+     * 返回用于显示的值（批量转换）
+     *
+     * @param attrVo    Attr设置
+     * @param valueList 值列表
+     * @return 显示值列表
      */
-    String getActualValue(JSONObject config, String value);
+    JSONArray getActualValueList(AttrVo attrVo, JSONArray valueList);
 }
