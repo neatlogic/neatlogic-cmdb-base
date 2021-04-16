@@ -10,7 +10,6 @@ import codedriver.framework.cmdb.attrvaluehandler.core.AttrValueHandlerFactory;
 import codedriver.framework.cmdb.attrvaluehandler.core.IAttrValueHandler;
 import codedriver.framework.cmdb.dto.ci.AttrVo;
 import codedriver.framework.cmdb.dto.transaction.AttrEntityTransactionVo;
-import codedriver.framework.cmdb.enums.AttrType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.HtmlUtil;
@@ -371,10 +370,8 @@ public class AttrEntityVo {
 
     public Boolean isNeedTargetCi() {
         if (isNeedTargetCi == null && StringUtils.isNotBlank(this.attrType)) {
-            AttrType attrType = AttrType.get(this.attrType);
-            if (attrType != null) {
-                isNeedTargetCi = attrType.isNeedTargetCi();
-            }
+            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.attrType);
+            isNeedTargetCi = handler.isNeedTargetCi();
         }
         return isNeedTargetCi;
     }

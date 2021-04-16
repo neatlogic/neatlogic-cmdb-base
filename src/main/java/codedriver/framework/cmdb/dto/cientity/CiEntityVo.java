@@ -7,8 +7,8 @@ package codedriver.framework.cmdb.dto.cientity;
 
 import codedriver.framework.asynchronization.threadlocal.TenantContext;
 import codedriver.framework.asynchronization.threadlocal.UserContext;
-import codedriver.framework.cmdb.constvalue.EditModeType;
-import codedriver.framework.cmdb.constvalue.RelDirectionType;
+import codedriver.framework.cmdb.enums.EditModeType;
+import codedriver.framework.cmdb.enums.RelDirectionType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.elasticsearch.annotation.ESKey;
@@ -453,22 +453,26 @@ public class CiEntityVo extends BasePageVo {
     public List<RelEntityVo> getRelEntityByRelIdAndDirection(Long relId, String direction) {
         List<RelEntityVo> relEntityList = new ArrayList<>();
         if (MapUtils.isNotEmpty(this.relEntityData) && relEntityData.containsKey("rel" + direction + "_" + relId)) {
-            JSONArray relDataList = relEntityData.getJSONArray("rel" + direction + "_" + relId);
+            JSONArray relDataList = relEntityData.getJSONObject("rel" + direction + "_" + relId).getJSONArray("valueList");
             if (CollectionUtils.isNotEmpty(relDataList)) {
                 for (int i = 0; i < relDataList.size(); i++) {
                     JSONObject relEntityObj = relDataList.getJSONObject(i);
                     RelEntityVo relEntityVo = new RelEntityVo();
                     relEntityVo.setRelId(relId);
                     if (direction.equals(RelDirectionType.FROM.getValue())) {
+                        relEntityVo.setToCiId(relEntityObj.getLong("ciId"));
                         relEntityVo.setToCiEntityId(relEntityObj.getLong("ciEntityId"));
                         relEntityVo.setToCiEntityName(relEntityObj.getString("ciEntityName"));
                         relEntityVo.setDirection(RelDirectionType.FROM.getValue());
                         relEntityVo.setFromCiEntityId(this.getId());
+                        relEntityVo.setFromCiId(this.getCiId());
                     } else {
+                        relEntityVo.setFromCiId(relEntityObj.getLong("ciId"));
                         relEntityVo.setFromCiEntityId(relEntityObj.getLong("ciEntityId"));
                         relEntityVo.setFromCiEntityName(relEntityObj.getString("ciEntityName"));
                         relEntityVo.setDirection(RelDirectionType.TO.getValue());
                         relEntityVo.setToCiEntityId(this.getId());
+                        relEntityVo.setToCiId(this.getCiId());
                     }
                     relEntityList.add(relEntityVo);
                 }
@@ -509,7 +513,15 @@ public class CiEntityVo extends BasePageVo {
         if (MapUtils.isNotEmpty(valueObj) && relEntityData.containsKey("rel" + direction + "_" + relId)) {
             JSONObject relObj = relEntityData.getJSONObject("rel" + direction + "_" + relId);
             JSONArray valueList = relObj.getJSONArray("valueList");
-            if (!valueList.contains(valueObj)) {
+            boolean isExists = false;
+            for (int i = 0; i < valueList.size(); i++) {
+                JSONObject vObj = valueList.getJSONObject(i);
+                if (vObj.getLong("ciEntityId").equals(valueObj.getLong("ciEntityId"))) {
+                    isExists = true;
+                    break;
+                }
+            }
+            if (!isExists) {
                 valueList.add(valueObj);
             }
         }
@@ -546,9 +558,9 @@ public class CiEntityVo extends BasePageVo {
      */
     public void addRelEntityData(Long relId, String direction, JSONObject relObj) {
         if (relEntityData == null) {
-            attrEntityData = new JSONObject();
+            relEntityData = new JSONObject();
         }
-        attrEntityData.put("rel" + direction + "_" + relId, relObj);
+        relEntityData.put("rel" + direction + "_" + relId, relObj);
     }
 
 

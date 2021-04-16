@@ -7,7 +7,6 @@ package codedriver.framework.cmdb.dto.ci;
 
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
-import codedriver.framework.cmdb.enums.AttrType;
 
 public class AttrTypeVo {
     @EntityField(name = "唯一标识", type = ApiParamType.STRING)
@@ -23,13 +22,6 @@ public class AttrTypeVo {
     @EntityField(name = "是否需要一整行显示编辑组件", type = ApiParamType.BOOLEAN)
     private boolean needWholeRow;
 
-    public AttrTypeVo(AttrType attrType) {
-        this.setName(attrType.getName());
-        this.setLabel(attrType.getText());
-        this.setNeedConfig(attrType.isNeedConfig());
-        this.setNeedWholeRow(attrType.isNeedWholeRow());
-        this.setNeedTargetCi(attrType.isNeedTargetCi());
-    }
 
     public String getName() {
         return name;

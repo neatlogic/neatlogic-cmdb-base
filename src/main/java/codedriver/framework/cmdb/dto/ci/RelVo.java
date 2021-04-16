@@ -5,8 +5,8 @@
 
 package codedriver.framework.cmdb.dto.ci;
 
-import codedriver.framework.cmdb.constvalue.InputType;
-import codedriver.framework.cmdb.constvalue.RelRuleType;
+import codedriver.framework.cmdb.enums.InputType;
+import codedriver.framework.cmdb.enums.RelRuleType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;

@@ -1,9 +1,14 @@
+/*
+ * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
+ */
+
 package codedriver.framework.cmdb.dto.transaction;
 
-import codedriver.framework.cmdb.constvalue.EditModeType;
-import codedriver.framework.cmdb.constvalue.RelActionType;
-import codedriver.framework.cmdb.constvalue.RelDirectionType;
-import codedriver.framework.cmdb.constvalue.TransactionActionType;
+import codedriver.framework.cmdb.enums.EditModeType;
+import codedriver.framework.cmdb.enums.RelActionType;
+import codedriver.framework.cmdb.enums.RelDirectionType;
+import codedriver.framework.cmdb.enums.TransactionActionType;
 import codedriver.framework.cmdb.dto.cientity.CiEntityVo;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
@@ -174,7 +179,7 @@ public class CiEntityTransactionVo {
      * @param targetId  目标id
      */
     public void removeRelEntityData(Long relId, String direction, Long targetId) {
-        JSONArray relList = relEntityData.getJSONArray("rel" + direction + "_" + relId);
+        JSONArray relList = relEntityData.getJSONObject("rel" + direction + "_" + relId).getJSONArray("valueList");
         if (CollectionUtils.isNotEmpty(relList)) {
             List<Integer> removeList = new ArrayList<>();
             for (int i = 0; i < relList.size(); i++) {
@@ -202,7 +207,7 @@ public class CiEntityTransactionVo {
      */
     public boolean containRelEntityData(Long relId, String direction, Long targetId) {
         boolean isContain = false;
-        JSONArray dataList = relEntityData.getJSONArray("rel" + direction + "_" + relId);
+        JSONArray dataList = relEntityData.getJSONObject("rel" + direction + "_" + relId).getJSONArray("valueList");
         if (CollectionUtils.isNotEmpty(dataList)) {
             for (int i = 0; i < dataList.size(); i++) {
                 JSONObject d = dataList.getJSONObject(i);
@@ -228,10 +233,11 @@ public class CiEntityTransactionVo {
         }
 
         if (!relEntityData.containsKey("rel" + direction + "_" + relId)) {
-            JSONArray dataList = new JSONArray();
-            relEntityData.put("rel" + direction + "_" + relId, dataList);
+            JSONObject dataObj = new JSONObject();
+            dataObj.put("valueList", new JSONArray());
+            relEntityData.put("rel" + direction + "_" + relId, dataObj);
         }
-        JSONArray dataList = relEntityData.getJSONArray("rel" + direction + "_" + relId);
+        JSONArray dataList = relEntityData.getJSONObject("rel" + direction + "_" + relId).getJSONArray("valueList");
         boolean isExists = false;
         for (int i = 0; i < dataList.size(); i++) {
             JSONObject obj = dataList.getJSONObject(i);
@@ -288,23 +294,26 @@ public class CiEntityTransactionVo {
     public List<RelEntityTransactionVo> getRelEntityTransactionByRelIdAndDirection(Long relId, String direction) {
         List<RelEntityTransactionVo> relEntityTransactionList = new ArrayList<>();
         if (MapUtils.isNotEmpty(this.relEntityData) && relEntityData.containsKey("rel" + direction + "_" + relId)) {
-
-            JSONArray relDataList = relEntityData.getJSONArray("rel" + direction + "_" + relId);
+            JSONArray relDataList = relEntityData.getJSONObject("rel" + direction + "_" + relId).getJSONArray("valueList");
             if (CollectionUtils.isNotEmpty(relDataList)) {
                 for (int i = 0; i < relDataList.size(); i++) {
                     JSONObject relEntityObj = relDataList.getJSONObject(i);
                     RelEntityTransactionVo relEntityVo = new RelEntityTransactionVo();
                     relEntityVo.setRelId(relId);
                     if (direction.equals(RelDirectionType.FROM.getValue())) {
+                        relEntityVo.setToCiId(relEntityObj.getLong("ciId"));
                         relEntityVo.setToCiEntityId(relEntityObj.getLong("ciEntityId"));
                         relEntityVo.setToCiEntityName(relEntityObj.getString("ciEntityName"));
                         relEntityVo.setDirection(RelDirectionType.FROM.getValue());
                         relEntityVo.setFromCiEntityId(this.getCiEntityId());
+                        relEntityVo.setFromCiId(this.getCiId());
                     } else {
+                        relEntityVo.setFromCiId(relEntityObj.getLong("ciId"));
                         relEntityVo.setFromCiEntityId(relEntityObj.getLong("ciEntityId"));
                         relEntityVo.setFromCiEntityName(relEntityObj.getString("ciEntityName"));
                         relEntityVo.setDirection(RelDirectionType.TO.getValue());
                         relEntityVo.setToCiEntityId(this.getCiEntityId());
+                        relEntityVo.setToCiId(this.getCiId());
                     }
                     relEntityVo.setAction(relEntityObj.getString("action"));// 默认是添加关系
                     relEntityTransactionList.add(relEntityVo);

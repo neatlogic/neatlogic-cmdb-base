@@ -16,6 +16,56 @@ public interface IAttrValueHandler {
      */
     String getType();
 
+    /**
+     * 获取名称
+     *
+     * @return 名称
+     */
+    String getName();
+
+    /**
+     * 获取图标
+     *
+     * @return 图标
+     */
+    String getIcon();
+
+    /**
+     * 是否允许搜索
+     *
+     * @return boolean
+     */
+    boolean isCanSearch();
+
+
+    /**
+     * 是否简单属性（例如文本，表格属性就是复杂属性）,简单属性才能作为下拉框的显示值字段
+     *
+     * @return boolean
+     */
+    boolean isSimple();
+
+    /**
+     * 是否需要一整行显示
+     *
+     * @return boolean
+     */
+    boolean isNeedWholeRow();
+
+    /**
+     * 是否需要关联目标模型
+     *
+     * @return boolean
+     */
+    boolean isNeedTargetCi();
+
+
+    /**
+     * 是否需要额外配置（模型配置的时候有额外配置，前端需要有对应vue组件）
+     *
+     * @return boolean
+     */
+    boolean isNeedConfig();
 
     /**
      * 返回用于显示的值（批量转换）
@@ -24,5 +74,9 @@ public interface IAttrValueHandler {
      * @param valueList 值列表
      * @return 显示值列表
      */
-    JSONArray getActualValueList(AttrVo attrVo, JSONArray valueList);
+    default JSONArray getActualValueList(AttrVo attrVo, JSONArray valueList) {
+        JSONArray returnValueList = new JSONArray();
+        returnValueList.addAll(valueList);
+        return returnValueList;
+    }
 }

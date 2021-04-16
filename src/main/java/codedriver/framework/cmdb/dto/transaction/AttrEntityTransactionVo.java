@@ -5,8 +5,8 @@
 
 package codedriver.framework.cmdb.dto.transaction;
 
-import codedriver.framework.cmdb.constvalue.SaveModeType;
-import codedriver.framework.cmdb.constvalue.TransactionActionType;
+import codedriver.framework.cmdb.enums.SaveModeType;
+import codedriver.framework.cmdb.enums.TransactionActionType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.HtmlUtil;

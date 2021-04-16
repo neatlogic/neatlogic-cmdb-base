@@ -6,12 +6,13 @@
 package codedriver.framework.cmdb.dto.ci;
 
 import codedriver.framework.asynchronization.threadlocal.TenantContext;
-import codedriver.framework.cmdb.constvalue.InputType;
+import codedriver.framework.cmdb.attrvaluehandler.core.AttrValueHandlerFactory;
+import codedriver.framework.cmdb.attrvaluehandler.core.IAttrValueHandler;
+import codedriver.framework.cmdb.enums.InputType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.ValueTextVo;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
-import codedriver.framework.cmdb.enums.AttrType;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
@@ -254,10 +255,8 @@ public class AttrVo implements Serializable {
 
     public String getTypeText() {
         if (StringUtils.isBlank(typeText) && StringUtils.isNotBlank(type)) {
-            AttrType at = AttrType.get(type);
-            if (at != null) {
-                typeText = at.getText();
-            }
+            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(type);
+            typeText = handler.getName();
         }
         return typeText;
     }
@@ -379,6 +378,27 @@ public class AttrVo implements Serializable {
         return config;
     }
 
+    /**
+     * 每次调用都返回一个新的json对象，避免fastjson序列化异常
+     *
+     * @param isNew 是否new
+     * @return json对象
+     */
+    public JSONObject getConfig(boolean isNew) {
+        if (StringUtils.isNotBlank(configStr)) {
+            try {
+                if (isNew) {
+                    return JSONObject.parseObject(configStr);
+                } else {
+                    return this.getConfig();
+                }
+            } catch (Exception ignored) {
+
+            }
+        }
+        return null;
+    }
+
     public void setConfig(JSONObject config) {
         this.config = config;
     }
@@ -450,30 +470,24 @@ public class AttrVo implements Serializable {
 
     public Boolean isNeedTargetCi() {
         if (needTargetCi == null && StringUtils.isNotBlank(this.type)) {
-            AttrType t = AttrType.get(this.type);
-            if (t != null) {
-                needTargetCi = t.isNeedTargetCi();
-            }
+            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.type);
+            needTargetCi = handler.isNeedTargetCi();
         }
         return needTargetCi;
     }
 
     public Boolean isNeedConfig() {
         if (needConfig == null && StringUtils.isNotBlank(this.type)) {
-            AttrType t = AttrType.get(this.type);
-            if (t != null) {
-                needConfig = t.isNeedConfig();
-            }
+            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.type);
+            needTargetCi = handler.isNeedConfig();
         }
         return needConfig;
     }
 
     public Boolean isNeedWholeRow() {
         if (needWholeRow == null && StringUtils.isNotBlank(this.type)) {
-            AttrType t = AttrType.get(this.type);
-            if (t != null) {
-                needWholeRow = t.isNeedWholeRow();
-            }
+            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.type);
+            needTargetCi = handler.isNeedWholeRow();
         }
         return needWholeRow;
     }

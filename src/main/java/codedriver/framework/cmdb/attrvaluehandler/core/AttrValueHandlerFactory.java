@@ -5,6 +5,8 @@
 
 package codedriver.framework.cmdb.attrvaluehandler.core;
 
+import codedriver.framework.cmdb.dto.ci.AttrTypeVo;
+import codedriver.framework.cmdb.exception.attrtype.AttrTypeNotFoundException;
 import codedriver.framework.common.RootComponent;
 import com.sun.istack.NotNull;
 import org.apache.commons.lang3.StringUtils;
@@ -12,13 +14,25 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RootComponent
 public class AttrValueHandlerFactory implements ApplicationListener<ContextRefreshedEvent> {
 
     private static final Map<String, IAttrValueHandler> componentMap = new HashMap<>();
+    private static final List<AttrTypeVo> attrTypeList = new ArrayList<>();
+
+    /**
+     * 返回属性类型列表
+     *
+     * @return 属性列表数组
+     */
+    public static List<AttrTypeVo> getAttrTypeList() {
+        return attrTypeList;
+    }
 
     /**
      * 返回处理器
@@ -31,7 +45,7 @@ public class AttrValueHandlerFactory implements ApplicationListener<ContextRefre
         if (componentMap.containsKey(type)) {
             return componentMap.get(type);
         } else {
-            return componentMap.get("default");
+            throw new AttrTypeNotFoundException(type);
         }
     }
 
@@ -43,6 +57,13 @@ public class AttrValueHandlerFactory implements ApplicationListener<ContextRefre
             IAttrValueHandler handler = entry.getValue();
             if (StringUtils.isNotBlank(handler.getType())) {
                 componentMap.put(handler.getType(), handler);
+                AttrTypeVo attrType = new AttrTypeVo();
+                attrType.setName(handler.getType());
+                attrType.setLabel(handler.getName());
+                attrType.setNeedConfig(handler.isNeedConfig());
+                attrType.setNeedWholeRow(handler.isNeedWholeRow());
+                attrType.setNeedTargetCi(handler.isNeedTargetCi());
+                attrTypeList.add(attrType);
             }
         }
     }
