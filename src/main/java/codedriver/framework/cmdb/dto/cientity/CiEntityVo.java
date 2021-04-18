@@ -676,4 +676,5 @@ public class CiEntityVo extends BasePageVo {
     public void setRelList(List<RelVo> relList) {
         this.relList = relList;
     }
+
 }

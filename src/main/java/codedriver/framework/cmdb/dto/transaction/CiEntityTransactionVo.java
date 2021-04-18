@@ -5,11 +5,10 @@
 
 package codedriver.framework.cmdb.dto.transaction;
 
+import codedriver.framework.cmdb.dto.cientity.CiEntityVo;
 import codedriver.framework.cmdb.enums.EditModeType;
-import codedriver.framework.cmdb.enums.RelActionType;
 import codedriver.framework.cmdb.enums.RelDirectionType;
 import codedriver.framework.cmdb.enums.TransactionActionType;
-import codedriver.framework.cmdb.dto.cientity.CiEntityVo;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
@@ -39,11 +38,9 @@ public class CiEntityTransactionVo {
     private String name;
     @EntityField(name = "事务id", type = ApiParamType.LONG)
     private Long transactionId;
-    @JSONField(serialize = false)
-    private transient TransactionActionType transactionMode;// 事务动作（删除、添加或修改）
     @EntityField(name = "编辑模式", type = ApiParamType.ENUM, member = EditModeType.class)
     private String editMode = EditModeType.GLOBAL.getValue();
-    @EntityField(name = "操作", type = ApiParamType.ENUM, member = TransactionActionType.class)
+    @EntityField(name = "操作(删除、添加或修改)", type = ApiParamType.ENUM, member = TransactionActionType.class)
     private String action;
     @EntityField(name = "操作文本", type = ApiParamType.STRING)
     private String actionText;
@@ -206,7 +203,6 @@ public class CiEntityTransactionVo {
      * @return true/false
      */
     public boolean containRelEntityData(Long relId, String direction, Long targetId) {
-        boolean isContain = false;
         JSONArray dataList = relEntityData.getJSONObject("rel" + direction + "_" + relId).getJSONArray("valueList");
         if (CollectionUtils.isNotEmpty(dataList)) {
             for (int i = 0; i < dataList.size(); i++) {
@@ -220,14 +216,30 @@ public class CiEntityTransactionVo {
     }
 
     /**
+     * 添加一个空的属性修改数据，用在删除属性创建事务数据的场景
+     *
+     * @param attrId 属性id
+     */
+    public void addAttrEntityData(Long attrId) {
+        if (attrEntityData == null) {
+            attrEntityData = new JSONObject();
+        }
+        if (!attrEntityData.containsKey("attr_" + attrId)) {
+            JSONObject dataObj = new JSONObject();
+            dataObj.put("valueList", new JSONArray());
+            attrEntityData.put("attr_" + attrId, dataObj);
+        }
+    }
+
+    /**
      * 添加需要操作的关系事务
      *
-     * @param relId      关系id
-     * @param direction  方向
-     * @param targetId   目标id
-     * @param actionType 操作
+     * @param relId     关系id
+     * @param direction 方向
+     * @param targetId  目标id
+     * @param action    操作,需要是RelActionType中的枚举
      */
-    public void addRelEntityData(Long relId, String direction, Long targetId, RelActionType actionType) {
+    public void addRelEntityData(Long relId, String direction, Long targetId, String action) {
         if (relEntityData == null) {
             relEntityData = new JSONObject();
         }
@@ -249,7 +261,7 @@ public class CiEntityTransactionVo {
         if (!isExists) {
             JSONObject newObj = new JSONObject();
             newObj.put("ciEntityId", targetId);
-            newObj.put("action", actionType.getValue());
+            newObj.put("action", action);
             dataList.add(newObj);
         }
     }
@@ -315,7 +327,7 @@ public class CiEntityTransactionVo {
                         relEntityVo.setToCiEntityId(this.getCiEntityId());
                         relEntityVo.setToCiId(this.getCiId());
                     }
-                    relEntityVo.setAction(relEntityObj.getString("action"));// 默认是添加关系
+                    relEntityVo.setAction(relEntityObj.getString("action"));// 如果不提供，默认是添加关系
                     relEntityTransactionList.add(relEntityVo);
                 }
             }
@@ -387,10 +399,6 @@ public class CiEntityTransactionVo {
         return actionText;
     }
 
-    public void setActionText(String actionText) {
-        this.actionText = actionText;
-    }
-
 
     public String getSnapshot() {
         return snapshot;
@@ -416,13 +424,6 @@ public class CiEntityTransactionVo {
         this.ciEntityUuid = ciEntityUuid;
     }
 
-    public TransactionActionType getTransactionMode() {
-        return transactionMode;
-    }
-
-    public void setTransactionMode(TransactionActionType transactionMode) {
-        this.transactionMode = transactionMode;
-    }
 
     public JSONObject getAttrEntityData() {
         return attrEntityData;

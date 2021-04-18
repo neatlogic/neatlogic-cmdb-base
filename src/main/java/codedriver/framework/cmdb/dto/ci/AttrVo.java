@@ -469,7 +469,7 @@ public class AttrVo implements Serializable {
     }
 
     public Boolean isNeedTargetCi() {
-        if (needTargetCi == null && StringUtils.isNotBlank(this.type)) {
+        if (StringUtils.isNotBlank(this.type)) {
             IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.type);
             needTargetCi = handler.isNeedTargetCi();
         }
@@ -477,7 +477,7 @@ public class AttrVo implements Serializable {
     }
 
     public Boolean isNeedConfig() {
-        if (needConfig == null && StringUtils.isNotBlank(this.type)) {
+        if (StringUtils.isNotBlank(this.type)) {
             IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.type);
             needTargetCi = handler.isNeedConfig();
         }
@@ -485,7 +485,7 @@ public class AttrVo implements Serializable {
     }
 
     public Boolean isNeedWholeRow() {
-        if (needWholeRow == null && StringUtils.isNotBlank(this.type)) {
+        if (StringUtils.isNotBlank(this.type)) {
             IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.type);
             needTargetCi = handler.isNeedWholeRow();
         }

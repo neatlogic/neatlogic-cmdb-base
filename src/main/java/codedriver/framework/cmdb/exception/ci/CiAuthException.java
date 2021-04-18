@@ -7,9 +7,12 @@ package codedriver.framework.cmdb.exception.ci;
 
 import codedriver.framework.exception.core.ApiRuntimeException;
 
-@SuppressWarnings("serial")
 public class CiAuthException extends ApiRuntimeException {
     public CiAuthException() {
         super("您没有权限修改配置项模型");
+    }
+
+    public CiAuthException(String ciLabel) {
+        super("您没有权限修改配置项模型：" + ciLabel);
     }
 }

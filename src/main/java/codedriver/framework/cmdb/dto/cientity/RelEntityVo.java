@@ -5,15 +5,16 @@
 
 package codedriver.framework.cmdb.dto.cientity;
 
+import codedriver.framework.cmdb.dto.transaction.RelEntityTransactionVo;
 import codedriver.framework.common.constvalue.ApiParamType;
+import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.elasticsearch.annotation.ESKey;
 import codedriver.framework.elasticsearch.constvalue.ESKeyType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
-import codedriver.framework.cmdb.dto.transaction.RelEntityTransactionVo;
 import com.google.common.base.Objects;
 
-public class RelEntityVo {
+public class RelEntityVo extends BasePageVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "关系id", type = ApiParamType.LONG)
