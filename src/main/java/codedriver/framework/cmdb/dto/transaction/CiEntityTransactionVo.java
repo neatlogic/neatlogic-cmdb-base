@@ -48,6 +48,10 @@ public class CiEntityTransactionVo {
     private JSONObject attrEntityData;
     @EntityField(name = "关系对象，以'relfrom_'+relId或'relto_'+relId为key", type = ApiParamType.JSONOBJECT)
     private JSONObject relEntityData;
+    @EntityField(name = "更新属性数量", type = ApiParamType.INTEGER)
+    private int updateAttrCount;
+    @EntityField(name = "更新关系数量", type = ApiParamType.INTEGER)
+    private int updateRelCount;
     @JSONField(serialize = false)
     private transient List<AttrEntityTransactionVo> attrEntityTransactionList;
     @JSONField(serialize = false)
@@ -181,7 +185,8 @@ public class CiEntityTransactionVo {
             List<Integer> removeList = new ArrayList<>();
             for (int i = 0; i < relList.size(); i++) {
                 JSONObject relObj = relList.getJSONObject(i);
-                if (relObj.getLong("ciEntityId").equals(targetId)) {
+                //如果是新增加目标则不会有ciEntityId,所以必须要判断ciEntityId是否为空
+                if (relObj.containsKey("ciEntityId") && relObj.getLong("ciEntityId").equals(targetId)) {
                     removeList.add(i);
                 }
             }
@@ -234,12 +239,13 @@ public class CiEntityTransactionVo {
     /**
      * 添加需要操作的关系事务
      *
-     * @param relId     关系id
-     * @param direction 方向
-     * @param targetId  目标id
-     * @param action    操作,需要是RelActionType中的枚举
+     * @param relId      关系id
+     * @param direction  方向
+     * @param ciId       目标模型id
+     * @param ciEntityId 目标配置项id
+     * @param action     操作,需要是RelActionType中的枚举
      */
-    public void addRelEntityData(Long relId, String direction, Long targetId, String action) {
+    public void addRelEntityData(Long relId, String direction, Long ciId, Long ciEntityId, String action) {
         if (relEntityData == null) {
             relEntityData = new JSONObject();
         }
@@ -253,14 +259,16 @@ public class CiEntityTransactionVo {
         boolean isExists = false;
         for (int i = 0; i < dataList.size(); i++) {
             JSONObject obj = dataList.getJSONObject(i);
-            if (obj.getLong("ciEntityId").equals(targetId)) {
+            //如果是新增加目标则不会有ciEntityId,所以必须要判断ciEntityId是否为空
+            if (obj.containsKey("ciEntityId") && obj.getLong("ciEntityId").equals(ciEntityId)) {
                 isExists = true;
                 break;
             }
         }
         if (!isExists) {
             JSONObject newObj = new JSONObject();
-            newObj.put("ciEntityId", targetId);
+            newObj.put("ciEntityId", ciEntityId);
+            newObj.put("ciId", ciId);
             newObj.put("action", action);
             dataList.add(newObj);
         }
@@ -461,4 +469,22 @@ public class CiEntityTransactionVo {
     public void setRelEntityData(JSONObject relEntityData) {
         this.relEntityData = relEntityData;
     }
+
+    public int getUpdateAttrCount() {
+        if (MapUtils.isNotEmpty(this.getAttrEntityData())) {
+            return this.getAttrEntityData().keySet().size();
+        } else {
+            return 0;
+        }
+    }
+
+
+    public int getUpdateRelCount() {
+        if (MapUtils.isNotEmpty(this.getRelEntityData())) {
+            return this.getRelEntityData().keySet().size();
+        } else {
+            return 0;
+        }
+    }
+
 }

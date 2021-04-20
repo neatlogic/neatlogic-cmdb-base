@@ -39,7 +39,7 @@ public class AttrEntityVo {
     @EntityField(name = "属性配置", type = ApiParamType.JSONOBJECT)
     private JSONObject attrConfig;
     @JSONField(serialize = false)
-    private AttrVo attrVo;//属性定义
+    private transient AttrVo attrVo;//属性定义
     @EntityField(name = "值数据列表", type = ApiParamType.JSONARRAY)
     private JSONArray valueList;
     @EntityField(name = "显示值列表", type = ApiParamType.JSONARRAY)
@@ -91,15 +91,18 @@ public class AttrEntityVo {
     public AttrVo getAttrVo() {
         if (attrVo == null) {
             attrVo = new AttrVo();
+            attrVo.setId(attrId);
+            attrVo.setLabel(attrLabel);
+            attrVo.setName(attrName);
+            attrVo.setTargetCiId(toCiId);
+            attrVo.setConfig(attrConfig);
         }
-        attrVo.setId(attrId);
-        attrVo.setLabel(attrLabel);
-        attrVo.setName(attrName);
-        attrVo.setTargetCiId(toCiId);
-        attrVo.setConfig(attrConfig);
         return attrVo;
     }
 
+    public void setAttrVo(AttrVo attrVo) {
+        this.attrVo = attrVo;
+    }
 
     public Long getId() {
         return id;
