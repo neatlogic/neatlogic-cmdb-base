@@ -239,11 +239,12 @@ public class CiEntityTransactionVo {
     /**
      * 添加需要操作的关系事务
      *
-     * @param relId      关系id
-     * @param direction  方向
-     * @param ciId       目标模型id
-     * @param ciEntityId 目标配置项id
-     * @param action     操作,需要是RelActionType中的枚举
+     * @param relId        关系id
+     * @param direction    方向
+     * @param ciId         目标模型id
+     * @param ciEntityId   目标配置项id
+     * @param ciEntityName 目标配置项名称
+     * @param action       操作,需要是RelActionType中的枚举
      */
     public void addRelEntityData(Long relId, String direction, Long ciId, Long ciEntityId, String action) {
         if (relEntityData == null) {

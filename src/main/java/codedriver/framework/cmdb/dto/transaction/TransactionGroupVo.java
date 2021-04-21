@@ -1,17 +1,36 @@
+/*
+ * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
+ */
+
 package codedriver.framework.cmdb.dto.transaction;
 
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
+import com.alibaba.fastjson.annotation.JSONField;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class TransactionGroupVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "事务id", type = ApiParamType.JSONARRAY)
     private List<Long> transactionIdList;
+    @JSONField(serialize = false)
+    private final transient Set<Long> excludeCiEntity = new HashSet<>();//记录本次事务组中需要排除的ciEntityId，排除掉的ciEntityId在补充关系事务时不会处理
+
+    public void addExclude(Long ciEntityId) {
+        excludeCiEntity.add(ciEntityId);
+    }
+
+    @JSONField(serialize = false)
+    public boolean isExclude(Long ciEntityId) {
+        return excludeCiEntity.contains(ciEntityId);
+    }
 
     public Long getId() {
         if (id == null) {
