@@ -68,6 +68,8 @@ public class CiVo implements Serializable {
     private Integer lft;
     @EntityField(name = "右编码", type = ApiParamType.INTEGER)
     private Integer rht;
+    @JSONField(serialize = false)
+    private transient Integer isTypeShowInTopo;//类型是否在topo中显示
 
     @Override
     public boolean equals(Object o) {
@@ -261,6 +263,14 @@ public class CiVo implements Serializable {
             this.children.add(ciVo);
             ciVo.setParentCi(this);
         }
+    }
+
+    public Integer getIsTypeShowInTopo() {
+        return isTypeShowInTopo;
+    }
+
+    public void setIsTypeShowInTopo(Integer isTypeShowInTopo) {
+        this.isTypeShowInTopo = isTypeShowInTopo;
     }
 
     /**
