@@ -9,6 +9,7 @@ import codedriver.framework.asynchronization.threadlocal.TenantContext;
 import codedriver.framework.cmdb.attrvaluehandler.core.AttrValueHandlerFactory;
 import codedriver.framework.cmdb.attrvaluehandler.core.IAttrValueHandler;
 import codedriver.framework.cmdb.enums.InputType;
+import codedriver.framework.cmdb.enums.SearchExpression;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.ValueTextVo;
 import codedriver.framework.restful.annotation.EntityField;
@@ -326,19 +327,10 @@ public class AttrVo implements Serializable {
     public List<ValueTextVo> getExpressionList() {
         if (CollectionUtils.isEmpty(this.expressionList) && StringUtils.isNotBlank(type)) {
             expressionList = new ArrayList<>();
-            //FIXME 需处理
-            /*if (type.equals(AttrType.PROPERTY.getValue())) {
-                if (StringUtils.isNotBlank(propHandler)) {
-                    IPropertyHandler handler = PropertyHandlerFactory.getHandler(propHandler);
-                    for (SearchExpression expression : handler.getSupportExpression()) {
-                        expressionList.add(new ValueTextVo(expression.getExpression(), expression.getText()));
-                    }
-                }
-            } else if (type.equals(AttrType.CUSTOM.getValue())) {
-                for (SearchExpression expression : SearchExpression.values()) {
-                    expressionList.add(new ValueTextVo(expression.getExpression(), expression.getText()));
-                }
-            }*/
+            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(type);
+            for (SearchExpression expression : handler.getSupportExpression()) {
+                expressionList.add(new ValueTextVo(expression.getExpression(), expression.getText()));
+            }
         }
         return expressionList;
     }

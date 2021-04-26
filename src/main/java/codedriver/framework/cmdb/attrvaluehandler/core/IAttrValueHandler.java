@@ -6,6 +6,7 @@
 package codedriver.framework.cmdb.attrvaluehandler.core;
 
 import codedriver.framework.cmdb.dto.ci.AttrVo;
+import codedriver.framework.cmdb.enums.SearchExpression;
 import com.alibaba.fastjson.JSONArray;
 
 public interface IAttrValueHandler {
@@ -79,4 +80,11 @@ public interface IAttrValueHandler {
         returnValueList.addAll(valueList);
         return returnValueList;
     }
+
+    /**
+     * 获取搜索表达式
+     *
+     * @return 表达式数组
+     */
+    SearchExpression[] getSupportExpression();
 }
