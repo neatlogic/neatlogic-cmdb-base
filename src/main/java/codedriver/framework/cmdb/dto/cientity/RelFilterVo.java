@@ -9,6 +9,7 @@ import java.util.List;
 
 public class RelFilterVo {
     private Long relId;
+    private String direction;
     private String expressionName; // 表达式名称
     private String expression;// 用户sql查询的表达式
     private List<Long> valueList;
@@ -45,5 +46,11 @@ public class RelFilterVo {
         this.valueList = valueList;
     }
 
+    public String getDirection() {
+        return direction;
+    }
 
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
 }
