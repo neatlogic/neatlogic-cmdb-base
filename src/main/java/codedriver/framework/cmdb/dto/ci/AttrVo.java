@@ -471,7 +471,7 @@ public class AttrVo implements Serializable {
     public Boolean isNeedConfig() {
         if (StringUtils.isNotBlank(this.type)) {
             IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.type);
-            needTargetCi = handler.isNeedConfig();
+            needConfig = handler.isNeedConfig();
         }
         return needConfig;
     }
