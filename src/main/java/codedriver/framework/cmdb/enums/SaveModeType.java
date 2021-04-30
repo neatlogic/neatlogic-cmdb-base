@@ -8,8 +8,8 @@ package codedriver.framework.cmdb.enums;
 public enum SaveModeType {
     REPLACE("replace", "替换模式"), MERGE("merge", "合并模式");
 
-    private String value;
-    private String text;
+    private final String value;
+    private final String text;
 
     private SaveModeType(String _value, String _text) {
         this.value = _value;

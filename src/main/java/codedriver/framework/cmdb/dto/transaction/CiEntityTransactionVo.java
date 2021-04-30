@@ -5,6 +5,7 @@
 
 package codedriver.framework.cmdb.dto.transaction;
 
+import codedriver.framework.cmdb.dto.ci.AttrVo;
 import codedriver.framework.cmdb.dto.cientity.CiEntityVo;
 import codedriver.framework.cmdb.enums.EditModeType;
 import codedriver.framework.cmdb.enums.RelDirectionType;
@@ -237,14 +238,46 @@ public class CiEntityTransactionVo {
     }
 
     /**
+     * 添加一个属性数据项
+     *
+     * @param attrId    属性id
+     * @param attrVo    属性定义
+     * @param valueList 值列表
+     */
+    public void addAttrEntityData(Long attrId, AttrVo attrVo, JSONArray valueList) {
+        if (attrEntityData == null) {
+            attrEntityData = new JSONObject();
+        }
+        JSONObject attrObj = new JSONObject();
+        attrObj.put("name", attrVo.getName());
+        attrObj.put("label", attrVo.getLabel());
+        attrObj.put("type", attrVo.getType());
+        attrObj.put("ciId", attrVo.getCiId());
+        attrObj.put("targetCiId", attrVo.getTargetCiId());
+        attrObj.put("valueList", valueList);
+        attrEntityData.put("attr_" + attrId, attrObj);
+    }
+
+    /**
      * 添加需要操作的关系事务
      *
-     * @param relId        关系id
-     * @param direction    方向
-     * @param ciId         目标模型id
-     * @param ciEntityId   目标配置项id
-     * @param ciEntityName 目标配置项名称
-     * @param action       操作,需要是RelActionType中的枚举
+     * @param relId      关系id
+     * @param direction  方向
+     * @param ciId       目标模型id
+     * @param ciEntityId 目标配置项id
+     */
+    public void addRelEntityData(Long relId, String direction, Long ciId, Long ciEntityId) {
+        addRelEntityData(relId, direction, ciId, ciEntityId, null);
+    }
+
+    /**
+     * 添加需要操作的关系事务
+     *
+     * @param relId      关系id
+     * @param direction  方向
+     * @param ciId       目标模型id
+     * @param ciEntityId 目标配置项id
+     * @param action     操作,需要是RelActionType中的枚举
      */
     public void addRelEntityData(Long relId, String direction, Long ciId, Long ciEntityId, String action) {
         if (relEntityData == null) {

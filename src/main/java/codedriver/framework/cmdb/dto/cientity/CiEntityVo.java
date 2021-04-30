@@ -235,28 +235,6 @@ public class CiEntityVo extends BasePageVo {
         this.keyword = keyword;
     }
 
-    public void addAttrEntity(AttrEntityVo attrEntityVo) {
-        if (attrEntityList == null) {
-            attrEntityList = new ArrayList<>();
-        }
-        if (!attrEntityList.contains(attrEntityVo)) {
-            attrEntityList.add(attrEntityVo);
-        }
-    }
-
-    public void addRelEntity(RelEntityVo relEntityVo) {
-        if (relEntityList == null) {
-            relEntityList = new ArrayList<>();
-        }
-        if (!relEntityList.contains(relEntityVo)) {
-            relEntityList.add(relEntityVo);
-        }
-    }
-
-
-    public void setRelEntityList(List<RelEntityVo> relEntityList) {
-        this.relEntityList = relEntityList;
-    }
 
     public List<AttrFilterVo> getAttrFilterList() {
         return attrFilterList;
