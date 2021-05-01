@@ -7,8 +7,8 @@ package codedriver.framework.cmdb.exception.ci;
 
 import codedriver.framework.exception.core.ApiRuntimeException;
 
-public class CiIsNotEmptyException extends ApiRuntimeException {
-    public CiIsNotEmptyException(Long ciId, int ciEntityCount) {
-        super("配置项模型：" + ciId + "及其子模型共拥有：" + ciEntityCount + "个配置项，请先删除");
+public class CiParentCanNotBeChangedException extends ApiRuntimeException {
+    public CiParentCanNotBeChangedException(String ciName, int ciEntityCount) {
+        super("模型：" + ciName + "及其子模型共包含" + ciEntityCount + "条配置项数据，不允许修改继承关系");
     }
 }

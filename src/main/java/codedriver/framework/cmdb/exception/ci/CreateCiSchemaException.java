@@ -7,8 +7,8 @@ package codedriver.framework.cmdb.exception.ci;
 
 import codedriver.framework.exception.core.ApiRuntimeException;
 
-public class CiIsNotEmptyException extends ApiRuntimeException {
-    public CiIsNotEmptyException(Long ciId, int ciEntityCount) {
-        super("配置项模型：" + ciId + "及其子模型共拥有：" + ciEntityCount + "个配置项，请先删除");
+public class CreateCiSchemaException extends ApiRuntimeException {
+    public CreateCiSchemaException(String ciName) {
+        super("创建模型：" + ciName + "数据表失败。");
     }
 }

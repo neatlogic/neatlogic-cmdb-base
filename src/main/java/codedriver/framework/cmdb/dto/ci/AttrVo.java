@@ -479,7 +479,7 @@ public class AttrVo implements Serializable {
     public Boolean isNeedWholeRow() {
         if (StringUtils.isNotBlank(this.type)) {
             IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.type);
-            needTargetCi = handler.isNeedWholeRow();
+            needWholeRow = handler.isNeedWholeRow();
         }
         return needWholeRow;
     }
