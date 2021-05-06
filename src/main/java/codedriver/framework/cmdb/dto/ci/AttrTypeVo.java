@@ -21,7 +21,16 @@ public class AttrTypeVo {
     private boolean needConfig;
     @EntityField(name = "是否需要一整行显示编辑组件", type = ApiParamType.BOOLEAN)
     private boolean needWholeRow;
+    @EntityField(name = "排序", type = ApiParamType.INTEGER)
+    private int sort;
 
+    public int getSort() {
+        return sort;
+    }
+
+    public void setSort(int sort) {
+        this.sort = sort;
+    }
 
     public String getName() {
         return name;

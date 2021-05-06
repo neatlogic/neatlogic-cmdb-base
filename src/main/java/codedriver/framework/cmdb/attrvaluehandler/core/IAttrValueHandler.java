@@ -87,4 +87,11 @@ public interface IAttrValueHandler {
      * @return 表达式数组
      */
     SearchExpression[] getSupportExpression();
+
+    /**
+     * 排序
+     *
+     * @return 序号
+     */
+    int getSort();
 }

@@ -9,15 +9,13 @@ import codedriver.framework.cmdb.dto.ci.AttrTypeVo;
 import codedriver.framework.cmdb.exception.attrtype.AttrTypeNotFoundException;
 import codedriver.framework.common.RootComponent;
 import com.sun.istack.NotNull;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RootComponent
 public class AttrValueHandlerFactory implements ApplicationListener<ContextRefreshedEvent> {
@@ -63,8 +61,12 @@ public class AttrValueHandlerFactory implements ApplicationListener<ContextRefre
                 attrType.setNeedConfig(handler.isNeedConfig());
                 attrType.setNeedWholeRow(handler.isNeedWholeRow());
                 attrType.setNeedTargetCi(handler.isNeedTargetCi());
+                attrType.setSort(handler.getSort());
                 attrTypeList.add(attrType);
             }
+        }
+        if (CollectionUtils.isNotEmpty(attrTypeList)) {
+            attrTypeList.sort(Comparator.comparingInt(AttrTypeVo::getSort));
         }
     }
 }
