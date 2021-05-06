@@ -7,9 +7,9 @@ package codedriver.framework.cmdb.exception.cientity;
 
 import codedriver.framework.exception.core.ApiRuntimeException;
 
-public class AttrEntityNotFoundException extends ApiRuntimeException {
-    public AttrEntityNotFoundException(Long attrId) {
-        super("属性：" + attrId + " 不存在");
+public class AttrEntityValueEmptyException extends ApiRuntimeException {
+    public AttrEntityValueEmptyException(String msg) {
+        super("属性：" + msg + " 值不能为空");
     }
 
 }

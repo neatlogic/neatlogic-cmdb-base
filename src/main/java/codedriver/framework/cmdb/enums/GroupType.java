@@ -6,12 +6,12 @@
 package codedriver.framework.cmdb.enums;
 
 public enum GroupType {
-    MATAIN("matain", "维护群组"), READONLY("readonly", "消费群组");
+    MAINTAIN("maintain", "维护群组"), READONLY("readonly", "消费群组");
 
-    private String value;
-    private String text;
+    private final String value;
+    private final String text;
 
-    private GroupType(String _value, String _text) {
+    GroupType(String _value, String _text) {
         this.value = _value;
         this.text = _text;
     }

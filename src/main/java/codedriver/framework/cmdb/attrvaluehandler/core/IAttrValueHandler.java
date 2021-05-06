@@ -94,4 +94,22 @@ public interface IAttrValueHandler {
      * @return 序号
      */
     int getSort();
+
+    /**
+     * 将值转换成存储到数据库的形式
+     *
+     * @param valueList 显示数据
+     * @return 用于保存的数据
+     */
+    default void transferValueListToSave(JSONArray valueList) {
+    }
+
+    /**
+     * 将值转换成显示的形式
+     *
+     * @param valueList 数据库的数据
+     * @return 用于显示数据
+     */
+    default void transferValueListToDisplay(JSONArray valueList) {
+    }
 }
