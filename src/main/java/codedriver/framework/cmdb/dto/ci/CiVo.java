@@ -54,6 +54,8 @@ public class CiVo implements Serializable {
     private Integer isMenu = 0;
     @EntityField(name = "是否抽象模型，0:不是，1:是", type = ApiParamType.INTEGER)
     private Integer isAbstract = 0;
+    @EntityField(name = "是否虚拟模型，0:不是，1:是，虚拟模型不能被继承，不能修改数据，只能被引用和查询", type = ApiParamType.INTEGER)
+    private Integer isVirtual = 0;
     @EntityField(name = "属性定义列表", type = ApiParamType.JSONARRAY)
     private List<AttrVo> attrList;
     @EntityField(name = "关系定义列表", type = ApiParamType.JSONARRAY)
@@ -283,5 +285,11 @@ public class CiVo implements Serializable {
         return TenantContext.get().getDataDbName() + ".`cmdb_" + this.getId() + "`";
     }
 
+    public Integer getIsVirtual() {
+        return isVirtual;
+    }
 
+    public void setIsVirtual(Integer isVirtual) {
+        this.isVirtual = isVirtual;
+    }
 }

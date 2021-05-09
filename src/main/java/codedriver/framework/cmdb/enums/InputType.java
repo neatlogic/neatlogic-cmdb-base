@@ -8,10 +8,10 @@ package codedriver.framework.cmdb.enums;
 public enum InputType {
     AT("at", "自动发现"), MT("mt", "人工录入");
 
-    private String value;
-    private String text;
+    private final String value;
+    private final String text;
 
-    private InputType(String _value, String _text) {
+    InputType(String _value, String _text) {
         this.value = _value;
         this.text = _text;
     }

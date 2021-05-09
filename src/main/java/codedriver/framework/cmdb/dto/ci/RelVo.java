@@ -5,11 +5,13 @@
 
 package codedriver.framework.cmdb.dto.ci;
 
+import codedriver.framework.asynchronization.threadlocal.TenantContext;
 import codedriver.framework.cmdb.enums.InputType;
 import codedriver.framework.cmdb.enums.RelRuleType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
+import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -55,6 +57,8 @@ public class RelVo implements Serializable {
     private Integer fromIsRequired;
     @EntityField(name = "来源端是否允许添加新配置项", type = ApiParamType.BOOLEAN)
     private Boolean fromAllowInsert;
+    @EntityField(name = "来源端是否虚拟模型", type = ApiParamType.INTEGER)
+    private Integer fromIsVirtual;
 
     @EntityField(name = "目标端模型id", type = ApiParamType.LONG)
     private Long toCiId;
@@ -84,9 +88,10 @@ public class RelVo implements Serializable {
     private Integer toIsRequired;
     @EntityField(name = "目标端是否允许添加新配置项", type = ApiParamType.BOOLEAN)
     private Boolean toAllowInsert;
-
     @EntityField(name = "是否继承属性", type = ApiParamType.INTEGER)
     private Integer isExtended;
+    @EntityField(name = "目标端是否虚拟模型", type = ApiParamType.INTEGER)
+    private Integer toIsVirtual;
 
     public Long getId() {
         if (id == null) {
@@ -359,5 +364,31 @@ public class RelVo implements Serializable {
 
     public void setToIsRequired(Integer toIsRequired) {
         this.toIsRequired = toIsRequired;
+    }
+
+    public Integer getFromIsVirtual() {
+        return fromIsVirtual;
+    }
+
+    public void setFromIsVirtual(Integer fromIsVirtual) {
+        this.fromIsVirtual = fromIsVirtual;
+    }
+
+    public Integer getToIsVirtual() {
+        return toIsVirtual;
+    }
+
+    public void setToIsVirtual(Integer toIsVirtual) {
+        this.toIsVirtual = toIsVirtual;
+    }
+
+    @JSONField(serialize = false)
+    public String getToCiTableName() {
+        return TenantContext.get().getDataDbName() + ".`cmdb_" + this.getToCiId() + "`";
+    }
+
+    @JSONField(serialize = false)
+    public String getFromCiTableName() {
+        return TenantContext.get().getDataDbName() + ".`cmdb_" + this.getFromCiId() + "`";
     }
 }

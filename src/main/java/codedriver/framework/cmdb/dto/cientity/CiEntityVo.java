@@ -563,6 +563,13 @@ public class CiEntityVo extends BasePageVo {
         this.idList = idList;
     }
 
+    public void addId(Long id) {
+        if (idList == null) {
+            idList = new ArrayList<>();
+        }
+        idList.add(id);
+    }
+
     public Map<String, Boolean> getAuthData() {
         return authData;
     }
