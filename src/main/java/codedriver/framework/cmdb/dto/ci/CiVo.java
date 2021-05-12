@@ -72,6 +72,12 @@ public class CiVo implements Serializable {
     private Integer rht;
     @JSONField(serialize = false)
     private transient Integer isTypeShowInTopo;//类型是否在topo中显示
+    @EntityField(name = "唯一属性列表", type = ApiParamType.LONG)
+    private List<Long> uniqueAttrIdList;
+    @JSONField(serialize = false)
+    private transient String viewXml;//虚拟模型xml定义
+    @EntityField(name = "虚拟模型配置文件id", type = ApiParamType.LONG)
+    private Long fileId;
 
     @Override
     public boolean equals(Object o) {
@@ -242,6 +248,10 @@ public class CiVo implements Serializable {
     }
 
     public Long getParentCiId() {
+        //虚拟模型不能继承
+        if (this.isVirtual != null && this.isVirtual.equals(1)) {
+            parentCiId = null;
+        }
         return parentCiId;
     }
 
@@ -291,5 +301,29 @@ public class CiVo implements Serializable {
 
     public void setIsVirtual(Integer isVirtual) {
         this.isVirtual = isVirtual;
+    }
+
+    public List<Long> getUniqueAttrIdList() {
+        return uniqueAttrIdList;
+    }
+
+    public void setUniqueAttrIdList(List<Long> uniqueAttrIdList) {
+        this.uniqueAttrIdList = uniqueAttrIdList;
+    }
+
+    public String getViewXml() {
+        return viewXml;
+    }
+
+    public void setViewXml(String viewXml) {
+        this.viewXml = viewXml;
+    }
+
+    public Long getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(Long fileId) {
+        this.fileId = fileId;
     }
 }

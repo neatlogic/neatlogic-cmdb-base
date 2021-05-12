@@ -104,6 +104,8 @@ public class CiEntityVo extends BasePageVo {
     private Map<String, Boolean> authData;
     @JSONField(serialize = false)//动态属性
     private transient Map<String, Object> attrEntityMap;
+    @EntityField(name = "是否抽象模型", type = ApiParamType.INTEGER)
+    private int isVirtual = 0;
 
     public CiEntityVo() {
 
@@ -662,4 +664,11 @@ public class CiEntityVo extends BasePageVo {
         this.relList = relList;
     }
 
+    public int getIsVirtual() {
+        return isVirtual;
+    }
+
+    public void setIsVirtual(int isVirtual) {
+        this.isVirtual = isVirtual;
+    }
 }

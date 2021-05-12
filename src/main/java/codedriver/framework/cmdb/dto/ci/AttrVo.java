@@ -66,7 +66,7 @@ public class AttrVo implements Serializable {
     @EntityField(name = "是否唯一", type = ApiParamType.INTEGER)
     private Integer isUnique = 0;
     @EntityField(name = "是否私有属性", type = ApiParamType.INTEGER)
-    private Integer isPrivate;
+    private Integer isPrivate = 0;
     @EntityField(name = "是否继承属性", type = ApiParamType.INTEGER)
     private Integer isExtended;
     @EntityField(name = "是否需要关联目标模型", type = ApiParamType.BOOLEAN)

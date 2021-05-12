@@ -11,4 +11,8 @@ public class CreateCiSchemaException extends ApiRuntimeException {
     public CreateCiSchemaException(String ciName) {
         super("创建模型：" + ciName + "数据表失败。");
     }
+
+    public CreateCiSchemaException(String ciName, boolean isView) {
+        super("创建模型：" + ciName + "数据视图失败。");
+    }
 }
