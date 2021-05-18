@@ -264,7 +264,11 @@ public class AttrEntityVo {
      */
     public String getValue() {
         if (CollectionUtils.isNotEmpty(valueList)) {
-            return valueList.getString(0);
+            if (valueList.size() == 1) {
+                return valueList.getString(0);
+            } else {
+                return valueList.toString();
+            }
         }
         return null;
     }
