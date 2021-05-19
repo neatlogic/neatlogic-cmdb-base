@@ -5,6 +5,7 @@
 
 package codedriver.framework.cmdb.dto.transaction;
 
+import codedriver.framework.cmdb.threadlocal.InputFromContext;
 import codedriver.framework.asynchronization.threadlocal.UserContext;
 import codedriver.framework.cmdb.enums.InputFrom;
 import codedriver.framework.cmdb.enums.TransactionStatus;
@@ -29,7 +30,7 @@ public class TransactionVo extends BasePageVo {
     @EntityField(name = "状态文本", type = ApiParamType.STRING)
     private String statusText;
     @EntityField(name = "输入来源", type = ApiParamType.STRING, member = InputFrom.class)
-    private String inputFrom = InputFrom.PAGE.getValue();
+    private String inputFrom;
     @EntityField(name = "输入来源文本", type = ApiParamType.STRING)
     private String inputFromText;
     @EntityField(name = "更新来源？", type = ApiParamType.STRING)
@@ -81,6 +82,11 @@ public class TransactionVo extends BasePageVo {
     }
 
     public String getInputFrom() {
+        if (StringUtils.isBlank(inputFrom)) {
+            if (InputFromContext.get() != null && StringUtils.isNotBlank(InputFromContext.get().getInputFrom())) {
+                inputFrom = InputFromContext.get().getInputFrom();
+            }
+        }
         return inputFrom;
     }
 

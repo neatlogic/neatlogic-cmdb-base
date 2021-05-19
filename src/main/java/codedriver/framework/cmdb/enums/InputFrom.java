@@ -7,12 +7,12 @@ package codedriver.framework.cmdb.enums;
 
 public enum InputFrom {
     PAGE("page", "页面录入"), IMPORT("import", "excel导入"), RESTFUL("restful", "接口导入"),
-    ;
+    ITSM("itsm", "流程录入");
 
-    private String value;
-    private String text;
+    private final String value;
+    private final String text;
 
-    private InputFrom(String _value, String _text) {
+    InputFrom(String _value, String _text) {
         this.value = _value;
         this.text = _text;
     }
