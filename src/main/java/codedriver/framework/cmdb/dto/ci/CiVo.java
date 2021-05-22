@@ -10,12 +10,10 @@ import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
 import com.alibaba.fastjson.annotation.JSONField;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /*
  * @Description: 模型实体
@@ -32,6 +30,8 @@ public class CiVo implements Serializable {
     private Long id;
     @EntityField(name = "父亲模型id", type = ApiParamType.LONG)
     private Long parentCiId;
+    @JSONField(serialize = false)
+    private transient List<CiVo> upwardCiList;//继承的所有模型包括自己
     @JSONField(serialize = false)
     private transient CiVo parentCi;
     @EntityField(name = "名字表达式", type = ApiParamType.STRING)
@@ -203,6 +203,16 @@ public class CiVo implements Serializable {
         return attrList;
     }
 
+    public AttrVo getAttrByName(String attrName) {
+        if (CollectionUtils.isNotEmpty(attrList)) {
+            Optional<AttrVo> op = attrList.stream().filter(attr -> attr.getName().equalsIgnoreCase(attrName)).findFirst();
+            if (op.isPresent()) {
+                return op.get();
+            }
+        }
+        return null;
+    }
+
     public void setAttrList(List<AttrVo> attrList) {
         this.attrList = attrList;
     }
@@ -325,5 +335,13 @@ public class CiVo implements Serializable {
 
     public void setFileId(Long fileId) {
         this.fileId = fileId;
+    }
+
+    public List<CiVo> getUpwardCiList() {
+        return upwardCiList;
+    }
+
+    public void setUpwardCiList(List<CiVo> upwardCiList) {
+        this.upwardCiList = upwardCiList;
     }
 }
