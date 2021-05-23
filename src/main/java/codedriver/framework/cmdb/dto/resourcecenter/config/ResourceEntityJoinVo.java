@@ -12,6 +12,7 @@ import java.util.Objects;
 
 public class ResourceEntityJoinVo {
     private JoinType joinType;
+    private String field;
     private String ciName;
     private transient CiVo ci;
 
@@ -55,4 +56,13 @@ public class ResourceEntityJoinVo {
     public void setCi(CiVo ci) {
         this.ci = ci;
     }
+
+    public String getField() {
+        return field;
+    }
+
+    public void setField(String field) {
+        this.field = field;
+    }
+
 }

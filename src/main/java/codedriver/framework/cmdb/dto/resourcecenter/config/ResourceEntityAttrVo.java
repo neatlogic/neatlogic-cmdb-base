@@ -8,6 +8,7 @@ package codedriver.framework.cmdb.dto.resourcecenter.config;
 import codedriver.framework.cmdb.enums.resourcecenter.JoinType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
+import com.alibaba.fastjson.annotation.JSONField;
 
 import java.util.Objects;
 
@@ -22,6 +23,8 @@ public class ResourceEntityAttrVo {
     private Long ciId;
     @EntityField(name = "模型名称", type = ApiParamType.STRING)
     private String ciName;
+    @JSONField(serialize = false)
+    private transient String tableAlias;//表别名
     //@EntityField(name = "连接查询时左边字段在视图中的字段名", type = ApiParamType.STRING)
     //private String fromField;
     //@EntityField(name = "连接查询时左边模型名", type = ApiParamType.STRING)
@@ -144,5 +147,13 @@ public class ResourceEntityAttrVo {
 
     public void setJoinType(JoinType joinType) {
         this.joinType = joinType;
+    }
+
+    public String getTableAlias() {
+        return tableAlias;
+    }
+
+    public void setTableAlias(String tableAlias) {
+        this.tableAlias = tableAlias;
     }
 }
