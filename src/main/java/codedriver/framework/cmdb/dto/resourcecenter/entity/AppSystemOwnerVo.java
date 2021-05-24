@@ -10,11 +10,11 @@ import codedriver.framework.cmdb.annotation.ResourceType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
-@ResourceType(name = "resource_system_owner", label = "应用系统所有人")
+@ResourceType(name = "resource_appsystem_owner", label = "应用系统所有人")
 public class AppSystemOwnerVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
-    @ResourceField(name = "id")
-    private Long id;
+    @ResourceField(name = "user_id")
+    private Long userId;
     @EntityField(name = "名称", type = ApiParamType.STRING)
     @ResourceField(name = "name")
     private String name;
@@ -22,12 +22,12 @@ public class AppSystemOwnerVo {
     @ResourceField(name = "app_system_id")
     private Long appSystemId;
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getName() {

@@ -10,7 +10,7 @@ import codedriver.framework.cmdb.annotation.ResourceType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
-@ResourceType(name = "resource_system_netarea", label = "应用系统网络区域")
+@ResourceType(name = "resource_appsystem_netarea", label = "应用系统网络区域")
 public class AppSystemNetAreaVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "id")

@@ -10,7 +10,7 @@ import codedriver.framework.cmdb.annotation.ResourceType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
-@ResourceType(name = "resource_system_bg", label = "应用系统所属部门")
+@ResourceType(name = "resource_appsystem_bg", label = "应用系统所属部门")
 public class AppSystemBgVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "id")
