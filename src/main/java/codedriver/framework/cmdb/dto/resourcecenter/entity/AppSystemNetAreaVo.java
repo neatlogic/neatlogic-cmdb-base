@@ -12,9 +12,9 @@ import codedriver.framework.restful.annotation.EntityField;
 
 @ResourceType(name = "resource_appsystem_netarea", label = "应用系统网络区域")
 public class AppSystemNetAreaVo {
-    @EntityField(name = "id", type = ApiParamType.LONG)
-    @ResourceField(name = "id")
-    private Long id;
+    @EntityField(name = "网络区域id", type = ApiParamType.LONG)
+    @ResourceField(name = "netarea_id")
+    private Long netareaId;
     @EntityField(name = "名称", type = ApiParamType.STRING)
     @ResourceField(name = "name")
     private String name;
@@ -22,12 +22,12 @@ public class AppSystemNetAreaVo {
     @ResourceField(name = "app_system_id")
     private Long appSystemId;
 
-    public Long getId() {
-        return id;
+    public Long getNetareaId() {
+        return netareaId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setNetareaId(Long netareaId) {
+        this.netareaId = netareaId;
     }
 
     public String getName() {

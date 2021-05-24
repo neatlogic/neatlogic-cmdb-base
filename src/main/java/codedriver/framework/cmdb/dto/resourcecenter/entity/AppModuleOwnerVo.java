@@ -10,24 +10,24 @@ import codedriver.framework.cmdb.annotation.ResourceType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
-@ResourceType(name = "resource_appsystem_bg", label = "应用系统所属部门")
-public class AppSystemBgVo {
-    @EntityField(name = "分组id", type = ApiParamType.LONG)
-    @ResourceField(name = "team_id")
-    private Long teamId;
+@ResourceType(name = "resource_appmodule_owner", label = "应用模块所有人")
+public class AppModuleOwnerVo {
+    @EntityField(name = "用户id", type = ApiParamType.LONG)
+    @ResourceField(name = "user_id")
+    private Long userId;
     @EntityField(name = "名称", type = ApiParamType.STRING)
     @ResourceField(name = "name")
     private String name;
     @EntityField(name = "应用系统id", type = ApiParamType.LONG)
-    @ResourceField(name = "app_system_id")
-    private Long appSystemId;
+    @ResourceField(name = "app_module_id")
+    private Long appModuleId;
 
-    public Long getTeamId() {
-        return teamId;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setTeamId(Long teamId) {
-        this.teamId = teamId;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -38,11 +38,11 @@ public class AppSystemBgVo {
         this.name = name;
     }
 
-    public Long getAppSystemId() {
-        return appSystemId;
+    public Long getAppModuleId() {
+        return appModuleId;
     }
 
-    public void setAppSystemId(Long appSystemId) {
-        this.appSystemId = appSystemId;
+    public void setAppModuleId(Long appModuleId) {
+        this.appModuleId = appModuleId;
     }
 }

@@ -13,6 +13,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class ResourceEntityVo {
@@ -32,6 +33,19 @@ public class ResourceEntityVo {
     private String statusText;
     @EntityField(name = "异常", type = ApiParamType.STRING)
     private String error;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ResourceEntityVo that = (ResourceEntityVo) o;
+        return name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 
     public void addJoin(ResourceEntityJoinVo join) {
         if (joinList == null) {

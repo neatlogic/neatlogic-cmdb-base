@@ -37,6 +37,8 @@ public class AppSystemVo {
     @EntityField(name = "网络区域列表", type = ApiParamType.JSONARRAY)
     private List<AppSystemNetAreaVo> netAreaList;
 
+    private List<AppSystemModuleVo> appModuleList;
+
     public Long getId() {
         return id;
     }
@@ -107,5 +109,13 @@ public class AppSystemVo {
 
     public void setNetAreaList(List<AppSystemNetAreaVo> netAreaList) {
         this.netAreaList = netAreaList;
+    }
+
+    public List<AppSystemModuleVo> getAppModuleList() {
+        return appModuleList;
+    }
+
+    public void setAppModuleList(List<AppSystemModuleVo> appModuleList) {
+        this.appModuleList = appModuleList;
     }
 }
