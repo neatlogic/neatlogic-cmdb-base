@@ -13,7 +13,7 @@ import codedriver.framework.restful.annotation.EntityField;
 import java.util.List;
 
 @ResourceType(name = "resource_appmodule", label = "应用系统模块")
-public class AppModuleVo {
+public class AppModuleVo extends ResourceEntityBaseVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;

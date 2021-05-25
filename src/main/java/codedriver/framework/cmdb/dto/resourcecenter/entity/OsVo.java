@@ -5,5 +5,5 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter.entity;
 
-public class OsVo {
+public class OsVo extends ResourceEntityBaseVo {
 }

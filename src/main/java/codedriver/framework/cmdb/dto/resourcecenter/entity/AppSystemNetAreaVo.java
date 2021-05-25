@@ -11,12 +11,12 @@ import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
 @ResourceType(name = "resource_appsystem_netarea", label = "应用系统网络区域")
-public class AppSystemNetAreaVo {
+public class AppSystemNetAreaVo extends ResourceEntityBaseVo {
     @EntityField(name = "网络区域id", type = ApiParamType.LONG)
     @ResourceField(name = "netarea_id")
     private Long netareaId;
     @EntityField(name = "名称", type = ApiParamType.STRING)
-    @ResourceField(name = "name")
+    @ResourceField(name = "netarea_name")
     private String name;
     @EntityField(name = "应用系统id", type = ApiParamType.LONG)
     @ResourceField(name = "app_system_id")

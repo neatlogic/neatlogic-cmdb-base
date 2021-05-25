@@ -9,7 +9,7 @@ import codedriver.framework.cmdb.annotation.ResourceField;
 import codedriver.framework.cmdb.annotation.ResourceType;
 
 @ResourceType(name = "resource_appsystem_appmodule", label = "应用系统模块关系")
-public class AppSystemModuleVo {
+public class AppSystemModuleVo extends ResourceEntityBaseVo {
     @ResourceField(name = "app_system_id")
     private Long appSystemId;
     @ResourceField(name = "app_module_id")

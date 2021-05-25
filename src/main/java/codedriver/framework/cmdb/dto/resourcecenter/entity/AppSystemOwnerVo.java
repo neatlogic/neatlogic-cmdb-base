@@ -11,13 +11,13 @@ import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
 @ResourceType(name = "resource_appsystem_owner", label = "应用系统所有人")
-public class AppSystemOwnerVo {
+public class AppSystemOwnerVo extends ResourceEntityBaseVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "user_id")
     private Long userId;
-    @EntityField(name = "名称", type = ApiParamType.STRING)
-    @ResourceField(name = "name")
-    private String name;
+    @EntityField(name = "用户名", type = ApiParamType.STRING)
+    @ResourceField(name = "user_name")
+    private String userName;
     @EntityField(name = "应用系统id", type = ApiParamType.LONG)
     @ResourceField(name = "app_system_id")
     private Long appSystemId;
@@ -30,12 +30,12 @@ public class AppSystemOwnerVo {
         this.userId = userId;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public Long getAppSystemId() {

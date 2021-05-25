@@ -11,7 +11,7 @@ import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
 @ResourceType(name = "resource_appmodule_owner", label = "应用模块所有人")
-public class AppModuleOwnerVo {
+public class AppModuleOwnerVo extends ResourceEntityBaseVo {
     @EntityField(name = "用户id", type = ApiParamType.LONG)
     @ResourceField(name = "user_id")
     private Long userId;

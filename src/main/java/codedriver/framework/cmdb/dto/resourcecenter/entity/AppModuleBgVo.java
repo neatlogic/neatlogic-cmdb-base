@@ -11,7 +11,7 @@ import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
 @ResourceType(name = "resource_appmodule_bg", label = "应用模块所属部门")
-public class AppModuleBgVo {
+public class AppModuleBgVo extends ResourceEntityBaseVo {
     @EntityField(name = "分组id", type = ApiParamType.LONG)
     @ResourceField(name = "team_id")
     private Long teamId;

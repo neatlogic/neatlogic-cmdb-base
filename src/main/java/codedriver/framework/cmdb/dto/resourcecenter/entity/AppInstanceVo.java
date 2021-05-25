@@ -5,5 +5,5 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter.entity;
 
-public class AppInstanceVo {
+public class AppInstanceVo extends ResourceEntityBaseVo {
 }

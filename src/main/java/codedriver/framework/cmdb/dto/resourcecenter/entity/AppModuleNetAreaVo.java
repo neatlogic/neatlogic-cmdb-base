@@ -11,7 +11,7 @@ import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
 @ResourceType(name = "resource_appmodule_netarea", label = "应用模块网络区域")
-public class AppModuleNetAreaVo {
+public class AppModuleNetAreaVo extends ResourceEntityBaseVo {
     @EntityField(name = "网络区域id", type = ApiParamType.LONG)
     @ResourceField(name = "netarea_id")
     private Long netareaId;
