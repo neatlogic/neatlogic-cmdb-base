@@ -1,24 +1,29 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2021 TechSureCo.,Ltd.AllRightsReserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
-package codedriver.framework.cmdb.dto.resourcecenter.entity;
+package codedriver.framework.cmdb.dto.resourcecenter;
 
-import codedriver.framework.cmdb.annotation.ResourceField;
 import codedriver.framework.cmdb.annotation.ResourceType;
+import codedriver.framework.cmdb.dto.resourcecenter.entity.AppInstanceBgVo;
+import codedriver.framework.cmdb.dto.resourcecenter.entity.AppInstanceNetAreaVo;
+import codedriver.framework.cmdb.dto.resourcecenter.entity.AppInstanceOwnerVo;
+import codedriver.framework.cmdb.dto.resourcecenter.entity.ResourceEntityBaseVo;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
 import java.util.List;
 
-@ResourceType(name = "resource_appinstance", label = "应用实例")
-public class AppInstanceVo extends ResourceEntityBaseVo {
+/**
+ * @author linbq
+ * @since 2021/5/27 16:50
+ **/
+@ResourceType(name = "none", label = "资源中心Vo")
+public class ResourceVo extends ResourceEntityBaseVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
-    @ResourceField(name = "id")
     private Long id;
     @EntityField(name = "名称", type = ApiParamType.STRING)
-    @ResourceField(name = "name")
     private String name;
     @EntityField(name = "所属部门列表", type = ApiParamType.JSONARRAY)
     private List<AppInstanceBgVo> bgList;
@@ -29,18 +34,18 @@ public class AppInstanceVo extends ResourceEntityBaseVo {
     @EntityField(name = "所有者列表", type = ApiParamType.JSONARRAY)
     private List<AppInstanceOwnerVo> ownerList;
     @EntityField(name = "维护窗口", type = ApiParamType.STRING)
-    @ResourceField(name = "maintenance_window")
     private String maintenanceWindow;
     @EntityField(name = "描述", type = ApiParamType.STRING)
-    @ResourceField(name = "description")
     private String description;
     @EntityField(name = "网络区域列表", type = ApiParamType.JSONARRAY)
     private List<AppInstanceNetAreaVo> netAreaList;
-    @EntityField(name = "ip", type = ApiParamType.JSONOBJECT)
-    private AppInstanceIpVo appInstanceIpVo;
-    @EntityField(name = "port", type = ApiParamType.INTEGER)
-    @ResourceField(name = "port")
+    @EntityField(name = "ip地址", type = ApiParamType.STRING)
+    private String ip;
+    @EntityField(name = "端口", type = ApiParamType.INTEGER)
     private Integer port;
+
+    @EntityField(name = "标签列表", type = ApiParamType.JSONARRAY)
+    private List<String> tagList;
 
     public Long getId() {
         return id;
@@ -114,12 +119,12 @@ public class AppInstanceVo extends ResourceEntityBaseVo {
         this.netAreaList = netAreaList;
     }
 
-    public AppInstanceIpVo getAppInstanceIpVo() {
-        return appInstanceIpVo;
+    public String getIp() {
+        return ip;
     }
 
-    public void setAppInstanceIpVo(AppInstanceIpVo appInstanceIpVo) {
-        this.appInstanceIpVo = appInstanceIpVo;
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
     public Integer getPort() {
@@ -128,5 +133,13 @@ public class AppInstanceVo extends ResourceEntityBaseVo {
 
     public void setPort(Integer port) {
         this.port = port;
+    }
+
+    public List<String> getTagList() {
+        return tagList;
+    }
+
+    public void setTagList(List<String> tagList) {
+        this.tagList = tagList;
     }
 }
