@@ -12,35 +12,34 @@ import codedriver.framework.restful.annotation.EntityField;
 
 /**
  * @author linbq
- * @since 2021/5/27 12:02
+ * @since 2021/5/27 14:29
  **/
-@ResourceType(name = "resource_appinstance_ip", label = "应用实例ip")
-public class AppInstanceIpVo extends ResourceEntityBaseVo {
-
-    @EntityField(name = "IPid", type = ApiParamType.LONG)
-    @ResourceField(name = "ip_id")
-    private Long id;
-    @EntityField(name = "ip", type = ApiParamType.STRING)
-    @ResourceField(name = "ip")
-    private String ip;
+@ResourceType(name = "resource_appinstance_env", label = "应用实例环境")
+public class AppInstanceEnvVo extends ResourceEntityBaseVo {
+    @EntityField(name = "环境id", type = ApiParamType.LONG)
+    @ResourceField(name = "env_id")
+    private Long envId;
+    @EntityField(name = "环境名称", type = ApiParamType.STRING)
+    @ResourceField(name = "env_name")
+    private String name;
     @EntityField(name = "应用实例id", type = ApiParamType.LONG)
     @ResourceField(name = "app_instance_id")
     private Long appInstanceId;
 
-    public Long getId() {
-        return id;
+    public Long getEnvId() {
+        return envId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setEnvId(Long envId) {
+        this.envId = envId;
     }
 
-    public String getIp() {
-        return ip;
+    public String getName() {
+        return name;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getAppInstanceId() {
