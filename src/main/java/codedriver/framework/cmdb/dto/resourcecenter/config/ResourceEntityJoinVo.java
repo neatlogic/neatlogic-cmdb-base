@@ -6,40 +6,48 @@
 package codedriver.framework.cmdb.dto.resourcecenter.config;
 
 import codedriver.framework.cmdb.dto.ci.CiVo;
+import codedriver.framework.cmdb.enums.RelDirectionType;
 import codedriver.framework.cmdb.enums.resourcecenter.JoinType;
 
 import java.util.Objects;
 
 public class ResourceEntityJoinVo {
-    private JoinType joinType;
+    private final JoinType joinType;
     private String field;
     private String ciName;
+    private String direction = RelDirectionType.FROM.getValue();
     private transient CiVo ci;
 
     public ResourceEntityJoinVo(JoinType _joinType) {
         joinType = _joinType;
     }
 
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ResourceEntityJoinVo that = (ResourceEntityJoinVo) o;
-        return joinType == that.joinType && ciName.equals(that.ciName);
+        return joinType == that.joinType && ciName.equals(that.ciName) && direction.equals(that.direction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(joinType, ciName);
+        return Objects.hash(joinType, ciName, direction);
     }
 
     public JoinType getJoinType() {
         return joinType;
     }
 
-    public void setJoinType(JoinType joinType) {
-        this.joinType = joinType;
-    }
 
     public String getCiName() {
         return ciName;
