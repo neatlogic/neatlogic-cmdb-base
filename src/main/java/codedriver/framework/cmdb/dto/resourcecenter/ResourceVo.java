@@ -6,10 +6,7 @@
 package codedriver.framework.cmdb.dto.resourcecenter;
 
 import codedriver.framework.cmdb.annotation.ResourceType;
-import codedriver.framework.cmdb.dto.resourcecenter.entity.AppInstanceBgVo;
-import codedriver.framework.cmdb.dto.resourcecenter.entity.AppInstanceNetAreaVo;
-import codedriver.framework.cmdb.dto.resourcecenter.entity.AppInstanceOwnerVo;
-import codedriver.framework.cmdb.dto.resourcecenter.entity.ResourceEntityBaseVo;
+import codedriver.framework.cmdb.dto.resourcecenter.entity.*;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
@@ -25,25 +22,40 @@ public class ResourceVo extends ResourceEntityBaseVo {
     private Long id;
     @EntityField(name = "名称", type = ApiParamType.STRING)
     private String name;
-    @EntityField(name = "所属部门列表", type = ApiParamType.JSONARRAY)
-    private List<AppInstanceBgVo> bgList;
+    @EntityField(name = "类型id", type = ApiParamType.LONG)
+    private Long typeId;
+    @EntityField(name = "类型名称", type = ApiParamType.STRING)
+    private String typeName;
     @EntityField(name = "状态id", type = ApiParamType.LONG)
-    private Long status;
+    private Long statusId;
     @EntityField(name = "状态名称", type = ApiParamType.STRING)
     private String statusName;
-    @EntityField(name = "所有者列表", type = ApiParamType.JSONARRAY)
-    private List<AppInstanceOwnerVo> ownerList;
+    @EntityField(name = "应用系统id", type = ApiParamType.LONG)
+    private Long appSystemId;
+    @EntityField(name = "应用系统名称", type = ApiParamType.STRING)
+    private String appSystemName;
+    @EntityField(name = "应用模块id", type = ApiParamType.LONG)
+    private Long appModuleId;
+    @EntityField(name = "应用模块名称", type = ApiParamType.STRING)
+    private String appModuleName;
+    @EntityField(name = "应用环境id", type = ApiParamType.LONG)
+    private Long envId;
+    @EntityField(name = "应用环境名称", type = ApiParamType.STRING)
+    private String envName;
     @EntityField(name = "维护窗口", type = ApiParamType.STRING)
     private String maintenanceWindow;
     @EntityField(name = "描述", type = ApiParamType.STRING)
     private String description;
-    @EntityField(name = "网络区域列表", type = ApiParamType.JSONARRAY)
-    private List<AppInstanceNetAreaVo> netAreaList;
-    @EntityField(name = "ip地址", type = ApiParamType.STRING)
+    @EntityField(name = "IPID", type = ApiParamType.STRING)
+    private String ipId;
+    @EntityField(name = "IP地址", type = ApiParamType.STRING)
     private String ip;
     @EntityField(name = "端口", type = ApiParamType.INTEGER)
     private Integer port;
-
+    @EntityField(name = "所有者列表", type = ApiParamType.JSONARRAY)
+    private List<OwnerVo> ownerList;
+    @EntityField(name = "所属部门列表", type = ApiParamType.JSONARRAY)
+    private List<BgVo> bgList;
     @EntityField(name = "标签列表", type = ApiParamType.JSONARRAY)
     private List<String> tagList;
 
@@ -63,20 +75,28 @@ public class ResourceVo extends ResourceEntityBaseVo {
         this.name = name;
     }
 
-    public List<AppInstanceBgVo> getBgList() {
-        return bgList;
+    public Long getTypeId() {
+        return typeId;
     }
 
-    public void setBgList(List<AppInstanceBgVo> bgList) {
-        this.bgList = bgList;
+    public void setTypeId(Long typeId) {
+        this.typeId = typeId;
     }
 
-    public Long getStatus() {
-        return status;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setStatus(Long status) {
-        this.status = status;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    public Long getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(Long statusId) {
+        this.statusId = statusId;
     }
 
     public String getStatusName() {
@@ -87,12 +107,52 @@ public class ResourceVo extends ResourceEntityBaseVo {
         this.statusName = statusName;
     }
 
-    public List<AppInstanceOwnerVo> getOwnerList() {
-        return ownerList;
+    public Long getAppSystemId() {
+        return appSystemId;
     }
 
-    public void setOwnerList(List<AppInstanceOwnerVo> ownerList) {
-        this.ownerList = ownerList;
+    public void setAppSystemId(Long appSystemId) {
+        this.appSystemId = appSystemId;
+    }
+
+    public String getAppSystemName() {
+        return appSystemName;
+    }
+
+    public void setAppSystemName(String appSystemName) {
+        this.appSystemName = appSystemName;
+    }
+
+    public Long getAppModuleId() {
+        return appModuleId;
+    }
+
+    public void setAppModuleId(Long appModuleId) {
+        this.appModuleId = appModuleId;
+    }
+
+    public String getAppModuleName() {
+        return appModuleName;
+    }
+
+    public void setAppModuleName(String appModuleName) {
+        this.appModuleName = appModuleName;
+    }
+
+    public Long getEnvId() {
+        return envId;
+    }
+
+    public void setEnvId(Long envId) {
+        this.envId = envId;
+    }
+
+    public String getEnvName() {
+        return envName;
+    }
+
+    public void setEnvName(String envName) {
+        this.envName = envName;
     }
 
     public String getMaintenanceWindow() {
@@ -111,12 +171,12 @@ public class ResourceVo extends ResourceEntityBaseVo {
         this.description = description;
     }
 
-    public List<AppInstanceNetAreaVo> getNetAreaList() {
-        return netAreaList;
+    public String getIpId() {
+        return ipId;
     }
 
-    public void setNetAreaList(List<AppInstanceNetAreaVo> netAreaList) {
-        this.netAreaList = netAreaList;
+    public void setIpId(String ipId) {
+        this.ipId = ipId;
     }
 
     public String getIp() {
@@ -133,6 +193,22 @@ public class ResourceVo extends ResourceEntityBaseVo {
 
     public void setPort(Integer port) {
         this.port = port;
+    }
+
+    public List<OwnerVo> getOwnerList() {
+        return ownerList;
+    }
+
+    public void setOwnerList(List<OwnerVo> ownerList) {
+        this.ownerList = ownerList;
+    }
+
+    public List<BgVo> getBgList() {
+        return bgList;
+    }
+
+    public void setBgList(List<BgVo> bgList) {
+        this.bgList = bgList;
     }
 
     public List<String> getTagList() {

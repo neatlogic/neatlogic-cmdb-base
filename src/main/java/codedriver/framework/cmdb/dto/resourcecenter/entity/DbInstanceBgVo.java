@@ -21,7 +21,7 @@ public class DbInstanceBgVo extends ResourceEntityBaseVo {
     private Long bgId;
     @EntityField(name = "名称", type = ApiParamType.STRING)
     @ResourceField(name = "bg_name")
-    private Long bgName;
+    private String bgName;
     @EntityField(name = "DB实例id", type = ApiParamType.LONG)
     @ResourceField(name = "db_instance_id")
     private Long dbInstanceId;
@@ -34,11 +34,11 @@ public class DbInstanceBgVo extends ResourceEntityBaseVo {
         this.bgId = bgId;
     }
 
-    public Long getBgName() {
+    public String getBgName() {
         return bgName;
     }
 
-    public void setBgName(Long bgName) {
+    public void setBgName(String bgName) {
         this.bgName = bgName;
     }
 
