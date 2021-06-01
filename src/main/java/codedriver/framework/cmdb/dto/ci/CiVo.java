@@ -213,6 +213,26 @@ public class CiVo implements Serializable {
         return null;
     }
 
+    public AttrVo getAttrById(Long attrId) {
+        if (CollectionUtils.isNotEmpty(attrList)) {
+            Optional<AttrVo> op = attrList.stream().filter(attr -> attr.getId().equals(attrId)).findFirst();
+            if (op.isPresent()) {
+                return op.get();
+            }
+        }
+        return null;
+    }
+
+    public RelVo getRelById(Long relId) {
+        if (CollectionUtils.isNotEmpty(relList)) {
+            Optional<RelVo> op = relList.stream().filter(rel -> rel.getId().equals(relId)).findFirst();
+            if (op.isPresent()) {
+                return op.get();
+            }
+        }
+        return null;
+    }
+
     public void setAttrList(List<AttrVo> attrList) {
         this.attrList = attrList;
     }

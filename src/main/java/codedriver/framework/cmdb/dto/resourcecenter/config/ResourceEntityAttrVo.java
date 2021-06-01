@@ -13,6 +13,8 @@ import com.alibaba.fastjson.annotation.JSONField;
 import java.util.Objects;
 
 public class ResourceEntityAttrVo {
+    @EntityField(name = "资源实体名称", type = ApiParamType.STRING)
+    private String entity;
     @EntityField(name = "视图字段名", type = ApiParamType.STRING)
     private String field;
     @EntityField(name = "模型属性名", type = ApiParamType.STRING)
@@ -25,18 +27,6 @@ public class ResourceEntityAttrVo {
     private String ciName;
     @JSONField(serialize = false)
     private transient String tableAlias;//表别名
-    //@EntityField(name = "连接查询时左边字段在视图中的字段名", type = ApiParamType.STRING)
-    //private String fromField;
-    //@EntityField(name = "连接查询时左边模型名", type = ApiParamType.STRING)
-    // private String fromCiName;
-    //@EntityField(name = "连接查询时左边id", type = ApiParamType.LONG)
-    //private Long fromCiId;
-    //@EntityField(name = "连接查询时右边字段在视图中的字段名", type = ApiParamType.STRING)
-    //private String toField;
-    //@EntityField(name = "连接查询时右边模型名", type = ApiParamType.STRING)
-    //private String toCiName;
-    //@EntityField(name = "连接查询时右边模型id", type = ApiParamType.LONG)
-    //private Long toCiId;
     @EntityField(name = "关联类型，attr或rel，不同类型join的表不一样", type = ApiParamType.ENUM, member = JoinType.class)
     private JoinType joinType;
 
@@ -92,54 +82,6 @@ public class ResourceEntityAttrVo {
     public void setCiName(String ciName) {
         this.ciName = ciName;
     }
-/*
-    public String getFromField() {
-        return fromField;
-    }
-
-    public void setFromField(String fromField) {
-        this.fromField = fromField;
-    }
-
-    public String getFromCiName() {
-        return fromCiName;
-    }
-
-    public void setFromCiName(String fromCiName) {
-        this.fromCiName = fromCiName;
-    }
-
-    public Long getFromCiId() {
-        return fromCiId;
-    }
-
-    public void setFromCiId(Long fromCiId) {
-        this.fromCiId = fromCiId;
-    }
-
-    public String getToField() {
-        return toField;
-    }
-
-    public void setToField(String toField) {
-        this.toField = toField;
-    }
-
-    public String getToCiName() {
-        return toCiName;
-    }
-
-    public void setToCiName(String toCiName) {
-        this.toCiName = toCiName;
-    }
-
-    public Long getToCiId() {
-        return toCiId;
-    }
-
-    public void setToCiId(Long toCiId) {
-        this.toCiId = toCiId;
-    }*/
 
     public JoinType getJoinType() {
         return joinType;
@@ -155,5 +97,13 @@ public class ResourceEntityAttrVo {
 
     public void setTableAlias(String tableAlias) {
         this.tableAlias = tableAlias;
+    }
+
+    public String getEntity() {
+        return entity;
+    }
+
+    public void setEntity(String entity) {
+        this.entity = entity;
     }
 }
