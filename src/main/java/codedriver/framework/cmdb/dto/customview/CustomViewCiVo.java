@@ -11,6 +11,7 @@ import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.MapUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,8 +25,8 @@ public class CustomViewCiVo {
     private Long ciId;
     @EntityField(name = "排序", type = ApiParamType.INTEGER)
     private Integer sort;
-    @EntityField(name = "是否在topo中显示", type = ApiParamType.INTEGER)
-    private Integer isShowTopo;
+    @EntityField(name = "是否隐藏", type = ApiParamType.INTEGER)
+    private Integer isHidden = 0;
     @EntityField(name = "属性列表", type = ApiParamType.JSONARRAY)
     private List<CustomViewAttrVo> attrList;
     @EntityField(name = "关系属性列表", type = ApiParamType.JSONARRAY)
@@ -38,8 +39,12 @@ public class CustomViewCiVo {
     }
 
     public CustomViewCiVo(JSONObject jsonObj) {
-        this.ciId = jsonObj.getJSONObject("config").getLong("ciId");
-        this.sort = jsonObj.getJSONObject("config").getInteger("index");
+        JSONObject conf = jsonObj.getJSONObject("config");
+        if (MapUtils.isNotEmpty(conf)) {
+            this.ciId = conf.getLong("ciId");
+            this.sort = conf.getInteger("index");
+            this.isHidden = conf.getIntValue("isHidden");
+        }
         this.uuid = jsonObj.getString("uuid");
     }
 
@@ -78,13 +83,12 @@ public class CustomViewCiVo {
         this.ciId = ciId;
     }
 
-
-    public Integer getIsShowTopo() {
-        return isShowTopo;
+    public Integer getIsHidden() {
+        return isHidden;
     }
 
-    public void setIsShowTopo(Integer isShowTopo) {
-        this.isShowTopo = isShowTopo;
+    public void setIsHidden(Integer isHidden) {
+        this.isHidden = isHidden;
     }
 
     public List<CustomViewAttrVo> getAttrList() {

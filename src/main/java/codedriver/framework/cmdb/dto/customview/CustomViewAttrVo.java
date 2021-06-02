@@ -10,6 +10,7 @@ import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
+import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
 public class CustomViewAttrVo {
@@ -40,7 +41,12 @@ public class CustomViewAttrVo {
 
     public CustomViewAttrVo(JSONObject jsonObj) {
         this.uuid = jsonObj.getString("uuid");
-        this.attrId = jsonObj.getJSONObject("config").getLong("attrId");
+        JSONObject conf = jsonObj.getJSONObject("config");
+        if (MapUtils.isNotEmpty(conf)) {
+            this.attrId = conf.getLong("attrId");
+            this.alias = conf.getString("alias");
+            this.isHidden = conf.getIntValue("isHidden");
+        }
     }
 
 
