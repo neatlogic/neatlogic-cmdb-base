@@ -16,6 +16,9 @@ import codedriver.framework.restful.annotation.EntityField;
  **/
 @ResourceType(name = "resource_dbinstance_owner", label = "DB实例所有者")
 public class DbInstanceOwnerVo extends ResourceEntityBaseVo {
+    @EntityField(name = "用户uuid", type = ApiParamType.STRING)
+    @ResourceField(name = "user_uuid")
+    private String uuid;
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "user_id")
     private Long userId;
@@ -25,6 +28,14 @@ public class DbInstanceOwnerVo extends ResourceEntityBaseVo {
     @EntityField(name = "DB实例id", type = ApiParamType.LONG)
     @ResourceField(name = "db_instance_id")
     private Long dbInstanceId;
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public Long getUserId() {
         return userId;
