@@ -9,6 +9,7 @@ import codedriver.framework.cmdb.annotation.ResourceField;
 import codedriver.framework.cmdb.annotation.ResourceType;
 import codedriver.framework.cmdb.dto.resourcecenter.entity.ResourceEntityBaseVo;
 import codedriver.framework.common.constvalue.ApiParamType;
+import codedriver.framework.common.constvalue.GroupSearch;
 import codedriver.framework.restful.annotation.EntityField;
 
 /**
@@ -16,10 +17,20 @@ import codedriver.framework.restful.annotation.EntityField;
  * @since 2021/5/27 14:07
  **/
 public class OwnerVo {
+    @EntityField(name = "用户uuid", type = ApiParamType.STRING)
+    private String uuid;
     @EntityField(name = "用户id", type = ApiParamType.LONG)
     private Long userId;
     @EntityField(name = "用户名", type = ApiParamType.STRING)
     private String userName;
+    private String initType = GroupSearch.USER.getValue();
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public Long getUserId() {
         return userId;
@@ -35,5 +46,13 @@ public class OwnerVo {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getInitType() {
+        return initType;
+    }
+
+    public void setInitType(String initType) {
+        this.initType = initType;
     }
 }

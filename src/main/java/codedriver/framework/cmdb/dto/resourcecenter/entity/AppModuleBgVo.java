@@ -12,6 +12,9 @@ import codedriver.framework.restful.annotation.EntityField;
 
 @ResourceType(name = "resource_appmodule_bg", label = "应用模块所属部门")
 public class AppModuleBgVo extends ResourceEntityBaseVo {
+    @EntityField(name = "分组uuid", type = ApiParamType.STRING)
+    @ResourceField(name = "bg_uuid")
+    private String uuid;
     @EntityField(name = "分组id", type = ApiParamType.LONG)
     @ResourceField(name = "team_id")
     private Long teamId;
@@ -21,6 +24,14 @@ public class AppModuleBgVo extends ResourceEntityBaseVo {
     @EntityField(name = "应用模块id", type = ApiParamType.LONG)
     @ResourceField(name = "app_module_id")
     private Long appModuleId;
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public Long getTeamId() {
         return teamId;
