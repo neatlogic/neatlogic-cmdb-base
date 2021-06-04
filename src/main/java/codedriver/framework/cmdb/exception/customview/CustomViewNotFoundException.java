@@ -3,12 +3,13 @@
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
-package codedriver.framework.cmdb.exception.ci;
+package codedriver.framework.cmdb.exception.customview;
 
 import codedriver.framework.exception.core.ApiRuntimeException;
 
-public class CiHasRelException extends ApiRuntimeException {
-    public CiHasRelException(String msg) {
-        super("当前模型已经被模型：" + msg + " 引用，请先删除引用关系");
+public class CustomViewNotFoundException extends ApiRuntimeException {
+    public CustomViewNotFoundException(Long id) {
+        super("自定义视图：" + id + " 不存在");
     }
+
 }

@@ -5,17 +5,11 @@
 
 package codedriver.framework.cmdb.dto.ci;
 
-import java.io.Serializable;
-
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
-/**
- * @Author:chenqiwei
- * @Time:Aug 15, 2020
- * @ClassName: CiVo
- * @Description: TODO
- */
+import java.io.Serializable;
+
 public class CiAuthVo implements Serializable {
     private static final long serialVersionUID = -3120412333445538L;
     @EntityField(name = "ciId", type = ApiParamType.LONG)

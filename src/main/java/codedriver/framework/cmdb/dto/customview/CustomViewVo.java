@@ -5,6 +5,7 @@
 
 package codedriver.framework.cmdb.dto.customview;
 
+import codedriver.framework.cmdb.dto.tag.TagVo;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
@@ -15,6 +16,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,12 +25,20 @@ public class CustomViewVo extends BasePageVo {
     private Long id;
     @EntityField(name = "名称", type = ApiParamType.STRING)
     private String name;
+    @JSONField(serialize = false)
+    private transient String keyword;
     @EntityField(name = "是否私有视图", type = ApiParamType.INTEGER)
     private Integer isPrivate;
-    @EntityField(name = "所有者uuid", type = ApiParamType.STRING)
-    private String ownerUuid;
-    @EntityField(name = "所有者名称", type = ApiParamType.STRING)
-    private String ownerName;
+    @EntityField(name = "是否激活", type = ApiParamType.INTEGER)
+    private Integer isActive;
+    @EntityField(name = "创建人", type = ApiParamType.STRING)
+    private String fcu;
+    @EntityField(name = "修改人", type = ApiParamType.STRING)
+    private String lcu;
+    @EntityField(name = "创建时间", type = ApiParamType.LONG)
+    private Date fcd;
+    @EntityField(name = "修改时间", type = ApiParamType.LONG)
+    private Date lcd;
     @EntityField(name = "配置", type = ApiParamType.JSONOBJECT)
     private JSONObject config;
     @EntityField(name = "模型列表", type = ApiParamType.JSONARRAY)
@@ -37,6 +47,12 @@ public class CustomViewVo extends BasePageVo {
     private List<CustomViewLinkVo> linkList;
     @JSONField(serialize = false)
     private transient String configStr;
+    @EntityField(name = "授权列表", type = ApiParamType.JSONARRAY)
+    private List<CustomViewAuthVo> authList;
+    @EntityField(name = "标签列表", type = ApiParamType.JSONARRAY)
+    private List<TagVo> tagList;
+    @JSONField(serialize = false)
+    private transient Long tagId;
 
     public Long getId() {
         if (id == null) {
@@ -50,6 +66,16 @@ public class CustomViewVo extends BasePageVo {
             return linkList.stream().filter(link -> link.getFromCustomViewCiUuid().equalsIgnoreCase(fromCustomViewCiUuid) && link.getToCustomViewCiUuid().equalsIgnoreCase(toCustomViewCiUuid)).collect(Collectors.toList());
         }
         return null;
+    }
+
+    @Override
+    public String getKeyword() {
+        return keyword;
+    }
+
+    @Override
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 
     /**
@@ -103,20 +129,37 @@ public class CustomViewVo extends BasePageVo {
         this.isPrivate = isPrivate;
     }
 
-    public String getOwnerUuid() {
-        return ownerUuid;
+
+    public String getFcu() {
+        return fcu;
     }
 
-    public void setOwnerUuid(String ownerUuid) {
-        this.ownerUuid = ownerUuid;
+    public void setFcu(String fcu) {
+        this.fcu = fcu;
     }
 
-    public String getOwnerName() {
-        return ownerName;
+    public String getLcu() {
+        return lcu;
     }
 
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
+    public void setLcu(String lcu) {
+        this.lcu = lcu;
+    }
+
+    public Date getFcd() {
+        return fcd;
+    }
+
+    public void setFcd(Date fcd) {
+        this.fcd = fcd;
+    }
+
+    public Date getLcd() {
+        return lcd;
+    }
+
+    public void setLcd(Date lcd) {
+        this.lcd = lcd;
     }
 
     public JSONObject getConfig() {
@@ -162,5 +205,37 @@ public class CustomViewVo extends BasePageVo {
 
     public void setLinkList(List<CustomViewLinkVo> linkList) {
         this.linkList = linkList;
+    }
+
+    public List<CustomViewAuthVo> getAuthList() {
+        return authList;
+    }
+
+    public void setAuthList(List<CustomViewAuthVo> authList) {
+        this.authList = authList;
+    }
+
+    public List<TagVo> getTagList() {
+        return tagList;
+    }
+
+    public void setTagList(List<TagVo> tagList) {
+        this.tagList = tagList;
+    }
+
+    public Long getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(Long tagId) {
+        this.tagId = tagId;
+    }
+
+    public Integer getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Integer isActive) {
+        this.isActive = isActive;
     }
 }
