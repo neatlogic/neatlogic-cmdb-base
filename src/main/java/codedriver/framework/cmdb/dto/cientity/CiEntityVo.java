@@ -336,6 +336,21 @@ public class CiEntityVo extends BasePageVo {
         }
     }
 
+    /**
+     * 添加一个属性数据值
+     *
+     * @param attrId    属性id
+     * @param valueList 属性值
+     */
+    public void addAttrEntityDataValue(Long attrId, JSONArray valueList) {
+        if (CollectionUtils.isNotEmpty(valueList) && attrEntityData.containsKey("attr_" + attrId)) {
+            JSONObject attrObj = attrEntityData.getJSONObject("attr_" + attrId);
+            JSONArray currentValueList = attrObj.getJSONArray("valueList");
+            valueList.removeAll(currentValueList);
+            currentValueList.addAll(valueList);
+        }
+    }
+
 
     /**
      * 检查是否有数据项
