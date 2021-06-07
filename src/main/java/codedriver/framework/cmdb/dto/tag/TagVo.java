@@ -6,9 +6,11 @@
 package codedriver.framework.cmdb.dto.tag;
 
 import codedriver.framework.common.constvalue.ApiParamType;
+import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
+import codedriver.framework.util.SnowflakeUtil;
 
-public class TagVo {
+public class TagVo extends BasePageVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "名称", type = ApiParamType.STRING)
@@ -17,6 +19,9 @@ public class TagVo {
     private String description;
 
     public Long getId() {
+        if (id == null) {
+            id = SnowflakeUtil.uniqueLong();
+        }
         return id;
     }
 
