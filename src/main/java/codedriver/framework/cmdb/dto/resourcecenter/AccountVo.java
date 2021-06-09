@@ -6,14 +6,19 @@
 package codedriver.framework.cmdb.dto.resourcecenter;
 
 import codedriver.framework.common.constvalue.ApiParamType;
-import codedriver.framework.common.dto.BasePageVo;
+import codedriver.framework.common.dto.BaseEditorVo;
+import codedriver.framework.dto.OperateVo;
 import codedriver.framework.restful.annotation.EntityField;
+import codedriver.framework.util.SnowflakeUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author linbq
  * @since 2021/5/30 15:20
  **/
-public class AccountVo extends BasePageVo {
+public class AccountVo extends BaseEditorVo {
     @EntityField(name = "主键id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "名称", type = ApiParamType.STRING)
@@ -24,8 +29,16 @@ public class AccountVo extends BasePageVo {
     private String password;
     @EntityField(name = "连接协议", type = ApiParamType.STRING)
     private String protocol;
+    @EntityField(name = "资产数", type = ApiParamType.INTEGER)
+    private Integer assetsCount = 0;
+
+    @EntityField(name = "操作列表")
+    private List<OperateVo> operateList = new ArrayList<>();
 
     public Long getId() {
+        if (id == null) {
+            id = SnowflakeUtil.uniqueLong();
+        }
         return id;
     }
 
@@ -63,5 +76,21 @@ public class AccountVo extends BasePageVo {
 
     public void setProtocol(String protocol) {
         this.protocol = protocol;
+    }
+
+    public Integer getAssetsCount() {
+        return assetsCount;
+    }
+
+    public void setAssetsCount(Integer assetsCount) {
+        this.assetsCount = assetsCount;
+    }
+
+    public List<OperateVo> getOperateList() {
+        return operateList;
+    }
+
+    public void setOperateList(List<OperateVo> operateList) {
+        this.operateList = operateList;
     }
 }
