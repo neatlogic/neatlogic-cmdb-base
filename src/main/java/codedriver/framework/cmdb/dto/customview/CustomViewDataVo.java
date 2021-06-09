@@ -5,16 +5,10 @@
 
 package codedriver.framework.cmdb.dto.customview;
 
-import codedriver.framework.cmdb.attrvaluehandler.core.AttrValueHandlerFactory;
-import codedriver.framework.cmdb.dto.ci.AttrVo;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.annotation.JSONField;
-import org.apache.commons.collections4.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -61,7 +55,7 @@ public class CustomViewDataVo {
 
 
     public List<Map<String, Object>> getValueList() {
-        if (CollectionUtils.isEmpty(valueList) && CollectionUtils.isNotEmpty(dataList) && CollectionUtils.isNotEmpty(attrList)) {
+        /*if (CollectionUtils.isEmpty(valueList) && CollectionUtils.isNotEmpty(dataList) && CollectionUtils.isNotEmpty(attrList)) {
             valueList = new ArrayList<>();
             for (Map<String, Object> data : dataList) {
                 Map<String, Object> value = new HashMap<>();
@@ -77,8 +71,8 @@ public class CustomViewDataVo {
                 }
                 valueList.add(value);
             }
-        }
-        return valueList;
+        }*/
+        return dataList;
     }
 
 }
