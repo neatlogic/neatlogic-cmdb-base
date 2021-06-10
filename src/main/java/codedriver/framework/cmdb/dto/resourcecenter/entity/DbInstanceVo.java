@@ -12,7 +12,7 @@ import codedriver.framework.restful.annotation.EntityField;
 
 import java.util.List;
 
-@ResourceType(name = "resource_dbinstance", label = "DB实例")
+@ResourceType(name = "resource_dbinstance", ciName = "DBIns", label = "DB实例")
 public class DbInstanceVo extends ResourceEntityBaseVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "id")
