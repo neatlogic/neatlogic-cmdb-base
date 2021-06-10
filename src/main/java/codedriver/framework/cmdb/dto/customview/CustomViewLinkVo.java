@@ -10,6 +10,8 @@ import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.JSONObject;
 
+import java.util.Objects;
+
 public class CustomViewLinkVo {
     @EntityField(name = "uuid", type = ApiParamType.STRING)
     private String uuid;
@@ -32,6 +34,19 @@ public class CustomViewLinkVo {
 
     public CustomViewLinkVo() {
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomViewLinkVo that = (CustomViewLinkVo) o;
+        return uuid.equals(that.uuid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uuid);
     }
 
     public CustomViewLinkVo(JSONObject jsonObj) {

@@ -6,6 +6,10 @@
 package codedriver.framework.cmdb.dto.customview;
 
 import codedriver.framework.cmdb.dto.tag.TagVo;
+import codedriver.framework.cmdb.exception.customview.CustomViewCiNotFoundException;
+import codedriver.framework.cmdb.exception.customview.IsolatedCustomViewCiException;
+import codedriver.framework.cmdb.exception.customview.NoStartCustomViewCiException;
+import codedriver.framework.cmdb.exception.customview.OneMoreStartCustomViewCiException;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
@@ -15,9 +19,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CustomViewVo extends BasePageVo {
@@ -53,6 +55,7 @@ public class CustomViewVo extends BasePageVo {
     private List<TagVo> tagList;
     @JSONField(serialize = false)
     private transient Long tagId;
+    private transient CustomViewCiVo startCustomViewCi;
 
     public Long getId() {
         if (id == null) {
@@ -61,11 +64,120 @@ public class CustomViewVo extends BasePageVo {
         return id;
     }
 
+    /**
+     * 验证视图是否合法
+     *
+     * @return true 合法
+     */
+    public boolean valid() {
+        if (CollectionUtils.isNotEmpty(ciList)) {
+            if (ciList.size() > 1) {
+                int startCount = 0;
+                int isolatedCount = 0;
+                for (CustomViewCiVo ciVo : ciList) {
+                    if (CollectionUtils.isEmpty(getLinkListByToCustomCiUuid(ciVo.getUuid()))) {
+                        startCount += 1;
+                    }
+                    if (CollectionUtils.isEmpty(getLinkListByCustomCiUuid(ciVo.getUuid()))) {
+                        isolatedCount += 1;
+                    }
+                }
+                if (isolatedCount > 0) {
+                    throw new IsolatedCustomViewCiException();
+                }
+                if (startCount == 0) {
+                    throw new NoStartCustomViewCiException();
+                } else if (startCount > 1) {
+                    throw new OneMoreStartCustomViewCiException();
+                }
+            }
+        } else {
+            throw new CustomViewCiNotFoundException();
+        }
+        return true;
+    }
+
+    public CustomViewCiVo getStartCustomViewCi() {
+        if (startCustomViewCi == null) {
+            if (CollectionUtils.isNotEmpty(ciList)) {
+                if (ciList.size() == 1) {
+                    startCustomViewCi = ciList.get(0);
+                } else {
+                    for (CustomViewCiVo ciVo : ciList) {
+                        //如果模型的关系都是往外连出，则为驱动模型
+                        if (CollectionUtils.isEmpty(getLinkListByToCustomCiUuid(ciVo.getUuid()))) {
+                            startCustomViewCi = ciVo;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        return startCustomViewCi;
+    }
+
+    /**
+     * 根据来源模型uuid和目标模型uuid查找关系
+     *
+     * @param fromCustomViewCiUuid 来源模型uuid
+     * @param toCustomViewCiUuid   目标模型uuid
+     * @return 关系列表
+     */
     public List<CustomViewLinkVo> getLinkListByFromToCustomCiUuid(String fromCustomViewCiUuid, String toCustomViewCiUuid) {
         if (CollectionUtils.isNotEmpty(linkList)) {
             return linkList.stream().filter(link -> link.getFromCustomViewCiUuid().equalsIgnoreCase(fromCustomViewCiUuid) && link.getToCustomViewCiUuid().equalsIgnoreCase(toCustomViewCiUuid)).collect(Collectors.toList());
         }
         return null;
+    }
+
+    /**
+     * 根据来源模型uuid查找关系
+     *
+     * @param fromCustomViewCiUuid 来源模型uuid
+     * @return 关系列表
+     */
+    public List<CustomViewLinkVo> getLinkListByFromCustomCiUuid(String fromCustomViewCiUuid) {
+        if (CollectionUtils.isNotEmpty(linkList)) {
+            return linkList.stream().filter(link -> link.getFromCustomViewCiUuid().equalsIgnoreCase(fromCustomViewCiUuid)).collect(Collectors.toList());
+        }
+        return null;
+    }
+
+    /**
+     * 根据目标模型uuid查找关系
+     *
+     * @param toCustomViewCiUuid 目标模型uuid
+     * @return 关系列表
+     */
+    public List<CustomViewLinkVo> getLinkListByToCustomCiUuid(String toCustomViewCiUuid) {
+        if (CollectionUtils.isNotEmpty(linkList)) {
+            return linkList.stream().filter(link -> link.getToCustomViewCiUuid().equalsIgnoreCase(toCustomViewCiUuid)).collect(Collectors.toList());
+        }
+        return null;
+    }
+
+    /**
+     * 根据模型uuid查找关系
+     *
+     * @param customViewCiUuid 模型uuid
+     * @return 关系列表
+     */
+    public List<CustomViewLinkVo> getLinkListByCustomCiUuid(String customViewCiUuid) {
+        if (CollectionUtils.isNotEmpty(linkList)) {
+            return linkList.stream().filter(link -> link.getFromCustomViewCiUuid().equalsIgnoreCase(customViewCiUuid) || link.getToCustomViewCiUuid().equalsIgnoreCase(customViewCiUuid)).collect(Collectors.toList());
+        }
+        return null;
+    }
+
+    /**
+     * 根据uuid获取CI模型
+     *
+     * @param customCiUuid ci uuid
+     * @return ci模型对象
+     */
+    public CustomViewCiVo getCustomCiByUuid(String customCiUuid) {
+        Optional<CustomViewCiVo> op = this.ciList.stream().filter(ci -> ci.getUuid().equalsIgnoreCase(customCiUuid)).findFirst();
+        return op.orElse(null);
     }
 
     @Override
@@ -103,7 +215,7 @@ public class CustomViewVo extends BasePageVo {
                     attrList.addAll(customViewCiVo.getAttrList());
                 }
             }
-            attrList.sort((o1, o2) -> o1.getSort().compareTo(o2.getSort()));
+            attrList.sort(Comparator.comparing(CustomViewAttrVo::getSort));
             return attrList;
         }
         return null;
@@ -195,7 +307,7 @@ public class CustomViewVo extends BasePageVo {
     public void setCiList(List<CustomViewCiVo> ciList) {
         this.ciList = ciList;
         if (CollectionUtils.isNotEmpty(this.ciList)) {
-            this.ciList.sort((o1, o2) -> o1.getSort().compareTo(o2.getSort()));
+            this.ciList.sort(Comparator.comparing(CustomViewCiVo::getSort));
         }
     }
 
