@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 连接协议枚举类
@@ -24,7 +25,9 @@ public enum Protocol implements IEnum {
     SERIAL("serial"),
     SFTP("sftp"),
     SSH("ssh"),
-    TELNET("telnet");
+    TELNET("telnet"),
+    RDP("rdp"),
+    JDBC("jdbc");
     private final String value;
 
     Protocol(String value) {
@@ -33,6 +36,15 @@ public enum Protocol implements IEnum {
 
     public String getValue() {
         return value;
+    }
+
+    public static Protocol getProtocol(String value) {
+        for (Protocol protocol : Protocol.values()) {
+            if (Objects.equals(protocol.getValue(), value)) {
+                return protocol;
+            }
+        }
+        return null;
     }
 
     @Override
