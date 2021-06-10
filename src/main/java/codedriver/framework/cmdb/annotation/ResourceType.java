@@ -17,4 +17,6 @@ public @interface ResourceType {
     String name();
 
     String label();
+
+    String ciName() default "";
 }

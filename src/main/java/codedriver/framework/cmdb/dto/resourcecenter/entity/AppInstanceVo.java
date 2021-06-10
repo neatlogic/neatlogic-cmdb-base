@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2021 TechSureCo.,Ltd.AllRightsReserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -12,7 +12,7 @@ import codedriver.framework.restful.annotation.EntityField;
 
 import java.util.List;
 
-@ResourceType(name = "resource_appinstance", label = "应用实例")
+@ResourceType(name = "resource_appinstance", ciName = "APPIns", label = "应用实例")
 public class AppInstanceVo extends ResourceEntityBaseVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "id")
