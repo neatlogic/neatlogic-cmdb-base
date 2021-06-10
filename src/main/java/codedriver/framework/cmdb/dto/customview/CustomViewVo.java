@@ -28,7 +28,7 @@ public class CustomViewVo extends BasePageVo {
     @JSONField(serialize = false)
     private transient String keyword;
     @EntityField(name = "是否私有视图", type = ApiParamType.INTEGER)
-    private Integer isPrivate;
+    private Integer isPrivate = 0;
     @EntityField(name = "是否激活", type = ApiParamType.INTEGER)
     private Integer isActive;
     @EntityField(name = "创建人", type = ApiParamType.STRING)

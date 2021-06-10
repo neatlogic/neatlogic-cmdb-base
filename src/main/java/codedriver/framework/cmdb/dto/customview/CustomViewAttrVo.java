@@ -32,8 +32,8 @@ public class CustomViewAttrVo {
     private transient String conditionStr;
     @EntityField(name = "是否隐藏", type = ApiParamType.INTEGER)
     private Integer isHidden = 0;
-    @JSONField(serialize = false)
-    private transient AttrVo attrVo;
+    @EntityField(name = "属性定义", type = ApiParamType.JSONOBJECT)
+    private AttrVo attrVo;
 
     public CustomViewAttrVo() {
 
@@ -46,6 +46,8 @@ public class CustomViewAttrVo {
             this.attrId = conf.getLong("attrId");
             this.alias = conf.getString("alias");
             this.isHidden = conf.getIntValue("isHidden");
+            this.sort = conf.getIntValue("sort");
+            this.condition = conf.getJSONObject("condition");
         }
     }
 
@@ -140,4 +142,5 @@ public class CustomViewAttrVo {
     public void setIsHidden(Integer isHidden) {
         this.isHidden = isHidden;
     }
+
 }
