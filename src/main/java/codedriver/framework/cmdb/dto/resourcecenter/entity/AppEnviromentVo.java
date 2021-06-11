@@ -14,17 +14,19 @@ import codedriver.framework.restful.annotation.EntityField;
  * @author linbq
  * @since 2021/5/27 14:29
  **/
-@ResourceType(name = "resource_dbinstance_env", label = "应用实例环境")
-public class DbInstanceEnvVo extends ResourceEntityBaseVo {
+//@ResourceType(name = "resource_appinstance_env", label = "应用实例环境")
+//@ResourceType(name = "resource_dbinstance_env", label = "DB实例环境")
+@ResourceType(name = "resource_ipobject_env", label = "IP软硬件环境")
+public class AppEnviromentVo {
     @EntityField(name = "环境id", type = ApiParamType.LONG)
     @ResourceField(name = "env_id")
     private Long envId;
     @EntityField(name = "环境名称", type = ApiParamType.STRING)
     @ResourceField(name = "env_name")
     private String name;
-    @EntityField(name = "应用实例id", type = ApiParamType.LONG)
-    @ResourceField(name = "db_instance_id")
-    private Long dbInstanceId;
+    @EntityField(name = "资源id", type = ApiParamType.LONG)
+    @ResourceField(name = "resource_id")
+    private Long resourceId;
 
     public Long getEnvId() {
         return envId;
@@ -42,11 +44,11 @@ public class DbInstanceEnvVo extends ResourceEntityBaseVo {
         this.name = name;
     }
 
-    public Long getDbInstanceId() {
-        return dbInstanceId;
+    public Long getResourceId() {
+        return resourceId;
     }
 
-    public void setDbInstanceId(Long dbInstanceId) {
-        this.dbInstanceId = dbInstanceId;
+    public void setResourceId(Long resourceId) {
+        this.resourceId = resourceId;
     }
 }

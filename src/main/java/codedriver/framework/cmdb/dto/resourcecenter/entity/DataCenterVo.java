@@ -14,17 +14,21 @@ import codedriver.framework.restful.annotation.EntityField;
  * @author linbq
  * @since 2021/5/27 14:29
  **/
-@ResourceType(name = "resource_appinstance_datacenter", label = "应用实例数据中心")
-public class AppInstanceDataCenterVo extends ResourceEntityBaseVo {
+//@ResourceType(name = "resource_appinstance_datacenter", label = "应用实例数据中心")
+//@ResourceType(name = "resource_dbinstance_datacenter", label = "DB实例数据中心")
+@ResourceType(name = "resource_appsystem_datacenter", label = "应用系统数据中心")
+@ResourceType(name = "resource_appmodule_datacenter", label = "应用模块数据中心")
+@ResourceType(name = "resource_ipobject_datacenter", label = "IP软硬件数据中心")
+public class DataCenterVo {
     @EntityField(name = "网络区域id", type = ApiParamType.LONG)
     @ResourceField(name = "datacenter_id")
     private Long dataCenterId;
     @EntityField(name = "名称", type = ApiParamType.STRING)
     @ResourceField(name = "datacenter_name")
     private String name;
-    @EntityField(name = "应用实例id", type = ApiParamType.LONG)
-    @ResourceField(name = "app_instance_id")
-    private Long appInstanceId;
+    @EntityField(name = "资源id", type = ApiParamType.LONG)
+    @ResourceField(name = "resource_id")
+    private Long resourceId;
 
     public Long getDataCenterId() {
         return dataCenterId;
@@ -42,11 +46,11 @@ public class AppInstanceDataCenterVo extends ResourceEntityBaseVo {
         this.name = name;
     }
 
-    public Long getAppInstanceId() {
-        return appInstanceId;
+    public Long getResourceId() {
+        return resourceId;
     }
 
-    public void setAppInstanceId(Long appInstanceId) {
-        this.appInstanceId = appInstanceId;
+    public void setResourceId(Long resourceId) {
+        this.resourceId = resourceId;
     }
 }

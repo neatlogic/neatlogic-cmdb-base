@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2021 TechSureCo.,Ltd.AllRightsReserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -10,17 +10,25 @@ import codedriver.framework.cmdb.annotation.ResourceType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
+/**
+ * @author linbq
+ * @since 2021/5/27 15:01
+ **/
+//@ResourceType(name = "resource_dbinstance_status", label = "DB实例状态")
+//@ResourceType(name = "resource_appinstance_status", label = "应用实例状态")
 @ResourceType(name = "resource_appsystem_status", label = "应用系统状态")
-public class AppSystemStatusVo extends ResourceEntityBaseVo {
+@ResourceType(name = "resource_appmodule_status", label = "应用模块状态")
+@ResourceType(name = "resource_ipobject_status", label = "IP软硬件状态")
+public class StatusVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "status_id")
     private Long statusId;
     @EntityField(name = "状态名", type = ApiParamType.STRING)
     @ResourceField(name = "status_name")
     private String statusName;
-    @EntityField(name = "应用系统id", type = ApiParamType.LONG)
-    @ResourceField(name = "app_system_id")
-    private Long appSystemId;
+    @EntityField(name = "资源id", type = ApiParamType.LONG)
+    @ResourceField(name = "resource_id")
+    private Long resourceId;
 
     public Long getStatusId() {
         return statusId;
@@ -38,11 +46,11 @@ public class AppSystemStatusVo extends ResourceEntityBaseVo {
         this.statusName = statusName;
     }
 
-    public Long getAppSystemId() {
-        return appSystemId;
+    public Long getResourceId() {
+        return resourceId;
     }
 
-    public void setAppSystemId(Long appSystemId) {
-        this.appSystemId = appSystemId;
+    public void setResourceId(Long resourceId) {
+        this.resourceId = resourceId;
     }
 }
