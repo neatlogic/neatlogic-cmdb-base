@@ -10,11 +10,14 @@ import codedriver.framework.cmdb.annotation.ResourceType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
-@ResourceType(name = "resource_appinstance_appmodule", label = "应用实例模块关系")
-public class AppInstanceModuleVo extends ResourceEntityBaseVo {
-    @EntityField(name = "应用实例id", type = ApiParamType.LONG)
-    @ResourceField(name = "app_instance_id")
-    private Long appInstanceId;
+//@ResourceType(name = "resource_appinstance_appmodule", label = "应用实例模块关系")
+//@ResourceType(name = "resource_dbinstance_appmodule", label = "DB实例模块关系")
+@ResourceType(name = "resource_appsystem_appmodule", label = "应用系统模块关系")
+@ResourceType(name = "resource_ipobject_appmodule", label = "IP软硬件模块关系")
+public class ModuleVo {
+    @EntityField(name = "资源id", type = ApiParamType.LONG)
+    @ResourceField(name = "resource_id")
+    private Long resourceId;
     @EntityField(name = "模块id", type = ApiParamType.LONG)
     @ResourceField(name = "app_module_id")
     private Long appModuleId;
@@ -22,12 +25,12 @@ public class AppInstanceModuleVo extends ResourceEntityBaseVo {
     @ResourceField(name = "app_module_name")
     private String appModuleName;
 
-    public Long getAppInstanceId() {
-        return appInstanceId;
+    public Long getResourceId() {
+        return resourceId;
     }
 
-    public void setAppInstanceId(Long appInstanceId) {
-        this.appInstanceId = appInstanceId;
+    public void setResourceId(Long resourceId) {
+        this.resourceId = resourceId;
     }
 
     public Long getAppModuleId() {

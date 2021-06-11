@@ -10,10 +10,8 @@ import codedriver.framework.cmdb.annotation.ResourceType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
-import java.util.List;
-
-//@ResourceType(name = "resource_appinstance", ciName = "APPIns", label = "应用实例")
-public class AppInstanceVo {
+@ResourceType(name = "resource_ipobject", ciName = "IPObject", label = "IP软硬件")
+public class IpObjectVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;
@@ -35,9 +33,6 @@ public class AppInstanceVo {
     @EntityField(name = "描述", type = ApiParamType.STRING)
     @ResourceField(name = "description")
     private String description;
-    @EntityField(name = "port", type = ApiParamType.INTEGER)
-    @ResourceField(name = "port")
-    private Integer port;
 
     public Long getId() {
         return id;
@@ -93,13 +88,5 @@ public class AppInstanceVo {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Integer getPort() {
-        return port;
-    }
-
-    public void setPort(Integer port) {
-        this.port = port;
     }
 }
