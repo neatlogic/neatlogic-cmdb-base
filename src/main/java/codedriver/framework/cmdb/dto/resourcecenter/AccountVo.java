@@ -29,6 +29,8 @@ public class AccountVo extends BaseEditorVo {
     private String password;
     @EntityField(name = "连接协议", type = ApiParamType.STRING)
     private String protocol;
+    @EntityField(name = "端口", type = ApiParamType.INTEGER)
+    private Integer port;
     @EntityField(name = "资产数", type = ApiParamType.INTEGER)
     private Integer assetsCount = 0;
 
@@ -76,6 +78,14 @@ public class AccountVo extends BaseEditorVo {
 
     public void setProtocol(String protocol) {
         this.protocol = protocol;
+    }
+
+    public Integer getPort() {
+        return port;
+    }
+
+    public void setPort(Integer port) {
+        this.port = port;
     }
 
     public Integer getAssetsCount() {
