@@ -7,8 +7,12 @@ package codedriver.framework.cmdb.dto.tag;
 
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
+import codedriver.framework.dto.OperateVo;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TagVo extends BasePageVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
@@ -17,6 +21,12 @@ public class TagVo extends BasePageVo {
     private String name;
     @EntityField(name = "描述", type = ApiParamType.STRING)
     private String description;
+
+    @EntityField(name = "资产数", type = ApiParamType.INTEGER)
+    private Integer assetsCount;
+
+    @EntityField(name = "操作列表")
+    private List<OperateVo> operateList = new ArrayList<>();
 
     public Long getId() {
         if (id == null) {
@@ -43,5 +53,21 @@ public class TagVo extends BasePageVo {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getAssetsCount() {
+        return assetsCount;
+    }
+
+    public void setAssetsCount(Integer assetsCount) {
+        this.assetsCount = assetsCount;
+    }
+
+    public List<OperateVo> getOperateList() {
+        return operateList;
+    }
+
+    public void setOperateList(List<OperateVo> operateList) {
+        this.operateList = operateList;
     }
 }
