@@ -6,6 +6,7 @@
 package codedriver.framework.cmdb.dto.customview;
 
 import codedriver.framework.asynchronization.threadlocal.TenantContext;
+import codedriver.framework.cmdb.enums.customview.SearchMode;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
@@ -21,9 +22,18 @@ public class CustomViewConditionVo extends BasePageVo {
     private Long customViewId;
     private transient String keyword;
     @JSONField(serialize = false)
+    //属性过滤列表，搜索时用
     private transient List<CustomViewConditionFilterVo> attrFilterList;
+    @EntityField(name = "搜索模式，normal或group", type = ApiParamType.ENUM, member = SearchMode.class)
+    private String searchMode = SearchMode.NORMAL.getValue();
     private transient String viewName;
     private List<String> fieldList;
+    @EntityField(name = "分组属性uuid", type = ApiParamType.STRING)
+    private String groupBy;
+    @JSONField(serialize = false)
+    //值过滤列表，分组显示时用
+    private transient List<CustomViewValueFilterVo> valueFilterList;
+
 
     public Long getCustomViewId() {
         return customViewId;
@@ -39,6 +49,14 @@ public class CustomViewConditionVo extends BasePageVo {
 
     public void setKeyword(String keyword) {
         this.keyword = keyword;
+    }
+
+    public String getSearchMode() {
+        return searchMode;
+    }
+
+    public void setSearchMode(String searchMode) {
+        this.searchMode = searchMode;
     }
 
     public List<CustomViewConditionFilterVo> getAttrFilterList() {
@@ -59,5 +77,21 @@ public class CustomViewConditionVo extends BasePageVo {
 
     public void setFieldList(List<String> fieldList) {
         this.fieldList = fieldList;
+    }
+
+    public String getGroupBy() {
+        return groupBy;
+    }
+
+    public void setGroupBy(String groupBy) {
+        this.groupBy = groupBy;
+    }
+
+    public List<CustomViewValueFilterVo> getValueFilterList() {
+        return valueFilterList;
+    }
+
+    public void setValueFilterList(List<CustomViewValueFilterVo> valueFilterList) {
+        this.valueFilterList = valueFilterList;
     }
 }
