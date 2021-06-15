@@ -19,8 +19,8 @@ import java.util.Objects;
  * @since 2021/6/1 11:51
  **/
 public enum Protocol implements IEnum {
-    HTTP("http", "应用"),
-    JDBC("jdbc", "数据库"),
+    APPLICATION("application", "应用"),
+    DB("db", "数据库"),
     TAGENT("tagent", "代理"),
     SSH("ssh", "ssh");
     private final String value;
