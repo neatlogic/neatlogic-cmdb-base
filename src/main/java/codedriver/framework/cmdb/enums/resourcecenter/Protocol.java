@@ -19,23 +19,24 @@ import java.util.Objects;
  * @since 2021/6/1 11:51
  **/
 public enum Protocol implements IEnum {
-    FTP("ftp"),
-    LOCAL("local"),
-    RLOGIN("rlogin"),
-    SERIAL("serial"),
-    SFTP("sftp"),
-    SSH("ssh"),
-    TELNET("telnet"),
-    RDP("rdp"),
-    JDBC("jdbc");
+    APPLICATION("application", "应用"),
+    DB("db", "数据库"),
+    TAGENT("tagent", "代理"),
+    SSH("ssh", "ssh");
     private final String value;
+    private final String text;
 
-    Protocol(String value) {
+    Protocol(String value, String text) {
         this.value = value;
+        this.text = text;
     }
 
     public String getValue() {
         return value;
+    }
+
+    public String getText() {
+        return text;
     }
 
     public static Protocol getProtocol(String value) {
@@ -54,7 +55,7 @@ public enum Protocol implements IEnum {
             array.add(new JSONObject() {
                 {
                     this.put("value", type.getValue());
-                    this.put("text", type.getValue());
+                    this.put("text", type.getText());
                 }
             });
         }

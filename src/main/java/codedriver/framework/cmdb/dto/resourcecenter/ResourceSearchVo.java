@@ -19,7 +19,7 @@ public class ResourceSearchVo extends BasePageVo {
     private Long typeId;
     private List<Long> typeIdList;
     private String ip;
-    private Integer port;
+    private String port;
 
     public final String getSchemaName() {
         return TenantContext.get().getDataDbName();
@@ -57,11 +57,11 @@ public class ResourceSearchVo extends BasePageVo {
         this.ip = ip;
     }
 
-    public Integer getPort() {
+    public String getPort() {
         return port;
     }
 
-    public void setPort(Integer port) {
+    public void setPort(String port) {
         this.port = port;
     }
 }
