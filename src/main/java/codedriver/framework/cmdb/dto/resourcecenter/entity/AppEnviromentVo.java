@@ -23,7 +23,7 @@ public class AppEnviromentVo {
     private Long envId;
     @EntityField(name = "环境名称", type = ApiParamType.STRING)
     @ResourceField(name = "env_name")
-    private String name;
+    private String envName;
     @EntityField(name = "资源id", type = ApiParamType.LONG)
     @ResourceField(name = "resource_id")
     private Long resourceId;
@@ -36,12 +36,12 @@ public class AppEnviromentVo {
         this.envId = envId;
     }
 
-    public String getName() {
-        return name;
+    public String getEnvName() {
+        return envName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEnvName(String envName) {
+        this.envName = envName;
     }
 
     public Long getResourceId() {
