@@ -13,8 +13,10 @@ import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public class CustomViewCiVo {
     @EntityField(name = "uuid", type = ApiParamType.STRING)
@@ -33,6 +35,8 @@ public class CustomViewCiVo {
     private List<CustomViewRelVo> relList;
     @JSONField(serialize = false)
     private transient CiVo ciVo;
+    @EntityField(name = "配置项id列表", type = ApiParamType.JSONARRAY)
+    private Set<Long> ciEntityIdList;
 
     public CustomViewCiVo() {
 
@@ -46,6 +50,21 @@ public class CustomViewCiVo {
             this.isHidden = conf.getIntValue("isHidden");
         }
         this.uuid = jsonObj.getString("uuid");
+    }
+
+    public Set<Long> getCiEntityIdList() {
+        return ciEntityIdList;
+    }
+
+    public void setCiEntityIdList(Set<Long> ciEntityIdList) {
+        this.ciEntityIdList = ciEntityIdList;
+    }
+
+    public void addCiEntityId(Long ciEntityId) {
+        if (this.ciEntityIdList == null) {
+            this.ciEntityIdList = new HashSet<>();
+        }
+        this.ciEntityIdList.add(ciEntityId);
     }
 
     public CustomViewRelVo getRelByUuid(String uuid) {

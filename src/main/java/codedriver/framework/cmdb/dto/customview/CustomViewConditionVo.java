@@ -33,7 +33,15 @@ public class CustomViewConditionVo extends BasePageVo {
     @JSONField(serialize = false)
     //值过滤列表，分组显示时用
     private transient List<CustomViewValueFilterVo> valueFilterList;
+    private Long ciEntityId;//查询单个配置项档案时用
 
+    public Long getCiEntityId() {
+        return ciEntityId;
+    }
+
+    public void setCiEntityId(Long ciEntityId) {
+        this.ciEntityId = ciEntityId;
+    }
 
     public Long getCustomViewId() {
         return customViewId;

@@ -53,9 +53,14 @@ public class CustomViewVo extends BasePageVo {
     private List<CustomViewAuthVo> authList;
     @EntityField(name = "标签列表", type = ApiParamType.JSONARRAY)
     private List<TagVo> tagList;
+    @EntityField(name = "描述", type = ApiParamType.STRING)
+    private String description;
+    @EntityField(name = "图标", type = ApiParamType.STRING)
+    private String icon;
     @JSONField(serialize = false)
     private transient Long tagId;
-    private transient CustomViewCiVo startCustomViewCi;
+    @EntityField(name = "起始模型", type = ApiParamType.JSONOBJECT)
+    private CustomViewCiVo startCustomViewCi;
 
     public Long getId() {
         if (id == null) {
@@ -69,6 +74,7 @@ public class CustomViewVo extends BasePageVo {
      *
      * @return true 合法
      */
+    @JSONField(serialize = false)
     public boolean valid() {
         if (CollectionUtils.isNotEmpty(ciList)) {
             if (ciList.size() > 1) {
@@ -123,6 +129,7 @@ public class CustomViewVo extends BasePageVo {
      * @param toCustomViewCiUuid   目标模型uuid
      * @return 关系列表
      */
+    @JSONField(serialize = false)
     public List<CustomViewLinkVo> getLinkListByFromToCustomCiUuid(String fromCustomViewCiUuid, String toCustomViewCiUuid) {
         if (CollectionUtils.isNotEmpty(linkList)) {
             return linkList.stream().filter(link -> link.getFromCustomViewCiUuid().equalsIgnoreCase(fromCustomViewCiUuid) && link.getToCustomViewCiUuid().equalsIgnoreCase(toCustomViewCiUuid)).collect(Collectors.toList());
@@ -136,6 +143,7 @@ public class CustomViewVo extends BasePageVo {
      * @param fromCustomViewCiUuid 来源模型uuid
      * @return 关系列表
      */
+    @JSONField(serialize = false)
     public List<CustomViewLinkVo> getLinkListByFromCustomCiUuid(String fromCustomViewCiUuid) {
         if (CollectionUtils.isNotEmpty(linkList)) {
             return linkList.stream().filter(link -> link.getFromCustomViewCiUuid().equalsIgnoreCase(fromCustomViewCiUuid)).collect(Collectors.toList());
@@ -149,6 +157,7 @@ public class CustomViewVo extends BasePageVo {
      * @param toCustomViewCiUuid 目标模型uuid
      * @return 关系列表
      */
+    @JSONField(serialize = false)
     public List<CustomViewLinkVo> getLinkListByToCustomCiUuid(String toCustomViewCiUuid) {
         if (CollectionUtils.isNotEmpty(linkList)) {
             return linkList.stream().filter(link -> link.getToCustomViewCiUuid().equalsIgnoreCase(toCustomViewCiUuid)).collect(Collectors.toList());
@@ -162,6 +171,7 @@ public class CustomViewVo extends BasePageVo {
      * @param customViewCiUuid 模型uuid
      * @return 关系列表
      */
+    @JSONField(serialize = false)
     public List<CustomViewLinkVo> getLinkListByCustomCiUuid(String customViewCiUuid) {
         if (CollectionUtils.isNotEmpty(linkList)) {
             return linkList.stream().filter(link -> link.getFromCustomViewCiUuid().equalsIgnoreCase(customViewCiUuid) || link.getToCustomViewCiUuid().equalsIgnoreCase(customViewCiUuid)).collect(Collectors.toList());
@@ -175,6 +185,7 @@ public class CustomViewVo extends BasePageVo {
      * @param customCiUuid ci uuid
      * @return ci模型对象
      */
+    @JSONField(serialize = false)
     public CustomViewCiVo getCustomCiByUuid(String customCiUuid) {
         Optional<CustomViewCiVo> op = this.ciList.stream().filter(ci -> ci.getUuid().equalsIgnoreCase(customCiUuid)).findFirst();
         return op.orElse(null);
@@ -195,6 +206,7 @@ public class CustomViewVo extends BasePageVo {
      *
      * @return 属性列表
      */
+    @JSONField(serialize = false)//不能返回，除非clone一次attrVo
     public List<CustomViewAttrVo> getAttrList() {
         return getAttrList(false);
     }
@@ -205,6 +217,7 @@ public class CustomViewVo extends BasePageVo {
      * @param hiddenHidden true:只返回非隐藏属性,false:返回所有属性
      * @return 属性列表
      */
+    @JSONField(serialize = false)
     public List<CustomViewAttrVo> getAttrList(boolean hiddenHidden) {
         if (CollectionUtils.isNotEmpty(ciList)) {
             List<CustomViewAttrVo> attrList = new ArrayList<>();
@@ -272,6 +285,22 @@ public class CustomViewVo extends BasePageVo {
 
     public void setLcd(Date lcd) {
         this.lcd = lcd;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public JSONObject getConfig() {

@@ -39,6 +39,10 @@ public class CustomViewAttrVo {
 
     }
 
+    public CustomViewAttrVo(Long _customViewId) {
+        this.customViewId = _customViewId;
+    }
+
     public CustomViewAttrVo(JSONObject jsonObj) {
         this.uuid = jsonObj.getString("uuid");
         JSONObject conf = jsonObj.getJSONObject("config");
