@@ -5,8 +5,6 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter;
 
-import codedriver.framework.cmdb.dto.ci.CiVo;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,11 +13,10 @@ import java.util.List;
  * @since 2021/6/9 17:17
  **/
 public class ResourceTypeVo {
-    private Long ciId;
-    private Long parentCiId;
-    private String name;
+    private Long id;
+    private Long parentId;
     private String label;
-    private String ciName;
+    private String name;
 //    @EntityField(name = "子模型列表", type = ApiParamType.JSONARRAY)
     private List<ResourceTypeVo> children;
 
@@ -27,34 +24,32 @@ public class ResourceTypeVo {
 
     }
 
-    public ResourceTypeVo(String name, String label, String ciName) {
-        this.name = name;
+    public ResourceTypeVo(String label, String name) {
         this.label = label;
-        this.ciName = ciName;
-    }
-
-    public ResourceTypeVo(Long ciId, Long parentCiId, String name, String label, String ciName) {
-        this.ciId = ciId;
-        this.parentCiId = parentCiId;
         this.name = name;
+    }
+
+    public ResourceTypeVo(Long id, Long parentId, String label, String name) {
+        this.id = id;
+        this.parentId = parentId;
         this.label = label;
-        this.ciName = ciName;
+        this.name = name;
     }
 
-    public Long getCiId() {
-        return ciId;
+    public Long getId() {
+        return id;
     }
 
-    public void setCiId(Long ciId) {
-        this.ciId = ciId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getParentCiId() {
-        return parentCiId;
+    public Long getParentId() {
+        return parentId;
     }
 
-    public void setParentCiId(Long parentCiId) {
-        this.parentCiId = parentCiId;
+    public void setParentId(Long parentCiId) {
+        this.parentId = parentId;
     }
 
     public String getName() {
@@ -63,14 +58,6 @@ public class ResourceTypeVo {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getCiName() {
-        return ciName;
-    }
-
-    public void setCiName(String ciName) {
-        this.ciName = ciName;
     }
 
     public String getLabel() {

@@ -15,22 +15,15 @@ import java.util.List;
  * @since 2021/6/9 20:01
  **/
 public class ResourceSearchVo extends BasePageVo {
-    private String viewName;
     private Long typeId;
     private List<Long> typeIdList;
     private String ip;
     private String port;
+    private Long envId;
+    private Long appModuleId;
 
     public final String getSchemaName() {
         return TenantContext.get().getDataDbName();
-    }
-
-    public String getViewName() {
-        return viewName;
-    }
-
-    public void setViewName(String viewName) {
-        this.viewName = viewName;
     }
 
     public Long getTypeId() {
@@ -63,5 +56,21 @@ public class ResourceSearchVo extends BasePageVo {
 
     public void setPort(String port) {
         this.port = port;
+    }
+
+    public Long getEnvId() {
+        return envId;
+    }
+
+    public void setEnvId(Long envId) {
+        this.envId = envId;
+    }
+
+    public Long getAppModuleId() {
+        return appModuleId;
+    }
+
+    public void setAppModuleId(Long appModuleId) {
+        this.appModuleId = appModuleId;
     }
 }

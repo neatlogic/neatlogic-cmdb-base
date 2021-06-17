@@ -25,7 +25,7 @@ public class DataCenterVo {
     private Long dataCenterId;
     @EntityField(name = "名称", type = ApiParamType.STRING)
     @ResourceField(name = "datacenter_name")
-    private String name;
+    private String datacenterName;
     @EntityField(name = "资源id", type = ApiParamType.LONG)
     @ResourceField(name = "resource_id")
     private Long resourceId;
@@ -38,12 +38,12 @@ public class DataCenterVo {
         this.dataCenterId = dataCenterId;
     }
 
-    public String getName() {
-        return name;
+    public String getDatacenterName() {
+        return datacenterName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDatacenterName(String datacenterName) {
+        this.datacenterName = datacenterName;
     }
 
     public Long getResourceId() {

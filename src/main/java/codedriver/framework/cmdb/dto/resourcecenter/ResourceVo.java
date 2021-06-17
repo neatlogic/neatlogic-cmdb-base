@@ -8,6 +8,7 @@ package codedriver.framework.cmdb.dto.resourcecenter;
 import codedriver.framework.cmdb.annotation.ResourceType;
 import codedriver.framework.cmdb.dto.resourcecenter.entity.*;
 import codedriver.framework.common.constvalue.ApiParamType;
+import codedriver.framework.common.dto.BaseEditorVo;
 import codedriver.framework.restful.annotation.EntityField;
 
 import java.util.List;
@@ -16,8 +17,7 @@ import java.util.List;
  * @author linbq
  * @since 2021/5/27 16:50
  **/
-@ResourceType(name = "none", label = "资源中心Vo")
-public class ResourceVo extends ResourceEntityBaseVo {
+public class ResourceVo extends BaseEditorVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "名称", type = ApiParamType.STRING)

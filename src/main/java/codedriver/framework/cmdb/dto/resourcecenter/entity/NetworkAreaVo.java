@@ -23,7 +23,7 @@ public class NetworkAreaVo {
     private Long netareaId;
     @EntityField(name = "名称", type = ApiParamType.STRING)
     @ResourceField(name = "netarea_name")
-    private String name;
+    private String netareaName;
     @EntityField(name = "资源id", type = ApiParamType.LONG)
     @ResourceField(name = "resource_id")
     private Long resourceId;
@@ -36,12 +36,12 @@ public class NetworkAreaVo {
         this.netareaId = netareaId;
     }
 
-    public String getName() {
-        return name;
+    public String getNetareaName() {
+        return netareaName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNetareaName(String netareaName) {
+        this.netareaName = netareaName;
     }
 
     public Long getResourceId() {
