@@ -20,28 +20,28 @@ import codedriver.framework.restful.annotation.EntityField;
 public class NetworkAreaVo {
     @EntityField(name = "网络区域id", type = ApiParamType.LONG)
     @ResourceField(name = "netarea_id")
-    private Long netareaId;
+    private Long netAreaId;
     @EntityField(name = "名称", type = ApiParamType.STRING)
     @ResourceField(name = "netarea_name")
-    private String netareaName;
+    private String netAreaName;
     @EntityField(name = "资源id", type = ApiParamType.LONG)
     @ResourceField(name = "resource_id")
     private Long resourceId;
 
-    public Long getNetareaId() {
-        return netareaId;
+    public Long getNetAreaId() {
+        return netAreaId;
     }
 
-    public void setNetareaId(Long netareaId) {
-        this.netareaId = netareaId;
+    public void setNetAreaId(Long netAreaId) {
+        this.netAreaId = netAreaId;
     }
 
-    public String getNetareaName() {
-        return netareaName;
+    public String getNetAreaName() {
+        return netAreaName;
     }
 
-    public void setNetareaName(String netareaName) {
-        this.netareaName = netareaName;
+    public void setNetAreaName(String netAreaName) {
+        this.netAreaName = netAreaName;
     }
 
     public Long getResourceId() {

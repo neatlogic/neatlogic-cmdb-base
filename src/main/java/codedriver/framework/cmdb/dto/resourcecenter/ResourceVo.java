@@ -5,6 +5,7 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter;
 
+import codedriver.framework.cmdb.annotation.ResourceField;
 import codedriver.framework.cmdb.annotation.ResourceType;
 import codedriver.framework.cmdb.dto.resourcecenter.entity.*;
 import codedriver.framework.common.constvalue.ApiParamType;
@@ -26,6 +27,16 @@ public class ResourceVo extends BaseEditorVo {
     private Long typeId;
     @EntityField(name = "类型名称", type = ApiParamType.STRING)
     private String typeName;
+    @EntityField(name = "类型label", type = ApiParamType.STRING)
+    private String typeLabel;
+    @EntityField(name = "网络区域id", type = ApiParamType.LONG)
+    private Long netAreaId;
+    @EntityField(name = "网络区域名称", type = ApiParamType.STRING)
+    private String netAreaName;
+    @EntityField(name = "数据中心id", type = ApiParamType.LONG)
+    private Long dataCenterId;
+    @EntityField(name = "数据中心名称", type = ApiParamType.STRING)
+    private String dataCenterName;
     @EntityField(name = "状态id", type = ApiParamType.LONG)
     private Long statusId;
     @EntityField(name = "状态名称", type = ApiParamType.STRING)
@@ -89,6 +100,46 @@ public class ResourceVo extends BaseEditorVo {
 
     public void setTypeName(String typeName) {
         this.typeName = typeName;
+    }
+
+    public String getTypeLabel() {
+        return typeLabel;
+    }
+
+    public void setTypeLabel(String typeLabel) {
+        this.typeLabel = typeLabel;
+    }
+
+    public Long getNetAreaId() {
+        return netAreaId;
+    }
+
+    public void setNetAreaId(Long netAreaId) {
+        this.netAreaId = netAreaId;
+    }
+
+    public String getNetAreaName() {
+        return netAreaName;
+    }
+
+    public void setNetAreaName(String netAreaName) {
+        this.netAreaName = netAreaName;
+    }
+
+    public Long getDataCenterId() {
+        return dataCenterId;
+    }
+
+    public void setDataCenterId(Long dataCenterId) {
+        this.dataCenterId = dataCenterId;
+    }
+
+    public String getDataCenterName() {
+        return dataCenterName;
+    }
+
+    public void setDataCenterName(String dataCenterName) {
+        this.dataCenterName = dataCenterName;
     }
 
     public Long getStatusId() {

@@ -20,12 +20,12 @@ import codedriver.framework.restful.annotation.EntityField;
 @ResourceType(name = "resource_appmodule_datacenter", label = "应用模块数据中心")
 @ResourceType(name = "resource_ipobject_datacenter", label = "IP软硬件数据中心")
 public class DataCenterVo {
-    @EntityField(name = "网络区域id", type = ApiParamType.LONG)
+    @EntityField(name = "数据中心id", type = ApiParamType.LONG)
     @ResourceField(name = "datacenter_id")
     private Long dataCenterId;
     @EntityField(name = "名称", type = ApiParamType.STRING)
     @ResourceField(name = "datacenter_name")
-    private String datacenterName;
+    private String dataCenterName;
     @EntityField(name = "资源id", type = ApiParamType.LONG)
     @ResourceField(name = "resource_id")
     private Long resourceId;
@@ -38,12 +38,12 @@ public class DataCenterVo {
         this.dataCenterId = dataCenterId;
     }
 
-    public String getDatacenterName() {
-        return datacenterName;
+    public String getDataCenterName() {
+        return dataCenterName;
     }
 
-    public void setDatacenterName(String datacenterName) {
-        this.datacenterName = datacenterName;
+    public void setDataCenterName(String datacenterName) {
+        this.dataCenterName = datacenterName;
     }
 
     public Long getResourceId() {
