@@ -21,6 +21,13 @@ public class ResourceSearchVo extends BasePageVo {
     private String port;
     private Long envId;
     private Long appModuleId;
+    private List<String> protocolList;
+    private List<Long> statusIdList;
+    private List<Long> envIdList;
+    private List<Long> appSystemIdList;
+    private List<Long> appModuleIdList;
+    private List<Long> tagIdList;
+    private List<Long> idList;
 
     public final String getSchemaName() {
         return TenantContext.get().getDataDbName();
@@ -72,5 +79,61 @@ public class ResourceSearchVo extends BasePageVo {
 
     public void setAppModuleId(Long appModuleId) {
         this.appModuleId = appModuleId;
+    }
+
+    public List<String> getProtocolList() {
+        return protocolList;
+    }
+
+    public void setProtocolList(List<String> protocolList) {
+        this.protocolList = protocolList;
+    }
+
+    public List<Long> getStatusIdList() {
+        return statusIdList;
+    }
+
+    public void setStatusIdList(List<Long> statusIdList) {
+        this.statusIdList = statusIdList;
+    }
+
+    public List<Long> getEnvIdList() {
+        return envIdList;
+    }
+
+    public void setEnvIdList(List<Long> envIdList) {
+        this.envIdList = envIdList;
+    }
+
+    public List<Long> getAppSystemIdList() {
+        return appSystemIdList;
+    }
+
+    public void setAppSystemIdList(List<Long> appSystemIdList) {
+        this.appSystemIdList = appSystemIdList;
+    }
+
+    public List<Long> getAppModuleIdList() {
+        return appModuleIdList;
+    }
+
+    public void setAppModuleIdList(List<Long> appModuleIdList) {
+        this.appModuleIdList = appModuleIdList;
+    }
+
+    public List<Long> getTagIdList() {
+        return tagIdList;
+    }
+
+    public void setTagIdList(List<Long> tagIdList) {
+        this.tagIdList = tagIdList;
+    }
+
+    public List<Long> getIdList() {
+        return idList;
+    }
+
+    public void setIdList(List<Long> idList) {
+        this.idList = idList;
     }
 }

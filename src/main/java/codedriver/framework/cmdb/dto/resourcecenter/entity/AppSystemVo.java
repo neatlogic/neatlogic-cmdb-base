@@ -10,6 +10,8 @@ import codedriver.framework.cmdb.annotation.ResourceType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
+import java.util.Date;
+
 @ResourceType(name = "resource_appsystem", label = "应用系统")
 public class AppSystemVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
@@ -33,6 +35,18 @@ public class AppSystemVo {
     @EntityField(name = "描述", type = ApiParamType.STRING)
     @ResourceField(name = "description")
     private String description;
+    @EntityField(name = "创建者", type = ApiParamType.STRING)
+    @ResourceField(name = "fcu")
+    private String fcu;
+    @EntityField(name = "创建日期", type = ApiParamType.LONG)
+    @ResourceField(name = "fcd")
+    private Date fcd;
+    @EntityField(name = "修改者", type = ApiParamType.STRING)
+    @ResourceField(name = "lcu")
+    private String lcu;
+    @EntityField(name = "修改日期", type = ApiParamType.LONG)
+    @ResourceField(name = "lcd")
+    private Date lcd;
 
     public Long getId() {
         return id;
@@ -88,5 +102,37 @@ public class AppSystemVo {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getFcu() {
+        return fcu;
+    }
+
+    public void setFcu(String fcu) {
+        this.fcu = fcu;
+    }
+
+    public Date getFcd() {
+        return fcd;
+    }
+
+    public void setFcd(Date fcd) {
+        this.fcd = fcd;
+    }
+
+    public String getLcu() {
+        return lcu;
+    }
+
+    public void setLcu(String lcu) {
+        this.lcu = lcu;
+    }
+
+    public Date getLcd() {
+        return lcd;
+    }
+
+    public void setLcd(Date lcd) {
+        this.lcd = lcd;
     }
 }
