@@ -13,10 +13,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class CustomViewCiVo {
     @EntityField(name = "uuid", type = ApiParamType.STRING)
@@ -37,6 +34,8 @@ public class CustomViewCiVo {
     private transient CiVo ciVo;
     @EntityField(name = "配置项id列表", type = ApiParamType.JSONARRAY)
     private Set<Long> ciEntityIdList;
+    @EntityField(name = "别名", type = ApiParamType.STRING)
+    private String alias;
 
     public CustomViewCiVo() {
 
@@ -48,6 +47,7 @@ public class CustomViewCiVo {
             this.ciId = conf.getLong("ciId");
             this.sort = conf.getInteger("index");
             this.isHidden = conf.getIntValue("isHidden");
+            this.alias = conf.getString("alias");
         }
         this.uuid = jsonObj.getString("uuid");
     }
@@ -111,6 +111,9 @@ public class CustomViewCiVo {
     }
 
     public List<CustomViewAttrVo> getAttrList() {
+        if (CollectionUtils.isNotEmpty(attrList)) {
+            attrList.sort(Comparator.comparing(CustomViewAttrVo::getSort));
+        }
         return attrList;
     }
 
@@ -140,5 +143,13 @@ public class CustomViewCiVo {
 
     public void setRelList(List<CustomViewRelVo> relList) {
         this.relList = relList;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 }

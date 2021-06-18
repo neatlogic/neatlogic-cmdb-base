@@ -59,8 +59,10 @@ public class CustomViewVo extends BasePageVo {
     private String icon;
     @JSONField(serialize = false)
     private transient Long tagId;
-    @EntityField(name = "起始模型", type = ApiParamType.JSONOBJECT)
-    private CustomViewCiVo startCustomViewCi;
+    @JSONField(serialize = false)
+    private transient CustomViewCiVo startCustomViewCi;//起始模型
+    @EntityField(name = "起始模型uuid", type = ApiParamType.STRING)
+    private String startCustomViewCiUuid;
 
     public Long getId() {
         if (id == null) {
@@ -101,6 +103,16 @@ public class CustomViewVo extends BasePageVo {
             throw new CustomViewCiNotFoundException();
         }
         return true;
+    }
+
+    public String getStartCustomViewCiUuid() {
+        if (StringUtils.isBlank(startCustomViewCiUuid)) {
+            CustomViewCiVo startCi = this.getStartCustomViewCi();
+            if (startCi != null) {
+                startCustomViewCiUuid = startCi.getUuid();
+            }
+        }
+        return startCustomViewCiUuid;
     }
 
     public CustomViewCiVo getStartCustomViewCi() {
