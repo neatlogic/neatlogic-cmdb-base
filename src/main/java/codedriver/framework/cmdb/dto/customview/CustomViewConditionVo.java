@@ -27,7 +27,7 @@ public class CustomViewConditionVo extends BasePageVo {
     @EntityField(name = "搜索模式，normal或group", type = ApiParamType.ENUM, member = SearchMode.class)
     private String searchMode = SearchMode.NORMAL.getValue();
     private transient String viewName;
-    private List<String> fieldList;
+    private List<CustomViewConditionFieldVo> fieldList;
     @EntityField(name = "分组属性uuid", type = ApiParamType.STRING)
     private String groupBy;
     @JSONField(serialize = false)
@@ -79,11 +79,11 @@ public class CustomViewConditionVo extends BasePageVo {
         return TenantContext.get().getDataDbName() + ".customview_" + this.getCustomViewId();
     }
 
-    public List<String> getFieldList() {
+    public List<CustomViewConditionFieldVo> getFieldList() {
         return fieldList;
     }
 
-    public void setFieldList(List<String> fieldList) {
+    public void setFieldList(List<CustomViewConditionFieldVo> fieldList) {
         this.fieldList = fieldList;
     }
 

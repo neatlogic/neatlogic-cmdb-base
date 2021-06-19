@@ -32,8 +32,8 @@ public class CustomViewCiVo {
     private List<CustomViewRelVo> relList;
     @JSONField(serialize = false)
     private transient CiVo ciVo;
-    @EntityField(name = "配置项id列表", type = ApiParamType.JSONARRAY)
-    private Set<Long> ciEntityIdList;
+    @EntityField(name = "配置项列表", type = ApiParamType.JSONARRAY)
+    private List<JSONObject> ciEntityList;
     @EntityField(name = "别名", type = ApiParamType.STRING)
     private String alias;
 
@@ -52,19 +52,23 @@ public class CustomViewCiVo {
         this.uuid = jsonObj.getString("uuid");
     }
 
-    public Set<Long> getCiEntityIdList() {
-        return ciEntityIdList;
+    public List<JSONObject> getCiEntityList() {
+        return ciEntityList;
     }
 
-    public void setCiEntityIdList(Set<Long> ciEntityIdList) {
-        this.ciEntityIdList = ciEntityIdList;
-    }
 
-    public void addCiEntityId(Long ciEntityId) {
-        if (this.ciEntityIdList == null) {
-            this.ciEntityIdList = new HashSet<>();
+    public void addCiEntity(Long ciEntityId, String ciEntityName) {
+        if (ciEntityId != null) {
+            if (this.ciEntityList == null) {
+                this.ciEntityList = new ArrayList<>();
+            }
+            if (this.ciEntityList.stream().noneMatch(cientity -> cientity.getLong("id").equals(ciEntityId))) {
+                this.ciEntityList.add(new JSONObject() {{
+                    this.put("id", ciEntityId);
+                    this.put("name", ciEntityName);
+                }});
+            }
         }
-        this.ciEntityIdList.add(ciEntityId);
     }
 
     public CustomViewRelVo getRelByUuid(String uuid) {
