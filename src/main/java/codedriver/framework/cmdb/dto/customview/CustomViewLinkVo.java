@@ -17,6 +17,8 @@ public class CustomViewLinkVo {
     private String uuid;
     @EntityField(name = "视图id", type = ApiParamType.LONG)
     private Long customViewId;
+    @EntityField(name = "名称", type = ApiParamType.STRING)
+    private String name;
     @EntityField(name = "连接类型", type = ApiParamType.LONG)
     private String joinType;
     @EntityField(name = "来源uuid", type = ApiParamType.STRING)
@@ -34,6 +36,14 @@ public class CustomViewLinkVo {
 
     public CustomViewLinkVo() {
 
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -54,6 +64,7 @@ public class CustomViewLinkVo {
         this.toUuid = jsonObj.getString("target");
         this.joinType = jsonObj.getString("type");
         this.uuid = jsonObj.getString("uuid");
+        this.name = jsonObj.getString("name");
     }
 
 
