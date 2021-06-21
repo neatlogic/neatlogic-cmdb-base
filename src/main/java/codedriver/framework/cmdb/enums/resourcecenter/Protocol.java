@@ -55,7 +55,7 @@ public enum Protocol implements IEnum {
             array.add(new JSONObject() {
                 {
                     this.put("value", type.getValue());
-                    this.put("text", type.getText());
+                    this.put("text", type.getValue());
                 }
             });
         }
