@@ -28,6 +28,14 @@ public class TagVo extends BasePageVo {
     @EntityField(name = "操作列表")
     private List<OperateVo> operateList = new ArrayList<>();
 
+    public TagVo(){
+
+    }
+
+    public TagVo(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         if (id == null) {
             id = SnowflakeUtil.uniqueLong();
