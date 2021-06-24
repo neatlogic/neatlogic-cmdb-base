@@ -6,6 +6,7 @@
 package codedriver.framework.cmdb.exception.resourcecenter;
 
 import codedriver.framework.exception.core.ApiRuntimeException;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * @author linbq
@@ -15,11 +16,21 @@ public class ResourceNotFoundException extends ApiRuntimeException {
 
     private static final long serialVersionUID = 8748508038438348100L;
 
+    private static final String key = "common.errorMessage.empty.resource";
+
     public ResourceNotFoundException(Long id){
-        super("资源：'" + id+ "'不存在");
+        super(key, new JSONObject() {
+            {
+                this.put("name", id);
+            }
+        });
     }
 
     public ResourceNotFoundException(String name){
-        super("资源：'" + name + "'不存在");
+        super(key, new JSONObject() {
+            {
+                this.put("name", name);
+            }
+        });
     }
 }
