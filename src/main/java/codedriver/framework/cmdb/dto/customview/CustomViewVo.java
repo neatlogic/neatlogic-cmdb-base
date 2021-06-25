@@ -53,12 +53,12 @@ public class CustomViewVo extends BasePageVo {
     private List<CustomViewAuthVo> authList;
     @EntityField(name = "标签列表", type = ApiParamType.JSONARRAY)
     private List<TagVo> tagList;
+    @JSONField(serialize = false)
+    private transient Long tagId;
     @EntityField(name = "描述", type = ApiParamType.STRING)
     private String description;
     @EntityField(name = "图标", type = ApiParamType.STRING)
     private String icon;
-    @JSONField(serialize = false)
-    private transient Long tagId;
     @JSONField(serialize = false)
     private transient CustomViewCiVo startCustomViewCi;//起始模型
     @EntityField(name = "起始模型uuid", type = ApiParamType.STRING)

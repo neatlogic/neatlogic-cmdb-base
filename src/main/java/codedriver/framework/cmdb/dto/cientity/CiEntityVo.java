@@ -65,6 +65,8 @@ public class CiEntityVo extends BasePageVo {
     private String status;
     @EntityField(name = "是否锁定编辑", type = ApiParamType.INTEGER)
     private Integer isLocked = 0;
+    @JSONField(serialize = false)
+    private transient Long ciEntityIdStart;
     // @EntityField(name = "属性列表", type = ApiParamType.JSONARRAY)
     @JSONField(serialize = false)
     private transient List<AttrEntityVo> attrEntityList;
@@ -136,16 +138,11 @@ public class CiEntityVo extends BasePageVo {
 
 
     @JSONField(serialize = false)
-    @Deprecated
-    public RelEntityVo getRelEntityByRelId(Long relId) {
-        if (CollectionUtils.isNotEmpty(this.relEntityList)) {
-            for (RelEntityVo relEntityVo : this.relEntityList) {
-                if (relEntityVo.getRelId().equals(relId)) {
-                    return relEntityVo;
-                }
-            }
-        }
-        return null;
+    public List<RelEntityVo> getRelEntityByRelId(Long relId) {
+        List<RelEntityVo> relEntityList = new ArrayList<>();
+        relEntityList.addAll(getRelEntityByRelIdAndDirection(relId, RelDirectionType.FROM.getValue()));
+        relEntityList.addAll(getRelEntityByRelIdAndDirection(relId, RelDirectionType.TO.getValue()));
+        return relEntityList;
     }
 
     public Long getId() {
@@ -173,6 +170,14 @@ public class CiEntityVo extends BasePageVo {
 
     public void setCiList(List<CiVo> ciList) {
         this.ciList = ciList;
+    }
+
+    public Long getCiEntityIdStart() {
+        return ciEntityIdStart;
+    }
+
+    public void setCiEntityIdStart(Long ciEntityIdStart) {
+        this.ciEntityIdStart = ciEntityIdStart;
     }
 
     public String getFcu() {

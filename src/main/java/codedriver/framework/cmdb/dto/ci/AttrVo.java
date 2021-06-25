@@ -84,6 +84,8 @@ public class AttrVo implements Serializable {
     private String groupName;
     @EntityField(name = "是否支持搜索", type = ApiParamType.BOOLEAN)
     private boolean canSearch = false;
+    @EntityField(name = "是否支持输入", type = ApiParamType.BOOLEAN)
+    private boolean canInput = true;
     @JSONField(serialize = false)
     private transient int sort;// 排序，数据来自ciViewVo
     @EntityField(name = "支持的搜索表达式列表")
@@ -300,20 +302,18 @@ public class AttrVo implements Serializable {
 
     public boolean getCanSearch() {
         if (StringUtils.isNotBlank(type)) {
-            canSearch = true;
-            //FIXME 要处理
-            /*if (type.equals(AttrType.CUSTOM.getValue()) || type.equals(AttrType.EXPRESSION.getValue())) {
-                canSearch = true;
-            } else if (type.equals(AttrType.PROPERTY.getValue())) {
-                if (StringUtils.isNotBlank(propHandler)) {
-                    IPropertyHandler handler = PropertyHandlerFactory.getHandler(propHandler);
-                    if (handler != null) {
-                        canSearch = handler.canSearch();
-                    }
-                }
-            }*/
+            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(type);
+            canSearch = handler.isCanSearch();
         }
         return canSearch;
+    }
+
+    public boolean getCanInput() {
+        if (StringUtils.isNotBlank(type)) {
+            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(type);
+            canInput = handler.isCanInput();
+        }
+        return canInput;
     }
 
     public int getSort() {

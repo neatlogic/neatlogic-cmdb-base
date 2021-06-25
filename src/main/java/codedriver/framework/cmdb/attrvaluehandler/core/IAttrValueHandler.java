@@ -38,6 +38,13 @@ public interface IAttrValueHandler {
      */
     boolean isCanSearch();
 
+    /**
+     * 是否允许输入
+     *
+     * @return boolean
+     */
+    boolean isCanInput();
+
 
     /**
      * 是否简单属性（例如文本，表格属性就是复杂属性）,简单属性才能作为下拉框的显示值字段
@@ -111,5 +118,30 @@ public interface IAttrValueHandler {
      * @return 用于显示数据
      */
     default void transferValueListToDisplay(JSONArray valueList) {
+    }
+
+    /**
+     * 保存新属性后需要的自定义操作
+     *
+     * @param attrVo 属性配置
+     */
+    default void afterInsert(AttrVo attrVo) {
+    }
+
+    /**
+     * 保存新属性后需要的自定义操作
+     *
+     * @param attrVo 属性配置
+     */
+    default void afterUpdate(AttrVo attrVo) {
+    }
+
+    /**
+     * 删除新属性后需要的自定义操作
+     *
+     * @param attrVo 属性配置
+     */
+    default void afterDelete(AttrVo attrVo) {
+
     }
 }
