@@ -74,6 +74,8 @@ public class CiVo implements Serializable {
     private transient Integer isTypeShowInTopo;//类型是否在topo中显示
     @EntityField(name = "唯一属性列表", type = ApiParamType.LONG)
     private List<Long> uniqueAttrIdList;
+    @EntityField(name = "名称属性", type = ApiParamType.LONG)
+    private Long nameAttrId;
     @JSONField(serialize = false)
     private transient String viewXml;//虚拟模型xml定义
     @EntityField(name = "虚拟模型配置文件id", type = ApiParamType.LONG)
@@ -363,5 +365,13 @@ public class CiVo implements Serializable {
 
     public void setUpwardCiList(List<CiVo> upwardCiList) {
         this.upwardCiList = upwardCiList;
+    }
+
+    public Long getNameAttrId() {
+        return nameAttrId;
+    }
+
+    public void setNameAttrId(Long nameAttrId) {
+        this.nameAttrId = nameAttrId;
     }
 }
