@@ -86,8 +86,8 @@ public class AttrVo implements Serializable {
     private boolean canSearch = false;
     @EntityField(name = "是否支持输入", type = ApiParamType.BOOLEAN)
     private boolean canInput = true;
-    @JSONField(serialize = false)
-    private transient int sort;// 排序，数据来自ciViewVo
+    @EntityField(name = "排序", type = ApiParamType.INTEGER)
+    private int sort;// 排序，数据来自ciViewVo
     @EntityField(name = "支持的搜索表达式列表")
     private List<ValueTextVo> expressionList;
     @JSONField(serialize = false)

@@ -5,16 +5,14 @@
 
 package codedriver.framework.cmdb.dto.ci;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.alibaba.fastjson.annotation.JSONField;
-
 import codedriver.framework.cmdb.enums.ShowType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
+import com.alibaba.fastjson.annotation.JSONField;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CiViewVo {
     @EntityField(name = "模型Id", type = ApiParamType.LONG)
@@ -108,6 +106,8 @@ public class CiViewVo {
         if (StringUtils.isBlank(typeText) && StringUtils.isNotBlank(type)) {
             if (type.equals("attr")) {
                 typeText = "属性";
+            } else if (type.equals("const")) {
+                typeText = "内部属性";
             } else {
                 typeText = "关系";
             }
