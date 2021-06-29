@@ -8,7 +8,9 @@ package codedriver.framework.cmdb.dto.customview;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
-public class CustomViewAuthVo {
+import java.io.Serializable;
+
+public class CustomViewAuthVo implements Serializable {
     @EntityField(name = "视图id", type = ApiParamType.LONG)
     private Long customViewId;
     @EntityField(name = "授权对象类型", type = ApiParamType.STRING)

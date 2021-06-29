@@ -22,10 +22,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CiEntityTransactionVo {
+public class CiEntityTransactionVo implements Serializable {
     static Logger logger = LoggerFactory.getLogger(CiEntityTransactionVo.class);
     @JSONField(serialize = false)
     private transient String ciEntityUuid;// 批量添加时的临时ID，由前端生成

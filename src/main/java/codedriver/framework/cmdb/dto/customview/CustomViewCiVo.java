@@ -13,9 +13,13 @@ import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 
-import java.util.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 
-public class CustomViewCiVo {
+public class CustomViewCiVo implements Serializable {
     @EntityField(name = "uuid", type = ApiParamType.STRING)
     private String uuid;
     @EntityField(name = "视图id", type = ApiParamType.LONG)

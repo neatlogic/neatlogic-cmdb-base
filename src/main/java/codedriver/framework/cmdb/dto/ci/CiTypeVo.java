@@ -10,9 +10,10 @@ import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
 import com.alibaba.fastjson.annotation.JSONField;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CiTypeVo {
+public class CiTypeVo implements Serializable {
     @JSONField(serialize = false)
     private transient String keyword;
     @EntityField(name = "id", type = ApiParamType.LONG)

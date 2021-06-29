@@ -9,10 +9,11 @@ import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.annotation.JSONField;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class CustomViewDataVo {
+public class CustomViewDataVo implements Serializable {
     @EntityField(name = "视图id", type = ApiParamType.LONG)
     private Long customViewId;
     @EntityField(name = "视图名称", type = ApiParamType.STRING)

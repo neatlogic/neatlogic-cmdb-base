@@ -5,7 +5,9 @@
 
 package codedriver.framework.cmdb.dto.customview;
 
-public class CustomViewConditionFieldVo {
+import java.io.Serializable;
+
+public class CustomViewConditionFieldVo implements Serializable {
     private String name;
     private String type;
 

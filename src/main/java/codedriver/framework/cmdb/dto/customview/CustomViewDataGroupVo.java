@@ -10,10 +10,11 @@ import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
 import org.apache.commons.collections4.CollectionUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomViewDataGroupVo extends BasePageVo {
+public class CustomViewDataGroupVo extends BasePageVo implements Serializable {
     @EntityField(name = "属性uuid", type = ApiParamType.STRING)
     private String attrUuid;
     @EntityField(name = "属性别名", type = ApiParamType.STRING)

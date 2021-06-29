@@ -11,10 +11,11 @@ import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CiViewVo {
+public class CiViewVo implements Serializable {
     @EntityField(name = "模型Id", type = ApiParamType.LONG)
     private Long ciId;
     @EntityField(name = "属性或关系id", type = ApiParamType.LONG)

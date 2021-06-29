@@ -10,9 +10,10 @@ import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.JSONObject;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class CustomViewLinkVo {
+public class CustomViewLinkVo implements Serializable {
     @EntityField(name = "uuid", type = ApiParamType.STRING)
     private String uuid;
     @EntityField(name = "视图id", type = ApiParamType.LONG)

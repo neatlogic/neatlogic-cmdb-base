@@ -5,7 +5,9 @@
 
 package codedriver.framework.cmdb.dto.customview;
 
-public class CustomViewValueFilterVo {
+import java.io.Serializable;
+
+public class CustomViewValueFilterVo implements Serializable {
     private String uuid;
     private String value;
 

@@ -14,7 +14,9 @@ import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
 import com.google.common.base.Objects;
 
-public class RelEntityVo extends BasePageVo {
+import java.io.Serializable;
+
+public class RelEntityVo extends BasePageVo implements Serializable {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "关系id", type = ApiParamType.LONG)

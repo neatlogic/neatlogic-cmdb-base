@@ -5,20 +5,21 @@
 
 package codedriver.framework.cmdb.dto.transaction;
 
+import codedriver.framework.cmdb.dto.cientity.AttrEntityVo;
 import codedriver.framework.cmdb.enums.SaveModeType;
 import codedriver.framework.cmdb.enums.TransactionActionType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.HtmlUtil;
-import codedriver.framework.cmdb.dto.cientity.AttrEntityVo;
 import com.alibaba.fastjson.JSONArray;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AttrEntityTransactionVo {
+public class AttrEntityTransactionVo implements Serializable {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;// 由于需要在SQL批量写入，所以这里使用数据库自增id
     @EntityField(name = "配置项id", type = ApiParamType.LONG)

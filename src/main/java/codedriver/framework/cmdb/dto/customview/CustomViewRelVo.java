@@ -11,7 +11,9 @@ import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 
-public class CustomViewRelVo {
+import java.io.Serializable;
+
+public class CustomViewRelVo implements Serializable {
     @EntityField(name = "uuid", type = ApiParamType.STRING)
     private String uuid;
     @EntityField(name = "视图id", type = ApiParamType.LONG)

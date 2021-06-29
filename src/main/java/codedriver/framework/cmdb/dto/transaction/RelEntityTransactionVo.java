@@ -5,15 +5,17 @@
 
 package codedriver.framework.cmdb.dto.transaction;
 
-import codedriver.framework.cmdb.enums.RelActionType;
 import codedriver.framework.cmdb.dto.cientity.RelEntityVo;
+import codedriver.framework.cmdb.enums.RelActionType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
 import com.google.common.base.Objects;
 import org.apache.commons.lang3.StringUtils;
 
-public class RelEntityTransactionVo {
+import java.io.Serializable;
+
+public class RelEntityTransactionVo implements Serializable {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "关系id", type = ApiParamType.LONG)

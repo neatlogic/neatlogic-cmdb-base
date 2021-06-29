@@ -5,13 +5,14 @@
 
 package codedriver.framework.cmdb.dto.ci;
 
-import org.apache.commons.lang3.StringUtils;
-
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
+import org.apache.commons.lang3.StringUtils;
 
-public class RelTypeVo {
+import java.io.Serializable;
+
+public class RelTypeVo implements Serializable {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "中文名", type = ApiParamType.STRING)

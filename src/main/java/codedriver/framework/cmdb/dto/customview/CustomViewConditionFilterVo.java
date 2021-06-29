@@ -7,9 +7,10 @@ package codedriver.framework.cmdb.dto.customview;
 
 import org.apache.commons.collections4.CollectionUtils;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CustomViewConditionFilterVo {
+public class CustomViewConditionFilterVo implements Serializable {
     private String attrUuid;
     private String expression;// 用户sql查询的表达式
     private List<String> valueList;

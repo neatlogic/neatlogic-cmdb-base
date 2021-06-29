@@ -13,7 +13,9 @@ import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
-public class CustomViewAttrVo {
+import java.io.Serializable;
+
+public class CustomViewAttrVo implements Serializable {
     @EntityField(name = "uuid", type = ApiParamType.STRING)
     private String uuid;
     @EntityField(name = "视图id", type = ApiParamType.LONG)

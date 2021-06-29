@@ -8,7 +8,9 @@ package codedriver.framework.cmdb.dto.ci;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
-public class AttrTypeVo {
+import java.io.Serializable;
+
+public class AttrTypeVo implements Serializable {
     @EntityField(name = "唯一标识", type = ApiParamType.STRING)
     private String name;
     @EntityField(name = "名称", type = ApiParamType.STRING)

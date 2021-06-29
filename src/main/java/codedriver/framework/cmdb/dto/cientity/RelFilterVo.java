@@ -5,9 +5,10 @@
 
 package codedriver.framework.cmdb.dto.cientity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class RelFilterVo {
+public class RelFilterVo implements Serializable {
     private Long relId;
     private String direction;
     private String expressionName; // 表达式名称

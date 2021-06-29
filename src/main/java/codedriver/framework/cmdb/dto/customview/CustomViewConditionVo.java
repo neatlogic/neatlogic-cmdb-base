@@ -12,12 +12,13 @@ import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.annotation.JSONField;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * 检索条件实体类
  */
-public class CustomViewConditionVo extends BasePageVo {
+public class CustomViewConditionVo extends BasePageVo implements Serializable {
     @EntityField(name = "视图id", type = ApiParamType.LONG)
     private Long customViewId;
     private transient String keyword;

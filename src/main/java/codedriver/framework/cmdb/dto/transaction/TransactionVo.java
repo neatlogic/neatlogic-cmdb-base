@@ -5,10 +5,10 @@
 
 package codedriver.framework.cmdb.dto.transaction;
 
-import codedriver.framework.cmdb.threadlocal.InputFromContext;
 import codedriver.framework.asynchronization.threadlocal.UserContext;
 import codedriver.framework.cmdb.enums.InputFrom;
 import codedriver.framework.cmdb.enums.TransactionStatus;
+import codedriver.framework.cmdb.threadlocal.InputFromContext;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
@@ -16,9 +16,10 @@ import codedriver.framework.util.SnowflakeUtil;
 import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TransactionVo extends BasePageVo {
+public class TransactionVo extends BasePageVo implements Serializable {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "模型id", type = ApiParamType.LONG)

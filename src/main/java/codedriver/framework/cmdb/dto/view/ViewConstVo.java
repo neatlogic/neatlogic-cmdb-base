@@ -8,7 +8,9 @@ package codedriver.framework.cmdb.dto.view;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
-public class ViewConstVo {
+import java.io.Serializable;
+
+public class ViewConstVo implements Serializable {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "名称", type = ApiParamType.STRING)

@@ -11,10 +11,11 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.DigestUtils;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AttrFilterVo {
+public class AttrFilterVo implements Serializable {
     private Long attrId;
     private Long ciId;
     private String expressionName; // 表达式名称

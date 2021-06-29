@@ -7,6 +7,10 @@ package codedriver.framework.cmdb.dto.cientity;
 
 import codedriver.framework.asynchronization.threadlocal.TenantContext;
 import codedriver.framework.asynchronization.threadlocal.UserContext;
+import codedriver.framework.cmdb.dto.ci.AttrVo;
+import codedriver.framework.cmdb.dto.ci.CiVo;
+import codedriver.framework.cmdb.dto.ci.RelVo;
+import codedriver.framework.cmdb.dto.transaction.CiEntityTransactionVo;
 import codedriver.framework.cmdb.enums.EditModeType;
 import codedriver.framework.cmdb.enums.RelDirectionType;
 import codedriver.framework.common.constvalue.ApiParamType;
@@ -15,10 +19,6 @@ import codedriver.framework.elasticsearch.annotation.ESKey;
 import codedriver.framework.elasticsearch.constvalue.ESKeyType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
-import codedriver.framework.cmdb.dto.ci.AttrVo;
-import codedriver.framework.cmdb.dto.ci.CiVo;
-import codedriver.framework.cmdb.dto.ci.RelVo;
-import codedriver.framework.cmdb.dto.transaction.CiEntityTransactionVo;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
@@ -26,12 +26,13 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class CiEntityVo extends BasePageVo {
+public class CiEntityVo extends BasePageVo implements Serializable {
     @JSONField(serialize = false)
     private transient String keyword;
     @JSONField(serialize = false) // 根据空格拆开关键字
