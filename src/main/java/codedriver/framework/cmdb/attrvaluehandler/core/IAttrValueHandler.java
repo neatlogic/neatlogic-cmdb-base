@@ -8,6 +8,7 @@ package codedriver.framework.cmdb.attrvaluehandler.core;
 import codedriver.framework.cmdb.dto.ci.AttrVo;
 import codedriver.framework.cmdb.enums.SearchExpression;
 import com.alibaba.fastjson.JSONArray;
+import org.apache.commons.collections4.CollectionUtils;
 
 public interface IAttrValueHandler {
     /**
@@ -84,7 +85,9 @@ public interface IAttrValueHandler {
      */
     default JSONArray getActualValueList(AttrVo attrVo, JSONArray valueList) {
         JSONArray returnValueList = new JSONArray();
-        returnValueList.addAll(valueList);
+        if (CollectionUtils.isNotEmpty(valueList)) {
+            returnValueList.addAll(valueList);
+        }
         return returnValueList;
     }
 

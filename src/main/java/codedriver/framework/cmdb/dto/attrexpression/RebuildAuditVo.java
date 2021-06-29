@@ -17,39 +17,55 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RebuildAuditVo {
+    public enum Type {
+        INVOKE("invoke"),
+        INVOKED("invoked");
+
+        private final String status;
+
+        Type(String _status) {
+            this.status = _status;
+        }
+
+        public String getValue() {
+            return status;
+        }
+    }
+
     private Long id;
     private Long ciId;
     private Long ciEntityId;
+    private String type;
     private Long ciEntityIdStart;
     private String attrIds;
-    private CiEntityVo ciEntityVo;
     private Integer serverId;
     protected UserContext userContext;
     protected TenantContext tenantContext;
 
-    public CiEntityVo getCiEntityVo() {
-        return ciEntityVo;
-    }
-
-    public void setCiEntityVo(CiEntityVo ciEntityVo) {
-        this.ciEntityVo = ciEntityVo;
-    }
 
     public RebuildAuditVo() {
         userContext = UserContext.get();
         tenantContext = TenantContext.get();
     }
 
-    public RebuildAuditVo(CiEntityVo _ciEntityVo) {
+    public RebuildAuditVo(CiEntityVo _ciEntityVo, Type type) {
         this.ciId = _ciEntityVo.getCiId();
         this.ciEntityId = _ciEntityVo.getId();
-        this.ciEntityVo = _ciEntityVo;
         List<AttrEntityVo> attrList = _ciEntityVo.getAttrEntityList();
         if (CollectionUtils.isNotEmpty(attrList)) {
             this.attrIds = attrList.stream().map(attr -> attr.getAttrId().toString()).collect(Collectors.joining(","));
         }
+        this.type = type.getValue();
         userContext = UserContext.get();
         tenantContext = TenantContext.get();
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public UserContext getUserContext() {

@@ -117,6 +117,11 @@ public class CiEntityVo extends BasePageVo {
         this.id = id;
     }
 
+    public CiEntityVo(Long ciId, Long id) {
+        this.ciId = ciId;
+        this.id = id;
+    }
+
     public CiEntityVo(CiEntityTransactionVo ciEntityTransactionVo) {
         this.id = ciEntityTransactionVo.getCiEntityId();
         this.ciId = ciEntityTransactionVo.getCiId();
