@@ -46,6 +46,13 @@ public interface IAttrValueHandler {
      */
     boolean isCanInput();
 
+    /**
+     * 是否允许导入
+     *
+     * @return boolean
+     */
+    boolean isCanImport();
+
 
     /**
      * 是否简单属性（例如文本，表格属性就是复杂属性）,简单属性才能作为下拉框的显示值字段

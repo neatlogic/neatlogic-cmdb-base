@@ -86,6 +86,8 @@ public class AttrVo implements Serializable {
     private boolean canSearch = false;
     @EntityField(name = "是否支持输入", type = ApiParamType.BOOLEAN)
     private boolean canInput = true;
+    @EntityField(name = "是否支持导入", type = ApiParamType.BOOLEAN)
+    private boolean canImport = true;
     @EntityField(name = "排序", type = ApiParamType.INTEGER)
     private int sort;// 排序，数据来自ciViewVo
     @EntityField(name = "支持的搜索表达式列表")
@@ -314,6 +316,14 @@ public class AttrVo implements Serializable {
             canInput = handler.isCanInput();
         }
         return canInput;
+    }
+
+    public boolean getCanImport() {
+        if (StringUtils.isNotBlank(type)) {
+            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(type);
+            canImport = handler.isCanImport();
+        }
+        return canImport;
     }
 
     public int getSort() {
