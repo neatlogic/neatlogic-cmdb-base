@@ -6,6 +6,9 @@
 package codedriver.framework.cmdb.exception.resourcecenter;
 
 import codedriver.framework.exception.core.ApiRuntimeException;
+import org.apache.commons.collections4.CollectionUtils;
+
+import java.util.List;
 
 public class ResourceCenterTagNotFoundException extends ApiRuntimeException {
 
@@ -13,5 +16,9 @@ public class ResourceCenterTagNotFoundException extends ApiRuntimeException {
 
     public ResourceCenterTagNotFoundException(Long id) {
         super("标签：'" + id + "'不存在");
+    }
+
+    public ResourceCenterTagNotFoundException(List<Long> idList) {
+        super("标签：'" + String.join(",", CollectionUtils.collect(idList, String::valueOf)) + "'不存在");
     }
 }
