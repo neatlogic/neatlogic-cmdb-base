@@ -38,6 +38,7 @@ public class RebuildAuditVo {
     private String type;
     private Long ciEntityIdStart;
     private String attrIds;
+    private List<Long> attrIdList;
     private Integer serverId;
     protected UserContext userContext;
     protected TenantContext tenantContext;
@@ -53,11 +54,20 @@ public class RebuildAuditVo {
         this.ciEntityId = _ciEntityVo.getId();
         List<AttrEntityVo> attrList = _ciEntityVo.getAttrEntityList();
         if (CollectionUtils.isNotEmpty(attrList)) {
-            this.attrIds = attrList.stream().map(attr -> attr.getAttrId().toString()).collect(Collectors.joining(","));
+            this.attrIdList = attrList.stream().map(AttrEntityVo::getAttrId).collect(Collectors.toList());
+            this.attrIds = this.attrIdList.stream().map(Object::toString).collect(Collectors.joining(","));
         }
         this.type = type.getValue();
         userContext = UserContext.get();
         tenantContext = TenantContext.get();
+    }
+
+    public List<Long> getAttrIdList() {
+        return attrIdList;
+    }
+
+    public void setAttrIdList(List<Long> attrIdList) {
+        this.attrIdList = attrIdList;
     }
 
     public String getType() {

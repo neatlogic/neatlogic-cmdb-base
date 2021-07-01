@@ -7,8 +7,8 @@ package codedriver.framework.cmdb.exception.ci;
 
 import codedriver.framework.exception.core.ApiRuntimeException;
 
-public class CiTypeNameIsBlankException extends ApiRuntimeException {
-    public CiTypeNameIsBlankException() {
-        super("模型类型名称不能为空");
+public class CiUniqueRuleException extends ApiRuntimeException {
+    public CiUniqueRuleException() {
+        super("存在拥有相同唯一规则属性的配置项");
     }
 }
