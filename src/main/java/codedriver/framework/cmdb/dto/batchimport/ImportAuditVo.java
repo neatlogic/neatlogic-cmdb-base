@@ -1,12 +1,21 @@
+/*
+ * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
+ */
+
 package codedriver.framework.cmdb.dto.batchimport;
 
+import codedriver.framework.cmdb.enums.ImportStatus;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
+import com.alibaba.fastjson.annotation.JSONField;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class ImportAuditVo extends BasePageVo implements Serializable {
 
@@ -28,8 +37,10 @@ public class ImportAuditVo extends BasePageVo implements Serializable {
     @EntityField(name = "完成时间", type = ApiParamType.LONG)
     private Date finishDate;
     private Integer importCount;
-    @EntityField(name = "状态", type = ApiParamType.INTEGER)
-    private Integer status;
+    @EntityField(name = "状态", type = ApiParamType.STRING)
+    private String status;
+    @EntityField(name = "状态名称", type = ApiParamType.STRING)
+    private String statusText;
     @EntityField(name = "导入类型", type = ApiParamType.STRING)
     private String action;
     @EntityField(name = "导入类型文本", type = ApiParamType.STRING)
@@ -43,6 +54,9 @@ public class ImportAuditVo extends BasePageVo implements Serializable {
     @EntityField(name = "导入总数", type = ApiParamType.INTEGER)
     private Integer totalCount;
     private Integer serverId;
+    @JSONField(serialize = false)
+    private transient List<Long> idList;
+
 
     public Long getId() {
         if (id == null) {
@@ -119,12 +133,23 @@ public class ImportAuditVo extends BasePageVo implements Serializable {
         this.importCount = importCount;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getStatusText() {
+        if (StringUtils.isNotBlank(status) && StringUtils.isBlank(statusText)) {
+            statusText = ImportStatus.getText(status);
+        }
+        return statusText;
+    }
+
+    public void setStatusText(String statusText) {
+        this.statusText = statusText;
     }
 
     public String getAction() {
@@ -190,5 +215,13 @@ public class ImportAuditVo extends BasePageVo implements Serializable {
 
     public void setServerId(Integer serverId) {
         this.serverId = serverId;
+    }
+
+    public List<Long> getIdList() {
+        return idList;
+    }
+
+    public void setIdList(List<Long> idList) {
+        this.idList = idList;
     }
 }

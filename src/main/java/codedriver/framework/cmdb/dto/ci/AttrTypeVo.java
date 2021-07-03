@@ -11,6 +11,7 @@ import codedriver.framework.restful.annotation.EntityField;
 import java.io.Serializable;
 
 public class AttrTypeVo implements Serializable {
+
     @EntityField(name = "唯一标识", type = ApiParamType.STRING)
     private String name;
     @EntityField(name = "名称", type = ApiParamType.STRING)
