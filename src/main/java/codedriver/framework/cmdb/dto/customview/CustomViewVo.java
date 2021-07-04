@@ -31,9 +31,11 @@ public class CustomViewVo extends BasePageVo implements Serializable {
     @JSONField(serialize = false)
     private transient String keyword;
     @EntityField(name = "是否私有视图", type = ApiParamType.INTEGER)
-    private Integer isPrivate = 0;
+    private Integer isPrivate;
     @EntityField(name = "是否激活", type = ApiParamType.INTEGER)
     private Integer isActive;
+    @JSONField(serialize = false)
+    private transient boolean isAdmin;//是否管理员 如果是true，则同时搜索公共视图和个人视图
     @EntityField(name = "创建人", type = ApiParamType.STRING)
     private String fcu;
     @EntityField(name = "修改人", type = ApiParamType.STRING)
@@ -70,6 +72,14 @@ public class CustomViewVo extends BasePageVo implements Serializable {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 
     /**
