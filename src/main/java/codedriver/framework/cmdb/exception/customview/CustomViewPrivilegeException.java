@@ -9,11 +9,11 @@ import codedriver.framework.exception.core.ApiRuntimeException;
 
 public class CustomViewPrivilegeException extends ApiRuntimeException {
     public enum Action {
-        SAVE, READ;
+        SAVE, READ, DELETE;
     }
 
     public CustomViewPrivilegeException(Action action) {
-        super("您没有权限" + (action == Action.SAVE ? "保存" : "查看") + "公共自定义视图");
+        super("您没有权限" + (action == Action.SAVE ? "保存" : (action == Action.DELETE ? "删除" : "查看")) + "公共自定义视图");
     }
 
 }
