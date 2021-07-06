@@ -71,6 +71,8 @@ public class ResourceVo extends BaseEditorVo {
     private List<String> tagList;
     @EntityField(name = "标签ID列表", type = ApiParamType.JSONARRAY)
     private List<Long> tagIdList;
+    @EntityField(name = "账号列表", type = ApiParamType.JSONARRAY)
+    private List<AccountVo> accountList;
 
     public Long getId() {
         return id;
@@ -278,5 +280,13 @@ public class ResourceVo extends BaseEditorVo {
 
     public void setTagIdList(List<Long> tagIdList) {
         this.tagIdList = tagIdList;
+    }
+
+    public List<AccountVo> getAccountList() {
+        return accountList;
+    }
+
+    public void setAccountList(List<AccountVo> accountList) {
+        this.accountList = accountList;
     }
 }
