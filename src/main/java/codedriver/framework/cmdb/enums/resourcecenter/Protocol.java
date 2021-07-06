@@ -20,7 +20,7 @@ import java.util.Objects;
  **/
 public enum Protocol implements IEnum {
     APPLICATION("application", "应用"),
-    DB("db", "数据库"),
+    DATABASE("database", "数据库"),
     TAGENT("tagent", "代理"),
     SSH("ssh", "ssh");
     private final String value;
