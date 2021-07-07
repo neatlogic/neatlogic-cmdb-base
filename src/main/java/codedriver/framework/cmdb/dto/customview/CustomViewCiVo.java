@@ -30,6 +30,8 @@ public class CustomViewCiVo implements Serializable {
     private Integer sort;
     @EntityField(name = "是否隐藏", type = ApiParamType.INTEGER)
     private Integer isHidden = 0;
+    @EntityField(name = "是否起始模型", type = ApiParamType.INTEGER)
+    private Integer isStart = 0;
     @EntityField(name = "属性列表", type = ApiParamType.JSONARRAY)
     private List<CustomViewAttrVo> attrList;
     @EntityField(name = "关系属性列表", type = ApiParamType.JSONARRAY)
@@ -52,6 +54,7 @@ public class CustomViewCiVo implements Serializable {
             this.sort = conf.getInteger("index");
             this.isHidden = conf.getIntValue("isHidden");
             this.alias = conf.getString("alias");
+            this.isStart = conf.getIntValue("isStart");
         }
         this.uuid = jsonObj.getString("uuid");
     }
@@ -60,6 +63,13 @@ public class CustomViewCiVo implements Serializable {
         return ciEntityList;
     }
 
+    public Integer getIsStart() {
+        return isStart;
+    }
+
+    public void setIsStart(Integer isStart) {
+        this.isStart = isStart;
+    }
 
     public void addCiEntity(Long ciEntityId, String ciEntityName) {
         if (ciEntityId != null) {

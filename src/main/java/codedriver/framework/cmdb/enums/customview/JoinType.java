@@ -6,7 +6,7 @@
 package codedriver.framework.cmdb.enums.customview;
 
 public enum JoinType {
-    LEFTJOIN("leftjoin", "左连接"), JOIN("join", "全连接");
+    LEFTJOIN("leftjoin", "左连接"), JOIN("join", "全连接"), RIGHTJOIN("rightjoin", "右连接");
 
     private final String value;
     private final String text;

@@ -94,7 +94,7 @@ public class CustomViewVo extends BasePageVo implements Serializable {
                 int startCount = 0;
                 int isolatedCount = 0;
                 for (CustomViewCiVo ciVo : ciList) {
-                    if (CollectionUtils.isEmpty(getLinkListByToCustomCiUuid(ciVo.getUuid()))) {
+                    if (ciVo.getIsStart().equals(1)) {
                         startCount += 1;
                     }
                     if (CollectionUtils.isEmpty(getLinkListByCustomCiUuid(ciVo.getUuid()))) {
@@ -129,6 +129,21 @@ public class CustomViewVo extends BasePageVo implements Serializable {
     public CustomViewCiVo getStartCustomViewCi() {
         if (startCustomViewCi == null) {
             if (CollectionUtils.isNotEmpty(ciList)) {
+                for (CustomViewCiVo ciVo : ciList) {
+                    //如果模型的关系都是往外连出，则为驱动模型
+                    if (ciVo.getIsStart().equals(1)) {
+                        startCustomViewCi = ciVo;
+                        break;
+                    }
+                }
+            }
+        }
+        return startCustomViewCi;
+    }
+
+   /* public CustomViewCiVo getStartCustomViewCi_bak() {
+        if (startCustomViewCi == null) {
+            if (CollectionUtils.isNotEmpty(ciList)) {
                 if (ciList.size() == 1) {
                     startCustomViewCi = ciList.get(0);
                 } else {
@@ -143,7 +158,7 @@ public class CustomViewVo extends BasePageVo implements Serializable {
             }
         }
         return startCustomViewCi;
-    }
+    }*/
 
     /**
      * 根据来源模型uuid和目标模型uuid查找关系
@@ -174,19 +189,19 @@ public class CustomViewVo extends BasePageVo implements Serializable {
         return null;
     }
 
-    /**
-     * 根据目标模型uuid查找关系
-     *
-     * @param toCustomViewCiUuid 目标模型uuid
+    /*
+      根据目标模型uuid查找关系
+
+      @param toCustomViewCiUuid 目标模型uuid
      * @return 关系列表
      */
-    @JSONField(serialize = false)
+   /* @JSONField(serialize = false)
     public List<CustomViewLinkVo> getLinkListByToCustomCiUuid(String toCustomViewCiUuid) {
         if (CollectionUtils.isNotEmpty(linkList)) {
             return linkList.stream().filter(link -> link.getToCustomViewCiUuid().equalsIgnoreCase(toCustomViewCiUuid)).collect(Collectors.toList());
         }
         return null;
-    }
+    }*/
 
     /**
      * 根据模型uuid查找关系

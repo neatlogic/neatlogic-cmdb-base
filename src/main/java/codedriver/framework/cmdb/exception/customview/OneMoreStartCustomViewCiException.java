@@ -9,7 +9,7 @@ import codedriver.framework.exception.core.ApiRuntimeException;
 
 public class OneMoreStartCustomViewCiException extends ApiRuntimeException {
     public OneMoreStartCustomViewCiException() {
-        super("当前视图存在多个起始模型（所有关系均为连出关系的模型为起始模型）");
+        super("当前视图存在多个起始模型");
     }
 
 }
