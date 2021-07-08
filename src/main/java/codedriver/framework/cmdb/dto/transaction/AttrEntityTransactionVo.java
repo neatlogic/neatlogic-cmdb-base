@@ -57,7 +57,9 @@ public class AttrEntityTransactionVo implements Serializable {
         attrName = attrEntityVo.getAttrName();
         //复制值列表，避免修改时覆盖
         valueList = new JSONArray();
-        valueList.addAll(attrEntityVo.getValueList());
+        if (CollectionUtils.isNotEmpty(attrEntityVo.getValueList())) {
+            valueList.addAll(attrEntityVo.getValueList());
+        }
         transactionId = attrEntityVo.getTransactionId();
     }
 

@@ -90,25 +90,23 @@ public class CustomViewVo extends BasePageVo implements Serializable {
     @JSONField(serialize = false)
     public boolean valid() {
         if (CollectionUtils.isNotEmpty(ciList)) {
-            if (ciList.size() > 1) {
-                int startCount = 0;
-                int isolatedCount = 0;
-                for (CustomViewCiVo ciVo : ciList) {
-                    if (ciVo.getIsStart().equals(1)) {
-                        startCount += 1;
-                    }
-                    if (CollectionUtils.isEmpty(getLinkListByCustomCiUuid(ciVo.getUuid()))) {
-                        isolatedCount += 1;
-                    }
+            int startCount = 0;
+            int isolatedCount = 0;
+            for (CustomViewCiVo ciVo : ciList) {
+                if (ciVo.getIsStart().equals(1)) {
+                    startCount += 1;
                 }
-                if (isolatedCount > 0) {
-                    throw new IsolatedCustomViewCiException();
+                if (CollectionUtils.isEmpty(getLinkListByCustomCiUuid(ciVo.getUuid()))) {
+                    isolatedCount += 1;
                 }
-                if (startCount == 0) {
-                    throw new NoStartCustomViewCiException();
-                } else if (startCount > 1) {
-                    throw new OneMoreStartCustomViewCiException();
-                }
+            }
+            if (isolatedCount > 0 && ciList.size() > 1) {
+                throw new IsolatedCustomViewCiException();
+            }
+            if (startCount == 0) {
+                throw new NoStartCustomViewCiException();
+            } else if (startCount > 1) {
+                throw new OneMoreStartCustomViewCiException();
             }
         } else {
             throw new CustomViewCiNotFoundException();
