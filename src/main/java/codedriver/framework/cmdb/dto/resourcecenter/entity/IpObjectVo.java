@@ -13,6 +13,7 @@ import codedriver.framework.restful.annotation.EntityField;
 import java.util.Date;
 
 @ResourceType(name = "resource_ipobject", ciName = "IPObject", label = "IP软硬件")
+@ResourceType(name = "resource_os_cluster", label = "操作系统集群")
 public class IpObjectVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "id")

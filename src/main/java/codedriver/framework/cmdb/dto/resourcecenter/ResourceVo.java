@@ -5,9 +5,6 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter;
 
-import codedriver.framework.cmdb.annotation.ResourceField;
-import codedriver.framework.cmdb.annotation.ResourceType;
-import codedriver.framework.cmdb.dto.resourcecenter.entity.*;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BaseEditorVo;
 import codedriver.framework.restful.annotation.EntityField;
@@ -71,6 +68,10 @@ public class ResourceVo extends BaseEditorVo {
     private List<String> tagList;
     @EntityField(name = "账号列表", type = ApiParamType.JSONARRAY)
     private List<AccountVo> accountList;
+    @EntityField(name = "集群id", type = ApiParamType.LONG)
+    private Long clusterId;
+    @EntityField(name = "集群名", type = ApiParamType.STRING)
+    private String clusterName;
 
     public Long getId() {
         return id;
@@ -278,5 +279,21 @@ public class ResourceVo extends BaseEditorVo {
 
     public void setAccountList(List<AccountVo> accountList) {
         this.accountList = accountList;
+    }
+
+    public Long getClusterId() {
+        return clusterId;
+    }
+
+    public void setClusterId(Long clusterId) {
+        this.clusterId = clusterId;
+    }
+
+    public String getClusterName() {
+        return clusterName;
+    }
+
+    public void setClusterName(String clusterName) {
+        this.clusterName = clusterName;
     }
 }

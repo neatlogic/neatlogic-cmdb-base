@@ -12,12 +12,9 @@ import codedriver.framework.restful.annotation.EntityField;
 
 import java.util.Date;
 
-@ResourceType(name = "resource_softwareservice", label = "软件服务")//, ciName = "SoftwareService"
-@ResourceType(name = "resource_appinstance", label = "应用实例")
-@ResourceType(name = "resource_dbinstance", label = "DB实例")
-@ResourceType(name = "resource_appinstance_cluster", label = "应用实例集群")
-@ResourceType(name = "resource_db_cluster", label = "数据库集群")
-public class SoftwareServiceVo {
+@ResourceType(name = "resource_storage", label = "存储设备")
+@ResourceType(name = "resource_netdev", label = "网络设备")
+public class StorageVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;
@@ -39,9 +36,9 @@ public class SoftwareServiceVo {
     @EntityField(name = "描述", type = ApiParamType.STRING)
     @ResourceField(name = "description")
     private String description;
-    @EntityField(name = "port", type = ApiParamType.INTEGER)
-    @ResourceField(name = "port")
-    private Integer port;
+    @EntityField(name = "管理URL", type = ApiParamType.STRING)
+    @ResourceField(name = "url")
+    private String url;
     @EntityField(name = "创建者", type = ApiParamType.STRING)
     @ResourceField(name = "fcu")
     private String fcu;
@@ -111,12 +108,12 @@ public class SoftwareServiceVo {
         this.description = description;
     }
 
-    public Integer getPort() {
-        return port;
+    public String getUrl() {
+        return url;
     }
 
-    public void setPort(Integer port) {
-        this.port = port;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getFcu() {
