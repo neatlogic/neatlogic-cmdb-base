@@ -40,6 +40,8 @@ public class AttrVo implements Serializable {
     private String ciLabel;
     @EntityField(name = "目标模型配置项", type = ApiParamType.LONG)
     private Long targetCiId;
+    @EntityField(name = "目标模型是否虚拟模型", type = ApiParamType.INTEGER)
+    private Integer targetIsVirtual;
     @EntityField(name = "属性配置", type = ApiParamType.JSONOBJECT)
     private JSONObject config;
     @JSONField(serialize = false)
@@ -153,6 +155,14 @@ public class AttrVo implements Serializable {
             return needIndex;
         }
 
+    }
+
+    public Integer getTargetIsVirtual() {
+        return targetIsVirtual;
+    }
+
+    public void setTargetIsVirtual(Integer targetIsVirtual) {
+        this.targetIsVirtual = targetIsVirtual;
     }
 
     public Long getId() {
@@ -433,6 +443,16 @@ public class AttrVo implements Serializable {
     @JSONField(serialize = false)
     public String getCiTableName() {
         return TenantContext.get().getDataDbName() + ".`cmdb_" + this.getCiId() + "`";
+    }
+
+    /**
+     * 获取目标属性表名
+     *
+     * @return
+     */
+    @JSONField(serialize = false)
+    public String getTargetCiTableName() {
+        return TenantContext.get().getDataDbName() + ".`cmdb_" + this.getTargetCiId() + "`";
     }
 
 
