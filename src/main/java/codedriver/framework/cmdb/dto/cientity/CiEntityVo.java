@@ -42,6 +42,8 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private Long id;
     @EntityField(name = "模型id", type = ApiParamType.LONG)
     private Long ciId;
+    @EntityField(name = "过滤模型id", type = ApiParamType.LONG)
+    private Long filterCiId;
     @EntityField(name = "模型唯一标识", type = ApiParamType.STRING)
     private String ciName;
     @EntityField(name = "模型名称", type = ApiParamType.STRING)
@@ -129,7 +131,14 @@ public class CiEntityVo extends BasePageVo implements Serializable {
         this.name = ciEntityTransactionVo.getName();
         this.attrEntityData = ciEntityTransactionVo.getAttrEntityData();
         this.relEntityData = ciEntityTransactionVo.getRelEntityData();
+    }
 
+    public Long getFilterCiId() {
+        return filterCiId;
+    }
+
+    public void setFilterCiId(Long filterCiId) {
+        this.filterCiId = filterCiId;
     }
 
     /**
