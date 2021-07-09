@@ -72,6 +72,8 @@ public class ResourceVo extends BaseEditorVo {
     private Long clusterId;
     @EntityField(name = "集群名", type = ApiParamType.STRING)
     private String clusterName;
+    @EntityField(name = "集群类型id", type = ApiParamType.LONG)
+    private Long clusterTypeId;
 
     public Long getId() {
         return id;
@@ -295,5 +297,13 @@ public class ResourceVo extends BaseEditorVo {
 
     public void setClusterName(String clusterName) {
         this.clusterName = clusterName;
+    }
+
+    public Long getClusterTypeId() {
+        return clusterTypeId;
+    }
+
+    public void setClusterTypeId(Long clusterTypeId) {
+        this.clusterTypeId = clusterTypeId;
     }
 }

@@ -27,6 +27,9 @@ public class ClusterVo {
     @EntityField(name = "集群名", type = ApiParamType.STRING)
     @ResourceField(name = "cluster_name")
     private String clusterName;
+    @EntityField(name = "集群类型id", type = ApiParamType.LONG)
+    @ResourceField(name = "cluster_type_id")
+    private Long clusterTypeId;
 
     public Long getResourceId() {
         return resourceId;
@@ -50,5 +53,13 @@ public class ClusterVo {
 
     public void setClusterName(String clusterName) {
         this.clusterName = clusterName;
+    }
+
+    public Long getClusterTypeId() {
+        return clusterTypeId;
+    }
+
+    public void setClusterTypeId(Long clusterTypeId) {
+        this.clusterTypeId = clusterTypeId;
     }
 }
