@@ -28,7 +28,15 @@ public class ResourceSearchVo extends BasePageVo {
     private List<Long> appModuleIdList;
     private List<Long> tagIdList;
     private List<Long> idList;
+    private List<String> ipList;
     private String name;
+
+    public ResourceSearchVo() {
+    }
+
+    public ResourceSearchVo(List<Long> tagIdList) {
+        this.tagIdList = tagIdList;
+    }
 
     public final String getSchemaName() {
         return TenantContext.get().getDataDbName();
@@ -144,5 +152,13 @@ public class ResourceSearchVo extends BasePageVo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<String> getIpList() {
+        return ipList;
+    }
+
+    public void setIpList(List<String> ipList) {
+        this.ipList = ipList;
     }
 }

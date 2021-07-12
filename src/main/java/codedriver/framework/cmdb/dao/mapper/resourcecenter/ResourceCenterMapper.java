@@ -155,6 +155,10 @@ public interface ResourceCenterMapper {
 
     List<ResourceTagVo> getResourceTagListByResourceIdList(List<Long> resourceIdList);
 
+    List<ResourceVo> getResourceListByIpList(@Param("ipList") List<String> ipList,@Param("schemaName") String schemaName);
+
+    List<AccountVo> getResourceAccountListByResourceIdAndProtocolAndAccount(@Param("resourceIdList") List<Long> resourceIdList, @Param("protocol") String protocol, @Param("userName") String userName);
+
     int updateAccount(AccountVo vo);
 
     int updateTag(TagVo vo);

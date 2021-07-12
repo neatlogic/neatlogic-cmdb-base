@@ -174,18 +174,165 @@
         LIMIT 1
     </select>-->
     <sql id="resource_ipobject_from_join">
-        FROM ${schemaName}.`resource_ipobject` a
-        LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_ip` c ON c.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_status` f ON f.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_appsystem_appmodule` j on j.`app_module_id` = i.`app_module_id`
-        LEFT JOIN ${schemaName}.`resource_appsystem` l on l.`id` = j.`resource_id`
-        LEFT JOIN ${schemaName}.`resource_softwareservice` m ON m.`id` = a.`id`
+        FROM
+        ${schemaName}
+        .
+        `resource_ipobject`
+        a
+        LEFT
+        JOIN
+        ${schemaName}
+        .
+        `resource_ipobject_bg`
+        b
+        ON
+        b
+        .
+        `resource_id`
+        =
+        a
+        .
+        `id`
+        LEFT
+        JOIN
+        ${schemaName}
+        .
+        `resource_ipobject_ip`
+        c
+        ON
+        c
+        .
+        `resource_id`
+        =
+        a
+        .
+        `id`
+        LEFT
+        JOIN
+        ${schemaName}
+        .
+        `resource_ipobject_netarea`
+        d
+        ON
+        d
+        .
+        `resource_id`
+        =
+        a
+        .
+        `id`
+        LEFT
+        JOIN
+        ${schemaName}
+        .
+        `resource_ipobject_owner`
+        e
+        ON
+        e
+        .
+        `resource_id`
+        =
+        a
+        .
+        `id`
+        LEFT
+        JOIN
+        ${schemaName}
+        .
+        `resource_ipobject_status`
+        f
+        ON
+        f
+        .
+        `resource_id`
+        =
+        a
+        .
+        `id`
+        LEFT
+        JOIN
+        ${schemaName}
+        .
+        `resource_ipobject_datacenter`
+        g
+        on
+        g
+        .
+        `resource_id`
+        =
+        a
+        .
+        `id`
+        LEFT
+        JOIN
+        ${schemaName}
+        .
+        `resource_ipobject_env`
+        h
+        on
+        h
+        .
+        `resource_id`
+        =
+        a
+        .
+        `id`
+        LEFT
+        JOIN
+        ${schemaName}
+        .
+        `resource_ipobject_appmodule`
+        i
+        on
+        i
+        .
+        `resource_id`
+        =
+        a
+        .
+        `id`
+        LEFT
+        JOIN
+        ${schemaName}
+        .
+        `resource_appsystem_appmodule`
+        j
+        on
+        j
+        .
+        `app_module_id`
+        =
+        i
+        .
+        `app_module_id`
+        LEFT
+        JOIN
+        ${schemaName}
+        .
+        `resource_appsystem`
+        l
+        on
+        l
+        .
+        `id`
+        =
+        j
+        .
+        `resource_id`
+        LEFT
+        JOIN
+        ${schemaName}
+        .
+        `resource_softwareservice`
+        m
+        ON
+        m
+        .
+        `id`
+        =
+        a
+        .
+        `id`
     </sql>
     <sql id="resource_ipobject_where">
         <where>
@@ -230,13 +377,15 @@
             </if>
         </where>
     </sql>
-    <select id="getResourceCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
+    <select id="getResourceCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+            resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         <include refid="resource_ipobject_from_join"/>
         <include refid="resource_ipobject_where"/>
     </select>
 
-    <select id="getResourceIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
+    <select id="getResourceIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+            resultType="java.lang.Long">
         SELECT DISTINCT a.`id`
         <include refid="resource_ipobject_from_join"/>
         <include refid="resource_ipobject_where"/>
@@ -300,25 +449,27 @@
         </foreach>
     </select>
 
-    <select id="getOsResourceCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
+    <select id="getOsResourceCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+            resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_os` a
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
           AND i.`app_module_id` = #{appModuleId}
     </select>
 
-    <select id="getOsResourceIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
+    <select id="getOsResourceIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+            resultType="java.lang.Long">
         SELECT DISTINCT a.`id`
         FROM ${schemaName}.`resource_os` a
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
           AND i.`app_module_id` = #{appModuleId}
-            LIMIT #{startNum}, #{pageSize}
+        LIMIT #{startNum}, #{pageSize}
     </select>
 
     <select id="getOsResourceListByIdList" resultMap="resourceCenterMap">
@@ -348,25 +499,27 @@
         </foreach>
     </select>
 
-    <select id="getStorageResourceCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
+    <select id="getStorageResourceCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+            resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_storage` a
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
           AND i.`app_module_id` = #{appModuleId}
     </select>
 
-    <select id="getStorageResourceIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
+    <select id="getStorageResourceIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+            resultType="java.lang.Long">
         SELECT DISTINCT a.`id`
         FROM ${schemaName}.`resource_storage` a
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
           AND i.`app_module_id` = #{appModuleId}
-            LIMIT #{startNum}, #{pageSize}
+        LIMIT #{startNum}, #{pageSize}
     </select>
 
     <select id="getStorageResourceListByIdList" resultMap="resourceCenterMap">
@@ -392,25 +545,27 @@
         </foreach>
     </select>
 
-    <select id="getNetDevResourceCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
+    <select id="getNetDevResourceCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+            resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_netdev` a
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
           AND i.`app_module_id` = #{appModuleId}
     </select>
 
-    <select id="getNetDevResourceIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
+    <select id="getNetDevResourceIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+            resultType="java.lang.Long">
         SELECT DISTINCT a.`id`
         FROM ${schemaName}.`resource_netdev` a
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
           AND i.`app_module_id` = #{appModuleId}
-            LIMIT #{startNum}, #{pageSize}
+        LIMIT #{startNum}, #{pageSize}
     </select>
 
     <select id="getNetDevResourceListByIdList" resultMap="resourceCenterMap">
@@ -436,21 +591,23 @@
         </foreach>
     </select>
 
-    <select id="getAppInstanceResourceCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
+    <select id="getAppInstanceResourceCount"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_appinstance` a
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
           AND i.`app_module_id` = #{appModuleId}
     </select>
 
-    <select id="getAppInstanceResourceIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
+    <select id="getAppInstanceResourceIdList"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT DISTINCT a.`id`
         FROM ${schemaName}.`resource_appinstance` a
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
           AND i.`app_module_id` = #{appModuleId}
@@ -486,21 +643,23 @@
         </foreach>
     </select>
 
-    <select id="getDbInstanceResourceCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
+    <select id="getDbInstanceResourceCount"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_dbinstance` a
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
           AND i.`app_module_id` = #{appModuleId}
     </select>
 
-    <select id="getDbInstanceResourceIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
+    <select id="getDbInstanceResourceIdList"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT DISTINCT a.`id`
         FROM ${schemaName}.`resource_dbinstance` a
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
           AND i.`app_module_id` = #{appModuleId}
@@ -536,21 +695,23 @@
         </foreach>
     </select>
 
-    <select id="getAppInstanceClusterResourceCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
+    <select id="getAppInstanceClusterResourceCount"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_appinstance_cluster` a
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
           AND i.`app_module_id` = #{appModuleId}
     </select>
 
-    <select id="getAppInstanceClusterResourceIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
+    <select id="getAppInstanceClusterResourceIdList"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT DISTINCT a.`id`
         FROM ${schemaName}.`resource_appinstance_cluster` a
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
           AND i.`app_module_id` = #{appModuleId}
@@ -582,21 +743,23 @@
         </foreach>
     </select>
 
-    <select id="getDbInstanceClusterResourceCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
+    <select id="getDbInstanceClusterResourceCount"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_db_cluster` a
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
           AND i.`app_module_id` = #{appModuleId}
     </select>
 
-    <select id="getDbInstanceClusterResourceIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
+    <select id="getDbInstanceClusterResourceIdList"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT DISTINCT a.`id`
         FROM ${schemaName}.`resource_db_cluster` a
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
           AND i.`app_module_id` = #{appModuleId}
@@ -628,25 +791,26 @@
         </foreach>
     </select>
 
-    <select id="getResourceIdByIpAndPortAndName" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
+    <select id="getResourceIdByIpAndPortAndName"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT a.`id`
         FROM ${schemaName}.`resource_ipobject` a
         LEFT JOIN ${schemaName}.`resource_softwareservice` b on b.`id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_ip` c on c.`resource_id` = a.`id`
         WHERE c.`ip` = #{ip}
-          <if test="port != null and port != ''">
-              AND b.`port` = #{port}
-          </if>
-          <if test="name != null and name != ''">
-              and a.`name` = #{name}
-          </if>
+        <if test="port != null and port != ''">
+            AND b.`port` = #{port}
+        </if>
+        <if test="name != null and name != ''">
+            and a.`name` = #{name}
+        </if>
         LIMIT 1
     </select>
     <select id="getResourceIpPortById" resultMap="resourceCenterMap">
         SELECT a.`id`, b.`port`, c.`ip`
         FROM ${schemaName}.`resource_ipobject` a
-        LEFT JOIN ${schemaName}.`resource_softwareservice` b on b.`id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_ip` c on c.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_softwareservice` b on b.`id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_ipobject_ip` c on c.`resource_id` = a.`id`
         where a.`id` = #{id}
         LIMIT 1
     </select>
@@ -666,13 +830,15 @@
         </foreach>
     </select>
 
-    <select id="getTagListByResourceId" parameterType="java.lang.Long" resultType="codedriver.framework.cmdb.dto.tag.TagVo">
+    <select id="getTagListByResourceId" parameterType="java.lang.Long"
+            resultType="codedriver.framework.cmdb.dto.tag.TagVo">
         SELECT a.`id`, a.`name`
         FROM `cmdb_tag` a
-        JOIN `cmdb_resourcecenter_resource_tag` b ON b.`tag_id` = a.`id` AND b.`resource_id` = #{value}
+                 JOIN `cmdb_resourcecenter_resource_tag` b ON b.`tag_id` = a.`id` AND b.`resource_id` = #{value}
     </select>
 
-    <select id="getAccountCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo" resultType="int">
+    <select id="getAccountCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo"
+            resultType="int">
         SELECT COUNT(1) FROM `cmdb_resourcecenter_account`
         <where>
             <if test="keyword != null and keyword != ''">
@@ -681,23 +847,24 @@
         </where>
     </select>
 
-    <select id="getAccountById" parameterType="java.lang.Long" resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
-        select
-        `id`,
-        `name`,
-        `account`,
-        `password`,
-        `protocol`,
-        `port`,
-        `fcu`,
-        `fcd`,
-        `lcu`,
-        `lcd`
+    <select id="getAccountById" parameterType="java.lang.Long"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
+        select `id`,
+               `name`,
+               `account`,
+               `password`,
+               `protocol`,
+               `port`,
+               `fcu`,
+               `fcd`,
+               `lcu`,
+               `lcd`
         from `cmdb_resourcecenter_account`
         where `id` = #{value}
     </select>
 
-    <select id="getAccountListByIdList" parameterType="java.lang.Long" resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
+    <select id="getAccountListByIdList" parameterType="java.lang.Long"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
         SELECT
         `id`,
         `name`,
@@ -716,18 +883,22 @@
         </foreach>
     </select>
 
-    <select id="checkAccountNameIsRepeats" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo" resultType="int">
-        SELECT COUNT(1) FROM `cmdb_resourcecenter_account` WHERE `name` = #{name} and `id` != #{id}
+    <select id="checkAccountNameIsRepeats" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo"
+            resultType="int">
+        SELECT COUNT(1)
+        FROM `cmdb_resourcecenter_account`
+        WHERE `name` = #{name}
+          and `id` != #{id}
     </select>
 
     <select id="checkAccountHasBeenReferredById" parameterType="java.lang.Long" resultType="int">
-        select
-        count(1)
+        select count(1)
         from `cmdb_resourcecenter_resource_account`
         where `account_id` = #{value}
     </select>
 
-    <select id="searchAccountCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo" resultType="int">
+    <select id="searchAccountCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo"
+            resultType="int">
         SELECT COUNT(1) FROM `cmdb_resourcecenter_account`
         <where>
             <if test="keyword != null and keyword != ''">
@@ -754,7 +925,8 @@
         </association>
     </resultMap>
 
-    <select id="searchAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo" resultMap="accountMap">
+    <select id="searchAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo"
+            resultMap="accountMap">
         SELECT
         a.`id`,
         a.`name`,
@@ -786,7 +958,8 @@
         </if>
     </select>
 
-    <select id="getAccountListForSelect" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo" resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
+    <select id="getAccountListForSelect" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
         SELECT `id`, `name` FROM `cmdb_resourcecenter_account`
         <where>
             <if test="keyword != null and keyword != ''">
@@ -804,7 +977,8 @@
         </where>
     </select>
 
-    <select id="getTagListForSelect" parameterType="codedriver.framework.cmdb.dto.tag.TagVo" resultType="codedriver.framework.cmdb.dto.tag.TagVo">
+    <select id="getTagListForSelect" parameterType="codedriver.framework.cmdb.dto.tag.TagVo"
+            resultType="codedriver.framework.cmdb.dto.tag.TagVo">
         SELECT `id`, `name` FROM `cmdb_tag`
         <where>
             <if test="keyword != null and keyword != ''">
@@ -820,7 +994,8 @@
         LIMIT #{startNum}, #{pageSize}
     </select>
 
-    <select id="getTagNameListForSelect" parameterType="codedriver.framework.cmdb.dto.tag.TagVo" resultType="java.lang.String">
+    <select id="getTagNameListForSelect" parameterType="codedriver.framework.cmdb.dto.tag.TagVo"
+            resultType="java.lang.String">
         SELECT `name` FROM `cmdb_tag`
         <where>
             <if test="keyword != null and keyword != ''">
@@ -832,11 +1007,16 @@
     </select>
 
     <select id="checkTagNameIsRepeats" parameterType="codedriver.framework.cmdb.dto.tag.TagVo" resultType="int">
-        select count(1) from `cmdb_tag` where `name` = #{name} and `id` != #{id}
+        select count(1)
+        from `cmdb_tag`
+        where `name` = #{name}
+          and `id` != #{id}
     </select>
 
     <select id="checkTagIsExistsById" parameterType="java.lang.Long" resultType="int">
-        select count(1) from `cmdb_tag` where `id` = #{value}
+        select count(1)
+        from `cmdb_tag`
+        where `id` = #{value}
     </select>
 
     <select id="searchTagCount" parameterType="codedriver.framework.cmdb.dto.tag.TagVo" resultType="int">
@@ -849,7 +1029,8 @@
         </where>
     </select>
 
-    <select id="searchTag" parameterType="codedriver.framework.cmdb.dto.tag.TagVo" resultType="codedriver.framework.cmdb.dto.tag.TagVo">
+    <select id="searchTag" parameterType="codedriver.framework.cmdb.dto.tag.TagVo"
+            resultType="codedriver.framework.cmdb.dto.tag.TagVo">
         select
         `id`,
         `name`,
@@ -868,39 +1049,50 @@
     </select>
 
     <select id="getTagById" parameterType="java.lang.Long" resultType="codedriver.framework.cmdb.dto.tag.TagVo">
-        select `id`,`name`,`description` from `cmdb_tag` where `id` = #{value}
+        select `id`, `name`, `description`
+        from `cmdb_tag`
+        where `id` = #{value}
     </select>
 
     <select id="checkTagHasBeenReferredById" parameterType="java.lang.Long" resultType="int">
-        select count(1) from `cmdb_resourcecenter_resource_tag` where `tag_id` = #{value}
+        select count(1)
+        from `cmdb_resourcecenter_resource_tag`
+        where `tag_id` = #{value}
     </select>
 
     <select id="getAccountIdListByAccountAndProtocol" resultType="java.lang.Long">
-        SELECT `id` FROM `cmdb_resourcecenter_account`
-        where `account` = #{account} and `protocol` = #{protocol}
+        SELECT `id`
+        FROM `cmdb_resourcecenter_account`
+        where `account` = #{account}
+          and `protocol` = #{protocol}
     </select>
 
     <select id="getNoCorrespondingAccountResourceIdListByTagListAndAccountIdAndProtocol" resultType="java.lang.Long">
         SELECT a.`resource_id` FROM `cmdb_resourcecenter_resource_tag` a
-        WHERE a.`tag_id` IN 
+        WHERE a.`tag_id` IN
         <foreach collection="tagList" item="tagId" open="(" separator="," close=")">
             #{tagId}
         </foreach>
-          AND NOT EXISTS (
-            SELECT b.`resource_id` FROM `cmdb_resourcecenter_resource_account` b
-            JOIN `cmdb_resourcecenter_account` c on c.`id` = b.`account_id` and c.`account` = #{account} and c.`protocol` = #{protocol}
-            WHERE b.`resource_id` = a.`resource_id`
+        AND NOT EXISTS (
+        SELECT b.`resource_id` FROM `cmdb_resourcecenter_resource_account` b
+        JOIN `cmdb_resourcecenter_account` c on c.`id` = b.`account_id` and c.`account` = #{account} and c.`protocol` =
+        #{protocol}
+        WHERE b.`resource_id` = a.`resource_id`
         )
     </select>
 
-    <select id="checkResourceIsExistsCorrespondingAccountByResourceIdAndAccountIdAndProtocol" resultType="java.lang.Long">
-        SELECT b.`resource_id` FROM `cmdb_resourcecenter_resource_account` b
-        JOIN `cmdb_resourcecenter_account` c on c.`id` = b.`account_id` and c.`account` = #{account} and c.`protocol` = #{protocol}
+    <select id="checkResourceIsExistsCorrespondingAccountByResourceIdAndAccountIdAndProtocol"
+            resultType="java.lang.Long">
+        SELECT b.`resource_id`
+        FROM `cmdb_resourcecenter_resource_account` b
+                 JOIN `cmdb_resourcecenter_account` c
+                      on c.`id` = b.`account_id` and c.`account` = #{account} and c.`protocol` = #{protocol}
         WHERE b.`resource_id` = #{resourceId}
         LIMIT 1
     </select>
 
-    <select id="getAppModuleCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
+    <select id="getAppModuleCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+            resultType="int">
         SELECT COUNT(DISTINCT a.`id`) FROM ${schemaName}.`resource_appmodule` a
         <where>
             <if test="keyword != null and keyword != ''">
@@ -909,7 +1101,8 @@
         </where>
     </select>
 
-    <select id="getAppModuleIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
+    <select id="getAppModuleIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+            resultType="java.lang.Long">
         SELECT DISTINCT a.`id` FROM ${schemaName}.`resource_appmodule` a
         <where>
             <if test="keyword != null and keyword != ''">
@@ -920,10 +1113,10 @@
 
     <select id="getAppModuleListByIdList" parameterType="java.util.List" resultMap="resourceCenterMap">
         SELECT
-               a.`id`, a.`name`, a.`maintenance_window`, a.`description`,
-               b.`user_id`, b.`user_name`, b.`user_uuid`,
-               c.`bg_id`, c.`bg_name`, c.`bg_uuid`,
-               e.`id` AS `app_system_id`, e.`name` AS app_system_name
+        a.`id`, a.`name`, a.`maintenance_window`, a.`description`,
+        b.`user_id`, b.`user_name`, b.`user_uuid`,
+        c.`bg_id`, c.`bg_name`, c.`bg_uuid`,
+        e.`id` AS `app_system_id`, e.`name` AS app_system_name
         FROM ${schemaName}.`resource_appmodule` a
         LEFT JOIN ${schemaName}.`resource_appmodule_owner` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_appmodule_bg` c ON c.`resource_id` = a.`id`
@@ -935,7 +1128,8 @@
         </foreach>
     </select>
 
-    <select id="getAppSystemCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
+    <select id="getAppSystemCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+            resultType="int">
         SELECT COUNT(DISTINCT a.`id`) FROM ${schemaName}.`resource_appsystem` a
         <where>
             <if test="keyword != null and keyword != ''">
@@ -944,7 +1138,8 @@
         </where>
     </select>
 
-    <select id="getAppSystemIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
+    <select id="getAppSystemIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+            resultType="java.lang.Long">
         SELECT DISTINCT a.`id` FROM ${schemaName}.`resource_appsystem` a
         <where>
             <if test="keyword != null and keyword != ''">
@@ -955,7 +1150,7 @@
 
     <select id="getAppSystemListByIdList" parameterType="java.util.List" resultMap="resourceCenterMap">
         SELECT
-               a.`id`, a.`name`, a.`maintenance_window`, a.`description`
+        a.`id`, a.`name`, a.`maintenance_window`, a.`description`
         FROM ${schemaName}.`resource_appsystem` a
         WHERE a.`id` IN
         <foreach collection="idList" item="id" open="(" separator="," close=")">
@@ -964,39 +1159,47 @@
     </select>
 
     <select id="checkAppModuleIsExists" resultType="int">
-        SELECT COUNT(1) FROM ${schemaName}.`resource_appmodule` WHERE `id` = #{id}
+        SELECT COUNT(1)
+        FROM ${schemaName}.`resource_appmodule`
+        WHERE `id` = #{id}
     </select>
 
-    <select id="getEnvironmentListByAppModuleId" resultType="codedriver.framework.cmdb.dto.resourcecenter.entity.AppEnviromentVo">
+    <select id="getEnvironmentListByAppModuleId"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.entity.AppEnviromentVo">
         SELECT DISTINCT a.`env_id` AS envId, a.`env_name` AS envName
         FROM ${schemaName}.`resource_ipobject_env` a
         <if test="appModuleId != null">
-        JOIN ${schemaName}.`resource_ipobject_appmodule` b ON b.`resource_id`=a.`resource_id` AND b.`app_module_id` = #{appModuleId}
+            JOIN ${schemaName}.`resource_ipobject_appmodule` b ON b.`resource_id`=a.`resource_id` AND b.`app_module_id`
+            = #{appModuleId}
         </if>
     </select>
 
-    <select id="getResourceTypeListByAppModuleIdAndEnvId" resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceTypeVo">
-        SELECT DISTINCT
-            a.`type_id` AS id,
-            a.`type_name` AS `name`,
-            a.`type_label` AS label
+    <select id="getResourceTypeListByAppModuleIdAndEnvId"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceTypeVo">
+        SELECT DISTINCT a.`type_id`    AS id,
+                        a.`type_name`  AS `name`,
+                        a.`type_label` AS label
         FROM ${schemaName}.`resource_ipobject` a
-        JOIN ${schemaName}.`resource_ipobject_env` b ON b.`resource_id` = a.`id` AND b.`env_id` = #{envId}
-        JOIN ${schemaName}.`resource_ipobject_appmodule` c ON c.`resource_id`=a.`id` AND c.`app_module_id` = #{appModuleId}
+                 JOIN ${schemaName}.`resource_ipobject_env` b ON b.`resource_id` = a.`id` AND b.`env_id` = #{envId}
+                 JOIN ${schemaName}.`resource_ipobject_appmodule` c
+                      ON c.`resource_id` = a.`id` AND c.`app_module_id` = #{appModuleId}
     </select>
-    <select id="getResourceTypeList" parameterType="java.lang.String" resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceTypeVo">
-        SELECT DISTINCT
-            a.`type_id` AS id,
-            a.`type_name` AS `name`,
-            a.`type_label` AS label
+    <select id="getResourceTypeList" parameterType="java.lang.String"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceTypeVo">
+        SELECT DISTINCT a.`type_id`    AS id,
+                        a.`type_name`  AS `name`,
+                        a.`type_label` AS label
         FROM ${schemaName}.`resource_ipobject` a
     </select>
 
-    <select id="getStatusList" parameterType="java.lang.String" resultType="codedriver.framework.cmdb.dto.resourcecenter.entity.StatusVo">
-        SELECT DISTINCT `status_id` AS statusId, `status_name` AS statusName FROM ${schemaName}.`resource_ipobject_status`
+    <select id="getStatusList" parameterType="java.lang.String"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.entity.StatusVo">
+        SELECT DISTINCT `status_id` AS statusId, `status_name` AS statusName
+        FROM ${schemaName}.`resource_ipobject_status`
     </select>
 
-    <select id="getResourceIdListByProtocolList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
+    <select id="getResourceIdListByProtocolList"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT DISTINCT b.`resource_id`
         FROM `cmdb_resourcecenter_account` a
         JOIN `cmdb_resourcecenter_resource_account` b ON b.`account_id` = a.`id`
@@ -1006,7 +1209,8 @@
         </foreach>
     </select>
 
-    <select id="getResourceIdListByTagIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
+    <select id="getResourceIdListByTagIdList"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT DISTINCT a.`resource_id`
         FROM `cmdb_resourcecenter_resource_tag` a
         WHERE a.`tag_id` IN
@@ -1024,11 +1228,12 @@
         </foreach>
     </select>
 
-    <select id="getTagListByTagNameList" parameterType="java.util.List" resultType="codedriver.framework.cmdb.dto.tag.TagVo">
+    <select id="getTagListByTagNameList" parameterType="java.util.List"
+            resultType="codedriver.framework.cmdb.dto.tag.TagVo">
         SELECT
-            `id`,
-            `name`,
-            `description`
+        `id`,
+        `name`,
+        `description`
         FROM `cmdb_tag`
         WHERE `name` IN
         <foreach collection="list" item="name" open="(" separator="," close=")">
@@ -1037,9 +1242,9 @@
     </select>
     <select id="getTagListByIdList" parameterType="java.util.List" resultType="codedriver.framework.cmdb.dto.tag.TagVo">
         SELECT
-            `id`,
-            `name`,
-            `description`
+        `id`,
+        `name`,
+        `description`
         FROM `cmdb_tag`
         WHERE `id` IN
         <foreach collection="list" item="id" open="(" separator="," close=")">
@@ -1055,26 +1260,51 @@
         </foreach>
     </select>
 
-    <select id="getResourceAccountListByResourceIdList" parameterType="java.util.List" resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceAccountVo">
+    <select id="getResourceAccountListByResourceIdList" parameterType="java.util.List"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceAccountVo">
         SELECT
-               `resource_id` AS resourceId,
-               `account_id` AS accountId
+        `resource_id` AS resourceId,
+        `account_id` AS accountId
         FROM `cmdb_resourcecenter_resource_account`
         WHERE `resource_id` in
         <foreach collection="list" item="resourceId" open="(" separator="," close=")">
-             #{resourceId}
+            #{resourceId}
         </foreach>
     </select>
 
-    <select id="getResourceTagListByResourceIdList" parameterType="java.util.List" resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceTagVo">
+    <select id="getResourceTagListByResourceIdList" parameterType="java.util.List"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceTagVo">
         SELECT
-               `resource_id` AS resourceId,
-               `tag_id` AS tagId
+        `resource_id` AS resourceId,
+        `tag_id` AS tagId
         FROM `cmdb_resourcecenter_resource_tag`
         WHERE `resource_id` in
         <foreach collection="list" item="resourceId" open="(" separator="," close=")">
-             #{resourceId}
+            #{resourceId}
         </foreach>
+    </select>
+
+    <select id="getResourceListByIpList" resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
+        SELECT ri.name,rii.`ip`,ri.id,rs.port
+        FROM ${schemaName}.`resource_ipobject` ri
+        LEFT JOIN ${schemaName}.`resource_ipobject_ip` rii ON ri.`id` = rii.`resource_id`
+        LEFT JOIN ${schemaName}.`resource_softwareservice` rs ON ri.`id` = rs.`id`
+        WHERE rii.`ip` in
+        <foreach collection="ipList" item="ip" separator="," open="(" close=")">
+            #{ip}
+        </foreach>
+    </select>
+
+    <select id="getResourceAccountListByResourceIdAndProtocolAndAccount"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
+        SELECT cra.`protocol`,cra.id,cra.`account` ,cra.`password`,crra.`resource_id` resourceId,cra.port
+        FROM `cmdb_resourcecenter_resource_account` crra
+        LEFT JOIN `cmdb_resourcecenter_account` cra ON crra.`account_id` = cra.`id`
+        WHERE crra.`resource_id` in
+        <foreach collection="resourceIdList" item="resourceId" open="(" close=")" separator=",">
+            #{resourceId}
+        </foreach>
+        AND cra.`protocol` = #{protocol} AND cra.`account` = #{userName}
     </select>
 
     <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
@@ -1092,9 +1322,9 @@
     </update>
 
     <update id="updateTag" parameterType="codedriver.framework.cmdb.dto.tag.TagVo">
-        update `cmdb_tag` set
-        `name` = #{name},
-        `description` = #{description}
+        update `cmdb_tag`
+        set `name`        = #{name},
+            `description` = #{description}
         where `id` = #{id}
     </update>
 
@@ -1130,18 +1360,16 @@
     </insert>
 
     <insert id="insertTag" parameterType="codedriver.framework.cmdb.dto.tag.TagVo">
-        insert into `cmdb_tag` (
-        `id`,
-        `name`,
-        `description`
-        ) values (
-        #{id},
-        #{name},
-        #{description}
-        )
+        insert into `cmdb_tag` (`id`,
+                                `name`,
+                                `description`)
+        values (#{id},
+                #{name},
+                #{description})
     </insert>
 
-    <insert id="insertIgnoreResourceAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceAccountVo">
+    <insert id="insertIgnoreResourceAccount"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceAccountVo">
         INSERT IGNORE INTO `cmdb_resourcecenter_resource_account` (`resource_id`, `account_id`) VALUES
         <foreach collection="list" item="resourceAccount" separator=",">
             (#{resourceAccount.resourceId}, #{resourceAccount.accountId})
@@ -1168,7 +1396,8 @@
     </delete>
 
     <delete id="deleteResourceAccountByResourceId" parameterType="java.lang.Long">
-        DELETE FROM `cmdb_resourcecenter_resource_account`
+        DELETE
+        FROM `cmdb_resourcecenter_resource_account`
         WHERE `resource_id` = #{value}
     </delete>
 
@@ -1178,14 +1407,15 @@
         <foreach collection="resourceIdList" item="resourceId" open="(" separator="," close=")">
             #{resourceId}
         </foreach>
-          AND `account_id` IN
+        AND `account_id` IN
         <foreach collection="accountIdList" item="accountId" open="(" separator="," close=")">
             #{accountId}
         </foreach>
     </delete>
 
     <delete id="deleteResourceTagByResourceId" parameterType="java.lang.Long">
-        DELETE FROM `cmdb_resourcecenter_resource_tag`
+        DELETE
+        FROM `cmdb_resourcecenter_resource_tag`
         WHERE `resource_id` = #{value}
     </delete>
 

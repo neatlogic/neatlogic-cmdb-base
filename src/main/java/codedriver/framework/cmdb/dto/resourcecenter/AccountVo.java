@@ -37,6 +37,8 @@ public class AccountVo extends BaseEditorVo {
     @EntityField(name = "操作列表")
     private List<OperateVo> operateList = new ArrayList<>();
 
+    private Long resourceId;
+
     public Long getId() {
         if (id == null) {
             id = SnowflakeUtil.uniqueLong();
@@ -102,5 +104,13 @@ public class AccountVo extends BaseEditorVo {
 
     public void setOperateList(List<OperateVo> operateList) {
         this.operateList = operateList;
+    }
+
+    public Long getResourceId() {
+        return resourceId;
+    }
+
+    public void setResourceId(Long resourceId) {
+        this.resourceId = resourceId;
     }
 }
