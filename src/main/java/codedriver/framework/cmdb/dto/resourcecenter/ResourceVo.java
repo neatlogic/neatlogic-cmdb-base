@@ -75,6 +75,14 @@ public class ResourceVo extends BaseEditorVo {
     @EntityField(name = "集群类型id", type = ApiParamType.LONG)
     private Long clusterTypeId;
 
+    public ResourceVo() {
+    }
+
+    public ResourceVo(String ip, Integer port) {
+        this.ip = ip;
+        this.port = port;
+    }
+
     public Long getId() {
         return id;
     }

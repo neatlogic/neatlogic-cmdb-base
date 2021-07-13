@@ -1284,14 +1284,17 @@
         </foreach>
     </select>
 
-    <select id="getResourceListByIpList" resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
+    <select id="getResourceListByResourceVoList" resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
         SELECT ri.name,rii.`ip`,ri.id,rs.port
         FROM ${schemaName}.`resource_ipobject` ri
         LEFT JOIN ${schemaName}.`resource_ipobject_ip` rii ON ri.`id` = rii.`resource_id`
         LEFT JOIN ${schemaName}.`resource_softwareservice` rs ON ri.`id` = rs.`id`
-        WHERE rii.`ip` in
-        <foreach collection="ipList" item="ip" separator="," open="(" close=")">
-            #{ip}
+        WHERE
+        <foreach collection="resourceList" item="resource" separator="or" open="(" close=")">
+            rii.ip = #{resource.ip}
+            <if test="resource.port != null">
+                and rs.port = #{resource.port}
+            </if>
         </foreach>
     </select>
 
