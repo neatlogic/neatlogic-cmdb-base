@@ -807,7 +807,7 @@
         LIMIT 1
     </select>
     <select id="getResourceIpPortById" resultMap="resourceCenterMap">
-        SELECT a.`id`, b.`port`, c.`ip`
+        SELECT a.`id`, a.`name`, b.`port`, c.`ip`
         FROM ${schemaName}.`resource_ipobject` a
                  LEFT JOIN ${schemaName}.`resource_softwareservice` b on b.`id` = a.`id`
                  LEFT JOIN ${schemaName}.`resource_ipobject_ip` c on c.`resource_id` = a.`id`
