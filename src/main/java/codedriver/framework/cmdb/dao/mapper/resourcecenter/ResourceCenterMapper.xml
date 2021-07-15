@@ -1083,10 +1083,9 @@
 
     <select id="checkResourceIsExistsCorrespondingAccountByResourceIdAndAccountIdAndProtocol"
             resultType="java.lang.Long">
-        SELECT b.`resource_id`
+        SELECT c.`id`
         FROM `cmdb_resourcecenter_resource_account` b
-                 JOIN `cmdb_resourcecenter_account` c
-                      on c.`id` = b.`account_id` and c.`account` = #{account} and c.`protocol` = #{protocol}
+        JOIN `cmdb_resourcecenter_account` c on c.`id` = b.`account_id` and c.`account` = #{account} and c.`protocol` = #{protocol}
         WHERE b.`resource_id` = #{resourceId}
         LIMIT 1
     </select>
