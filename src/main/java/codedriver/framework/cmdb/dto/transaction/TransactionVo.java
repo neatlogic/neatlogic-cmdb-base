@@ -7,6 +7,7 @@ package codedriver.framework.cmdb.dto.transaction;
 
 import codedriver.framework.asynchronization.threadlocal.UserContext;
 import codedriver.framework.cmdb.enums.InputFrom;
+import codedriver.framework.cmdb.enums.TransactionActionType;
 import codedriver.framework.cmdb.enums.TransactionStatus;
 import codedriver.framework.cmdb.threadlocal.InputFromContext;
 import codedriver.framework.common.constvalue.ApiParamType;
@@ -18,6 +19,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 public class TransactionVo extends BasePageVo implements Serializable {
     @EntityField(name = "id", type = ApiParamType.LONG)
@@ -26,6 +29,8 @@ public class TransactionVo extends BasePageVo implements Serializable {
     private Long ciId;
     @EntityField(name = "配置项id", type = ApiParamType.LONG)
     private Long ciEntityId;
+    @EntityField(name = "配置项名称", type = ApiParamType.STRING)
+    private Long ciEntityName;
     @EntityField(name = "状态", type = ApiParamType.STRING, member = TransactionStatus.class)
     private String status = TransactionStatus.UNCOMMIT.getValue();
     @EntityField(name = "状态文本", type = ApiParamType.STRING)
@@ -34,6 +39,10 @@ public class TransactionVo extends BasePageVo implements Serializable {
     private String inputFrom;
     @EntityField(name = "输入来源文本", type = ApiParamType.STRING)
     private String inputFromText;
+    @EntityField(name = "操作(删除、添加或修改)", type = ApiParamType.ENUM, member = TransactionActionType.class)
+    private String action;
+    @EntityField(name = "操作文本", type = ApiParamType.STRING)
+    private String actionText;
     @EntityField(name = "更新来源？", type = ApiParamType.STRING)
     private String source;
     @EntityField(name = "创建用户", type = ApiParamType.STRING)
@@ -54,6 +63,13 @@ public class TransactionVo extends BasePageVo implements Serializable {
     private String error;
     @EntityField(name = "配置项事务信息", type = ApiParamType.JSONOBJECT)
     private CiEntityTransactionVo ciEntityTransactionVo;
+    @EntityField(name = "当前用户权限情况", type = ApiParamType.JSONOBJECT)
+    private Map<String, Boolean> authData;
+    @JSONField(serialize = false)
+    private Integer hasError;//是否有异常
+    @JSONField(serialize = false)
+    private transient List<String> createTimeRange;
+
 
     public Long getId() {
         if (id == null) {
@@ -211,5 +227,54 @@ public class TransactionVo extends BasePageVo implements Serializable {
         this.commitUserName = commitUserName;
     }
 
+    public String getAction() {
+        return action;
+    }
 
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+    public String getActionText() {
+        if (StringUtils.isNotBlank(action) && StringUtils.isBlank(actionText)) {
+            actionText = TransactionActionType.getText(action);
+        }
+        return actionText;
+    }
+
+    public void setActionText(String actionText) {
+        this.actionText = actionText;
+    }
+
+    public Integer getHasError() {
+        return hasError;
+    }
+
+    public void setHasError(Integer hasError) {
+        this.hasError = hasError;
+    }
+
+    public List<String> getCreateTimeRange() {
+        return createTimeRange;
+    }
+
+    public void setCreateTimeRange(List<String> createTimeRange) {
+        this.createTimeRange = createTimeRange;
+    }
+
+    public Map<String, Boolean> getAuthData() {
+        return authData;
+    }
+
+    public void setAuthData(Map<String, Boolean> authData) {
+        this.authData = authData;
+    }
+
+    public Long getCiEntityName() {
+        return ciEntityName;
+    }
+
+    public void setCiEntityName(Long ciEntityName) {
+        this.ciEntityName = ciEntityName;
+    }
 }

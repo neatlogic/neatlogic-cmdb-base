@@ -5,9 +5,15 @@
 
 package codedriver.framework.cmdb.enums;
 
-public enum InputFrom {
-    PAGE("page", "页面录入"), IMPORT("import", "excel导入"), RESTFUL("restful", "接口导入"),
-    ITSM("itsm", "流程录入");
+import codedriver.framework.common.constvalue.IEnum;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
+import java.util.List;
+
+public enum InputFrom implements IEnum {
+    PAGE("page", "页面"), IMPORT("import", "excel"), RESTFUL("restful", "接口"),
+    ITSM("itsm", "流程");
 
     private final String value;
     private final String text;
@@ -41,5 +47,17 @@ public enum InputFrom {
             }
         }
         return "";
+    }
+
+    @Override
+    public List getValueTextList() {
+        JSONArray returnList = new JSONArray();
+        for (InputFrom input : InputFrom.values()) {
+            JSONObject jsonObj = new JSONObject();
+            jsonObj.put("value", input.getValue());
+            jsonObj.put("text", input.getText());
+            returnList.add(jsonObj);
+        }
+        return returnList;
     }
 }

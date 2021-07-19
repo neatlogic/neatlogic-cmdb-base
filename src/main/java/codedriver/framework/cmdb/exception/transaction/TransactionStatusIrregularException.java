@@ -7,8 +7,8 @@ package codedriver.framework.cmdb.exception.transaction;
 
 import codedriver.framework.exception.core.ApiRuntimeException;
 
-public class TransactionAuthException extends ApiRuntimeException {
-    public TransactionAuthException() {
-        super("您没有权限处理当前事务");
+public class TransactionStatusIrregularException extends ApiRuntimeException {
+    public TransactionStatusIrregularException() {
+        super("当前事务已提交");
     }
 }

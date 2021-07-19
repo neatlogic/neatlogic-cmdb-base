@@ -64,6 +64,8 @@ public class CiEntityTransactionVo implements Serializable {
     private transient String content;//修改内容
     @JSONField(serialize = false)
     private transient CiEntityVo oldCiEntityVo;//就配置项信息
+    @JSONField(serialize = false)
+    private transient boolean allowCommit;//是否允许提交
 
     public CiEntityTransactionVo() {
 
@@ -524,4 +526,11 @@ public class CiEntityTransactionVo implements Serializable {
         }
     }
 
+    public boolean isAllowCommit() {
+        return allowCommit;
+    }
+
+    public void setAllowCommit(boolean allowCommit) {
+        this.allowCommit = allowCommit;
+    }
 }

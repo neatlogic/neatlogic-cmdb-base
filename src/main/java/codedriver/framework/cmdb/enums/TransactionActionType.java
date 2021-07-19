@@ -5,7 +5,13 @@
 
 package codedriver.framework.cmdb.enums;
 
-public enum TransactionActionType {
+import codedriver.framework.common.constvalue.IEnum;
+import com.alibaba.fastjson.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public enum TransactionActionType implements IEnum<JSONObject> {
     INSERT("insert", "新增"), UPDATE("update", "修改"), DELETE("delete", "删除"), RECOVER("recover", "恢复");
 
     private final String value;
@@ -40,5 +46,17 @@ public enum TransactionActionType {
             }
         }
         return "";
+    }
+
+    @Override
+    public List<JSONObject> getValueTextList() {
+        List<JSONObject> returnList = new ArrayList<>();
+        for (TransactionActionType input : TransactionActionType.values()) {
+            JSONObject jsonObj = new JSONObject();
+            jsonObj.put("value", input.getValue());
+            jsonObj.put("text", input.getText());
+            returnList.add(jsonObj);
+        }
+        return returnList;
     }
 }
