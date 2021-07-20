@@ -30,7 +30,7 @@ public class TransactionVo extends BasePageVo implements Serializable {
     @EntityField(name = "配置项id", type = ApiParamType.LONG)
     private Long ciEntityId;
     @EntityField(name = "配置项名称", type = ApiParamType.STRING)
-    private Long ciEntityName;
+    private String ciEntityName;
     @EntityField(name = "状态", type = ApiParamType.STRING, member = TransactionStatus.class)
     private String status = TransactionStatus.UNCOMMIT.getValue();
     @EntityField(name = "状态文本", type = ApiParamType.STRING)
@@ -270,11 +270,11 @@ public class TransactionVo extends BasePageVo implements Serializable {
         this.authData = authData;
     }
 
-    public Long getCiEntityName() {
+    public String getCiEntityName() {
         return ciEntityName;
     }
 
-    public void setCiEntityName(Long ciEntityName) {
+    public void setCiEntityName(String ciEntityName) {
         this.ciEntityName = ciEntityName;
     }
 }
