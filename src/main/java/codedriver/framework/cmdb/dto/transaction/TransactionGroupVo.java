@@ -70,4 +70,11 @@ public class TransactionGroupVo implements Serializable {
             this.transactionIdList.add(transactionId);
         }
     }
+
+    public void addTransaction(TransactionVo transactionVo) {
+        if (this.transactionList == null) {
+            this.transactionList = new ArrayList<>();
+        }
+        this.transactionList.add(transactionVo);
+    }
 }
