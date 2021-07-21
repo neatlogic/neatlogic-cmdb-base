@@ -44,7 +44,7 @@ public class RelEntityTransactionVo implements Serializable {
     private String direction;
     @EntityField(name = "事务id", type = ApiParamType.LONG)
     private Long transactionId;
-    @EntityField(name = "操作，insert或deletel", type = ApiParamType.ENUM, member = RelActionType.class)
+    @EntityField(name = "操作，insert或delete", type = ApiParamType.ENUM, member = RelActionType.class)
     private String action;
     @EntityField(name = "操作名称，添加或删除", type = ApiParamType.STRING)
     private String actionText;

@@ -9,7 +9,6 @@ import codedriver.framework.asynchronization.threadlocal.UserContext;
 import codedriver.framework.cmdb.enums.InputFrom;
 import codedriver.framework.cmdb.enums.TransactionActionType;
 import codedriver.framework.cmdb.enums.TransactionStatus;
-import codedriver.framework.cmdb.threadlocal.InputFromContext;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
@@ -69,6 +68,8 @@ public class TransactionVo extends BasePageVo implements Serializable {
     private Integer hasError;//是否有异常
     @JSONField(serialize = false)
     private transient List<String> createTimeRange;
+    @EntityField(name = "属于统一事务组的事务数量", type = ApiParamType.INTEGER)
+    private int brotherTransactionCount;
 
 
     public Long getId() {
@@ -99,11 +100,6 @@ public class TransactionVo extends BasePageVo implements Serializable {
     }
 
     public String getInputFrom() {
-        if (StringUtils.isBlank(inputFrom)) {
-            if (InputFromContext.get() != null && StringUtils.isNotBlank(InputFromContext.get().getInputFrom())) {
-                inputFrom = InputFromContext.get().getInputFrom();
-            }
-        }
         return inputFrom;
     }
 
@@ -276,5 +272,13 @@ public class TransactionVo extends BasePageVo implements Serializable {
 
     public void setCiEntityName(String ciEntityName) {
         this.ciEntityName = ciEntityName;
+    }
+
+    public int getBrotherTransactionCount() {
+        return brotherTransactionCount;
+    }
+
+    public void setBrotherTransactionCount(int brotherTransactionCount) {
+        this.brotherTransactionCount = brotherTransactionCount;
     }
 }

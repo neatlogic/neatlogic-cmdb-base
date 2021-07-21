@@ -22,6 +22,8 @@ public class TransactionGroupVo implements Serializable {
     @EntityField(name = "事务id", type = ApiParamType.JSONARRAY)
     private List<Long> transactionIdList;
     @JSONField(serialize = false)
+    private transient List<TransactionVo> transactionList;
+    @JSONField(serialize = false)
     private final transient Set<Long> excludeCiEntity = new HashSet<>();//记录本次事务组中需要排除的ciEntityId，排除掉的ciEntityId在补充关系事务时不会处理
 
     public void addExclude(Long ciEntityId) {
@@ -38,6 +40,14 @@ public class TransactionGroupVo implements Serializable {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public List<TransactionVo> getTransactionList() {
+        return transactionList;
+    }
+
+    public void setTransactionList(List<TransactionVo> transactionList) {
+        this.transactionList = transactionList;
     }
 
     public void setId(Long id) {

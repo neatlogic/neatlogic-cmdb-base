@@ -706,4 +706,33 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     public void setIsVirtual(int isVirtual) {
         this.isVirtual = isVirtual;
     }
+
+    /**
+     * 根据关系id、方向和目标删除关系
+     *
+     * @param relId     关系id
+     * @param direction 方向
+     * @param targetId  目标id
+     */
+    public void removeRelEntityData(Long relId, String direction, Long targetId) {
+        if (relEntityData.containsKey("rel" + direction + "_" + relId) && relEntityData.getJSONObject("rel" + direction + "_" + relId).containsKey("valueList")) {
+            JSONArray relList = relEntityData.getJSONObject("rel" + direction + "_" + relId).getJSONArray("valueList");
+            if (CollectionUtils.isNotEmpty(relList)) {
+                List<Integer> removeList = new ArrayList<>();
+                for (int i = 0; i < relList.size(); i++) {
+                    JSONObject relObj = relList.getJSONObject(i);
+                    //如果是新增加目标则不会有ciEntityId,所以必须要判断ciEntityId是否为空
+                    if (relObj.containsKey("ciEntityId") && relObj.getLong("ciEntityId").equals(targetId)) {
+                        removeList.add(i);
+                    }
+                }
+                for (int index : removeList) {
+                    relList.remove(index);
+                }
+                if (CollectionUtils.isEmpty(relList)) {
+                    relEntityData.remove("rel" + direction + "_" + relId);
+                }
+            }
+        }
+    }
 }
