@@ -214,12 +214,14 @@ public class CiEntityTransactionVo implements Serializable {
      * @return true/false
      */
     public boolean containRelEntityData(Long relId, String direction, Long targetId) {
-        JSONArray dataList = relEntityData.getJSONObject("rel" + direction + "_" + relId).getJSONArray("valueList");
-        if (CollectionUtils.isNotEmpty(dataList)) {
-            for (int i = 0; i < dataList.size(); i++) {
-                JSONObject d = dataList.getJSONObject(i);
-                if (targetId.equals(d.getLong("ciEntityId"))) {
-                    return true;
+        if (MapUtils.isNotEmpty(relEntityData)) {
+            JSONArray dataList = relEntityData.getJSONObject("rel" + direction + "_" + relId).getJSONArray("valueList");
+            if (CollectionUtils.isNotEmpty(dataList)) {
+                for (int i = 0; i < dataList.size(); i++) {
+                    JSONObject d = dataList.getJSONObject(i);
+                    if (targetId.equals(d.getLong("ciEntityId"))) {
+                        return true;
+                    }
                 }
             }
         }
