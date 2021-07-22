@@ -485,7 +485,11 @@ public class CiEntityTransactionVo implements Serializable {
      * @return 属性数据json
      */
     public JSONObject getAttrEntityDataByAttrId(Long attrId) {
-        return attrEntityData.getJSONObject("attr_" + attrId);
+        if (MapUtils.isNotEmpty(attrEntityData)) {
+            return attrEntityData.getJSONObject("attr_" + attrId);
+        } else {
+            return null;
+        }
     }
 
     /**
