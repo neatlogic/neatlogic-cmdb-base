@@ -904,8 +904,11 @@
             <if test="keyword != null and keyword != ''">
                 and `name` like concat('%', #{keyword}, '%')
             </if>
-            <if test="protocol != null and protocol != ''">
-                and `protocol` = #{protocol}
+            <if test="protocolList != null and protocolList.size() > 0">
+                and `protocol` in
+                <foreach collection="protocolList" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
             </if>
         </where>
     </select>
@@ -942,8 +945,11 @@
             <if test="keyword != null and keyword != ''">
                 and a.`name` like concat('%', #{keyword}, '%')
             </if>
-            <if test="protocol != null and protocol != ''">
-                and a.`protocol` = #{protocol}
+            <if test="protocolList != null and protocolList.size() > 0">
+                and a.`protocol` in
+                <foreach collection="protocolList" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
             </if>
             <if test="defaultValue != null and defaultValue.size() > 0">
                 and a.`id` in
