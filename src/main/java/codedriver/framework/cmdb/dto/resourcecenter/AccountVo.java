@@ -39,6 +39,8 @@ public class AccountVo extends BaseEditorVo {
 
     private Long resourceId;
 
+    private List<String> protocolList;
+
     public Long getId() {
         if (id == null) {
             id = SnowflakeUtil.uniqueLong();
@@ -112,5 +114,13 @@ public class AccountVo extends BaseEditorVo {
 
     public void setResourceId(Long resourceId) {
         this.resourceId = resourceId;
+    }
+
+    public List<String> getProtocolList() {
+        return protocolList;
+    }
+
+    public void setProtocolList(List<String> protocolList) {
+        this.protocolList = protocolList;
     }
 }
