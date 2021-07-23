@@ -68,6 +68,8 @@ public class TransactionVo extends BasePageVo implements Serializable {
     private Integer hasError;//是否有异常
     @JSONField(serialize = false)
     private transient List<String> createTimeRange;
+    @JSONField(serialize = false)
+    private transient List<String> commitTimeRange;
     @EntityField(name = "属于统一事务组的事务数量", type = ApiParamType.INTEGER)
     private int brotherTransactionCount;
 
@@ -272,6 +274,14 @@ public class TransactionVo extends BasePageVo implements Serializable {
 
     public void setCiEntityName(String ciEntityName) {
         this.ciEntityName = ciEntityName;
+    }
+
+    public List<String> getCommitTimeRange() {
+        return commitTimeRange;
+    }
+
+    public void setCommitTimeRange(List<String> commitTimeRange) {
+        this.commitTimeRange = commitTimeRange;
     }
 
     public int getBrotherTransactionCount() {

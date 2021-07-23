@@ -8,7 +8,7 @@ package codedriver.framework.cmdb.enums;
 public enum CiAuthType {
     CIENTITYINSERT("cientityinsert", "配置项添加"), CIENTITYUPDATE("cientityupdate", "配置项更新"),
     CIENTITYDELETE("cientitydelete", "配置项删除"), CIENTITYQUERY("cientityquery", "配置项查询"), CIMANAGE("cimanage", "模型管理"),
-    TRANSACTIONMANAGE("transactionmanage", "事务管理"),
+    TRANSACTIONMANAGE("transactionmanage", "事务管理"), CIENTITYRECOVER("cientityrecover", "配置项恢复"),
     PASSWORDVIEW("passwordview", "密码字段查看");
 
     private final String value;
