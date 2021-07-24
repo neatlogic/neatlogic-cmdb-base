@@ -457,6 +457,23 @@ public class CiEntityTransactionVo implements Serializable {
         this.snapshot = snapshot;
     }
 
+    /**
+     * 从快照中恢复数据
+     */
+    public boolean restoreSnapshot() {
+        if (StringUtils.isNotBlank(snapshot)) {
+            try {
+                JSONObject jsonObj = JSONObject.parseObject(snapshot);
+                this.attrEntityData = jsonObj.getJSONObject("attrEntityData");
+                this.relEntityData = jsonObj.getJSONObject("relEntityData");
+                return true;
+            } catch (Exception ignored) {
+
+            }
+        }
+        return false;
+    }
+
     public String getName() {
         return name;
     }

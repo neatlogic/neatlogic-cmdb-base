@@ -5,7 +5,6 @@
 
 package codedriver.framework.cmdb.dto.transaction;
 
-import codedriver.framework.asynchronization.threadlocal.UserContext;
 import codedriver.framework.cmdb.enums.InputFrom;
 import codedriver.framework.cmdb.enums.TransactionActionType;
 import codedriver.framework.cmdb.enums.TransactionStatus;
@@ -31,7 +30,9 @@ public class TransactionVo extends BasePageVo implements Serializable {
     @EntityField(name = "配置项名称", type = ApiParamType.STRING)
     private String ciEntityName;
     @EntityField(name = "状态", type = ApiParamType.STRING, member = TransactionStatus.class)
-    private String status = TransactionStatus.UNCOMMIT.getValue();
+    private String status;
+    @JSONField(serialize = false)
+    private transient List<String> statusList;//搜索条件状态列表
     @EntityField(name = "状态文本", type = ApiParamType.STRING)
     private String statusText;
     @EntityField(name = "输入来源", type = ApiParamType.STRING, member = InputFrom.class)
@@ -52,12 +53,18 @@ public class TransactionVo extends BasePageVo implements Serializable {
     private String commitUser;
     @EntityField(name = "提交用户名", type = ApiParamType.STRING)
     private String commitUserName;
+    @EntityField(name = "恢复用户", type = ApiParamType.STRING)
+    private String recoverUser;
+    @EntityField(name = "提交用户名", type = ApiParamType.STRING)
+    private String recoverUserName;
     @JSONField(serialize = false)
     private transient Date expireTime;
     @EntityField(name = "创建时间", type = ApiParamType.LONG)
     private Date createTime;
     @EntityField(name = "提交时间", type = ApiParamType.LONG)
     private Date commitTime;
+    @EntityField(name = "提交时间", type = ApiParamType.LONG)
+    private Date recoverTime;
     @EntityField(name = "异常", type = ApiParamType.STRING)
     private String error;
     @EntityField(name = "配置项事务信息", type = ApiParamType.JSONOBJECT)
@@ -118,9 +125,6 @@ public class TransactionVo extends BasePageVo implements Serializable {
     }
 
     public String getCreateUser() {
-        if (StringUtils.isBlank(createUser)) {
-            createUser = UserContext.get().getUserUuid(true);
-        }
         return createUser;
     }
 
@@ -129,9 +133,6 @@ public class TransactionVo extends BasePageVo implements Serializable {
     }
 
     public String getCommitUser() {
-        if (StringUtils.isBlank(commitUser)) {
-            commitUser = UserContext.get().getUserUuid(true);
-        }
         return commitUser;
     }
 
@@ -196,6 +197,14 @@ public class TransactionVo extends BasePageVo implements Serializable {
 
     public void setStatusText(String statusText) {
         this.statusText = statusText;
+    }
+
+    public List<String> getStatusList() {
+        return statusList;
+    }
+
+    public void setStatusList(List<String> statusList) {
+        this.statusList = statusList;
     }
 
     public String getInputFromText() {
@@ -290,5 +299,29 @@ public class TransactionVo extends BasePageVo implements Serializable {
 
     public void setBrotherTransactionCount(int brotherTransactionCount) {
         this.brotherTransactionCount = brotherTransactionCount;
+    }
+
+    public String getRecoverUser() {
+        return recoverUser;
+    }
+
+    public void setRecoverUser(String recoverUser) {
+        this.recoverUser = recoverUser;
+    }
+
+    public String getRecoverUserName() {
+        return recoverUserName;
+    }
+
+    public void setRecoverUserName(String recoverUserName) {
+        this.recoverUserName = recoverUserName;
+    }
+
+    public Date getRecoverTime() {
+        return recoverTime;
+    }
+
+    public void setRecoverTime(Date recoverTime) {
+        this.recoverTime = recoverTime;
     }
 }

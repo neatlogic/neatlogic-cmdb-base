@@ -5,10 +5,11 @@
 
 package codedriver.framework.cmdb.exception.transaction;
 
+import codedriver.framework.cmdb.enums.TransactionStatus;
 import codedriver.framework.exception.core.ApiRuntimeException;
 
 public class TransactionStatusIrregularException extends ApiRuntimeException {
-    public TransactionStatusIrregularException() {
-        super("当前事务已提交");
+    public TransactionStatusIrregularException(TransactionStatus status) {
+        super("当前事务" + status.getText());
     }
 }
