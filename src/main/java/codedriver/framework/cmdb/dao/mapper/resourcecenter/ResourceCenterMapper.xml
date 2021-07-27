@@ -337,7 +337,7 @@
     <sql id="resource_ipobject_where">
         <where>
             <if test="keyword != null and keyword != ''">
-                AND (a.`name` LIKE CONCAT('%', #{keyword}, '%') OR c.`ip` LIKE CONCAT('%', #{keyword}, '%'))
+                AND (a.`name` LIKE CONCAT('%', #{keyword}, '%') OR c.`ip` LIKE CONCAT('%', #{keyword}, '%') OR m.`port` LIKE CONCAT('%', #{keyword}, '%'))
             </if>
             <if test="typeIdList != null and typeIdList.size() > 0">
                 AND a.`type_id` IN
