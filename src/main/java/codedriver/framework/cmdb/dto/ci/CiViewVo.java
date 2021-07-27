@@ -36,6 +36,10 @@ public class CiViewVo implements Serializable {
     private String showTypeText;
     @JSONField(serialize = false)
     private transient List<String> showTypeList;
+    @JSONField(serialize = false)
+    private Integer isExtended;//是否继承
+    @JSONField(serialize = false)
+    private String uniqueKey;//用于去掉继承的关系，具体参考RelUtil
 
     public CiViewVo() {
 
@@ -44,6 +48,22 @@ public class CiViewVo implements Serializable {
     public CiViewVo(Long ciId, String type) {
         this.ciId = ciId;
         this.type = type;
+    }
+
+    public String getUniqueKey() {
+        return uniqueKey;
+    }
+
+    public void setUniqueKey(String uniqueKey) {
+        this.uniqueKey = uniqueKey;
+    }
+
+    public Integer getIsExtended() {
+        return isExtended;
+    }
+
+    public void setIsExtended(Integer isExtended) {
+        this.isExtended = isExtended;
     }
 
     public void addShowType(String showType) {
