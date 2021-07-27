@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
  * @ClassName: IPropertyHandler
  * @Description: 模型属性定义处理器
  */
+@Deprecated
 public interface IPropertyHandler {
     public String getName();
 
