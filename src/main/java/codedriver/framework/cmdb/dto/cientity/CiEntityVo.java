@@ -15,10 +15,9 @@ import codedriver.framework.cmdb.enums.EditModeType;
 import codedriver.framework.cmdb.enums.RelDirectionType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
-import codedriver.framework.elasticsearch.annotation.ESKey;
-import codedriver.framework.elasticsearch.constvalue.ESKeyType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
+import codedriver.framework.util.UuidUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
@@ -31,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CiEntityVo extends BasePageVo implements Serializable {
     @JSONField(serialize = false)
@@ -38,8 +38,9 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     @JSONField(serialize = false) // 根据空格拆开关键字
     private transient List<String> keywordList;
     @EntityField(name = "id", type = ApiParamType.LONG)
-    @ESKey(type = ESKeyType.PKEY, name = "id")
     private Long id;
+    @JSONField(serialize = false)
+    private transient String uuid;//uuid，人行上报需要用到
     @EntityField(name = "模型id", type = ApiParamType.LONG)
     private Long ciId;
     @EntityField(name = "过滤模型id", type = ApiParamType.LONG)
@@ -123,6 +124,17 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     public CiEntityVo(Long ciId, Long id) {
         this.ciId = ciId;
         this.id = id;
+    }
+
+    public String getUuid() {
+        if (StringUtils.isBlank(uuid)) {
+            uuid = UuidUtil.randomUuid();
+        }
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public CiEntityVo(CiEntityTransactionVo ciEntityTransactionVo) {
