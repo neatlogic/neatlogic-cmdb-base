@@ -34,8 +34,6 @@ public class CiVo implements Serializable {
     private transient List<CiVo> upwardCiList;//继承的所有模型包括自己
     @JSONField(serialize = false)
     private transient CiVo parentCi;
-    @EntityField(name = "名字表达式", type = ApiParamType.STRING)
-    private String nameExpression;
     @EntityField(name = "唯一标识，不能重复", type = ApiParamType.STRING)
     private String name;
     @EntityField(name = "名称，不能重复", type = ApiParamType.STRING)
@@ -109,13 +107,6 @@ public class CiVo implements Serializable {
         return id;
     }
 
-    public String getNameExpression() {
-        return nameExpression;
-    }
-
-    public void setNameExpression(String nameExpression) {
-        this.nameExpression = nameExpression;
-    }
 
     public Integer getIsAbstract() {
         return isAbstract;
