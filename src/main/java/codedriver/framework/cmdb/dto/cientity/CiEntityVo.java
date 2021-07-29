@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class CiEntityVo extends BasePageVo implements Serializable {
     @JSONField(serialize = false)
@@ -75,17 +74,19 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     @JSONField(serialize = false)
     private transient List<AttrEntityVo> attrEntityList;
     @EntityField(name = "属性对象，以'attr_'+attrId为key", type = ApiParamType.JSONOBJECT)
-    private JSONObject attrEntityData;
+    private JSONObject attrEntityData = new JSONObject();
     // @EntityField(name = "关系列表", type = ApiParamType.JSONARRAY)
     @JSONField(serialize = false)
     private transient List<RelEntityVo> relEntityList;
     @EntityField(name = "关系对象，以'relfrom_'+relId或'relto_'+relId为key", type = ApiParamType.JSONOBJECT)
-    private JSONObject relEntityData;
+    private JSONObject relEntityData = new JSONObject();
     // @EntityField(name = "属性过滤器列表", type = ApiParamType.JSONARRAY)
     @JSONField(serialize = false)
     private transient List<AttrFilterVo> attrFilterList;
     @JSONField(serialize = false)
     private transient List<RelFilterVo> relFilterList;
+    @JSONField(serialize = false)
+    private transient List<RelCiEntityFilterVo> relCiEntityFilterList;
     @JSONField(serialize = false)//当前配置项所涉及的所有模型，包括自己
     private transient List<CiVo> ciList;
     @JSONField(serialize = false)//当前配置项包含的所有属性
@@ -112,6 +113,8 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private transient Map<String, Object> attrEntityMap;
     @EntityField(name = "是否抽象模型", type = ApiParamType.INTEGER)
     private int isVirtual = 0;
+    @EntityField(name = "展示关系数量", type = ApiParamType.INTEGER)
+    private final int relEntityCount = 10;//限制查询时最多返回多少关系
 
     public CiEntityVo() {
 
@@ -124,6 +127,23 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     public CiEntityVo(Long ciId, Long id) {
         this.ciId = ciId;
         this.id = id;
+    }
+
+    public int getRelEntityCount() {
+        return relEntityCount;
+    }
+
+    public List<RelCiEntityFilterVo> getRelCiEntityFilterList() {
+        return relCiEntityFilterList;
+    }
+
+    public void setRelCiEntityFilterList(List<RelCiEntityFilterVo> relCiEntityFilterList) {
+        this.relCiEntityFilterList = relCiEntityFilterList;
+    }
+
+    @JSONField(serialize = false)
+    public int getRelEntityCountPlus() {
+        return relEntityCount + 1;
     }
 
     public String getUuid() {
