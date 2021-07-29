@@ -11,6 +11,4 @@ public class AttrIsUsedInUniqueRuleException extends ApiRuntimeException {
     public AttrIsUsedInUniqueRuleException() {
         super("唯一规则使用了父模型属性，请先删除。");
     }
-
-
 }
