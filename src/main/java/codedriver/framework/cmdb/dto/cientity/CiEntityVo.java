@@ -113,8 +113,8 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private transient Map<String, Object> attrEntityMap;
     @EntityField(name = "是否抽象模型", type = ApiParamType.INTEGER)
     private int isVirtual = 0;
-    @EntityField(name = "展示关系数量", type = ApiParamType.INTEGER)
-    private final int relEntityCount = 10;//限制查询时最多返回多少关系
+    @EntityField(name = "最大展示关系数量", type = ApiParamType.INTEGER)
+    private Integer maxRelEntityCount = 10;//限制查询时最多返回多少关系
 
     public CiEntityVo() {
 
@@ -129,8 +129,12 @@ public class CiEntityVo extends BasePageVo implements Serializable {
         this.id = id;
     }
 
-    public int getRelEntityCount() {
-        return relEntityCount;
+    public Integer getMaxRelEntityCount() {
+        return maxRelEntityCount;
+    }
+
+    public void setMaxRelEntityCount(Integer maxRelEntityCount) {
+        this.maxRelEntityCount = maxRelEntityCount;
     }
 
     public List<RelCiEntityFilterVo> getRelCiEntityFilterList() {
@@ -139,11 +143,6 @@ public class CiEntityVo extends BasePageVo implements Serializable {
 
     public void setRelCiEntityFilterList(List<RelCiEntityFilterVo> relCiEntityFilterList) {
         this.relCiEntityFilterList = relCiEntityFilterList;
-    }
-
-    @JSONField(serialize = false)
-    public int getRelEntityCountPlus() {
-        return relEntityCount + 1;
     }
 
     public String getUuid() {
