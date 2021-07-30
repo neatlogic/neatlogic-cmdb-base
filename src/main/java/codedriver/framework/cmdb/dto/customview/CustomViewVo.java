@@ -6,10 +6,7 @@
 package codedriver.framework.cmdb.dto.customview;
 
 import codedriver.framework.cmdb.dto.tag.TagVo;
-import codedriver.framework.cmdb.exception.customview.CustomViewCiNotFoundException;
-import codedriver.framework.cmdb.exception.customview.IsolatedCustomViewCiException;
-import codedriver.framework.cmdb.exception.customview.NoStartCustomViewCiException;
-import codedriver.framework.cmdb.exception.customview.OneMoreStartCustomViewCiException;
+import codedriver.framework.cmdb.exception.customview.*;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
@@ -95,6 +92,8 @@ public class CustomViewVo extends BasePageVo implements Serializable {
             for (CustomViewCiVo ciVo : ciList) {
                 if (ciVo.getIsStart().equals(1)) {
                     startCount += 1;
+                } else if (CollectionUtils.isEmpty(linkList) || linkList.stream().noneMatch(link -> link.getToCustomViewCiUuid().equalsIgnoreCase(ciVo.getUuid()))) {
+                    throw new ErrorStartCustomViewCiException(ciVo);
                 }
                 if (CollectionUtils.isEmpty(getLinkListByCustomCiUuid(ciVo.getUuid()))) {
                     isolatedCount += 1;
@@ -113,6 +112,7 @@ public class CustomViewVo extends BasePageVo implements Serializable {
         }
         return true;
     }
+
 
     public String getStartCustomViewCiUuid() {
         if (StringUtils.isBlank(startCustomViewCiUuid)) {
@@ -138,25 +138,6 @@ public class CustomViewVo extends BasePageVo implements Serializable {
         }
         return startCustomViewCi;
     }
-
-   /* public CustomViewCiVo getStartCustomViewCi_bak() {
-        if (startCustomViewCi == null) {
-            if (CollectionUtils.isNotEmpty(ciList)) {
-                if (ciList.size() == 1) {
-                    startCustomViewCi = ciList.get(0);
-                } else {
-                    for (CustomViewCiVo ciVo : ciList) {
-                        //如果模型的关系都是往外连出，则为驱动模型
-                        if (CollectionUtils.isEmpty(getLinkListByToCustomCiUuid(ciVo.getUuid()))) {
-                            startCustomViewCi = ciVo;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        return startCustomViewCi;
-    }*/
 
     /**
      * 根据来源模型uuid和目标模型uuid查找关系
@@ -214,6 +195,7 @@ public class CustomViewVo extends BasePageVo implements Serializable {
         }
         return null;
     }
+
 
     /**
      * 根据uuid获取CI模型
