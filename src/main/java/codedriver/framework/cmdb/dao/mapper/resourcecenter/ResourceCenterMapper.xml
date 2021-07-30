@@ -1290,7 +1290,7 @@
     </select>
 
     <select id="getResourceListByResourceVoList" resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
-        SELECT ri.name,rii.`ip`,ri.id,rs.port
+        SELECT ri.name,rii.`ip`,ri.id,rs.port,ri.type_name as typeName
         FROM ${schemaName}.`resource_ipobject` ri
         LEFT JOIN ${schemaName}.`resource_ipobject_ip` rii ON ri.`id` = rii.`resource_id`
         LEFT JOIN ${schemaName}.`resource_softwareservice` rs ON ri.`id` = rs.`id`
