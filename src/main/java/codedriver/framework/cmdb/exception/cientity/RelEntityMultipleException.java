@@ -7,9 +7,8 @@ package codedriver.framework.cmdb.exception.cientity;
 
 import codedriver.framework.exception.core.ApiRuntimeException;
 
-@SuppressWarnings("serial")
-public class RelEntityMutipleException extends ApiRuntimeException {
-    public RelEntityMutipleException(String label) {
+public class RelEntityMultipleException extends ApiRuntimeException {
+    public RelEntityMultipleException(String label) {
         super("关系：" + label + " 不能存在多个");
     }
 
