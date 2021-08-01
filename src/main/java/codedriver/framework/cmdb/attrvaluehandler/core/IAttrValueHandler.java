@@ -118,7 +118,7 @@ public interface IAttrValueHandler {
      * @param valueList 显示数据
      * @return 用于保存的数据
      */
-    default void transferValueListToSave(JSONArray valueList) {
+    default void transferValueListToSave(AttrVo attrVo, JSONArray valueList) {
     }
 
     /**
@@ -127,7 +127,7 @@ public interface IAttrValueHandler {
      * @param valueList 数据库的数据
      * @return 用于显示数据
      */
-    default void transferValueListToDisplay(JSONArray valueList) {
+    default void transferValueListToDisplay(AttrVo attrVo, JSONArray valueList) {
     }
 
     /**
