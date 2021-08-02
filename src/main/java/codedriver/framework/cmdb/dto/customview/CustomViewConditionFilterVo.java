@@ -5,15 +5,25 @@
 
 package codedriver.framework.cmdb.dto.customview;
 
+import com.alibaba.fastjson.JSONArray;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class CustomViewConditionFilterVo implements Serializable {
     private String attrUuid;
     private String expression;// 用户sql查询的表达式
-    private List<String> valueList;
+    private JSONArray valueList;
+
+    public CustomViewConditionFilterVo() {
+
+    }
+
+    public CustomViewConditionFilterVo(String _attrUuid, String _expression, JSONArray _valueList) {
+        this.attrUuid = _attrUuid;
+        this.expression = _expression;
+        this.valueList = _valueList;
+    }
 
     public String getAttrUuid() {
         return attrUuid;
@@ -32,11 +42,11 @@ public class CustomViewConditionFilterVo implements Serializable {
         this.expression = expression;
     }
 
-    public List<String> getValueList() {
+    public JSONArray getValueList() {
         return valueList;
     }
 
-    public void setValueList(List<String> valueList) {
+    public void setValueList(JSONArray valueList) {
         this.valueList = valueList;
     }
 
@@ -47,7 +57,7 @@ public class CustomViewConditionFilterVo implements Serializable {
      */
     public String getValue() {
         if (CollectionUtils.isNotEmpty(valueList)) {
-            return valueList.get(0);
+            return valueList.getString(0);
         }
         return null;
     }

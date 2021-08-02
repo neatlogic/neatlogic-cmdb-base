@@ -13,6 +13,7 @@ import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.annotation.JSONField;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -74,6 +75,13 @@ public class CustomViewConditionVo extends BasePageVo implements Serializable {
 
     public void setAttrFilterList(List<CustomViewConditionFilterVo> attrFilterList) {
         this.attrFilterList = attrFilterList;
+    }
+
+    public void addAttrFilter(CustomViewConditionFilterVo filter) {
+        if (this.attrFilterList == null) {
+            this.attrFilterList = new ArrayList<>();
+        }
+        this.attrFilterList.add(filter);
     }
 
     public String getViewName() {
