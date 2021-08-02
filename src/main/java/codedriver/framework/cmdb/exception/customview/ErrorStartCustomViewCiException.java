@@ -10,6 +10,6 @@ import codedriver.framework.exception.core.ApiRuntimeException;
 
 public class ErrorStartCustomViewCiException extends ApiRuntimeException {
     public ErrorStartCustomViewCiException(CustomViewCiVo ci) {
-        super("“" + ci.getAlias() + "”不是起始模型，但缺少连入关系");
+        super("“" + ci.getAlias() + "”是起始模型，不能存在连入关系");
     }
 }

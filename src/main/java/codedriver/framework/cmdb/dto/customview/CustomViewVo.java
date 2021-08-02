@@ -92,8 +92,9 @@ public class CustomViewVo extends BasePageVo implements Serializable {
             for (CustomViewCiVo ciVo : ciList) {
                 if (ciVo.getIsStart().equals(1)) {
                     startCount += 1;
-                } else if (CollectionUtils.isEmpty(linkList) || linkList.stream().noneMatch(link -> link.getToCustomViewCiUuid().equalsIgnoreCase(ciVo.getUuid()))) {
-                    throw new ErrorStartCustomViewCiException(ciVo);
+                    if (CollectionUtils.isNotEmpty(linkList) && linkList.stream().anyMatch(link -> link.getToCustomViewCiUuid().equalsIgnoreCase(ciVo.getUuid()))) {
+                        throw new ErrorStartCustomViewCiException(ciVo);
+                    }
                 }
                 if (CollectionUtils.isEmpty(getLinkListByCustomCiUuid(ciVo.getUuid()))) {
                     isolatedCount += 1;
