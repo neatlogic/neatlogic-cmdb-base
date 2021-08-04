@@ -68,6 +68,8 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private String status;
     @EntityField(name = "是否锁定编辑", type = ApiParamType.INTEGER)
     private Integer isLocked = 0;
+    @EntityField(name = "操作类型，表单控件中使用", type = ApiParamType.STRING)
+    private String actionType;
     @JSONField(serialize = false)
     private transient Long ciEntityIdStart;
     // @EntityField(name = "属性列表", type = ApiParamType.JSONARRAY)
@@ -127,6 +129,14 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     public CiEntityVo(Long ciId, Long id) {
         this.ciId = ciId;
         this.id = id;
+    }
+
+    public String getActionType() {
+        return actionType;
+    }
+
+    public void setActionType(String actionType) {
+        this.actionType = actionType;
     }
 
     public Integer getMaxRelEntityCount() {
