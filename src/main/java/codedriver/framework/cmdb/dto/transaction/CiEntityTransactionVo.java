@@ -184,7 +184,7 @@ public class CiEntityTransactionVo implements Serializable {
      * @param targetId  目标id
      */
     public void removeRelEntityData(Long relId, String direction, Long targetId) {
-        if (relEntityData.containsKey("rel" + direction + "_" + relId) && relEntityData.getJSONObject("rel" + direction + "_" + relId).containsKey("valueList")) {
+        if (MapUtils.isNotEmpty(relEntityData) && relEntityData.containsKey("rel" + direction + "_" + relId) && relEntityData.getJSONObject("rel" + direction + "_" + relId).containsKey("valueList")) {
             JSONArray relList = relEntityData.getJSONObject("rel" + direction + "_" + relId).getJSONArray("valueList");
             if (CollectionUtils.isNotEmpty(relList)) {
                 List<Integer> removeList = new ArrayList<>();
