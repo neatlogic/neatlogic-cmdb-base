@@ -13,4 +13,8 @@ public class RelEntityIsUsedException extends ApiRuntimeException {
     public RelEntityIsUsedException(RelDirectionType direction, RelVo relVo) {
         super("关系“" + (direction == RelDirectionType.FROM ? relVo.getToLabel() : relVo.getFromLabel()) + "”是唯一关系，它的值已被其他配置项引用，请修改");
     }
+
+    public RelEntityIsUsedException(RelDirectionType direction, RelVo relVo, Boolean other) {
+        super("当前模型在关系“" + (direction == RelDirectionType.FROM ? relVo.getToLabel() : relVo.getFromLabel()) + "”中是唯一引用，因此不能关联多个配置项，请修改");
+    }
 }

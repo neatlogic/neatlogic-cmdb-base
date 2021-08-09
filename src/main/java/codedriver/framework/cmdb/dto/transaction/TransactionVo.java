@@ -5,7 +5,7 @@
 
 package codedriver.framework.cmdb.dto.transaction;
 
-import codedriver.framework.cmdb.enums.InputFrom;
+import codedriver.framework.common.constvalue.InputFrom;
 import codedriver.framework.cmdb.enums.TransactionActionType;
 import codedriver.framework.cmdb.enums.TransactionStatus;
 import codedriver.framework.common.constvalue.ApiParamType;
