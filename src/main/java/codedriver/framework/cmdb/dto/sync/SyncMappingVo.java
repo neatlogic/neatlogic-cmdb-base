@@ -12,11 +12,11 @@ import codedriver.framework.restful.annotation.EntityField;
 public class SyncMappingVo {
     @EntityField(name = "属性id", type = ApiParamType.LONG)
     private Long attrId;
-    @EntityField(name = "关系", type = ApiParamType.LONG)
+    @EntityField(name = "关系id", type = ApiParamType.LONG)
     private Long relId;
     @EntityField(name = "关系方向", type = ApiParamType.ENUM, member = RelDirectionType.class)
     private String relDirection;
-    @EntityField(name = "目标字段", type = ApiParamType.STRING)
+    @EntityField(name = "目标字段，支持jsonpath语法", type = ApiParamType.STRING)
     private String field;
 
     public Long getAttrId() {

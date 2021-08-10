@@ -26,6 +26,8 @@ public class SyncConfigVo {
     private Long id;
     @EntityField(name = "模型id", type = ApiParamType.LONG)
     private Long ciId;
+    @EntityField(name = "名称", type = ApiParamType.STRING)
+    private String name;
     @EntityField(name = "是否激活", type = ApiParamType.INTEGER)
     private Integer isActive;
     @EntityField(name = "MongoDb集合名", type = ApiParamType.STRING)
@@ -78,6 +80,14 @@ public class SyncConfigVo {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getCiId() {

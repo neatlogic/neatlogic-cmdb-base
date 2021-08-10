@@ -5,7 +5,9 @@
 
 package codedriver.framework.cmdb.dto.sync;
 
+import codedriver.framework.cmdb.enums.sync.SyncStatus;
 import codedriver.framework.common.constvalue.ApiParamType;
+import codedriver.framework.common.constvalue.InputFrom;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
 
@@ -20,9 +22,9 @@ public class SyncAuditVo extends BasePageVo {
     private Date startTime;
     @EntityField(name = "结束时间", type = ApiParamType.LONG)
     private Date endTime;
-    @EntityField(name = "触发方式", type = ApiParamType.LONG)
-    private String execType;
-    @EntityField(name = "状态", type = ApiParamType.LONG)
+    @EntityField(name = "触发方式", type = ApiParamType.ENUM, member = InputFrom.class)
+    private String inputFrom;
+    @EntityField(name = "状态", type = ApiParamType.ENUM, member = SyncStatus.class)
     private String status;
     @EntityField(name = "事务组id", type = ApiParamType.LONG)
     private Long transactionGroupId;
@@ -61,12 +63,12 @@ public class SyncAuditVo extends BasePageVo {
         this.endTime = endTime;
     }
 
-    public String getExecType() {
-        return execType;
+    public String getInputFrom() {
+        return inputFrom;
     }
 
-    public void setExecType(String execType) {
-        this.execType = execType;
+    public void setInputFrom(String inputFrom) {
+        this.inputFrom = inputFrom;
     }
 
     public String getStatus() {
