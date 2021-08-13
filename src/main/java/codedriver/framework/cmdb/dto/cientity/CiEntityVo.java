@@ -290,14 +290,6 @@ public class CiEntityVo extends BasePageVo implements Serializable {
         this.isLocked = isLocked;
     }
 
-    public String getKeyword() {
-        return keyword;
-    }
-
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
-
 
     public List<AttrFilterVo> getAttrFilterList() {
         return attrFilterList;

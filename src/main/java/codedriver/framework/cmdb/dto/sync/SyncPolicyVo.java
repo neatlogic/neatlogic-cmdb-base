@@ -19,29 +19,22 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-public class SyncConfigVo {
+public class SyncPolicyVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
-    @EntityField(name = "模型id", type = ApiParamType.LONG)
-    private Long ciId;
+    @EntityField(name = "模型集合id", type = ApiParamType.LONG)
+    private Long ciCollectionId;
     @EntityField(name = "名称", type = ApiParamType.STRING)
     private String name;
     @EntityField(name = "是否激活", type = ApiParamType.INTEGER)
     private Integer isActive;
-    @EntityField(name = "MongoDb集合名", type = ApiParamType.STRING)
-    private String collectionName;
     @JSONField(serialize = false)
     private transient String conditionStr;
     @EntityField(name = "cron列表", type = ApiParamType.JSONARRAY)
     private JSONArray cronList;
     @JSONField(serialize = false)
     private transient String cronListStr;
-    @EntityField(name = "字段映射配置", type = ApiParamType.JSONARRAY)
-    private List<SyncMappingVo> mappingList;
-    @JSONField(serialize = false)
-    private transient String mappingStr;
     @EntityField(name = "筛选条件", type = ApiParamType.JSONARRAY)
     private List<SyncConditionVo> conditionList;
     @JSONField(serialize = false)
@@ -90,12 +83,12 @@ public class SyncConfigVo {
         this.name = name;
     }
 
-    public Long getCiId() {
-        return ciId;
+    public Long getCiCollectionId() {
+        return ciCollectionId;
     }
 
-    public void setCiId(Long ciId) {
-        this.ciId = ciId;
+    public void setCiCollectionId(Long ciCollectionId) {
+        this.ciCollectionId = ciCollectionId;
     }
 
     public Integer getIsActive() {
@@ -104,14 +97,6 @@ public class SyncConfigVo {
 
     public void setIsActive(Integer isActive) {
         this.isActive = isActive;
-    }
-
-    public String getCollectionName() {
-        return collectionName;
-    }
-
-    public void setCollectionName(String collectionName) {
-        this.collectionName = collectionName;
     }
 
 
@@ -150,54 +135,6 @@ public class SyncConfigVo {
 
     public void setCronListStr(String cronListStr) {
         this.cronListStr = cronListStr;
-    }
-
-    public List<SyncMappingVo> getMappingList() {
-        if (CollectionUtils.isEmpty(mappingList) && StringUtils.isNotBlank(mappingStr)) {
-            try {
-                JSONArray list = JSONArray.parseArray(mappingStr);
-                if (CollectionUtils.isNotEmpty(list)) {
-                    mappingList = new ArrayList<>();
-                    for (int i = 0; i < list.size(); i++) {
-                        mappingList.add(JSONObject.parseObject(list.getJSONObject(i).toJSONString(), SyncMappingVo.class));
-                    }
-                }
-            } catch (Exception ignored) {
-
-            }
-        }
-        return mappingList;
-    }
-
-    public void setMappingList(List<SyncMappingVo> mappingList) {
-        this.mappingList = mappingList;
-    }
-
-    /**
-     * 根据属性id找到映射配置
-     *
-     * @param attrId 属性id
-     * @return 映射配置
-     */
-    public SyncMappingVo getMappingByAttrId(Long attrId) {
-        if (CollectionUtils.isNotEmpty(this.getMappingList())) {
-            Optional<SyncMappingVo> op = this.getMappingList().stream().filter(m -> m.getAttrId() != null && m.getAttrId().equals(attrId)).findFirst();
-            if (op.isPresent()) {
-                return op.get();
-            }
-        }
-        return null;
-    }
-
-    public String getMappingStr() {
-        if (StringUtils.isBlank(mappingStr) && CollectionUtils.isNotEmpty(mappingList)) {
-            mappingStr = JSONObject.toJSONString(mappingList);
-        }
-        return mappingStr;
-    }
-
-    public void setMappingStr(String mappingStr) {
-        this.mappingStr = mappingStr;
     }
 
     public List<SyncConditionVo> getConditionList() {

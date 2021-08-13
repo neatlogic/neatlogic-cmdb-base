@@ -102,14 +102,6 @@ public class PropVo extends BasePageVo {
         return configStr;
     }
 
-    public String getKeyword() {
-        return keyword;
-    }
-
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
-
     public String getHandlerName() {
         if (StringUtils.isBlank(handlerName) && StringUtils.isNotBlank(handler)) {
             handlerName = PropHandlerType.getText(handler);

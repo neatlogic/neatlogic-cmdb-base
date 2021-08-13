@@ -210,15 +210,6 @@ public class CustomViewVo extends BasePageVo implements Serializable {
         return op.orElse(null);
     }
 
-    @Override
-    public String getKeyword() {
-        return keyword;
-    }
-
-    @Override
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
 
     /**
      * 显示所有属性

@@ -7,8 +7,8 @@ package codedriver.framework.cmdb.exception.sync;
 
 import codedriver.framework.exception.core.ApiRuntimeException;
 
-public class SyncConfigNotFoundException extends ApiRuntimeException {
-    public SyncConfigNotFoundException(Long id) {
+public class SyncCiCollectionNotFoundException extends ApiRuntimeException {
+    public SyncCiCollectionNotFoundException(Long id) {
         super("同步配置：'" + id + "'不存在");
     }
 }

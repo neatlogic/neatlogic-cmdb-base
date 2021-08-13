@@ -53,13 +53,6 @@ public class CustomViewConditionVo extends BasePageVo implements Serializable {
         this.customViewId = customViewId;
     }
 
-    public String getKeyword() {
-        return keyword;
-    }
-
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
 
     public String getSearchMode() {
         return searchMode;
