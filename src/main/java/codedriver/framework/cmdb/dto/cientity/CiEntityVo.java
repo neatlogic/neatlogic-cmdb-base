@@ -168,6 +168,7 @@ public class CiEntityVo extends BasePageVo implements Serializable {
 
     public CiEntityVo(CiEntityTransactionVo ciEntityTransactionVo) {
         this.id = ciEntityTransactionVo.getCiEntityId();
+        this.uuid = ciEntityTransactionVo.getCiEntityUuid();
         this.ciId = ciEntityTransactionVo.getCiId();
         this.name = ciEntityTransactionVo.getName();
         this.attrEntityData = ciEntityTransactionVo.getAttrEntityData();
