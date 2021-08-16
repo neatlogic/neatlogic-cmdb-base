@@ -5,6 +5,8 @@
 
 package codedriver.framework.cmdb.dto.transaction;
 
+import codedriver.framework.cmdb.attrvaluehandler.core.AttrValueHandlerFactory;
+import codedriver.framework.cmdb.attrvaluehandler.core.IAttrValueHandler;
 import codedriver.framework.cmdb.dto.cientity.AttrEntityVo;
 import codedriver.framework.cmdb.enums.SaveModeType;
 import codedriver.framework.cmdb.enums.TransactionActionType;
@@ -215,6 +217,17 @@ public class AttrEntityTransactionVo implements Serializable {
         return valueList;
     }
 
+    public String getValue() {
+        if (CollectionUtils.isNotEmpty(valueList)) {
+            if (valueList.size() == 1) {
+                return valueList.getString(0);
+            } else {
+                return valueList.toString();
+            }
+        }
+        return null;
+    }
+
     public void setValueList(JSONArray _valueList) {
         this.valueList = _valueList;
     }
@@ -243,5 +256,11 @@ public class AttrEntityTransactionVo implements Serializable {
         this.targetCiId = targetCiId;
     }
 
-
+    public Boolean isNeedTargetCi() {
+        if (StringUtils.isNotBlank(this.attrType)) {
+            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.attrType);
+            return handler.isNeedTargetCi();
+        }
+        return null;
+    }
 }

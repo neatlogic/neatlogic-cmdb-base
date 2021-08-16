@@ -6,6 +6,7 @@
 package codedriver.framework.cmdb.dto.transaction;
 
 import codedriver.framework.cmdb.dto.ci.AttrVo;
+import codedriver.framework.cmdb.dto.ci.RelVo;
 import codedriver.framework.cmdb.dto.cientity.CiEntityVo;
 import codedriver.framework.cmdb.enums.EditModeType;
 import codedriver.framework.cmdb.enums.RelDirectionType;
@@ -268,35 +269,41 @@ public class CiEntityTransactionVo implements Serializable {
     /**
      * 添加需要操作的关系事务
      *
-     * @param relId      关系id
+     * @param relVo      关系
      * @param direction  方向
      * @param ciId       目标模型id
      * @param ciEntityId 目标配置项id
      */
-    public void addRelEntityData(Long relId, String direction, Long ciId, Long ciEntityId) {
-        addRelEntityData(relId, direction, ciId, ciEntityId, null);
+    public void addRelEntityData(RelVo relVo, String direction, Long ciId, Long ciEntityId) {
+        addRelEntityData(relVo, direction, ciId, ciEntityId, null, null);
     }
 
     /**
      * 添加需要操作的关系事务
      *
-     * @param relId      关系id
-     * @param direction  方向
-     * @param ciId       目标模型id
-     * @param ciEntityId 目标配置项id
-     * @param action     操作,需要是RelActionType中的枚举
+     * @param relVo        关系
+     * @param direction    方向
+     * @param ciId         目标模型id
+     * @param ciEntityId   目标配置项id
+     * @param ciEntityName 目标配置项名称
+     * @param action       操作,需要是RelActionType中的枚举
      */
-    public void addRelEntityData(Long relId, String direction, Long ciId, Long ciEntityId, String action) {
+    public void addRelEntityData(RelVo relVo, String direction, Long ciId, Long ciEntityId, String ciEntityName, String action) {
         if (relEntityData == null) {
             relEntityData = new JSONObject();
         }
 
-        if (!relEntityData.containsKey("rel" + direction + "_" + relId)) {
+        if (!relEntityData.containsKey("rel" + direction + "_" + relVo.getId())) {
             JSONObject dataObj = new JSONObject();
             dataObj.put("valueList", new JSONArray());
-            relEntityData.put("rel" + direction + "_" + relId, dataObj);
+            dataObj.put("name", direction.equals(RelDirectionType.FROM.getValue()) ? relVo.getToName() : relVo.getFromName());
+            dataObj.put("label", direction.equals(RelDirectionType.FROM.getValue()) ? relVo.getToLabel() : relVo.getFromLabel());
+            dataObj.put("direction", direction);
+            dataObj.put("fromCiId", relVo.getFromCiId());
+            dataObj.put("toCiId", relVo.getToCiId());
+            relEntityData.put("rel" + direction + "_" + relVo.getId(), dataObj);
         }
-        JSONArray dataList = relEntityData.getJSONObject("rel" + direction + "_" + relId).getJSONArray("valueList");
+        JSONArray dataList = relEntityData.getJSONObject("rel" + direction + "_" + relVo.getId()).getJSONArray("valueList");
         boolean isExists = false;
         for (int i = 0; i < dataList.size(); i++) {
             JSONObject obj = dataList.getJSONObject(i);
@@ -309,6 +316,7 @@ public class CiEntityTransactionVo implements Serializable {
         if (!isExists) {
             JSONObject newObj = new JSONObject();
             newObj.put("ciEntityId", ciEntityId);
+            newObj.put("ciEntityName", ciEntityName);
             newObj.put("ciId", ciId);
             newObj.put("action", action);
             dataList.add(newObj);
@@ -366,6 +374,7 @@ public class CiEntityTransactionVo implements Serializable {
                         relEntityVo.setToCiEntityId(relEntityObj.getLong("ciEntityId"));
                         relEntityVo.setToCiEntityName(relEntityObj.getString("ciEntityName"));
                         relEntityVo.setDirection(RelDirectionType.FROM.getValue());
+                        relEntityVo.setFromCiEntityName(this.getName());
                         relEntityVo.setFromCiEntityId(this.getCiEntityId());
                         relEntityVo.setFromCiId(this.getCiId());
                     } else {
@@ -373,6 +382,7 @@ public class CiEntityTransactionVo implements Serializable {
                         relEntityVo.setFromCiEntityId(relEntityObj.getLong("ciEntityId"));
                         relEntityVo.setFromCiEntityName(relEntityObj.getString("ciEntityName"));
                         relEntityVo.setDirection(RelDirectionType.TO.getValue());
+                        relEntityVo.setToCiEntityName(this.getName());
                         relEntityVo.setToCiEntityId(this.getCiEntityId());
                         relEntityVo.setToCiId(this.getCiId());
                     }
@@ -475,6 +485,9 @@ public class CiEntityTransactionVo implements Serializable {
     }
 
     public String getName() {
+        if (StringUtils.isBlank(name) && this.oldCiEntityVo != null) {
+            name = this.oldCiEntityVo.getName();
+        }
         return name;
     }
 
