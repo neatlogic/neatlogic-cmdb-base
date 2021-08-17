@@ -5,20 +5,19 @@
 
 package codedriver.framework.cmdb.attrvaluehandler.core;
 
+import codedriver.framework.applicationlistener.core.ModuleInitializedListenerBase;
+import codedriver.framework.bootstrap.CodedriverWebApplicationContext;
 import codedriver.framework.cmdb.dto.ci.AttrTypeVo;
 import codedriver.framework.cmdb.exception.attrtype.AttrTypeNotFoundException;
 import codedriver.framework.common.RootComponent;
 import com.sun.istack.NotNull;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ContextRefreshedEvent;
 
 import java.util.*;
 
 @RootComponent
-public class AttrValueHandlerFactory implements ApplicationListener<ContextRefreshedEvent> {
+public class AttrValueHandlerFactory extends ModuleInitializedListenerBase {
 
     private static final Map<String, IAttrValueHandler> componentMap = new HashMap<>();
     private static final List<AttrTypeVo> attrTypeList = new ArrayList<>();
@@ -48,8 +47,7 @@ public class AttrValueHandlerFactory implements ApplicationListener<ContextRefre
     }
 
     @Override
-    public void onApplicationEvent(ContextRefreshedEvent event) {
-        ApplicationContext context = event.getApplicationContext();
+    public void onInitialized(CodedriverWebApplicationContext context) {
         Map<String, IAttrValueHandler> myMap = context.getBeansOfType(IAttrValueHandler.class);
         for (Map.Entry<String, IAttrValueHandler> entry : myMap.entrySet()) {
             IAttrValueHandler handler = entry.getValue();
@@ -68,5 +66,10 @@ public class AttrValueHandlerFactory implements ApplicationListener<ContextRefre
         if (CollectionUtils.isNotEmpty(attrTypeList)) {
             attrTypeList.sort(Comparator.comparingInt(AttrTypeVo::getSort));
         }
+    }
+
+    @Override
+    protected void myInit() {
+
     }
 }
