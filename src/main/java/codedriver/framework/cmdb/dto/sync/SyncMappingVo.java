@@ -9,6 +9,7 @@ import codedriver.framework.cmdb.enums.RelDirectionType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
+import org.apache.commons.lang3.StringUtils;
 
 public class SyncMappingVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
@@ -61,6 +62,15 @@ public class SyncMappingVo {
 
 
     public String getField() {
+        return field;
+    }
+
+    public String getField(String parentKey) {
+        if (StringUtils.isNotBlank(field) && StringUtils.isNotBlank(parentKey)) {
+            if (field.indexOf(parentKey) == 0) {
+                return field.substring(parentKey.length() + 1);
+            }
+        }
         return field;
     }
 

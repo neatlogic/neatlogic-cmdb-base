@@ -43,8 +43,8 @@ public class SyncPolicyVo {
 
     @JSONField(serialize = false)
     public Query getQuery() {
+        Query query = new Query();
         if (CollectionUtils.isNotEmpty(this.getConditionList())) {
-            Query query = new Query();
             for (SyncConditionVo conditionVo : this.getConditionList()) {
                 Criteria c = Criteria.where(conditionVo.getField());
                 if (conditionVo.getExpression().equals(ExpressionType.IS.getValue())) {
@@ -62,9 +62,8 @@ public class SyncPolicyVo {
                 }
                 query.addCriteria(c);
             }
-            return query;
         }
-        return null;
+        return query;
     }
 
     public Long getId() {
