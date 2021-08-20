@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SyncConditionVo {
-    @EntityField(name = "配置id", type = ApiParamType.LONG)
-    private Long syncConfigId;
+    @EntityField(name = "策略id", type = ApiParamType.LONG)
+    private Long syncPolicyId;
     @EntityField(name = "字段", type = ApiParamType.STRING)
     private String field;
     @EntityField(name = "字段数据类型", type = ApiParamType.ENUM, member = FieldType.class)
@@ -28,12 +28,12 @@ public class SyncConditionVo {
     @EntityField(name = "值", type = ApiParamType.JSONARRAY)
     private List<String> valueList;
 
-    public Long getSyncConfigId() {
-        return syncConfigId;
+    public Long getSyncPolicyId() {
+        return syncPolicyId;
     }
 
-    public void setSyncConfigId(Long syncConfigId) {
-        this.syncConfigId = syncConfigId;
+    public void setSyncPolicyId(Long syncPolicyId) {
+        this.syncPolicyId = syncPolicyId;
     }
 
     public String getField() {
@@ -56,6 +56,11 @@ public class SyncConditionVo {
         return valueList;
     }
 
+    /**
+     * 转换成mongodb需要的数据格式
+     *
+     * @return 数据
+     */
     @JSONField(serialize = false)
     public List<Object> getFormatValueList() {
         if (CollectionUtils.isNotEmpty(valueList)) {

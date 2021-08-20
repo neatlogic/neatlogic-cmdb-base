@@ -25,6 +25,8 @@ public class SyncPolicyVo {
     private Long id;
     @EntityField(name = "模型集合id", type = ApiParamType.LONG)
     private Long ciCollectionId;
+    @EntityField(name = "集合名称", type = ApiParamType.STRING)
+    private String collectionName;
     @EntityField(name = "名称", type = ApiParamType.STRING)
     private String name;
     @EntityField(name = "是否激活", type = ApiParamType.INTEGER)
@@ -64,6 +66,14 @@ public class SyncPolicyVo {
             }
         }
         return query;
+    }
+
+    public String getCollectionName() {
+        return collectionName;
+    }
+
+    public void setCollectionName(String collectionName) {
+        this.collectionName = collectionName;
     }
 
     public Long getId() {
