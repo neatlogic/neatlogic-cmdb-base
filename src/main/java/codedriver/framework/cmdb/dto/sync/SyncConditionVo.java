@@ -10,11 +10,9 @@ import codedriver.framework.cmdb.enums.sync.FieldType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.annotation.JSONField;
-import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SyncConditionVo {
     @EntityField(name = "策略id", type = ApiParamType.LONG)
@@ -25,8 +23,8 @@ public class SyncConditionVo {
     private String type;
     @EntityField(name = "expression", type = ApiParamType.ENUM, member = ExpressionType.class)
     private String expression;
-    @EntityField(name = "值", type = ApiParamType.JSONARRAY)
-    private List<String> valueList;
+    @EntityField(name = "值", type = ApiParamType.STRING)
+    private String value;
 
     public Long getSyncPolicyId() {
         return syncPolicyId;
@@ -52,8 +50,12 @@ public class SyncConditionVo {
         this.type = type;
     }
 
-    public List<String> getValueList() {
-        return valueList;
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     /**
@@ -62,48 +64,28 @@ public class SyncConditionVo {
      * @return 数据
      */
     @JSONField(serialize = false)
-    public List<Object> getFormatValueList() {
-        if (CollectionUtils.isNotEmpty(valueList)) {
+    public Object getFormatValue() {
+        if (StringUtils.isNotEmpty(value)) {
             if (this.getType().equals(FieldType.STRING.getValue())) {
-                return new ArrayList<>(valueList);
+                return value;
             } else if (this.getType().equals(FieldType.INTEGER.getValue())) {
-                List<Object> newValueList = new ArrayList<>();
-                for (String v : valueList) {
-                    try {
-                        newValueList.add(Integer.parseInt(v));
-                    } catch (Exception ignored) {
+                try {
+                    return Integer.parseInt(value);
+                } catch (Exception ignored) {
 
-                    }
                 }
-                return newValueList;
             } else if (this.getType().equals(FieldType.DATETIME.getValue())) {
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                List<Object> newValueList = new ArrayList<>();
-                for (String v : valueList) {
-                    try {
-                        newValueList.add(formatter.parse(v));
-                    } catch (Exception ignored) {
+                try {
+                    return formatter.parse(value);
+                } catch (Exception ignored) {
 
-                    }
                 }
-                return newValueList;
             }
         }
         return null;
     }
 
-    @JSONField(serialize = false)
-    public Object getFormatValue() {
-        List<Object> vList = this.getFormatValueList();
-        if (CollectionUtils.isNotEmpty(vList)) {
-            return valueList.get(0);
-        }
-        return null;
-    }
-
-    public void setValueList(List<String> valueList) {
-        this.valueList = valueList;
-    }
 
     public String getExpression() {
         return expression;
