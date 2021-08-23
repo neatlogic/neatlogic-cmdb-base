@@ -66,15 +66,15 @@ public class SyncConditionVo {
     @JSONField(serialize = false)
     public Object getFormatValue() {
         if (StringUtils.isNotEmpty(value)) {
-            if (this.getType().equals(FieldType.STRING.getValue())) {
+            if (this.getType().equalsIgnoreCase(FieldType.STRING.getValue())) {
                 return value;
-            } else if (this.getType().equals(FieldType.INTEGER.getValue())) {
+            } else if (this.getType().equalsIgnoreCase(FieldType.INTEGER.getValue())) {
                 try {
                     return Integer.parseInt(value);
                 } catch (Exception ignored) {
 
                 }
-            } else if (this.getType().equals(FieldType.DATETIME.getValue())) {
+            } else if (this.getType().equalsIgnoreCase(FieldType.DATETIME.getValue())) {
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                 try {
                     return formatter.parse(value);

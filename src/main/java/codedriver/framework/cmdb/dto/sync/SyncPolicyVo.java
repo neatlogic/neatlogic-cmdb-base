@@ -20,6 +20,7 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class SyncPolicyVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
@@ -49,21 +50,24 @@ public class SyncPolicyVo {
         Query query = new Query();
         if (CollectionUtils.isNotEmpty(this.getConditionList())) {
             for (SyncConditionVo conditionVo : this.getConditionList()) {
-                Criteria c = Criteria.where(conditionVo.getField());
-                if (conditionVo.getExpression().equals(ExpressionType.IS.getValue())) {
-                    c.all(conditionVo.getFormatValue());
-                } else if (conditionVo.getExpression().equals(ExpressionType.IN.getValue())) {
-                    c.in(conditionVo.getFormatValue());
-                } else if (conditionVo.getExpression().equals(ExpressionType.GT.getValue())) {
-                    c.gt(conditionVo.getFormatValue());
-                } else if (conditionVo.getExpression().equals(ExpressionType.LT.getValue())) {
-                    c.lt(conditionVo.getFormatValue());
-                } else if (conditionVo.getExpression().equals(ExpressionType.GTE.getValue())) {
-                    c.gte(conditionVo.getFormatValue());
-                } else if (conditionVo.getExpression().equals(ExpressionType.LTE.getValue())) {
-                    c.lte(conditionVo.getFormatValue());
+                if (StringUtils.isNotBlank(conditionVo.getExpression()) && StringUtils.isNotBlank(conditionVo.getValue()) && StringUtils.isNotBlank(conditionVo.getField())) {
+                    Criteria c = Criteria.where(conditionVo.getField());
+                    if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.IS.getValue())) {
+                        c.is(conditionVo.getFormatValue());
+                    } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.IN.getValue())) {
+                        Pattern pattern = Pattern.compile("^.*" + conditionVo.getFormatValue() + ".*$", Pattern.CASE_INSENSITIVE);
+                        c.regex(pattern);
+                    } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.GT.getValue())) {
+                        c.gt(conditionVo.getFormatValue());
+                    } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.LT.getValue())) {
+                        c.lt(conditionVo.getFormatValue());
+                    } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.GTE.getValue())) {
+                        c.gte(conditionVo.getFormatValue());
+                    } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.LTE.getValue())) {
+                        c.lte(conditionVo.getFormatValue());
+                    }
+                    query.addCriteria(c);
                 }
-                query.addCriteria(c);
             }
         }
         return query;
