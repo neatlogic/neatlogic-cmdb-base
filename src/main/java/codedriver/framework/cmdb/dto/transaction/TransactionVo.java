@@ -23,6 +23,8 @@ import java.util.Map;
 public class TransactionVo extends BasePageVo implements Serializable {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
+    @EntityField(name = "事务分组id", type = ApiParamType.LONG)
+    private Long transactionGroupId;
     @JSONField(serialize = false)
     private transient Long transactionId;//用于检索，避免自动生成id导致条件错误
     @EntityField(name = "模型id", type = ApiParamType.LONG)
@@ -82,6 +84,13 @@ public class TransactionVo extends BasePageVo implements Serializable {
     @EntityField(name = "属于统一事务组的事务数量", type = ApiParamType.INTEGER)
     private int brotherTransactionCount;
 
+    public Long getTransactionGroupId() {
+        return transactionGroupId;
+    }
+
+    public void setTransactionGroupId(Long transactionGroupId) {
+        this.transactionGroupId = transactionGroupId;
+    }
 
     public Long getId() {
         if (id == null) {

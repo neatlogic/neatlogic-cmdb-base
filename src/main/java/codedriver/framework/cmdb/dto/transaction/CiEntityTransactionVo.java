@@ -267,6 +267,20 @@ public class CiEntityTransactionVo implements Serializable {
     }
 
     /**
+     * 添加一个属性数据项
+     *
+     * @param attrId 属性id
+     * @param attrVo 属性定义
+     * @param value  值
+     */
+    public void addAttrEntityData(Long attrId, AttrVo attrVo, Object value) {
+        JSONArray jsonList = new JSONArray();
+        jsonList.add(value);
+        addAttrEntityData(attrId, attrVo, jsonList);
+    }
+
+
+    /**
      * 添加需要操作的关系事务
      *
      * @param relVo      关系

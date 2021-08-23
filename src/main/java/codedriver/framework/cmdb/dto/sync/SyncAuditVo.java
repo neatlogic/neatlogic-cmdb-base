@@ -10,6 +10,8 @@ import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.constvalue.InputFrom;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
+import codedriver.framework.util.SnowflakeUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
 
@@ -17,7 +19,7 @@ public class SyncAuditVo extends BasePageVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "同步配置id", type = ApiParamType.LONG)
-    private Long syncConfigId;
+    private Long syncCiCollectionId;
     @EntityField(name = "开始时间", type = ApiParamType.LONG)
     private Date startTime;
     @EntityField(name = "结束时间", type = ApiParamType.LONG)
@@ -30,8 +32,13 @@ public class SyncAuditVo extends BasePageVo {
     private Long transactionGroupId;
     @EntityField(name = "服务器id", type = ApiParamType.LONG)
     private Integer serverId;
+    @EntityField(name = "异常", type = ApiParamType.STRING)
+    private String error;
 
     public Long getId() {
+        if (id == null) {
+            id = SnowflakeUtil.uniqueLong();
+        }
         return id;
     }
 
@@ -39,12 +46,28 @@ public class SyncAuditVo extends BasePageVo {
         this.id = id;
     }
 
-    public Long getSyncConfigId() {
-        return syncConfigId;
+    public String getError() {
+        return error;
     }
 
-    public void setSyncConfigId(Long syncConfigId) {
-        this.syncConfigId = syncConfigId;
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public void appendError(String error) {
+        if (StringUtils.isBlank(this.error)) {
+            this.error = error;
+        } else {
+            this.error += "\n" + error;
+        }
+    }
+
+    public Long getSyncCiCollectionId() {
+        return syncCiCollectionId;
+    }
+
+    public void setSyncCiCollectionId(Long syncCiCollectionId) {
+        this.syncCiCollectionId = syncCiCollectionId;
     }
 
     public Date getStartTime() {

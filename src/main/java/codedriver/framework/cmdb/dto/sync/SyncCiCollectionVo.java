@@ -5,11 +5,15 @@
 
 package codedriver.framework.cmdb.dto.sync;
 
+import codedriver.framework.cmdb.dto.transaction.TransactionGroupVo;
+import codedriver.framework.cmdb.enums.sync.CollectMode;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
+import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -36,12 +40,51 @@ public class SyncCiCollectionVo extends BasePageVo {
     private String lcu;
     @EntityField(name = "字段映射配置", type = ApiParamType.JSONARRAY)
     private List<SyncMappingVo> mappingList;
+    @EntityField(name = "采集模式", type = ApiParamType.ENUM, member = CollectMode.class)
+    private String collectMode;
+    @EntityField(name = "采集模式名称", type = ApiParamType.STRING)
+    private String collectModeText;
+    @EntityField(name = "是否自动提交", type = ApiParamType.INTEGER)
+    private Integer isAutoCommit;
+    @JSONField(serialize = false)
+    private transient TransactionGroupVo transactionGroup;
+    @JSONField(serialize = false)
+    private transient SyncAuditVo syncAudit;
+    @JSONField(serialize = false)
+    private transient SyncPolicyVo syncPolicy;
 
     public Long getId() {
         if (id == null) {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public Integer getIsAutoCommit() {
+        return isAutoCommit;
+    }
+
+    public void setIsAutoCommit(Integer isAutoCommit) {
+        this.isAutoCommit = isAutoCommit;
+    }
+
+    public String getCollectModeText() {
+        if (StringUtils.isBlank(collectModeText) && StringUtils.isNotBlank(collectMode)) {
+            collectModeText = CollectMode.getText(collectMode);
+        }
+        return collectModeText;
+    }
+
+    public void setCollectModeText(String collectModeText) {
+        this.collectModeText = collectModeText;
+    }
+
+    public String getCollectMode() {
+        return collectMode;
+    }
+
+    public void setCollectMode(String collectMode) {
+        this.collectMode = collectMode;
     }
 
     public void setId(Long id) {
@@ -70,6 +113,30 @@ public class SyncCiCollectionVo extends BasePageVo {
 
     public void setCiId(Long ciId) {
         this.ciId = ciId;
+    }
+
+    public SyncPolicyVo getSyncPolicy() {
+        return syncPolicy;
+    }
+
+    public void setSyncPolicy(SyncPolicyVo syncPolicy) {
+        this.syncPolicy = syncPolicy;
+    }
+
+    public TransactionGroupVo getTransactionGroup() {
+        return transactionGroup;
+    }
+
+    public void setTransactionGroup(TransactionGroupVo transactionGroup) {
+        this.transactionGroup = transactionGroup;
+    }
+
+    public SyncAuditVo getSyncAudit() {
+        return syncAudit;
+    }
+
+    public void setSyncAudit(SyncAuditVo syncAudit) {
+        this.syncAudit = syncAudit;
     }
 
     public String getCollectionName() {

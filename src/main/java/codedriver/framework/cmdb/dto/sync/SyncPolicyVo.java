@@ -9,6 +9,7 @@ import codedriver.framework.cmdb.dto.ci.CiVo;
 import codedriver.framework.cmdb.enums.sync.ExpressionType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
+import codedriver.framework.util.SnowflakeUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
@@ -25,32 +26,34 @@ public class SyncPolicyVo {
     private Long id;
     @EntityField(name = "模型集合id", type = ApiParamType.LONG)
     private Long ciCollectionId;
+    @EntityField(name = "集合名称", type = ApiParamType.STRING)
+    private String collectionName;
+    @EntityField(name = "模型id", type = ApiParamType.LONG)
+    private Long ciId;
     @EntityField(name = "名称", type = ApiParamType.STRING)
     private String name;
     @EntityField(name = "是否激活", type = ApiParamType.INTEGER)
     private Integer isActive;
     @JSONField(serialize = false)
     private transient String conditionStr;
-    @EntityField(name = "cron列表", type = ApiParamType.JSONARRAY)
-    private JSONArray cronList;
-    @JSONField(serialize = false)
-    private transient String cronListStr;
     @EntityField(name = "筛选条件", type = ApiParamType.JSONARRAY)
     private List<SyncConditionVo> conditionList;
     @JSONField(serialize = false)
     private transient CiVo ciVo;
+    @EntityField(name = "定时策略", type = ApiParamType.JSONARRAY)
+    private List<SyncScheduleVo> cronList;
 
 
     @JSONField(serialize = false)
     public Query getQuery() {
+        Query query = new Query();
         if (CollectionUtils.isNotEmpty(this.getConditionList())) {
-            Query query = new Query();
             for (SyncConditionVo conditionVo : this.getConditionList()) {
                 Criteria c = Criteria.where(conditionVo.getField());
                 if (conditionVo.getExpression().equals(ExpressionType.IS.getValue())) {
-                    c.all(conditionVo.getFormatValueList());
+                    c.all(conditionVo.getFormatValue());
                 } else if (conditionVo.getExpression().equals(ExpressionType.IN.getValue())) {
-                    c.in(conditionVo.getFormatValueList());
+                    c.in(conditionVo.getFormatValue());
                 } else if (conditionVo.getExpression().equals(ExpressionType.GT.getValue())) {
                     c.gt(conditionVo.getFormatValue());
                 } else if (conditionVo.getExpression().equals(ExpressionType.LT.getValue())) {
@@ -62,12 +65,30 @@ public class SyncPolicyVo {
                 }
                 query.addCriteria(c);
             }
-            return query;
         }
-        return null;
+        return query;
+    }
+
+    public String getCollectionName() {
+        return collectionName;
+    }
+
+    public void setCollectionName(String collectionName) {
+        this.collectionName = collectionName;
+    }
+
+    public Long getCiId() {
+        return ciId;
+    }
+
+    public void setCiId(Long ciId) {
+        this.ciId = ciId;
     }
 
     public Long getId() {
+        if (id == null) {
+            id = SnowflakeUtil.uniqueLong();
+        }
         return id;
     }
 
@@ -111,30 +132,12 @@ public class SyncPolicyVo {
         this.conditionStr = conditionStr;
     }
 
-    public JSONArray getCronList() {
-        if (cronList == null && StringUtils.isNotBlank(cronListStr)) {
-            try {
-                cronList = JSONArray.parseArray(cronListStr);
-            } catch (Exception ignored) {
-
-            }
-        }
+    public List<SyncScheduleVo> getCronList() {
         return cronList;
     }
 
-    public void setCronList(JSONArray cronList) {
+    public void setCronList(List<SyncScheduleVo> cronList) {
         this.cronList = cronList;
-    }
-
-    public String getCronListStr() {
-        if (StringUtils.isBlank(cronListStr) && cronList != null) {
-            cronListStr = cronList.toJSONString();
-        }
-        return cronListStr;
-    }
-
-    public void setCronListStr(String cronListStr) {
-        this.cronListStr = cronListStr;
     }
 
     public List<SyncConditionVo> getConditionList() {
