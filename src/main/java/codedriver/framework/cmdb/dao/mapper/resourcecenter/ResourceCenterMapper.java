@@ -6,6 +6,7 @@
 package codedriver.framework.cmdb.dao.mapper.resourcecenter;
 
 import codedriver.framework.cmdb.dto.resourcecenter.*;
+import codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo;
 import codedriver.framework.cmdb.dto.resourcecenter.entity.AppEnviromentVo;
 import codedriver.framework.cmdb.dto.resourcecenter.entity.StatusVo;
 import codedriver.framework.cmdb.dto.tag.TagVo;
@@ -182,4 +183,38 @@ public interface ResourceCenterMapper {
     int deleteResourceTagByResourceId(Long resourceId);
 
     int deleteResourceTagByResourceIdAndTagIdList(@Param("resourceIdList") List<Long> resourceIdList, @Param("tagIdList") List<Long> tagIdList);
+
+    List<Long> getAccountIdList(AccountVo searchVo);
+
+    List<AccountTagVo> getAccountTagListByAccountIdList(List<Long> AccountIdList);
+
+    int checkAccountIsExists(Long accountId, String schemaName);
+
+    int deleteResourceTagByAccountId(Long accountId);
+
+    int insertIgnoreAccountTag(List<AccountTagVo> accountTagVoList);
+
+
+
+
+
+
+
+
+
+    List<AccountProtocolVo> searchAccountProtocolListByProtocolName(AccountProtocolVo searchVo);
+
+    int checkAccountProtocolIsRepeats(AccountProtocolVo searchVo);
+
+    int insertAccountProtocol(AccountProtocolVo searchVo);
+
+    int updateAccountProtocol(AccountProtocolVo searchVo);
+
+    AccountProtocolVo getAccountProtocolVoByProtocolName(String protocol);
+
+    int checkAccountProtocolHasBeenReferredByprotocol(String protocol);
+
+    int checkAccountProtocolIsExistsById(Long id);
+
+    int deleteResourceAccountProtocolById(Long id);
 }
