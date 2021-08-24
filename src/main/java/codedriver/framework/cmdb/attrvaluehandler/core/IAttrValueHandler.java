@@ -131,6 +131,16 @@ public interface IAttrValueHandler {
     }
 
     /**
+     * 将值转换成导出形式
+     *
+     * @param attrVo    属性
+     * @param valueList 数据库的数据
+     * @return 用户导出的数据
+     */
+    default void transferValueListToExport(AttrVo attrVo, JSONArray valueList) {
+    }
+
+    /**
      * 保存新属性后需要的自定义操作
      *
      * @param attrVo 属性配置
