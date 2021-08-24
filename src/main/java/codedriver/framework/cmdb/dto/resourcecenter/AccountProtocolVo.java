@@ -6,24 +6,24 @@ import codedriver.framework.restful.annotation.EntityField;
 
 public class AccountProtocolVo extends BaseEditorVo {
 
-    @EntityField(name = "协议id", type = ApiParamType.INTEGER)
-    private Long id;
+    @EntityField(name = "协议id", type = ApiParamType.LONG)
+    private Long protocolId;
     @EntityField(name = "协议名称", type = ApiParamType.STRING)
-    private String name;
+    private String protocol;
 
-    public Long getId() {
-        return id;
+    public Long getProtocolId() {
+        return protocolId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setProtocolId(Long protocolId) {
+        this.protocolId = protocolId;
     }
 
-    public String getName() {
-        return name;
+    public String getProtocol() {
+        return protocol;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
     }
 }

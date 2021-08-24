@@ -188,19 +188,11 @@ public interface ResourceCenterMapper {
 
     List<AccountTagVo> getAccountTagListByAccountIdList(List<Long> AccountIdList);
 
-    int checkAccountIsExists(Long accountId, String schemaName);
+    int checkAccountIsExists(Long accountId);
 
     int deleteResourceTagByAccountId(Long accountId);
 
     int insertIgnoreAccountTag(List<AccountTagVo> accountTagVoList);
-
-
-
-
-
-
-
-
 
     List<AccountProtocolVo> searchAccountProtocolListByProtocolName(AccountProtocolVo searchVo);
 
@@ -212,9 +204,12 @@ public interface ResourceCenterMapper {
 
     AccountProtocolVo getAccountProtocolVoByProtocolName(String protocol);
 
-    int checkAccountProtocolHasBeenReferredByprotocol(String protocol);
+    int checkAccountProtocolHasBeenReferredByProtocol(String protocol);
 
     int checkAccountProtocolIsExistsById(Long id);
 
     int deleteResourceAccountProtocolById(Long id);
+
+    AccountProtocolVo getAccountProtocolVoByProtocolId(Long protocolId);
+
 }
