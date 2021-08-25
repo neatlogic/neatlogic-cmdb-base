@@ -10,8 +10,8 @@ public class AccountTagVo {
     public AccountTagVo() {
     }
 
-    public AccountTagVo(Long resourceId, Long tagId) {
-        this.accountId = resourceId;
+    public AccountTagVo(Long accountId, Long tagId) {
+        this.accountId = accountId;
         this.tagId = tagId;
     }
 

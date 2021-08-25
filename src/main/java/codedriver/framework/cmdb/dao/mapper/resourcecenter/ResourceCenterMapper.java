@@ -212,4 +212,5 @@ public interface ResourceCenterMapper {
 
     AccountProtocolVo getAccountProtocolVoByProtocolId(Long protocolId);
 
+    List<TagVo> searchTagListByIdList(List<Long> tagIdList);
 }
