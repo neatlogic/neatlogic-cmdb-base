@@ -5,22 +5,21 @@
 
 package codedriver.framework.cmdb.dto.transaction;
 
-import codedriver.framework.common.constvalue.InputFrom;
 import codedriver.framework.cmdb.enums.TransactionActionType;
 import codedriver.framework.cmdb.enums.TransactionStatus;
 import codedriver.framework.common.constvalue.ApiParamType;
+import codedriver.framework.common.constvalue.InputFrom;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
 import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class TransactionVo extends BasePageVo implements Serializable {
+public class TransactionVo extends BasePageVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "事务分组id", type = ApiParamType.LONG)
@@ -83,6 +82,8 @@ public class TransactionVo extends BasePageVo implements Serializable {
     private transient List<String> commitTimeRange;
     @EntityField(name = "属于统一事务组的事务数量", type = ApiParamType.INTEGER)
     private int brotherTransactionCount;
+    @EntityField(name = "说明", type = ApiParamType.STRING)
+    private String description;
 
     public Long getTransactionGroupId() {
         return transactionGroupId;
@@ -97,6 +98,14 @@ public class TransactionVo extends BasePageVo implements Serializable {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setId(Long id) {

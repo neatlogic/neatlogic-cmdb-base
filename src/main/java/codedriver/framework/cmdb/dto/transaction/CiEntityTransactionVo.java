@@ -67,6 +67,8 @@ public class CiEntityTransactionVo implements Serializable {
     private transient CiEntityVo oldCiEntityVo;//就配置项信息
     @JSONField(serialize = false)
     private transient boolean allowCommit;//是否允许提交
+    @EntityField(name = "修改备注", type = ApiParamType.STRING)
+    private String description;
 
     public CiEntityTransactionVo() {
 
@@ -75,6 +77,15 @@ public class CiEntityTransactionVo implements Serializable {
     public CiEntityTransactionVo(CiEntityVo ciEntityVo) {
         ciId = ciEntityVo.getCiId();
         ciEntityId = ciEntityVo.getId();
+        description = ciEntityVo.getDescription();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**

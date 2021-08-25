@@ -117,6 +117,8 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private int isVirtual = 0;
     @EntityField(name = "最大展示关系数量", type = ApiParamType.INTEGER)
     private Integer maxRelEntityCount = 10;//限制查询时最多返回多少关系
+    @EntityField(name = "修改备注", type = ApiParamType.STRING)
+    private String description;
     @JSONField(serialize = false)
     private transient boolean smartSearch = false;//启用智能搜索，会根据条件自动拼接关系表，在没有任何条件时能提高检索性能
 
@@ -131,6 +133,14 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     public CiEntityVo(Long ciId, Long id) {
         this.ciId = ciId;
         this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public boolean isSmartSearch() {
@@ -183,6 +193,7 @@ public class CiEntityVo extends BasePageVo implements Serializable {
         this.name = ciEntityTransactionVo.getName();
         this.attrEntityData = ciEntityTransactionVo.getAttrEntityData();
         this.relEntityData = ciEntityTransactionVo.getRelEntityData();
+        this.description = ciEntityTransactionVo.getDescription();
     }
 
     public Long getFilterCiId() {
