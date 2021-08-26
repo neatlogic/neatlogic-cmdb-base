@@ -9,6 +9,6 @@ import codedriver.framework.exception.core.ApiRuntimeException;
 
 public class CiParentCanNotBeChangedException extends ApiRuntimeException {
     public CiParentCanNotBeChangedException(String ciName, int ciEntityCount) {
-        super("模型：" + ciName + "及其子模型共包含" + ciEntityCount + "条配置项数据，不允许修改继承关系");
+        super("模型“" + ciName + "”及其子模型共包含" + ciEntityCount + "条配置项数据，删除后才能修改继承关系");
     }
 }
