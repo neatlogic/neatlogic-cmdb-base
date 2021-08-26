@@ -5,6 +5,7 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter;
 
+import codedriver.framework.cmdb.dto.tag.TagVo;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BaseEditorVo;
 import codedriver.framework.dto.OperateVo;
@@ -27,8 +28,14 @@ public class AccountVo extends BaseEditorVo {
     private String account;
     @EntityField(name = "密码", type = ApiParamType.STRING)
     private String password;
-    @EntityField(name = "连接协议", type = ApiParamType.STRING)
-    private String protocol;
+    @EntityField(name = "标签", type = ApiParamType.JSONARRAY)
+    private List<TagVo> tagList;
+    @EntityField(name = "标签Id列表", type = ApiParamType.JSONARRAY)
+    private List<Long> tagIdList;
+    @EntityField(name = "协议ID", type = ApiParamType.LONG)
+    private Long protocolId;
+    @EntityField(name = "协议", type = ApiParamType.STRING)
+    private String  protocol;
     @EntityField(name = "端口", type = ApiParamType.INTEGER)
     private Integer port;
     @EntityField(name = "资产数", type = ApiParamType.INTEGER)
@@ -76,12 +83,20 @@ public class AccountVo extends BaseEditorVo {
         this.password = password;
     }
 
-    public String getProtocol() {
-        return protocol;
+    public List<TagVo> getTagList() {
+        return tagList;
     }
 
-    public void setProtocol(String protocol) {
-        this.protocol = protocol;
+    public void setTagList(List<TagVo> tagList) {
+        this.tagList = tagList;
+    }
+
+    public Long getProtocolId() {
+        return protocolId;
+    }
+
+    public void setProtocolId(Long protocolId) {
+        this.protocolId = protocolId;
     }
 
     public Integer getPort() {
@@ -122,5 +137,21 @@ public class AccountVo extends BaseEditorVo {
 
     public void setProtocolList(List<String> protocolList) {
         this.protocolList = protocolList;
+    }
+
+    public List<Long> getTagIdList() {
+        return tagIdList;
+    }
+
+    public void setTagIdList(List<Long> tagIdList) {
+        this.tagIdList = tagIdList;
+    }
+
+    public String getProtocol() {
+        return protocol;
+    }
+
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
     }
 }

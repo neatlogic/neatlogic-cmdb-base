@@ -849,35 +849,35 @@
 
     <select id="getAccountById" parameterType="java.lang.Long"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
-        select `id`,
-               `name`,
-               `account`,
-               `password`,
-               `protocol`,
-               `port`,
-               `fcu`,
-               `fcd`,
-               `lcu`,
-               `lcd`
-        from `cmdb_resourcecenter_account`
-        where `id` = #{value}
+        select a.`id`,
+               a.`name`,
+               a.`account`,
+               a.`password`,
+               b.name as protocol,
+               a.`port`,
+               a.`fcu`,
+               a.`fcd`,
+               a.`lcu`,
+               a.`lcd`
+        from `cmdb_resourcecenter_account` a JOIN `cmdb_resourcecenter_account_protocol` b ON a.`protocol_id`=b.`id`
+        where a.`id` = #{value}
     </select>
 
     <select id="getAccountListByIdList" parameterType="java.lang.Long"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
         SELECT
-        `id`,
-        `name`,
-        `account`,
-        `password`,
-        `protocol`,
-        `port`,
-        `fcu`,
-        `fcd`,
-        `lcu`,
-        `lcd`
-        FROM `cmdb_resourcecenter_account`
-        WHERE `id` IN
+        a.`id`,
+        a.`name`,
+        a.`account`,
+        a.`password`,
+        b.name as protocol,
+        a.`port`,
+        a.`fcu`,
+        a.`fcd`,
+        a. `lcu`,
+        a.`lcd`
+        FROM `cmdb_resourcecenter_account` a JOIN `cmdb_resourcecenter_account_protocol` b ON a.`protocol_id`=b.`id`
+        WHERE a.`id` IN
         <foreach collection="list" item="id" open="(" separator="," close=")">
             #{id}
         </foreach>
@@ -899,13 +899,15 @@
 
     <select id="searchAccountCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo"
             resultType="int">
-        SELECT COUNT(1) FROM `cmdb_resourcecenter_account`
+        SELECT COUNT(1) FROM `cmdb_resourcecenter_account` a JOIN `cmdb_resourcecenter_account_protocol` b ON b.`id`=a.`protocol_id`
         <where>
             <if test="keyword != null and keyword != ''">
                 and `name` like concat('%', #{keyword}, '%')
             </if>
             <if test="protocolList != null and protocolList.size() > 0">
-                and `protocol` in
+                and
+                 b.`name`
+                 in
                 <foreach collection="protocolList" item="item" open="(" separator="," close=")">
                     #{item}
                 </foreach>
@@ -917,6 +919,7 @@
         <result column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="account" property="account"/>
+        <result column="protocolId" property="protocolId"/>
         <result column="protocol" property="protocol"/>
         <result column="port" property="port"/>
         <result column="assetsCount" property="assetsCount"/>
@@ -934,19 +937,19 @@
         a.`id`,
         a.`name`,
         a.`account`,
-        a.`protocol`,
+        b.name as protocol,
         a.`port`,
         (select count(1) from `cmdb_resourcecenter_resource_account` where `account_id` = a.`id`) as assetsCount,
         a.`lcu`,
         (select `user_name` from `user` where `uuid` = a.`lcu`) as userName,
         a.`lcd`
-        FROM `cmdb_resourcecenter_account` a
+        FROM `cmdb_resourcecenter_account` a JOIN `cmdb_resourcecenter_account_protocol` b ON b.`id`=a.`protocol_id`
         <where>
             <if test="keyword != null and keyword != ''">
                 and a.`name` like concat('%', #{keyword}, '%')
             </if>
             <if test="protocolList != null and protocolList.size() > 0">
-                and a.`protocol` in
+                and  b.name in
                 <foreach collection="protocolList" item="item" open="(" separator="," close=")">
                     #{item}
                 </foreach>
@@ -1068,9 +1071,9 @@
 
     <select id="getAccountIdListByAccountAndProtocol" resultType="java.lang.Long">
         SELECT `id`
-        FROM `cmdb_resourcecenter_account`
-        where `account` = #{account}
-          and `protocol` = #{protocol}
+        FROM `cmdb_resourcecenter_account` a JOIN `cmdb_resourcecenter_account_protocol` b ON b.`id`=a.`protocol_id`
+        where a.`account` = #{account}
+          and b. name= #{name}
     </select>
 
     <select id="getNoCorrespondingAccountResourceIdListByTagListAndAccountIdAndProtocol" resultType="java.lang.Long">
@@ -1081,8 +1084,10 @@
         </foreach>
         AND NOT EXISTS (
         SELECT b.`resource_id` FROM `cmdb_resourcecenter_resource_account` b
-        JOIN `cmdb_resourcecenter_account` c on c.`id` = b.`account_id` and c.`account` = #{account} and c.`protocol` =
-        #{protocol}
+        JOIN `cmdb_resourcecenter_account` c on c.`id` = b.`account_id`
+        JOIN `cmdb_resourcecenter_account_protocol` d ON d.`id`=c.`protocol_id`
+         and c.`account` = #{account}
+        and d.name = #{name}
         WHERE b.`resource_id` = a.`resource_id`
         )
     </select>
@@ -1091,7 +1096,9 @@
             resultType="java.lang.Long">
         SELECT c.`id`
         FROM `cmdb_resourcecenter_resource_account` b
-        JOIN `cmdb_resourcecenter_account` c on c.`id` = b.`account_id` and c.`account` = #{account} and c.`protocol` = #{protocol}
+        JOIN `cmdb_resourcecenter_account` c on c.`id` = b.`account_id` and c.`account` = #{account}
+        JOIN `cmdb_resourcecenter_account_protocol`d ON d.`id`=b.`protocol_id`
+         and d.name = #{name}
         WHERE b.`resource_id` = #{resourceId}
         LIMIT 1
     </select>
@@ -1208,7 +1215,8 @@
         SELECT DISTINCT b.`resource_id`
         FROM `cmdb_resourcecenter_account` a
         JOIN `cmdb_resourcecenter_resource_account` b ON b.`account_id` = a.`id`
-        WHERE a.`protocol` IN
+        JOIN `cmdb_resourcecenter_account_protocol` c ON c.`id`=a.`protocol_id`
+        WHERE c.name IN
         <foreach collection="protocolList" item="protocol" open="(" separator="," close=")">
             #{protocol}
         </foreach>
@@ -1305,28 +1313,31 @@
 
     <select id="getResourceAccountListByResourceIdAndProtocolAndAccount"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
-        SELECT cra.`protocol`,cra.id,cra.`account` ,cra.`password`,crra.`resource_id` resourceId,cra.port
+        SELECT crap.name as protocol,cra.id,cra.`account` ,cra.`password`,crra.`resource_id` resourceId,cra.port
         FROM `cmdb_resourcecenter_resource_account` crra
         LEFT JOIN `cmdb_resourcecenter_account` cra ON crra.`account_id` = cra.`id`
+        LEFT JOIN `cmdb_resourcecenter_account_protocol` crap ON crap.`id`=crra.`protocol_id`
         WHERE crra.`resource_id` in
         <foreach collection="resourceIdList" item="resourceId" open="(" close=")" separator=",">
             #{resourceId}
         </foreach>
-        AND cra.`protocol` = #{protocol} AND cra.`account` = #{userName}
+        AND crap.name = #{protocol} AND cra.`account` = #{userName}
     </select>
 
     <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
-        update `cmdb_resourcecenter_account` set
-        `name` = #{name},
-        `account` = #{account},
-        `password` = #{password},
-        `protocol` = #{protocol},
-        <if test="port != null">
-            `port` = #{port},
+        update `cmdb_resourcecenter_account` a set
+        a.`name` = #{name},
+        a.`account` = #{account},
+        <if test="password != null">
+            a.`password` = #{password},
         </if>
-        `lcu` = #{lcu},
-        `lcd` = now(3)
-        where `id` = #{id}
+        a.protocol_id = #{protocolId},
+        <if test="port != null">
+            a.`port` = #{port},
+        </if>
+        a.`lcu` = #{lcu},
+        a.`lcd` = now(3)
+        where  a.`id` = #{id}
     </update>
 
     <update id="updateTag" parameterType="codedriver.framework.cmdb.dto.tag.TagVo">
@@ -1341,8 +1352,10 @@
         `id`,
         `name`,
         `account`,
-        `password`,
-        `protocol`,
+        <if test="password != null">
+            a.`password` ,
+        </if>
+        `protocol_id` ,
         <if test="port != null">
             `port`,
         </if>
@@ -1355,8 +1368,10 @@
         #{id},
         #{name},
         #{account},
-        #{password},
-        #{protocol},
+        <if test="password != null">
+            #{password},
+        </if>
+        #{protocolId},
         <if test="port != null">
             #{port},
         </if>
@@ -1438,4 +1453,114 @@
             #{tagId}
         </foreach>
     </delete>
+    <select id="getAccountIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo"
+            resultType="java.lang.Long">
+        SELECT DISTINCT `id`
+        FROM `cmdb_resourcecenter_account`
+        where `id` = #{id}
+    </select>
+
+    <select id="getAccountTagListByAccountIdList" parameterType="java.util.List"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountTagVo">
+        SELECT
+        `account_id` AS accountId,
+        `tag_id` AS tagId
+        FROM `cmdb_resourcecenter_account_tag`
+        WHERE `account_id` in
+        <foreach collection="list" item="accountId" open="(" separator="," close=")">
+            #{accountId}
+        </foreach>
+    </select>
+
+    <select id="checkAccountIsExists" resultType="int">
+        SELECT COUNT(1)
+        FROM `cmdb_resourcecenter_account` a
+        where a.`id` = #{value}
+    </select>
+
+    <delete id="deleteAccountTagByAccountId" parameterType="java.lang.Long">
+        DELETE
+        FROM `cmdb_resourcecenter_account_tag`
+        WHERE `account_id` = #{value}
+    </delete>
+
+    <insert id="insertIgnoreAccountTag" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountTagVo">
+        INSERT IGNORE INTO `cmdb_resourcecenter_account_tag` (`account_id`, `tag_id`) VALUES
+        <foreach collection="list" item="accountTag" separator=",">
+            (#{accountTag.accountId}, #{accountTag.tagId})
+        </foreach>
+    </insert>
+
+<select id="searchAccountProtocolListByProtocolName" resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo">
+    select
+    `id` as `id`,
+    `name` as `name`
+    from `cmdb_resourcecenter_account_protocol`
+    <where>
+        <if test="keyword != null and keyword != ''">
+            `name` like concat('%', #{keyword}, '%')
+        </if>
+    </where>
+</select>
+
+    <select id="checkAccountProtocolIsRepeats" resultType="int">
+        SELECT COUNT(1)
+        FROM `cmdb_resourcecenter_account_protocol`
+        WHERE `name` = #{name}
+        AND `id` != #{id}
+    </select>
+
+    <insert id="insertAccountProtocol" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo">
+        insert into `cmdb_resourcecenter_account_protocol` (`id`,`name`)
+        values (#{id},#{name})
+    </insert>
+
+    <update id="updateAccountProtocol" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo">
+        update `cmdb_resourcecenter_account_protocol`
+        set `name` = #{name}
+            where `id` = #{id}
+    </update>
+
+    <select id="getAccountProtocolVoByProtocolName" resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo" >
+        select `id` as `id`,
+               `name` as `name`
+        from `cmdb_resourcecenter_account_protocol`
+        where `name` = #{value}
+    </select>
+    <select id="checkAccountProtocolHasBeenReferredByProtocol" parameterType="java.lang.String" resultType="int">
+        select count(1)
+        from `cmdb_resourcecenter_account` a JOIN `cmdb_resourcecenter_account_protocol` b ON b.`id`=a.`protocol_id`
+        where b.name = #{value}
+    </select>
+
+    <select id="checkAccountProtocolIsExistsById" resultType="int">
+        select count(1)
+        from `cmdb_resourcecenter_account_protocol`
+        where `id` = #{value}
+    </select>
+
+    <delete id="deleteResourceAccountProtocolById" >
+        delete
+        from `cmdb_resourcecenter_account_protocol`
+        where `id` = #{value}
+    </delete>
+
+    <select id="getAccountProtocolVoByProtocolId" resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo">
+        select `id`, `name`
+        from `cmdb_resourcecenter_account_protocol`
+        where `id` = #{value}
+    </select>
+
+    <select id="searchTagListByIdList" parameterType="java.util.List" resultType="codedriver.framework.cmdb.dto.tag.TagVo">
+        SELECT
+        `id`,
+        `name`,
+        `description`
+        FROM `cmdb_tag`
+        WHERE `id` IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
 </mapper>
