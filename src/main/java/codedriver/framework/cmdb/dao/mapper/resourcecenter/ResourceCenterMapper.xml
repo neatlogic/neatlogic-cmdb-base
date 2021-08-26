@@ -1316,7 +1316,7 @@
         SELECT crap.name as protocol,cra.id,cra.`account` ,cra.`password`,crra.`resource_id` resourceId,cra.port
         FROM `cmdb_resourcecenter_resource_account` crra
         LEFT JOIN `cmdb_resourcecenter_account` cra ON crra.`account_id` = cra.`id`
-        LEFT JOIN `cmdb_resourcecenter_account_protocol` crap ON crap.`id`=crra.`protocol_id`
+        LEFT JOIN `cmdb_resourcecenter_account_protocol` crap ON crap.`id`=cra.`protocol_id`
         WHERE crra.`resource_id` in
         <foreach collection="resourceIdList" item="resourceId" open="(" close=")" separator=",">
             #{resourceId}
