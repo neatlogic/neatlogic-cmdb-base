@@ -1478,7 +1478,7 @@
         where a.`id` = #{value}
     </select>
 
-    <delete id="deleteResourceTagByAccountId" parameterType="java.lang.Long">
+    <delete id="deleteAccountTagByAccountId" parameterType="java.lang.Long">
         DELETE
         FROM `cmdb_resourcecenter_account_tag`
         WHERE `account_id` = #{value}
@@ -1551,7 +1551,7 @@
         where `id` = #{value}
     </select>
 
-    <select id="searchTagListByIdList" parameterType="arraylist" resultType="codedriver.framework.cmdb.dto.tag.TagVo">
+    <select id="searchTagListByIdList" parameterType="java.util.List" resultType="codedriver.framework.cmdb.dto.tag.TagVo">
         SELECT
         `id`,
         `name`,

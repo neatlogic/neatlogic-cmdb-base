@@ -190,7 +190,7 @@ public interface ResourceCenterMapper {
 
     int checkAccountIsExists(Long accountId);
 
-    int deleteResourceTagByAccountId(Long accountId);
+    int deleteAccountTagByAccountId(Long accountId);
 
     int insertIgnoreAccountTag(List<AccountTagVo> accountTagVoList);
 
