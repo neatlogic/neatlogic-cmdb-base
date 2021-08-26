@@ -42,6 +42,8 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private transient String uuid;//uuid，人行上报需要用到
     @EntityField(name = "模型id", type = ApiParamType.LONG)
     private Long ciId;
+    @EntityField(name = "根模型id，主要用在ITSM添加配置项记录根模型ID", type = ApiParamType.LONG)
+    private Long rootCiId;
     @EntityField(name = "过滤模型id", type = ApiParamType.LONG)
     private Long filterCiId;
     @EntityField(name = "模型唯一标识", type = ApiParamType.STRING)
@@ -133,6 +135,14 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     public CiEntityVo(Long ciId, Long id) {
         this.ciId = ciId;
         this.id = id;
+    }
+
+    public Long getRootCiId() {
+        return rootCiId;
+    }
+
+    public void setRootCiId(Long rootCiId) {
+        this.rootCiId = rootCiId;
     }
 
     public String getDescription() {
