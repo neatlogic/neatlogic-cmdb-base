@@ -174,165 +174,18 @@
         LIMIT 1
     </select>-->
     <sql id="resource_ipobject_from_join">
-        FROM
-        ${schemaName}
-        .
-        `resource_ipobject`
-        a
-        LEFT
-        JOIN
-        ${schemaName}
-        .
-        `resource_ipobject_bg`
-        b
-        ON
-        b
-        .
-        `resource_id`
-        =
-        a
-        .
-        `id`
-        LEFT
-        JOIN
-        ${schemaName}
-        .
-        `resource_ipobject_ip`
-        c
-        ON
-        c
-        .
-        `resource_id`
-        =
-        a
-        .
-        `id`
-        LEFT
-        JOIN
-        ${schemaName}
-        .
-        `resource_ipobject_netarea`
-        d
-        ON
-        d
-        .
-        `resource_id`
-        =
-        a
-        .
-        `id`
-        LEFT
-        JOIN
-        ${schemaName}
-        .
-        `resource_ipobject_owner`
-        e
-        ON
-        e
-        .
-        `resource_id`
-        =
-        a
-        .
-        `id`
-        LEFT
-        JOIN
-        ${schemaName}
-        .
-        `resource_ipobject_status`
-        f
-        ON
-        f
-        .
-        `resource_id`
-        =
-        a
-        .
-        `id`
-        LEFT
-        JOIN
-        ${schemaName}
-        .
-        `resource_ipobject_datacenter`
-        g
-        on
-        g
-        .
-        `resource_id`
-        =
-        a
-        .
-        `id`
-        LEFT
-        JOIN
-        ${schemaName}
-        .
-        `resource_ipobject_env`
-        h
-        on
-        h
-        .
-        `resource_id`
-        =
-        a
-        .
-        `id`
-        LEFT
-        JOIN
-        ${schemaName}
-        .
-        `resource_ipobject_appmodule`
-        i
-        on
-        i
-        .
-        `resource_id`
-        =
-        a
-        .
-        `id`
-        LEFT
-        JOIN
-        ${schemaName}
-        .
-        `resource_appsystem_appmodule`
-        j
-        on
-        j
-        .
-        `app_module_id`
-        =
-        i
-        .
-        `app_module_id`
-        LEFT
-        JOIN
-        ${schemaName}
-        .
-        `resource_appsystem`
-        l
-        on
-        l
-        .
-        `id`
-        =
-        j
-        .
-        `resource_id`
-        LEFT
-        JOIN
-        ${schemaName}
-        .
-        `resource_softwareservice`
-        m
-        ON
-        m
-        .
-        `id`
-        =
-        a
-        .
-        `id`
+    FROM ${schemaName}.`resource_ipobject` a
+	LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
+	LEFT JOIN ${schemaName}.`resource_ipobject_ip` c ON c.`resource_id` = a.`id`
+	LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id`
+	LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
+	LEFT JOIN ${schemaName}.`resource_ipobject_status` f ON f.`resource_id` = a.`id`
+	LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g ON g.`resource_id` = a.`id`
+	LEFT JOIN ${schemaName}.`resource_ipobject_env` h ON h.`resource_id` = a.`id`
+	LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i ON i.`resource_id` = a.`id`
+	LEFT JOIN ${schemaName}.`resource_appsystem_appmodule` j ON j.`app_module_id` = i.`app_module_id`
+	LEFT JOIN ${schemaName}.`resource_appsystem` l ON l.`id` = j.`resource_id`
+	LEFT JOIN ${schemaName}.`resource_softwareservice` m ON m.`id` = a.`id`
     </sql>
     <sql id="resource_ipobject_where">
         <where>
@@ -902,7 +755,7 @@
         SELECT COUNT(1) FROM `cmdb_resourcecenter_account` a JOIN `cmdb_resourcecenter_account_protocol` b ON b.`id`=a.`protocol_id`
         <where>
             <if test="keyword != null and keyword != ''">
-                and `name` like concat('%', #{keyword}, '%')
+                and a.`name` like concat('%', #{keyword}, '%')
             </if>
             <if test="protocolList != null and protocolList.size() > 0">
                 and
@@ -1353,7 +1206,7 @@
         `name`,
         `account`,
         <if test="password != null">
-            a.`password` ,
+            `password` ,
         </if>
         `protocol_id` ,
         <if test="port != null">
