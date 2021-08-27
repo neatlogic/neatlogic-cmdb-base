@@ -926,7 +926,7 @@
         SELECT `id`
         FROM `cmdb_resourcecenter_account` a JOIN `cmdb_resourcecenter_account_protocol` b ON b.`id`=a.`protocol_id`
         where a.`account` = #{account}
-          and b. `name`= #{name}
+          and b.`name`= #{name}
     </select>
 
     <select id="getNoCorrespondingAccountResourceIdListByTagListAndAccountIdAndProtocol" resultType="java.lang.Long">
