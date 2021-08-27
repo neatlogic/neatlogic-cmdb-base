@@ -6,12 +6,13 @@
 package codedriver.framework.cmdb.enums;
 
 public enum TransactionStatus {
-    COMMITED("commited", "已提交"), UNCOMMIT("uncommit", "未提交"), RECOVER("recover", "已恢复");
+    COMMITED("commited", "已提交"), UNCOMMIT("uncommit", "未提交"), RECOVER("recover", "已恢复"),
+    EXPIRED("expired", "已失效");
 
-    private String value;
-    private String text;
+    private final String value;
+    private final String text;
 
-    private TransactionStatus(String _value, String _text) {
+    TransactionStatus(String _value, String _text) {
         this.value = _value;
         this.text = _text;
     }
