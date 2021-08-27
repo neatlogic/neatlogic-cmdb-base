@@ -926,7 +926,7 @@
         SELECT `id`
         FROM `cmdb_resourcecenter_account` a JOIN `cmdb_resourcecenter_account_protocol` b ON b.`id`=a.`protocol_id`
         where a.`account` = #{account}
-          and b. name= #{name}
+          and b. `name`= #{name}
     </select>
 
     <select id="getNoCorrespondingAccountResourceIdListByTagListAndAccountIdAndProtocol" resultType="java.lang.Long">
@@ -940,7 +940,7 @@
         JOIN `cmdb_resourcecenter_account` c on c.`id` = b.`account_id`
         JOIN `cmdb_resourcecenter_account_protocol` d ON d.`id`=c.`protocol_id`
          and c.`account` = #{account}
-        and d.name = #{name}
+        and d.name = #{protocol}
         WHERE b.`resource_id` = a.`resource_id`
         )
     </select>
@@ -950,7 +950,7 @@
         SELECT c.`id`
         FROM `cmdb_resourcecenter_resource_account` b
         JOIN `cmdb_resourcecenter_account` c on c.`id` = b.`account_id` and c.`account` = #{account}
-        JOIN `cmdb_resourcecenter_account_protocol`d ON d.`id`=b.`protocol_id`
+        JOIN `cmdb_resourcecenter_account_protocol`d ON d.`id`=c.`protocol_id`
          and d.name = #{name}
         WHERE b.`resource_id` = #{resourceId}
         LIMIT 1
@@ -1325,7 +1325,7 @@
         </foreach>
     </select>
 
-    <select id="checkAccountIsExists" resultType="int">
+    <select id="checkAccountIsExists" resultType="int" parameterType="java.lang.Long">
         SELECT COUNT(1)
         FROM `cmdb_resourcecenter_account` a
         where a.`id` = #{value}
@@ -1356,7 +1356,7 @@
     </where>
 </select>
 
-    <select id="checkAccountProtocolIsRepeats" resultType="int">
+    <select id="checkAccountProtocolIsRepeats" resultType="int" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo">
         SELECT COUNT(1)
         FROM `cmdb_resourcecenter_account_protocol`
         WHERE `name` = #{name}
@@ -1374,19 +1374,13 @@
             where `id` = #{id}
     </update>
 
-    <select id="getAccountProtocolVoByProtocolName" resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo" >
-        select `id` as `id`,
-               `name` as `name`
-        from `cmdb_resourcecenter_account_protocol`
-        where `name` = #{value}
-    </select>
     <select id="checkAccountProtocolHasBeenReferredByProtocol" parameterType="java.lang.String" resultType="int">
         select count(1)
         from `cmdb_resourcecenter_account` a JOIN `cmdb_resourcecenter_account_protocol` b ON b.`id`=a.`protocol_id`
         where b.name = #{value}
     </select>
 
-    <select id="checkAccountProtocolIsExistsById" resultType="int">
+    <select id="checkAccountProtocolIsExistsById" resultType="int" parameterType="java.lang.Long">
         select count(1)
         from `cmdb_resourcecenter_account_protocol`
         where `id` = #{value}

@@ -202,8 +202,6 @@ public interface ResourceCenterMapper {
 
     int updateAccountProtocol(AccountProtocolVo searchVo);
 
-    AccountProtocolVo getAccountProtocolVoByProtocolName(String protocol);
-
     int checkAccountProtocolHasBeenReferredByProtocol(String protocol);
 
     int checkAccountProtocolIsExistsById(Long id);
