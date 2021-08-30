@@ -1410,4 +1410,27 @@
         </foreach>
     </select>
 
+    <select id="searchAccountComponent" resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountComponentVo" parameterType="string">
+        SELECT
+        a.id as id,
+        a.name as name,
+        e.ip as ip,
+        b.id as accountId,
+        b.name as accountName,
+        b.account as account,
+        d.id as protocolId,
+        d.name as protocol,
+        b.port as port
+        FROM `cmdb_resourcecenter_resource_account` c
+        JOIN codedriver_develop_data.`resource_ipobject` a ON a.id = c.resource_id
+        JOIN `cmdb_resourcecenter_account` b ON b.id = c.account_id
+        JOIN `cmdb_resourcecenter_account_protocol` d ON d.id = b.protocol_id
+        JOIN codedriver_develop_data.`resource_ipobject_ip` e ON e.resource_id = a.id
+        <where>
+            <if test="keyword != null and keyword != ''">
+                a.`name` like concat('%', #{keyword}, '%') or   e.`ip` =#{keyword}
+            </if>
+        </where>
+    </select>
+
 </mapper>

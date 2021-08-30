@@ -7,6 +7,7 @@ package codedriver.framework.cmdb.dao.mapper.resourcecenter;
 
 import codedriver.framework.cmdb.dto.resourcecenter.*;
 import codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo;
+import codedriver.framework.cmdb.dto.resourcecenter.AccountComponentVo;
 import codedriver.framework.cmdb.dto.resourcecenter.entity.AppEnviromentVo;
 import codedriver.framework.cmdb.dto.resourcecenter.entity.StatusVo;
 import codedriver.framework.cmdb.dto.tag.TagVo;
@@ -211,4 +212,6 @@ public interface ResourceCenterMapper {
     AccountProtocolVo getAccountProtocolVoByProtocolId(Long protocolId);
 
     List<TagVo> searchTagListByIdList(List<Long> tagIdList);
+
+    List<AccountComponentVo> searchAccountComponent(AccountComponentVo accountComponentVo);
 }
