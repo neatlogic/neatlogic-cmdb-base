@@ -213,5 +213,7 @@ public interface ResourceCenterMapper {
 
     List<TagVo> searchTagListByIdList(List<Long> tagIdList);
 
-    List<AccountComponentVo> searchAccountComponent(AccountComponentVo accountComponentVo);
+    List<AccountComponentVo> searchAccountComponent(@Param("accountComponentVo") AccountComponentVo accountComponentVo, @Param("schemaName") String schemaName);
+
+    Integer searchAccountComponentCount(@Param("accountComponentVo") AccountComponentVo accountComponentVo, @Param("schemaName") String schemaName);
 }

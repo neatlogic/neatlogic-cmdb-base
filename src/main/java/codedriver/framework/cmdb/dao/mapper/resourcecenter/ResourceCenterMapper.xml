@@ -1410,7 +1410,7 @@
         </foreach>
     </select>
 
-    <select id="searchAccountComponent" resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountComponentVo" parameterType="string">
+    <select id="searchAccountComponent" resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountComponentVo">
         SELECT
         a.id as id,
         a.name as name,
@@ -1422,15 +1422,30 @@
         d.name as protocol,
         b.port as port
         FROM `cmdb_resourcecenter_resource_account` c
-        JOIN codedriver_develop_data.`resource_ipobject` a ON a.id = c.resource_id
+        JOIN ${schemaName}.`resource_ipobject` a ON a.id = c.resource_id
         JOIN `cmdb_resourcecenter_account` b ON b.id = c.account_id
         JOIN `cmdb_resourcecenter_account_protocol` d ON d.id = b.protocol_id
-        JOIN codedriver_develop_data.`resource_ipobject_ip` e ON e.resource_id = a.id
+        JOIN ${schemaName}.`resource_ipobject_ip` e ON e.resource_id = a.id
         <where>
-            <if test="keyword != null and keyword != ''">
-                a.`name` like concat('%', #{keyword}, '%') or   e.`ip` =#{keyword}
+            <if test="accountComponentVo.keyword != null and accountComponentVo.keyword != ''">
+                a.`name` like concat('%', #{accountComponentVo.keyword}, '%') or e.`ip` =#{accountComponentVo.keyword}
+            </if>
+        </where>
+        LIMIT #{accountComponentVo.startNum}, #{accountComponentVo.pageSize}
+    </select>
+
+    <select id="searchAccountComponentCount" resultType="int">
+        SELECT
+        count(DISTINCT a.id)
+        FROM `cmdb_resourcecenter_resource_account` c
+        JOIN ${schemaName}.`resource_ipobject` a ON a.id = c.resource_id
+        JOIN `cmdb_resourcecenter_account` b ON b.id = c.account_id
+        JOIN `cmdb_resourcecenter_account_protocol` d ON d.id = b.protocol_id
+        JOIN ${schemaName}.`resource_ipobject_ip` e ON e.resource_id = a.id
+        <where>
+            <if test="accountComponentVo.keyword != null and accountComponentVo.keyword != ''">
+                a.`name` like concat('%', #{accountComponentVo.keyword}, '%') or e.`ip` =#{accountComponentVo.keyword}
             </if>
         </where>
     </select>
-
 </mapper>
