@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
 
 public class AttrEntityDuplicateException extends ApiRuntimeException {
     public AttrEntityDuplicateException(String label, JSONArray valueList) {
-        super("属性“" + label + "”值等于“" + valueList.stream().map(Object::toString).collect(Collectors.joining(",")) + "”的配置项已存在");
+        super("属性“" + label + "”值等于“" + valueList.stream().map(Object::toString).collect(Collectors.joining("”,“")) + "”的配置项已存在");
     }
 
     public AttrEntityDuplicateException(String label, List<String> valueList) {
-        super("属性“" + label + "”值等于“" + String.join(",", valueList) + "”的配置项已存在");
+        super("属性“" + label + "”值等于“" + String.join("”,“", valueList) + "”的配置项已存在");
     }
 
 }

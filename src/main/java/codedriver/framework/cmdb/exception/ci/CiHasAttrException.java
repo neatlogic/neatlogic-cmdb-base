@@ -9,6 +9,6 @@ import codedriver.framework.exception.core.ApiRuntimeException;
 
 public class CiHasAttrException extends ApiRuntimeException {
     public CiHasAttrException(String msg) {
-        super("当前模型已经被模型：" + msg + " 的属性引用，请先删除引用关系");
+        super("当前模型已经被模型“" + msg + "”的属性引用，请先删除引用关系");
     }
 }
