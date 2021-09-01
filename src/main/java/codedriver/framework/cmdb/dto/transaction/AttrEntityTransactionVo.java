@@ -126,8 +126,8 @@ public class AttrEntityTransactionVo implements Serializable {
                     } else {
                         return false;
                     }
-                } else return CollectionUtils.isEmpty(this.getValueList())
-                        && CollectionUtils.isEmpty(attr.getValueList());
+                } else return CollectionUtils.isEmpty(this.getValueList(true))
+                        && CollectionUtils.isEmpty(attr.getValueList(true));
             } else {
                 return false;
             }
@@ -215,6 +215,20 @@ public class AttrEntityTransactionVo implements Serializable {
 
     public JSONArray getValueList() {
         return valueList;
+    }
+
+    public JSONArray getValueList(boolean clearBlank) {
+        if (CollectionUtils.isNotEmpty(valueList)) {
+            JSONArray newValueList = new JSONArray();
+            for (int i = 0; i < valueList.size(); i++) {
+                if (StringUtils.isNotBlank(valueList.getString(i))) {
+                    newValueList.add(valueList.get(i));
+                }
+            }
+            return newValueList;
+        }
+        return valueList;
+
     }
 
     public String getValue() {
