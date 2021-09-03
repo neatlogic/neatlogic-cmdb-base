@@ -1,58 +1,98 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+  ~ 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
+  -->
+
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="codedriver.framework.cmdb.dao.mapper.validator.ValidatorMapper">
-	<select id="getValidatorById" parameterType="java.lang.Long" resultType="codedriver.framework.cmdb.dto.validator.ValidatorVo">
-		SELECT
-		`id`,
-		`name`,
-		`handler`,
-		`config`,
-		`description`,
-		`error_template` AS errorTemplate,
-		`is_active` AS isActive
-		FROM
-		`cmdb_validator`
-		WHERE
-		id = #{value}
-	</select>
 
-	<sql id="searchValidatorCondition">
-		<where>
-			<if test="keyword != null and keyword != ''">
-				AND name LIKE CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test="isActive != null ">
-				AND is_active = #{isActive}
-			</if>
-			<if test="handler != null and handler != '' ">
-				AND handler = #{handler}
-			</if>
-		</where>
-	</sql>
+    <select id="getValidatorById" parameterType="java.lang.Long"
+            resultType="codedriver.framework.cmdb.dto.validator.ValidatorVo">
+        SELECT `id`,
+               `name`,
+               `handler`,
+               `config`,
+               `description`,
+               `error_template` AS errorTemplate,
+               `is_active`      AS isActive
+        FROM `cmdb_validator`
+        WHERE id = #{value}
+    </select>
 
-	<select id="searchValidator" parameterType="codedriver.framework.cmdb.dto.validator.ValidatorVo" resultType="codedriver.framework.cmdb.dto.validator.ValidatorVo">
-		SELECT
-		`id`,
-		`name`,
-		`handler`,
-		`config`,
-		`description`,
-		`error_template` AS errorTemplate,
-		`is_active` AS isActive
-		FROM
-		`cmdb_validator`
-		<include refid="searchValidatorCondition"></include>
-		<if test="needPage == true">
-			LIMIT #{startNum}, #{pageSize}
-		</if>
-	</select>
+    <sql id="searchValidatorCondition">
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND name LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="isActive != null ">
+                AND is_active = #{isActive}
+            </if>
+            <if test="handler != null and handler != '' ">
+                AND handler = #{handler}
+            </if>
+        </where>
+    </sql>
 
-	<select id="searchValidatorCount" parameterType="codedriver.framework.cmdb.dto.validator.ValidatorVo" resultType="int">
-		SELECT
-		COUNT(1)
-		FROM
-		`cmdb_validator`
-		<include refid="searchValidatorCondition"></include>
-	</select>
+    <select id="searchValidator" parameterType="codedriver.framework.cmdb.dto.validator.ValidatorVo"
+            resultType="codedriver.framework.cmdb.dto.validator.ValidatorVo">
+        SELECT
+        `id`,
+        `name`,
+        `handler`,
+        `config`,
+        `description`,
+        `error_template` AS errorTemplate,
+        `is_active` AS isActive,
+        (select count(1) from cmdb_attr where validator_id = a.id) as invokeCount
+        FROM
+        `cmdb_validator` a
+        <include refid="searchValidatorCondition"></include>
+        <if test="needPage == true">
+            LIMIT #{startNum}, #{pageSize}
+        </if>
+    </select>
+
+    <select id="searchValidatorCount" parameterType="codedriver.framework.cmdb.dto.validator.ValidatorVo"
+            resultType="int">
+        SELECT
+        COUNT(1)
+        FROM
+        `cmdb_validator`
+        <include refid="searchValidatorCondition"></include>
+    </select>
+
+    <update id="updateValidator" parameterType="codedriver.framework.cmdb.dto.validator.ValidatorVo">
+        update cmdb_validator
+        set name           = #{name},
+            config         = #{configStr},
+            description    = #{description},
+            error_template = #{errorTemplate},
+            is_active      = #{isActive}
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insertValidator" parameterType="codedriver.framework.cmdb.dto.validator.ValidatorVo">
+        insert into cmdb_validator (id,
+                                    name,
+                                    handler,
+                                    config,
+                                    description,
+                                    error_template,
+                                    is_active)
+        values (#{id},
+                #{name},
+                #{handler},
+                #{configStr},
+                #{description},
+                #{errorTemplate},
+                #{isActive})
+    </insert>
+
+    <delete id="deleteValidatorById" parameterType="java.lang.Long">
+        DELETE
+        FROM cmdb_validator
+        WHERE id = #{value}
+    </delete>
 
 </mapper>

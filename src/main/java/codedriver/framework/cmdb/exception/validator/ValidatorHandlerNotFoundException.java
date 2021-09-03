@@ -7,8 +7,8 @@ package codedriver.framework.cmdb.exception.validator;
 
 import codedriver.framework.exception.core.ApiRuntimeException;
 
-public class ValidatorNotFoundException extends ApiRuntimeException {
-    public ValidatorNotFoundException(Long validatorId) {
-        super("验证规则“" + validatorId + "”不存在");
+public class ValidatorHandlerNotFoundException extends ApiRuntimeException {
+    public ValidatorHandlerNotFoundException(String name) {
+        super("验证组件“" + name + "”不存在");
     }
 }

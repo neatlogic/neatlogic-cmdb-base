@@ -11,6 +11,7 @@ import codedriver.framework.cmdb.attrvaluehandler.core.IAttrValueHandler;
 import codedriver.framework.cmdb.enums.InputType;
 import codedriver.framework.cmdb.enums.SearchExpression;
 import codedriver.framework.common.constvalue.ApiParamType;
+import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.common.dto.ValueTextVo;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
@@ -20,12 +21,10 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.nacos.client.naming.utils.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AttrVo implements Serializable {
-    private static final long serialVersionUID = 8894392657221743870L;
+public class AttrVo extends BasePageVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "模型id，模型id为0代表基础属性", type = ApiParamType.LONG)

@@ -5,10 +5,13 @@
 
 package codedriver.framework.cmdb.exception.validator;
 
+import codedriver.framework.cmdb.dto.ci.AttrVo;
 import codedriver.framework.exception.core.ApiRuntimeException;
 
-public class ValidatorNotFoundException extends ApiRuntimeException {
-    public ValidatorNotFoundException(Long validatorId) {
-        super("验证规则“" + validatorId + "”不存在");
+import java.util.List;
+
+public class ValidatorIsInUsedException extends ApiRuntimeException {
+    public ValidatorIsInUsedException(List<AttrVo> attrList) {
+        super("当前校验规则已被" + attrList.size() + "个属性使用，请先删除");
     }
 }

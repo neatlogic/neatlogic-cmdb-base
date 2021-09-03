@@ -1,3 +1,8 @@
+/*
+ * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
+ */
+
 package codedriver.framework.cmdb.validator.core;
 
 import codedriver.framework.cmdb.exception.validator.AttrInValidatedException;
@@ -5,49 +10,35 @@ import com.alibaba.fastjson.JSONArray;
 import org.springframework.util.ClassUtils;
 
 /**
- * @Author:chenqiwei
- * @Time:Aug 20, 2020
- * @ClassName: IValidator
- * @Description: 属性验证接口
+ * 属性验证接口
  */
 public interface IValidator {
     /**
-     * 
-     * @Author: chenqiwei
-     * @Time:Aug 20, 2020
-     * @Description: 验证入口
-     * @param @param
-     *            value
-     * @param @param
-     *            validatorId
-     * @param @return
-     * @param @throws
-     *            AttrInValidatedException
-     * @return boolean
+     * 验证入口
+     *
+     * @param attrLabel   属性名称
+     * @param valueList   属性值
+     * @param validatorId 验证规则id
+     * @return 是否通过验证
+     * @throws AttrInValidatedException 验证异常
      */
-    public boolean valid(String attrLabel, JSONArray valueList, Long validatorId) throws AttrInValidatedException;
+    boolean valid(String attrLabel, JSONArray valueList, Long validatorId) throws AttrInValidatedException;
 
-    public default String getClassName() {
+    default String getClassName() {
         return ClassUtils.getUserClass(this.getClass()).getName();
     }
 
     /**
-     * 
-     * @Author: chenqiwei
-     * @Time:Aug 20, 2020
-     * @Description: 获取组件中文名称
-     * @param @return
-     * @return String
+     * 获取组件中文名称
+     *
+     * @return 组件名称
      */
-    public String getName();
+    String getName();
 
     /**
-     * 
-     * @Author: chenqiwei
-     * @Time:Aug 20, 2020
-     * @Description: 获取额外配置表单项
-     * @param @return
-     * @return String
+     * 获取组件配置表单
+     *
+     * @return 表单
      */
-    public JSONArray getForm();
+    JSONArray getForm();
 }

@@ -5,9 +5,12 @@
 
 package codedriver.framework.cmdb.dto.validator;
 
+import codedriver.framework.cmdb.validator.core.IValidator;
+import codedriver.framework.cmdb.validator.core.ValidatorFactory;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
+import codedriver.framework.util.SnowflakeUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.StringUtils;
@@ -31,17 +34,30 @@ public class ValidatorVo extends BasePageVo implements Serializable {
     private String errorTemplate;
     @EntityField(name = "是否激活", type = ApiParamType.INTEGER)
     private Integer isActive;
+    @EntityField(name = "使用次数", type = ApiParamType.INTEGER)
+    private int invokeCount;
     @JSONField(serialize = false)
     private transient String configStr;
     @JSONField(serialize = false)
     private transient String keyword;
 
     public Long getId() {
+        if (id == null) {
+            id = SnowflakeUtil.uniqueLong();
+        }
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getInvokeCount() {
+        return invokeCount;
+    }
+
+    public void setInvokeCount(int invokeCount) {
+        this.invokeCount = invokeCount;
     }
 
     public String getName() {
@@ -61,12 +77,15 @@ public class ValidatorVo extends BasePageVo implements Serializable {
     }
 
     public String getHandlerName() {
+        if (StringUtils.isBlank(handlerName) && StringUtils.isNotBlank(handler)) {
+            IValidator validator = ValidatorFactory.getValidator(handler);
+            if (validator != null) {
+                this.handlerName = validator.getName();
+            }
+        }
         return handlerName;
     }
 
-    public void setHandlerName(String handlerName) {
-        this.handlerName = handlerName;
-    }
 
     public JSONObject getConfig() {
         return config;

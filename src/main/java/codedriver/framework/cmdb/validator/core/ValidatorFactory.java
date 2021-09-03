@@ -10,16 +10,23 @@ import codedriver.framework.bootstrap.CodedriverWebApplicationContext;
 import codedriver.framework.common.RootComponent;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RootComponent
 public class ValidatorFactory extends ModuleInitializedListenerBase {
 
     private static final Map<String, IValidator> componentMap = new HashMap<>();
+    private static final List<IValidator> componentList = new ArrayList<>();
 
     public static IValidator getValidator(String handler) {
         return componentMap.get(handler);
+    }
+
+    public static List<IValidator> getValidatorHandlerList() {
+        return componentList;
     }
 
 
@@ -30,6 +37,7 @@ public class ValidatorFactory extends ModuleInitializedListenerBase {
             IValidator validator = entry.getValue();
             if (StringUtils.isNotBlank(validator.getClassName())) {
                 componentMap.put(validator.getClassName(), validator);
+                componentList.add(validator);
             }
         }
     }
