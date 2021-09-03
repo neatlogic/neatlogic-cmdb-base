@@ -6,7 +6,7 @@
 package codedriver.framework.cmdb.enums;
 
 public enum GroupType {
-    MAINTAIN("maintain", "维护群组"), READONLY("readonly", "消费群组");
+    MAINTAIN("maintain", "维护团体"), READONLY("readonly", "消费团体");
 
     private final String value;
     private final String text;
