@@ -8,13 +8,18 @@ package codedriver.framework.cmdb.dto.ci;
 import codedriver.framework.asynchronization.threadlocal.TenantContext;
 import codedriver.framework.cmdb.enums.InputType;
 import codedriver.framework.cmdb.enums.RelRuleType;
+import codedriver.framework.cmdb.enums.SearchExpression;
 import codedriver.framework.common.constvalue.ApiParamType;
+import codedriver.framework.common.dto.ValueTextVo;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
 import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.nacos.client.naming.utils.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RelVo implements Serializable {
     private static final long serialVersionUID = 4262674515934863987L;
@@ -92,6 +97,8 @@ public class RelVo implements Serializable {
     private Integer isExtended;
     @EntityField(name = "目标端是否虚拟模型", type = ApiParamType.INTEGER)
     private Integer toIsVirtual;
+    @EntityField(name = "支持的搜索表达式列表")
+    private List<ValueTextVo> expressionList;
 
     public Long getId() {
         if (id == null) {
@@ -126,6 +133,18 @@ public class RelVo implements Serializable {
 
     public void setFromName(String fromName) {
         this.fromName = fromName;
+    }
+
+    public List<ValueTextVo> getExpressionList() {
+        if (CollectionUtils.isEmpty(this.expressionList)) {
+            expressionList = new ArrayList<>();
+            for (SearchExpression expression : SearchExpression.values()) {
+                if (expression != SearchExpression.EQ && expression != SearchExpression.NE) {//排除掉等于和不等于两种表达式
+                    expressionList.add(new ValueTextVo(expression.getExpression(), expression.getText()));
+                }
+            }
+        }
+        return expressionList;
     }
 
     public String getFromLabel() {
