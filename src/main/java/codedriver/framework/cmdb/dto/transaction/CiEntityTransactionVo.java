@@ -30,7 +30,7 @@ import java.util.List;
 public class CiEntityTransactionVo implements Serializable {
     static Logger logger = LoggerFactory.getLogger(CiEntityTransactionVo.class);
     @JSONField(serialize = false)
-    private transient String ciEntityUuid;// 批量添加时的临时ID，由前端生成
+    private String ciEntityUuid;// 批量添加时的临时ID，由前端生成
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "模型id", type = ApiParamType.LONG)
@@ -56,17 +56,17 @@ public class CiEntityTransactionVo implements Serializable {
     @EntityField(name = "更新关系数量", type = ApiParamType.INTEGER)
     private int updateRelCount;
     @JSONField(serialize = false)
-    private transient List<AttrEntityTransactionVo> attrEntityTransactionList;
+    private List<AttrEntityTransactionVo> attrEntityTransactionList;
     @JSONField(serialize = false)
-    private transient List<RelEntityTransactionVo> relEntityTransactionList;
+    private List<RelEntityTransactionVo> relEntityTransactionList;
     @JSONField(serialize = false)
-    private transient String snapshot;// 修改前的快照
+    private String snapshot;// 修改前的快照
     @JSONField(serialize = false)
-    private transient String content;//修改内容
+    private String content;//修改内容
     @JSONField(serialize = false)
-    private transient CiEntityVo oldCiEntityVo;//就配置项信息
+    private CiEntityVo oldCiEntityVo;//就配置项信息
     @JSONField(serialize = false)
-    private transient boolean allowCommit;//是否允许提交
+    private boolean allowCommit;//是否允许提交
     @EntityField(name = "修改备注", type = ApiParamType.STRING)
     private String description;
 

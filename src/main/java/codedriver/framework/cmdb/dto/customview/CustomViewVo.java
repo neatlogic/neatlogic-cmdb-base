@@ -26,13 +26,13 @@ public class CustomViewVo extends BasePageVo implements Serializable {
     @EntityField(name = "名称", type = ApiParamType.STRING)
     private String name;
     @JSONField(serialize = false)
-    private transient String keyword;
+    private String keyword;
     @EntityField(name = "是否私有视图", type = ApiParamType.INTEGER)
     private Integer isPrivate;
     @EntityField(name = "是否激活", type = ApiParamType.INTEGER)
     private Integer isActive;
     @JSONField(serialize = false)
-    private transient boolean isAdmin;//是否管理员 如果是true，则同时搜索公共视图和个人视图
+    private boolean isAdmin;//是否管理员 如果是true，则同时搜索公共视图和个人视图
     @EntityField(name = "创建人", type = ApiParamType.STRING)
     private String fcu;
     @EntityField(name = "修改人", type = ApiParamType.STRING)
@@ -48,19 +48,19 @@ public class CustomViewVo extends BasePageVo implements Serializable {
     @EntityField(name = "关系列表", type = ApiParamType.JSONARRAY)
     private List<CustomViewLinkVo> linkList;
     @JSONField(serialize = false)
-    private transient String configStr;
+    private String configStr;
     @EntityField(name = "授权列表", type = ApiParamType.JSONARRAY)
     private List<CustomViewAuthVo> authList;
     @EntityField(name = "标签列表", type = ApiParamType.JSONARRAY)
     private List<TagVo> tagList;
     @JSONField(serialize = false)
-    private transient Long tagId;
+    private Long tagId;
     @EntityField(name = "描述", type = ApiParamType.STRING)
     private String description;
     @EntityField(name = "图标", type = ApiParamType.STRING)
     private String icon;
     @JSONField(serialize = false)
-    private transient CustomViewCiVo startCustomViewCi;//起始模型
+    private CustomViewCiVo startCustomViewCi;//起始模型
     @EntityField(name = "起始模型uuid", type = ApiParamType.STRING)
     private String startCustomViewCiUuid;
 

@@ -26,7 +26,7 @@ public class ResourceEntityAttrVo {
     @EntityField(name = "模型名称", type = ApiParamType.STRING)
     private String ciName;
     @JSONField(serialize = false)
-    private transient String tableAlias;//表别名
+    private String tableAlias;//表别名
     @EntityField(name = "关联类型，attr或rel，不同类型join的表不一样", type = ApiParamType.ENUM, member = JoinType.class)
     private JoinType joinType;
 

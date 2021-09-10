@@ -22,9 +22,9 @@ public class TransactionGroupVo implements Serializable {
     @EntityField(name = "事务id", type = ApiParamType.JSONARRAY)
     private List<Long> transactionIdList;
     @JSONField(serialize = false)
-    private transient List<TransactionVo> transactionList;
+    private List<TransactionVo> transactionList;
     @JSONField(serialize = false)
-    private final transient Set<Long> excludeCiEntity = new HashSet<>();//记录本次事务组中需要排除的ciEntityId，排除掉的ciEntityId在补充关系事务时不会处理
+    private final Set<Long> excludeCiEntity = new HashSet<>();//记录本次事务组中需要排除的ciEntityId，排除掉的ciEntityId在补充关系事务时不会处理
 
     public void addExclude(Long ciEntityId) {
         excludeCiEntity.add(ciEntityId);

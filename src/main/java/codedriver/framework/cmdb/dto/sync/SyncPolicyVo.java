@@ -36,11 +36,11 @@ public class SyncPolicyVo {
     @EntityField(name = "是否激活", type = ApiParamType.INTEGER)
     private Integer isActive;
     @JSONField(serialize = false)
-    private transient String conditionStr;
+    private String conditionStr;
     @EntityField(name = "筛选条件", type = ApiParamType.JSONARRAY)
     private List<SyncConditionVo> conditionList;
     @JSONField(serialize = false)
-    private transient CiVo ciVo;
+    private CiVo ciVo;
     @EntityField(name = "定时策略", type = ApiParamType.JSONARRAY)
     private List<SyncScheduleVo> cronList;
 

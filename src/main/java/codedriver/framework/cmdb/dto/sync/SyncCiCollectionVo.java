@@ -47,11 +47,11 @@ public class SyncCiCollectionVo extends BasePageVo {
     @EntityField(name = "是否自动提交", type = ApiParamType.INTEGER)
     private Integer isAutoCommit;
     @JSONField(serialize = false)
-    private transient TransactionGroupVo transactionGroup;
+    private TransactionGroupVo transactionGroup;
     @JSONField(serialize = false)
-    private transient SyncAuditVo syncAudit;
+    private SyncAuditVo syncAudit;
     @JSONField(serialize = false)
-    private transient SyncPolicyVo syncPolicy;
+    private SyncPolicyVo syncPolicy;
 
     public Long getId() {
         if (id == null) {

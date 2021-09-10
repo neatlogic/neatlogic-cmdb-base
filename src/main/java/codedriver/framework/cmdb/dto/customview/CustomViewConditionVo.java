@@ -22,19 +22,21 @@ import java.util.List;
 public class CustomViewConditionVo extends BasePageVo implements Serializable {
     @EntityField(name = "视图id", type = ApiParamType.LONG)
     private Long customViewId;
-    private transient String keyword;
+    @JSONField(serialize = false)
+    private String keyword;
     @JSONField(serialize = false)
     //属性过滤列表，搜索时用
-    private transient List<CustomViewConditionFilterVo> attrFilterList;
+    private List<CustomViewConditionFilterVo> attrFilterList;
     @EntityField(name = "搜索模式，normal或group", type = ApiParamType.ENUM, member = SearchMode.class)
     private String searchMode = SearchMode.NORMAL.getValue();
-    private transient String viewName;
+    @JSONField(serialize = false)
+    private String viewName;
     private List<CustomViewConditionFieldVo> fieldList;
     @EntityField(name = "分组属性uuid", type = ApiParamType.STRING)
     private String groupBy;
     @JSONField(serialize = false)
     //值过滤列表，分组显示时用
-    private transient List<CustomViewValueFilterVo> valueFilterList;
+    private List<CustomViewValueFilterVo> valueFilterList;
     private Long ciEntityId;//查询单个配置项档案时用
 
     public Long getCiEntityId() {

@@ -37,9 +37,9 @@ public class ValidatorVo extends BasePageVo implements Serializable {
     @EntityField(name = "使用次数", type = ApiParamType.INTEGER)
     private int invokeCount;
     @JSONField(serialize = false)
-    private transient String configStr;
+    private String configStr;
     @JSONField(serialize = false)
-    private transient String keyword;
+    private String keyword;
 
     public Long getId() {
         if (id == null) {

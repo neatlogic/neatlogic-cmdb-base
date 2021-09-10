@@ -15,7 +15,7 @@ import java.util.List;
 
 public class CiTypeVo implements Serializable {
     @JSONField(serialize = false)
-    private transient String keyword;
+    private String keyword;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "名称", type = ApiParamType.STRING)

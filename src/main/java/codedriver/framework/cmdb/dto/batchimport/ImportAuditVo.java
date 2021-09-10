@@ -55,7 +55,7 @@ public class ImportAuditVo extends BasePageVo implements Serializable {
     private Integer totalCount;
     private Integer serverId;
     @JSONField(serialize = false)
-    private transient List<Long> idList;
+    private List<Long> idList;
 
 
     public Long getId() {

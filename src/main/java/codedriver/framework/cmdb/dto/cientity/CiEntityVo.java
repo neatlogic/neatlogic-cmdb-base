@@ -33,21 +33,21 @@ import java.util.Map;
 
 public class CiEntityVo extends BasePageVo implements Serializable {
     @JSONField(serialize = false)
-    private transient String keyword;
+    private String keyword;
     @JSONField(serialize = false) // 根据空格拆开关键字
-    private transient List<String> keywordList;
+    private List<String> keywordList;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @JSONField(serialize = false)
-    private transient String uuid;//uuid，人行上报需要用到
+    private String uuid;//uuid，人行上报需要用到
     @EntityField(name = "模型id", type = ApiParamType.LONG)
     private Long ciId;
     @EntityField(name = "根模型id，主要用在ITSM添加配置项记录根模型ID", type = ApiParamType.LONG)
     private Long rootCiId;
     @JSONField(serialize = false)
-    private transient Long filterCiEntityId;//查询时条件，和idList区别是idList不能允许用户修改，用于框定查询范围，filterCiEntityId允许用户修改
+    private Long filterCiEntityId;//查询时条件，和idList区别是idList不能允许用户修改，用于框定查询范围，filterCiEntityId允许用户修改
     @JSONField(serialize = false)
-    private transient Long filterCiId;//查询时条件
+    private Long filterCiId;//查询时条件
     @EntityField(name = "模型唯一标识", type = ApiParamType.STRING)
     private String ciName;
     @EntityField(name = "模型名称", type = ApiParamType.STRING)
@@ -75,48 +75,48 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     @EntityField(name = "操作类型，表单控件中使用", type = ApiParamType.STRING)
     private String actionType;
     @JSONField(serialize = false)
-    private transient Long ciEntityIdStart;
+    private Long ciEntityIdStart;
     // @EntityField(name = "属性列表", type = ApiParamType.JSONARRAY)
     @JSONField(serialize = false)
-    private transient List<AttrEntityVo> attrEntityList;
+    private List<AttrEntityVo> attrEntityList;
     @EntityField(name = "属性对象，以'attr_'+attrId为key", type = ApiParamType.JSONOBJECT)
     private JSONObject attrEntityData = new JSONObject();
     // @EntityField(name = "关系列表", type = ApiParamType.JSONARRAY)
     @JSONField(serialize = false)
-    private transient List<RelEntityVo> relEntityList;
+    private List<RelEntityVo> relEntityList;
     @EntityField(name = "关系对象，以'relfrom_'+relId或'relto_'+relId为key", type = ApiParamType.JSONOBJECT)
     private JSONObject relEntityData = new JSONObject();
     // @EntityField(name = "属性过滤器列表", type = ApiParamType.JSONARRAY)
     @JSONField(serialize = false)
-    private transient List<AttrFilterVo> attrFilterList;
+    private List<AttrFilterVo> attrFilterList;
     @JSONField(serialize = false)
-    private transient List<RelFilterVo> relFilterList;
+    private List<RelFilterVo> relFilterList;
     @JSONField(serialize = false)
-    private transient List<RelCiEntityFilterVo> relCiEntityFilterList;
+    private List<RelCiEntityFilterVo> relCiEntityFilterList;
     @JSONField(serialize = false)//当前配置项所涉及的所有模型，包括自己
-    private transient List<CiVo> ciList;
+    private List<CiVo> ciList;
     @JSONField(serialize = false)//当前配置项包含的所有属性
-    private transient List<AttrVo> attrList;
+    private List<AttrVo> attrList;
     @JSONField(serialize = false)//当前配置项包含的所有关系
-    private transient List<RelVo> relList;
+    private List<RelVo> relList;
     @JSONField(serialize = false)
-    private transient String inputType;// 更新时设置输入方式
+    private String inputType;// 更新时设置输入方式
     @JSONField(serialize = false)
-    private transient String editMode = EditModeType.GLOBAL.getValue();
+    private String editMode = EditModeType.GLOBAL.getValue();
     @JSONField(serialize = false)
-    private transient Long transactionId;
+    private Long transactionId;
     @JSONField(serialize = false) // 需要返回的属性列表，为空代表返回所有属性
-    private transient List<Long> attrIdList;
+    private List<Long> attrIdList;
     @JSONField(serialize = false) // 需要返回的关系列表，为空代表返回所有关系
-    private transient List<Long> relIdList;
+    private List<Long> relIdList;
     @JSONField(serialize = false)
-    private transient List<Long> groupIdList;// 查询时使用的群组id
+    private List<Long> groupIdList;// 查询时使用的群组id
     @JSONField(serialize = false)
-    private transient List<Long> idList;// 需要查询的id列表
+    private List<Long> idList;// 需要查询的id列表
     @EntityField(name = "当前用户权限情况", type = ApiParamType.JSONOBJECT)
     private Map<String, Boolean> authData;
     @JSONField(serialize = false)//动态属性
-    private transient Map<String, Object> attrEntityMap;
+    private Map<String, Object> attrEntityMap;
     @EntityField(name = "是否抽象模型", type = ApiParamType.INTEGER)
     private int isVirtual = 0;
     @EntityField(name = "最大展示关系数量", type = ApiParamType.INTEGER)
@@ -124,7 +124,7 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     @EntityField(name = "修改备注", type = ApiParamType.STRING)
     private String description;
     @JSONField(serialize = false)
-    private transient boolean smartSearch = false;//启用智能搜索，会根据条件自动拼接关系表，在没有任何条件时能提高检索性能
+    private boolean smartSearch = false;//启用智能搜索，会根据条件自动拼接关系表，在没有任何条件时能提高检索性能
 
     public CiEntityVo() {
 
