@@ -37,7 +37,7 @@ public class CustomViewCiVo implements Serializable {
     @EntityField(name = "关系属性列表", type = ApiParamType.JSONARRAY)
     private List<CustomViewRelVo> relList;
     @JSONField(serialize = false)
-    private transient CiVo ciVo;
+    private CiVo ciVo;
     @EntityField(name = "配置项列表", type = ApiParamType.JSONARRAY)
     private List<JSONObject> ciEntityList;
     @EntityField(name = "别名", type = ApiParamType.STRING)

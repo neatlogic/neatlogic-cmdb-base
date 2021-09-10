@@ -25,7 +25,7 @@ public class TransactionVo extends BasePageVo {
     @EntityField(name = "事务分组id", type = ApiParamType.LONG)
     private Long transactionGroupId;
     @JSONField(serialize = false)
-    private transient Long transactionId;//用于检索，避免自动生成id导致条件错误
+    private Long transactionId;//用于检索，避免自动生成id导致条件错误
     @EntityField(name = "模型id", type = ApiParamType.LONG)
     private Long ciId;
     @EntityField(name = "配置项id", type = ApiParamType.LONG)
@@ -35,7 +35,7 @@ public class TransactionVo extends BasePageVo {
     @EntityField(name = "状态", type = ApiParamType.STRING, member = TransactionStatus.class)
     private String status;
     @JSONField(serialize = false)
-    private transient List<String> statusList;//搜索条件状态列表
+    private List<String> statusList;//搜索条件状态列表
     @EntityField(name = "状态文本", type = ApiParamType.STRING)
     private String statusText;
     @EntityField(name = "输入来源", type = ApiParamType.STRING, member = InputFrom.class)
@@ -61,7 +61,7 @@ public class TransactionVo extends BasePageVo {
     @EntityField(name = "提交用户名", type = ApiParamType.STRING)
     private String recoverUserName;
     @JSONField(serialize = false)
-    private transient Date expireTime;
+    private Date expireTime;
     @EntityField(name = "创建时间", type = ApiParamType.LONG)
     private Date createTime;
     @EntityField(name = "提交时间", type = ApiParamType.LONG)
@@ -77,9 +77,9 @@ public class TransactionVo extends BasePageVo {
     @JSONField(serialize = false)
     private Integer hasError;//是否有异常
     @JSONField(serialize = false)
-    private transient List<String> createTimeRange;
+    private List<String> createTimeRange;
     @JSONField(serialize = false)
-    private transient List<String> commitTimeRange;
+    private List<String> commitTimeRange;
     @EntityField(name = "属于统一事务组的事务数量", type = ApiParamType.INTEGER)
     private int brotherTransactionCount;
     @EntityField(name = "说明", type = ApiParamType.STRING)

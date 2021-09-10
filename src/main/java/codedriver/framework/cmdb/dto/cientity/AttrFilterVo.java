@@ -22,7 +22,8 @@ public class AttrFilterVo implements Serializable {
     private String expression;// 用户sql查询的表达式
     private List<String> valueList;
     private List<String> valueHashList;
-    private transient Boolean needTargetCi;
+    @JSONField(serialize = false)
+    private Boolean needTargetCi;
 
     public List<String> getValueHashList() {
         if (CollectionUtils.isNotEmpty(getValueList())) {

@@ -35,7 +35,7 @@ public class CiViewVo implements Serializable {
     @EntityField(name = "显示方式名称", type = ApiParamType.STRING)
     private String showTypeText;
     @JSONField(serialize = false)
-    private transient List<String> showTypeList;
+    private List<String> showTypeList;
     @JSONField(serialize = false)
     private Integer isExtended;//是否继承
     @JSONField(serialize = false)

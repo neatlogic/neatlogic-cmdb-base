@@ -23,7 +23,7 @@ public class CustomViewRelVo implements Serializable {
     @EntityField(name = "属性id", type = ApiParamType.LONG)
     private Long relId;
     @JSONField(serialize = false)
-    private transient RelVo relVo;
+    private RelVo relVo;
 
     public CustomViewRelVo() {
 

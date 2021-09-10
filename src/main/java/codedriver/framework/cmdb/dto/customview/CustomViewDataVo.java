@@ -21,7 +21,7 @@ public class CustomViewDataVo implements Serializable {
     @EntityField(name = "属性列表", type = ApiParamType.JSONARRAY)
     private List<CustomViewAttrVo> attrList;
     @JSONField(serialize = false)
-    private transient List<Map<String, Object>> dataList;
+    private List<Map<String, Object>> dataList;
     @EntityField(name = "值列表", type = ApiParamType.JSONARRAY)
     private List<Map<String, Object>> valueList;
 

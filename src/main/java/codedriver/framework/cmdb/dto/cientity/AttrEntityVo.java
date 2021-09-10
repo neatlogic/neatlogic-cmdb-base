@@ -40,15 +40,15 @@ public class AttrEntityVo implements Serializable {
     @EntityField(name = "属性配置", type = ApiParamType.JSONOBJECT)
     private JSONObject attrConfig;
     @JSONField(serialize = false)
-    private transient AttrVo attrVo;//属性定义
+    private AttrVo attrVo;//属性定义
     @EntityField(name = "值数据列表", type = ApiParamType.JSONARRAY)
     private JSONArray valueList;
     @EntityField(name = "显示值列表", type = ApiParamType.JSONARRAY)
     private JSONArray actualValueList;
     @JSONField(serialize = false)
-    private transient String valueStr;//值字符串类型，如果是多值，则使用,分隔
+    private String valueStr;//值字符串类型，如果是多值，则使用,分隔
     @JSONField(serialize = false)
-    private transient String valueStrHash;//valueStr的hash值
+    private String valueStrHash;//valueStr的hash值
     @EntityField(name = "生效事务id", type = ApiParamType.LONG)
     private Long transactionId;
     @EntityField(name = "输入方式", type = ApiParamType.STRING)
@@ -68,7 +68,7 @@ public class AttrEntityVo implements Serializable {
     @EntityField(name = "引用配置型模型id", type = ApiParamType.LONG)
     private Long toCiId;
     @JSONField(serialize = false)
-    private transient Boolean isNeedTargetCi;
+    private Boolean isNeedTargetCi;
 
     public AttrEntityVo() {
 

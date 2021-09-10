@@ -8,6 +8,7 @@ package codedriver.framework.cmdb.dto.resourcecenter.config;
 import codedriver.framework.cmdb.dto.ci.CiVo;
 import codedriver.framework.cmdb.enums.RelDirectionType;
 import codedriver.framework.cmdb.enums.resourcecenter.JoinType;
+import com.alibaba.fastjson.annotation.JSONField;
 
 import java.util.Objects;
 
@@ -16,7 +17,8 @@ public class ResourceEntityJoinVo {
     private String field;
     private String ciName;
     private String direction = RelDirectionType.FROM.getValue();
-    private transient CiVo ci;
+    @JSONField(serialize = false)
+    private CiVo ci;
 
     public ResourceEntityJoinVo(JoinType _joinType) {
         joinType = _joinType;

@@ -31,7 +31,7 @@ public class CustomViewAttrVo implements Serializable {
     @EntityField(name = "条件", type = ApiParamType.JSONOBJECT)
     private JSONObject condition;
     @JSONField(serialize = false)
-    private transient String conditionStr;
+    private String conditionStr;
     @EntityField(name = "是否隐藏", type = ApiParamType.INTEGER)
     private Integer isHidden = 0;
     @EntityField(name = "属性定义", type = ApiParamType.JSONOBJECT)
