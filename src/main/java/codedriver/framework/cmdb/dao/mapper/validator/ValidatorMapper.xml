@@ -23,7 +23,7 @@
     <sql id="searchValidatorCondition">
         <where>
             <if test="keyword != null and keyword != ''">
-                AND name LIKE CONCAT('%', #{keyword}, '%')
+                AND (name LIKE CONCAT('%', #{keyword}, '%') or description LIKE CONCAT('%', #{keyword}, '%'))
             </if>
             <if test="isActive != null ">
                 AND is_active = #{isActive}

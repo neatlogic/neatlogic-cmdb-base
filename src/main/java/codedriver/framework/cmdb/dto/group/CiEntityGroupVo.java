@@ -5,9 +5,10 @@
 
 package codedriver.framework.cmdb.dto.group;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class CiEntityGroupVo {
+public class CiEntityGroupVo implements Serializable {
     private Long groupId;
     private Long ciEntityId;
     private Long ciGroupId;

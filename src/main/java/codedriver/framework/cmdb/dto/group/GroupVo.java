@@ -13,10 +13,12 @@ import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
 import com.alibaba.fastjson.annotation.JSONField;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GroupVo extends BasePageVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
@@ -33,6 +35,8 @@ public class GroupVo extends BasePageVo {
     private Integer isActive;
     @EntityField(name = "规则列表", type = ApiParamType.JSONARRAY)
     private List<CiGroupVo> ciGroupList;
+    @EntityField(name = "授权列表", type = ApiParamType.JSONARRAY)
+    private List<GroupAuthVo> groupAuthList;
     @EntityField(name = "创建者uuid", type = ApiParamType.STRING)
     private String fcu;
     @EntityField(name = "创建时间", type = ApiParamType.LONG)
@@ -51,6 +55,8 @@ public class GroupVo extends BasePageVo {
     private Integer serverId;
     @EntityField(name = "异常", type = ApiParamType.STRING)
     private String error;
+    @EntityField(name = "授权字符串列表", type = ApiParamType.STRING)
+    private List<String> authList;
 
     public Long getId() {
         if (id == null) {
@@ -68,6 +74,25 @@ public class GroupVo extends BasePageVo {
             serverId = Config.SCHEDULE_SERVER_ID;
         }
         return serverId;
+    }
+
+    public List<GroupAuthVo> getGroupAuthList() {
+        return groupAuthList;
+    }
+
+    public void setGroupAuthList(List<GroupAuthVo> groupAuthList) {
+        this.groupAuthList = groupAuthList;
+    }
+
+    public List<String> getAuthList() {
+        if (CollectionUtils.isEmpty(authList) && CollectionUtils.isNotEmpty(groupAuthList)) {
+            authList = groupAuthList.stream().map(a -> a.getAuthType() + "#" + a.getAuthUuid()).collect(Collectors.toList());
+        }
+        return authList;
+    }
+
+    public void setAuthList(List<String> authList) {
+        this.authList = authList;
     }
 
     public void setServerId(Integer serverId) {

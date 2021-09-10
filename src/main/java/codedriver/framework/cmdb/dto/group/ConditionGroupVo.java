@@ -7,9 +7,10 @@ package codedriver.framework.cmdb.dto.group;
 
 import org.apache.commons.collections4.CollectionUtils;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ConditionGroupVo {
+public class ConditionGroupVo implements Serializable {
     private List<ConditionVo> conditionList;
     private List<String> conditionRelList;
 

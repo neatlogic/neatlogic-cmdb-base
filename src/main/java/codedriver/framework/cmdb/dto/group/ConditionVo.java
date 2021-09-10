@@ -7,7 +7,9 @@ package codedriver.framework.cmdb.dto.group;
 
 import com.alibaba.fastjson.JSONArray;
 
-public class ConditionVo {
+import java.io.Serializable;
+
+public class ConditionVo implements Serializable {
     private enum Expression {
         EQUAL("equal", " %s == %s "),
         NOTEQUAL("notequal", " not %s contains %s "),
