@@ -772,6 +772,7 @@
         <result column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="account" property="account"/>
+        <result column="password" property="password"/>
         <result column="protocolId" property="protocolId"/>
         <result column="protocol" property="protocol"/>
         <result column="port" property="port"/>
@@ -1455,4 +1456,16 @@
         where id = #{id}
           and name = #{name}
     </select>
+
+    <select id="getAccountByTagentId" resultMap="accountMap">
+        select `id` as id,
+               `name` as name,
+               `account` as account,
+               `password` as password,
+               `protocol_id` as protocolId,
+               `port` as port
+        from cmdb_resourcecenter_account
+        where id = #{id}
+    </select>
+
 </mapper>
