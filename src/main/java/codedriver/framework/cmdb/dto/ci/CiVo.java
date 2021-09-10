@@ -25,15 +25,15 @@ import java.util.*;
 public class CiVo implements Serializable {
     private static final long serialVersionUID = -312040937798083138L;
     @JSONField(serialize = false)
-    private transient String keyword;
+    private String keyword;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "父亲模型id", type = ApiParamType.LONG)
     private Long parentCiId;
     @JSONField(serialize = false)
-    private transient List<CiVo> upwardCiList;//继承的所有模型包括自己
+    private List<CiVo> upwardCiList;//继承的所有模型包括自己
     @JSONField(serialize = false)
-    private transient CiVo parentCi;
+    private CiVo parentCi;
     @EntityField(name = "唯一标识，不能重复", type = ApiParamType.STRING)
     private String name;
     @EntityField(name = "名称，不能重复", type = ApiParamType.STRING)
@@ -69,13 +69,13 @@ public class CiVo implements Serializable {
     @EntityField(name = "右编码", type = ApiParamType.INTEGER)
     private Integer rht;
     @JSONField(serialize = false)
-    private transient Integer isTypeShowInTopo;//类型是否在topo中显示
+    private Integer isTypeShowInTopo;//类型是否在topo中显示
     @EntityField(name = "唯一属性列表", type = ApiParamType.LONG)
     private List<Long> uniqueAttrIdList;
     @EntityField(name = "名称属性", type = ApiParamType.LONG)
     private Long nameAttrId;
     @JSONField(serialize = false)
-    private transient String viewXml;//虚拟模型xml定义
+    private String viewXml;//虚拟模型xml定义
     @EntityField(name = "虚拟模型配置文件id", type = ApiParamType.LONG)
     private Long fileId;
 

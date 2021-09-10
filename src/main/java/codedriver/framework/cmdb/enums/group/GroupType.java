@@ -3,10 +3,10 @@
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
-package codedriver.framework.cmdb.enums;
+package codedriver.framework.cmdb.enums.group;
 
 public enum GroupType {
-    MAINTAIN("maintain", "维护团体"), READONLY("readonly", "消费团体");
+    MAINTAIN("maintain", "维护"), READONLY("readonly", "只读");
 
     private final String value;
     private final String text;

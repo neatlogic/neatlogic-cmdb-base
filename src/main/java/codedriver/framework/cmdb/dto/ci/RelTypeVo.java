@@ -19,14 +19,6 @@ public class RelTypeVo implements Serializable {
     private String name;
     @EntityField(name = "引用数", type = ApiParamType.INTEGER)
     private Integer invokeCount;
-    //    @EntityField(name = "关系开始端中文名", type = ApiParamType.STRING)
-//    private String fromCnName;
-//    @EntityField(name = "关系结束端中文名", type = ApiParamType.STRING)
-//    private String toCnName;
-//    @EntityField(name = "关系开始端英文名", type = ApiParamType.STRING)
-//    private String fromEnName;
-//    @EntityField(name = "关系结束端英文名", type = ApiParamType.STRING)
-//    private String toEnName;
     @EntityField(name = "备注", type = ApiParamType.STRING)
     private String description;
 
@@ -59,38 +51,6 @@ public class RelTypeVo implements Serializable {
     public void setInvokeCount(Integer invokeCount) {
         this.invokeCount = invokeCount;
     }
-
-//    public String getFromCnName() {
-//        return fromCnName;
-//    }
-//
-//    public void setFromCnName(String fromCnName) {
-//        this.fromCnName = fromCnName;
-//    }
-//
-//    public String getToCnName() {
-//        return toCnName;
-//    }
-//
-//    public void setToCnName(String toCnName) {
-//        this.toCnName = toCnName;
-//    }
-//
-//    public String getFromEnName() {
-//        return fromEnName;
-//    }
-//
-//    public void setFromEnName(String fromEnName) {
-//        this.fromEnName = fromEnName;
-//    }
-//
-//    public String getToEnName() {
-//        return toEnName;
-//    }
-//
-//    public void setToEnName(String toEnName) {
-//        this.toEnName = toEnName;
-//    }
 
     public String getDescription() {
         return description;

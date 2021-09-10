@@ -44,7 +44,7 @@ public class AttrVo extends BasePageVo {
     @EntityField(name = "属性配置", type = ApiParamType.JSONOBJECT)
     private JSONObject config;
     @JSONField(serialize = false)
-    private transient String configStr;
+    private String configStr;
     @EntityField(name = "值表达式", type = ApiParamType.STRING)
     private String expression;
     @EntityField(name = "英文名称，模型内唯一", type = ApiParamType.STRING)
@@ -94,9 +94,9 @@ public class AttrVo extends BasePageVo {
     @EntityField(name = "支持的搜索表达式列表")
     private List<ValueTextVo> expressionList;
     @JSONField(serialize = false)
-    private transient CiVo ciVo;//根据模型生成属性表名
+    private CiVo ciVo;//根据模型生成属性表名
     @JSONField(serialize = false)
-    private transient List<Column> columnList;
+    private List<Column> columnList;
 
 
     public static class Column {

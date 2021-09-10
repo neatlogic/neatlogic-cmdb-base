@@ -24,7 +24,7 @@ public class CiGroupVo implements Serializable {
     @EntityField(name = "规则", type = ApiParamType.JSONOBJECT)
     private JSONObject rule;
     @JSONField(serialize = false)
-    private transient String ruleStr;
+    private String ruleStr;
 
     public Long getId() {
         if (id == null) {

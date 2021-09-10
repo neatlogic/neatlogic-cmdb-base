@@ -5,11 +5,15 @@
 
 package codedriver.framework.cmdb.dto.group;
 
-import codedriver.framework.cmdb.enums.GroupType;
+import codedriver.framework.cmdb.enums.group.GroupType;
+import codedriver.framework.cmdb.enums.group.Status;
+import codedriver.framework.common.config.Config;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
+import com.alibaba.fastjson.annotation.JSONField;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -23,6 +27,8 @@ public class GroupVo extends BasePageVo {
     private String description;
     @EntityField(name = "类型", type = ApiParamType.ENUM, member = GroupType.class)
     private String type;
+    @EntityField(name = "类型名称", type = ApiParamType.STRING)
+    private String typeName;
     @EntityField(name = "是否激活", type = ApiParamType.INTEGER)
     private Integer isActive;
     @EntityField(name = "规则列表", type = ApiParamType.JSONARRAY)
@@ -35,6 +41,16 @@ public class GroupVo extends BasePageVo {
     private String lcu;
     @EntityField(name = "修改时间", type = ApiParamType.LONG)
     private Date lcd;
+    @EntityField(name = "配置项数量", type = ApiParamType.INTEGER)
+    private int ciEntityCount;
+    @JSONField(serialize = false)
+    private Integer isSync;//是否同步，同步会删除不符合规则的配置项关系
+    @EntityField(name = "状态", type = ApiParamType.ENUM, member = Status.class)
+    private String status = Status.DONE.getValue();
+    @JSONField(serialize = false)
+    private Integer serverId;
+    @EntityField(name = "异常", type = ApiParamType.STRING)
+    private String error;
 
     public Long getId() {
         if (id == null) {
@@ -43,6 +59,24 @@ public class GroupVo extends BasePageVo {
         return id;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public Integer getServerId() {
+        if (serverId == null) {
+            serverId = Config.SCHEDULE_SERVER_ID;
+        }
+        return serverId;
+    }
+
+    public void setServerId(Integer serverId) {
+        this.serverId = serverId;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -62,6 +96,41 @@ public class GroupVo extends BasePageVo {
 
     public void setIsActive(Integer isActive) {
         this.isActive = isActive;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public String getTypeName() {
+        if (StringUtils.isNotBlank(type) && StringUtils.isBlank(typeName)) {
+            typeName = GroupType.getText(type);
+        }
+        return typeName;
+    }
+
+    public Integer getIsSync() {
+        return isSync;
+    }
+
+    public void setIsSync(Integer isSync) {
+        this.isSync = isSync;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    public int getCiEntityCount() {
+        return ciEntityCount;
+    }
+
+    public void setCiEntityCount(int ciEntityCount) {
+        this.ciEntityCount = ciEntityCount;
     }
 
     public String getName() {
