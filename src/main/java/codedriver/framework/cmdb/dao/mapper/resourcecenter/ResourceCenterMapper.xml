@@ -926,7 +926,7 @@
         SELECT `id`
         FROM `cmdb_resourcecenter_account` a JOIN `cmdb_resourcecenter_account_protocol` b ON b.`id`=a.`protocol_id`
         where a.`account` = #{account}
-          and b.`name`= #{name}
+          and b.`name`= #{protocol}
     </select>
 
     <select id="getNoCorrespondingAccountResourceIdListByTagListAndAccountIdAndProtocol" resultType="java.lang.Long">
@@ -951,7 +951,7 @@
         FROM `cmdb_resourcecenter_resource_account` b
         JOIN `cmdb_resourcecenter_account` c on c.`id` = b.`account_id` and c.`account` = #{account}
         JOIN `cmdb_resourcecenter_account_protocol`d ON d.`id`=c.`protocol_id`
-         and d.name = #{name}
+         and d.name = #{protocol}
         WHERE b.`resource_id` = #{resourceId}
         LIMIT 1
     </select>
@@ -1447,5 +1447,12 @@
                 a.`name` like concat('%', #{accountComponentVo.keyword}, '%') or e.`ip` =#{accountComponentVo.keyword}
             </if>
         </where>
+    </select>
+
+    <select id="checkAccountProtocolIsExists" resultType="int" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo">
+        select count(1)
+        from cmdb_resourcecenter_account_protocol
+        where id = #{id}
+          and name = #{name}
     </select>
 </mapper>

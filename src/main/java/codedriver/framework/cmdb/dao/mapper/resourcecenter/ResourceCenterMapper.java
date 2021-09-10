@@ -216,4 +216,6 @@ public interface ResourceCenterMapper {
     List<AccountComponentVo> searchAccountComponent(@Param("accountComponentVo") AccountComponentVo accountComponentVo, @Param("schemaName") String schemaName);
 
     Integer searchAccountComponentCount(@Param("accountComponentVo") AccountComponentVo accountComponentVo, @Param("schemaName") String schemaName);
+
+    int checkAccountProtocolIsExists(AccountProtocolVo protocolVo);
 }
