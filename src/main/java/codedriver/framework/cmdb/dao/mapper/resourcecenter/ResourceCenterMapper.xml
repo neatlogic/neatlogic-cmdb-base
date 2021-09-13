@@ -924,7 +924,7 @@
     </select>
 
     <select id="getAccountIdListByAccountAndProtocol" resultType="java.lang.Long">
-        SELECT `id`
+        SELECT a.`id`
         FROM `cmdb_resourcecenter_account` a JOIN `cmdb_resourcecenter_account_protocol` b ON b.`id`=a.`protocol_id`
         where a.`account` = #{account}
           and b.`name`= #{protocol}
