@@ -772,6 +772,7 @@
         <result column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="account" property="account"/>
+        <result column="password" property="password"/>
         <result column="protocolId" property="protocolId"/>
         <result column="protocol" property="protocol"/>
         <result column="port" property="port"/>
@@ -926,7 +927,7 @@
         SELECT `id`
         FROM `cmdb_resourcecenter_account` a JOIN `cmdb_resourcecenter_account_protocol` b ON b.`id`=a.`protocol_id`
         where a.`account` = #{account}
-          and b.`name`= #{name}
+          and b.`name`= #{protocol}
     </select>
 
     <select id="getNoCorrespondingAccountResourceIdListByTagListAndAccountIdAndProtocol" resultType="java.lang.Long">
@@ -951,7 +952,7 @@
         FROM `cmdb_resourcecenter_resource_account` b
         JOIN `cmdb_resourcecenter_account` c on c.`id` = b.`account_id` and c.`account` = #{account}
         JOIN `cmdb_resourcecenter_account_protocol`d ON d.`id`=c.`protocol_id`
-         and d.name = #{name}
+         and d.name = #{protocol}
         WHERE b.`resource_id` = #{resourceId}
         LIMIT 1
     </select>
@@ -1448,4 +1449,23 @@
             </if>
         </where>
     </select>
+
+    <select id="checkAccountProtocolIsExists" resultType="int" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo">
+        select count(1)
+        from cmdb_resourcecenter_account_protocol
+        where id = #{id}
+          and name = #{name}
+    </select>
+
+    <select id="getAccountByTagentId" resultMap="accountMap">
+        select `id` as id,
+               `name` as name,
+               `account` as account,
+               `password` as password,
+               `protocol_id` as protocolId,
+               `port` as port
+        from cmdb_resourcecenter_account
+        where id = #{id}
+    </select>
+
 </mapper>
