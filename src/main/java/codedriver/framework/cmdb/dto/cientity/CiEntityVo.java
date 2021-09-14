@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CiEntityVo extends BasePageVo implements Serializable {
+    public final static int MAX_RELENTITY_COUNT = 10;
     @JSONField(serialize = false)
     private String keyword;
     @JSONField(serialize = false) // 根据空格拆开关键字
@@ -120,11 +121,13 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     @EntityField(name = "是否抽象模型", type = ApiParamType.INTEGER)
     private int isVirtual = 0;
     @EntityField(name = "最大展示关系数量", type = ApiParamType.INTEGER)
-    private Integer maxRelEntityCount = 10;//限制查询时最多返回多少关系
+    private Integer maxRelEntityCount = MAX_RELENTITY_COUNT;//限制查询时最多返回多少关系
     @EntityField(name = "修改备注", type = ApiParamType.STRING)
     private String description;
     @JSONField(serialize = false)
     private boolean smartSearch = false;//启用智能搜索，会根据条件自动拼接关系表，在没有任何条件时能提高检索性能
+    @JSONField(serialize = false)
+    private boolean limitRelEntity = false;//限制关系数量，避免查询返回的结果集太大
 
     public CiEntityVo() {
 
@@ -137,6 +140,14 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     public CiEntityVo(Long ciId, Long id) {
         this.ciId = ciId;
         this.id = id;
+    }
+
+    public boolean isLimitRelEntity() {
+        return limitRelEntity;
+    }
+
+    public void setLimitRelEntity(boolean limitRelEntity) {
+        this.limitRelEntity = limitRelEntity;
     }
 
     public Long getFilterCiEntityId() {

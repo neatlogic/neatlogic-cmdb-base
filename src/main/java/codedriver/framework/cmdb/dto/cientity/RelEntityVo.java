@@ -12,6 +12,7 @@ import codedriver.framework.elasticsearch.annotation.ESKey;
 import codedriver.framework.elasticsearch.constvalue.ESKeyType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
+import com.alibaba.fastjson.annotation.JSONField;
 import com.google.common.base.Objects;
 
 import java.io.Serializable;
@@ -47,6 +48,10 @@ public class RelEntityVo extends BasePageVo implements Serializable {
     private Long toCiId;
     @EntityField(name = "来源模型id", type = ApiParamType.LONG)
     private Long fromCiId;
+    @JSONField(serialize = false)
+    private Integer fromIndex;//用于给前面数据排序，searchCiEntity时使用可以提升效率，不用返回全部数据
+    @JSONField(serialize = false)
+    private Integer toIndex;//用于给前面数据排序，searchCiEntity时使用可以提升效率，不用返回全部数据
 
     public RelEntityVo() {
 
@@ -58,6 +63,22 @@ public class RelEntityVo extends BasePageVo implements Serializable {
         toCiEntityId = relEntityTransactionVo.getToCiEntityId();
         direction = relEntityTransactionVo.getDirection();
         transactionId = relEntityTransactionVo.getTransactionId();
+    }
+
+    public Integer getFromIndex() {
+        return fromIndex;
+    }
+
+    public void setFromIndex(Integer fromIndex) {
+        this.fromIndex = fromIndex;
+    }
+
+    public Integer getToIndex() {
+        return toIndex;
+    }
+
+    public void setToIndex(Integer toIndex) {
+        this.toIndex = toIndex;
     }
 
     public Long getId() {
