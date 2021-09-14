@@ -17,7 +17,7 @@ public enum RelRuleType implements IEnum {
     private final String value;
     private final String text;
 
-    private RelRuleType(String _value, String _text) {
+    RelRuleType(String _value, String _text) {
         this.value = _value;
         this.text = _text;
     }
