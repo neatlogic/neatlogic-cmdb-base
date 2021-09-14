@@ -226,7 +226,7 @@ public class CiEntityTransactionVo implements Serializable {
      * @return true/false
      */
     public boolean containRelEntityData(Long relId, String direction, Long targetId) {
-        if (MapUtils.isNotEmpty(relEntityData)) {
+        if (MapUtils.isNotEmpty(relEntityData) && MapUtils.isNotEmpty(relEntityData.getJSONObject("rel" + direction + "_" + relId))) {
             JSONArray dataList = relEntityData.getJSONObject("rel" + direction + "_" + relId).getJSONArray("valueList");
             if (CollectionUtils.isNotEmpty(dataList)) {
                 for (int i = 0; i < dataList.size(); i++) {
