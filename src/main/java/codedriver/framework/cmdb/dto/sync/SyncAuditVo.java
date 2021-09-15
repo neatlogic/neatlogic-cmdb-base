@@ -11,6 +11,7 @@ import codedriver.framework.common.constvalue.InputFrom;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
+import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
@@ -19,21 +20,27 @@ public class SyncAuditVo extends BasePageVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "同步配置id", type = ApiParamType.LONG)
-    private Long syncCiCollectionId;
+    private Long ciCollectionId;
     @EntityField(name = "开始时间", type = ApiParamType.LONG)
     private Date startTime;
     @EntityField(name = "结束时间", type = ApiParamType.LONG)
     private Date endTime;
     @EntityField(name = "触发方式", type = ApiParamType.ENUM, member = InputFrom.class)
     private String inputFrom;
+    @EntityField(name = "触发方式名称", type = ApiParamType.STRING)
+    private String inputFromText;
     @EntityField(name = "状态", type = ApiParamType.ENUM, member = SyncStatus.class)
     private String status;
+    @EntityField(name = "状态名称", type = ApiParamType.STRING)
+    private String statusText;
     @EntityField(name = "事务组id", type = ApiParamType.LONG)
     private Long transactionGroupId;
     @EntityField(name = "服务器id", type = ApiParamType.LONG)
     private Integer serverId;
     @EntityField(name = "异常", type = ApiParamType.STRING)
     private String error;
+    @JSONField(serialize = false)
+    private boolean hasError;//查询条件，是否有异常
 
     public Long getId() {
         if (id == null) {
@@ -44,6 +51,30 @@ public class SyncAuditVo extends BasePageVo {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getInputFromText() {
+        if (StringUtils.isBlank(inputFromText) && StringUtils.isNotBlank(inputFrom)) {
+            inputFromText = InputFrom.getText(inputFrom);
+        }
+        return inputFromText;
+    }
+
+
+    public String getStatusText() {
+        if (StringUtils.isBlank(statusText) && StringUtils.isNotBlank(status)) {
+            statusText = SyncStatus.getText(status);
+        }
+        return statusText;
+    }
+
+
+    public boolean isHasError() {
+        return hasError;
+    }
+
+    public void setHasError(boolean hasError) {
+        this.hasError = hasError;
     }
 
     public String getError() {
@@ -62,12 +93,12 @@ public class SyncAuditVo extends BasePageVo {
         }
     }
 
-    public Long getSyncCiCollectionId() {
-        return syncCiCollectionId;
+    public Long getCiCollectionId() {
+        return ciCollectionId;
     }
 
-    public void setSyncCiCollectionId(Long syncCiCollectionId) {
-        this.syncCiCollectionId = syncCiCollectionId;
+    public void setCiCollectionId(Long ciCollectionId) {
+        this.ciCollectionId = ciCollectionId;
     }
 
     public Date getStartTime() {

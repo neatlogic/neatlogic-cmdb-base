@@ -7,7 +7,7 @@ package codedriver.framework.cmdb.enums.sync;
 
 public enum SyncStatus {
     DOING("doing", "同步中"),
-    DONE("done", "已同步");
+    DONE("done", "已完成");
 
     private final String status;
     private final String text;

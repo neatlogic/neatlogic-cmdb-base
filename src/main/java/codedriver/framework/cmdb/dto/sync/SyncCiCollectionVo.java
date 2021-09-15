@@ -52,12 +52,22 @@ public class SyncCiCollectionVo extends BasePageVo {
     private SyncAuditVo syncAudit;
     @JSONField(serialize = false)
     private SyncPolicyVo syncPolicy;
+    @EntityField(name = "执行次数", type = ApiParamType.INTEGER)
+    private int execCount;
 
     public Long getId() {
         if (id == null) {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public int getExecCount() {
+        return execCount;
+    }
+
+    public void setExecCount(int execCount) {
+        this.execCount = execCount;
     }
 
     public Integer getIsAutoCommit() {
