@@ -107,7 +107,7 @@ public class AccountVo extends BaseEditorVo {
     }
 
     public void setPasswordCipher(String passwordPlain) {
-        this.passwordCipher ="RC4:" + RC4Util.encrypt(Config.RC4KEY, passwordPlain);
+        this.passwordCipher =passwordCipher;
     }
 
     public List<TagVo> getTagList() {

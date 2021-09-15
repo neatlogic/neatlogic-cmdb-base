@@ -1207,7 +1207,7 @@
         `name`,
         `account`,
         <if test="passwordCipher != null">
-            `password` as passwordCipher,
+            `password`,
         </if>
         `protocol_id` ,
         <if test="port != null">
