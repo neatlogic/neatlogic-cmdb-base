@@ -6,11 +6,14 @@
 package codedriver.framework.cmdb.dto.resourcecenter;
 
 import codedriver.framework.cmdb.dto.tag.TagVo;
+import codedriver.framework.common.config.Config;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BaseEditorVo;
+import codedriver.framework.common.util.RC4Util;
 import codedriver.framework.dto.OperateVo;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +29,10 @@ public class AccountVo extends BaseEditorVo {
     private String name;
     @EntityField(name = "账号", type = ApiParamType.STRING)
     private String account;
-    @EntityField(name = "密码", type = ApiParamType.STRING)
-    private String password;
+    @EntityField(name = "解密密码", type = ApiParamType.STRING)
+    private String passwordPlain;
+    @EntityField(name = "加密密码", type = ApiParamType.STRING)
+    private String passwordCipher;
     @EntityField(name = "标签", type = ApiParamType.JSONARRAY)
     private List<TagVo> tagList;
     @EntityField(name = "标签Id列表", type = ApiParamType.JSONARRAY)
@@ -75,12 +80,34 @@ public class AccountVo extends BaseEditorVo {
         this.account = account;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordPlain() {
+        if (StringUtils.isBlank(passwordPlain)) {
+            if (StringUtils.isNotBlank(passwordCipher)) {
+                if (passwordCipher.startsWith("RC4:")) {
+                    this.passwordPlain = RC4Util.decrypt(Config.RC4KEY, this.passwordCipher.substring(4));
+                } else {
+                    this.passwordPlain = this.passwordCipher;
+                }
+            }
+        }
+        return passwordPlain;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordPlain(String passwordPlain) {
+        this.passwordPlain = passwordPlain;
+    }
+
+    public String getPasswordCipher() {
+        if (StringUtils.isBlank(passwordCipher)) {
+            if (StringUtils.isNotBlank(passwordPlain)) {
+                this.passwordCipher = "RC4:" + RC4Util.encrypt(Config.RC4KEY, passwordPlain);
+            }
+        }
+        return passwordCipher;
+    }
+
+    public void setPasswordCipher(String passwordPlain) {
+        this.passwordCipher ="RC4:" + RC4Util.encrypt(Config.RC4KEY, passwordPlain);
     }
 
     public List<TagVo> getTagList() {
