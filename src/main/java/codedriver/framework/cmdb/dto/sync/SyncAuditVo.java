@@ -50,7 +50,7 @@ public class SyncAuditVo extends BasePageVo {
     @JSONField(serialize = false)
     private List<String> endTimeRange;
     @JSONField(serialize = false)
-    private boolean hasError;//查询条件，是否有异常
+    private Boolean hasError;//查询条件，是否有异常
     @JSONField(serialize = false)
     private List<Long> idList;//id列表，精确查找用
 
@@ -120,11 +120,11 @@ public class SyncAuditVo extends BasePageVo {
     }
 
 
-    public boolean isHasError() {
+    public Boolean isHasError() {
         return hasError;
     }
 
-    public void setHasError(boolean hasError) {
+    public void setHasError(Boolean hasError) {
         this.hasError = hasError;
     }
 
