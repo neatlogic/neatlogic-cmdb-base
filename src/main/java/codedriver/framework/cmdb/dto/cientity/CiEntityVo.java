@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CiEntityVo extends BasePageVo implements Serializable {
-    public final static int MAX_RELENTITY_COUNT = 5;
+    public final static int MAX_RELENTITY_COUNT = 3;
     @JSONField(serialize = false)
     private String keyword;
     @JSONField(serialize = false) // 根据空格拆开关键字
