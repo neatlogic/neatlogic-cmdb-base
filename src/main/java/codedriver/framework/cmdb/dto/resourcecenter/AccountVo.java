@@ -106,7 +106,7 @@ public class AccountVo extends BaseEditorVo {
         return passwordCipher;
     }
 
-    public void setPasswordCipher(String passwordPlain) {
+    public void setPasswordCipher(String passwordCipher) {
         this.passwordCipher =passwordCipher;
     }
 
