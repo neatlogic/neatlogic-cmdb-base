@@ -1175,7 +1175,7 @@
         <foreach collection="resourceIdList" item="resourceId" open="(" close=")" separator=",">
             #{resourceId}
         </foreach>
-        AND crap.name = #{protocol} AND cra.`account` = #{userName}
+        AND crap.id = #{protocol} AND cra.`account` = #{userName}
     </select>
 
     <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
