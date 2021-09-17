@@ -13,6 +13,7 @@ import codedriver.framework.common.util.RC4Util;
 import codedriver.framework.dto.OperateVo;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
+import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class AccountVo extends BaseEditorVo {
     private String account;
     @EntityField(name = "解密密码", type = ApiParamType.STRING)
     private String passwordPlain;
+    @JSONField(serialize = false)
     @EntityField(name = "加密密码", type = ApiParamType.STRING)
     private String passwordCipher;
     @EntityField(name = "标签", type = ApiParamType.JSONARRAY)

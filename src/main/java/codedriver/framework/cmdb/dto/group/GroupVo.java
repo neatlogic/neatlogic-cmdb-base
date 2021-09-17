@@ -57,6 +57,8 @@ public class GroupVo extends BasePageVo {
     private String error;
     @EntityField(name = "授权字符串列表", type = ApiParamType.STRING)
     private List<String> authList;
+    @JSONField(serialize = false)
+    private List<Long> idList;//id列表，精确查找用
 
     public Long getId() {
         if (id == null) {
@@ -74,6 +76,14 @@ public class GroupVo extends BasePageVo {
             serverId = Config.SCHEDULE_SERVER_ID;
         }
         return serverId;
+    }
+
+    public List<Long> getIdList() {
+        return idList;
+    }
+
+    public void setIdList(List<Long> idList) {
+        this.idList = idList;
     }
 
     public List<GroupAuthVo> getGroupAuthList() {

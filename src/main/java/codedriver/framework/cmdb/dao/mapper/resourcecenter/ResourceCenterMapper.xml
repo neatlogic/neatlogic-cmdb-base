@@ -707,6 +707,7 @@
                a.`account`,
                a.`password` as passwordCipher,
                b.name as protocol,
+               b.id as protocolId,
                a.`port`,
                a.`fcu`,
                a.`fcd`,
