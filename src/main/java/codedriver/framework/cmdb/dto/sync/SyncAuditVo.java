@@ -36,8 +36,7 @@ public class SyncAuditVo extends BasePageVo {
     private String status;
     @EntityField(name = "状态名称", type = ApiParamType.STRING)
     private String statusText;
-    //@EntityField(name = "事务组id", type = ApiParamType.LONG)
-    @JSONField(serialize = false)
+    @EntityField(name = "事务组id", type = ApiParamType.LONG)
     private Long transactionGroupId;
     @EntityField(name = "更新配置项数量", type = ApiParamType.INTEGER)
     private int transactionCount;
