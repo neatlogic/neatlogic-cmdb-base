@@ -26,7 +26,7 @@ public enum TransactionStatus {
     }
 
     public static String getValue(String _status) {
-        for (ShowType s : ShowType.values()) {
+        for (TransactionStatus s : TransactionStatus.values()) {
             if (s.getValue().equals(_status)) {
                 return s.getValue();
             }
@@ -35,7 +35,7 @@ public enum TransactionStatus {
     }
 
     public static String getText(String name) {
-        for (ShowType s : ShowType.values()) {
+        for (TransactionStatus s : TransactionStatus.values()) {
             if (s.getValue().equals(name)) {
                 return s.getText();
             }

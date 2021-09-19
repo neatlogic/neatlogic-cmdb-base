@@ -28,6 +28,10 @@ public class TransactionVo extends BasePageVo {
     private Long transactionId;//用于检索，避免自动生成id导致条件错误
     @EntityField(name = "模型id", type = ApiParamType.LONG)
     private Long ciId;
+    @EntityField(name = "模型唯一标识", type = ApiParamType.STRING)
+    private String ciName;
+    @EntityField(name = "模型名称", type = ApiParamType.STRING)
+    private String ciLabel;
     @EntityField(name = "配置项id", type = ApiParamType.LONG)
     private Long ciEntityId;
     @EntityField(name = "配置项名称", type = ApiParamType.STRING)
@@ -80,6 +84,8 @@ public class TransactionVo extends BasePageVo {
     private List<String> createTimeRange;
     @JSONField(serialize = false)
     private List<String> commitTimeRange;
+    @JSONField(serialize = false)
+    private List<String> recoverTimeRange;
     @EntityField(name = "属于统一事务组的事务数量", type = ApiParamType.INTEGER)
     private int brotherTransactionCount;
     @EntityField(name = "说明", type = ApiParamType.STRING)
@@ -98,6 +104,30 @@ public class TransactionVo extends BasePageVo {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public String getCiName() {
+        return ciName;
+    }
+
+    public void setCiName(String ciName) {
+        this.ciName = ciName;
+    }
+
+    public String getCiLabel() {
+        return ciLabel;
+    }
+
+    public void setCiLabel(String ciLabel) {
+        this.ciLabel = ciLabel;
+    }
+
+    public List<String> getRecoverTimeRange() {
+        return recoverTimeRange;
+    }
+
+    public void setRecoverTimeRange(List<String> recoverTimeRange) {
+        this.recoverTimeRange = recoverTimeRange;
     }
 
     public String getDescription() {
@@ -217,7 +247,7 @@ public class TransactionVo extends BasePageVo {
     }
 
     public String getStatusText() {
-        if (StringUtils.isNotBlank(status) && StringUtils.isNotBlank(statusText)) {
+        if (StringUtils.isNotBlank(status) && StringUtils.isBlank(statusText)) {
             statusText = TransactionStatus.getText(status);
         }
         return statusText;

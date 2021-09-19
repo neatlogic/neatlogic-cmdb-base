@@ -5,25 +5,41 @@
 
 package codedriver.framework.cmdb.dto.sync;
 
+import codedriver.framework.common.constvalue.ApiParamType;
+import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.JSONArray;
 
-public class CollectionVo {
-    private String type;
-    private JSONArray field;
+import java.io.Serializable;
 
-    public String getType() {
-        return type;
+public class CollectionVo implements Serializable {
+    @EntityField(name = "集合名称", type = ApiParamType.STRING)
+    private String collection;
+    @EntityField(name = "中文名", type = ApiParamType.STRING)
+    private String name;
+    @EntityField(name = "属性", type = ApiParamType.JSONARRAY)
+    private JSONArray fields;
+
+    public String getCollection() {
+        return collection;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCollection(String collection) {
+        this.collection = collection;
     }
 
-    public JSONArray getField() {
-        return field;
+    public JSONArray getFields() {
+        return fields;
     }
 
-    public void setField(JSONArray field) {
-        this.field = field;
+    public void setFields(JSONArray fields) {
+        this.fields = fields;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
