@@ -20,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class RelVo implements Serializable {
     private static final long serialVersionUID = 4262674515934863987L;
@@ -409,5 +410,18 @@ public class RelVo implements Serializable {
     @JSONField(serialize = false)
     public String getFromCiTableName() {
         return TenantContext.get().getDataDbName() + ".`cmdb_" + this.getFromCiId() + "`";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RelVo relVo = (RelVo) o;
+        return id.equals(relVo.id) && direction.equals(relVo.direction);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, direction);
     }
 }
