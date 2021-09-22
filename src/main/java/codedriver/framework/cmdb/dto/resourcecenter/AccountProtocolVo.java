@@ -16,6 +16,10 @@ public class AccountProtocolVo extends BaseEditorVo {
 
     }
 
+    public AccountProtocolVo(String name) {
+        this.name = name;
+    }
+
     public AccountProtocolVo(Long id, String name) {
         this.id = id;
         this.name = name;

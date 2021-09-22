@@ -220,4 +220,12 @@ public interface ResourceCenterMapper {
     int checkAccountProtocolIsExists(AccountProtocolVo protocolVo);
 
     AccountVo getAccountByTagentId(Long id);
+
+    AccountProtocolVo getAccountProtocolVoByProtocolName(String name);
+
+    AccountVo getAccountByName(String name);
+
+    void updateAccountByName(AccountVo account);
+
+    AccountVo searchAccountByName(String accountName);
 }

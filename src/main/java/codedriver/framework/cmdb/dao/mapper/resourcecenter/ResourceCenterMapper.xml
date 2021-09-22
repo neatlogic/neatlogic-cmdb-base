@@ -1203,7 +1203,7 @@
     </update>
 
     <insert id="insertAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
-        insert into `cmdb_resourcecenter_account` (
+        replace into `cmdb_resourcecenter_account` (
         `id`,
         `name`,
         `account`,
@@ -1467,6 +1467,52 @@
                `port` as port
         from cmdb_resourcecenter_account
         where id = #{id}
+    </select>
+
+    <select id="getAccountProtocolVoByProtocolName"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo" parameterType="string">
+        select `id`, `name`
+        from `cmdb_resourcecenter_account_protocol`
+        where `name` = #{value}
+    </select>
+
+    <select id="getAccountByName" parameterType="string" resultMap="accountMap">
+        SELECT a.`id`,
+               a.`name`,
+               a.`account`,
+               a.`protocol_id`                                                                           as protocolId,
+               a.`port`,
+               (select count(1) from `cmdb_resourcecenter_resource_account` where `account_id` = a.`id`) as assetsCount,
+               a.`lcu`,
+               (select `user_name` from `user` where `uuid` = a.`lcu`)                                   as userName,
+               a.`lcd`
+        FROM `cmdb_resourcecenter_account` a
+        where a.`name` = #{value}
+    </select>
+
+    <update id="updateAccountByName" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
+        update `cmdb_resourcecenter_account` a set
+        a.`account` = #{account},
+        <if test="passwordCipher != null">
+            a.`password` = #{passwordCipher},
+        </if>
+        a.protocol_id = #{protocolId},
+        <if test="port != null">
+            a.`port` = #{port},
+        </if>
+        a.`lcu` = #{lcu},
+        a.`lcd` = now(3)
+        where a.`name` = #{name}
+    </update>
+
+    <select id="searchAccountByName" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo"
+            resultMap="accountMap">
+        SELECT a.`id`,
+               a.`name`,
+               a.`account`,
+               a.`port`
+        FROM `cmdb_resourcecenter_account` a
+        WHERE `name` = #{value}
     </select>
 
 </mapper>
