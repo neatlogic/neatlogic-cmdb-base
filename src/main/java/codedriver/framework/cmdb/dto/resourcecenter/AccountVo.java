@@ -107,10 +107,6 @@ public class AccountVo extends BaseEditorVo {
         return passwordCipher;
     }
 
-    public void setPasswordCipher(String passwordCipher) {
-        this.passwordCipher = passwordCipher;
-    }
-
     public List<TagVo> getTagList() {
         return tagList;
     }
