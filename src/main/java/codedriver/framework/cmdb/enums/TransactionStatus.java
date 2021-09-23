@@ -5,7 +5,13 @@
 
 package codedriver.framework.cmdb.enums;
 
-public enum TransactionStatus {
+import codedriver.framework.common.constvalue.IEnum;
+import codedriver.framework.common.dto.ValueTextVo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public enum TransactionStatus implements IEnum<ValueTextVo> {
     COMMITED("commited", "已提交"), UNCOMMIT("uncommit", "未提交"), RECOVER("recover", "已恢复"),
     EXPIRED("expired", "已失效");
 
@@ -41,5 +47,14 @@ public enum TransactionStatus {
             }
         }
         return "";
+    }
+
+    @Override
+    public List<ValueTextVo> getValueTextList() {
+        List<ValueTextVo> returnList = new ArrayList<>();
+        for (TransactionStatus input : TransactionStatus.values()) {
+            returnList.add(new ValueTextVo(input.getValue(), input.getText()));
+        }
+        return returnList;
     }
 }

@@ -1,12 +1,11 @@
 /*
- * Copyright(c) 2021 TechSureCo.,Ltd.AllRightsReserved.
+ * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
 package codedriver.framework.cmdb.dto.resourcecenter;
 
 import codedriver.framework.cmdb.dto.tag.TagVo;
-import codedriver.framework.common.config.Config;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BaseEditorVo;
 import codedriver.framework.common.util.RC4Util;
@@ -42,7 +41,7 @@ public class AccountVo extends BaseEditorVo {
     @EntityField(name = "协议ID", type = ApiParamType.LONG)
     private Long protocolId;
     @EntityField(name = "协议", type = ApiParamType.STRING)
-    private String  protocol;
+    private String protocol;
     @EntityField(name = "端口", type = ApiParamType.INTEGER)
     private Integer port;
     @EntityField(name = "资产数", type = ApiParamType.INTEGER)
@@ -86,7 +85,7 @@ public class AccountVo extends BaseEditorVo {
         if (StringUtils.isBlank(passwordPlain)) {
             if (StringUtils.isNotBlank(passwordCipher)) {
                 if (passwordCipher.startsWith("RC4:")) {
-                    this.passwordPlain = RC4Util.decrypt(Config.RC4KEY, this.passwordCipher.substring(4));
+                    this.passwordPlain = RC4Util.decrypt(this.passwordCipher.substring(4));
                 } else {
                     this.passwordPlain = this.passwordCipher;
                 }
@@ -102,7 +101,7 @@ public class AccountVo extends BaseEditorVo {
     public String getPasswordCipher() {
         if (StringUtils.isBlank(passwordCipher)) {
             if (StringUtils.isNotBlank(passwordPlain)) {
-                this.passwordCipher = "RC4:" + RC4Util.encrypt(Config.RC4KEY, passwordPlain);
+                this.passwordCipher = "RC4:" + RC4Util.encrypt(passwordPlain);
             }
         }
         return passwordCipher;
