@@ -165,7 +165,7 @@ public interface ResourceCenterMapper {
 
     int updateTag(TagVo vo);
 
-    int insertAccount(AccountVo vo);
+    int replaceAccount(AccountVo vo);
 
     int insertTag(TagVo vo);
 
@@ -220,4 +220,11 @@ public interface ResourceCenterMapper {
     int checkAccountProtocolIsExists(AccountProtocolVo protocolVo);
 
     AccountVo getAccountByTagentId(Long id);
+
+    AccountProtocolVo getAccountProtocolVoByProtocolName(String name);
+
+    AccountVo getAccountByName(String name);
+
+    void updateAccountByName(AccountVo account);
+
 }
