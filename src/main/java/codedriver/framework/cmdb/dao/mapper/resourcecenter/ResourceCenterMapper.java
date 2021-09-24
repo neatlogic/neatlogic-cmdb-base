@@ -165,7 +165,7 @@ public interface ResourceCenterMapper {
 
     int updateTag(TagVo vo);
 
-    int insertAccount(AccountVo vo);
+    int replaceAccount(AccountVo vo);
 
     int insertTag(TagVo vo);
 
@@ -227,5 +227,4 @@ public interface ResourceCenterMapper {
 
     void updateAccountByName(AccountVo account);
 
-    AccountVo searchAccountByName(String accountName);
 }

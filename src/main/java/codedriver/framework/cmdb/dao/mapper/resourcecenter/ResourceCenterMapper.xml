@@ -1202,7 +1202,7 @@
         where `id` = #{id}
     </update>
 
-    <insert id="insertAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
+    <insert id="replaceAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
         replace into `cmdb_resourcecenter_account` (
         `id`,
         `name`,
@@ -1504,15 +1504,5 @@
         a.`lcd` = now(3)
         where a.`name` = #{name}
     </update>
-
-    <select id="searchAccountByName" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo"
-            resultMap="accountMap">
-        SELECT a.`id`,
-               a.`name`,
-               a.`account`,
-               a.`port`
-        FROM `cmdb_resourcecenter_account` a
-        WHERE `name` = #{value}
-    </select>
 
 </mapper>
