@@ -17,4 +17,9 @@ public class ResourceCenterAccountNotFoundException extends ApiRuntimeException 
     public ResourceCenterAccountNotFoundException(String name) {
         super("账号：'" + name + "'不存在");
     }
+
+    public ResourceCenterAccountNotFoundException() {
+        super("账号不存在");
+    }
+
 }
