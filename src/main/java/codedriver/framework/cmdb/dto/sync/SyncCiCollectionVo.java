@@ -30,6 +30,7 @@ public class SyncCiCollectionVo extends BasePageVo {
     private String ciName;
     @EntityField(name = "集合名称", type = ApiParamType.STRING)
     private String collectionName;
+
     @EntityField(name = "创建时间", type = ApiParamType.LONG)
     private Date fcd;
     @EntityField(name = "创建人", type = ApiParamType.STRING)

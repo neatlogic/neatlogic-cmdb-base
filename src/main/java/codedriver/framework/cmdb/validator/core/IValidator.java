@@ -6,6 +6,7 @@
 package codedriver.framework.cmdb.validator.core;
 
 import codedriver.framework.cmdb.exception.validator.AttrInValidatedException;
+import codedriver.framework.cmdb.exception.validator.ValidatorNotFoundException;
 import com.alibaba.fastjson.JSONArray;
 import org.springframework.util.ClassUtils;
 
@@ -22,7 +23,7 @@ public interface IValidator {
      * @return 是否通过验证
      * @throws AttrInValidatedException 验证异常
      */
-    boolean valid(String attrLabel, JSONArray valueList, Long validatorId) throws AttrInValidatedException;
+    boolean valid(String attrLabel, JSONArray valueList, Long validatorId) throws AttrInValidatedException, ValidatorNotFoundException;
 
     default String getClassName() {
         return ClassUtils.getUserClass(this.getClass()).getName();
