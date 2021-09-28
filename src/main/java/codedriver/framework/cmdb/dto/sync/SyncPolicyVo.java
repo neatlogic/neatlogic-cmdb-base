@@ -16,7 +16,6 @@ import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,9 +45,10 @@ public class SyncPolicyVo {
 
 
     @JSONField(serialize = false)
-    public Query getQuery() {
-        Query query = new Query();
+    public Criteria getCriteria() {
+        Criteria finalCriteria = new Criteria();
         if (CollectionUtils.isNotEmpty(this.getConditionList())) {
+            List<Criteria> criteriaList = new ArrayList<>();
             for (SyncConditionVo conditionVo : this.getConditionList()) {
                 if (StringUtils.isNotBlank(conditionVo.getExpression()) && StringUtils.isNotBlank(conditionVo.getValue()) && StringUtils.isNotBlank(conditionVo.getField())) {
                     Criteria c = Criteria.where(conditionVo.getField());
@@ -66,11 +66,12 @@ public class SyncPolicyVo {
                     } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.LTE.getValue())) {
                         c.lte(conditionVo.getFormatValue());
                     }
-                    query.addCriteria(c);
+                    criteriaList.add(c);
                 }
             }
+            finalCriteria.andOperator(criteriaList);
         }
-        return query;
+        return finalCriteria;
     }
 
     public String getCollectionName() {

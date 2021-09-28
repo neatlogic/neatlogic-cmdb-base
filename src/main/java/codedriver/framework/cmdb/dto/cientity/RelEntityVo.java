@@ -15,9 +15,9 @@ import codedriver.framework.util.SnowflakeUtil;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.google.common.base.Objects;
 
-import java.io.Serializable;
+import java.util.Date;
 
-public class RelEntityVo extends BasePageVo implements Serializable {
+public class RelEntityVo extends BasePageVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "关系id", type = ApiParamType.LONG)
@@ -52,6 +52,12 @@ public class RelEntityVo extends BasePageVo implements Serializable {
     private Integer fromIndex;//用于给前面数据排序，searchCiEntity时使用可以提升效率，不用返回全部数据
     @JSONField(serialize = false)
     private Integer toIndex;//用于给前面数据排序，searchCiEntity时使用可以提升效率，不用返回全部数据
+    @EntityField(name = "添加时间", type = ApiParamType.LONG)
+    private Date insertTime;
+    @EntityField(name = "过期时间", type = ApiParamType.LONG)
+    private Date expiredTime;
+    @EntityField(name = "有效天数，为空代表永远有效", type = ApiParamType.INTEGER)
+    private Integer validDay;
 
     public RelEntityVo() {
 
@@ -63,6 +69,7 @@ public class RelEntityVo extends BasePageVo implements Serializable {
         toCiEntityId = relEntityTransactionVo.getToCiEntityId();
         direction = relEntityTransactionVo.getDirection();
         transactionId = relEntityTransactionVo.getTransactionId();
+        validDay = relEntityTransactionVo.getValidDay();
     }
 
     public Integer getFromIndex() {
@@ -229,5 +236,29 @@ public class RelEntityVo extends BasePageVo implements Serializable {
 
     public void setRelLabel(String relLabel) {
         this.relLabel = relLabel;
+    }
+
+    public Date getInsertTime() {
+        return insertTime;
+    }
+
+    public void setInsertTime(Date insertTime) {
+        this.insertTime = insertTime;
+    }
+
+    public Integer getValidDay() {
+        return validDay;
+    }
+
+    public void setValidDay(Integer validDay) {
+        this.validDay = validDay;
+    }
+
+    public Date getExpiredTime() {
+        return expiredTime;
+    }
+
+    public void setExpiredTime(Date expiredTime) {
+        this.expiredTime = expiredTime;
     }
 }

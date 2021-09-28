@@ -48,6 +48,8 @@ public class RelEntityTransactionVo implements Serializable {
     private String action;
     @EntityField(name = "操作名称，添加或删除", type = ApiParamType.STRING)
     private String actionText;
+    @EntityField(name = "有效天数，为空代表永远有效", type = ApiParamType.INTEGER)
+    private Integer validDay;
 
     public RelEntityTransactionVo() {
 
@@ -64,6 +66,7 @@ public class RelEntityTransactionVo implements Serializable {
         this.action = relEntityVo.getAction();
         this.fromCiEntityName = relEntityVo.getFromCiEntityName();
         this.toCiEntityName = relEntityVo.getToCiEntityName();
+        this.validDay = relEntityVo.getValidDay();
     }
 
     public RelEntityTransactionVo(RelEntityVo relEntityVo) {
@@ -76,6 +79,7 @@ public class RelEntityTransactionVo implements Serializable {
         this.toCiId = relEntityVo.getToCiId();
         this.fromCiEntityName = relEntityVo.getFromCiEntityName();
         this.toCiEntityName = relEntityVo.getToCiEntityName();
+        this.validDay = relEntityVo.getValidDay();
     }
 
     public RelEntityTransactionVo(RelEntityVo relEntityVo, RelActionType action) {
@@ -89,6 +93,7 @@ public class RelEntityTransactionVo implements Serializable {
         this.fromCiEntityName = relEntityVo.getFromCiEntityName();
         this.toCiEntityName = relEntityVo.getToCiEntityName();
         this.action = action.getValue();
+        this.validDay = relEntityVo.getValidDay();
     }
 
     public Long getId() {
@@ -267,4 +272,11 @@ public class RelEntityTransactionVo implements Serializable {
         this.typeText = typeText;
     }
 
+    public Integer getValidDay() {
+        return validDay;
+    }
+
+    public void setValidDay(Integer validDay) {
+        this.validDay = validDay;
+    }
 }

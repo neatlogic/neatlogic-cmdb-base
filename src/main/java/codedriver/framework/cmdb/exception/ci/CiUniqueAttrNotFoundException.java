@@ -5,11 +5,20 @@
 
 package codedriver.framework.cmdb.exception.ci;
 
+import codedriver.framework.cmdb.dto.ci.AttrVo;
 import codedriver.framework.exception.core.ApiRuntimeException;
 
 public class CiUniqueAttrNotFoundException extends ApiRuntimeException {
 
     public CiUniqueAttrNotFoundException(String ciName) {
-        super("配置项模型：" + ciName + "缺少唯一属性，请设置");
+        super("配置项模型“" + ciName + "”缺少唯一属性，请设置");
+    }
+
+    public CiUniqueAttrNotFoundException(AttrVo attrVo, boolean isForSync) {
+        super("唯一规则属性“" + attrVo.getLabel() + "(" + attrVo.getName() + ")" + "”没有配置映射关系，请先设置");
+    }
+
+    public CiUniqueAttrNotFoundException(AttrVo attrVo) {
+        super("唯一规则属性“" + attrVo.getLabel() + "(" + attrVo.getName() + ")" + "”的值为空");
     }
 }
