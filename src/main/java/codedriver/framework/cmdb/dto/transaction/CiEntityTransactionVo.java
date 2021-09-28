@@ -394,6 +394,7 @@ public class CiEntityTransactionVo implements Serializable {
                     JSONObject relEntityObj = relDataList.getJSONObject(i);
                     RelEntityTransactionVo relEntityVo = new RelEntityTransactionVo();
                     relEntityVo.setRelId(relId);
+                    relEntityVo.setValidDay(relEntityObj.getInteger("validDay"));
                     if (direction.equals(RelDirectionType.FROM.getValue())) {
                         relEntityVo.setToCiId(relEntityObj.getLong("ciId"));
                         relEntityVo.setToCiEntityId(relEntityObj.getLong("ciEntityId"));

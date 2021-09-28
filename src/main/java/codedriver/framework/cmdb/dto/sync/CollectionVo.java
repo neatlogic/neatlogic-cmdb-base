@@ -20,7 +20,9 @@ import java.util.Objects;
 public class CollectionVo implements Serializable {
     @EntityField(name = "集合名称", type = ApiParamType.STRING)
     private String collection;
-    @EntityField(name = "中文名", type = ApiParamType.STRING)
+    @EntityField(name = "名称", type = ApiParamType.STRING)
+    private String label;
+    @EntityField(name = "唯一标识", type = ApiParamType.STRING)
     private String name;
     @EntityField(name = "属性", type = ApiParamType.JSONARRAY)
     private JSONArray fields;
@@ -44,6 +46,14 @@ public class CollectionVo implements Serializable {
         }
         c.andOperator(filterCriteriaList);
         return c;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     @Override
