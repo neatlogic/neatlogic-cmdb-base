@@ -19,7 +19,7 @@ public class ResourceEntityJoinVo {
     private String direction = RelDirectionType.FROM.getValue();
     @JSONField(serialize = false)
     private CiVo ci;
-
+    private String joinAttrName;
     public ResourceEntityJoinVo(JoinType _joinType) {
         joinType = _joinType;
     }
@@ -75,4 +75,11 @@ public class ResourceEntityJoinVo {
         this.field = field;
     }
 
+    public String getJoinAttrName() {
+        return joinAttrName;
+    }
+
+    public void setJoinAttrName(String joinAttrName) {
+        this.joinAttrName = joinAttrName;
+    }
 }
