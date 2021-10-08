@@ -101,6 +101,15 @@ public class RelVo implements Serializable {
     @EntityField(name = "支持的搜索表达式列表")
     private List<ValueTextVo> expressionList;
 
+    public RelVo() {
+
+    }
+
+    public RelVo(Long id, String direction) {
+        this.id = id;
+        this.direction = direction;
+    }
+
     public Long getId() {
         if (id == null) {
             id = SnowflakeUtil.uniqueLong();
