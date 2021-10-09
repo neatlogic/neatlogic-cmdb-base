@@ -127,7 +127,7 @@ public interface IAttrValueHandler {
      * @param valueList 数据库的数据
      * @return 用于显示数据
      */
-    default void transferValueListToDisplay(AttrVo attrVo, JSONArray valueList) {
+    default void transferValueListToDisplay(JSONArray valueList) {
     }
 
     /**
