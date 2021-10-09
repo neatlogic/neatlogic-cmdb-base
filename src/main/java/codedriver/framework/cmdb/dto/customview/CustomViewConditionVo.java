@@ -22,8 +22,6 @@ public class CustomViewConditionVo extends BasePageVo {
     @EntityField(name = "视图id", type = ApiParamType.LONG)
     private Long customViewId;
     @JSONField(serialize = false)
-    private String keyword;
-    @JSONField(serialize = false)
     //属性过滤列表，搜索时用
     private List<CustomViewConditionFilterVo> attrFilterList;
     @EntityField(name = "搜索模式，normal或group", type = ApiParamType.ENUM, member = SearchMode.class)

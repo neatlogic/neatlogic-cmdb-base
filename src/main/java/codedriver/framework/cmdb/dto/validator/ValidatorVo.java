@@ -38,8 +38,6 @@ public class ValidatorVo extends BasePageVo implements Serializable {
     private int invokeCount;
     @JSONField(serialize = false)
     private String configStr;
-    @JSONField(serialize = false)
-    private String keyword;
 
     public Long getId() {
         if (id == null) {
