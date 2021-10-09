@@ -554,12 +554,14 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     public List<RelEntityVo> getRelEntityByRelIdAndDirection(Long relId, String direction) {
         List<RelEntityVo> relEntityList = new ArrayList<>();
         if (MapUtils.isNotEmpty(this.relEntityData) && relEntityData.containsKey("rel" + direction + "_" + relId)) {
-            JSONArray relDataList = relEntityData.getJSONObject("rel" + direction + "_" + relId).getJSONArray("valueList");
+            JSONObject relEntityDataObj = relEntityData.getJSONObject("rel" + direction + "_" + relId);
+            JSONArray relDataList = relEntityDataObj.getJSONArray("valueList");
             if (CollectionUtils.isNotEmpty(relDataList)) {
                 for (int i = 0; i < relDataList.size(); i++) {
                     JSONObject relEntityObj = relDataList.getJSONObject(i);
                     RelEntityVo relEntityVo = new RelEntityVo();
                     relEntityVo.setRelId(relId);
+                    relEntityVo.setRelLabel(relEntityDataObj.getString("label"));
                     if (direction.equals(RelDirectionType.FROM.getValue())) {
                         relEntityVo.setToCiId(relEntityObj.getLong("ciId"));
                         relEntityVo.setToCiEntityId(relEntityObj.getLong("ciEntityId"));
