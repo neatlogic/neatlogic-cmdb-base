@@ -25,8 +25,6 @@ public class CustomViewVo extends BasePageVo implements Serializable {
     private Long id;
     @EntityField(name = "名称", type = ApiParamType.STRING)
     private String name;
-    @JSONField(serialize = false)
-    private String keyword;
     @EntityField(name = "是否私有视图", type = ApiParamType.INTEGER)
     private Integer isPrivate;
     @EntityField(name = "是否激活", type = ApiParamType.INTEGER)
