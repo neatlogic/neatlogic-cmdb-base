@@ -778,12 +778,10 @@
         <result column="protocol" property="protocol"/>
         <result column="port" property="port"/>
         <result column="assetsCount" property="assetsCount"/>
+        <result column="fcu" property="fcu"/>
+        <result column="fcd" property="fcd"/>
         <result column="lcu" property="lcu"/>
         <result column="lcd" property="lcd"/>
-        <association property="lcuVo" javaType="codedriver.framework.dto.UserVo">
-            <result property="uuid" column="lcu"/>
-            <result property="userName" column="userName"/>
-        </association>
     </resultMap>
 
     <select id="searchAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo"
@@ -795,8 +793,9 @@
         b.name as protocol,
         a.`port`,
         (select count(1) from `cmdb_resourcecenter_resource_account` where `account_id` = a.`id`) as assetsCount,
+        a.`fcu`,
+        a.`fcd`,
         a.`lcu`,
-        (select `user_name` from `user` where `uuid` = a.`lcu`) as userName,
         a.`lcd`
         FROM `cmdb_resourcecenter_account` a JOIN `cmdb_resourcecenter_account_protocol` b ON b.`id`=a.`protocol_id`
         <where>
@@ -1483,8 +1482,9 @@
                a.`protocol_id`                                                                           as protocolId,
                a.`port`,
                (select count(1) from `cmdb_resourcecenter_resource_account` where `account_id` = a.`id`) as assetsCount,
+               a.`fcu`,
+               a.`fcd`,
                a.`lcu`,
-               (select `user_name` from `user` where `uuid` = a.`lcu`)                                   as userName,
                a.`lcd`
         FROM `cmdb_resourcecenter_account` a
         where a.`name` = #{value}
