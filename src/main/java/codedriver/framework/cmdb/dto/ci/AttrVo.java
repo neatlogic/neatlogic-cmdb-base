@@ -66,6 +66,8 @@ public class AttrVo extends BasePageVo {
     private Integer isRequired = 0;
     @EntityField(name = "是否唯一", type = ApiParamType.INTEGER)
     private Integer isUnique = 0;
+    @EntityField(name = "是否模型唯一属性成员", type = ApiParamType.INTEGER)
+    private Integer isCiUnique = 0;
     @EntityField(name = "是否私有属性", type = ApiParamType.INTEGER)
     private Integer isPrivate = 0;
     @EntityField(name = "是否继承属性", type = ApiParamType.INTEGER)
@@ -154,6 +156,14 @@ public class AttrVo extends BasePageVo {
             return needIndex;
         }
 
+    }
+
+    public Integer getIsCiUnique() {
+        return isCiUnique;
+    }
+
+    public void setIsCiUnique(Integer isCiUnique) {
+        this.isCiUnique = isCiUnique;
     }
 
     public Integer getTargetIsVirtual() {
