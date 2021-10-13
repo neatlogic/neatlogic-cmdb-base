@@ -141,7 +141,7 @@ public interface ResourceCenterMapper {
 
     List<StatusVo> getStatusList(@Param("schemaName") String schemaName);
 
-    List<Long> getResourceIdListByProtocolList(ResourceSearchVo searchVo);
+    List<Long> getResourceIdListByProtocolIdList(ResourceSearchVo searchVo);
 
     List<Long> getResourceIdListByTagIdList(ResourceSearchVo searchVo);
 

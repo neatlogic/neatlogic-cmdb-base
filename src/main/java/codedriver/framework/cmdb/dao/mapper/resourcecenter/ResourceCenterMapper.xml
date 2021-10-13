@@ -1064,15 +1064,15 @@
         FROM ${schemaName}.`resource_ipobject_status`
     </select>
 
-    <select id="getResourceIdListByProtocolList"
+    <select id="getResourceIdListByProtocolIdList"
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT DISTINCT b.`resource_id`
         FROM `cmdb_resourcecenter_account` a
         JOIN `cmdb_resourcecenter_resource_account` b ON b.`account_id` = a.`id`
         JOIN `cmdb_resourcecenter_account_protocol` c ON c.`id`=a.`protocol_id`
-        WHERE c.name IN
-        <foreach collection="protocolList" item="protocol" open="(" separator="," close=")">
-            #{protocol}
+        WHERE c.`id` IN
+        <foreach collection="protocolIdList" item="protocolId" open="(" separator="," close=")">
+            #{protocolId}
         </foreach>
     </select>
 
