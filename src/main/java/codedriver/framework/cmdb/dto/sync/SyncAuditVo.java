@@ -6,6 +6,7 @@
 package codedriver.framework.cmdb.dto.sync;
 
 import codedriver.framework.cmdb.enums.sync.SyncStatus;
+import codedriver.framework.common.config.Config;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.constvalue.InputFrom;
 import codedriver.framework.common.dto.BasePageVo;
@@ -192,6 +193,9 @@ public class SyncAuditVo extends BasePageVo {
     }
 
     public Integer getServerId() {
+        if (serverId == null) {
+            serverId = Config.SCHEDULE_SERVER_ID;
+        }
         return serverId;
     }
 

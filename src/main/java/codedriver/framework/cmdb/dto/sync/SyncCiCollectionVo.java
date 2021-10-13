@@ -55,6 +55,8 @@ public class SyncCiCollectionVo extends BasePageVo {
     private SyncPolicyVo syncPolicy;
     @EntityField(name = "执行次数", type = ApiParamType.INTEGER)
     private int execCount;
+    @JSONField(serialize = false)
+    private Date lastSyncDate;//最后一次同步时间
 
     public Long getId() {
         if (id == null) {
@@ -77,6 +79,14 @@ public class SyncCiCollectionVo extends BasePageVo {
 
     public void setIsAutoCommit(Integer isAutoCommit) {
         this.isAutoCommit = isAutoCommit;
+    }
+
+    public Date getLastSyncDate() {
+        return lastSyncDate;
+    }
+
+    public void setLastSyncDate(Date lastSyncDate) {
+        this.lastSyncDate = lastSyncDate;
     }
 
     public String getCollectModeText() {
