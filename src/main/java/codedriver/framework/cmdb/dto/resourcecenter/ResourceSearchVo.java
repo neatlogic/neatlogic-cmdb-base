@@ -21,6 +21,7 @@ public class ResourceSearchVo extends BasePageVo {
     private String port;
     private Long envId;
     private Long appModuleId;
+    private List<Integer> protocolIdList;
     private List<String> protocolList;
     private List<Long> statusIdList;
     private List<Long> envIdList;
@@ -88,6 +89,14 @@ public class ResourceSearchVo extends BasePageVo {
 
     public void setAppModuleId(Long appModuleId) {
         this.appModuleId = appModuleId;
+    }
+
+    public List<Integer> getProtocolIdList() {
+        return protocolIdList;
+    }
+
+    public void setProtocolIdList(List<Integer> protocolIdList) {
+        this.protocolIdList = protocolIdList;
     }
 
     public List<String> getProtocolList() {
