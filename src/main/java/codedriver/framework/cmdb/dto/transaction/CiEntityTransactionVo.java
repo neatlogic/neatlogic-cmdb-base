@@ -243,27 +243,19 @@ public class CiEntityTransactionVo implements Serializable {
     /**
      * 添加一个空的属性修改数据，用在删除属性创建事务数据的场景
      *
-     * @param attrId 属性id
+     * @param attrVo 属性对象
      */
-    public void addAttrEntityData(Long attrId) {
-        if (attrEntityData == null) {
-            attrEntityData = new JSONObject();
-        }
-        if (!attrEntityData.containsKey("attr_" + attrId)) {
-            JSONObject dataObj = new JSONObject();
-            dataObj.put("valueList", new JSONArray());
-            attrEntityData.put("attr_" + attrId, dataObj);
-        }
+    public void addAttrEntityData(AttrVo attrVo) {
+        addAttrEntityData(attrVo, new JSONArray());
     }
 
     /**
      * 添加一个属性数据项
      *
-     * @param attrId    属性id
      * @param attrVo    属性定义
      * @param valueList 值列表
      */
-    public void addAttrEntityData(Long attrId, AttrVo attrVo, JSONArray valueList) {
+    public void addAttrEntityData(AttrVo attrVo, JSONArray valueList) {
         if (attrEntityData == null) {
             attrEntityData = new JSONObject();
         }
@@ -274,20 +266,19 @@ public class CiEntityTransactionVo implements Serializable {
         attrObj.put("ciId", attrVo.getCiId());
         attrObj.put("targetCiId", attrVo.getTargetCiId());
         attrObj.put("valueList", valueList);
-        attrEntityData.put("attr_" + attrId, attrObj);
+        attrEntityData.put("attr_" + attrVo.getId(), attrObj);
     }
 
     /**
      * 添加一个属性数据项
      *
-     * @param attrId 属性id
      * @param attrVo 属性定义
      * @param value  值
      */
-    public void addAttrEntityData(Long attrId, AttrVo attrVo, Object value) {
+    public void addAttrEntityData(AttrVo attrVo, Object value) {
         JSONArray jsonList = new JSONArray();
         jsonList.add(value);
-        addAttrEntityData(attrId, attrVo, jsonList);
+        addAttrEntityData(attrVo, jsonList);
     }
 
 
