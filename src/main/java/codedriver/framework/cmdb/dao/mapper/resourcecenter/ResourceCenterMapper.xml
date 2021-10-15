@@ -1159,9 +1159,7 @@
         WHERE
         <foreach collection="resourceList" item="resource" separator="or" open="(" close=")">
             rii.ip = #{resource.ip}
-            <if test="resource.port != null">
-                and rs.port = #{resource.port}
-            </if>
+            and rs.port = #{resource.port}
         </foreach>
     </select>
 
