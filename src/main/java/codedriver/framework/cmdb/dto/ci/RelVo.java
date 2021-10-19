@@ -98,8 +98,10 @@ public class RelVo implements Serializable {
     private Integer isExtended;
     @EntityField(name = "目标端是否虚拟模型", type = ApiParamType.INTEGER)
     private Integer toIsVirtual;
-    @EntityField(name = "支持的搜索表达式列表")
+    @EntityField(name = "支持的搜索表达式列表", type = ApiParamType.JSONARRAY)
     private List<ValueTextVo> expressionList;
+    @EntityField(name = "级联关系", type = ApiParamType.JSONARRAY)
+    private List<RelativeRelVo> relativeRelList;
 
     public RelVo() {
 
@@ -115,6 +117,14 @@ public class RelVo implements Serializable {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public List<RelativeRelVo> getRelativeRelList() {
+        return relativeRelList;
+    }
+
+    public void setRelativeRelList(List<RelativeRelVo> relativeRelList) {
+        this.relativeRelList = relativeRelList;
     }
 
     public void setId(Long id) {

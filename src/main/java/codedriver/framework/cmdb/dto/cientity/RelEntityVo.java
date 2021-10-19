@@ -58,6 +58,8 @@ public class RelEntityVo extends BasePageVo {
     private Date expiredTime;
     @EntityField(name = "有效天数，为空代表永远有效", type = ApiParamType.INTEGER)
     private Integer validDay;
+    @JSONField(serialize = false)
+    private String relativeRelHash;//级联关系路径
 
     public RelEntityVo() {
 
@@ -70,6 +72,14 @@ public class RelEntityVo extends BasePageVo {
         direction = relEntityTransactionVo.getDirection();
         transactionId = relEntityTransactionVo.getTransactionId();
         validDay = relEntityTransactionVo.getValidDay();
+    }
+
+    public String getRelativeRelHash() {
+        return relativeRelHash;
+    }
+
+    public void setRelativeRelHash(String relativeRelHash) {
+        this.relativeRelHash = relativeRelHash;
     }
 
     public Integer getFromIndex() {
