@@ -7,6 +7,7 @@ package codedriver.framework.cmdb.dto.ci;
 
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
+import codedriver.framework.util.Md5Util;
 import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.StringUtils;
 
@@ -28,12 +29,10 @@ public class RelativeRelVo implements Serializable {
     private String fromPath;//从起点到达关系上游端的路径
     @EntityField(name = "终点路径", type = ApiParamType.STRING)
     private String toPath;//从终点到达关系下游端的路径
-    @EntityField(name = "起点路径名称", type = ApiParamType.STRING)
-    private String fromPathStr;
-    @EntityField(name = "终点路径名称", type = ApiParamType.STRING)
-    private String toPathStr;
     @JSONField(serialize = false)
     private String fullPath;
+    @EntityField(name = "整个关系路径的散列值", type = ApiParamType.STRING)
+    private String hash;
 
     public Long getId() {
         return id;
@@ -83,30 +82,15 @@ public class RelativeRelVo implements Serializable {
         this.relativeRelLabel = relativeRelLabel;
     }
 
-    public String getFromPathStr() {
-        return fromPathStr;
-    }
 
-    public void setFromPathStr(String fromPathStr) {
-        this.fromPathStr = fromPathStr;
-    }
-
-    public String getFullPath() {
-        if (StringUtils.isBlank(fullPath) && StringUtils.isNotBlank(fromPath) && StringUtils.isNotBlank(toPath)) {
-            fullPath = fromPath + ">" + toPath;
+    public String getHash() {
+        if (StringUtils.isBlank(hash) && StringUtils.isNotBlank(fromPath) && StringUtils.isNotBlank(toPath)) {
+            hash = Md5Util.encryptBASE64(fromPath + ">" + toPath);
         }
-        return fullPath;
+        return hash;
     }
 
-    public void setFullPath(String fullPath) {
-        this.fullPath = fullPath;
-    }
-
-    public String getToPathStr() {
-        return toPathStr;
-    }
-
-    public void setToPathStr(String toPathStr) {
-        this.toPathStr = toPathStr;
+    public void setHash(String hash) {
+        this.hash = hash;
     }
 }

@@ -60,6 +60,8 @@ public class RelEntityVo extends BasePageVo {
     private Integer validDay;
     @JSONField(serialize = false)
     private String relativeRelHash;//级联关系路径
+    @JSONField(serialize = false)
+    private Long sourceRelEntityId;//级联关系的来源关系id
 
     public RelEntityVo() {
 
@@ -72,6 +74,14 @@ public class RelEntityVo extends BasePageVo {
         direction = relEntityTransactionVo.getDirection();
         transactionId = relEntityTransactionVo.getTransactionId();
         validDay = relEntityTransactionVo.getValidDay();
+    }
+
+    public Long getSourceRelEntityId() {
+        return sourceRelEntityId;
+    }
+
+    public void setSourceRelEntityId(Long sourceRelEntityId) {
+        this.sourceRelEntityId = sourceRelEntityId;
     }
 
     public String getRelativeRelHash() {
