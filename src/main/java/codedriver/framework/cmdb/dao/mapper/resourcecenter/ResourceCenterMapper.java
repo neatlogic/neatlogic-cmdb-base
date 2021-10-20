@@ -14,6 +14,7 @@ import codedriver.framework.cmdb.dto.tag.TagVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author linbq
@@ -119,9 +120,7 @@ public interface ResourceCenterMapper {
 
     Long checkResourceIsExistsCorrespondingAccountByResourceIdAndAccountIdAndProtocol(@Param("resourceId") Long resourceId, @Param("account") String account, @Param("protocol") String protocol);
 
-    int getAppModuleCount(ResourceSearchVo searchVo);
-
-    List<Long> getAppModuleIdList(ResourceSearchVo searchVo);
+    Set<Long> getAppModuleIdList(ResourceSearchVo searchVo);
 
     List<ResourceVo> getAppModuleListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
