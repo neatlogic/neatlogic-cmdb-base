@@ -15,10 +15,10 @@ public enum ShowType implements IEnum {
 
     NONE("none", "不显示"), LIST("list", "仅列表"), ALL("all", "全展示"), DETAIL("detail", "仅明细");
 
-    private String value;
-    private String text;
+    private final String value;
+    private final String text;
 
-    private ShowType(String _value, String _text) {
+    ShowType(String _value, String _text) {
         this.value = _value;
         this.text = _text;
     }
@@ -53,11 +53,11 @@ public enum ShowType implements IEnum {
     @Override
     public List getValueTextList() {
         JSONArray array = new JSONArray();
-        for(ShowType type : ShowType.values()){
-            array.add(new JSONObject(){
+        for (ShowType type : ShowType.values()) {
+            array.add(new JSONObject() {
                 {
-                    this.put("value",type.getValue());
-                    this.put("text",type.getText());
+                    this.put("value", type.getValue());
+                    this.put("text", type.getText());
                 }
             });
         }

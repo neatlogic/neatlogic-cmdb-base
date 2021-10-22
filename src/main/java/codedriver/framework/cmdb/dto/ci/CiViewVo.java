@@ -32,6 +32,8 @@ public class CiViewVo implements Serializable {
     private Integer sort;
     @EntityField(name = "显示方式，none:不显示，all:全部显示，list:仅列表显示，detail:仅明细显示", type = ApiParamType.STRING)
     private String showType = ShowType.ALL.getValue();
+    @EntityField(name = "是否允许编辑，0不允许，1允许", type = ApiParamType.INTEGER)
+    private Integer allowEdit = 1;
     @EntityField(name = "显示方式名称", type = ApiParamType.STRING)
     private String showTypeText;
     @JSONField(serialize = false)
@@ -48,6 +50,14 @@ public class CiViewVo implements Serializable {
     public CiViewVo(Long ciId, String type) {
         this.ciId = ciId;
         this.type = type;
+    }
+
+    public Integer getAllowEdit() {
+        return allowEdit;
+    }
+
+    public void setAllowEdit(Integer allowEdit) {
+        this.allowEdit = allowEdit;
     }
 
     public String getUniqueKey() {
