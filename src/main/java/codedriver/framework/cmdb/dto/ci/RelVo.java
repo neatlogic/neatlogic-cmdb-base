@@ -102,6 +102,8 @@ public class RelVo implements Serializable {
     private List<ValueTextVo> expressionList;
     @EntityField(name = "级联关系", type = ApiParamType.JSONARRAY)
     private List<RelativeRelVo> relativeRelList;
+    @EntityField(name = "是否允许编辑", type = ApiParamType.INTEGER)
+    private Integer allowEdit;
 
     public RelVo() {
 
@@ -117,6 +119,14 @@ public class RelVo implements Serializable {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public Integer getAllowEdit() {
+        return allowEdit;
+    }
+
+    public void setAllowEdit(Integer allowEdit) {
+        this.allowEdit = allowEdit;
     }
 
     public List<RelativeRelVo> getRelativeRelList() {

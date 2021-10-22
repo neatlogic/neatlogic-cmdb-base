@@ -99,6 +99,8 @@ public class AttrVo extends BasePageVo {
     private CiVo ciVo;//根据模型生成属性表名
     @JSONField(serialize = false)
     private List<Column> columnList;
+    @EntityField(name = "是否允许编辑", type = ApiParamType.INTEGER)
+    private Integer allowEdit;
 
 
     public static class Column {
@@ -156,6 +158,14 @@ public class AttrVo extends BasePageVo {
             return needIndex;
         }
 
+    }
+
+    public Integer getAllowEdit() {
+        return allowEdit;
+    }
+
+    public void setAllowEdit(Integer allowEdit) {
+        this.allowEdit = allowEdit;
     }
 
     public Integer getIsCiUnique() {

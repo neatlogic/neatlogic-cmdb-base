@@ -78,6 +78,8 @@ public class CiVo implements Serializable {
     private String viewXml;//虚拟模型xml定义
     @EntityField(name = "虚拟模型配置文件id", type = ApiParamType.LONG)
     private Long fileId;
+    @JSONField(serialize = false)
+    private List<Long> typeIdList;//类型列表，搜索用
 
     @Override
     public boolean equals(Object o) {
@@ -107,6 +109,13 @@ public class CiVo implements Serializable {
         return id;
     }
 
+    public List<Long> getTypeIdList() {
+        return typeIdList;
+    }
+
+    public void setTypeIdList(List<Long> typeIdList) {
+        this.typeIdList = typeIdList;
+    }
 
     public Integer getIsAbstract() {
         return isAbstract;
