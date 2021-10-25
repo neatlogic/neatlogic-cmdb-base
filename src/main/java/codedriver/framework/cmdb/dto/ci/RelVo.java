@@ -34,7 +34,6 @@ public class RelVo implements Serializable {
     private String direction;
     @EntityField(name = "数据录入方式", type = ApiParamType.STRING)
     private String inputType = InputType.MT.getValue();
-
     @EntityField(name = "来源端模型id", type = ApiParamType.LONG)
     private Long fromCiId;
     @EntityField(name = "来源端模型图标", type = ApiParamType.STRING)
@@ -65,7 +64,6 @@ public class RelVo implements Serializable {
     private Boolean fromAllowInsert;
     @EntityField(name = "来源端是否虚拟模型", type = ApiParamType.INTEGER)
     private Integer fromIsVirtual;
-
     @EntityField(name = "目标端模型id", type = ApiParamType.LONG)
     private Long toCiId;
     @EntityField(name = "目标端模型图标", type = ApiParamType.STRING)
@@ -104,6 +102,8 @@ public class RelVo implements Serializable {
     private List<RelativeRelVo> relativeRelList;
     @EntityField(name = "是否允许编辑", type = ApiParamType.INTEGER)
     private Integer allowEdit;
+    @EntityField(name = "是否在拓扑图中显示", type = ApiParamType.INTEGER)
+    private Integer isShowInTopo;
 
     public RelVo() {
 
@@ -119,6 +119,14 @@ public class RelVo implements Serializable {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public Integer getIsShowInTopo() {
+        return isShowInTopo;
+    }
+
+    public void setIsShowInTopo(Integer isShowInTopo) {
+        this.isShowInTopo = isShowInTopo;
     }
 
     public Integer getAllowEdit() {

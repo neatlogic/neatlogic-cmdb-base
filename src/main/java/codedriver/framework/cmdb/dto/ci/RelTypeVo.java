@@ -21,6 +21,8 @@ public class RelTypeVo implements Serializable {
     private Integer invokeCount;
     @EntityField(name = "备注", type = ApiParamType.STRING)
     private String description;
+    @EntityField(name = "是否在拓扑图中显示", type = ApiParamType.INTEGER)
+    private Integer isShowInTopo;
 
     public Long getId() {
         if (id == null) {
@@ -58,5 +60,13 @@ public class RelTypeVo implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getIsShowInTopo() {
+        return isShowInTopo;
+    }
+
+    public void setIsShowInTopo(Integer isShowInTopo) {
+        this.isShowInTopo = isShowInTopo;
     }
 }
