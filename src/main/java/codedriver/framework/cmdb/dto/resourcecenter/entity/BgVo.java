@@ -14,15 +14,13 @@ import codedriver.framework.restful.annotation.EntityField;
  * @author linbq
  * @since 2021/5/27 12:02
  **/
-//@ResourceType(name = "resource_appinstance_bg", label = "应用实例部门")
-//@ResourceType(name = "resource_dbinstance_bg", label = "DB实例部门")
 @ResourceType(name = "resource_appmodule_bg", label = "应用模块所属部门")
 @ResourceType(name = "resource_appsystem_bg", label = "应用系统所属部门")
 @ResourceType(name = "resource_ipobject_bg", label = "IP软硬件部门")
 public class BgVo {
-    @EntityField(name = "分组uuid", type = ApiParamType.STRING)
-    @ResourceField(name = "bg_uuid")
-    private String uuid;
+//    @EntityField(name = "分组uuid", type = ApiParamType.STRING)
+//    @ResourceField(name = "bg_uuid")
+//    private String uuid;
     @EntityField(name = "分组id", type = ApiParamType.LONG)
     @ResourceField(name = "bg_id")
     private Long bgId;
@@ -33,13 +31,13 @@ public class BgVo {
     @ResourceField(name = "resource_id")
     private Long resourceId;
 
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
+//    public String getUuid() {
+//        return uuid;
+//    }
+//
+//    public void setUuid(String uuid) {
+//        this.uuid = uuid;
+//    }
 
     public Long getBgId() {
         return bgId;

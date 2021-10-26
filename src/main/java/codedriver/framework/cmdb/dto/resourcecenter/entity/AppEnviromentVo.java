@@ -14,8 +14,6 @@ import codedriver.framework.restful.annotation.EntityField;
  * @author linbq
  * @since 2021/5/27 14:29
  **/
-//@ResourceType(name = "resource_appinstance_env", label = "应用实例环境")
-//@ResourceType(name = "resource_dbinstance_env", label = "DB实例环境")
 @ResourceType(name = "resource_ipobject_env", label = "IP软硬件环境")
 public class AppEnviromentVo {
     @EntityField(name = "环境id", type = ApiParamType.LONG)

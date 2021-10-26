@@ -10,8 +10,6 @@ import codedriver.framework.cmdb.annotation.ResourceType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
-//@ResourceType(name = "resource_appinstance_appmodule", label = "应用实例模块关系")
-//@ResourceType(name = "resource_dbinstance_appmodule", label = "DB实例模块关系")
 @ResourceType(name = "resource_appsystem_appmodule", label = "应用系统模块关系")
 @ResourceType(name = "resource_ipobject_appmodule", label = "IP软硬件模块关系")
 public class ModuleVo {

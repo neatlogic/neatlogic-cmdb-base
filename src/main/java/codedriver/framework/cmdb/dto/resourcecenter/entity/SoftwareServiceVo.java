@@ -15,8 +15,8 @@ import java.util.Date;
 @ResourceType(name = "resource_softwareservice", label = "软件服务")//, ciName = "SoftwareService"
 @ResourceType(name = "resource_appinstance", label = "应用实例")
 @ResourceType(name = "resource_dbinstance", label = "DB实例")
-@ResourceType(name = "resource_appinstance_cluster", label = "应用实例集群")
 @ResourceType(name = "resource_db_cluster", label = "数据库集群")
+@ResourceType(name = "resource_appinstance_cluster", label = "应用实例集群")
 public class SoftwareServiceVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "id")
@@ -39,6 +39,8 @@ public class SoftwareServiceVo {
     @EntityField(name = "描述", type = ApiParamType.STRING)
     @ResourceField(name = "description")
     private String description;
+    @ResourceField(name = "network_area")
+    private String networkArea;
     @EntityField(name = "port", type = ApiParamType.INTEGER)
     @ResourceField(name = "port")
     private Integer port;
@@ -109,6 +111,14 @@ public class SoftwareServiceVo {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getNetworkArea() {
+        return networkArea;
+    }
+
+    public void setNetworkArea(String networkArea) {
+        this.networkArea = networkArea;
     }
 
     public Integer getPort() {

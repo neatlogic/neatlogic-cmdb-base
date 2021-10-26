@@ -14,9 +14,7 @@ import codedriver.framework.restful.annotation.EntityField;
  * @author linbq
  * @since 2021/5/27 14:29
  **/
-//@ResourceType(name = "resource_appinstance_netarea", label = "应用实例网络区域")
-//@ResourceType(name = "resource_dbinstance_netarea", label = "DB实例网络区域")
-@ResourceType(name = "resource_ipobject_netarea", label = "IP软硬件网络区域")
+//@ResourceType(name = "resource_ipobject_netarea", label = "IP软硬件网络区域")
 public class NetworkAreaVo {
     @EntityField(name = "网络区域id", type = ApiParamType.LONG)
     @ResourceField(name = "netarea_id")

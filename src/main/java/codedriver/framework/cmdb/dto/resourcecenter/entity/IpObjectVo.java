@@ -13,7 +13,9 @@ import codedriver.framework.restful.annotation.EntityField;
 import java.util.Date;
 
 @ResourceType(name = "resource_ipobject", ciName = "IPObject", label = "IP软硬件")
-@ResourceType(name = "resource_os_cluster", label = "操作系统集群")
+@ResourceType(name = "resource_storage", label = "存储设备")
+@ResourceType(name = "resource_netdev", label = "网络设备")
+@ResourceType(name = "resource_os", label = "操作系统")
 public class IpObjectVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "id")
@@ -36,6 +38,8 @@ public class IpObjectVo {
     @EntityField(name = "描述", type = ApiParamType.STRING)
     @ResourceField(name = "description")
     private String description;
+    @ResourceField(name = "network_area")
+    private String networkArea;
     @EntityField(name = "创建者", type = ApiParamType.STRING)
     @ResourceField(name = "fcu")
     private String fcu;
@@ -103,6 +107,14 @@ public class IpObjectVo {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getNetworkArea() {
+        return networkArea;
+    }
+
+    public void setNetworkArea(String networkArea) {
+        this.networkArea = networkArea;
     }
 
     public String getFcu() {

@@ -20,6 +20,9 @@ public class AppSystemVo {
     @EntityField(name = "名称", type = ApiParamType.STRING)
     @ResourceField(name = "name")
     private String name;
+    @EntityField(name = "简称", type = ApiParamType.STRING)
+    @ResourceField(name = "abbr_name")
+    private String abbrName;
     @EntityField(name = "类型id", type = ApiParamType.LONG)
     @ResourceField(name = "type_id")
     private Long typeId;
@@ -62,6 +65,14 @@ public class AppSystemVo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAbbrName() {
+        return abbrName;
+    }
+
+    public void setAbbrName(String abbrName) {
+        this.abbrName = abbrName;
     }
 
     public Long getTypeId() {

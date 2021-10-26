@@ -14,8 +14,6 @@ import codedriver.framework.restful.annotation.EntityField;
  * @author linbq
  * @since 2021/5/27 14:07
  **/
-//@ResourceType(name = "resource_appinstance_owner", label = "应用实例所有人")
-//@ResourceType(name = "resource_dbinstance_owner", label = "DB实例所有人")
 @ResourceType(name = "resource_appmodule_owner", label = "应用模块所有人")
 @ResourceType(name = "resource_appsystem_owner", label = "应用系统所有人")
 @ResourceType(name = "resource_ipobject_owner", label = "IP软硬件所有人")

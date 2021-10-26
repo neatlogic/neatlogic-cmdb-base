@@ -17,21 +17,21 @@ import codedriver.framework.restful.annotation.EntityField;
  * @since 2021/5/27 12:02
  **/
 public class BgVo {
-    @EntityField(name = "分组uuid", type = ApiParamType.STRING)
-    private String uuid;
+//    @EntityField(name = "分组uuid", type = ApiParamType.STRING)
+//    private String uuid;
     @EntityField(name = "分组id", type = ApiParamType.LONG)
     private Long bgId;
     @EntityField(name = "分组名称", type = ApiParamType.STRING)
     private String bgName;
-    private String initType = GroupSearch.TEAM.getValue();
+//    private String initType = GroupSearch.TEAM.getValue();
 
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
+//    public String getUuid() {
+//        return uuid;
+//    }
+//
+//    public void setUuid(String uuid) {
+//        this.uuid = uuid;
+//    }
 
     public Long getBgId() {
         return bgId;
@@ -49,11 +49,11 @@ public class BgVo {
         this.bgName = bgName;
     }
 
-    public String getInitType() {
-        return initType;
-    }
-
-    public void setInitType(String initType) {
-        this.initType = initType;
-    }
+//    public String getInitType() {
+//        return initType;
+//    }
+//
+//    public void setInitType(String initType) {
+//        this.initType = initType;
+//    }
 }

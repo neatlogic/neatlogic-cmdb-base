@@ -23,7 +23,7 @@ public class ResourceSearchVo extends BasePageVo {
     private Long appModuleId;
     private List<Integer> protocolIdList;
     private List<String> protocolList;
-    private List<Long> statusIdList;
+    private List<Long> stateIdList;
     private List<Long> envIdList;
     private List<Long> appSystemIdList;
     private List<Long> appModuleIdList;
@@ -107,12 +107,12 @@ public class ResourceSearchVo extends BasePageVo {
         this.protocolList = protocolList;
     }
 
-    public List<Long> getStatusIdList() {
-        return statusIdList;
+    public List<Long> getStateIdList() {
+        return stateIdList;
     }
 
-    public void setStatusIdList(List<Long> statusIdList) {
-        this.statusIdList = statusIdList;
+    public void setStateIdList(List<Long> stateIdList) {
+        this.stateIdList = stateIdList;
     }
 
     public List<Long> getEnvIdList() {
