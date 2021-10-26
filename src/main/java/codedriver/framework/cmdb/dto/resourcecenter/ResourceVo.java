@@ -8,6 +8,7 @@ package codedriver.framework.cmdb.dto.resourcecenter;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BaseEditorVo;
 import codedriver.framework.restful.annotation.EntityField;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -20,6 +21,8 @@ public class ResourceVo extends BaseEditorVo {
     private Long id;
     @EntityField(name = "名称", type = ApiParamType.STRING)
     private String name;
+    @EntityField(name = "简称", type = ApiParamType.STRING)
+    private String abbrName;
     @EntityField(name = "类型id", type = ApiParamType.LONG)
     private Long typeId;
     @EntityField(name = "类型名称", type = ApiParamType.STRING)
@@ -30,18 +33,24 @@ public class ResourceVo extends BaseEditorVo {
     private Long netAreaId;
     @EntityField(name = "网络区域名称", type = ApiParamType.STRING)
     private String netAreaName;
+    @EntityField(name = "网络区域", type = ApiParamType.STRING)
+    private String networkArea;
     @EntityField(name = "数据中心id", type = ApiParamType.LONG)
     private Long dataCenterId;
     @EntityField(name = "数据中心名称", type = ApiParamType.STRING)
     private String dataCenterName;
     @EntityField(name = "状态id", type = ApiParamType.LONG)
-    private Long statusId;
+    private Long stateId;
+    @EntityField(name = "状态名称", type = ApiParamType.STRING)
+    private String stateName;
     @EntityField(name = "状态名称", type = ApiParamType.STRING)
     private String statusName;
     @EntityField(name = "应用系统id", type = ApiParamType.LONG)
     private Long appSystemId;
     @EntityField(name = "应用系统名称", type = ApiParamType.STRING)
     private String appSystemName;
+    @EntityField(name = "应用系统简称", type = ApiParamType.STRING)
+    private String appSystemAbbrName;
     @EntityField(name = "应用模块id", type = ApiParamType.LONG)
     private Long appModuleId;
     @EntityField(name = "应用模块名称", type = ApiParamType.STRING)
@@ -99,6 +108,14 @@ public class ResourceVo extends BaseEditorVo {
         this.name = name;
     }
 
+    public String getAbbrName() {
+        return abbrName;
+    }
+
+    public void setAbbrName(String abbrName) {
+        this.abbrName = abbrName;
+    }
+
     public Long getTypeId() {
         return typeId;
     }
@@ -132,11 +149,23 @@ public class ResourceVo extends BaseEditorVo {
     }
 
     public String getNetAreaName() {
+        // TODO linbq 临时代码，等前端改完再删netAreaId、netAreaName
+        if (StringUtils.isBlank(netAreaName)) {
+            netAreaName = networkArea;
+        }
         return netAreaName;
     }
 
     public void setNetAreaName(String netAreaName) {
         this.netAreaName = netAreaName;
+    }
+
+    public String getNetworkArea() {
+        return networkArea;
+    }
+
+    public void setNetworkArea(String networkArea) {
+        this.networkArea = networkArea;
     }
 
     public Long getDataCenterId() {
@@ -155,15 +184,26 @@ public class ResourceVo extends BaseEditorVo {
         this.dataCenterName = dataCenterName;
     }
 
-    public Long getStatusId() {
-        return statusId;
+    public Long getStateId() {
+        return stateId;
     }
 
-    public void setStatusId(Long statusId) {
-        this.statusId = statusId;
+    public void setStateId(Long stateId) {
+        this.stateId = stateId;
     }
 
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
+    }
+    // TODO linbq 临时代码，等前端改为再删statusName
     public String getStatusName() {
+        if (StringUtils.isBlank(statusName)) {
+            statusName = stateName;
+        }
         return statusName;
     }
 
@@ -185,6 +225,14 @@ public class ResourceVo extends BaseEditorVo {
 
     public void setAppSystemName(String appSystemName) {
         this.appSystemName = appSystemName;
+    }
+
+    public String getAppSystemAbbrName() {
+        return appSystemAbbrName;
+    }
+
+    public void setAppSystemAbbrName(String appSystemAbbrName) {
+        this.appSystemAbbrName = appSystemAbbrName;
     }
 
     public Long getAppModuleId() {

@@ -14,36 +14,34 @@ import codedriver.framework.restful.annotation.EntityField;
  * @author linbq
  * @since 2021/5/27 15:01
  **/
-//@ResourceType(name = "resource_dbinstance_status", label = "DB实例状态")
-//@ResourceType(name = "resource_appinstance_status", label = "应用实例状态")
-@ResourceType(name = "resource_appsystem_status", label = "应用系统状态")
-@ResourceType(name = "resource_appmodule_status", label = "应用模块状态")
-@ResourceType(name = "resource_ipobject_status", label = "IP软硬件状态")
-public class StatusVo {
+@ResourceType(name = "resource_appsystem_state", label = "应用系统状态")
+@ResourceType(name = "resource_appmodule_state", label = "应用模块状态")
+@ResourceType(name = "resource_ipobject_state", label = "IP软硬件状态")
+public class StateVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
-    @ResourceField(name = "status_id")
-    private Long statusId;
+    @ResourceField(name = "state_id")
+    private Long stateId;
     @EntityField(name = "状态名", type = ApiParamType.STRING)
-    @ResourceField(name = "status_name")
-    private String statusName;
+    @ResourceField(name = "state_name")
+    private String stateName;
     @EntityField(name = "资源id", type = ApiParamType.LONG)
     @ResourceField(name = "resource_id")
     private Long resourceId;
 
-    public Long getStatusId() {
-        return statusId;
+    public Long getStateId() {
+        return stateId;
     }
 
-    public void setStatusId(Long statusId) {
-        this.statusId = statusId;
+    public void setStateId(Long stateId) {
+        this.stateId = stateId;
     }
 
-    public String getStatusName() {
-        return statusName;
+    public String getStateName() {
+        return stateName;
     }
 
-    public void setStatusName(String statusName) {
-        this.statusName = statusName;
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
     }
 
     public Long getResourceId() {

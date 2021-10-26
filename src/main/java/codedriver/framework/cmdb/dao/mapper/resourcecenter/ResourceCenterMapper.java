@@ -9,7 +9,7 @@ import codedriver.framework.cmdb.dto.resourcecenter.*;
 import codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo;
 import codedriver.framework.cmdb.dto.resourcecenter.AccountComponentVo;
 import codedriver.framework.cmdb.dto.resourcecenter.entity.AppEnviromentVo;
-import codedriver.framework.cmdb.dto.resourcecenter.entity.StatusVo;
+import codedriver.framework.cmdb.dto.resourcecenter.entity.StateVo;
 import codedriver.framework.cmdb.dto.tag.TagVo;
 import org.apache.ibatis.annotations.Param;
 
@@ -138,7 +138,7 @@ public interface ResourceCenterMapper {
 
     List<ResourceTypeVo> getResourceTypeList(@Param("schemaName") String schemaName);
 
-    List<StatusVo> getStatusList(@Param("schemaName") String schemaName);
+    List<StateVo> getStateList(@Param("schemaName") String schemaName);
 
     List<Long> getResourceIdListByProtocolIdList(ResourceSearchVo searchVo);
 

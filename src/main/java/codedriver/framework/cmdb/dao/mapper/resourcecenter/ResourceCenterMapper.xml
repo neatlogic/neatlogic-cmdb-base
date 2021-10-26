@@ -177,9 +177,9 @@
     FROM ${schemaName}.`resource_ipobject` a
 	LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
 	LEFT JOIN ${schemaName}.`resource_ipobject_ip` c ON c.`resource_id` = a.`id`
-	LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id`
+	<!-- LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id` -->
 	LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
-	LEFT JOIN ${schemaName}.`resource_ipobject_status` f ON f.`resource_id` = a.`id`
+	LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
 	LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g ON g.`resource_id` = a.`id`
 	LEFT JOIN ${schemaName}.`resource_ipobject_env` h ON h.`resource_id` = a.`id`
 	LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i ON i.`resource_id` = a.`id`
@@ -198,10 +198,10 @@
                     #{typeId}
                 </foreach>
             </if>
-            <if test="statusIdList != null and statusIdList.size() > 0">
-                AND f.`status_id` IN
-                <foreach collection="statusIdList" item="statusId" open="(" separator="," close=")">
-                    #{statusId}
+            <if test="stateIdList != null and stateIdList.size() > 0">
+                AND f.`state_id` IN
+                <foreach collection="stateIdList" item="stateId" open="(" separator="," close=")">
+                    #{stateId}
                 </foreach>
             </if>
             <if test="envIdList != null and envIdList.size() > 0">
@@ -248,18 +248,20 @@
     <resultMap id="resourceCenterMap" type="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
+        <result column="abbr_name" property="abbrName"/>
         <result column="type_id" property="typeId"/>
         <result column="type_name" property="typeName"/>
         <result column="type_label" property="typeLabel"/>
         <result column="maintenance_window" property="maintenanceWindow"/>
         <result column="description" property="description"/>
+        <result column="network_area" property="networkArea"/>
         <result column="port" property="port"/>
         <result column="ip_id" property="ipId"/>
         <result column="ip" property="ip"/>
         <result column="netarea_id" property="netAreaId"/>
         <result column="netarea_name" property="netAreaName"/>
-        <result column="status_id" property="statusId"/>
-        <result column="status_name" property="statusName"/>
+        <result column="state_id" property="stateId"/>
+        <result column="state_name" property="stateName"/>
         <result column="datacenter_id" property="dataCenterId"/>
         <result column="datacenter_name" property="dataCenterName"/>
         <result column="env_id" property="envId"/>
@@ -268,12 +270,12 @@
         <result column="app_module_name" property="appModuleName"/>
         <result column="app_system_id" property="appSystemId"/>
         <result column="app_system_name" property="appSystemName"/>
+        <result column="app_system_abbr_name" property="appSystemAbbrName"/>
         <result column="cluster_id" property="clusterId"/>
         <result column="cluster_name" property="clusterName"/>
         <result column="cluster_type_id" property="clusterTypeId"/>
         <collection property="bgList" ofType="codedriver.framework.cmdb.dto.resourcecenter.BgVo">
             <id column="bg_id" property="bgId"/>
-            <result column="bg_uuid" property="uuid"/>
             <result column="bg_name" property="bgName"/>
         </collection>
         <collection property="ownerList" ofType="codedriver.framework.cmdb.dto.resourcecenter.OwnerVo">
@@ -284,16 +286,16 @@
     </resultMap>
 
     <select id="getResourceListByIdList" resultMap="resourceCenterMap">
-        SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
-        b.`bg_id`, b.`bg_name`, b.`bg_uuid`,
+        SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`, a.`network_area`,
+        b.`bg_id`, b.`bg_name`,
         c.`ip_id`, c.`ip`,
-        d.`netarea_id`, d.`netarea_name`,
+        <!-- d.`netarea_id`, d.`netarea_name`, -->
         e.`user_id`, e.`user_name`, e.`user_uuid`,
-        f.`status_id`, f.`status_name`,
+        f.`state_id`, f.`state_name`,
         g.`datacenter_id`, g.`datacenter_name`,
         h.`env_id`, h.`env_name`,
         i.`app_module_id`, i.`app_module_name`,
-        l.`id` AS `app_system_id`, l.`name` AS app_system_name,
+        l.`id` AS `app_system_id`, l.`name` AS app_system_name, l.`abbr_name` AS app_system_abbr_name,
         m.`port`
         <include refid="resource_ipobject_from_join"/>
         WHERE a.`id` IN
@@ -326,12 +328,12 @@
     </select>
 
     <select id="getOsResourceListByIdList" resultMap="resourceCenterMap">
-        SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
-        b.`bg_id`, b.`bg_name`, b.`bg_uuid`,
+        SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`, a.`network_area`,
+        b.`bg_id`, b.`bg_name`,
         c.`ip_id`, c.`ip`,
-        d.`netarea_id`, d.`netarea_name`,
+        <!-- d.`netarea_id`, d.`netarea_name`, -->
         e.`user_id`, e.`user_name`, e.`user_uuid`,
-        f.`status_id`, f.`status_name`,
+        f.`state_id`, f.`state_name`,
         g.`datacenter_id`, g.`datacenter_name`,
         h.`env_id`, h.`env_name`,
         n.`cluster_id`,
@@ -340,9 +342,9 @@
         FROM ${schemaName}.`resource_os` a
         LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_ip` c ON c.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id`
+        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id` -->
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_status` f ON f.`resource_id` = a.`id`
+        LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_os_oscluster` n ON n.`resource_id` = a.`id`
@@ -376,20 +378,20 @@
     </select>
 
     <select id="getStorageResourceListByIdList" resultMap="resourceCenterMap">
-        SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
-        b.`bg_id`, b.`bg_name`, b.`bg_uuid`,
+        SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`, a.`network_area`,
+        b.`bg_id`, b.`bg_name`,
         c.`ip_id`, c.`ip`,
-        d.`netarea_id`, d.`netarea_name`,
+        <!-- d.`netarea_id`, d.`netarea_name`, -->
         e.`user_id`, e.`user_name`, e.`user_uuid`,
-        f.`status_id`, f.`status_name`,
+        f.`state_id`, f.`state_name`,
         g.`datacenter_id`, g.`datacenter_name`,
         h.`env_id`, h.`env_name`
         FROM ${schemaName}.`resource_storage` a
         LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_ip` c ON c.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id`
+        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id` -->
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_status` f ON f.`resource_id` = a.`id`
+        LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
         WHERE a.`id` IN
@@ -422,20 +424,20 @@
     </select>
 
     <select id="getNetDevResourceListByIdList" resultMap="resourceCenterMap">
-        SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
-        b.`bg_id`, b.`bg_name`, b.`bg_uuid`,
+        SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`, a.`network_area`,
+        b.`bg_id`, b.`bg_name`,
         c.`ip_id`, c.`ip`,
-        d.`netarea_id`, d.`netarea_name`,
+        <!-- d.`netarea_id`, d.`netarea_name`, -->
         e.`user_id`, e.`user_name`, e.`user_uuid`,
-        f.`status_id`, f.`status_name`,
+        f.`state_id`, f.`state_name`,
         g.`datacenter_id`, g.`datacenter_name`,
         h.`env_id`, h.`env_name`
         FROM ${schemaName}.`resource_netdev` a
         LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_ip` c ON c.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id`
+        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id` -->
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_status` f ON f.`resource_id` = a.`id`
+        LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
         WHERE a.`id` IN
@@ -468,12 +470,12 @@
     </select>
 
     <select id="getAppInstanceResourceListByIdList" resultMap="resourceCenterMap">
-        SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
-        b.`bg_id`, b.`bg_name`, b.`bg_uuid`,
+        SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`, a.`network_area`,
+        b.`bg_id`, b.`bg_name`,
         c.`ip_id`, c.`ip`,
-        d.`netarea_id`, d.`netarea_name`,
+        <!-- d.`netarea_id`, d.`netarea_name`, -->
         e.`user_id`, e.`user_name`, e.`user_uuid`,
-        f.`status_id`, f.`status_name`,
+        f.`state_id`, f.`state_name`,
         g.`datacenter_id`, g.`datacenter_name`,
         h.`env_id`, h.`env_name`,
         m.`port`,
@@ -483,9 +485,9 @@
         FROM ${schemaName}.`resource_appinstance` a
         LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_ip` c ON c.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id`
+        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id` -->
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_status` f ON f.`resource_id` = a.`id`
+        LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_softwareservice` m ON m.`id` = a.`id`
@@ -520,12 +522,12 @@
     </select>
 
     <select id="getDbInstanceResourceListByIdList" resultMap="resourceCenterMap">
-        SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
-        b.`bg_id`, b.`bg_name`, b.`bg_uuid`,
+        SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`, a.`network_area`,
+        b.`bg_id`, b.`bg_name`,
         c.`ip_id`, c.`ip`,
-        d.`netarea_id`, d.`netarea_name`,
+        <!-- d.`netarea_id`, d.`netarea_name`, -->
         e.`user_id`, e.`user_name`, e.`user_uuid`,
-        f.`status_id`, f.`status_name`,
+        f.`state_id`, f.`state_name`,
         g.`datacenter_id`, g.`datacenter_name`,
         h.`env_id`, h.`env_name`,
         m.`port`,
@@ -535,9 +537,9 @@
         FROM ${schemaName}.`resource_dbinstance` a
         LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_ip` c ON c.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id`
+        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id` -->
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_status` f ON f.`resource_id` = a.`id`
+        LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_softwareservice` m ON m.`id` = a.`id`
@@ -572,21 +574,21 @@
     </select>
 
     <select id="getAppInstanceClusterResourceListByIdList" resultMap="resourceCenterMap">
-        SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
-        b.`bg_id`, b.`bg_name`, b.`bg_uuid`,
+        SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`, a.`network_area`,
+        b.`bg_id`, b.`bg_name`,
         c.`ip_id`, c.`ip`,
-        d.`netarea_id`, d.`netarea_name`,
+        <!-- d.`netarea_id`, d.`netarea_name`, -->
         e.`user_id`, e.`user_name`, e.`user_uuid`,
-        f.`status_id`, f.`status_name`,
+        f.`state_id`, f.`state_name`,
         g.`datacenter_id`, g.`datacenter_name`,
         h.`env_id`, h.`env_name`,
         m.`port`
         FROM ${schemaName}.`resource_appinstance_cluster` a
         LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_ip` c ON c.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id`
+        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id` -->
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_status` f ON f.`resource_id` = a.`id`
+        LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_softwareservice` m ON m.`id` = a.`id`
@@ -620,21 +622,21 @@
     </select>
 
     <select id="getDbInstanceClusterResourceListByIdList" resultMap="resourceCenterMap">
-        SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
-        b.`bg_id`, b.`bg_name`, b.`bg_uuid`,
+        SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`, a.`network_area`,
+        b.`bg_id`, b.`bg_name`,
         c.`ip_id`, c.`ip`,
-        d.`netarea_id`, d.`netarea_name`,
+        <!-- d.`netarea_id`, d.`netarea_name`, -->
         e.`user_id`, e.`user_name`, e.`user_uuid`,
-        f.`status_id`, f.`status_name`,
+        f.`state_id`, f.`state_name`,
         g.`datacenter_id`, g.`datacenter_name`,
         h.`env_id`, h.`env_name`,
         m.`port`
         FROM ${schemaName}.`resource_db_cluster` a
         LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_ip` c ON c.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id`
+        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id` -->
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_status` f ON f.`resource_id` = a.`id`
+        LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_softwareservice` m ON m.`id` = a.`id`
@@ -969,10 +971,10 @@
 
     <select id="getAppModuleListByIdList" parameterType="java.util.List" resultMap="resourceCenterMap">
         SELECT
-        a.`id`, a.`name`, a.`maintenance_window`, a.`description`,
+        a.`id`, a.`name`, a.`abbr_name`, a.`maintenance_window`, a.`description`,
         b.`user_id`, b.`user_name`, b.`user_uuid`,
-        c.`bg_id`, c.`bg_name`, c.`bg_uuid`,
-        e.`id` AS `app_system_id`, e.`name` AS app_system_name
+        c.`bg_id`, c.`bg_name`,
+        e.`id` AS `app_system_id`, e.`name` AS app_system_name, e.`abbr_name` AS app_system_abbr_name
         FROM ${schemaName}.`resource_appmodule` a
         LEFT JOIN ${schemaName}.`resource_appmodule_owner` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_appmodule_bg` c ON c.`resource_id` = a.`id`
@@ -1007,7 +1009,7 @@
 
     <select id="getAppSystemListByIdList" parameterType="java.util.List" resultMap="resourceCenterMap">
         SELECT
-        a.`id`, a.`name`, a.`maintenance_window`, a.`description`
+        a.`id`, a.`name`, a.`abbr_name`, a.`maintenance_window`, a.`description`
         FROM ${schemaName}.`resource_appsystem` a
         WHERE a.`id` IN
         <foreach collection="idList" item="id" open="(" separator="," close=")">
@@ -1049,10 +1051,10 @@
         FROM ${schemaName}.`resource_ipobject` a
     </select>
 
-    <select id="getStatusList" parameterType="java.lang.String"
-            resultType="codedriver.framework.cmdb.dto.resourcecenter.entity.StatusVo">
-        SELECT DISTINCT `status_id` AS statusId, `status_name` AS statusName
-        FROM ${schemaName}.`resource_ipobject_status`
+    <select id="getStateList" parameterType="java.lang.String"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.entity.StateVo">
+        SELECT DISTINCT `state_id` AS stateId, `state_name` AS stateName
+        FROM ${schemaName}.`resource_ipobject_state`
     </select>
 
     <select id="getResourceIdListByProtocolIdList"

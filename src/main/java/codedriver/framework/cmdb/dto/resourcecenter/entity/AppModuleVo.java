@@ -20,6 +20,9 @@ public class AppModuleVo {
     @EntityField(name = "名称", type = ApiParamType.STRING)
     @ResourceField(name = "name")
     private String name;
+    @EntityField(name = "简称", type = ApiParamType.STRING)
+    @ResourceField(name = "abbr_name")
+    private String abbrName;
     @EntityField(name = "维护窗口", type = ApiParamType.STRING)
     @ResourceField(name = "maintenance_window")
     private String maintenanceWindow;
@@ -53,6 +56,14 @@ public class AppModuleVo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getAbbrName() {
+        return abbrName;
+    }
+
+    public void setAbbrName(String abbrName) {
+        this.abbrName = abbrName;
     }
 
     public String getMaintenanceWindow() {

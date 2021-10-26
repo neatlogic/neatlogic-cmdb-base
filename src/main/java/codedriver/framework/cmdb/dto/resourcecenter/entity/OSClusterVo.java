@@ -10,10 +10,10 @@ import codedriver.framework.cmdb.annotation.ResourceType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
-import java.util.List;
+import java.util.Date;
 
-//@ResourceType(name = "resource_appinstance", ciName = "APPIns", label = "应用实例")
-public class AppInstanceVo {
+@ResourceType(name = "resource_os_cluster", label = "操作系统集群")
+public class OSClusterVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;
@@ -35,9 +35,18 @@ public class AppInstanceVo {
     @EntityField(name = "描述", type = ApiParamType.STRING)
     @ResourceField(name = "description")
     private String description;
-    @EntityField(name = "port", type = ApiParamType.INTEGER)
-    @ResourceField(name = "port")
-    private Integer port;
+    @EntityField(name = "创建者", type = ApiParamType.STRING)
+    @ResourceField(name = "fcu")
+    private String fcu;
+    @EntityField(name = "创建日期", type = ApiParamType.LONG)
+    @ResourceField(name = "fcd")
+    private Date fcd;
+    @EntityField(name = "修改者", type = ApiParamType.STRING)
+    @ResourceField(name = "lcu")
+    private String lcu;
+    @EntityField(name = "修改日期", type = ApiParamType.LONG)
+    @ResourceField(name = "lcd")
+    private Date lcd;
 
     public Long getId() {
         return id;
@@ -95,11 +104,35 @@ public class AppInstanceVo {
         this.description = description;
     }
 
-    public Integer getPort() {
-        return port;
+    public String getFcu() {
+        return fcu;
     }
 
-    public void setPort(Integer port) {
-        this.port = port;
+    public void setFcu(String fcu) {
+        this.fcu = fcu;
+    }
+
+    public Date getFcd() {
+        return fcd;
+    }
+
+    public void setFcd(Date fcd) {
+        this.fcd = fcd;
+    }
+
+    public String getLcu() {
+        return lcu;
+    }
+
+    public void setLcu(String lcu) {
+        this.lcu = lcu;
+    }
+
+    public Date getLcd() {
+        return lcd;
+    }
+
+    public void setLcd(Date lcd) {
+        this.lcd = lcd;
     }
 }
