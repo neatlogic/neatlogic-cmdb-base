@@ -12,5 +12,5 @@ import java.util.List;
 import java.util.Map;
 
 public interface CustomViewDataCrossoverService extends ICrossoverService {
-    List<Map<String, Object>> searchCustomViewDataOriginal(CustomViewConditionVo customViewConditionVo);
+    List<Map<String, Object>> searchCustomViewData(CustomViewConditionVo customViewConditionVo);
 }

@@ -47,13 +47,13 @@ public class CiVo implements Serializable {
     @EntityField(name = "类型名称", type = ApiParamType.STRING)
     private Long typeName;
     @EntityField(name = "是否私有模型，0:不是，1:是", type = ApiParamType.INTEGER)
-    private Integer isPrivate = 0;
+    private Integer isPrivate;
     @EntityField(name = "是否在菜单中显示，0:不显示，1:显示", type = ApiParamType.INTEGER)
-    private Integer isMenu = 0;
+    private Integer isMenu;
     @EntityField(name = "是否抽象模型，0:不是，1:是", type = ApiParamType.INTEGER)
-    private Integer isAbstract = 0;
+    private Integer isAbstract;
     @EntityField(name = "是否虚拟模型，0:不是，1:是，虚拟模型不能被继承，不能修改数据，只能被引用和查询", type = ApiParamType.INTEGER)
-    private Integer isVirtual = 0;
+    private Integer isVirtual;
     @EntityField(name = "属性定义列表", type = ApiParamType.JSONARRAY)
     private List<AttrVo> attrList;
     @EntityField(name = "关系定义列表", type = ApiParamType.JSONARRAY)
