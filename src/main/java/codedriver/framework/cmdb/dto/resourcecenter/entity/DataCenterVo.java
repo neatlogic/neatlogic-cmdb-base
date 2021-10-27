@@ -14,8 +14,6 @@ import codedriver.framework.restful.annotation.EntityField;
  * @author linbq
  * @since 2021/5/27 14:29
  **/
-@ResourceType(name = "resource_appsystem_datacenter", label = "应用系统数据中心")
-@ResourceType(name = "resource_appmodule_datacenter", label = "应用模块数据中心")
 @ResourceType(name = "resource_ipobject_datacenter", label = "IP软硬件数据中心")
 public class DataCenterVo {
     @EntityField(name = "数据中心id", type = ApiParamType.LONG)

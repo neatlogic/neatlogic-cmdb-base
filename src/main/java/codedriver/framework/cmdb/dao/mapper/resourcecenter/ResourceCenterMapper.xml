@@ -181,7 +181,7 @@
 	LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
 	LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
 	LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g ON g.`resource_id` = a.`id`
-	LEFT JOIN ${schemaName}.`resource_ipobject_env` h ON h.`resource_id` = a.`id`
+	LEFT JOIN ${schemaName}.`resource_softwareservice_env` h ON h.`resource_id` = a.`id`
 	LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i ON i.`resource_id` = a.`id`
 	LEFT JOIN ${schemaName}.`resource_appsystem_appmodule` j ON j.`app_module_id` = i.`app_module_id`
 	LEFT JOIN ${schemaName}.`resource_appsystem` l ON l.`id` = j.`resource_id`
@@ -308,7 +308,7 @@
             resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_os` a
-                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
                  LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
@@ -319,7 +319,7 @@
             resultType="java.lang.Long">
         SELECT DISTINCT a.`id`
         FROM ${schemaName}.`resource_os` a
-                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
                  LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
@@ -346,7 +346,7 @@
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+        LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_os_oscluster` n ON n.`resource_id` = a.`id`
         WHERE a.`id` IN
         <foreach collection="idList" item="id" open="(" separator="," close=")">
@@ -358,7 +358,7 @@
             resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_storage` a
-                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
                  LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
@@ -369,7 +369,7 @@
             resultType="java.lang.Long">
         SELECT DISTINCT a.`id`
         FROM ${schemaName}.`resource_storage` a
-                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
                  LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
@@ -393,7 +393,7 @@
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+        LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
         WHERE a.`id` IN
         <foreach collection="idList" item="id" open="(" separator="," close=")">
             #{id}
@@ -404,7 +404,7 @@
             resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_netdev` a
-                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
                  LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
@@ -415,7 +415,7 @@
             resultType="java.lang.Long">
         SELECT DISTINCT a.`id`
         FROM ${schemaName}.`resource_netdev` a
-                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
                  LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
@@ -439,7 +439,7 @@
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+        LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
         WHERE a.`id` IN
         <foreach collection="idList" item="id" open="(" separator="," close=")">
             #{id}
@@ -450,7 +450,7 @@
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_appinstance` a
-                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
                  LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
@@ -461,7 +461,7 @@
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT DISTINCT a.`id`
         FROM ${schemaName}.`resource_appinstance` a
-                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
                  LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
@@ -489,7 +489,7 @@
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+        LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_softwareservice` m ON m.`id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_appinstance_appinstancecluster` n ON n.`resource_id` = a.`id`
         WHERE a.`id` IN
@@ -502,7 +502,7 @@
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_dbinstance` a
-                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
                  LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
@@ -513,7 +513,7 @@
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT DISTINCT a.`id`
         FROM ${schemaName}.`resource_dbinstance` a
-                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
                  LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
@@ -541,7 +541,7 @@
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+        LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_softwareservice` m ON m.`id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_dbinstance_dbcluster` n ON n.`resource_id` = a.`id`
         WHERE a.`id` IN
@@ -554,7 +554,7 @@
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_appinstance_cluster` a
-                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
                  LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
@@ -565,7 +565,7 @@
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT DISTINCT a.`id`
         FROM ${schemaName}.`resource_appinstance_cluster` a
-                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
                  LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
@@ -590,7 +590,7 @@
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+        LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_softwareservice` m ON m.`id` = a.`id`
         WHERE a.`id` IN
         <foreach collection="idList" item="id" open="(" separator="," close=")">
@@ -602,7 +602,7 @@
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_db_cluster` a
-                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
                  LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
@@ -613,7 +613,7 @@
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT DISTINCT a.`id`
         FROM ${schemaName}.`resource_db_cluster` a
-                 LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+                 LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
                  LEFT JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
           AND h.`env_id` = #{envId}
@@ -638,7 +638,7 @@
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
-        LEFT JOIN ${schemaName}.`resource_ipobject_env` h on h.`resource_id` = a.`id`
+        LEFT JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_softwareservice` m ON m.`id` = a.`id`
         WHERE a.`id` IN
         <foreach collection="idList" item="id" open="(" separator="," close=")">
@@ -1026,7 +1026,7 @@
     <select id="getEnvironmentListByAppModuleId"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.entity.AppEnviromentVo">
         SELECT DISTINCT a.`env_id` AS envId, a.`env_name` AS envName
-        FROM ${schemaName}.`resource_ipobject_env` a
+        FROM ${schemaName}.`resource_softwareservice_env` a
         <if test="appModuleId != null">
             JOIN ${schemaName}.`resource_ipobject_appmodule` b ON b.`resource_id`=a.`resource_id` AND b.`app_module_id`
             = #{appModuleId}
@@ -1039,7 +1039,7 @@
                         a.`type_name`  AS `name`,
                         a.`type_label` AS label
         FROM ${schemaName}.`resource_ipobject` a
-                 JOIN ${schemaName}.`resource_ipobject_env` b ON b.`resource_id` = a.`id` AND b.`env_id` = #{envId}
+                 JOIN ${schemaName}.`resource_softwareservice_env` b ON b.`resource_id` = a.`id` AND b.`env_id` = #{envId}
                  JOIN ${schemaName}.`resource_ipobject_appmodule` c
                       ON c.`resource_id` = a.`id` AND c.`app_module_id` = #{appModuleId}
     </select>
