@@ -29,10 +29,6 @@ public class ResourceVo extends BaseEditorVo {
     private String typeName;
     @EntityField(name = "类型label", type = ApiParamType.STRING)
     private String typeLabel;
-    @EntityField(name = "网络区域id", type = ApiParamType.LONG)
-    private Long netAreaId;
-    @EntityField(name = "网络区域名称", type = ApiParamType.STRING)
-    private String netAreaName;
     @EntityField(name = "网络区域", type = ApiParamType.STRING)
     private String networkArea;
     @EntityField(name = "数据中心id", type = ApiParamType.LONG)
@@ -43,8 +39,6 @@ public class ResourceVo extends BaseEditorVo {
     private Long stateId;
     @EntityField(name = "状态名称", type = ApiParamType.STRING)
     private String stateName;
-    @EntityField(name = "状态名称", type = ApiParamType.STRING)
-    private String statusName;
     @EntityField(name = "应用系统id", type = ApiParamType.LONG)
     private Long appSystemId;
     @EntityField(name = "应用系统名称", type = ApiParamType.STRING)
@@ -140,26 +134,6 @@ public class ResourceVo extends BaseEditorVo {
         this.typeLabel = typeLabel;
     }
 
-    public Long getNetAreaId() {
-        return netAreaId;
-    }
-
-    public void setNetAreaId(Long netAreaId) {
-        this.netAreaId = netAreaId;
-    }
-
-    public String getNetAreaName() {
-        // TODO linbq 临时代码，等前端改完再删netAreaId、netAreaName
-        if (StringUtils.isBlank(netAreaName)) {
-            netAreaName = networkArea;
-        }
-        return netAreaName;
-    }
-
-    public void setNetAreaName(String netAreaName) {
-        this.netAreaName = netAreaName;
-    }
-
     public String getNetworkArea() {
         return networkArea;
     }
@@ -198,17 +172,6 @@ public class ResourceVo extends BaseEditorVo {
 
     public void setStateName(String stateName) {
         this.stateName = stateName;
-    }
-    // TODO linbq 临时代码，等前端改为再删statusName
-    public String getStatusName() {
-        if (StringUtils.isBlank(statusName)) {
-            statusName = stateName;
-        }
-        return statusName;
-    }
-
-    public void setStatusName(String statusName) {
-        this.statusName = statusName;
     }
 
     public Long getAppSystemId() {
