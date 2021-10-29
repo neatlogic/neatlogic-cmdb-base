@@ -138,6 +138,11 @@ public class CiEntityVo extends BasePageVo implements Serializable {
         this.id = id;
     }
 
+    public CiEntityVo(Long ciId, String name) {
+        this.ciId = ciId;
+        this.name = name;
+    }
+
     public boolean isLimitRelEntity() {
         return limitRelEntity;
     }
