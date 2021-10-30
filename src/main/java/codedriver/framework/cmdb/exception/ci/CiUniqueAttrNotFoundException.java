@@ -21,4 +21,8 @@ public class CiUniqueAttrNotFoundException extends ApiRuntimeException {
     public CiUniqueAttrNotFoundException(AttrVo attrVo) {
         super("唯一规则属性“" + attrVo.getLabel() + "(" + attrVo.getName() + ")" + "”的值为空");
     }
+
+    public CiUniqueAttrNotFoundException(Long ciId, Long attrId) {
+        super("获取模型“" + ciId + "”的配置项事务hash失败，唯一属性“" + attrId + "”没有值");
+    }
 }

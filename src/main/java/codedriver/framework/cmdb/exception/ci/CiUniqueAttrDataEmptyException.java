@@ -5,7 +5,10 @@
 
 package codedriver.framework.cmdb.exception.ci;
 
+import codedriver.framework.cmdb.dto.ci.CiVo;
+import codedriver.framework.cmdb.dto.sync.SyncCiCollectionVo;
 import codedriver.framework.exception.core.ApiRuntimeException;
+import com.alibaba.fastjson.JSONObject;
 
 public class CiUniqueAttrDataEmptyException extends ApiRuntimeException {
 
@@ -13,7 +16,7 @@ public class CiUniqueAttrDataEmptyException extends ApiRuntimeException {
         super("配置项模型“" + ciName + "”缺少唯一属性，请设置");
     }
 
-    public CiUniqueAttrDataEmptyException(String collectionName, String id, String key) {
-        super("集合“" + collectionName + "”数据“" + id + "”找不到键为“" + key + "”的属性");
+    public CiUniqueAttrDataEmptyException(SyncCiCollectionVo syncCiCollectionVo, CiVo ciVo, String key, JSONObject dataObj) {
+        super("配置“" + syncCiCollectionVo.getCollectionName() + "->" + ciVo.getLabel() + "(" + ciVo.getName() + ")”的唯一键映射属性“" + key + "”的值不存在，原始数据：" + dataObj.toString());
     }
 }

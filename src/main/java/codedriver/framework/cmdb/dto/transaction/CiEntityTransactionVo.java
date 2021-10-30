@@ -11,6 +11,7 @@ import codedriver.framework.cmdb.dto.cientity.CiEntityVo;
 import codedriver.framework.cmdb.enums.EditModeType;
 import codedriver.framework.cmdb.enums.RelDirectionType;
 import codedriver.framework.cmdb.enums.TransactionActionType;
+import codedriver.framework.cmdb.exception.ci.CiUniqueAttrNotFoundException;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
@@ -24,8 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class CiEntityTransactionVo implements Serializable {
     static Logger logger = LoggerFactory.getLogger(CiEntityTransactionVo.class);
@@ -69,6 +69,8 @@ public class CiEntityTransactionVo implements Serializable {
     private boolean allowCommit;//是否允许提交
     @EntityField(name = "修改备注", type = ApiParamType.STRING)
     private String description;
+    @EntityField(name = "唯一属性列表", type = ApiParamType.LONG)
+    private List<Long> uniqueAttrIdList;
 
     public CiEntityTransactionVo() {
 
@@ -86,6 +88,14 @@ public class CiEntityTransactionVo implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Long> getUniqueAttrIdList() {
+        return uniqueAttrIdList;
+    }
+
+    public void setUniqueAttrIdList(List<Long> uniqueAttrIdList) {
+        this.uniqueAttrIdList = uniqueAttrIdList;
     }
 
     /**
@@ -585,5 +595,25 @@ public class CiEntityTransactionVo implements Serializable {
 
     public void setAllowCommit(boolean allowCommit) {
         this.allowCommit = allowCommit;
+    }
+
+    public Integer getHash() {
+        Integer hash;
+        if (CollectionUtils.isEmpty(this.uniqueAttrIdList)) {
+            hash = Objects.hash(this.ciId, MapUtils.isNotEmpty(this.attrEntityData) ? this.attrEntityData.toString() : "",
+                    MapUtils.isNotEmpty(this.relEntityData) ? this.relEntityData.toString() : ""
+            );
+        } else {
+            JSONObject jsonObj = new JSONObject();
+            for (Long uniqueAttrId : uniqueAttrIdList) {
+                if (!this.attrEntityData.containsKey("attr_" + uniqueAttrId)) {
+                    throw new CiUniqueAttrNotFoundException(this.ciId, uniqueAttrId);
+                } else {
+                    jsonObj.put("attr_" + uniqueAttrId, this.attrEntityData.getJSONObject("attr_" + uniqueAttrId).getJSONArray("valueList"));
+                }
+            }
+            hash = Objects.hash(this.ciId, jsonObj.toString());
+        }
+        return hash;
     }
 }

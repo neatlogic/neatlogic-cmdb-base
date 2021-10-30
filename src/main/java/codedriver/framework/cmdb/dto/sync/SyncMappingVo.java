@@ -6,6 +6,7 @@
 package codedriver.framework.cmdb.dto.sync;
 
 import codedriver.framework.cmdb.enums.RelDirectionType;
+import codedriver.framework.cmdb.enums.sync.MatchMode;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
@@ -24,6 +25,8 @@ public class SyncMappingVo {
     private String field;
     @EntityField(name = "模型集合id", type = ApiParamType.LONG)
     private Long ciCollectionId;
+    @EntityField(name = "匹配模式", type = ApiParamType.ENUM, member = MatchMode.class)
+    private String matchMode;
 
     public Long getId() {
         if (id == null) {
@@ -60,6 +63,20 @@ public class SyncMappingVo {
         this.relId = relId;
     }
 
+   /* public static void main(String[] arg) {
+        String parentKey = "abc.ab.a";
+        String field = "a.b.c.d";
+        int dotCount = parentKey.split("\\.").length;
+        String tmp = "";
+        String[] fields = field.split("\\.");
+        for (int i = dotCount; i < fields.length; i++) {
+            if (StringUtils.isNotBlank(tmp)) {
+                tmp += ".";
+            }
+            tmp += fields[i];
+        }
+        System.out.println(tmp);
+    }*/
 
     public String getField() {
         return field;
@@ -67,8 +84,27 @@ public class SyncMappingVo {
 
     public String getField(String parentKey) {
         if (StringUtils.isNotBlank(field) && StringUtils.isNotBlank(parentKey)) {
-            if (field.indexOf(parentKey) == 0) {
-                return field.substring(parentKey.length() + 1);
+            if (this.getMatchMode().equals(MatchMode.KEY.getValue())) {
+                /*if (field.indexOf(parentKey) == 0) {
+                    return field.substring(parentKey.length() + 1);
+                }*/
+                return field;
+            } else if (this.getMatchMode().equals(MatchMode.LEVEL.getValue())) {
+                int dotCount = parentKey.split("\\.").length;
+                String[] fields = field.split("\\.");
+                /*当前键值层次大于父键才进行替换，否则代表需要获取上层属性，直接返回原键值即可
+                例如parentKey=A,field=C.B或C.B.E，最终会返回A.B和A.B.E，如果field=B，由于B不比A要多层级，所以直接返回B即可
+                */
+                if (fields.length > dotCount) {
+                    String tmp = "";
+                    for (int i = dotCount; i < fields.length; i++) {
+                        if (StringUtils.isNotBlank(tmp)) {
+                            tmp += ".";
+                        }
+                        tmp += fields[i];
+                    }
+                    return parentKey + "." + tmp;
+                }
             }
         }
         return field;
@@ -84,5 +120,13 @@ public class SyncMappingVo {
 
     public void setCiCollectionId(Long ciCollectionId) {
         this.ciCollectionId = ciCollectionId;
+    }
+
+    public String getMatchMode() {
+        return matchMode;
+    }
+
+    public void setMatchMode(String matchMode) {
+        this.matchMode = matchMode;
     }
 }

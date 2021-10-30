@@ -7,6 +7,7 @@ package codedriver.framework.cmdb.dto.sync;
 
 import codedriver.framework.cmdb.dto.transaction.TransactionGroupVo;
 import codedriver.framework.cmdb.enums.sync.CollectMode;
+import codedriver.framework.cmdb.enums.sync.MatchMode;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
@@ -47,6 +48,10 @@ public class SyncCiCollectionVo extends BasePageVo {
     private String collectModeText;
     @EntityField(name = "是否自动提交", type = ApiParamType.INTEGER)
     private Integer isAutoCommit;
+    @EntityField(name = "匹配模式", type = ApiParamType.ENUM, member = MatchMode.class)
+    private String matchMode;
+    @EntityField(name = "匹配模式名称", type = ApiParamType.STRING)
+    private String matchModeText;
     @JSONField(serialize = false)
     private TransactionGroupVo transactionGroup;
     @JSONField(serialize = false)
@@ -110,6 +115,25 @@ public class SyncCiCollectionVo extends BasePageVo {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getMatchMode() {
+        return matchMode;
+    }
+
+    public void setMatchMode(String matchMode) {
+        this.matchMode = matchMode;
+    }
+
+    public String getMatchModeText() {
+        if (StringUtils.isBlank(matchModeText) && StringUtils.isNotBlank(matchMode)) {
+            matchModeText = MatchMode.getText(matchMode);
+        }
+        return matchModeText;
+    }
+
+    public void setMatchModeText(String matchModeText) {
+        this.matchModeText = matchModeText;
     }
 
     public String getCiLabel() {
