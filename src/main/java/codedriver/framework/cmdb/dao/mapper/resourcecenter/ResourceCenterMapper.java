@@ -158,7 +158,7 @@ public interface ResourceCenterMapper {
 
     List<ResourceVo> getResourceListByResourceVoList(@Param("resourceList") List<ResourceVo> resourceList,@Param("schemaName") String schemaName);
 
-    List<AccountVo> getResourceAccountListByResourceIdAndProtocolAndAccount(@Param("resourceIdList") List<Long> resourceIdList, @Param("protocol") String protocol, @Param("userName") String userName);
+    List<AccountVo> getResourceAccountListByResourceIdAndProtocolAndAccount(@Param("resourceIdList") List<Long> resourceIdList, @Param("protocolId") Long protocolId, @Param("userName") String userName);
 
     int updateAccount(AccountVo vo);
 
