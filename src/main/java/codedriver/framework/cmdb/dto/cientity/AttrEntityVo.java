@@ -11,6 +11,7 @@ import codedriver.framework.cmdb.attrvaluehandler.core.IAttrValueHandler;
 import codedriver.framework.cmdb.dto.ci.AttrVo;
 import codedriver.framework.cmdb.dto.transaction.AttrEntityTransactionVo;
 import codedriver.framework.common.constvalue.ApiParamType;
+import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.HtmlUtil;
 import com.alibaba.fastjson.JSONArray;
@@ -20,11 +21,10 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.DigestUtils;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AttrEntityVo implements Serializable {
+public class AttrEntityVo extends BasePageVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;// 由于需要在SQL批量写入，所以这里使用数据库自增id
     @EntityField(name = "配置项id", type = ApiParamType.LONG)
@@ -69,6 +69,8 @@ public class AttrEntityVo implements Serializable {
     private Long toCiId;
     @JSONField(serialize = false)
     private Boolean isNeedTargetCi;
+    @JSONField(serialize = false)
+    private Integer fromIndex;
 
     public AttrEntityVo() {
 
@@ -87,6 +89,14 @@ public class AttrEntityVo implements Serializable {
         this.fromCiId = attrEntityTransactionVo.getCiId();
         this.toCiId = attrEntityTransactionVo.getTargetCiId();
         this.fromCiEntityId = attrEntityTransactionVo.getCiEntityId();
+    }
+
+    public Integer getFromIndex() {
+        return fromIndex;
+    }
+
+    public void setFromIndex(Integer fromIndex) {
+        this.fromIndex = fromIndex;
     }
 
     public AttrVo getAttrVo() {

@@ -33,6 +33,7 @@ import java.util.Map;
 
 public class CiEntityVo extends BasePageVo implements Serializable {
     public final static int MAX_RELENTITY_COUNT = 3;
+    public final static int MAX_ATTRENTITY_COUNT = 3;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @JSONField(serialize = false)
@@ -88,8 +89,10 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private List<AttrFilterVo> attrFilterList;
     @JSONField(serialize = false)
     private List<RelFilterVo> relFilterList;
-    @JSONField(serialize = false)
+    @JSONField(serialize = false)//查询关系引用配置项时使用
     private List<RelCiEntityFilterVo> relCiEntityFilterList;
+    @JSONField(serialize = false)//查询引用属性配置项时用
+    private AttrCiEntityFilterVo attrCiEntityFilter;
     @JSONField(serialize = false)//当前配置项所涉及的所有模型，包括自己
     private List<CiVo> ciList;
     @JSONField(serialize = false)//当前配置项包含的所有属性
@@ -98,6 +101,10 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private List<RelVo> relList;
     @JSONField(serialize = false)
     private String inputType;// 更新时设置输入方式
+    @JSONField(serialize = false)
+    private Long attrId;// 关系id（通过引用配置项查询引用属性时使用）
+    @JSONField(serialize = false)
+    private Long fromCiEntityId;//引用配置项id（通过引用配置项查询引用属性时使用）
     @JSONField(serialize = false)
     private String editMode = EditModeType.GLOBAL.getValue();
     @JSONField(serialize = false)
@@ -118,12 +125,16 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private int isVirtual = 0;
     @EntityField(name = "最大展示关系数量", type = ApiParamType.INTEGER)
     private Integer maxRelEntityCount = MAX_RELENTITY_COUNT;//限制查询时最多返回多少关系
+    @EntityField(name = "最大展示引用属性数量", type = ApiParamType.INTEGER)
+    private Integer maxAttrEntityCount = MAX_ATTRENTITY_COUNT;//限制查询是最多返回多少引用属性
     @EntityField(name = "修改备注", type = ApiParamType.STRING)
     private String description;
     @JSONField(serialize = false)
     private boolean smartSearch = false;//启用智能搜索，会根据条件自动拼接关系表，在没有任何条件时能提高检索性能
     @JSONField(serialize = false)
     private boolean limitRelEntity = false;//限制关系数量，避免查询返回的结果集太大
+    @JSONField(serialize = false)
+    private boolean limitAttrEntity = false;//限制引用属性数量，避免查询返回的结果集太大
 
     public CiEntityVo() {
 
@@ -149,6 +160,30 @@ public class CiEntityVo extends BasePageVo implements Serializable {
 
     public void setLimitRelEntity(boolean limitRelEntity) {
         this.limitRelEntity = limitRelEntity;
+    }
+
+    public boolean isLimitAttrEntity() {
+        return limitAttrEntity;
+    }
+
+    public void setLimitAttrEntity(boolean limitAttrEntity) {
+        this.limitAttrEntity = limitAttrEntity;
+    }
+
+    public Long getAttrId() {
+        return attrId;
+    }
+
+    public void setAttrId(Long attrId) {
+        this.attrId = attrId;
+    }
+
+    public Long getFromCiEntityId() {
+        return fromCiEntityId;
+    }
+
+    public void setFromCiEntityId(Long fromCiEntityId) {
+        this.fromCiEntityId = fromCiEntityId;
     }
 
     public Long getFilterCiEntityId() {
@@ -199,12 +234,31 @@ public class CiEntityVo extends BasePageVo implements Serializable {
         this.maxRelEntityCount = maxRelEntityCount;
     }
 
+    public Integer getMaxAttrEntityCount() {
+        return maxAttrEntityCount;
+    }
+
+    public void setMaxAttrEntityCount(Integer maxAttrEntityCount) {
+        this.maxAttrEntityCount = maxAttrEntityCount;
+    }
+
     public List<RelCiEntityFilterVo> getRelCiEntityFilterList() {
         return relCiEntityFilterList;
     }
 
     public void setRelCiEntityFilterList(List<RelCiEntityFilterVo> relCiEntityFilterList) {
         this.relCiEntityFilterList = relCiEntityFilterList;
+    }
+
+    public AttrCiEntityFilterVo getAttrCiEntityFilter() {
+        if (attrCiEntityFilter == null && attrId != null && fromCiEntityId != null) {
+            attrCiEntityFilter = new AttrCiEntityFilterVo(attrId, fromCiEntityId);
+        }
+        return attrCiEntityFilter;
+    }
+
+    private void setAttrCiEntityFilter(AttrCiEntityFilterVo attrCiEntityFilter) {
+        this.attrCiEntityFilter = attrCiEntityFilter;
     }
 
     public String getUuid() {
