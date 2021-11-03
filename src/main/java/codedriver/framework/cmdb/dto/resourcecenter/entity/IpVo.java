@@ -14,7 +14,7 @@ import codedriver.framework.restful.annotation.EntityField;
  * @author linbq
  * @since 2021/5/27 12:02
  **/
-@ResourceType(name = "resource_ipobject_ip", label = "IP软硬件ip")
+//@ResourceType(name = "resource_ipobject_ip", label = "IP软硬件ip")
 public class IpVo {
 
     @EntityField(name = "IPid", type = ApiParamType.LONG)
