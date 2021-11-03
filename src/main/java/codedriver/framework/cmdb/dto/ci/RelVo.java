@@ -6,6 +6,7 @@
 package codedriver.framework.cmdb.dto.ci;
 
 import codedriver.framework.asynchronization.threadlocal.TenantContext;
+import codedriver.framework.cmdb.dto.cientity.CiEntityVo;
 import codedriver.framework.cmdb.enums.InputType;
 import codedriver.framework.cmdb.enums.RelRuleType;
 import codedriver.framework.cmdb.enums.SearchExpression;
@@ -104,6 +105,8 @@ public class RelVo implements Serializable {
     private Integer allowEdit;
     @EntityField(name = "是否在拓扑图中显示", type = ApiParamType.INTEGER)
     private Integer isShowInTopo;
+    @JSONField(serialize = false)
+    private Integer maxRelEntityCount = CiEntityVo.MAX_RELENTITY_COUNT;//限制查询时最多返回多少关系
 
     public RelVo() {
 
@@ -119,6 +122,14 @@ public class RelVo implements Serializable {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public Integer getMaxRelEntityCount() {
+        return maxRelEntityCount;
+    }
+
+    public void setMaxRelEntityCount(Integer maxRelEntityCount) {
+        this.maxRelEntityCount = maxRelEntityCount;
     }
 
     public Integer getIsShowInTopo() {

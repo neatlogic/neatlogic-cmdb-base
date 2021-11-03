@@ -8,6 +8,7 @@ package codedriver.framework.cmdb.dto.ci;
 import codedriver.framework.asynchronization.threadlocal.TenantContext;
 import codedriver.framework.cmdb.attrvaluehandler.core.AttrValueHandlerFactory;
 import codedriver.framework.cmdb.attrvaluehandler.core.IAttrValueHandler;
+import codedriver.framework.cmdb.dto.cientity.CiEntityVo;
 import codedriver.framework.cmdb.enums.InputType;
 import codedriver.framework.cmdb.enums.SearchExpression;
 import codedriver.framework.common.constvalue.ApiParamType;
@@ -101,6 +102,8 @@ public class AttrVo extends BasePageVo {
     private List<Column> columnList;
     @EntityField(name = "是否允许编辑", type = ApiParamType.INTEGER)
     private Integer allowEdit;
+    @JSONField(serialize = false)
+    private Integer maxAttrEntityCount = CiEntityVo.MAX_ATTRENTITY_COUNT;
 
 
     public static class Column {
@@ -158,6 +161,14 @@ public class AttrVo extends BasePageVo {
             return needIndex;
         }
 
+    }
+
+    public Integer getMaxAttrEntityCount() {
+        return maxAttrEntityCount;
+    }
+
+    public void setMaxAttrEntityCount(Integer maxAttrEntityCount) {
+        this.maxAttrEntityCount = maxAttrEntityCount;
     }
 
     public Integer getAllowEdit() {
@@ -467,7 +478,7 @@ public class AttrVo extends BasePageVo {
     /**
      * 获取目标属性表名
      *
-     * @return
+     * @return 表名
      */
     @JSONField(serialize = false)
     public String getTargetCiTableName() {
