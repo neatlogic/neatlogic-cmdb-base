@@ -18,6 +18,6 @@ public class CiEntityIsInUsedException extends ApiRuntimeException {
     }
 
     public CiEntityIsInUsedException(CiEntityVo ciEntityVo, List<AttrVo> attrList) {
-        super("配置项“" + ciEntityVo.getName() + "”已被以下属性引用：" + attrList.stream().map(attr -> attr.getLabel() + "(" + attr.getCiLabel() + ")").collect(Collectors.joining(",")));
+        super("配置项“" + ciEntityVo.getName() + "”已被以下属性引用：" + attrList.stream().map(attr -> attr.getCiLabel() + "(" + attr.getCiName() + ")" + ":" + attr.getLabel() + "(" + attr.getName() + ")").collect(Collectors.joining(",")));
     }
 }
