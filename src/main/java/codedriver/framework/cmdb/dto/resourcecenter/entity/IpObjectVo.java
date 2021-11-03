@@ -40,6 +40,8 @@ public class IpObjectVo {
     private String description;
     @ResourceField(name = "network_area")
     private String networkArea;
+    @ResourceField(name = "ip")
+    private String ip;
     @EntityField(name = "创建者", type = ApiParamType.STRING)
     @ResourceField(name = "fcu")
     private String fcu;
@@ -115,6 +117,14 @@ public class IpObjectVo {
 
     public void setNetworkArea(String networkArea) {
         this.networkArea = networkArea;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
     public String getFcu() {

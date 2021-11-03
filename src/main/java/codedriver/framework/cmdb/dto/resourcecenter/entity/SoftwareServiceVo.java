@@ -41,6 +41,8 @@ public class SoftwareServiceVo {
     private String description;
     @ResourceField(name = "network_area")
     private String networkArea;
+    @ResourceField(name = "ip")
+    private String ip;
     @EntityField(name = "port", type = ApiParamType.INTEGER)
     @ResourceField(name = "port")
     private Integer port;
@@ -119,6 +121,14 @@ public class SoftwareServiceVo {
 
     public void setNetworkArea(String networkArea) {
         this.networkArea = networkArea;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
     public Integer getPort() {
