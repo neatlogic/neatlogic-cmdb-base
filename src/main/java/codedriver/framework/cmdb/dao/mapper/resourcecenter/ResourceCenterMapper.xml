@@ -1019,7 +1019,14 @@
         <foreach collection="resourceIdList" item="resourceId" open="(" close=")" separator=",">
             #{resourceId}
         </foreach>
-        AND crap.id = #{protocolId} AND cra.`account` = #{userName}
+        AND crap.id = #{protocolId}
+        <if test="userName != null">
+            AND cra.`account` = #{userName}
+        </if>
+        <if test="userName == null">
+            AND cra.`account` is null
+        </if>
+
     </select>
 
     <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
