@@ -46,6 +46,8 @@ public class AccountVo extends BaseEditorVo {
     private Integer port;
     @EntityField(name = "资产数", type = ApiParamType.INTEGER)
     private Integer assetsCount = 0;
+    @EntityField(name = "tagent ip", type = ApiParamType.STRING)
+    private String ip;
 
     @EntityField(name = "操作列表")
     private List<OperateVo> operateList = new ArrayList<>();
@@ -181,5 +183,13 @@ public class AccountVo extends BaseEditorVo {
 
     public void setProtocol(String protocol) {
         this.protocol = protocol;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 }

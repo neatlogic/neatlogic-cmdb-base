@@ -1057,6 +1057,7 @@
         <if test="port != null">
             `port`,
         </if>
+        `ip`,
         `lcu`,
         `lcd`,
         `fcu`,
@@ -1073,6 +1074,7 @@
         <if test="port != null">
             #{port},
         </if>
+        #{ip},
         #{lcu},
         now(3),
         #{fcu},
@@ -1338,6 +1340,23 @@
                a.`lcd`
         FROM `cmdb_resourcecenter_account` a
         where a.`name` = #{value}
+    </select>
+    <select id="getAccountListByIpList" resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
+        SELECT a.`id`,
+        a.`name`,
+        a.`account`,
+        a.`protocol_id` AS protocolId,
+        a.`port`,
+        a.`fcu`,
+        a.`fcd`,
+        a.`lcu`,
+        a.`ip`,
+        a.`lcd`
+        FROM `cmdb_resourcecenter_account` a
+        WHERE `ip` IN
+        <foreach collection="ipList" item="ip" open="(" close=")" separator=",">
+            #{ip}
+        </foreach>
     </select>
 
     <update id="updateAccountByName" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
