@@ -1353,6 +1353,7 @@
         a.`name`,
         a.`account`,
         a.`protocol_id` AS protocolId,
+        a.`password`    as passwordCipher,
         a.`port`,
         a.`fcu`,
         a.`fcd`,
