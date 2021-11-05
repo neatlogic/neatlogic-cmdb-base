@@ -1059,6 +1059,9 @@
         </if>
         `protocol_id` ,
         `ip`,
+        <if test="protocolPort != null">
+            `port`,
+        </if>
         `lcu`,
         `lcd`,
         `fcu`,
@@ -1073,6 +1076,9 @@
         </if>
         #{protocolId},
         #{ip},
+        <if test="protocolPort != null">
+            #{protocolPort},
+        </if>
         #{lcu},
         now(3),
         #{fcu},
@@ -1302,7 +1308,7 @@
 
     <select id="getAccountProtocolVoByProtocolName"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo" parameterType="string">
-        select `id`, `name`
+        select `id`, `name`, `port`
         from `cmdb_resourcecenter_account_protocol`
         where `name` = #{value}
     </select>
