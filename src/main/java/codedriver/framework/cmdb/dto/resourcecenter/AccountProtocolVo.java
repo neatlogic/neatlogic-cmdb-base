@@ -11,6 +11,8 @@ public class AccountProtocolVo extends BaseEditorVo {
     private Long id;
     @EntityField(name = "协议名称", type = ApiParamType.STRING)
     private String name;
+    @EntityField(name = "协议端口", type = ApiParamType.INTEGER)
+    private Integer port;
 
     public AccountProtocolVo() {
 
@@ -42,5 +44,13 @@ public class AccountProtocolVo extends BaseEditorVo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getPort() {
+        return port;
+    }
+
+    public void setPort(Integer port) {
+        this.port = port;
     }
 }

@@ -23,6 +23,7 @@ import java.util.List;
  * @since 2021/5/30 15:20
  **/
 public class AccountVo extends BaseEditorVo {
+    private static final long serialVersionUID = 4163974111792082330L;
     @EntityField(name = "主键id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "名称", type = ApiParamType.STRING)
@@ -42,8 +43,8 @@ public class AccountVo extends BaseEditorVo {
     private Long protocolId;
     @EntityField(name = "协议", type = ApiParamType.STRING)
     private String protocol;
-    @EntityField(name = "端口", type = ApiParamType.INTEGER)
-    private Integer port;
+    @EntityField(name = "协议端口", type = ApiParamType.INTEGER)
+    private Integer protocolPort;
     @EntityField(name = "资产数", type = ApiParamType.INTEGER)
     private Integer assetsCount = 0;
     @EntityField(name = "tagent ip", type = ApiParamType.STRING)
@@ -129,12 +130,12 @@ public class AccountVo extends BaseEditorVo {
         this.protocolId = protocolId;
     }
 
-    public Integer getPort() {
-        return port;
+    public Integer getProtocolPort() {
+        return protocolPort;
     }
 
-    public void setPort(Integer port) {
-        this.port = port;
+    public void setProtocolPort(Integer protocolPort) {
+        this.protocolPort = protocolPort;
     }
 
     public Integer getAssetsCount() {
