@@ -513,6 +513,15 @@
         LIMIT 1
     </select>
 
+    <select id="getResourceByIdList" resultMap="resourceCenterMap">
+        SELECT a.`id`, a.`name`, a.`ip`
+        FROM ${schemaName}.`resource_ipobject` a
+        where a.`id` in
+        <foreach collection="idList" item="id" separator="," close=")" open="(">
+            #{id}
+        </foreach>
+    </select>
+
     <select id="checkResourceIsExists" resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_ipobject` a
@@ -591,7 +600,7 @@
           and `id` != #{id}
     </select>
 
-    <select id="checkAccountHasBeenReferredById" parameterType="java.lang.Long" resultType="int">
+    <select id="checkAccountHasBeenResourceReferredById" parameterType="java.lang.Long" resultType="int">
         select count(1)
         from `cmdb_resourcecenter_resource_account`
         where `account_id` = #{value}
@@ -624,7 +633,8 @@
         <result column="protocolId" property="protocolId"/>
         <result column="protocol" property="protocol"/>
         <result column="protocolPort" property="protocolPort"/>
-        <result column="assetsCount" property="assetsCount"/>
+        <result column="resourceReferredCount" property="resourceReferredCount"/>
+        <result column="tagentReferredCount" property="tagentReferredCount"/>
         <result column="fcu" property="fcu"/>
         <result column="fcd" property="fcd"/>
         <result column="lcu" property="lcu"/>
@@ -639,7 +649,9 @@
         a.`account`,
         b.name as protocol,
         b.`port` as protocolPort,
-        (select count(1) from `cmdb_resourcecenter_resource_account` where `account_id` = a.`id`) as assetsCount,
+        (select count(1) from `cmdb_resourcecenter_resource_account` where `account_id` = a.`id`) as
+        resourceReferredCount,
+        (select count(1) from `tagent` where `account_id` = a.`id`) as tagentReferredCount,
         a.`fcu`,
         a.`fcd`,
         a.`lcu`,
@@ -1029,224 +1041,6 @@
 
     </select>
 
-    <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
-        update `cmdb_resourcecenter_account` a set
-        a.`name` = #{name},
-        a.`account` = #{account},
-        <if test="passwordCipher != null">
-            a.`password` = #{passwordCipher},
-        </if>
-        a.protocol_id = #{protocolId},
-        a.`lcu` = #{lcu},
-        a.`lcd` = now(3)
-        where a.`id` = #{id}
-    </update>
-
-    <update id="updateTag" parameterType="codedriver.framework.cmdb.dto.tag.TagVo">
-        update `cmdb_tag`
-        set `name`        = #{name},
-            `description` = #{description}
-        where `id` = #{id}
-    </update>
-
-    <insert id="replaceAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
-        replace into `cmdb_resourcecenter_account` (
-        `id`,
-        `name`,
-        `account`,
-        <if test="passwordCipher != null">
-            `password`,
-        </if>
-        `protocol_id` ,
-        `ip`,
-        <if test="protocolPort != null">
-            `port`,
-        </if>
-        `lcu`,
-        `lcd`,
-        `fcu`,
-        `fcd`
-        )
-        values (
-        #{id},
-        #{name},
-        #{account},
-        <if test="passwordCipher != null">
-            #{passwordCipher},
-        </if>
-        #{protocolId},
-        #{ip},
-        <if test="protocolPort != null">
-            #{protocolPort},
-        </if>
-        #{lcu},
-        now(3),
-        #{fcu},
-        now(3)
-        )
-    </insert>
-
-    <insert id="insertTag" parameterType="codedriver.framework.cmdb.dto.tag.TagVo">
-        insert into `cmdb_tag` (`id`,
-                                `name`,
-                                `description`)
-        values (#{id},
-                #{name},
-                #{description})
-    </insert>
-
-    <insert id="insertIgnoreResourceAccount"
-            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceAccountVo">
-        INSERT IGNORE INTO `cmdb_resourcecenter_resource_account` (`resource_id`, `account_id`) VALUES
-        <foreach collection="list" item="resourceAccount" separator=",">
-            (#{resourceAccount.resourceId}, #{resourceAccount.accountId})
-        </foreach>
-    </insert>
-
-    <insert id="insertIgnoreResourceTag" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceTagVo">
-        INSERT IGNORE INTO `cmdb_resourcecenter_resource_tag` (`resource_id`, `tag_id`) VALUES
-        <foreach collection="list" item="resourceTag" separator=",">
-            (#{resourceTag.resourceId}, #{resourceTag.tagId})
-        </foreach>
-    </insert>
-
-    <delete id="deleteAccountById" parameterType="java.lang.Long">
-        delete
-        from `cmdb_resourcecenter_account`
-        where `id` = #{value}
-    </delete>
-
-    <delete id="deleteTagById" parameterType="java.lang.Long">
-        delete
-        from `cmdb_tag`
-        where `id` = #{value}
-    </delete>
-
-    <delete id="deleteResourceAccountByResourceId" parameterType="java.lang.Long">
-        DELETE
-        FROM `cmdb_resourcecenter_resource_account`
-        WHERE `resource_id` = #{value}
-    </delete>
-
-    <delete id="deleteResourceAccountByResourceIdListAndAccountIdList">
-        DELETE FROM `cmdb_resourcecenter_resource_account`
-        WHERE `resource_id` IN
-        <foreach collection="resourceIdList" item="resourceId" open="(" separator="," close=")">
-            #{resourceId}
-        </foreach>
-        AND `account_id` IN
-        <foreach collection="accountIdList" item="accountId" open="(" separator="," close=")">
-            #{accountId}
-        </foreach>
-    </delete>
-
-    <delete id="deleteResourceTagByResourceId" parameterType="java.lang.Long">
-        DELETE
-        FROM `cmdb_resourcecenter_resource_tag`
-        WHERE `resource_id` = #{value}
-    </delete>
-
-    <delete id="deleteResourceTagByResourceIdAndTagIdList">
-        DELETE FROM `cmdb_resourcecenter_resource_tag`
-        WHERE `resource_id` IN
-        <foreach collection="resourceIdList" item="resourceId" open="(" separator="," close=")">
-            #{resourceId}
-        </foreach>
-        AND `tag_id` IN
-        <foreach collection="tagIdList" item="tagId" open="(" separator="," close=")">
-            #{tagId}
-        </foreach>
-    </delete>
-
-    <select id="getAccountTagListByAccountIdList" parameterType="java.util.List"
-            resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountTagVo">
-        SELECT
-        `account_id` AS accountId,
-        `tag_id` AS tagId
-        FROM `cmdb_resourcecenter_account_tag`
-        WHERE `account_id` in
-        <foreach collection="list" item="accountId" open="(" separator="," close=")">
-            #{accountId}
-        </foreach>
-    </select>
-
-    <select id="checkAccountIsExists" resultType="int" parameterType="java.lang.Long">
-        SELECT COUNT(1)
-        FROM `cmdb_resourcecenter_account` a
-        where a.`id` = #{value}
-    </select>
-
-    <delete id="deleteAccountTagByAccountId" parameterType="java.lang.Long">
-        DELETE
-        FROM `cmdb_resourcecenter_account_tag`
-        WHERE `account_id` = #{value}
-    </delete>
-
-    <insert id="insertIgnoreAccountTag" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountTagVo">
-        INSERT IGNORE INTO `cmdb_resourcecenter_account_tag` (`account_id`, `tag_id`) VALUES
-        <foreach collection="list" item="accountTag" separator=",">
-            (#{accountTag.accountId}, #{accountTag.tagId})
-        </foreach>
-    </insert>
-
-    <select id="searchAccountProtocolListByProtocolName"
-            resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo">
-        select
-        `id`,
-        `name`,
-        `port`
-        from `cmdb_resourcecenter_account_protocol`
-        <where>
-            <if test="keyword != null and keyword != ''">
-                `name` like concat('%', #{keyword}, '%')
-                or
-                `port` like concat('%', #{keyword}, '%')
-            </if>
-        </where>
-        order by lcd desc
-    </select>
-
-    <select id="checkAccountProtocolIsRepeats" resultType="int"
-            parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo">
-        SELECT COUNT(1)
-        FROM `cmdb_resourcecenter_account_protocol`
-        WHERE `name` = #{name}
-          and `port` = #{port}
-          AND `id` != #{id}
-    </select>
-
-    <insert id="insertAccountProtocol" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo">
-        insert into `cmdb_resourcecenter_account_protocol` (`id`, `name`, `port`, `fcd`, `fcu`, `lcd`, `lcu`)
-        values (#{id}, #{name}, #{port}, now(3), #{fcu}, now(3), #{fcu})
-    </insert>
-
-    <update id="updateAccountProtocol" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo">
-        update `cmdb_resourcecenter_account_protocol`
-        set `name` = #{name},
-            `port` = #{port},
-            `lcd`  = now(3),
-            `lcu`  = #{lcu}
-        where `id` = #{id}
-    </update>
-
-    <select id="checkAccountProtocolHasBeenReferredByProtocolId" parameterType="java.lang.Long" resultType="int">
-        select count(1)
-        from `cmdb_resourcecenter_account` a
-        where a.protocol_id = #{value}
-    </select>
-
-    <select id="checkAccountProtocolIsExistsById" resultType="int" parameterType="java.lang.Long">
-        select count(1)
-        from `cmdb_resourcecenter_account_protocol`
-        where `id` = #{value}
-    </select>
-
-    <delete id="deleteResourceAccountProtocolById">
-        delete
-        from `cmdb_resourcecenter_account_protocol`
-        where `id` = #{value}
-    </delete>
-
     <select id="getAccountProtocolVoByProtocolId"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo">
         select `id`, `name`
@@ -1336,14 +1130,269 @@
         a.`fcu`,
         a.`fcd`,
         a.`lcu`,
-        a.`ip`,
+        crai.`ip`,
         a.`lcd`
         FROM `cmdb_resourcecenter_account` a
         left join `cmdb_resourcecenter_account_protocol` crap on a.protocol_id = crap.id
-        WHERE `ip` IN
+        left join `cmdb_resourcecenter_account_ip` crai on a.id = crai.`account_id`
+        WHERE crai.`ip` IN
         <foreach collection="ipList" item="ip" open="(" close=")" separator=",">
             #{ip}
         </foreach>
     </select>
+    <select id="getAccountTagListByAccountIdList" parameterType="java.util.List"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountTagVo">
+        SELECT
+        `account_id` AS accountId,
+        `tag_id` AS tagId
+        FROM `cmdb_resourcecenter_account_tag`
+        WHERE `account_id` in
+        <foreach collection="list" item="accountId" open="(" separator="," close=")">
+            #{accountId}
+        </foreach>
+    </select>
+
+    <select id="checkAccountIsExists" resultType="int" parameterType="java.lang.Long">
+        SELECT COUNT(1)
+        FROM `cmdb_resourcecenter_account` a
+        where a.`id` = #{value}
+    </select>
+
+    <select id="searchAccountProtocolListByProtocolName"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo">
+        select
+        `id`,
+        `name`,
+        `port`
+        from `cmdb_resourcecenter_account_protocol`
+        <where>
+            <if test="keyword != null and keyword != ''">
+                `name` like concat('%', #{keyword}, '%')
+                or
+                `port` like concat('%', #{keyword}, '%')
+            </if>
+        </where>
+        order by lcd desc
+    </select>
+
+    <select id="checkAccountProtocolIsRepeats" resultType="int"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo">
+        SELECT COUNT(1)
+        FROM `cmdb_resourcecenter_account_protocol`
+        WHERE `name` = #{name}
+          and `port` = #{port}
+          AND `id` != #{id}
+    </select>
+
+    <select id="checkAccountProtocolHasBeenReferredByProtocolId" parameterType="java.lang.Long" resultType="int">
+        select count(1)
+        from `cmdb_resourcecenter_account` a
+        where a.protocol_id = #{value}
+    </select>
+
+    <select id="checkAccountProtocolIsExistsById" resultType="int" parameterType="java.lang.Long">
+        select count(1)
+        from `cmdb_resourcecenter_account_protocol`
+        where `id` = #{value}
+    </select>
+    <select id="getAccountIp" resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountIpVo">
+        SELECT
+        `account_id`,
+        `ip`
+        FROM
+        `cmdb_resourcecenter_account_ip`
+        <where>
+            <if test="accountId != null">
+                and `account_id` = #{accountId}
+            </if>
+            <if test="ip != null and ip != ''">
+                and `ip` = #{ip}
+            </if>
+        </where>
+    </select>
+    <select id="getResourceAccountListByAccountId"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceAccountVo">
+        SELECT `resource_id` AS resourceId,
+               `account_id`  AS accountId
+        FROM `cmdb_resourcecenter_resource_account`
+        WHERE `account_id` = #{value}
+    </select>
+
+    <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
+        update `cmdb_resourcecenter_account` a set
+        a.`name` = #{name},
+        a.`account` = #{account},
+        <if test="passwordCipher != null">
+            a.`password` = #{passwordCipher},
+        </if>
+        a.protocol_id = #{protocolId},
+        a.`lcu` = #{lcu},
+        a.`lcd` = now(3)
+        where a.`id` = #{id}
+    </update>
+
+    <update id="updateTag" parameterType="codedriver.framework.cmdb.dto.tag.TagVo">
+        update `cmdb_tag`
+        set `name`        = #{name},
+            `description` = #{description}
+        where `id` = #{id}
+    </update>
+
+    <update id="updateAccountProtocol" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo">
+        update `cmdb_resourcecenter_account_protocol`
+        set `name` = #{name},
+            `port` = #{port},
+            `lcd`  = now(3),
+            `lcu`  = #{lcu}
+        where `id` = #{id}
+    </update>
+
+    <insert id="replaceAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
+        replace into `cmdb_resourcecenter_account` (
+        `id`,
+        `name`,
+        `account`,
+        <if test="passwordCipher != null">
+            `password`,
+        </if>
+        `protocol_id` ,
+        `lcu`,
+        `lcd`,
+        `fcu`,
+        `fcd`
+        )
+        values (
+        #{id},
+        #{name},
+        #{account},
+        <if test="passwordCipher != null">
+            #{passwordCipher},
+        </if>
+        #{protocolId},
+        #{lcu},
+        now(3),
+        #{fcu},
+        now(3)
+        )
+    </insert>
+
+    <insert id="insertTag" parameterType="codedriver.framework.cmdb.dto.tag.TagVo">
+        insert into `cmdb_tag` (`id`,
+                                `name`,
+                                `description`)
+        values (#{id},
+                #{name},
+                #{description})
+    </insert>
+
+    <insert id="insertIgnoreResourceAccount"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceAccountVo">
+        INSERT IGNORE INTO `cmdb_resourcecenter_resource_account` (`resource_id`, `account_id`) VALUES
+        <foreach collection="list" item="resourceAccount" separator=",">
+            (#{resourceAccount.resourceId}, #{resourceAccount.accountId})
+        </foreach>
+    </insert>
+
+    <insert id="insertIgnoreResourceTag" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceTagVo">
+        INSERT IGNORE INTO `cmdb_resourcecenter_resource_tag` (`resource_id`, `tag_id`) VALUES
+        <foreach collection="list" item="resourceTag" separator=",">
+            (#{resourceTag.resourceId}, #{resourceTag.tagId})
+        </foreach>
+    </insert>
+
+    <insert id="insertIgnoreAccountTag" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountTagVo">
+        INSERT IGNORE INTO `cmdb_resourcecenter_account_tag` (`account_id`, `tag_id`) VALUES
+        <foreach collection="list" item="accountTag" separator=",">
+            (#{accountTag.accountId}, #{accountTag.tagId})
+        </foreach>
+    </insert>
+
+    <insert id="insertAccountProtocol" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo">
+        insert into `cmdb_resourcecenter_account_protocol` (`id`, `name`, `port`, `fcd`, `fcu`, `lcd`, `lcu`)
+        values (#{id}, #{name}, #{port}, now(3), #{fcu}, now(3), #{fcu})
+    </insert>
+
+    <insert id="insertIgnoreAccountIp">
+        INSERT IGNORE INTO `cmdb_resourcecenter_account_ip` (`account_id`, `ip`)
+        VALUES (#{accountId}, #{ip});
+    </insert>
+
+    <delete id="deleteAccountById" parameterType="java.lang.Long">
+        delete
+        from `cmdb_resourcecenter_account`
+        where `id` = #{value}
+    </delete>
+
+    <delete id="deleteTagById" parameterType="java.lang.Long">
+        delete
+        from `cmdb_tag`
+        where `id` = #{value}
+    </delete>
+
+    <delete id="deleteResourceAccountByResourceId" parameterType="java.lang.Long">
+        DELETE
+        FROM `cmdb_resourcecenter_resource_account`
+        WHERE `resource_id` = #{value}
+    </delete>
+
+    <delete id="deleteResourceAccountByResourceIdListAndAccountIdList">
+        DELETE FROM `cmdb_resourcecenter_resource_account`
+        WHERE `resource_id` IN
+        <foreach collection="resourceIdList" item="resourceId" open="(" separator="," close=")">
+            #{resourceId}
+        </foreach>
+        AND `account_id` IN
+        <foreach collection="accountIdList" item="accountId" open="(" separator="," close=")">
+            #{accountId}
+        </foreach>
+    </delete>
+
+    <delete id="deleteResourceTagByResourceId" parameterType="java.lang.Long">
+        DELETE
+        FROM `cmdb_resourcecenter_resource_tag`
+        WHERE `resource_id` = #{value}
+    </delete>
+
+    <delete id="deleteResourceTagByResourceIdAndTagIdList">
+        DELETE FROM `cmdb_resourcecenter_resource_tag`
+        WHERE `resource_id` IN
+        <foreach collection="resourceIdList" item="resourceId" open="(" separator="," close=")">
+            #{resourceId}
+        </foreach>
+        AND `tag_id` IN
+        <foreach collection="tagIdList" item="tagId" open="(" separator="," close=")">
+            #{tagId}
+        </foreach>
+    </delete>
+
+    <delete id="deleteAccountTagByAccountId" parameterType="java.lang.Long">
+        DELETE
+        FROM `cmdb_resourcecenter_account_tag`
+        WHERE `account_id` = #{value}
+    </delete>
+
+    <delete id="deleteResourceAccountProtocolById">
+        delete
+        from `cmdb_resourcecenter_account_protocol`
+        where `id` = #{value}
+    </delete>
+    <delete id="deleteAccountIpByAccountId" parameterType="java.lang.Long">
+        DELETE
+        FROM `cmdb_resourcecenter_account_ip`
+        WHERE `account_id` = #{value}
+    </delete>
+    <delete id="deleteResourceAccountByAccountId">
+        DELETE
+        FROM `cmdb_resourcecenter_resource_account`
+        WHERE `account_id` = #{value}
+    </delete>
+    <delete id="deleteAccountIpByIpList">
+        DELETE
+        FROM `cmdb_resourcecenter_account_ip`
+        WHERE `ip` in
+        <foreach collection="ipList" open="(" close=")" separator="," item="ip">
+            #{ip}
+        </foreach>
+    </delete>
 
 </mapper>

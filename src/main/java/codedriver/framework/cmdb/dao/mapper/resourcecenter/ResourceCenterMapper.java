@@ -6,8 +6,6 @@
 package codedriver.framework.cmdb.dao.mapper.resourcecenter;
 
 import codedriver.framework.cmdb.dto.resourcecenter.*;
-import codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo;
-import codedriver.framework.cmdb.dto.resourcecenter.AccountComponentVo;
 import codedriver.framework.cmdb.dto.resourcecenter.entity.AppEnviromentVo;
 import codedriver.framework.cmdb.dto.resourcecenter.entity.StateVo;
 import codedriver.framework.cmdb.dto.tag.TagVo;
@@ -74,6 +72,8 @@ public interface ResourceCenterMapper {
 
     ResourceVo getResourceIpPortById(@Param("id") Long id, @Param("schemaName") String schemaName);
 
+    List<ResourceVo> getResourceByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+
     int checkResourceIsExists(@Param("id") Long id, @Param("schemaName") String schemaName);
 
     List<Long> checkResourceIdListIsExists(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
@@ -88,7 +88,7 @@ public interface ResourceCenterMapper {
 
     int checkAccountNameIsRepeats(AccountVo vo);
 
-    int checkAccountHasBeenReferredById(Long id);
+    int checkAccountHasBeenResourceReferredById(Long id);
 
     int searchAccountCount(AccountVo searchVo);
 
@@ -154,59 +154,27 @@ public interface ResourceCenterMapper {
 
     List<ResourceAccountVo> getResourceAccountListByResourceIdList(List<Long> resourceIdList);
 
+    List<ResourceAccountVo> getResourceAccountListByAccountId(Long accountId);
+
     List<ResourceTagVo> getResourceTagListByResourceIdList(List<Long> resourceIdList);
 
-    List<ResourceVo> getResourceListByResourceVoList(@Param("resourceList") List<ResourceVo> resourceList,@Param("schemaName") String schemaName);
+    List<ResourceVo> getResourceListByResourceVoList(@Param("resourceList") List<ResourceVo> resourceList, @Param("schemaName") String schemaName);
 
     List<AccountVo> getResourceAccountListByResourceIdAndProtocolAndAccount(@Param("resourceIdList") List<Long> resourceIdList, @Param("protocolId") Long protocolId, @Param("userName") String userName);
 
     List<AccountVo> getAccountListByIpList(@Param("ipList") List<String> ipList);
 
-    int updateAccount(AccountVo vo);
+    List<AccountProtocolVo> searchAccountProtocolListByProtocolName(AccountProtocolVo searchVo);
 
-    int updateTag(TagVo vo);
-
-    int replaceAccount(AccountVo vo);
-
-    int insertTag(TagVo vo);
-
-    int insertIgnoreResourceAccount(List<ResourceAccountVo> resourceAccountVoList);
-
-    int insertIgnoreResourceTag(List<ResourceTagVo> resourceTagVoList);
-
-    int deleteTagById(Long id);
-
-    int deleteAccountById(Long id);
-
-    int deleteResourceAccountByResourceId(Long resourceId);
-
-    int deleteResourceAccountByResourceIdListAndAccountIdList(@Param("resourceIdList") List<Long> resourceIdList, @Param("accountIdList") List<Long> accountIdList);
-
-    int deleteResourceTagByResourceId(Long resourceId);
-
-    int deleteResourceTagByResourceIdAndTagIdList(@Param("resourceIdList") List<Long> resourceIdList, @Param("tagIdList") List<Long> tagIdList);
+    int checkAccountProtocolIsRepeats(AccountProtocolVo searchVo);
 
     List<AccountTagVo> getAccountTagListByAccountIdList(List<Long> AccountIdList);
 
     int checkAccountIsExists(Long accountId);
 
-    int deleteAccountTagByAccountId(Long accountId);
-
-    int insertIgnoreAccountTag(List<AccountTagVo> accountTagVoList);
-
-    List<AccountProtocolVo> searchAccountProtocolListByProtocolName(AccountProtocolVo searchVo);
-
-    int checkAccountProtocolIsRepeats(AccountProtocolVo searchVo);
-
-    int insertAccountProtocol(AccountProtocolVo searchVo);
-
-    int updateAccountProtocol(AccountProtocolVo searchVo);
-
     int checkAccountProtocolHasBeenReferredByProtocolId(Long id);
 
     int checkAccountProtocolIsExistsById(Long id);
-
-    int deleteResourceAccountProtocolById(Long id);
 
     AccountProtocolVo getAccountProtocolVoByProtocolId(Long protocolId);
 
@@ -220,4 +188,47 @@ public interface ResourceCenterMapper {
 
     AccountVo getAccountByName(String name);
 
+    List<AccountIpVo> getAccountIp(AccountIpVo ipVo);
+
+    int updateAccount(AccountVo vo);
+
+    int updateTag(TagVo vo);
+
+    int updateAccountProtocol(AccountProtocolVo searchVo);
+
+    int replaceAccount(AccountVo vo);
+
+    int insertTag(TagVo vo);
+
+    int insertIgnoreResourceAccount(List<ResourceAccountVo> resourceAccountVoList);
+
+    int insertIgnoreResourceTag(List<ResourceTagVo> resourceTagVoList);
+
+    int insertIgnoreAccountTag(List<AccountTagVo> accountTagVoList);
+
+    int insertAccountProtocol(AccountProtocolVo searchVo);
+
+    int insertIgnoreAccountIp(AccountIpVo ipVo);
+
+    int deleteAccountIpByAccountId(Long value);
+
+    int deleteTagById(Long id);
+
+    int deleteAccountById(Long id);
+
+    int deleteResourceAccountByResourceId(Long resourceId);
+
+    int deleteResourceAccountByResourceIdListAndAccountIdList(@Param("resourceIdList") List<Long> resourceIdList, @Param("accountIdList") List<Long> accountIdList);
+
+    int deleteResourceTagByResourceId(Long resourceId);
+
+    int deleteResourceTagByResourceIdAndTagIdList(@Param("resourceIdList") List<Long> resourceIdList, @Param("tagIdList") List<Long> tagIdList);
+
+    int deleteAccountTagByAccountId(Long accountId);
+
+    int deleteResourceAccountProtocolById(Long id);
+
+    int deleteResourceAccountByAccountId(Long accountId);
+
+    int deleteAccountIpByIpList(@Param("ipList") List<String> resourceIpList);
 }

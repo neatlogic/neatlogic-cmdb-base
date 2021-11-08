@@ -45,8 +45,12 @@ public class AccountVo extends BaseEditorVo {
     private String protocol;
     @EntityField(name = "协议端口", type = ApiParamType.INTEGER)
     private Integer protocolPort;
-    @EntityField(name = "资产数", type = ApiParamType.INTEGER)
-    private Integer assetsCount = 0;
+    @EntityField(name = "资产依赖数", type = ApiParamType.INTEGER)
+    private Integer resourceReferredCount = 0;
+    @EntityField(name = "tagent依赖数", type = ApiParamType.INTEGER)
+    private Integer tagentReferredCount = 0;
+    @EntityField(name = "依赖数", type = ApiParamType.INTEGER)
+    private Integer referredCount = 0;
     @EntityField(name = "tagent ip", type = ApiParamType.STRING)
     private String ip;
 
@@ -138,12 +142,12 @@ public class AccountVo extends BaseEditorVo {
         this.protocolPort = protocolPort;
     }
 
-    public Integer getAssetsCount() {
-        return assetsCount;
+    public Integer getResourceReferredCount() {
+        return resourceReferredCount;
     }
 
-    public void setAssetsCount(Integer assetsCount) {
-        this.assetsCount = assetsCount;
+    public void setResourceReferredCount(Integer resourceReferredCount) {
+        this.resourceReferredCount = resourceReferredCount;
     }
 
     public List<OperateVo> getOperateList() {
@@ -192,5 +196,17 @@ public class AccountVo extends BaseEditorVo {
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    public Integer getTagentReferredCount() {
+        return tagentReferredCount;
+    }
+
+    public void setTagentReferredCount(Integer tagentReferredCount) {
+        this.tagentReferredCount = tagentReferredCount;
+    }
+
+    public Integer getReferredCount() {
+        return tagentReferredCount + resourceReferredCount;
     }
 }
