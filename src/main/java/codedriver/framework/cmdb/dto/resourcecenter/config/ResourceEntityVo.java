@@ -12,6 +12,7 @@ import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -33,7 +34,8 @@ public class ResourceEntityVo {
     private String statusText;
     @EntityField(name = "异常", type = ApiParamType.STRING)
     private String error;
-
+    @EntityField(name = "初始化时间", type = ApiParamType.LONG)
+    private Date initTime;
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -128,5 +130,13 @@ public class ResourceEntityVo {
 
     public void setCi(CiVo ci) {
         this.ci = ci;
+    }
+
+    public Date getInitTime() {
+        return initTime;
+    }
+
+    public void setInitTime(Date initTime) {
+        this.initTime = initTime;
     }
 }

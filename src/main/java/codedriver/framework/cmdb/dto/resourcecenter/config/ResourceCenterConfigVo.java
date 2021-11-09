@@ -5,11 +5,22 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter.config;
 
-public class ResourceCenterConfigVo {
+import codedriver.framework.common.dto.BaseEditorVo;
+import codedriver.framework.util.SnowflakeUtil;
+
+import java.util.List;
+
+public class ResourceCenterConfigVo extends BaseEditorVo {
     private Long id;
+
     private String config;
 
+    private List<ResourceEntityVo> resourceEntityList;
+
     public Long getId() {
+        if (id == null) {
+            id = SnowflakeUtil.uniqueLong();
+        }
         return id;
     }
 
@@ -23,5 +34,13 @@ public class ResourceCenterConfigVo {
 
     public void setConfig(String config) {
         this.config = config;
+    }
+
+    public List<ResourceEntityVo> getResourceEntityList() {
+        return resourceEntityList;
+    }
+
+    public void setResourceEntityList(List<ResourceEntityVo> resourceEntityList) {
+        this.resourceEntityList = resourceEntityList;
     }
 }
