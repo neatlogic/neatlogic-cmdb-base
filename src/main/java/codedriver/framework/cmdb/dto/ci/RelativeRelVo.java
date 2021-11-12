@@ -9,7 +9,6 @@ import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.Md5Util;
 import com.alibaba.fastjson.annotation.JSONField;
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 
@@ -84,8 +83,8 @@ public class RelativeRelVo implements Serializable {
 
 
     public String getHash() {
-        if (StringUtils.isBlank(hash) && StringUtils.isNotBlank(fromPath) && StringUtils.isNotBlank(toPath)) {
-            hash = Md5Util.encryptBASE64(fromPath + ">" + toPath);
+        if (fromPath != null && toPath != null) {
+            hash = Md5Util.encryptMD5(fromPath + ">" + toPath);
         }
         return hash;
     }
