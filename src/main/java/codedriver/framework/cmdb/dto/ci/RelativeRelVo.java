@@ -84,7 +84,7 @@ public class RelativeRelVo implements Serializable {
 
     public String getHash() {
         if (fromPath != null && toPath != null) {
-            hash = Md5Util.encryptBASE64(fromPath + ">" + toPath);
+            hash = Md5Util.encryptMD5(fromPath + ">" + toPath);
         }
         return hash;
     }
