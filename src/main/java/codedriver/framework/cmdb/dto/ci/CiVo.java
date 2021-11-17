@@ -30,6 +30,10 @@ public class CiVo implements Serializable {
     private Long id;
     @EntityField(name = "父亲模型id", type = ApiParamType.LONG)
     private Long parentCiId;
+    @EntityField(name = "父亲模型名称", type = ApiParamType.STRING)
+    private String parentCiLabel;
+    @EntityField(name = "父亲模型唯一标识", type = ApiParamType.STRING)
+    private String parentCiName;
     @JSONField(serialize = false)
     private List<CiVo> upwardCiList;//继承的所有模型包括自己
     @JSONField(serialize = false)
@@ -100,6 +104,22 @@ public class CiVo implements Serializable {
 
     public void setParentCi(CiVo parentCi) {
         this.parentCi = parentCi;
+    }
+
+    public String getParentCiLabel() {
+        return parentCiLabel;
+    }
+
+    public void setParentCiLabel(String parentCiLabel) {
+        this.parentCiLabel = parentCiLabel;
+    }
+
+    public String getParentCiName() {
+        return parentCiName;
+    }
+
+    public void setParentCiName(String parentCiName) {
+        this.parentCiName = parentCiName;
     }
 
     public Long getId() {
