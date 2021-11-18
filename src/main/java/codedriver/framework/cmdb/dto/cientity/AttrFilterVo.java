@@ -6,7 +6,6 @@
 package codedriver.framework.cmdb.dto.cientity;
 
 import codedriver.framework.asynchronization.threadlocal.TenantContext;
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -108,8 +107,4 @@ public class AttrFilterVo implements Serializable {
         this.expressionName = expressionName;
     }
 
-    @Override
-    public String toString() {
-        return JSONObject.toJSONString(this);
-    }
 }
