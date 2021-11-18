@@ -72,4 +72,13 @@ public enum SearchExpression {
         }
         return "";
     }
+
+    public static String checkExpressionIsExists(String expression) {
+        for (SearchExpression s : SearchExpression.values()) {
+            if (s.getExpression().equals(expression)) {
+                return s.getExpression();
+            }
+        }
+        return null;
+    }
 }
