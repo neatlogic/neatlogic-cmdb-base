@@ -14,25 +14,28 @@ import codedriver.framework.restful.annotation.EntityField;
  * @author linbq
  * @since 2021/5/27 12:02
  **/
-//@ResourceType(name = "resource_ipobject_ip", label = "IP软硬件ip")
+@ResourceType(name = "resource_ipobject_allip", label = "IP软硬件ip列表")
 public class IpVo {
 
-    @EntityField(name = "IPid", type = ApiParamType.LONG)
+    @EntityField(name = "ip的id", type = ApiParamType.LONG)
     @ResourceField(name = "ip_id")
-    private Long id;
+    private Long ipId;
     @EntityField(name = "ip", type = ApiParamType.STRING)
     @ResourceField(name = "ip")
     private String ip;
+    @EntityField(name = "ip描述", type = ApiParamType.STRING)
+    @ResourceField(name = "ip_label")
+    private String ipLabel;
     @EntityField(name = "资源id", type = ApiParamType.LONG)
     @ResourceField(name = "resource_id")
     private Long resourceId;
 
-    public Long getId() {
-        return id;
+    public Long getIpId() {
+        return ipId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIpId(Long ipId) {
+        this.ipId = ipId;
     }
 
     public String getIp() {
@@ -41,6 +44,14 @@ public class IpVo {
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    public String getIpLabel() {
+        return ipLabel;
+    }
+
+    public void setIpLabel(String ipLabel) {
+        this.ipLabel = ipLabel;
     }
 
     public Long getResourceId() {
