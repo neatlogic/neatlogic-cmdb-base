@@ -57,10 +57,12 @@ public class ResourceVo extends BaseEditorVo {
     private String maintenanceWindow;
     @EntityField(name = "描述", type = ApiParamType.STRING)
     private String description;
-    @EntityField(name = "IPID", type = ApiParamType.STRING)
-    private String ipId;
+//    @EntityField(name = "IPID", type = ApiParamType.STRING)
+//    private String ipId;
     @EntityField(name = "IP地址", type = ApiParamType.STRING)
     private String ip;
+    @EntityField(name = "IP列表", type = ApiParamType.JSONARRAY)
+    private List<IpVo> allIp;
     @EntityField(name = "端口", type = ApiParamType.INTEGER)
     private Integer port;
     @EntityField(name = "所有者列表", type = ApiParamType.JSONARRAY)
@@ -246,13 +248,13 @@ public class ResourceVo extends BaseEditorVo {
         this.description = description;
     }
 
-    public String getIpId() {
-        return ipId;
-    }
-
-    public void setIpId(String ipId) {
-        this.ipId = ipId;
-    }
+//    public String getIpId() {
+//        return ipId;
+//    }
+//
+//    public void setIpId(String ipId) {
+//        this.ipId = ipId;
+//    }
 
     public String getIp() {
         return ip;
@@ -260,6 +262,14 @@ public class ResourceVo extends BaseEditorVo {
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    public List<IpVo> getAllIp() {
+        return allIp;
+    }
+
+    public void setAllIp(List<IpVo> allIp) {
+        this.allIp = allIp;
     }
 
     public Integer getPort() {
