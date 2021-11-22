@@ -118,6 +118,10 @@ public interface ResourceCenterMapper {
 
     List<Long> getNoCorrespondingAccountResourceIdListByTagListAndAccountIdAndProtocol(@Param("tagList") List<Long> tagList, @Param("account") String account, @Param("protocol") String protocol);
 
+    List<Long> searchResourceIdListWithNoLimit(ResourceSearchVo searchVo);
+
+    List<ResourceVo> getNoCorrespondingResourceListByResourceIdListAndAccountIdAndProtocol(@Param("resourceIdList") List<Long> resourceIdList, @Param("account") String account, @Param("protocol") String protocol, @Param("schemaName") String schemaName);
+
     Long checkResourceIsExistsCorrespondingAccountByResourceIdAndAccountIdAndProtocol(@Param("resourceId") Long resourceId, @Param("account") String account, @Param("protocol") String protocol);
 
     List<Long> getAppModuleIdList(ResourceSearchVo searchVo);

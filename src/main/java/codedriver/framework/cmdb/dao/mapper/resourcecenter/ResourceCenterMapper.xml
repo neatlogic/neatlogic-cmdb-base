@@ -1239,6 +1239,30 @@
         WHERE `account_id` = #{value}
     </select>
 
+    <select id="searchResourceIdListWithNoLimit" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
+        SELECT DISTINCT a.`id`
+        <include refid="resource_ipobject_from_join"/>
+        <include refid="resource_ipobject_where"/>
+    </select>
+
+    <select id="getNoCorrespondingResourceListByResourceIdListAndAccountIdAndProtocol" resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
+        SELECT a.`id`, a.`name`, b.`port`, a.`ip`
+        FROM ${schemaName}.`resource_ipobject` a
+        LEFT JOIN ${schemaName}.`resource_softwareservice` b on b.`id` = a.`id`
+        WHERE a.`id` IN
+        <foreach collection="resourceIdList" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        AND NOT EXISTS (
+        SELECT c.`resource_id` FROM `cmdb_resourcecenter_resource_account` c
+        JOIN `cmdb_resourcecenter_account` d on d.`id` = c.`account_id`
+        JOIN `cmdb_resourcecenter_account_protocol` e ON e.`id`= d.`protocol_id`
+        and d.`account` = #{account}
+        and e.name = #{protocol}
+        WHERE c.`resource_id` = a.`id`
+        )
+    </select>
+
     <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
         update `cmdb_resourcecenter_account` a set
         a.`name` = #{name},
