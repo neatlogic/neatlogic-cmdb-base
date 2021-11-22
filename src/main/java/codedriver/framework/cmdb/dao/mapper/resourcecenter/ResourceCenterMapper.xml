@@ -1246,7 +1246,7 @@
         LEFT JOIN `cmdb_resourcecenter_account` cra ON crra.`account_id` = cra.`id`
         LEFT JOIN `cmdb_resourcecenter_account_protocol` crap ON crap.`id`=cra.`protocol_id`
         WHERE crra.`resource_id` = #{resourceId}
-        AND crap.name = #{protocol} AND crap.port = #{protocolProt}
+        AND crap.name = #{protocol} AND crap.port = #{protocolPort}
         <if test="userName != null">
             AND cra.`account` = #{userName}
         </if>
