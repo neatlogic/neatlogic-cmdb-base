@@ -1252,7 +1252,7 @@
                  LEFT JOIN `cmdb_resourcecenter_account` cra ON crra.`account_id` = cra.`id`
                  LEFT JOIN `cmdb_resourcecenter_account_protocol` crap ON crap.`id` = cra.`protocol_id`
         WHERE crra.`resource_id` = #{resourceId}
-          AND crra.accountId = #{accountId}
+          AND crra.account_id = #{accountId}
     </select>
     <select id="getResourceAccountByIpAndAccountId"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
@@ -1263,8 +1263,8 @@
             cra.`protocol_id`  as protocolId
         from cmdb_resourcecenter_account_ip crai
                 LEFT JOIN `cmdb_resourcecenter_account` cra ON crai.`account_id` = cra.`id`
-        WHERE crap.ip = #{host}
-          AND crap.account_id = #{accountId}
+        WHERE crai.ip = #{host}
+          AND crai.account_id = #{accountId}
     </select>
     <select id="getResourceAccountByIpAndPort"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
@@ -1276,7 +1276,7 @@
         from cmdb_resourcecenter_account_ip crai
                  LEFT JOIN `cmdb_resourcecenter_account` cra ON crai.`account_id` = cra.`id`
                  LEFT JOIN `cmdb_resourcecenter_account_protocol` crap ON crap.`id` = cra.`protocol_id`
-        WHERE crap.ip = #{host}
+        WHERE crai.ip = #{host}
           AND crap.port = #{port}
     </select>
 
