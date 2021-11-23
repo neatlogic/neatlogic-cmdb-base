@@ -69,6 +69,8 @@ public interface ResourceCenterMapper {
 
     Long getResourceIdByIpAndPortAndName(ResourceSearchVo searchVo);
 
+    Long getResourceIdByIpAndPortAndNameWithFilter(ResourceSearchVo searchVo);
+
     ResourceVo getResourceIpPortById(@Param("id") Long id, @Param("schemaName") String schemaName);
 
     List<ResourceVo> getResourceByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
@@ -117,9 +119,7 @@ public interface ResourceCenterMapper {
 
     List<Long> getNoCorrespondingAccountResourceIdListByTagListAndAccountIdAndProtocol(@Param("tagList") List<Long> tagList, @Param("account") String account, @Param("protocol") String protocol);
 
-    List<Long> searchResourceIdListWithNoLimit(ResourceSearchVo searchVo);
-
-    List<ResourceVo> getNoCorrespondingResourceListByResourceIdListAndAccountIdAndProtocol(@Param("resourceIdList") List<Long> resourceIdList, @Param("account") String account, @Param("protocol") String protocol, @Param("schemaName") String schemaName);
+    List<ResourceVo> getNoCorrespondingResourceListByAccountIdAndProtocol(ResourceSearchVo searchVo);
 
     Long checkResourceIsExistsCorrespondingAccountByResourceIdAndAccountIdAndProtocol(@Param("resourceId") Long resourceId, @Param("account") String account, @Param("protocol") String protocol);
 

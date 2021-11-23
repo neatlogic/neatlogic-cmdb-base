@@ -31,6 +31,8 @@ public class ResourceSearchVo extends BasePageVo {
     private List<Long> idList;
     private List<String> ipList;
     private String name;
+    private String protocol;
+    private String account;
 
     public ResourceSearchVo() {
     }
@@ -169,5 +171,21 @@ public class ResourceSearchVo extends BasePageVo {
 
     public void setIpList(List<String> ipList) {
         this.ipList = ipList;
+    }
+
+    public String getProtocol() {
+        return protocol;
+    }
+
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 }
