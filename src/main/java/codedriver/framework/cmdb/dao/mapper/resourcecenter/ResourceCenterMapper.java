@@ -12,7 +12,6 @@ import codedriver.framework.cmdb.dto.tag.TagVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author linbq
@@ -163,6 +162,8 @@ public interface ResourceCenterMapper {
     List<ResourceVo> getResourceListByResourceVoList(@Param("resourceList") List<ResourceVo> resourceList, @Param("schemaName") String schemaName);
 
     List<AccountVo> getResourceAccountListByResourceIdAndProtocolAndAccount(@Param("resourceIdList") List<Long> resourceIdList, @Param("protocolId") Long protocolId, @Param("userName") String userName);
+
+    AccountVo getResourceAccountByResourceIdAndProtocolAndProtocolPortAndAccount(@Param("resourceId") Long resourceId, @Param("protocol") String protocol, @Param("protocolPort") Integer protocolPort, @Param("userName") String userName);
 
     List<AccountVo> getAccountListByIpList(@Param("ipList") List<String> ipList);
 
