@@ -167,7 +167,11 @@ public interface ResourceCenterMapper {
 
     List<AccountVo> getResourceAccountListByResourceIdAndProtocolAndAccount(@Param("resourceIdList") List<Long> resourceIdList, @Param("protocolId") Long protocolId, @Param("userName") String userName);
 
-    AccountVo getResourceAccountByResourceIdAndProtocolAndProtocolPortAndAccount(@Param("resourceId") Long resourceId, @Param("protocol") String protocol, @Param("protocolPort") Integer protocolPort, @Param("userName") String userName);
+    AccountVo getResourceAccountByResourceIdAndAccountId(@Param("resourceId") Long resourceId, @Param("accountId") Long accountId);
+
+    AccountVo getResourceAccountByIpAndAccountId(@Param("host")String host, @Param("accountId")Long accountId);
+
+    AccountVo getResourceAccountByIpAndPort(@Param("host")String host,@Param("port") Integer port);
 
     List<AccountVo> getAccountListByIpList(@Param("ipList") List<String> ipList);
 
@@ -238,4 +242,5 @@ public interface ResourceCenterMapper {
     int deleteResourceAccountByAccountId(Long accountId);
 
     int deleteAccountIpByIpList(@Param("ipList") List<String> resourceIpList);
+
 }
