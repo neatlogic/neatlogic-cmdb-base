@@ -834,7 +834,8 @@
         </where>
     </select>
 
-    <select id="getAppModuleIdListByAppSystemIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+    <select id="getAppModuleIdListByAppSystemIdList"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
             resultType="java.lang.Long">
         SELECT `app_module_id` FROM ${schemaName}.`resource_appsystem_appmodule`
         <where>
@@ -1238,21 +1239,45 @@
         FROM `cmdb_resourcecenter_resource_account`
         WHERE `account_id` = #{value}
     </select>
-    <select id="getResourceAccountByResourceIdAndProtocolAndProtocolPortAndAccount"
+    <select id="getResourceAccountByResourceIdAndAccountId"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
-        SELECT crap.name as protocol,cra.id,cra.`account` ,cra.`password` as passwordCipher,crra.`resource_id`
-        resourceId,crap.port as protocolPort,cra.`protocol_id` as protocolId
+        SELECT crap.name          as protocol,
+               cra.id,
+               cra.`account`,
+               cra.`password`     as passwordCipher,
+               crra.`resource_id` as resourceId,
+               crap.port          as protocolPort,
+               cra.`protocol_id`  as protocolId
         FROM `cmdb_resourcecenter_resource_account` crra
-        LEFT JOIN `cmdb_resourcecenter_account` cra ON crra.`account_id` = cra.`id`
-        LEFT JOIN `cmdb_resourcecenter_account_protocol` crap ON crap.`id`=cra.`protocol_id`
+                 LEFT JOIN `cmdb_resourcecenter_account` cra ON crra.`account_id` = cra.`id`
+                 LEFT JOIN `cmdb_resourcecenter_account_protocol` crap ON crap.`id` = cra.`protocol_id`
         WHERE crra.`resource_id` = #{resourceId}
-        AND crap.name = #{protocol} AND crap.port = #{protocolPort}
-        <if test="userName != null">
-            AND cra.`account` = #{userName}
-        </if>
-        <if test="userName == null">
-            AND cra.`account` is null
-        </if>
+          AND crra.accountId = #{accountId}
+    </select>
+    <select id="getResourceAccountByIpAndAccountId"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
+        SELECT
+            cra.id,
+            cra.`account`,
+            cra.`password`     as passwordCipher,
+            cra.`protocol_id`  as protocolId
+        from cmdb_resourcecenter_account_ip crai
+                LEFT JOIN `cmdb_resourcecenter_account` cra ON crai.`account_id` = cra.`id`
+        WHERE crap.ip = #{host}
+          AND crap.account_id = #{accountId}
+    </select>
+    <select id="getResourceAccountByIpAndPort"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
+        SELECT
+            cra.id,
+            cra.`account`,
+            cra.`password`     as passwordCipher,
+            cra.`protocol_id`  as protocolId
+        from cmdb_resourcecenter_account_ip crai
+                 LEFT JOIN `cmdb_resourcecenter_account` cra ON crai.`account_id` = cra.`id`
+                 LEFT JOIN `cmdb_resourcecenter_account_protocol` crap ON crap.`id` = cra.`protocol_id`
+        WHERE crap.ip = #{host}
+          AND crap.port = #{port}
     </select>
 
     <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
