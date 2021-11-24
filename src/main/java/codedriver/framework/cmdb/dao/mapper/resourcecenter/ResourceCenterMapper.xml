@@ -867,50 +867,10 @@
         ORDER BY a.`id` DESC
     </select>
 
-    <select id="getAppSystemCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
-            resultType="int">
-        SELECT COUNT(DISTINCT a.`id`) FROM ${schemaName}.`resource_appsystem` a
-        <where>
-            <if test="keyword != null and keyword != ''">
-                AND a.`name` LIKE concat('%', #{keyword}, '%')
-            </if>
-        </where>
-    </select>
-
-    <select id="getAppSystemIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
-            resultType="java.lang.Long">
-        SELECT DISTINCT a.`id` FROM ${schemaName}.`resource_appsystem` a
-        <where>
-            <if test="keyword != null and keyword != ''">
-                AND a.`name` LIKE concat('%', #{keyword}, '%')
-            </if>
-        </where>
-    </select>
-
-    <select id="getAppSystemListByIdList" parameterType="java.util.List" resultMap="resourceCenterMap">
-        SELECT
-        a.`id`, a.`name`, a.`abbr_name`, a.`maintenance_window`, a.`description`
-        FROM ${schemaName}.`resource_appsystem` a
-        WHERE a.`id` IN
-        <foreach collection="idList" item="id" open="(" separator="," close=")">
-            #{id}
-        </foreach>
-    </select>
-
     <select id="checkAppModuleIsExists" resultType="int">
         SELECT COUNT(1)
         FROM ${schemaName}.`resource_appmodule`
         WHERE `id` = #{id}
-    </select>
-
-    <select id="getEnvironmentListByAppModuleId"
-            resultType="codedriver.framework.cmdb.dto.resourcecenter.entity.AppEnviromentVo">
-        SELECT DISTINCT a.`env_id` AS envId, a.`env_name` AS envName
-        FROM ${schemaName}.`resource_softwareservice_env` a
-        <if test="appModuleId != null">
-            JOIN ${schemaName}.`resource_ipobject_appmodule` b ON b.`resource_id`=a.`resource_id` AND b.`app_module_id`
-            = #{appModuleId}
-        </if>
     </select>
 
     <select id="getResourceTypeListByAppModuleIdAndEnvId"
@@ -923,19 +883,6 @@
                       ON b.`resource_id` = a.`id` AND b.`env_id` = #{envId}
                  JOIN ${schemaName}.`resource_ipobject_appmodule` c
                       ON c.`resource_id` = a.`id` AND c.`app_module_id` = #{appModuleId}
-    </select>
-    <select id="getResourceTypeList" parameterType="java.lang.String"
-            resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceTypeVo">
-        SELECT DISTINCT a.`type_id`    AS id,
-                        a.`type_name`  AS `name`,
-                        a.`type_label` AS label
-        FROM ${schemaName}.`resource_ipobject` a
-    </select>
-
-    <select id="getStateList" parameterType="java.lang.String"
-            resultType="codedriver.framework.cmdb.dto.resourcecenter.entity.StateVo">
-        SELECT DISTINCT `state_id` AS stateId, `state_name` AS stateName
-        FROM ${schemaName}.`resource_ipobject_state`
     </select>
 
     <select id="getResourceIdListByProtocolIdList"
