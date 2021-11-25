@@ -5,11 +5,12 @@
 
 package codedriver.framework.cmdb.crossover;
 
-import codedriver.framework.cmdb.dto.cientity.RelEntityVo;
+import codedriver.framework.cmdb.dto.customview.CustomViewConditionVo;
 import codedriver.framework.crossover.ICrossoverService;
 
 import java.util.List;
+import java.util.Map;
 
-public interface RelEntityCrossoverService extends ICrossoverService {
-    List<RelEntityVo> getRelEntityByCiEntityId(Long ciEntityId);
+public interface ICustomViewDataCrossoverService extends ICrossoverService {
+    List<Map<String, Object>> searchCustomViewData(CustomViewConditionVo customViewConditionVo);
 }

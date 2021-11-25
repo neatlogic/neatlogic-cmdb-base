@@ -10,6 +10,6 @@ import codedriver.framework.crossover.ICrossoverService;
 
 import java.util.List;
 
-public interface CiCrossoverMapper extends ICrossoverService {
+public interface ICiCrossoverMapper extends ICrossoverService {
     List<CiVo> searchCi(CiVo ciVo);
 }
