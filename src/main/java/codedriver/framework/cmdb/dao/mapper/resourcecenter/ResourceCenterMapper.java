@@ -125,21 +125,9 @@ public interface ResourceCenterMapper {
 
     List<ResourceVo> getAppModuleListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
-    int getAppSystemCount(ResourceSearchVo searchVo);
-
-    List<Long> getAppSystemIdList(ResourceSearchVo searchVo);
-
-    List<ResourceVo> getAppSystemListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
-
     int checkAppModuleIsExists(@Param("id") Long id, @Param("schemaName") String schemaName);
 
-    List<AppEnviromentVo> getEnvironmentListByAppModuleId(@Param("appModuleId") Long appModuleId, @Param("schemaName") String schemaName);
-
     List<ResourceTypeVo> getResourceTypeListByAppModuleIdAndEnvId(@Param("appModuleId") Long appModuleId, @Param("envId") Long envId, @Param("schemaName") String schemaName);
-
-    List<ResourceTypeVo> getResourceTypeList(@Param("schemaName") String schemaName);
-
-    List<StateVo> getStateList(@Param("schemaName") String schemaName);
 
     List<Long> getResourceIdListByProtocolIdList(ResourceSearchVo searchVo);
 

@@ -5,11 +5,11 @@
 
 package codedriver.framework.cmdb.crossover;
 
-import codedriver.framework.cmdb.dto.ci.RelVo;
+import codedriver.framework.cmdb.dto.ci.AttrVo;
 import codedriver.framework.crossover.ICrossoverService;
 
 import java.util.List;
 
-public interface RelCrossoverMapper extends ICrossoverService {
-    List<RelVo> getRelByCiId(Long ciId);
+public interface IAttrCrossoverMapper extends ICrossoverService {
+    List<AttrVo> getAttrByCiId(Long ciId);
 }
