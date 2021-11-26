@@ -10,7 +10,7 @@ import codedriver.framework.crossover.ICrossoverService;
 
 import java.util.List;
 
-public interface CiEntityCrossoverService extends ICrossoverService {
+public interface ICiEntityCrossoverService extends ICrossoverService {
     CiEntityVo getCiEntityById(Long ciId, Long ciEntityId);
 
     CiEntityVo getCiEntityById(CiEntityVo ciEntityVo);

@@ -12,7 +12,7 @@ import codedriver.framework.crossover.ICrossoverService;
 
 import java.util.List;
 
-public interface CustomViewCrossoverService extends ICrossoverService {
+public interface ICustomViewCrossoverService extends ICrossoverService {
     List<CustomViewCiVo> getCustomViewCiByCustomViewId(Long viewId);
 
     List<CustomViewAttrVo> getCustomViewAttrByCustomViewId(CustomViewAttrVo customViewAttrVo);
