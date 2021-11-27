@@ -7,6 +7,7 @@ package codedriver.framework.cmdb.attrvaluehandler.core;
 
 import codedriver.framework.cmdb.dto.ci.AttrVo;
 import codedriver.framework.cmdb.enums.SearchExpression;
+import codedriver.framework.cmdb.exception.attr.AttrValueIrregularException;
 import com.alibaba.fastjson.JSONArray;
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -154,6 +155,15 @@ public interface IAttrValueHandler {
      * @param attrVo 属性配置
      */
     default void afterUpdate(AttrVo attrVo) {
+    }
+
+    /**
+     * 验证值是否合法，只会根据当前组件类型来判断值是否合法
+     *
+     * @return 是否合法
+     */
+    default boolean valid(AttrVo attrVo, JSONArray valueList) throws AttrValueIrregularException {
+        return true;
     }
 
     /**
