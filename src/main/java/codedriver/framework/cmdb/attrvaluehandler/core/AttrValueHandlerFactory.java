@@ -56,6 +56,7 @@ public class AttrValueHandlerFactory extends ModuleInitializedListenerBase {
                 AttrTypeVo attrType = new AttrTypeVo();
                 attrType.setName(handler.getType());
                 attrType.setLabel(handler.getName());
+                attrType.setIcon(handler.getIcon());
                 attrType.setNeedConfig(handler.isNeedConfig());
                 attrType.setNeedWholeRow(handler.isNeedWholeRow());
                 attrType.setNeedTargetCi(handler.isNeedTargetCi());

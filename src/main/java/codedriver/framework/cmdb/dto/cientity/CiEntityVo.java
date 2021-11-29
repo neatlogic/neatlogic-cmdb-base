@@ -130,11 +130,11 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     @EntityField(name = "修改备注", type = ApiParamType.STRING)
     private String description;
     @EntityField(name = "巡检时间", type = ApiParamType.LONG)
-    private Date inspectDate;
+    private Date inspectTime;
     @EntityField(name = "巡检状态", type = ApiParamType.STRING)
     private String inspectStatus;
     @EntityField(name = "监控时间", type = ApiParamType.LONG)
-    private Date monitorDate;
+    private Date monitorTime;
     @EntityField(name = "监控状态", type = ApiParamType.STRING)
     private String monitorStatus;
     @JSONField(serialize = false)
@@ -893,12 +893,12 @@ public class CiEntityVo extends BasePageVo implements Serializable {
         }
     }
 
-    public Date getInspectDate() {
-        return inspectDate;
+    public Date getInspectTime() {
+        return inspectTime;
     }
 
-    public void setInspectDate(Date inspectDate) {
-        this.inspectDate = inspectDate;
+    public void setInspectTime(Date inspectTime) {
+        this.inspectTime = inspectTime;
     }
 
     public String getInspectStatus() {
@@ -909,12 +909,12 @@ public class CiEntityVo extends BasePageVo implements Serializable {
         this.inspectStatus = inspectStatus;
     }
 
-    public Date getMonitorDate() {
-        return monitorDate;
+    public Date getMonitorTime() {
+        return monitorTime;
     }
 
-    public void setMonitorDate(Date monitorDate) {
-        this.monitorDate = monitorDate;
+    public void setMonitorTime(Date monitorTime) {
+        this.monitorTime = monitorTime;
     }
 
     public String getMonitorStatus() {

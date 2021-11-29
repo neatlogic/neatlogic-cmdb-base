@@ -18,6 +18,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,6 +57,7 @@ public class AttrEntityTransactionVo implements Serializable {
     public AttrEntityTransactionVo(AttrEntityVo attrEntityVo) {
         ciEntityId = attrEntityVo.getCiEntityId();
         attrId = attrEntityVo.getAttrId();
+        attrType = attrEntityVo.getAttrType();
         attrName = attrEntityVo.getAttrName();
         //复制值列表，避免修改时覆盖
         valueList = new JSONArray();
@@ -110,12 +112,60 @@ public class AttrEntityTransactionVo implements Serializable {
                             String v = this.getValueList().getString(i);
                             for (int j = 0; j < attr.getValueList().size(); j++) {
                                 String v2 = attr.getValueList().getString(j);
-                                if (v.equalsIgnoreCase(v2)) {
-                                    isExists = true;
-                                    break;
-                                } else if (HtmlUtil.encodeHtml(v).equalsIgnoreCase(v2)) {
-                                    isExists = true;
-                                    break;
+                                switch (this.getAttrType()) {
+                                    case "number":
+                                        try {
+                                            if (Double.parseDouble(v) == Double.parseDouble(v2)) {
+                                                isExists = true;
+                                                break;
+                                            }
+                                        } catch (Exception ignored) {
+
+                                        }
+                                        break;
+                                    case "date": {
+                                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                        try {
+                                            if (sdf.parse(v).equals(sdf.parse(v2))) {
+                                                isExists = true;
+                                                break;
+                                            }
+                                        } catch (Exception ignored) {
+
+                                        }
+                                        break;
+                                    }
+                                    case "datetime": {
+                                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                        try {
+                                            if (sdf.parse(v).equals(sdf.parse(v2))) {
+                                                isExists = true;
+                                                break;
+                                            }
+                                        } catch (Exception ignored) {
+
+                                        }
+                                        break;
+                                    }
+                                    case "time": {
+                                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+                                        try {
+                                            if (sdf.parse(v).equals(sdf.parse(v2))) {
+                                                isExists = true;
+                                                break;
+                                            }
+                                        } catch (Exception ignored) {
+
+                                        }
+                                        break;
+                                    }
+                                    default:
+                                        if (v.equalsIgnoreCase(v2)) {
+                                            isExists = true;
+                                        } else if (HtmlUtil.encodeHtml(v).equalsIgnoreCase(v2)) {
+                                            isExists = true;
+                                        }
+                                        break;
                                 }
                             }
                             if (!isExists) {
