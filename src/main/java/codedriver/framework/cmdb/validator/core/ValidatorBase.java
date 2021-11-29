@@ -6,6 +6,7 @@
 package codedriver.framework.cmdb.validator.core;
 
 import codedriver.framework.cmdb.dao.mapper.validator.ValidatorMapper;
+import codedriver.framework.cmdb.dto.ci.AttrVo;
 import codedriver.framework.cmdb.dto.validator.ValidatorVo;
 import codedriver.framework.cmdb.exception.validator.AttrInValidatedException;
 import codedriver.framework.cmdb.exception.validator.ValidatorNotFoundException;
@@ -26,7 +27,8 @@ public abstract class ValidatorBase implements IValidator {
     }
 
     @Override
-    public final boolean valid(String attrLabel, JSONArray attrValueList, Long validatorId) throws AttrInValidatedException, ValidatorNotFoundException {
+    public final boolean valid(AttrVo attrVo, JSONArray attrValueList) throws AttrInValidatedException, ValidatorNotFoundException {
+        Long validatorId = attrVo.getValidatorId();
         if (CollectionUtils.isEmpty(attrValueList)) {
             return true;
         }
@@ -37,7 +39,7 @@ public abstract class ValidatorBase implements IValidator {
                 String errorMsg = "";
                 if (StringUtils.isNotBlank(validatorVo.getErrorTemplate())) {
                     errorMsg = validatorVo.getErrorTemplate();
-                    errorMsg = errorMsg.replace("{label}", attrLabel);
+                    errorMsg = errorMsg.replace("{label}", attrVo.getLabel());
                     errorMsg = errorMsg.replace("{value}", attrValueList.stream().map(Object::toString).collect(Collectors.joining(",")));
                 }
                 throw new AttrInValidatedException(errorMsg);

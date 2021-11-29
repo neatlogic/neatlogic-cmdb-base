@@ -5,6 +5,7 @@
 
 package codedriver.framework.cmdb.validator.core;
 
+import codedriver.framework.cmdb.dto.ci.AttrVo;
 import codedriver.framework.cmdb.exception.validator.AttrInValidatedException;
 import codedriver.framework.cmdb.exception.validator.ValidatorNotFoundException;
 import com.alibaba.fastjson.JSONArray;
@@ -17,13 +18,12 @@ public interface IValidator {
     /**
      * 验证入口
      *
-     * @param attrLabel   属性名称
-     * @param valueList   属性值
-     * @param validatorId 验证规则id
+     * @param attrVo    属性信息
+     * @param valueList 属性值
      * @return 是否通过验证
      * @throws AttrInValidatedException 验证异常
      */
-    boolean valid(String attrLabel, JSONArray valueList, Long validatorId) throws AttrInValidatedException, ValidatorNotFoundException;
+    boolean valid(AttrVo attrVo, JSONArray valueList) throws AttrInValidatedException, ValidatorNotFoundException;
 
     default String getClassName() {
         return ClassUtils.getUserClass(this.getClass()).getName();
