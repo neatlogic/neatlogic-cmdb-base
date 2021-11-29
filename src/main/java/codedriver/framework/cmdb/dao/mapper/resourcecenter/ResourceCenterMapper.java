@@ -6,8 +6,6 @@
 package codedriver.framework.cmdb.dao.mapper.resourcecenter;
 
 import codedriver.framework.cmdb.dto.resourcecenter.*;
-import codedriver.framework.cmdb.dto.resourcecenter.entity.AppEnviromentVo;
-import codedriver.framework.cmdb.dto.resourcecenter.entity.StateVo;
 import codedriver.framework.cmdb.dto.tag.TagVo;
 import org.apache.ibatis.annotations.Param;
 
@@ -74,6 +72,8 @@ public interface ResourceCenterMapper {
     ResourceVo getResourceIpPortById(@Param("id") Long id, @Param("schemaName") String schemaName);
 
     List<ResourceVo> getResourceByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+
+    List<ResourceVo> getResourceFromSoftwareServiceByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
     int checkResourceIsExists(@Param("id") Long id, @Param("schemaName") String schemaName);
 

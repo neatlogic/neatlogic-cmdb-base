@@ -522,8 +522,17 @@
     </select>
 
     <select id="getResourceByIdList" resultMap="resourceCenterMap">
-        SELECT a.`id`, a.`name`, a.`ip`
+        SELECT a.`id`, a.`name`, a.`ip`, a.
         FROM ${schemaName}.`resource_ipobject` a
+        where a.`id` in
+        <foreach collection="idList" item="id" separator="," close=")" open="(">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="getResourceFromSoftwareServiceByIdList" resultMap="resourceCenterMap">
+        SELECT a.`id`, a.`name`, a.`ip`, a.`port`
+        FROM ${schemaName}.`resource_softwareservice` a
         where a.`id` in
         <foreach collection="idList" item="id" separator="," close=")" open="(">
             #{id}
