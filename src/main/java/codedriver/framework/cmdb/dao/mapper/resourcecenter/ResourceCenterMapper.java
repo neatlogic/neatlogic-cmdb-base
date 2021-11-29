@@ -6,8 +6,6 @@
 package codedriver.framework.cmdb.dao.mapper.resourcecenter;
 
 import codedriver.framework.cmdb.dto.resourcecenter.*;
-import codedriver.framework.cmdb.dto.resourcecenter.entity.AppEnviromentVo;
-import codedriver.framework.cmdb.dto.resourcecenter.entity.StateVo;
 import codedriver.framework.cmdb.dto.tag.TagVo;
 import org.apache.ibatis.annotations.Param;
 
@@ -69,9 +67,13 @@ public interface ResourceCenterMapper {
 
     Long getResourceIdByIpAndPortAndName(ResourceSearchVo searchVo);
 
+    Long getResourceIdByIpAndPortAndNameWithFilter(ResourceSearchVo searchVo);
+
     ResourceVo getResourceIpPortById(@Param("id") Long id, @Param("schemaName") String schemaName);
 
     List<ResourceVo> getResourceByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+
+    List<ResourceVo> getResourceFromSoftwareServiceByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
     int checkResourceIsExists(@Param("id") Long id, @Param("schemaName") String schemaName);
 
@@ -116,6 +118,8 @@ public interface ResourceCenterMapper {
     List<Long> getAccountIdListByAccountAndProtocol(@Param("account") String account, @Param("protocol") String protocol);
 
     List<Long> getNoCorrespondingAccountResourceIdListByTagListAndAccountIdAndProtocol(@Param("tagList") List<Long> tagList, @Param("account") String account, @Param("protocol") String protocol);
+
+    List<ResourceVo> getNoCorrespondingResourceListByAccountIdAndProtocol(ResourceSearchVo searchVo);
 
     Long checkResourceIsExistsCorrespondingAccountByResourceIdAndAccountIdAndProtocol(@Param("resourceId") Long resourceId, @Param("account") String account, @Param("protocol") String protocol);
 
