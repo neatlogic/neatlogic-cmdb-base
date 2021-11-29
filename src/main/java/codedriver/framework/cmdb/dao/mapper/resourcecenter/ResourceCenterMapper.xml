@@ -504,9 +504,14 @@
         LEFT JOIN ${schemaName}.`resource_softwareservice` b on b.`id` = a.`id`
         <!-- LEFT JOIN ${schemaName}.`resource_ipobject_ip` c on c.`resource_id` = a.`id` -->
         WHERE a.`ip` = #{ip}
-        <if test="port != null and port != ''">
-            AND b.`port` = #{port}
-        </if>
+        <choose>
+            <when test="port != null and port != ''">
+                AND b.`port` = #{port}
+            </when>
+            <otherwise>
+                AND b.`port` is null
+           </otherwise>
+        </choose>
         <if test="name != null and name != ''">
             and a.`name` = #{name}
         </if>
@@ -1261,9 +1266,14 @@
         <include refid="resource_ipobject_from_join"/>
         WHERE a.`ip` = #{ip}
         <include refid="resource_ipobject_where"/>
-        <if test="port != null and port != ''">
-            AND m.`port` = #{port}
-        </if>
+        <choose>
+            <when test="port != null and port != ''">
+                AND m.`port` = #{port}
+            </when>
+            <otherwise>
+                AND m.`port` is null
+            </otherwise>
+        </choose>
         <if test="name != null and name != ''">
             and a.`name` = #{name}
         </if>

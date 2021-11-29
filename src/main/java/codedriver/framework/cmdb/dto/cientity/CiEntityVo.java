@@ -129,6 +129,14 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private Integer maxAttrEntityCount = MAX_ATTRENTITY_COUNT;//限制查询是最多返回多少引用属性
     @EntityField(name = "修改备注", type = ApiParamType.STRING)
     private String description;
+    @EntityField(name = "巡检时间", type = ApiParamType.LONG)
+    private Date inspectDate;
+    @EntityField(name = "巡检状态", type = ApiParamType.STRING)
+    private String inspectStatus;
+    @EntityField(name = "监控时间", type = ApiParamType.LONG)
+    private Date monitorDate;
+    @EntityField(name = "监控状态", type = ApiParamType.STRING)
+    private String monitorStatus;
     @JSONField(serialize = false)
     private boolean smartSearch = false;//启用智能搜索，会根据条件自动拼接关系表，在没有任何条件时能提高检索性能
     @JSONField(serialize = false)
@@ -883,5 +891,37 @@ public class CiEntityVo extends BasePageVo implements Serializable {
                 }
             }
         }
+    }
+
+    public Date getInspectDate() {
+        return inspectDate;
+    }
+
+    public void setInspectDate(Date inspectDate) {
+        this.inspectDate = inspectDate;
+    }
+
+    public String getInspectStatus() {
+        return inspectStatus;
+    }
+
+    public void setInspectStatus(String inspectStatus) {
+        this.inspectStatus = inspectStatus;
+    }
+
+    public Date getMonitorDate() {
+        return monitorDate;
+    }
+
+    public void setMonitorDate(Date monitorDate) {
+        this.monitorDate = monitorDate;
+    }
+
+    public String getMonitorStatus() {
+        return monitorStatus;
+    }
+
+    public void setMonitorStatus(String monitorStatus) {
+        this.monitorStatus = monitorStatus;
     }
 }
