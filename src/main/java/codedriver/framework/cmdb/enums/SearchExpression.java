@@ -7,8 +7,9 @@ package codedriver.framework.cmdb.enums;
 
 public enum SearchExpression {
     EQ("eq", "equal", "等于"),
-    // LT("lt", "less-than", "小于"),
-    // GT("gt", "greater-than", "大于"),
+    //LT("lt", "less-than", "小于"),
+    //GT("gt", "greater-than", "大于"),
+    BT("bt", "between", "在此区间"),
     NE("ne", "notequal", "不等于"),
     NL("nl", "notlike", "不包含"),
     LI("li", "like", "包含"),
