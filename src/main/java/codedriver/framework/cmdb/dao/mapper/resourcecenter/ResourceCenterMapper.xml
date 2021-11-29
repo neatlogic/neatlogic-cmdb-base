@@ -527,7 +527,7 @@
     </select>
 
     <select id="getResourceByIdList" resultMap="resourceCenterMap">
-        SELECT a.`id`, a.`name`, a.`ip`, a.
+        SELECT a.`id`, a.`name`, a.`ip`
         FROM ${schemaName}.`resource_ipobject` a
         where a.`id` in
         <foreach collection="idList" item="id" separator="," close=")" open="(">
