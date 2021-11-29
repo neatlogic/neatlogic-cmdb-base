@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 public class AttrFilterVo implements Serializable {
     private Long attrId;
     private Long ciId;
+    private String type;
     private String expressionName; // 表达式名称
     private String expression;// 用户sql查询的表达式
     private List<String> valueList;
@@ -107,4 +108,11 @@ public class AttrFilterVo implements Serializable {
         this.expressionName = expressionName;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }
