@@ -42,6 +42,18 @@ public class IpObjectVo {
     private String networkArea;
     @ResourceField(name = "ip")
     private String ip;
+    @EntityField(name = "巡检状态", type = ApiParamType.STRING)
+    @ResourceField(name = "inspect_status")
+    private String inspectStatus;
+    @EntityField(name = "巡检时间", type = ApiParamType.LONG)
+    @ResourceField(name = "inspect_time")
+    private Date inspectTime;
+    @EntityField(name = "监控状态", type = ApiParamType.STRING)
+    @ResourceField(name = "monitor_status")
+    private String monitorStatus;
+    @EntityField(name = "监控时间", type = ApiParamType.LONG)
+    @ResourceField(name = "monitor_time")
+    private Date monitorTime;
     @EntityField(name = "创建者", type = ApiParamType.STRING)
     @ResourceField(name = "fcu")
     private String fcu;
@@ -157,5 +169,37 @@ public class IpObjectVo {
 
     public void setLcd(Date lcd) {
         this.lcd = lcd;
+    }
+
+    public String getInspectStatus() {
+        return inspectStatus;
+    }
+
+    public void setInspectStatus(String inspectStatus) {
+        this.inspectStatus = inspectStatus;
+    }
+
+    public Date getInspectTime() {
+        return inspectTime;
+    }
+
+    public void setInspectTime(Date inspectTime) {
+        this.inspectTime = inspectTime;
+    }
+
+    public String getMonitorStatus() {
+        return monitorStatus;
+    }
+
+    public void setMonitorStatus(String monitorStatus) {
+        this.monitorStatus = monitorStatus;
+    }
+
+    public Date getMonitorTime() {
+        return monitorTime;
+    }
+
+    public void setMonitorTime(Date monitorTime) {
+        this.monitorTime = monitorTime;
     }
 }
