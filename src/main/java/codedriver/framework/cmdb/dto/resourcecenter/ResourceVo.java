@@ -5,11 +5,13 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter;
 
+import codedriver.framework.cmdb.annotation.ResourceField;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BaseEditorVo;
 import codedriver.framework.restful.annotation.EntityField;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -80,6 +82,14 @@ public class ResourceVo extends BaseEditorVo {
     @EntityField(name = "集群类型id", type = ApiParamType.LONG)
     private Long clusterTypeId;
 
+    @EntityField(name = "巡检状态", type = ApiParamType.STRING)
+    private String inspectStatus;
+    @EntityField(name = "巡检时间", type = ApiParamType.LONG)
+    private Date inspectTime;
+    @EntityField(name = "监控状态", type = ApiParamType.STRING)
+    private String monitorStatus;
+    @EntityField(name = "监控时间", type = ApiParamType.LONG)
+    private Date monitorTime;
     public ResourceVo() {
     }
 
@@ -334,5 +344,37 @@ public class ResourceVo extends BaseEditorVo {
 
     public void setClusterTypeId(Long clusterTypeId) {
         this.clusterTypeId = clusterTypeId;
+    }
+
+    public String getInspectStatus() {
+        return inspectStatus;
+    }
+
+    public void setInspectStatus(String inspectStatus) {
+        this.inspectStatus = inspectStatus;
+    }
+
+    public Date getInspectTime() {
+        return inspectTime;
+    }
+
+    public void setInspectTime(Date inspectTime) {
+        this.inspectTime = inspectTime;
+    }
+
+    public String getMonitorStatus() {
+        return monitorStatus;
+    }
+
+    public void setMonitorStatus(String monitorStatus) {
+        this.monitorStatus = monitorStatus;
+    }
+
+    public Date getMonitorTime() {
+        return monitorTime;
+    }
+
+    public void setMonitorTime(Date monitorTime) {
+        this.monitorTime = monitorTime;
     }
 }
