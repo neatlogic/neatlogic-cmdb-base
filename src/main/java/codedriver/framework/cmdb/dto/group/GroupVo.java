@@ -9,18 +9,17 @@ import codedriver.framework.cmdb.enums.group.GroupType;
 import codedriver.framework.cmdb.enums.group.Status;
 import codedriver.framework.common.config.Config;
 import codedriver.framework.common.constvalue.ApiParamType;
-import codedriver.framework.common.dto.BasePageVo;
+import codedriver.framework.common.dto.BaseEditorVo;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
 import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GroupVo extends BasePageVo {
+public class GroupVo extends BaseEditorVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "名称", type = ApiParamType.STRING)
@@ -37,14 +36,7 @@ public class GroupVo extends BasePageVo {
     private List<CiGroupVo> ciGroupList;
     @EntityField(name = "授权列表", type = ApiParamType.JSONARRAY)
     private List<GroupAuthVo> groupAuthList;
-    @EntityField(name = "创建者uuid", type = ApiParamType.STRING)
-    private String fcu;
-    @EntityField(name = "创建时间", type = ApiParamType.LONG)
-    private Date fcd;
-    @EntityField(name = "修改者uuid", type = ApiParamType.STRING)
-    private String lcu;
-    @EntityField(name = "修改时间", type = ApiParamType.LONG)
-    private Date lcd;
+
     @EntityField(name = "配置项数量", type = ApiParamType.INTEGER)
     private int ciEntityCount;
     @JSONField(serialize = false)
@@ -192,35 +184,4 @@ public class GroupVo extends BasePageVo {
         this.type = type;
     }
 
-    public String getFcu() {
-        return fcu;
-    }
-
-    public void setFcu(String fcu) {
-        this.fcu = fcu;
-    }
-
-    public Date getFcd() {
-        return fcd;
-    }
-
-    public void setFcd(Date fcd) {
-        this.fcd = fcd;
-    }
-
-    public String getLcu() {
-        return lcu;
-    }
-
-    public void setLcu(String lcu) {
-        this.lcu = lcu;
-    }
-
-    public Date getLcd() {
-        return lcd;
-    }
-
-    public void setLcd(Date lcd) {
-        this.lcd = lcd;
-    }
 }
