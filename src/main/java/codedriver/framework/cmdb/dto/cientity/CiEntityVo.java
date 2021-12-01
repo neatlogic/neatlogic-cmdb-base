@@ -137,6 +137,8 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private Date monitorTime;
     @EntityField(name = "监控状态", type = ApiParamType.STRING)
     private String monitorStatus;
+    @EntityField(name = "更新时间，用于检查数据是否老化", type = ApiParamType.LONG)
+    private Date renewTime;
     @JSONField(serialize = false)
     private boolean smartSearch = false;//启用智能搜索，会根据条件自动拼接关系表，在没有任何条件时能提高检索性能
     @JSONField(serialize = false)
@@ -160,6 +162,14 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     public CiEntityVo(Long ciId, String name) {
         this.ciId = ciId;
         this.name = name;
+    }
+
+    public Date getRenewTime() {
+        return renewTime;
+    }
+
+    public void setRenewTime(Date renewTime) {
+        this.renewTime = renewTime;
     }
 
     public boolean isLimitRelEntity() {
