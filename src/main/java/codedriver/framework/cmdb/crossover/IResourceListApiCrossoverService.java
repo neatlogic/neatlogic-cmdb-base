@@ -5,10 +5,11 @@
 
 package codedriver.framework.cmdb.crossover;
 
-import codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
 import codedriver.framework.crossover.ICrossoverService;
 import com.alibaba.fastjson.JSONObject;
 
-public interface IResourceCenterResourceCrossoverService extends ICrossoverService {
-    ResourceSearchVo assembleResourceSearchVo(JSONObject jsonObj);
+public interface IResourceListApiCrossoverService extends ICrossoverService {
+
+    Object myDoService(JSONObject jsonObj) throws Exception;
+
 }
