@@ -110,6 +110,7 @@ public class AttrEntityTransactionVo implements Serializable {
                         for (int i = 0; i < this.getValueList().size(); i++) {
                             boolean isExists = false;
                             String v = this.getValueList().getString(i);
+                            LEVEL2:
                             for (int j = 0; j < attr.getValueList().size(); j++) {
                                 String v2 = attr.getValueList().getString(j);
                                 switch (this.getAttrType()) {
@@ -162,8 +163,10 @@ public class AttrEntityTransactionVo implements Serializable {
                                     default:
                                         if (v.equalsIgnoreCase(v2)) {
                                             isExists = true;
+                                            break LEVEL2;
                                         } else if (HtmlUtil.encodeHtml(v).equalsIgnoreCase(v2)) {
                                             isExists = true;
+                                            break LEVEL2;
                                         }
                                         break;
                                 }
