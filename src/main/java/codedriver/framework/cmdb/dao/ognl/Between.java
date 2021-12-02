@@ -12,94 +12,99 @@ import java.text.SimpleDateFormat;
  */
 public class Between {
     public static Object[] parse(String type, String str) {
-        if (type.equals("number")) {
-            Double[] s = new Double[]{null, null};
-            if (str.contains("~")) {
-                String[] ss = str.split("~");
-                try {
-                    s[0] = Double.parseDouble(ss[0]);
-                } catch (Exception ignored) {
-
-                }
-                if (ss.length > 1) {
+        switch (type) {
+            case "number": {
+                Double[] s = new Double[]{null, null};
+                if (str.contains("~")) {
+                    String[] ss = str.split("~");
                     try {
-                        s[1] = Double.parseDouble(ss[1]);
+                        s[0] = Double.parseDouble(ss[0]);
                     } catch (Exception ignored) {
 
                     }
-                }
-            }
-            if (s[0] == null && s[1] == null) {
-                s[0] = -Double.MAX_VALUE;
-                s[1] = Double.MAX_VALUE;
-            }
-            return s;
-        } else if (type.equals("date")) {
-            //MySQL 日期查询使用字符串即可，可以自动转换
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String[] s = new String[]{null, null};
-            if (str.contains("~")) {
-                String[] ss = str.split("~");
-                try {
-                    sdf.parse(ss[0]);
-                    s[0] = "'" + ss[0] + "'";
-                } catch (Exception ignored) {
+                    if (ss.length > 1) {
+                        try {
+                            s[1] = Double.parseDouble(ss[1]);
+                        } catch (Exception ignored) {
 
+                        }
+                    }
                 }
-                if (ss.length > 1) {
+                if (s[0] == null && s[1] == null) {
+                    s[0] = -Double.MAX_VALUE;
+                    s[1] = Double.MAX_VALUE;
+                }
+                return s;
+            }
+            case "date": {
+                //MySQL 日期查询使用字符串即可，可以自动转换
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String[] s = new String[]{null, null};
+                if (str.contains("~")) {
+                    String[] ss = str.split("~");
                     try {
-                        sdf.parse(ss[1]);
-                        s[1] = "'" + ss[1] + "'";
+                        sdf.parse(ss[0]);
+                        s[0] = "'" + ss[0] + "'";
                     } catch (Exception ignored) {
 
                     }
-                }
-            }
-            return s;
-        } else if (type.equals("time")) {
-            //MySQL 日期查询使用字符串即可，可以自动转换
-            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-            String[] s = new String[]{null, null};
-            if (str.contains("~")) {
-                String[] ss = str.split("~");
-                try {
-                    sdf.parse(ss[0]);
-                    s[0] = "'" + ss[0] + "'";
-                } catch (Exception ignored) {
+                    if (ss.length > 1) {
+                        try {
+                            sdf.parse(ss[1]);
+                            s[1] = "'" + ss[1] + "'";
+                        } catch (Exception ignored) {
 
+                        }
+                    }
                 }
-                if (ss.length > 1) {
+                return s;
+            }
+            case "time": {
+                //MySQL 日期查询使用字符串即可，可以自动转换
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+                String[] s = new String[]{null, null};
+                if (str.contains("~")) {
+                    String[] ss = str.split("~");
                     try {
-                        sdf.parse(ss[1]);
-                        s[1] = "'" + ss[1] + "'";
+                        sdf.parse(ss[0]);
+                        s[0] = "'" + ss[0] + "'";
                     } catch (Exception ignored) {
 
                     }
-                }
-            }
-            return s;
-        } else if (type.equals("datetime")) {
-            //MySQL 日期查询使用字符串即可，可以自动转换
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String[] s = new String[]{null, null};
-            if (str.contains("~")) {
-                String[] ss = str.split("~");
-                try {
-                    sdf.parse(ss[0]);
-                    s[0] = "'" + ss[0] + "'";
-                } catch (Exception ignored) {
+                    if (ss.length > 1) {
+                        try {
+                            sdf.parse(ss[1]);
+                            s[1] = "'" + ss[1] + "'";
+                        } catch (Exception ignored) {
 
+                        }
+                    }
                 }
-                if (ss.length > 1) {
+                return s;
+            }
+            case "datetime": {
+                //MySQL 日期查询使用字符串即可，可以自动转换
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String[] s = new String[]{null, null};
+                if (str.contains("~")) {
+                    String[] ss = str.split("~");
                     try {
-                        sdf.parse(ss[1]);
-                        s[1] = "'" + ss[1] + "'";
+                        sdf.parse(ss[0]);
+                        s[0] = "'" + ss[0] + "'";
                     } catch (Exception ignored) {
 
                     }
+                    if (ss.length > 1) {
+                        try {
+                            sdf.parse(ss[1]);
+                            s[1] = "'" + ss[1] + "'";
+                        } catch (Exception ignored) {
+
+                        }
+                    }
                 }
+                return s;
             }
-            return s;
         }
         return new String[2];
     }

@@ -10,6 +10,7 @@ import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
+import org.apache.commons.collections4.MapUtils;
 import org.springframework.data.mongodb.core.query.Criteria;
 
 import java.io.Serializable;
@@ -41,10 +42,12 @@ public class CollectionVo implements Serializable {
     public Criteria getFilterCriteria() {
         Criteria c = new Criteria();
         List<Criteria> filterCriteriaList = new ArrayList<>();
-        for (String key : this.getFilter().keySet()) {
-            filterCriteriaList.add(Criteria.where(key).is(this.getFilter().getString(key)));
+        if (MapUtils.isNotEmpty(this.getFilter())) {
+            for (String key : this.getFilter().keySet()) {
+                filterCriteriaList.add(Criteria.where(key).is(this.getFilter().getString(key)));
+            }
+            c.andOperator(filterCriteriaList);
         }
-        c.andOperator(filterCriteriaList);
         return c;
     }
 
