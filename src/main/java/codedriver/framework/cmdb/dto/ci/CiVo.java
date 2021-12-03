@@ -394,4 +394,5 @@ public class CiVo implements Serializable {
     public void setNameAttrId(Long nameAttrId) {
         this.nameAttrId = nameAttrId;
     }
+
 }
