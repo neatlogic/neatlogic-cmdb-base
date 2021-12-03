@@ -27,7 +27,7 @@ public class CiVo implements Serializable {
     @JSONField(serialize = false)
     private String keyword;
     @EntityField(name = "id", type = ApiParamType.LONG)
-    protected Long id;
+    private Long id;
     @EntityField(name = "父亲模型id", type = ApiParamType.LONG)
     private Long parentCiId;
     @EntityField(name = "父亲模型名称", type = ApiParamType.STRING)
@@ -39,9 +39,9 @@ public class CiVo implements Serializable {
     @JSONField(serialize = false)
     private CiVo parentCi;
     @EntityField(name = "唯一标识，不能重复", type = ApiParamType.STRING)
-    protected String name;
+    private String name;
     @EntityField(name = "名称，不能重复", type = ApiParamType.STRING)
-    protected String label;
+    private String label;
     @EntityField(name = "备注", type = ApiParamType.STRING)
     private String description;
     @EntityField(name = "图标", type = ApiParamType.STRING)
