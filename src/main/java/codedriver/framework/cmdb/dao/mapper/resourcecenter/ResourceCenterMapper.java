@@ -73,6 +73,8 @@ public interface ResourceCenterMapper {
 
     List<ResourceVo> getResourceByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
+    ResourceVo getResourceById(@Param("id") Long id, @Param("schemaName") String schemaName);
+
     List<ResourceVo> getResourceFromSoftwareServiceByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
     int checkResourceIsExists(@Param("id") Long id, @Param("schemaName") String schemaName);
