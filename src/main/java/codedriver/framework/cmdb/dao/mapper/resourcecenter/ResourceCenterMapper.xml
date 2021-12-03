@@ -514,7 +514,7 @@
             </when>
             <otherwise>
                 AND b.`port` is null
-           </otherwise>
+            </otherwise>
         </choose>
         <if test="name != null and name != ''">
             and a.`name` = #{name}
@@ -531,7 +531,7 @@
     </select>
 
     <select id="getResourceByIdList" resultMap="resourceCenterMap">
-        SELECT a.`id`, a.`name`, a.`ip`
+        SELECT a.`id`, a.`name`, a.`ip`,a.`type_id`
         FROM ${schemaName}.`resource_ipobject` a
         where a.`id` in
         <foreach collection="idList" item="id" separator="," close=")" open="(">
@@ -897,14 +897,15 @@
 
     <select id="getResourceTypeListByAppModuleIdAndEnvId"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceTypeVo">
-        SELECT DISTINCT a.`type_id`    AS id,
-                        a.`type_name`  AS `name`,
-                        a.`type_label` AS label
+        SELECT DISTINCT a.`type_id` AS id,
+        a.`type_name` AS `name`,
+        a.`type_label` AS label
         FROM ${schemaName}.`resource_ipobject` a
         <if test="envId != null">
             JOIN ${schemaName}.`resource_softwareservice_env` b ON b.`resource_id` = a.`id` AND b.`env_id` = #{envId}
         </if>
-        JOIN ${schemaName}.`resource_ipobject_appmodule` c ON c.`resource_id` = a.`id` AND c.`app_module_id` = #{appModuleId}
+        JOIN ${schemaName}.`resource_ipobject_appmodule` c ON c.`resource_id` = a.`id` AND c.`app_module_id` =
+        #{appModuleId}
     </select>
 
     <select id="getResourceIdListByProtocolIdList"
@@ -1225,23 +1226,21 @@
     </select>
     <select id="getResourceAccountByIpAndAccountId"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
-        SELECT
-            cra.id,
-            cra.`account`,
-            cra.`password`     as passwordCipher,
-            cra.`protocol_id`  as protocolId
+        SELECT cra.id,
+               cra.`account`,
+               cra.`password`    as passwordCipher,
+               cra.`protocol_id` as protocolId
         from cmdb_resourcecenter_account_ip crai
-                LEFT JOIN `cmdb_resourcecenter_account` cra ON crai.`account_id` = cra.`id`
+                 LEFT JOIN `cmdb_resourcecenter_account` cra ON crai.`account_id` = cra.`id`
         WHERE crai.ip = #{host}
           AND crai.account_id = #{accountId}
     </select>
     <select id="getResourceAccountByIpAndPort"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
-        SELECT
-            cra.id,
-            cra.`account`,
-            cra.`password`     as passwordCipher,
-            cra.`protocol_id`  as protocolId
+        SELECT cra.id,
+               cra.`account`,
+               cra.`password`    as passwordCipher,
+               cra.`protocol_id` as protocolId
         from cmdb_resourcecenter_account_ip crai
                  LEFT JOIN `cmdb_resourcecenter_account` cra ON crai.`account_id` = cra.`id`
                  LEFT JOIN `cmdb_resourcecenter_account_protocol` crap ON crap.`id` = cra.`protocol_id`
@@ -1249,7 +1248,8 @@
           AND crap.port = #{port}
     </select>
 
-    <select id="getNoCorrespondingResourceListByAccountIdAndProtocol" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+    <select id="getNoCorrespondingResourceListByAccountIdAndProtocol"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
         SELECT a.`id`, a.`name`, m.`port`, a.`ip`
         <include refid="resource_ipobject_from_join"/>
