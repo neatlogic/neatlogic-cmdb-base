@@ -12,4 +12,6 @@ import java.util.List;
 
 public interface ICiCrossoverMapper extends ICrossoverService {
     List<CiVo> searchCi(CiVo ciVo);
+
+    CiVo getCiById(Long ciId);
 }
