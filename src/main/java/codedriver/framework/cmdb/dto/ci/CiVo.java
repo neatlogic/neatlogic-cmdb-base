@@ -41,7 +41,7 @@ public class CiVo implements Serializable {
     @EntityField(name = "唯一标识，不能重复", type = ApiParamType.STRING)
     private String name;
     @EntityField(name = "名称，不能重复", type = ApiParamType.STRING)
-    private String label;
+    protected String label;
     @EntityField(name = "备注", type = ApiParamType.STRING)
     private String description;
     @EntityField(name = "图标", type = ApiParamType.STRING)
@@ -84,9 +84,6 @@ public class CiVo implements Serializable {
     private Long fileId;
     @JSONField(serialize = false)
     private List<Long> typeIdList;//类型列表，搜索用
-
-    @EntityField(name = "combopId", type = ApiParamType.LONG)
-    private Long combopId;//组合工具id，巡检用
 
     @Override
     public boolean equals(Object o) {
@@ -398,11 +395,4 @@ public class CiVo implements Serializable {
         this.nameAttrId = nameAttrId;
     }
 
-    public Long getCombopId() {
-        return combopId;
-    }
-
-    public void setCombopId(Long combopId) {
-        this.combopId = combopId;
-    }
 }

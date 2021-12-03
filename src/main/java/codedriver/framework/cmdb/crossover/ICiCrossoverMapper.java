@@ -7,9 +7,15 @@ package codedriver.framework.cmdb.crossover;
 
 import codedriver.framework.cmdb.dto.ci.CiVo;
 import codedriver.framework.crossover.ICrossoverService;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface ICiCrossoverMapper extends ICrossoverService {
     List<CiVo> searchCi(CiVo ciVo);
+
+    CiVo getCiByName(String ciName);
+
+    List<CiVo> getDownwardCiListByLR(@Param("lft") Integer lft, @Param("rht") Integer rht);
+
 }
