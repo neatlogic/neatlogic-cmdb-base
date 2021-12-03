@@ -85,6 +85,9 @@ public class CiVo implements Serializable {
     @JSONField(serialize = false)
     private List<Long> typeIdList;//类型列表，搜索用
 
+    @EntityField(name = "combopId", type = ApiParamType.LONG)
+    private Long combopId;//组合工具id，巡检用
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -393,5 +396,13 @@ public class CiVo implements Serializable {
 
     public void setNameAttrId(Long nameAttrId) {
         this.nameAttrId = nameAttrId;
+    }
+
+    public Long getCombopId() {
+        return combopId;
+    }
+
+    public void setCombopId(Long combopId) {
+        this.combopId = combopId;
     }
 }
