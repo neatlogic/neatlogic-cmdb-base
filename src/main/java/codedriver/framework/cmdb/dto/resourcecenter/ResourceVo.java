@@ -5,9 +5,13 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter;
 
+import codedriver.framework.cmdb.annotation.ResourceField;
 import codedriver.framework.common.constvalue.ApiParamType;
+import codedriver.framework.common.constvalue.InspectStatus;
 import codedriver.framework.common.dto.BaseEditorVo;
 import codedriver.framework.restful.annotation.EntityField;
+import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -57,7 +61,7 @@ public class ResourceVo extends BaseEditorVo {
     private String maintenanceWindow;
     @EntityField(name = "描述", type = ApiParamType.STRING)
     private String description;
-//    @EntityField(name = "IPID", type = ApiParamType.STRING)
+    //    @EntityField(name = "IPID", type = ApiParamType.STRING)
 //    private String ipId;
     @EntityField(name = "IP地址", type = ApiParamType.STRING)
     private String ip;
@@ -84,12 +88,15 @@ public class ResourceVo extends BaseEditorVo {
 
     @EntityField(name = "巡检状态", type = ApiParamType.STRING)
     private String inspectStatus;
+    @EntityField(name = "巡检状态Vo", type = ApiParamType.JSONOBJECT)
+    private JSONObject inspectStatusJson;
     @EntityField(name = "巡检时间", type = ApiParamType.LONG)
     private Date inspectTime;
     @EntityField(name = "监控状态", type = ApiParamType.STRING)
     private String monitorStatus;
     @EntityField(name = "监控时间", type = ApiParamType.LONG)
     private Date monitorTime;
+
     public ResourceVo() {
     }
 
@@ -385,4 +392,12 @@ public class ResourceVo extends BaseEditorVo {
     public void setMonitorTime(Date monitorTime) {
         this.monitorTime = monitorTime;
     }
+
+    public JSONObject getInspectStatusJson() {
+        if (StringUtils.isNotBlank(inspectStatus)) {
+            inspectStatusJson = InspectStatus.getInspectStatusJson(inspectStatus);
+        }
+        return inspectStatusJson;
+    }
+
 }
