@@ -10,6 +10,7 @@ import codedriver.framework.cmdb.dto.tag.TagVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author linbq
@@ -64,6 +65,12 @@ public interface ResourceCenterMapper {
     List<Long> getDbInstanceClusterResourceIdList(ResourceSearchVo searchVo);
 
     List<ResourceVo> getDbInstanceClusterResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+
+    int getAccessEndPointResourceCount(ResourceSearchVo searchVo);
+
+    List<Long> getAccessEndPointResourceIdList(ResourceSearchVo searchVo);
+
+    List<ResourceVo> getAccessEndPointResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
     Long getResourceIdByIpAndPortAndName(ResourceSearchVo searchVo);
 
@@ -133,7 +140,11 @@ public interface ResourceCenterMapper {
 
     int checkAppModuleIsExists(@Param("id") Long id, @Param("schemaName") String schemaName);
 
-    List<ResourceTypeVo> getResourceTypeListByAppModuleIdAndEnvId(@Param("appModuleId") Long appModuleId, @Param("envId") Long envId, @Param("schemaName") String schemaName);
+    Set<Long> getIpObjectResourceTypeIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
+
+    Set<Long> getOsResourceTypeIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
+
+    Set<Long> getNetWorkDeviceResourceTypeIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
 
     List<Long> getResourceIdListByProtocolIdList(ResourceSearchVo searchVo);
 
