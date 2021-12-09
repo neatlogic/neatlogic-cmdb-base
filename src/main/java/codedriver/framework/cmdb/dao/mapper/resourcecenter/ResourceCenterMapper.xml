@@ -914,7 +914,10 @@
             resultType="java.lang.Long">
         SELECT c.`id`
         FROM `cmdb_resourcecenter_resource_account` b
-                 JOIN `cmdb_resourcecenter_account` c on c.`id` = b.`account_id` and c.`account` = #{account}
+                 JOIN `cmdb_resourcecenter_account` c on c.`id` = b.`account_id`
+                 <if test="account != null and account != ''">
+                    and c.`account` = #{account}
+                 </if>
                  JOIN `cmdb_resourcecenter_account_protocol` d ON d.`id` = c.`protocol_id`
             and d.name = #{protocol}
         WHERE b.`resource_id` = #{resourceId}
@@ -1352,7 +1355,9 @@
         SELECT c.`resource_id` FROM `cmdb_resourcecenter_resource_account` c
         JOIN `cmdb_resourcecenter_account` d on d.`id` = c.`account_id`
         JOIN `cmdb_resourcecenter_account_protocol` e ON e.`id`= d.`protocol_id`
-        and d.`account` = #{account}
+        <if test="account != null and account != ''">
+            and d.`account` = #{account}
+        </if>
         and e.name = #{protocol}
         WHERE c.`resource_id` = a.`id`
         )
