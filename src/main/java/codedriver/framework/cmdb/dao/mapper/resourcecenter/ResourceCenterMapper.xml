@@ -1384,6 +1384,29 @@
         limit 1
     </select>
 
+    <select id="getResourceScriptListByResourceIdList"
+            parameterType="java.util.List"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceScriptVo">
+        SELECT
+        `resource_id` AS resourceId,
+        `script_id` AS scriptId,
+        `url_sequence`  as urlSequence
+        FROM `cmdb_resourcecenter_resource_script`
+        WHERE `resource_id` in
+        <foreach collection="resourceIdList" item="resourceId" open="(" separator="," close=")">
+            #{resourceId}
+        </foreach>
+    </select>
+
+    <select id="getResourceScriptByResourceId"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceScriptVo">
+        select `resource_id` as resourceId,
+               `script_id`    as scriptId,
+               `url_sequence`  as urlSequence
+        from `cmdb_resourcecenter_resource_script`
+        WHERE `resource_id` = #{value}
+    </select>
+
     <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
         update `cmdb_resourcecenter_account` a set
         a.`name` = #{name},
@@ -1483,6 +1506,14 @@
         VALUES (#{accountId}, #{ip});
     </insert>
 
+    <insert id="insertResourceScriptIdList">
+        insert into `cmdb_resourcecenter_resource_script`(`resource_id`, `script_id`,`url_sequence`)
+        values
+        <foreach collection="scriptIdList" item="id" separator="," >
+            (#{resourceId}, #{id},#{urlSequence})
+        </foreach>
+    </insert>
+
     <delete id="deleteAccountById" parameterType="java.lang.Long">
         delete
         from `cmdb_resourcecenter_account`
@@ -1559,6 +1590,10 @@
         <foreach collection="ipList" open="(" close=")" separator="," item="ip">
             #{ip}
         </foreach>
+    </delete>
+    <delete id="deleteResourceScriptByResourceId">
+        delete
+        from `cmdb_resourcecenter_resource_script` where  `resource_id`=#{value}
     </delete>
 
 </mapper>

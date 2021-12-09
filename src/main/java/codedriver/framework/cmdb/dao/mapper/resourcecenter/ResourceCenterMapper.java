@@ -178,6 +178,10 @@ public interface ResourceCenterMapper {
 
     List<AccountProtocolVo> searchAccountProtocolListByProtocolName(AccountProtocolVo searchVo);
 
+    List<ResourceScriptVo> getResourceScriptListByResourceIdList(@Param("resourceIdList") List<Long> resourceIdList);
+
+    ResourceScriptVo getResourceScriptByResourceId(Long resourceId);
+
     int checkAccountProtocolIsRepeats(AccountProtocolVo searchVo);
 
     List<AccountTagVo> getAccountTagListByAccountIdList(List<Long> AccountIdList);
@@ -222,6 +226,8 @@ public interface ResourceCenterMapper {
 
     int insertIgnoreAccountIp(AccountIpVo ipVo);
 
+    int insertResourceScriptIdList(@Param("resourceId") Long resourceId, @Param("scriptIdList") List<Long> scriptIdList, @Param("urlSequence") String urlSequence);
+
     int deleteAccountIpByAccountId(Long value);
 
     int deleteTagById(Long id);
@@ -244,4 +250,5 @@ public interface ResourceCenterMapper {
 
     int deleteAccountIpByIpList(@Param("ipList") List<String> resourceIpList);
 
+    int deleteResourceScriptByResourceId(Long resourceId);
 }
