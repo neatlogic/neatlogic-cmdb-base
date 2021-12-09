@@ -13,6 +13,10 @@ public class ResourceScriptVo extends BaseEditorVo {
     @EntityField(name = "url序列", type = ApiParamType.STRING)
     private String urlSequence;
 
+    public ResourceScriptVo(Long scriptId) {
+        this.scriptId = scriptId;
+    }
+
     public Long getScriptId() {
         return scriptId;
     }
