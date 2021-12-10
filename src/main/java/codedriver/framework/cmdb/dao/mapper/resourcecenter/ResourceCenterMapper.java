@@ -226,7 +226,7 @@ public interface ResourceCenterMapper {
 
     int insertIgnoreAccountIp(AccountIpVo ipVo);
 
-    int insertResourceScriptIdList(@Param("resourceId") Long resourceId, @Param("scriptIdList") List<Long> scriptIdList, @Param("urlSequence") String urlSequence);
+    int insertResourceScriptIdList(@Param("resourceId") Long resourceId, @Param("scriptId") Long scriptId, @Param("expandConfig") String expandConfig);
 
     int deleteAccountIpByAccountId(Long value);
 

@@ -3,6 +3,8 @@ package codedriver.framework.cmdb.dto.resourcecenter;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BaseEditorVo;
 import codedriver.framework.restful.annotation.EntityField;
+import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang3.StringUtils;
 
 public class ResourceScriptVo extends BaseEditorVo {
 
@@ -12,8 +14,8 @@ public class ResourceScriptVo extends BaseEditorVo {
     private String scriptName;
     @EntityField(name = "资源id", type = ApiParamType.LONG)
     private Long resourceId;
-    @EntityField(name = "url序列", type = ApiParamType.STRING)
-    private String urlSequence;
+    @EntityField(name = "拓展配置", type = ApiParamType.STRING)
+    private String expandConfig;
 
     public ResourceScriptVo(Long scriptId,String scriptName) {
         this.scriptId = scriptId;
@@ -44,11 +46,14 @@ public class ResourceScriptVo extends BaseEditorVo {
         this.resourceId = resourceId;
     }
 
-    public String getUrlSequence() {
-        return urlSequence;
+    public JSONObject getExpandConfig() {
+        if (StringUtils.isNotBlank(expandConfig) && expandConfig.startsWith("{") && expandConfig.endsWith("}")) {
+            return JSONObject.parseObject(expandConfig);
+        }
+        return new JSONObject();
     }
 
-    public void setUrlSequence(String urlSequence) {
-        this.urlSequence = urlSequence;
+    public void setExpandConfig(String expandConfig) {
+        this.expandConfig = expandConfig;
     }
 }
