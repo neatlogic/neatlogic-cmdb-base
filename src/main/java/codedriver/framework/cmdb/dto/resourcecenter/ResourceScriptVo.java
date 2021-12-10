@@ -8,13 +8,16 @@ public class ResourceScriptVo extends BaseEditorVo {
 
     @EntityField(name = "脚本id", type = ApiParamType.LONG)
     private Long scriptId;
+    @EntityField(name = "脚本名称", type = ApiParamType.STRING)
+    private String scriptName;
     @EntityField(name = "资源id", type = ApiParamType.LONG)
     private Long resourceId;
     @EntityField(name = "url序列", type = ApiParamType.STRING)
     private String urlSequence;
 
-    public ResourceScriptVo(Long scriptId) {
+    public ResourceScriptVo(Long scriptId,String scriptName) {
         this.scriptId = scriptId;
+        this.scriptName = scriptName;
     }
 
     public Long getScriptId() {
@@ -23,6 +26,14 @@ public class ResourceScriptVo extends BaseEditorVo {
 
     public void setScriptId(Long scriptId) {
         this.scriptId = scriptId;
+    }
+
+    public String getScriptName() {
+        return scriptName;
+    }
+
+    public void setScriptName(String scriptName) {
+        this.scriptName = scriptName;
     }
 
     public Long getResourceId() {
