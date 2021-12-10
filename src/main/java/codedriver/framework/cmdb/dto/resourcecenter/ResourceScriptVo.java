@@ -15,7 +15,7 @@ public class ResourceScriptVo extends BaseEditorVo {
     @EntityField(name = "资源id", type = ApiParamType.LONG)
     private Long resourceId;
     @EntityField(name = "拓展配置", type = ApiParamType.STRING)
-    private String expandConfig;
+    private String config;
 
     public ResourceScriptVo(Long scriptId,String scriptName) {
         this.scriptId = scriptId;
@@ -46,14 +46,14 @@ public class ResourceScriptVo extends BaseEditorVo {
         this.resourceId = resourceId;
     }
 
-    public JSONObject getExpandConfig() {
-        if (StringUtils.isNotBlank(expandConfig) && expandConfig.startsWith("{") && expandConfig.endsWith("}")) {
-            return JSONObject.parseObject(expandConfig);
+    public JSONObject getConfig() {
+        if (StringUtils.isNotBlank(config) && config.startsWith("{") && config.endsWith("}")) {
+            return JSONObject.parseObject(config);
         }
         return new JSONObject();
     }
 
-    public void setExpandConfig(String expandConfig) {
-        this.expandConfig = expandConfig;
+    public void setConfig(String config) {
+        this.config = config;
     }
 }

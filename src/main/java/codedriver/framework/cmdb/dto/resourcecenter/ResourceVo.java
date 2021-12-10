@@ -5,7 +5,6 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter;
 
-import codedriver.framework.cmdb.annotation.ResourceField;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.constvalue.InspectStatus;
 import codedriver.framework.common.dto.BaseEditorVo;
@@ -78,7 +77,7 @@ public class ResourceVo extends BaseEditorVo {
     @EntityField(name = "账号列表", type = ApiParamType.JSONARRAY)
     private List<AccountVo> accountList;
     @EntityField(name = "脚本列表", type = ApiParamType.JSONARRAY)
-    private List<ResourceScriptVo> scriptList;
+    private ResourceScriptVo script;
     @EntityField(name = "集群id", type = ApiParamType.LONG)
     private Long clusterId;
     @EntityField(name = "集群名", type = ApiParamType.STRING)
@@ -329,12 +328,12 @@ public class ResourceVo extends BaseEditorVo {
         this.accountList = accountList;
     }
 
-    public List<ResourceScriptVo> getScriptList() {
-        return scriptList;
+    public ResourceScriptVo getScript() {
+        return script;
     }
 
-    public void setScriptList(List<ResourceScriptVo> scriptList) {
-        this.scriptList = scriptList;
+    public void setScript(ResourceScriptVo script) {
+        this.script = script;
     }
 
     public Long getClusterId() {
