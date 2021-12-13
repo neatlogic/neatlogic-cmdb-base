@@ -4,6 +4,7 @@ import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BaseEditorVo;
 import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.StringUtils;
 
 public class ResourceScriptVo extends BaseEditorVo {
@@ -16,6 +17,7 @@ public class ResourceScriptVo extends BaseEditorVo {
     private Long resourceId;
     @EntityField(name = "拓展配置JSON", type = ApiParamType.JSONOBJECT)
     private JSONObject config;
+    @JSONField(serialize = false)
     @EntityField(name = "拓展配置", type = ApiParamType.STRING)
     private String configStr;
 
