@@ -18,7 +18,7 @@ public class IpVo {
     private Long id;
     @EntityField(name = "ip", type = ApiParamType.STRING)
     private String ip;
-    @EntityField(name = "port", type = ApiParamType.INTEGER)
+    @EntityField(name = "端口", type = ApiParamType.INTEGER)
     private Integer port;
     @EntityField(name = "描述", type = ApiParamType.STRING)
     private String label;
