@@ -5,8 +5,6 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter;
 
-import codedriver.framework.cmdb.annotation.ResourceField;
-import codedriver.framework.cmdb.annotation.ResourceType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
@@ -20,6 +18,8 @@ public class IpVo {
     private Long id;
     @EntityField(name = "ip", type = ApiParamType.STRING)
     private String ip;
+    @EntityField(name = "端口", type = ApiParamType.INTEGER)
+    private Integer port;
     @EntityField(name = "描述", type = ApiParamType.STRING)
     private String label;
 
@@ -37,6 +37,14 @@ public class IpVo {
 
     public void setIp(String ip) {
         this.ip = ip;
+    }
+
+    public Integer getPort() {
+        return port;
+    }
+
+    public void setPort(Integer port) {
+        this.port = port;
     }
 
     public String getLabel() {
