@@ -5,9 +5,12 @@
 
 package codedriver.framework.cmdb.crossover;
 
+import codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo;
+import codedriver.framework.cmdb.dto.resourcecenter.AccountVo;
 import codedriver.framework.crossover.ICrossoverService;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author lvzk
@@ -23,9 +26,27 @@ public interface IResourceCenterAccountCrossoverService extends ICrossoverServic
 
     /**
      * 根据资产id刷新账号ip
+     *
      * @param resourceIdList 资产id
      */
     void refreshAccountIpByResourceIdList(List<Long> resourceIdList);
+
+    /**
+     * 按以下规则顺序匹配account
+     * 1、通过 ”资产id+协议id+用户“ 匹配
+     * 2、通过 ”组合工具配置的执行节点的ip+协议id“ 匹配 账号表
+     * 3、通过 ”组合工具配置的执行节点的ip+端口“ 匹配 账号表
+     *
+     * @param accountVoList
+     * @param allAccountVoList
+     * @param protocolVoList
+     * @param resourceId
+     * @param protocolId
+     * @param ip
+     * @param port
+     * @return
+     */
+    Optional<AccountVo> filterAccountByRules(List<AccountVo> accountVoList, List<AccountVo> allAccountVoList, List<AccountProtocolVo> protocolVoList, Long resourceId, Long protocolId, String ip, Integer port);
 
     /**
      * 删除账号
