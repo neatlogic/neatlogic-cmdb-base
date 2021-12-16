@@ -31,7 +31,8 @@ public class SyncCiCollectionVo extends BasePageVo {
     private String ciName;
     @EntityField(name = "集合名称", type = ApiParamType.STRING)
     private String collectionName;
-
+    @EntityField(name = "父属性", type = ApiParamType.STRING)
+    private String parentKey;
     @EntityField(name = "创建时间", type = ApiParamType.LONG)
     private Date fcd;
     @EntityField(name = "创建人", type = ApiParamType.STRING)
@@ -60,7 +61,7 @@ public class SyncCiCollectionVo extends BasePageVo {
     private SyncPolicyVo syncPolicy;
     @EntityField(name = "执行次数", type = ApiParamType.INTEGER)
     private int execCount;
-    @JSONField(serialize = false)
+    @EntityField(name = "最后采集时间", type = ApiParamType.LONG)
     private Date lastSyncDate;//最后一次同步时间
 
     public Long getId() {
@@ -68,6 +69,14 @@ public class SyncCiCollectionVo extends BasePageVo {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public String getParentKey() {
+        return parentKey;
+    }
+
+    public void setParentKey(String parentKey) {
+        this.parentKey = parentKey;
     }
 
     public int getExecCount() {

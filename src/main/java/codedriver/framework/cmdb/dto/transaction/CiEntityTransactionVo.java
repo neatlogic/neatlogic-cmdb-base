@@ -598,7 +598,7 @@ public class CiEntityTransactionVo implements Serializable {
     }
 
     public Integer getHash() {
-        Integer hash;
+        int hash;
         if (CollectionUtils.isEmpty(this.uniqueAttrIdList)) {
             hash = Objects.hash(this.ciId, MapUtils.isNotEmpty(this.attrEntityData) ? this.attrEntityData.toString() : "",
                     MapUtils.isNotEmpty(this.relEntityData) ? this.relEntityData.toString() : ""
