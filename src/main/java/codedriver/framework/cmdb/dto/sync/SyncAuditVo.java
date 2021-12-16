@@ -45,6 +45,8 @@ public class SyncAuditVo extends BasePageVo {
     private Integer serverId;
     @EntityField(name = "异常", type = ApiParamType.STRING)
     private String error;
+    @EntityField(name = "处理的数据量", type = ApiParamType.INTEGER)
+    private int dataCount;
     @JSONField(serialize = false)
     private List<String> startTimeRange;
     @JSONField(serialize = false)
@@ -59,6 +61,14 @@ public class SyncAuditVo extends BasePageVo {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public int getDataCount() {
+        return dataCount;
+    }
+
+    public void setDataCount(int dataCount) {
+        this.dataCount = dataCount;
     }
 
     public void setId(Long id) {
