@@ -132,6 +132,8 @@ public interface ResourceCenterMapper {
 
     Long checkResourceIsExistsCorrespondingAccountByResourceIdAndAccountIdAndProtocol(@Param("resourceId") Long resourceId, @Param("account") String account, @Param("protocol") String protocol);
 
+    List<Long> getAppSystemIdList(ResourceSearchVo searchVo);
+
     List<Long> getAppModuleIdList(ResourceSearchVo searchVo);
 
     List<Long> getAppModuleIdListByAppSystemIdList(ResourceSearchVo searchVo);
