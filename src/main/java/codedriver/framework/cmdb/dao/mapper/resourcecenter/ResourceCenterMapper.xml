@@ -924,6 +924,16 @@
         LIMIT 1
     </select>
 
+    <select id="getAppSystemIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+            resultType="java.lang.Long">
+        SELECT `id` FROM ${schemaName}.`resource_appsystem`
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND (`name` LIKE concat('%', #{keyword}, '%') OR `abbr_name` LIKE concat('%', #{keyword}, '%'))
+            </if>
+        </where>
+    </select>
+
     <select id="getAppModuleIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
             resultType="java.lang.Long">
         SELECT a.`id` FROM ${schemaName}.`resource_appmodule` a
@@ -943,9 +953,9 @@
             <foreach collection="appSystemIdList" item="appSystemId" open="(" separator="," close=")">
                 #{appSystemId}
             </foreach>
-            <if test="keyword != null and keyword != ''">
+            <!--<if test="keyword != null and keyword != ''">
                 AND `app_module_name` LIKE concat('%', #{keyword}, '%')
-            </if>
+            </if>-->
         </where>
     </select>
 
