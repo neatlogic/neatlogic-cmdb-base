@@ -5,10 +5,11 @@
 
 package codedriver.framework.cmdb.exception.ci;
 
+import codedriver.framework.cmdb.dto.ci.CiVo;
 import codedriver.framework.exception.core.ApiRuntimeException;
 
 public class CiUniqueRuleException extends ApiRuntimeException {
-    public CiUniqueRuleException() {
-        super("存在拥有相同唯一规则属性的配置项");
+    public CiUniqueRuleException(CiVo ciVo) {
+        super("模型“" + ciVo.getLabel() + "(" + ciVo.getName() + ")”存在拥有相同唯一规则属性的配置项");
     }
 }
