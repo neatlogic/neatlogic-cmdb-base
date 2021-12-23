@@ -9,10 +9,14 @@ import codedriver.framework.exception.core.ApiRuntimeException;
 
 public class AttrNotFoundException extends ApiRuntimeException {
     public AttrNotFoundException(Long attrId) {
-        super("配置项模型属性：" + attrId + " 不存在");
+        super("配置项模型属性“" + attrId + "”不存在");
     }
 
     public AttrNotFoundException(String ciName, String attrName) {
-        super("配置项模型：" + ciName + "不存在属性：" + attrName);
+        super("配置项模型“" + ciName + "”不存在属性“" + attrName + "”");
+    }
+
+    public AttrNotFoundException(String attrName) {
+        super("配置项模型属性“" + attrName + "”不存在");
     }
 }
