@@ -5,10 +5,8 @@
 
 package codedriver.framework.cmdb.dsl.core;
 
-import net.sf.jsqlparser.expression.DoubleValue;
-import net.sf.jsqlparser.expression.Expression;
-import net.sf.jsqlparser.expression.LongValue;
-import net.sf.jsqlparser.expression.StringValue;
+import codedriver.framework.cmdb.exception.dsl.DslSyntaxIrregularException;
+import net.sf.jsqlparser.expression.*;
 import net.sf.jsqlparser.expression.operators.relational.*;
 import org.apache.commons.lang3.StringUtils;
 
@@ -20,11 +18,11 @@ import java.util.List;
  */
 public class SearchExpression {
     public enum Type {
-        JOIN, EXPRESSION;
+        JOIN, EXPRESSION
     }
 
     public enum ValueType {
-        NUMBER, STRING;
+        NUMBER, STRING, NUMBER_ARRAY, STRING_ARRAY, CALCULATE
     }
 
     private Type type;
@@ -59,42 +57,109 @@ public class SearchExpression {
         this.attr = attr;
     }
 
-    public ComparisonOperator getComparisonExpression() {
-        if (this.comparisonOperator.equals("==")) {
-            return new EqualsTo();
-        } else if (this.comparisonOperator.equals(">")) {
-            return new GreaterThan();
-        } else if (this.comparisonOperator.equals(">=")) {
-            return new GreaterThanEquals();
-        } else if (this.comparisonOperator.equals("<")) {
-            return new MinorThan();
-        } else if (this.comparisonOperator.equals("<=")) {
-            return new MinorThanEquals();
+    public Expression getComparisonExpression() {
+        switch (this.comparisonOperator) {
+            case "==":
+                return new EqualsTo();
+            case ">":
+                return new GreaterThan();
+            case ">=":
+                return new GreaterThanEquals();
+            case "<":
+                return new MinorThan();
+            case "<=":
+                return new MinorThanEquals();
+            case "!=":
+                return new NotEqualsTo();
+            case "include":
+                return new InExpression();
+            case "exclude":
+                InExpression e = new InExpression();
+                e.setNot(true);
+                return e;
         }
         return null;
     }
 
-    public Expression getExpressionValue() {
-        if (StringUtils.isNotBlank(value)) {
-            if (value.contains(".")) {
-                try {
-                    return new DoubleValue(value);
-                } catch (Exception ex) {
-                    return new StringValue(value);
-                }
-            } else {
-                try {
-                    return new LongValue(value);
-                } catch (Exception ex) {
-                    return new StringValue(value);
+    public Object getExpressionValue() {
+        if (valueType == ValueType.NUMBER) {
+            if (StringUtils.isNotBlank(value)) {
+                if (value.contains(".")) {
+                    try {
+                        return new DoubleValue(value);
+                    } catch (Exception ex) {
+                        return new StringValue(value);
+                    }
+                } else {
+                    try {
+                        return new LongValue(value);
+                    } catch (Exception ex) {
+                        return new StringValue(value);
+                    }
                 }
             }
+        } else if (valueType == ValueType.STRING) {
+            return new StringValue(value);
+        } else if (valueType == ValueType.NUMBER_ARRAY) {
+            if (StringUtils.isNotBlank(value) && value.startsWith("[") && value.endsWith("]")) {
+                value = value.substring(1, value.length() - 1);
+                String[] vs = value.split(",");
+                if (vs.length > 0) {
+                    List<Expression> expressionList = new ArrayList<>();
+                    for (String v : vs) {
+                        if (v.contains(".")) {
+                            try {
+                                expressionList.add(new DoubleValue(v));
+                            } catch (Exception ex) {
+                                throw new DslSyntaxIrregularException("值“" + v + "”不是合法的小数类型");
+                            }
+                        } else {
+                            try {
+                                expressionList.add(new LongValue(v));
+                            } catch (Exception ex) {
+                                throw new DslSyntaxIrregularException("值“" + v + "”不是合法的整数类型");
+                            }
+                        }
+                    }
+                    return new ExpressionList(expressionList);
+                }
+            }
+            return new ExpressionList();
+        } else if (valueType == ValueType.STRING_ARRAY) {
+            if (StringUtils.isNotBlank(value) && value.startsWith("[") && value.endsWith("]")) {
+                value = value.substring(1, value.length() - 1);
+                String[] vs = value.split(",");
+                if (vs.length > 0) {
+                    List<Expression> expressionList = new ArrayList<>();
+                    for (String v : vs) {
+                        if (v.startsWith("\"")) {
+                            v = v.substring(1);
+                        }
+                        if (v.endsWith("\"")) {
+                            v = v.substring(0, v.length() - 1);
+                        }
+                        expressionList.add(new StringValue(v));
+                    }
+                    return new ExpressionList(expressionList);
+                }
+            }
+            return new ExpressionList();
         }
-        return null;
+        return new StringValue("");
     }
 
     public void setValue(String value) {
-        this.value = value;
+        if (StringUtils.isNotBlank(value)) {
+            //去掉前后括号
+            if (value.startsWith("\"")) {
+                value = value.substring(1);
+            }
+            if (value.endsWith("\"")) {
+                value = value.substring(0, value.length() - 1);
+            }
+            this.value = value;
+        }
+
     }
 
     public String getLogicalOperator() {

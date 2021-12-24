@@ -3,9 +3,15 @@ grammar CmdbDSL;
     package codedriver.framework.cmdb.dsl;
 }
 
-expressions : attrs comparisonOperator (STRING|NUMBER|NUMBER_ARRAY|STRING_ARRAY) #expression
+expressions : attrs comparisonOperator (STRING|NUMBER|NUMBER_ARRAY|STRING_ARRAY|calculateExpressions) #expression
            | expressions logicalOperator expressions #expressionJoin
            | BRACKET_LEFT expressions BRACKET_RIGHT #expressionGroup;
+
+//calculateExpressions : BRACKET_LEFT (calculateExpressions|attrs|NUMBER) (calculateOperator (calculateExpressions|attrs|NUMBER))* BRACKET_RIGHT;
+calculateExpressions : calculateExpressions op=('*'|'/') calculateExpressions
+                     | calculateExpressions op=('+'|'-') calculateExpressions
+                     | attrs|NUMBER
+                     | '(' calculateExpressions ')';
 
 attrs : (ATTR '.')* ATTR;
 //ciAttrs : CI attrs+;
@@ -24,6 +30,11 @@ comparisonOperator
     | 'exclude'
     ;
 
+calculateOperator : PLUS
+                  | SUBTRACT
+                  | MULTIPLY
+                  | DIVIDE;
+
 NUMBER_ARRAY : '[' (NUMBER ',')* NUMBER ']';
 STRING_ARRAY : '[' (STRING ',')* STRING ']';
 NUMBER : '-'?([0]|[1-9][0-9]*|'0.'[0-9]+|[1-9][0-9]*'.'[0-9]+);
@@ -36,7 +47,12 @@ GT : '>';
 LT : '<';
 LE : '<=';
 GE : '>=';
+PLUS : '+';
+SUBTRACT : '-';
+MULTIPLY : '*';
+DIVIDE : '/';
 NOTEQ : '!=';
+LIKE : 'like';
 INCLUDE : 'include';
 EXCLUDE : 'exclude';
 

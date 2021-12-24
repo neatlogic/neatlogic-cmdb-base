@@ -45,7 +45,9 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     @JSONField(serialize = false)
     private Long filterCiEntityId;//查询时条件，和idList区别是idList不能允许用户修改，用于框定查询范围，filterCiEntityId允许用户修改
     @JSONField(serialize = false)
-    private Long filterCiId;//查询时条件
+    private Long filterCiId;//查询时条件，用于查询抽象模型数据时，可以指定子模型
+    @JSONField(serialize = false)
+    private String dsl;//查询时条件，使用dsl模式进行查询
     @EntityField(name = "模型唯一标识", type = ApiParamType.STRING)
     private String ciName;
     @EntityField(name = "模型名称", type = ApiParamType.STRING)
@@ -142,9 +144,9 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     @JSONField(serialize = false)
     private boolean smartSearch = false;//启用智能搜索，会根据条件自动拼接关系表，在没有任何条件时能提高检索性能
     @JSONField(serialize = false)
-    private boolean limitRelEntity = false;//限制关系数量，避免查询返回的结果集太大
+    private Boolean limitRelEntity;//限制关系数量，避免查询返回的结果集太大
     @JSONField(serialize = false)
-    private boolean limitAttrEntity = false;//限制引用属性数量，避免查询返回的结果集太大
+    private Boolean limitAttrEntity;//限制引用属性数量，避免查询返回的结果集太大
 
     public CiEntityVo() {
 
@@ -172,19 +174,19 @@ public class CiEntityVo extends BasePageVo implements Serializable {
         this.renewTime = renewTime;
     }
 
-    public boolean isLimitRelEntity() {
+    public Boolean isLimitRelEntity() {
         return limitRelEntity;
     }
 
-    public void setLimitRelEntity(boolean limitRelEntity) {
+    public void setLimitRelEntity(Boolean limitRelEntity) {
         this.limitRelEntity = limitRelEntity;
     }
 
-    public boolean isLimitAttrEntity() {
+    public Boolean isLimitAttrEntity() {
         return limitAttrEntity;
     }
 
-    public void setLimitAttrEntity(boolean limitAttrEntity) {
+    public void setLimitAttrEntity(Boolean limitAttrEntity) {
         this.limitAttrEntity = limitAttrEntity;
     }
 
@@ -202,6 +204,14 @@ public class CiEntityVo extends BasePageVo implements Serializable {
 
     public void setFromCiEntityId(Long fromCiEntityId) {
         this.fromCiEntityId = fromCiEntityId;
+    }
+
+    public String getDsl() {
+        return dsl;
+    }
+
+    public void setDsl(String dsl) {
+        this.dsl = dsl;
     }
 
     public Long getFilterCiEntityId() {

@@ -107,7 +107,7 @@ public class SearchItem {
     //模型路径，用于辨别是否需要重新创建新的子查询
     public String getCiPath() {
         String path = "";
-        SearchItem prev = this;
+        SearchItem prev = this.prev;
         while (prev != null) {
             if (StringUtils.isNotBlank(path)) {
                 path = "." + path;

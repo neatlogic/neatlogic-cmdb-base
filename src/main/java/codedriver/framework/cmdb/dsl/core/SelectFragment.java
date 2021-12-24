@@ -10,16 +10,15 @@ import net.sf.jsqlparser.statement.select.Select;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class SelectFragment {
-    //是否驱动模型，驱动模型代表需要在第一位进行搜索
-    private boolean isDriven;
-    //模型到达路径，用于记录类似a.b.c之类的参数是经过了哪些属性或参数，用于生成cmdb_attrentity或cmdb_relentity的join关系
-    private String ciPath;
     private String alias;
     private Select select;
-    private Set<Long> attrCheckSet = new HashSet<>();//检查属性是否已经配置在select里了，因为模型有继承，没有用到属性模型可以不Join，提升检索效率
+    private final Set<Long> attrCheckSet = new HashSet<>();//检查属性是否已经配置在select里了，因为模型有继承，没有用到属性模型可以不Join，提升检索效率
+    private final Set<Long> ciCheckSet = new HashSet<>();//检查模型是否存在，不存在才增加join
+    private List<SearchItem> prevItemList;//记录前面需要连接的关系或属性
 
     public SelectFragment(Select select) {
         this.select = select;
@@ -41,20 +40,28 @@ public class SelectFragment {
         this.select = select;
     }
 
-    public String getCiPath() {
-        return ciPath;
-    }
-
-    public void setCiPath(String ciPath) {
-        this.ciPath = ciPath;
-    }
 
     public boolean isAttrExists(Long attrId) {
         return this.attrCheckSet.contains(attrId);
+    }
+
+    public boolean isCiExists(Long ciId) {
+        return this.ciCheckSet.contains(ciId);
     }
 
     public void addAttrToCheckSet(Long attrId) {
         this.attrCheckSet.add(attrId);
     }
 
+    public void addCiToCheckSet(Long ciId) {
+        this.ciCheckSet.add(ciId);
+    }
+
+    public List<SearchItem> getPrevItemList() {
+        return prevItemList;
+    }
+
+    public void setPrevItemList(List<SearchItem> prevItemList) {
+        this.prevItemList = prevItemList;
+    }
 }

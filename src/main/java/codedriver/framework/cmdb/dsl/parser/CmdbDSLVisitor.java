@@ -5,7 +5,7 @@
 
 // Generated from /Users/chenqiwei/idea_project/codedriver/codedriver-cmdb-base/src/main/resources/CmdbDSL.g4 by ANTLR 4.9.2
 
-package codedriver.framework.cmdb.dsl.parser;
+    package codedriver.framework.cmdb.dsl.parser;
 
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -17,54 +17,70 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  *            operations with no return type.
  */
 public interface CmdbDSLVisitor<T> extends ParseTreeVisitor<T> {
-    /**
-     * Visit a parse tree produced by the {@code expressionJoin}
-     * labeled alternative in {@link CmdbDSLParser#expressions}.
-     *
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    T visitExpressionJoin(CmdbDSLParser.ExpressionJoinContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expressionJoin}
+	 * labeled alternative in {@link CmdbDSLParser#expressions}.
+	 *
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionJoin(CmdbDSLParser.ExpressionJoinContext ctx);
 
-    /**
-     * Visit a parse tree produced by the {@code expression}
-     * labeled alternative in {@link CmdbDSLParser#expressions}.
-     *
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    T visitExpression(CmdbDSLParser.ExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expression}
+	 * labeled alternative in {@link CmdbDSLParser#expressions}.
+	 *
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpression(CmdbDSLParser.ExpressionContext ctx);
 
-    /**
-     * Visit a parse tree produced by the {@code expressionGroup}
-     * labeled alternative in {@link CmdbDSLParser#expressions}.
-     *
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    T visitExpressionGroup(CmdbDSLParser.ExpressionGroupContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expressionGroup}
+	 * labeled alternative in {@link CmdbDSLParser#expressions}.
+	 *
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionGroup(CmdbDSLParser.ExpressionGroupContext ctx);
 
-    /**
-     * Visit a parse tree produced by {@link CmdbDSLParser#attrs}.
-     *
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    T visitAttrs(CmdbDSLParser.AttrsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CmdbDSLParser#calculateExpressions}.
+	 *
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCalculateExpressions(CmdbDSLParser.CalculateExpressionsContext ctx);
 
-    /**
-     * Visit a parse tree produced by {@link CmdbDSLParser#logicalOperator}.
-     *
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    T visitLogicalOperator(CmdbDSLParser.LogicalOperatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CmdbDSLParser#attrs}.
+	 *
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAttrs(CmdbDSLParser.AttrsContext ctx);
 
-    /**
-     * Visit a parse tree produced by {@link CmdbDSLParser#comparisonOperator}.
-     *
-     * @param ctx the parse tree
-     * @return the visitor result
-     */
-    T visitComparisonOperator(CmdbDSLParser.ComparisonOperatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CmdbDSLParser#logicalOperator}.
+	 *
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLogicalOperator(CmdbDSLParser.LogicalOperatorContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CmdbDSLParser#comparisonOperator}.
+	 *
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComparisonOperator(CmdbDSLParser.ComparisonOperatorContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CmdbDSLParser#calculateOperator}.
+	 *
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCalculateOperator(CmdbDSLParser.CalculateOperatorContext ctx);
 }

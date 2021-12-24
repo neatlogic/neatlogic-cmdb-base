@@ -12,4 +12,8 @@ public class DslSyntaxIrregularException extends ApiRuntimeException {
         super("行" + row + "，列" + col + "出现语法错误：" + msg);
     }
 
+    public DslSyntaxIrregularException(String msg) {
+        super(msg);
+    }
+
 }
