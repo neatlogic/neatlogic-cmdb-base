@@ -45,7 +45,6 @@ public class CmdbDSLLexer extends Lexer {
 				"DIVIDE", "NOTEQ", "LIKE", "INCLUDE", "EXCLUDE", "ATTR", "STRING", "WHITESPACE"
 		};
 	}
-
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
@@ -55,9 +54,7 @@ public class CmdbDSLLexer extends Lexer {
 				"'include'", "'exclude'"
 		};
 	}
-
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
-
 	private static String[] makeSymbolicNames() {
 		return new String[]{
 				null, null, "NUMBER_ARRAY", "STRING_ARRAY", "NUMBER", "BRACKET_LEFT",
@@ -66,7 +63,6 @@ public class CmdbDSLLexer extends Lexer {
 				"STRING", "WHITESPACE"
 		};
 	}
-
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -75,7 +71,6 @@ public class CmdbDSLLexer extends Lexer {
 	 */
 	@Deprecated
 	public static final String[] tokenNames;
-
 	static {
 		tokenNames = new String[_SYMBOLIC_NAMES.length];
 		for (int i = 0; i < tokenNames.length; i++) {
@@ -198,7 +193,6 @@ public class CmdbDSLLexer extends Lexer {
 					"\u00b9\3\2\3\2";
 	public static final ATN _ATN =
 			new ATNDeserializer().deserialize(_serializedATN.toCharArray());
-
 	static {
 		_decisionToDFA = new DFA[_ATN.getNumberOfDecisions()];
 		for (int i = 0; i < _ATN.getNumberOfDecisions(); i++) {

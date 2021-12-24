@@ -18,9 +18,15 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface CmdbDSLVisitor<T> extends ParseTreeVisitor<T> {
 	/**
+	 * Visit a parse tree produced by {@link CmdbDSLParser#calculateExpressions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCalculateExpressions(CmdbDSLParser.CalculateExpressionsContext ctx);
+
+	/**
 	 * Visit a parse tree produced by the {@code expressionJoin}
 	 * labeled alternative in {@link CmdbDSLParser#expressions}.
-	 *
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -29,56 +35,37 @@ public interface CmdbDSLVisitor<T> extends ParseTreeVisitor<T> {
 	/**
 	 * Visit a parse tree produced by the {@code expression}
 	 * labeled alternative in {@link CmdbDSLParser#expressions}.
-	 *
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitExpression(CmdbDSLParser.ExpressionContext ctx);
-
 	/**
 	 * Visit a parse tree produced by the {@code expressionGroup}
 	 * labeled alternative in {@link CmdbDSLParser#expressions}.
-	 *
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitExpressionGroup(CmdbDSLParser.ExpressionGroupContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link CmdbDSLParser#calculateExpressions}.
-	 *
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCalculateExpressions(CmdbDSLParser.CalculateExpressionsContext ctx);
-
 	/**
 	 * Visit a parse tree produced by {@link CmdbDSLParser#attrs}.
-	 *
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitAttrs(CmdbDSLParser.AttrsContext ctx);
-
 	/**
 	 * Visit a parse tree produced by {@link CmdbDSLParser#logicalOperator}.
-	 *
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitLogicalOperator(CmdbDSLParser.LogicalOperatorContext ctx);
-
 	/**
 	 * Visit a parse tree produced by {@link CmdbDSLParser#comparisonOperator}.
-	 *
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitComparisonOperator(CmdbDSLParser.ComparisonOperatorContext ctx);
-
 	/**
 	 * Visit a parse tree produced by {@link CmdbDSLParser#calculateOperator}.
-	 *
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */

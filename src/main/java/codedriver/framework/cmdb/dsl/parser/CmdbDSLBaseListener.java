@@ -24,6 +24,24 @@ public class CmdbDSLBaseListener implements CmdbDSLListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override
+	public void enterCalculateExpressions(CmdbDSLParser.CalculateExpressionsContext ctx) {
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override
+	public void exitCalculateExpressions(CmdbDSLParser.CalculateExpressionsContext ctx) {
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override
 	public void enterExpressionJoin(CmdbDSLParser.ExpressionJoinContext ctx) {
 	}
 
@@ -70,24 +88,6 @@ public class CmdbDSLBaseListener implements CmdbDSLListener {
 	 */
 	@Override
 	public void exitExpressionGroup(CmdbDSLParser.ExpressionGroupContext ctx) {
-	}
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override
-	public void enterCalculateExpressions(CmdbDSLParser.CalculateExpressionsContext ctx) {
-	}
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override
-	public void exitCalculateExpressions(CmdbDSLParser.CalculateExpressionsContext ctx) {
 	}
 
 	/**
@@ -185,16 +185,11 @@ public class CmdbDSLBaseListener implements CmdbDSLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override
-	public void visitTerminal(TerminalNode node) {
-	}
-
+	@Override public void visitTerminal(TerminalNode node) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override
-	public void visitErrorNode(ErrorNode node) {
-	}
+	@Override public void visitErrorNode(ErrorNode node) { }
 }

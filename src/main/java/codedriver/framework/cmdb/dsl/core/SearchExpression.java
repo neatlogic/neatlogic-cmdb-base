@@ -7,11 +7,17 @@ package codedriver.framework.cmdb.dsl.core;
 
 import codedriver.framework.cmdb.exception.dsl.DslSyntaxIrregularException;
 import net.sf.jsqlparser.expression.*;
+import net.sf.jsqlparser.expression.operators.arithmetic.Addition;
+import net.sf.jsqlparser.expression.operators.arithmetic.Division;
+import net.sf.jsqlparser.expression.operators.arithmetic.Multiplication;
+import net.sf.jsqlparser.expression.operators.arithmetic.Subtraction;
 import net.sf.jsqlparser.expression.operators.relational.*;
+import net.sf.jsqlparser.schema.Column;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * dsl查询单元：a == 1或 a=1 && b=1或带括号的表达式都算一个查询单元，查询单元将组成树形关系，方便生成最终的表达式
@@ -36,6 +42,7 @@ public class SearchExpression {
     //如果是join类型才会有leftExpression和rightExpression
     private SearchExpression leftExpression;
     private SearchExpression rightExpression;
+    private CalculateExpression calculateExpression;
 
     public SearchExpression(Type type) {
         this.type = type;
@@ -55,6 +62,14 @@ public class SearchExpression {
 
     public void setAttr(String attr) {
         this.attr = attr;
+    }
+
+    public CalculateExpression getCalculateExpression() {
+        return calculateExpression;
+    }
+
+    public void setCalculateExpression(CalculateExpression calculateExpression) {
+        this.calculateExpression = calculateExpression;
     }
 
     public Expression getComparisonExpression() {
@@ -81,7 +96,7 @@ public class SearchExpression {
         return null;
     }
 
-    public Object getExpressionValue() {
+    public Object getExpressionValue(Map<String, SearchItem> searchItemMap) {
         if (valueType == ValueType.NUMBER) {
             if (StringUtils.isNotBlank(value)) {
                 if (value.contains(".")) {
@@ -144,8 +159,50 @@ public class SearchExpression {
                 }
             }
             return new ExpressionList();
+        } else if (valueType == ValueType.CALCULATE) {
+            return getCalculateExpression(calculateExpression, searchItemMap);
         }
-        return new StringValue("");
+        return null;
+    }
+
+    private Expression getCalculateExpression(CalculateExpression calculateExpression, Map<String, SearchItem> searchItemMap) {
+        if (calculateExpression != null) {
+            if (calculateExpression.getType() == CalculateExpression.Type.CALCULATE) {
+                if (calculateExpression.getLeftExpression() != null && calculateExpression.getRightExpression() != null) {
+                    switch (calculateExpression.getCalculateOperator()) {
+                        case "+":
+                            return new Addition()
+                                    .withLeftExpression(getCalculateExpression(calculateExpression.getLeftExpression(), searchItemMap))
+                                    .withRightExpression(getCalculateExpression(calculateExpression.getRightExpression(), searchItemMap));
+                        case "-":
+                            return new Subtraction()
+                                    .withLeftExpression(getCalculateExpression(calculateExpression.getLeftExpression(), searchItemMap))
+                                    .withRightExpression(getCalculateExpression(calculateExpression.getRightExpression(), searchItemMap));
+                        case "*":
+                            return new Multiplication()
+                                    .withLeftExpression(getCalculateExpression(calculateExpression.getLeftExpression(), searchItemMap))
+                                    .withRightExpression(getCalculateExpression(calculateExpression.getRightExpression(), searchItemMap));
+                        case "/":
+                            return new Division()
+                                    .withLeftExpression(getCalculateExpression(calculateExpression.getLeftExpression(), searchItemMap))
+                                    .withRightExpression(getCalculateExpression(calculateExpression.getRightExpression(), searchItemMap));
+                    }
+                } else if (calculateExpression.getParenthesisExpression() != null) {
+                    return new Parenthesis().withExpression(getCalculateExpression(calculateExpression.getParenthesisExpression(), searchItemMap));
+                }
+            } else if (calculateExpression.getType() == CalculateExpression.Type.NUMBER) {
+                if (StringUtils.isNotBlank(calculateExpression.getNumber())) {
+                    if (calculateExpression.getNumber().contains(".")) {
+                        return new DoubleValue(calculateExpression.getNumber());
+                    } else {
+                        return new LongValue(calculateExpression.getNumber());
+                    }
+                }
+            } else if (calculateExpression.getType() == CalculateExpression.Type.ATTR) {
+                return new Column().withColumnName(searchItemMap.get(calculateExpression.getAttrs()).getAlias());
+            }
+        }
+        return null;
     }
 
     public void setValue(String value) {

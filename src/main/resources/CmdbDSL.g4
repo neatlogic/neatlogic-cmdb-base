@@ -3,15 +3,17 @@ grammar CmdbDSL;
     package codedriver.framework.cmdb.dsl;
 }
 
-expressions : attrs comparisonOperator (STRING|NUMBER|NUMBER_ARRAY|STRING_ARRAY|calculateExpressions) #expression
-           | expressions logicalOperator expressions #expressionJoin
-           | BRACKET_LEFT expressions BRACKET_RIGHT #expressionGroup;
+
 
 //calculateExpressions : BRACKET_LEFT (calculateExpressions|attrs|NUMBER) (calculateOperator (calculateExpressions|attrs|NUMBER))* BRACKET_RIGHT;
 calculateExpressions : calculateExpressions op=('*'|'/') calculateExpressions
                      | calculateExpressions op=('+'|'-') calculateExpressions
                      | attrs|NUMBER
                      | '(' calculateExpressions ')';
+
+expressions : attrs comparisonOperator (STRING|NUMBER|NUMBER_ARRAY|STRING_ARRAY|calculateExpressions) #expression
+           | expressions logicalOperator expressions #expressionJoin
+           | BRACKET_LEFT expressions BRACKET_RIGHT #expressionGroup;
 
 attrs : (ATTR '.')* ATTR;
 //ciAttrs : CI attrs+;

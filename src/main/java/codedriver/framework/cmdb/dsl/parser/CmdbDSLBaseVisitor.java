@@ -15,9 +15,20 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
  * of the available methods.
  *
  * @param <T> The return type of the visit operation. Use {@link Void} for
- *            operations with no return type.
+ * operations with no return type.
  */
 public class CmdbDSLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements CmdbDSLVisitor<T> {
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override
+	public T visitCalculateExpressions(CmdbDSLParser.CalculateExpressionsContext ctx) {
+		return visitChildren(ctx);
+	}
+
 	/**
 	 * {@inheritDoc}
 	 *
@@ -48,17 +59,6 @@ public class CmdbDSLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 */
 	@Override
 	public T visitExpressionGroup(CmdbDSLParser.ExpressionGroupContext ctx) {
-		return visitChildren(ctx);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override
-	public T visitCalculateExpressions(CmdbDSLParser.CalculateExpressionsContext ctx) {
 		return visitChildren(ctx);
 	}
 
