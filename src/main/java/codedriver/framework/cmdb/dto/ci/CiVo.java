@@ -15,13 +15,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import java.io.Serializable;
 import java.util.*;
 
-/*
- * @Description: 模型实体
- * @Author: chenqiwei
- * @Date: 2021/3/16 5:08 下午
- * @Params: * @param null:
- * @Returns: * @return: null
- **/
 public class CiVo implements Serializable {
     private static final long serialVersionUID = -312040937798083138L;
     @JSONField(serialize = false)
@@ -84,6 +77,8 @@ public class CiVo implements Serializable {
     private Long fileId;
     @JSONField(serialize = false)
     private List<Long> typeIdList;//类型列表，搜索用
+    @EntityField(name = "配置项数量", type = ApiParamType.INTEGER)
+    private int ciEntityCount;
 
     @Override
     public boolean equals(Object o) {
@@ -243,6 +238,14 @@ public class CiVo implements Serializable {
             }
         }
         return null;
+    }
+
+    public int getCiEntityCount() {
+        return ciEntityCount;
+    }
+
+    public void setCiEntityCount(int ciEntityCount) {
+        this.ciEntityCount = ciEntityCount;
     }
 
     public RelVo getRelById(Long relId) {
