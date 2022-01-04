@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -32,8 +32,8 @@ import java.util.List;
 import java.util.Map;
 
 public class CiEntityVo extends BasePageVo implements Serializable {
-    public final static int MAX_RELENTITY_COUNT = 3;
-    public final static int MAX_ATTRENTITY_COUNT = 3;
+    public final static long MAX_RELENTITY_COUNT = 3L;
+    public final static long MAX_ATTRENTITY_COUNT = 3L;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @JSONField(serialize = false)
@@ -126,9 +126,9 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     @EntityField(name = "是否抽象模型", type = ApiParamType.INTEGER)
     private int isVirtual = 0;
     @EntityField(name = "最大展示关系数量", type = ApiParamType.INTEGER)
-    private Integer maxRelEntityCount = MAX_RELENTITY_COUNT;//限制查询时最多返回多少关系
+    private Long maxRelEntityCount = MAX_RELENTITY_COUNT;//限制查询时最多返回多少关系
     @EntityField(name = "最大展示引用属性数量", type = ApiParamType.INTEGER)
-    private Integer maxAttrEntityCount = MAX_ATTRENTITY_COUNT;//限制查询是最多返回多少引用属性
+    private Long maxAttrEntityCount = MAX_ATTRENTITY_COUNT;//限制查询是最多返回多少引用属性
     @EntityField(name = "修改备注", type = ApiParamType.STRING)
     private String description;
     @EntityField(name = "巡检时间", type = ApiParamType.LONG)
@@ -254,19 +254,19 @@ public class CiEntityVo extends BasePageVo implements Serializable {
         this.actionType = actionType;
     }
 
-    public Integer getMaxRelEntityCount() {
+    public Long getMaxRelEntityCount() {
         return maxRelEntityCount;
     }
 
-    public void setMaxRelEntityCount(Integer maxRelEntityCount) {
+    public void setMaxRelEntityCount(Long maxRelEntityCount) {
         this.maxRelEntityCount = maxRelEntityCount;
     }
 
-    public Integer getMaxAttrEntityCount() {
+    public Long getMaxAttrEntityCount() {
         return maxAttrEntityCount;
     }
 
-    public void setMaxAttrEntityCount(Integer maxAttrEntityCount) {
+    public void setMaxAttrEntityCount(Long maxAttrEntityCount) {
         this.maxAttrEntityCount = maxAttrEntityCount;
     }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -106,7 +106,7 @@ public class RelVo implements Serializable {
     @EntityField(name = "是否在拓扑图中显示", type = ApiParamType.INTEGER)
     private Integer isShowInTopo;
     @JSONField(serialize = false)
-    private Integer maxRelEntityCount = CiEntityVo.MAX_RELENTITY_COUNT;//限制查询时最多返回多少关系
+    private Long maxRelEntityCount = CiEntityVo.MAX_RELENTITY_COUNT;//限制查询时最多返回多少关系
 
     public RelVo() {
 
@@ -124,11 +124,11 @@ public class RelVo implements Serializable {
         return id;
     }
 
-    public Integer getMaxRelEntityCount() {
+    public Long getMaxRelEntityCount() {
         return maxRelEntityCount;
     }
 
-    public void setMaxRelEntityCount(Integer maxRelEntityCount) {
+    public void setMaxRelEntityCount(Long maxRelEntityCount) {
         this.maxRelEntityCount = maxRelEntityCount;
     }
 

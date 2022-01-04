@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -103,7 +103,7 @@ public class AttrVo extends BasePageVo {
     @EntityField(name = "是否允许编辑", type = ApiParamType.INTEGER)
     private Integer allowEdit;
     @JSONField(serialize = false)
-    private Integer maxAttrEntityCount = CiEntityVo.MAX_ATTRENTITY_COUNT;
+    private Long maxAttrEntityCount = CiEntityVo.MAX_ATTRENTITY_COUNT;
 
 
     public static class Column {
@@ -163,11 +163,11 @@ public class AttrVo extends BasePageVo {
 
     }
 
-    public Integer getMaxAttrEntityCount() {
+    public Long getMaxAttrEntityCount() {
         return maxAttrEntityCount;
     }
 
-    public void setMaxAttrEntityCount(Integer maxAttrEntityCount) {
+    public void setMaxAttrEntityCount(Long maxAttrEntityCount) {
         this.maxAttrEntityCount = maxAttrEntityCount;
     }
 
