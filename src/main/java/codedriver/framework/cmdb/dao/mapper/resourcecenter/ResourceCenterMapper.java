@@ -178,6 +178,8 @@ public interface ResourceCenterMapper {
 
     List<AccountVo> getAccountListByIpList(@Param("ipList") List<String> ipList);
 
+    List<AccountVo> getResourceAccountListByResourceId(Long resourceId);
+
     List<AccountProtocolVo> searchAccountProtocolListByProtocolName(AccountProtocolVo searchVo);
 
     List<ResourceScriptVo> getResourceScriptListByResourceIdList(@Param("resourceIdList") List<Long> resourceIdList);
