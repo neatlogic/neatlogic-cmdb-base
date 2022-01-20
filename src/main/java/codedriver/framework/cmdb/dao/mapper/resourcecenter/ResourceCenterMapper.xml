@@ -1434,6 +1434,15 @@
         WHERE crra.resource_id = #{value}
     </select>
 
+    <select id="getTagListByAccountId" resultType="codedriver.framework.cmdb.dto.tag.TagVo">
+        select a.`id`,
+               a.`name`,
+               a.`description`
+        from `cmdb_tag` a
+                 JOIN `cmdb_resourcecenter_account_tag` c ON c.tag_id = a.id
+        where c.`account_id` = #{value}
+    </select>
+
     <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
         update `cmdb_resourcecenter_account` a set
         a.`name` = #{name},
