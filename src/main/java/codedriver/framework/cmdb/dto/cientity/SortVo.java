@@ -23,10 +23,10 @@ public class SortVo {
     private String type;
 
 
-    public SortVo(Long ciId, Long attrId, SortType type) {
+    public SortVo(Long ciId, Long attrId, String type) {
         this.ciId = ciId;
         this.attrId = attrId;
-        this.type = type.name();
+        this.type = type;
     }
 
     @JSONField(serialize = false)
