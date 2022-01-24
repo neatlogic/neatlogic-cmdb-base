@@ -16,7 +16,7 @@ import java.util.List;
 public class IsAttrInAttrIdList {
     public static boolean isExists(AttrVo attrVo, List<Long> attrIdList) {
         if (attrVo != null && CollectionUtils.isNotEmpty(attrIdList)) {
-            return attrIdList.stream().anyMatch(d -> d.equals(attrVo.getId()));
+            return attrIdList.stream().anyMatch(d -> d != null && d.equals(attrVo.getId()));
         }
         return true;
     }

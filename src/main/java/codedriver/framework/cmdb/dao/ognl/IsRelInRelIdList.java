@@ -16,7 +16,7 @@ import java.util.List;
 public class IsRelInRelIdList {
     public static boolean isExists(RelVo relVo, List<Long> relIdList) {
         if (relVo != null && CollectionUtils.isNotEmpty(relIdList)) {
-            return relIdList.stream().anyMatch(d -> d.equals(relVo.getId()));
+            return relIdList.stream().anyMatch(d -> d != null && d.equals(relVo.getId()));
         }
         return true;
     }
