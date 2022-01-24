@@ -146,8 +146,6 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     @EntityField(name = "排序", type = ApiParamType.JSONARRAY)
     private List<SortVo> sortList;
     @JSONField(serialize = false)
-    private boolean smartSearch = false;//启用智能搜索，会根据条件自动拼接关系表，在没有任何条件时能提高检索性能
-    @JSONField(serialize = false)
     private Boolean limitRelEntity;//限制关系数量，避免查询返回的结果集太大
     @JSONField(serialize = false)
     private Boolean limitAttrEntity;//限制引用属性数量，避免查询返回的结果集太大
@@ -258,13 +256,6 @@ public class CiEntityVo extends BasePageVo implements Serializable {
         this.description = description;
     }
 
-    public boolean isSmartSearch() {
-        return smartSearch;
-    }
-
-    public void setSmartSearch(boolean smartSearch) {
-        this.smartSearch = smartSearch;
-    }
 
     public String getActionType() {
         return actionType;
