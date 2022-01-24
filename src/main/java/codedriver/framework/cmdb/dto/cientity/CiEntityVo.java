@@ -113,9 +113,9 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private String editMode = EditModeType.GLOBAL.getValue();
     @JSONField(serialize = false)
     private Long transactionId;
-    @JSONField(serialize = false) // 需要返回的属性列表，为空代表返回所有属性
+    @JSONField(serialize = false) // 需要返回的属性列表，注意：为空代表返回所有属性！！！
     private List<Long> attrIdList;
-    @JSONField(serialize = false) // 需要返回的关系列表，为空代表返回所有关系
+    @JSONField(serialize = false) // 需要返回的关系列表，注意：为空代表返回所有关系！！！
     private List<Long> relIdList;
     @JSONField(serialize = false)
     private List<Long> groupIdList;// 查询时使用的群组id
