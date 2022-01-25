@@ -33,6 +33,8 @@ public class ResourceSearchVo extends BasePageVo {
     private String name;
     private String protocol;
     private String account;
+    private List<String> inspectStatusList;
+
 
     public ResourceSearchVo() {
     }
@@ -187,5 +189,13 @@ public class ResourceSearchVo extends BasePageVo {
 
     public void setAccount(String account) {
         this.account = account;
+    }
+
+    public List<String> getInspectStatusList() {
+        return inspectStatusList;
+    }
+
+    public void setInspectStatusList(List<String> inspectStatusList) {
+        this.inspectStatusList = inspectStatusList;
     }
 }
