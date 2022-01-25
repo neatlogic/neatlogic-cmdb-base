@@ -68,8 +68,8 @@
                 #{inspectStatus}
             </foreach>
         </if>
-
     </sql>
+
     <select id="getResourceCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
             resultType="int">
         SELECT COUNT(DISTINCT a.`id`)

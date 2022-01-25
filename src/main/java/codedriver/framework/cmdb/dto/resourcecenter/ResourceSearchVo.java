@@ -35,7 +35,6 @@ public class ResourceSearchVo extends BasePageVo {
     private String account;
     private List<String> inspectStatusList;
 
-
     public ResourceSearchVo() {
     }
 
