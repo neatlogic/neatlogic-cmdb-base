@@ -47,7 +47,7 @@ public class CollectionVo implements Serializable {
         List<Criteria> filterCriteriaList = new ArrayList<>();
         if (MapUtils.isNotEmpty(this.getFilter())) {
             for (String key : this.getFilter().keySet()) {
-                filterCriteriaList.add(Criteria.where((StringUtils.isNotEmpty(this.getDocroot()) ? this.getDocroot() + "." : "") + key).is(this.getFilter().getString(key)));
+                filterCriteriaList.add(Criteria.where((StringUtils.isNotBlank(this.getDocroot()) ? this.getDocroot() + "." : "") + key).is(this.getFilter().getString(key)));
             }
             c.andOperator(filterCriteriaList);
         }
