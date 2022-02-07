@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.MapUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.mongodb.core.query.Criteria;
 
 import java.io.Serializable;
@@ -29,6 +30,8 @@ public class CollectionVo implements Serializable {
     private JSONArray fields;
     @EntityField(name = "过滤条件", type = ApiParamType.JSONOBJECT)
     private JSONObject filter;
+    @EntityField(name = "根节点，用于显示数据时从该节点开始截取数据", type = ApiParamType.STRING)
+    private String docroot;
 
     @Override
     public boolean equals(Object o) {
@@ -44,11 +47,19 @@ public class CollectionVo implements Serializable {
         List<Criteria> filterCriteriaList = new ArrayList<>();
         if (MapUtils.isNotEmpty(this.getFilter())) {
             for (String key : this.getFilter().keySet()) {
-                filterCriteriaList.add(Criteria.where(key).is(this.getFilter().getString(key)));
+                filterCriteriaList.add(Criteria.where((StringUtils.isNotBlank(this.getDocroot()) ? this.getDocroot() + "." : "") + key).is(this.getFilter().getString(key)));
             }
             c.andOperator(filterCriteriaList);
         }
         return c;
+    }
+
+    public String getDocroot() {
+        return docroot;
+    }
+
+    public void setDocroot(String docroot) {
+        this.docroot = docroot;
     }
 
     public String getLabel() {
