@@ -1216,6 +1216,7 @@
         SELECT a.`id`,
                a.`name`,
                a.`account`,
+               a.`password` as password,
                a.`protocol_id` as protocolId,
                a.`fcu`,
                a.`fcd`,
