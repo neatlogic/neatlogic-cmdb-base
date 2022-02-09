@@ -11,7 +11,6 @@
         FROM ${schemaName}.`resource_ipobject` a
         LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_allip` c ON c.`resource_id` = a.`id`
-        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id` -->
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g ON g.`resource_id` = a.`id`
@@ -104,10 +103,7 @@
         <result column="description" property="description"/>
         <result column="network_area" property="networkArea"/>
         <result column="port" property="port"/>
-        <!-- <result column="ip_id" property="ipId"/> -->
         <result column="ip" property="ip"/>
-        <!-- <result column="netarea_id" property="netAreaId"/> -->
-        <!-- <result column="netarea_name" property="netAreaName"/> -->
         <result column="state_id" property="stateId"/>
         <result column="state_name" property="stateName"/>
         <result column="datacenter_id" property="dataCenterId"/>
@@ -116,6 +112,7 @@
         <result column="env_name" property="envName"/>
         <result column="app_module_id" property="appModuleId"/>
         <result column="app_module_name" property="appModuleName"/>
+        <result column="app_module_abbr_name" property="appModuleAbbrName"/>
         <result column="app_system_id" property="appSystemId"/>
         <result column="app_system_name" property="appSystemName"/>
         <result column="app_system_abbr_name" property="appSystemAbbrName"/>
@@ -142,8 +139,7 @@
         SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
         a.`network_area`, a.`ip`, a.`inspect_status`, a.`inspect_time`, a.`monitor_status`, a.`monitor_time`,
         b.`bg_id`, b.`bg_name`,
-        c.`ip_id` AS allip_id, c.`ip` AS allip_ip, c.`ip_label` AS allip_label,
-        <!-- d.`netarea_id`, d.`netarea_name`, -->
+        c.`allip_id`, c.`allip_ip`, c.`allip_label`,
         e.`user_id`, e.`user_name`, e.`user_uuid`,
         f.`state_id`, f.`state_name`,
         g.`datacenter_id`, g.`datacenter_name`,
@@ -168,10 +164,6 @@
         JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id` AND i.`app_module_id` = #{appModuleId}
         JOIN ${schemaName}.`resource_softwareservice_os` m on m.`resource_id` = a.`id`
         WHERE m.`type_id` = #{typeId}
-        <!--WHERE a.`type_id` IN
-        <foreach collection="typeIdList" item="typeId" open="(" separator="," close=")">
-            #{typeId}
-        </foreach>-->
     </select>
 
     <select id="getOsResourceIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
@@ -184,10 +176,6 @@
         JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id` AND i.`app_module_id` = #{appModuleId}
         JOIN ${schemaName}.`resource_softwareservice_os` m on m.`resource_id` = a.`id`
         WHERE m.`type_id` = #{typeId}
-        <!--WHERE a.`type_id` IN
-        <foreach collection="typeIdList" item="typeId" open="(" separator="," close=")">
-              #{typeId}
-        </foreach>-->
         ORDER BY m.`os_id` DESC
         LIMIT #{startNum}, #{pageSize}
     </select>
@@ -196,8 +184,7 @@
         SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
         a.`network_area`, a.`ip`, a.`inspect_status`, a.`inspect_time`, a.`monitor_status`, a.`monitor_time`,
         b.`bg_id`, b.`bg_name`,
-        c.`ip_id` AS allip_id, c.`ip` AS allip_ip, c.`ip_label` AS allip_label,
-        <!-- d.`netarea_id`, d.`netarea_name`, -->
+        c.`allip_id`, c.`allip_ip`, c.`allip_label`,
         e.`user_id`, e.`user_name`, e.`user_uuid`,
         f.`state_id`, f.`state_name`,
         g.`datacenter_id`, g.`datacenter_name`,
@@ -208,7 +195,6 @@
         FROM ${schemaName}.`resource_os` a
         LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_allip` c ON c.`resource_id` = a.`id`
-        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id` -->
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
@@ -249,8 +235,7 @@
         SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
         a.`network_area`, a.`ip`, a.`inspect_status`, a.`inspect_time`, a.`monitor_status`, a.`monitor_time`,
         b.`bg_id`, b.`bg_name`,
-        c.`ip_id` AS allip_id, c.`ip` AS allip_ip, c.`ip_label` AS allip_label,
-        <!-- d.`netarea_id`, d.`netarea_name`, -->
+        c.`allip_id`, c.`allip_ip`, c.`allip_label`,
         e.`user_id`, e.`user_name`, e.`user_uuid`,
         f.`state_id`, f.`state_name`,
         g.`datacenter_id`, g.`datacenter_name`,
@@ -258,7 +243,6 @@
         FROM ${schemaName}.`resource_storage` a
         LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_allip` c ON c.`resource_id` = a.`id`
-        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id` -->
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
@@ -299,8 +283,7 @@
         SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
         a.`network_area`, a.`ip`, a.`inspect_status`, a.`inspect_time`, a.`monitor_status`, a.`monitor_time`,
         b.`bg_id`, b.`bg_name`,
-        c.`ip_id` AS allip_id, c.`ip` AS allip_ip, c.`ip_label` AS allip_label,
-        <!-- d.`netarea_id`, d.`netarea_name`, -->
+        c.`allip_id`, c.`allip_ip`, c.`allip_label`,
         e.`user_id`, e.`user_name`, e.`user_uuid`,
         f.`state_id`, f.`state_name`,
         g.`datacenter_id`, g.`datacenter_name`,
@@ -308,7 +291,6 @@
         FROM ${schemaName}.`resource_netdev` a
         LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_allip` c ON c.`resource_id` = a.`id`
-        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id` -->
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
@@ -347,8 +329,7 @@
         SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
         a.`network_area`, a.`ip`, a.`inspect_status`, a.`inspect_time`, a.`monitor_status`, a.`monitor_time`,
         b.`bg_id`, b.`bg_name`,
-        c.`ip_id` AS allip_id, c.`ip` AS allip_ip, c.`ip_label` AS allip_label,
-        <!-- d.`netarea_id`, d.`netarea_name`, -->
+        c.`allip_id`, c.`allip_ip`, c.`allip_label`,
         e.`user_id`, e.`user_name`, e.`user_uuid`,
         f.`state_id`, f.`state_name`,
         g.`datacenter_id`, g.`datacenter_name`,
@@ -360,7 +341,6 @@
         FROM ${schemaName}.`resource_appinstance` a
         LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_allip` c ON c.`resource_id` = a.`id`
-        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id` -->
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
@@ -401,8 +381,7 @@
         SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
         a.`network_area`, a.`ip`, a.`inspect_status`, a.`inspect_time`, a.`monitor_status`, a.`monitor_time`,
         b.`bg_id`, b.`bg_name`,
-        c.`ip_id` AS allip_id, c.`ip` AS allip_ip, c.`ip_label` AS allip_label,
-        <!-- d.`netarea_id`, d.`netarea_name`, -->
+        c.`allip_id`, c.`allip_ip`, c.`allip_label`,
         e.`user_id`, e.`user_name`, e.`user_uuid`,
         f.`state_id`, f.`state_name`,
         g.`datacenter_id`, g.`datacenter_name`,
@@ -414,7 +393,6 @@
         FROM ${schemaName}.`resource_dbinstance` a
         LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_allip` c ON c.`resource_id` = a.`id`
-        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id` -->
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
@@ -455,8 +433,7 @@
         SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
         a.`network_area`, a.`ip`, a.`inspect_status`, a.`inspect_time`, a.`monitor_status`, a.`monitor_time`,
         b.`bg_id`, b.`bg_name`,
-        c.`ip_id` AS allip_id, c.`ip` AS allip_ip, c.`ip_label` AS allip_label,
-        <!-- d.`netarea_id`, d.`netarea_name`, -->
+        c.`allip_id`, c.`allip_ip`, c.`allip_label`,
         e.`user_id`, e.`user_name`, e.`user_uuid`,
         f.`state_id`, f.`state_name`,
         g.`datacenter_id`, g.`datacenter_name`,
@@ -465,7 +442,6 @@
         FROM ${schemaName}.`resource_appinstance_cluster` a
         LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_allip` c ON c.`resource_id` = a.`id`
-        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id` -->
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
@@ -505,8 +481,7 @@
         SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
         a.`network_area`, a.`ip`, a.`inspect_status`, a.`inspect_time`, a.`monitor_status`, a.`monitor_time`,
         b.`bg_id`, b.`bg_name`,
-        c.`ip_id` AS allip_id, c.`ip` AS allip_ip, c.`ip_label` AS allip_label,
-        <!-- d.`netarea_id`, d.`netarea_name`, -->
+        c.`allip_id`, c.`allip_ip`, c.`allip_label`,
         e.`user_id`, e.`user_name`, e.`user_uuid`,
         f.`state_id`, f.`state_name`,
         g.`datacenter_id`, g.`datacenter_name`,
@@ -515,7 +490,6 @@
         FROM ${schemaName}.`resource_db_cluster` a
         LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_allip` c ON c.`resource_id` = a.`id`
-        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id` -->
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
@@ -555,8 +529,7 @@
         SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
         a.`network_area`, a.`ip`, a.`inspect_status`, a.`inspect_time`, a.`monitor_status`, a.`monitor_time`,
         b.`bg_id`, b.`bg_name`,
-        c.`ip_id` AS allip_id, c.`ip` AS allip_ip, c.`ip_label` AS allip_label,
-        <!-- d.`netarea_id`, d.`netarea_name`, -->
+        c.`allip_id`, c.`allip_ip`, c.`allip_label`,
         e.`user_id`, e.`user_name`, e.`user_uuid`,
         f.`state_id`, f.`state_name`,
         g.`datacenter_id`, g.`datacenter_name`,
@@ -565,7 +538,6 @@
         FROM ${schemaName}.`resource_accessendpoint` a
         LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_allip` c ON c.`resource_id` = a.`id`
-        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_netarea` d ON d.`resource_id` = a.`id` -->
         LEFT JOIN ${schemaName}.`resource_ipobject_owner` e ON e.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_state` f ON f.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_datacenter` g on g.`resource_id` = a.`id`
@@ -582,7 +554,6 @@
         SELECT a.`id`
         FROM ${schemaName}.`resource_ipobject` a
         LEFT JOIN ${schemaName}.`resource_softwareservice` b on b.`id` = a.`id`
-        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_ip` c on c.`resource_id` = a.`id` -->
         WHERE a.`ip` = #{ip}
         <choose>
             <when test="port != null and port != ''">
@@ -601,7 +572,6 @@
         SELECT a.`id`, a.`name`, b.`port`, a.`ip`
         FROM ${schemaName}.`resource_ipobject` a
         LEFT JOIN ${schemaName}.`resource_softwareservice` b on b.`id` = a.`id`
-        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_ip` c on c.`resource_id` = a.`id` -->
         where a.`id` = #{id}
         LIMIT 1
     </select>
@@ -959,9 +929,6 @@
             <foreach collection="appSystemIdList" item="appSystemId" open="(" separator="," close=")">
                 #{appSystemId}
             </foreach>
-            <!--<if test="keyword != null and keyword != ''">
-                AND `app_module_name` LIKE concat('%', #{keyword}, '%')
-            </if>-->
         </where>
     </select>
 
@@ -1111,7 +1078,6 @@
     <select id="getResourceListByResourceVoList" resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
         SELECT ri.name,ri.`ip`,ri.id,rs.port,ri.type_name as typeName
         FROM ${schemaName}.`resource_ipobject` ri
-        <!-- LEFT JOIN ${schemaName}.`resource_ipobject_ip` rii ON ri.`id` = rii.`resource_id` -->
         LEFT JOIN ${schemaName}.`resource_softwareservice` rs ON ri.`id` = rs.`id`
         WHERE
         <foreach collection="resourceList" item="resource" separator="or" open="(" close=")">
@@ -1181,7 +1147,6 @@
         JOIN ${schemaName}.`resource_ipobject` a ON a.id = c.resource_id
         JOIN `cmdb_resourcecenter_account` b ON b.id = c.account_id
         JOIN `cmdb_resourcecenter_account_protocol` d ON d.id = b.protocol_id
-        <!-- JOIN ${schemaName}.`resource_ipobject_ip` e ON e.resource_id = a.id -->
         <where>
             <if test="accountComponentVo.keyword != null and accountComponentVo.keyword != ''">
                 a.`name` like concat('%', #{accountComponentVo.keyword}, '%') or a.`ip` =#{accountComponentVo.keyword}
@@ -1197,7 +1162,6 @@
         JOIN ${schemaName}.`resource_ipobject` a ON a.id = c.resource_id
         JOIN `cmdb_resourcecenter_account` b ON b.id = c.account_id
         JOIN `cmdb_resourcecenter_account_protocol` d ON d.id = b.protocol_id
-        <!-- JOIN ${schemaName}.`resource_ipobject_ip` e ON e.resource_id = a.id -->
         <where>
             <if test="accountComponentVo.keyword != null and accountComponentVo.keyword != ''">
                 a.`name` like concat('%', #{accountComponentVo.keyword}, '%') or a.`ip` =#{accountComponentVo.keyword}

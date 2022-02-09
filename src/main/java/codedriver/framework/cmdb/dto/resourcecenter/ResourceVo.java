@@ -52,6 +52,8 @@ public class ResourceVo extends BaseEditorVo {
     private Long appModuleId;
     @EntityField(name = "应用模块名称", type = ApiParamType.STRING)
     private String appModuleName;
+    @EntityField(name = "应用模块简称", type = ApiParamType.STRING)
+    private String appModuleAbbrName;
     @EntityField(name = "应用环境id", type = ApiParamType.LONG)
     private Long envId;
     @EntityField(name = "应用环境名称", type = ApiParamType.STRING)
@@ -230,6 +232,14 @@ public class ResourceVo extends BaseEditorVo {
 
     public void setAppModuleName(String appModuleName) {
         this.appModuleName = appModuleName;
+    }
+
+    public String getAppModuleAbbrName() {
+        return appModuleAbbrName;
+    }
+
+    public void setAppModuleAbbrName(String appModuleAbbrName) {
+        this.appModuleAbbrName = appModuleAbbrName;
     }
 
     public Long getEnvId() {
