@@ -62,6 +62,25 @@ public class AccountVo extends BaseEditorVo {
 
     private List<String> protocolList;
 
+   public AccountVo(){
+
+    }
+
+    public AccountVo(String name, Long protocolId, Integer protocolPort, String ip, String passwordPlain){
+        this.name=name;
+        this.protocolId = protocolId;
+        this.protocolPort = protocolPort;
+        this.ip = ip;
+        this.passwordPlain = passwordPlain;
+    }
+
+
+
+
+
+
+
+
     public Long getId() {
         if (id == null) {
             id = SnowflakeUtil.uniqueLong();
