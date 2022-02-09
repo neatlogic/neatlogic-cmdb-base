@@ -5,7 +5,8 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter.customview;
 
-import net.sf.jsqlparser.statement.select.PlainSelect;
+import net.sf.jsqlparser.statement.select.Select;
+import net.sf.jsqlparser.statement.select.SelectBody;
 
 /**
  * @author linbq
@@ -28,5 +29,5 @@ public interface ICustomView {
      * 组成视图的select部分
      * @return
      */
-    PlainSelect getSql();
+    SelectBody getSelectBody();
 }

@@ -30,7 +30,7 @@ public class ResourceDetailView implements ICustomView {
     }
 
     @Override
-    public PlainSelect getSql() {
+    public SelectBody getSelectBody() {
 //        String sql =
 //                "SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,\n" +
 //                "       a.`network_area`, a.`ip`, a.`inspect_status`, a.`inspect_time`, a.`monitor_status`, a.`monitor_time`,\n" +
@@ -176,22 +176,4 @@ public class ResourceDetailView implements ICustomView {
         return plainSelect;
     }
 
-    public static void main(String[] args) {
-        TenantContext.init("default");
-        ResourceDetailView view = new ResourceDetailView();
-        PlainSelect plainSelect = view.getSql();
-        System.out.println(plainSelect);
-        List<SelectItem> selectItems = plainSelect.getSelectItems();
-        for (SelectItem selectItem : selectItems) {
-            if (selectItem instanceof SelectExpressionItem) {
-                SelectExpressionItem selectExpressionItem = (SelectExpressionItem) selectItem;
-                Alias alias = selectExpressionItem.getAlias();
-                if (alias != null) {
-                    System.out.println(alias.getName());
-                } else {
-                    System.out.println(selectExpressionItem);
-                }
-            }
-        }
-    }
 }
