@@ -29,5 +29,5 @@ public interface ICustomView {
      * 组成视图的select部分
      * @return
      */
-    SelectBody getSelectBody();
+    String getSelectBody();
 }

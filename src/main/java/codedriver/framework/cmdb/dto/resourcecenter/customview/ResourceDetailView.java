@@ -30,7 +30,7 @@ public class ResourceDetailView implements ICustomView {
     }
 
     @Override
-    public SelectBody getSelectBody() {
+    public String getSelectBody() {
 //        String sql =
 //                "SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,\n" +
 //                "       a.`network_area`, a.`ip`, a.`inspect_status`, a.`inspect_time`, a.`monitor_status`, a.`monitor_time`,\n" +
@@ -173,7 +173,7 @@ public class ResourceDetailView implements ICustomView {
                     .addSelectItems(new SelectExpressionItem(new Column(table, "abbr_name")).withAlias(new Alias("app_system_abbr_name")))
                     .addSelectItems(new SelectExpressionItem(new Column(table, "name")).withAlias(new Alias("app_system_name")));
         }
-        return plainSelect;
+        return plainSelect.toString();
     }
 
 }
