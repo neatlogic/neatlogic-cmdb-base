@@ -1216,7 +1216,6 @@
         SELECT a.`id`,
                a.`name`,
                a.`account`,
-               a.`password`,
                a.`protocol_id` as protocolId,
                a.`fcu`,
                a.`fcd`,
@@ -1448,6 +1447,16 @@
         from `cmdb_tag` a
                  JOIN `cmdb_resourcecenter_account_tag` c ON c.tag_id = a.id
         where c.`account_id` = #{value}
+    </select>
+
+    <select id="getAccountByTagentIpAndPort"  resultMap="accountMap">
+        SELECT a.`id`,
+               a.`name`,
+               a.`password`
+        FROM cmdb_resourcecenter_account a
+                 JOIN tagent t on t.account_id = a.id
+        WHERE t.ip = #{ip}
+          AND t.port = #{port}
     </select>
 
     <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
