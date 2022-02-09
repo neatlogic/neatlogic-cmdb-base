@@ -74,13 +74,6 @@ public class AccountVo extends BaseEditorVo {
         this.passwordPlain = passwordPlain;
     }
 
-
-
-
-
-
-
-
     public Long getId() {
         if (id == null) {
             id = SnowflakeUtil.uniqueLong();
