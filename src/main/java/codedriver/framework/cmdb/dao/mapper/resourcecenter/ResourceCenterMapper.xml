@@ -1526,7 +1526,7 @@
 
     <insert id="insertAccountIp">
         INSERT IGNORE INTO `cmdb_resourcecenter_account_ip` (`account_id`, `ip`)
-        VALUES (#{accountId}, #{ip});
+        VALUES (#{accountId}, #{ip})
     </insert>
 
     <insert id="insertResourceScript">
