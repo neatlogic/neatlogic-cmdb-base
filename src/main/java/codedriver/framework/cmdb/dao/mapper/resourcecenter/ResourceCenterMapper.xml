@@ -1462,7 +1462,7 @@
     </update>
 
     <insert id="insertAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
-        insert into `cmdb_resourcecenter_account` (
+        insert ignore into `cmdb_resourcecenter_account` (
         `id`,
         `name`,
         `account`,
