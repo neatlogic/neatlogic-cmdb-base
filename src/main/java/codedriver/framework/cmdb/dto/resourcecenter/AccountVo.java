@@ -80,7 +80,7 @@ public class AccountVo extends BaseEditorVo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccountVo accountVo = (AccountVo) o;
-        return Objects.equals(passwordPlain, accountVo.passwordPlain) && Objects.equals(protocolId, accountVo.protocolId) && Objects.equals(protocolPort, accountVo.protocolPort) && Objects.equals(ip, accountVo.ip);
+        return Objects.equals(getPasswordPlain(), accountVo.getPasswordPlain()) && Objects.equals(protocolId, accountVo.protocolId) && Objects.equals(protocolPort, accountVo.protocolPort) && Objects.equals(ip, accountVo.ip);
     }
 
     @Override
