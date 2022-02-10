@@ -18,40 +18,40 @@ import codedriver.framework.restful.annotation.EntityField;
 public class IpVo {
 
     @EntityField(name = "ip的id", type = ApiParamType.LONG)
-    @ResourceField(name = "ip_id")
-    private Long ipId;
+    @ResourceField(name = "allip_id")
+    private Long allIpId;
     @EntityField(name = "ip", type = ApiParamType.STRING)
-    @ResourceField(name = "ip")
-    private String ip;
+    @ResourceField(name = "allip_ip")
+    private String allIpIp;
     @EntityField(name = "ip描述", type = ApiParamType.STRING)
-    @ResourceField(name = "ip_label")
-    private String ipLabel;
+    @ResourceField(name = "allip_label")
+    private String allIpLabel;
     @EntityField(name = "资源id", type = ApiParamType.LONG)
     @ResourceField(name = "resource_id")
     private Long resourceId;
 
-    public Long getIpId() {
-        return ipId;
+    public Long getAllIpId() {
+        return allIpId;
     }
 
-    public void setIpId(Long ipId) {
-        this.ipId = ipId;
+    public void setAllIpId(Long allIpId) {
+        this.allIpId = allIpId;
     }
 
-    public String getIp() {
-        return ip;
+    public String getAllIpIp() {
+        return allIpIp;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    public void setAllIpIp(String allIpIp) {
+        this.allIpIp = allIpIp;
     }
 
-    public String getIpLabel() {
-        return ipLabel;
+    public String getAllIpLabel() {
+        return allIpLabel;
     }
 
-    public void setIpLabel(String ipLabel) {
-        this.ipLabel = ipLabel;
+    public void setAllIpLabel(String allIpLabel) {
+        this.allIpLabel = allIpLabel;
     }
 
     public Long getResourceId() {
