@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -17,7 +17,7 @@ import java.util.List;
 public class IsRelExistsInFilter {
     public static boolean isExists(RelVo relVo, List<RelFilterVo> relFilterList) {
         if (relVo != null && CollectionUtils.isNotEmpty(relFilterList)) {
-            return relFilterList.stream().anyMatch(d -> d.getRelId().equals(relVo.getId()) && d.getDirection().equals(relVo.getDirection()));
+            return relFilterList.stream().anyMatch(d -> d != null && d.getRelId().equals(relVo.getId()) && d.getDirection().equals(relVo.getDirection()));
         }
         return false;
     }

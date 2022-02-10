@@ -22,6 +22,9 @@ public class ModuleVo {
     @EntityField(name = "模块名", type = ApiParamType.STRING)
     @ResourceField(name = "app_module_name")
     private String appModuleName;
+    @EntityField(name = "模块简称", type = ApiParamType.STRING)
+    @ResourceField(name = "app_module_abbr_name")
+    private String appModuleAbbrName;
 
     public Long getResourceId() {
         return resourceId;
@@ -45,5 +48,13 @@ public class ModuleVo {
 
     public void setAppModuleName(String appModuleName) {
         this.appModuleName = appModuleName;
+    }
+
+    public String getAppModuleAbbrName() {
+        return appModuleAbbrName;
+    }
+
+    public void setAppModuleAbbrName(String appModuleAbbrName) {
+        this.appModuleAbbrName = appModuleAbbrName;
     }
 }

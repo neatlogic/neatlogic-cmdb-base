@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -17,7 +17,7 @@ import java.util.List;
 public class IsAttrExistsInFilter {
     public static boolean isExists(AttrVo attrVo, List<AttrFilterVo> attrFilterList) {
         if (attrVo != null && CollectionUtils.isNotEmpty(attrFilterList)) {
-            return attrFilterList.stream().anyMatch(d -> d.getAttrId().equals(attrVo.getId()));
+            return attrFilterList.stream().anyMatch(d -> d != null && d.getAttrId().equals(attrVo.getId()));
         }
         return false;
     }

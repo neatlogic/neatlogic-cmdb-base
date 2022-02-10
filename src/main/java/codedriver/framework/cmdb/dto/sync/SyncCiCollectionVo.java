@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -53,6 +53,8 @@ public class SyncCiCollectionVo extends BasePageVo {
     private String matchMode;
     @EntityField(name = "匹配模式名称", type = ApiParamType.STRING)
     private String matchModeText;
+    @EntityField(name = "唯一属性id列表", type = ApiParamType.JSONARRAY)
+    private List<Long> uniqueAttrIdList;
     @JSONField(serialize = false)
     private TransactionGroupVo transactionGroup;
     @JSONField(serialize = false)
@@ -77,6 +79,14 @@ public class SyncCiCollectionVo extends BasePageVo {
 
     public void setParentKey(String parentKey) {
         this.parentKey = parentKey;
+    }
+
+    public List<Long> getUniqueAttrIdList() {
+        return uniqueAttrIdList;
+    }
+
+    public void setUniqueAttrIdList(List<Long> uniqueAttrIdList) {
+        this.uniqueAttrIdList = uniqueAttrIdList;
     }
 
     public int getExecCount() {

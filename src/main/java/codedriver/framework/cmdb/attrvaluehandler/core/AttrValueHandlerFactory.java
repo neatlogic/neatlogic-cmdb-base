@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -35,7 +35,7 @@ public class AttrValueHandlerFactory extends ModuleInitializedListenerBase {
      * 返回处理器
      *
      * @param type 组件类型
-     * @return 如果找不到组件类型，返回default组件
+     * @return 组件
      */
     public static IAttrValueHandler getHandler(@NotNull String type) {
         type = type.toLowerCase();

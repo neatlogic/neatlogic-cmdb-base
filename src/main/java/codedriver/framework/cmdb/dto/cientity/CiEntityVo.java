@@ -113,9 +113,9 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private String editMode = EditModeType.GLOBAL.getValue();
     @JSONField(serialize = false)
     private Long transactionId;
-    @JSONField(serialize = false) // 需要返回的属性列表，为空代表返回所有属性
+    @JSONField(serialize = false) // 需要返回的属性列表，注意：为空代表返回所有属性！！！
     private List<Long> attrIdList;
-    @JSONField(serialize = false) // 需要返回的关系列表，为空代表返回所有关系
+    @JSONField(serialize = false) // 需要返回的关系列表，注意：为空代表返回所有关系！！！
     private List<Long> relIdList;
     @JSONField(serialize = false)
     private List<Long> groupIdList;// 查询时使用的群组id
@@ -143,8 +143,8 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private String monitorStatus;
     @EntityField(name = "更新时间，用于检查数据是否老化", type = ApiParamType.LONG)
     private Date renewTime;
-    @JSONField(serialize = false)
-    private boolean smartSearch = false;//启用智能搜索，会根据条件自动拼接关系表，在没有任何条件时能提高检索性能
+    @EntityField(name = "排序", type = ApiParamType.JSONARRAY)
+    private List<SortVo> sortList;
     @JSONField(serialize = false)
     private Boolean limitRelEntity;//限制关系数量，避免查询返回的结果集太大
     @JSONField(serialize = false)
@@ -174,6 +174,14 @@ public class CiEntityVo extends BasePageVo implements Serializable {
 
     public void setCiIdList(List<Long> ciIdList) {
         this.ciIdList = ciIdList;
+    }
+
+    public List<SortVo> getSortList() {
+        return sortList;
+    }
+
+    public void setSortList(List<SortVo> sortList) {
+        this.sortList = sortList;
     }
 
     public Date getRenewTime() {
@@ -248,13 +256,6 @@ public class CiEntityVo extends BasePageVo implements Serializable {
         this.description = description;
     }
 
-    public boolean isSmartSearch() {
-        return smartSearch;
-    }
-
-    public void setSmartSearch(boolean smartSearch) {
-        this.smartSearch = smartSearch;
-    }
 
     public String getActionType() {
         return actionType;
