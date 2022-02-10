@@ -222,6 +222,8 @@ public interface ResourceCenterMapper {
 
     int replaceAccount(AccountVo vo);
 
+    void insertAccount(AccountVo accountVo);
+
     int insertTag(TagVo vo);
 
     int insertIgnoreResourceAccount(List<ResourceAccountVo> resourceAccountVoList);
