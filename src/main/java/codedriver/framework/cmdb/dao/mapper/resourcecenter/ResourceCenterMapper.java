@@ -232,7 +232,7 @@ public interface ResourceCenterMapper {
 
     int insertAccountProtocol(AccountProtocolVo searchVo);
 
-    int replaceAccountIp(AccountIpVo ipVo);
+    int insertAccountIp(AccountIpVo ipVo);
 
     int insertResourceScript(@Param("resourceId") Long resourceId, @Param("scriptId") Long scriptId, @Param("config") String config);
 

@@ -1524,8 +1524,8 @@
         values (#{id}, #{name}, #{port}, now(3), #{fcu}, now(3), #{fcu})
     </insert>
 
-    <insert id="replaceAccountIp">
-        REPLACE INTO `cmdb_resourcecenter_account_ip` (`account_id`, `ip`)
+    <insert id="insertAccountIp">
+        INSERT IGNORE INTO `cmdb_resourcecenter_account_ip` (`account_id`, `ip`)
         VALUES (#{accountId}, #{ip});
     </insert>
 
