@@ -220,9 +220,7 @@ public interface ResourceCenterMapper {
 
     int updateAccountProtocol(AccountProtocolVo searchVo);
 
-    int replaceAccount(AccountVo vo);
-
-    void insertAccount(AccountVo accountVo);
+    void insertAccount(AccountVo vo);
 
     int insertTag(TagVo vo);
 
