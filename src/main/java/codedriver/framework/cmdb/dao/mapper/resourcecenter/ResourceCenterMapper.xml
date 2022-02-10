@@ -1432,7 +1432,9 @@
 
     <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
         update `cmdb_resourcecenter_account` a set
-        a.`name` = #{name},
+        <if test="name != null">
+            a.`name` = #{name},
+        </if>
         a.`account` = #{account},
         <if test="passwordCipher != null">
             a.`password` = #{passwordCipher},
@@ -1461,6 +1463,35 @@
 
     <insert id="replaceAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
         replace into `cmdb_resourcecenter_account` (
+        `id`,
+        `name`,
+        `account`,
+        <if test="passwordCipher != null">
+            `password`,
+        </if>
+        `protocol_id` ,
+        `lcu`,
+        `lcd`,
+        `fcu`,
+        `fcd`
+        )
+        values (
+        #{id},
+        #{name},
+        #{account},
+        <if test="passwordCipher != null">
+            #{passwordCipher},
+        </if>
+        #{protocolId},
+        #{lcu},
+        now(3),
+        #{fcu},
+        now(3)
+        )
+    </insert>
+
+    <insert id="insertAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
+        insert into `cmdb_resourcecenter_account` (
         `id`,
         `name`,
         `account`,
