@@ -210,8 +210,6 @@ public interface ResourceCenterMapper {
 
     AccountVo getAccountByName(String name);
 
-    AccountVo getAccountByTagentIpAndPort(@Param("ip") String ip, @Param("port") Integer port);
-
     List<AccountIpVo> getAccountIp(AccountIpVo ipVo);
 
     int updateAccount(AccountVo vo);

@@ -1420,16 +1420,6 @@
         where c.`account_id` = #{value}
     </select>
 
-    <select id="getAccountByTagentIpAndPort"  resultMap="accountMap">
-        SELECT a.`id`,
-               a.`name`,
-               a.`password`
-        FROM cmdb_resourcecenter_account a
-                 JOIN tagent t on t.account_id = a.id
-        WHERE t.ip = #{ip}
-          AND t.port = #{port}
-    </select>
-
     <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
         update `cmdb_resourcecenter_account` a set
         <if test="name != null">
