@@ -7,7 +7,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="codedriver.framework.cmdb.dao.mapper.resourcecenter.ResourceCenterMapper">
 
-    <sql id="resource_ipobject_from_join">
+    <!--<sql id="resource_ipobject_from_join">
         FROM ${schemaName}.`resource_ipobject` a
         LEFT JOIN ${schemaName}.`resource_ipobject_bg` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_ipobject_allip` c ON c.`resource_id` = a.`id`
@@ -19,10 +19,10 @@
         LEFT JOIN ${schemaName}.`resource_appsystem_appmodule` j ON j.`app_module_id` = i.`app_module_id`
         LEFT JOIN ${schemaName}.`resource_appsystem` l ON l.`id` = j.`resource_id`
         LEFT JOIN ${schemaName}.`resource_softwareservice` m ON m.`id` = a.`id`
-    </sql>
+    </sql>-->
     <sql id="resource_ipobject_where">
         <if test="keyword != null and keyword != ''">
-            AND (a.`name` LIKE CONCAT('%', #{keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{keyword}, '%') OR m.`port`
+            AND (a.`name` LIKE CONCAT('%', #{keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{keyword}, '%') OR a.`port`
             LIKE CONCAT('%', #{keyword}, '%'))
         </if>
         <if test="typeIdList != null and typeIdList.size() > 0">
@@ -32,25 +32,25 @@
             </foreach>
         </if>
         <if test="stateIdList != null and stateIdList.size() > 0">
-            AND f.`state_id` IN
+            AND a.`state_id` IN
             <foreach collection="stateIdList" item="stateId" open="(" separator="," close=")">
                 #{stateId}
             </foreach>
         </if>
         <if test="envIdList != null and envIdList.size() > 0">
-            AND h.`env_id` IN
+            AND a.`env_id` IN
             <foreach collection="envIdList" item="envId" open="(" separator="," close=")">
                 #{envId}
             </foreach>
         </if>
         <if test="appSystemIdList != null and appSystemIdList.size() > 0">
-            AND l.`id` IN
+            AND a.`id` IN
             <foreach collection="appSystemIdList" item="appSystemId" open="(" separator="," close=")">
                 #{appSystemId}
             </foreach>
         </if>
         <if test="appModuleIdList != null and appModuleIdList.size() > 0">
-            AND i.`app_module_id` IN
+            AND a.`app_module_id` IN
             <foreach collection="appModuleIdList" item="appModuleId" open="(" separator="," close=")">
                 #{appModuleId}
             </foreach>
@@ -72,7 +72,8 @@
     <select id="getResourceCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
             resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
-        <include refid="resource_ipobject_from_join"/>
+        <!--<include refid="resource_ipobject_from_join"/>-->
+        FROM ${schemaName}.`resource_ipobject_detail` a
         <where>
             <include refid="resource_ipobject_where"/>
         </where>
@@ -81,7 +82,8 @@
     <select id="getResourceIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
             resultType="java.lang.Long">
         SELECT DISTINCT a.`id`
-        <include refid="resource_ipobject_from_join"/>
+        <!--<include refid="resource_ipobject_from_join"/>-->
+        FROM ${schemaName}.`resource_ipobject_detail` a
         <where>
             <include refid="resource_ipobject_where"/>
         </where>
@@ -136,7 +138,8 @@
     </resultMap>
 
     <select id="getResourceListByIdList" resultMap="resourceCenterMap">
-        SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
+        SELECT a.*
+        <!--a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
         a.`network_area`, a.`ip`, a.`inspect_status`, a.`inspect_time`, a.`monitor_status`, a.`monitor_time`,
         b.`bg_id`, b.`bg_name`,
         c.`allip_id`, c.`allip_ip`, c.`allip_label`,
@@ -144,10 +147,11 @@
         f.`state_id`, f.`state_name`,
         g.`datacenter_id`, g.`datacenter_name`,
         h.`env_id`, h.`env_name`,
-        i.`app_module_id`, i.`app_module_name`,
+        i.`app_module_id`, i.`app_module_name`, i.`app_module_abbr_name`,
         l.`id` AS `app_system_id`, l.`name` AS app_system_name, l.`abbr_name` AS app_system_abbr_name,
         m.`port`
-        <include refid="resource_ipobject_from_join"/>
+        <include refid="resource_ipobject_from_join"/>-->
+        FROM ${schemaName}.`resource_ipobject_detail` a
         WHERE a.`id` IN
         <foreach collection="idList" item="id" open="(" separator="," close=")">
             #{id}
@@ -1329,7 +1333,8 @@
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
         SELECT a.`id`, a.`name`, m.`port`, a.`ip`
-        <include refid="resource_ipobject_from_join"/>
+        <!--<include refid="resource_ipobject_from_join"/>-->
+        FROM ${schemaName}.`resource_ipobject_detail` a
         WHERE
         NOT EXISTS (
         SELECT c.`resource_id` FROM `cmdb_resourcecenter_resource_account` c
@@ -1347,15 +1352,16 @@
     <select id="getResourceIdByIpAndPortAndNameWithFilter"
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT a.`id`
-        <include refid="resource_ipobject_from_join"/>
+        <!--<include refid="resource_ipobject_from_join"/>-->
+        FROM ${schemaName}.`resource_ipobject_detail` a
         WHERE a.`ip` = #{ip}
         <include refid="resource_ipobject_where"/>
         <choose>
             <when test="port != null and port != ''">
-                AND m.`port` = #{port}
+                AND a.`port` = #{port}
             </when>
             <otherwise>
-                AND m.`port` is null
+                AND a.`port` is null
             </otherwise>
         </choose>
         <if test="name != null and name != ''">
