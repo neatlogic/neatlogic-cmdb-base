@@ -1433,7 +1433,7 @@
     <select id="getAccountIpListByAccountId" resultType="java.lang.String">
         SELECT a.ip
         FROM cmdb_resourcecenter_account_ip a
-        WHERE a.account_id = #{values}
+        WHERE a.account_id = #{value}
     </select>
 
     <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
