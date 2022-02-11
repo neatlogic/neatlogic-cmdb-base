@@ -65,6 +65,8 @@ public class SyncCiCollectionVo extends BasePageVo {
     private int execCount;
     @EntityField(name = "最后采集时间", type = ApiParamType.LONG)
     private Date lastSyncDate;//最后一次同步时间
+    @EntityField(name = "说明", type = ApiParamType.STRING)
+    private String description;
 
     public Long getId() {
         if (id == null) {
@@ -95,6 +97,14 @@ public class SyncCiCollectionVo extends BasePageVo {
 
     public void setExecCount(int execCount) {
         this.execCount = execCount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Integer getIsAutoCommit() {
