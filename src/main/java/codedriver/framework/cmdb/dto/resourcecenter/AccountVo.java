@@ -18,6 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author linbq
@@ -61,6 +62,31 @@ public class AccountVo extends BaseEditorVo {
     private Long resourceId;
 
     private List<String> protocolList;
+
+   public AccountVo(){
+
+    }
+
+    public AccountVo(String name, Long protocolId, Integer protocolPort, String ip, String passwordPlain){
+        this.name=name;
+        this.protocolId = protocolId;
+        this.protocolPort = protocolPort;
+        this.ip = ip;
+        this.passwordPlain = passwordPlain;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AccountVo accountVo = (AccountVo) o;
+        return Objects.equals(getPasswordPlain(), accountVo.getPasswordPlain()) && Objects.equals(protocolId, accountVo.protocolId) && Objects.equals(protocolPort, accountVo.protocolPort) && Objects.equals(ip, accountVo.ip);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(passwordPlain, protocolId, protocolPort, ip);
+    }
 
     public Long getId() {
         if (id == null) {

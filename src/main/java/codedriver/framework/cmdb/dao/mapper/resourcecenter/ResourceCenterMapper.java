@@ -176,6 +176,8 @@ public interface ResourceCenterMapper {
 
     AccountVo getResourceAccountByIpAndPort(@Param("host")String host,@Param("port") Integer port);
 
+    AccountVo getAccountByTagentIpAndPort(@Param("ip")String ip,@Param("port") Integer port);
+
     List<AccountVo> getAccountListByIpList(@Param("ipList") List<String> ipList);
 
     List<AccountVo> getResourceAccountListByResourceId(Long resourceId);
@@ -212,13 +214,15 @@ public interface ResourceCenterMapper {
 
     List<AccountIpVo> getAccountIp(AccountIpVo ipVo);
 
+    List<String> getAccountIpListByAccountId(Long accountId);
+
     int updateAccount(AccountVo vo);
 
     int updateTag(TagVo vo);
 
     int updateAccountProtocol(AccountProtocolVo searchVo);
 
-    int replaceAccount(AccountVo vo);
+    void insertAccount(AccountVo vo);
 
     int insertTag(TagVo vo);
 
@@ -230,7 +234,7 @@ public interface ResourceCenterMapper {
 
     int insertAccountProtocol(AccountProtocolVo searchVo);
 
-    int insertIgnoreAccountIp(AccountIpVo ipVo);
+    int insertAccountIp(AccountIpVo ipVo);
 
     int insertResourceScript(@Param("resourceId") Long resourceId, @Param("scriptId") Long scriptId, @Param("config") String config);
 
