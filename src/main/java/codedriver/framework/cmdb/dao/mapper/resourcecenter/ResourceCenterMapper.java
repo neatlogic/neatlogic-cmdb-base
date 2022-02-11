@@ -214,6 +214,8 @@ public interface ResourceCenterMapper {
 
     List<AccountIpVo> getAccountIp(AccountIpVo ipVo);
 
+    List<String> getAccountIpListByAccountId(Long accountId);
+
     int updateAccount(AccountVo vo);
 
     int updateTag(TagVo vo);

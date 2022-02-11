@@ -1430,6 +1430,12 @@
           AND t.port = #{port}
     </select>
 
+    <select id="getAccountIpListByAccountId" resultType="java.lang.String">
+        SELECT a.ip
+        FROM cmdb_resourcecenter_account_ip a
+        WHERE a.account_id = #{values}
+    </select>
+
     <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
         update `cmdb_resourcecenter_account` a set
         <if test="name != null">
