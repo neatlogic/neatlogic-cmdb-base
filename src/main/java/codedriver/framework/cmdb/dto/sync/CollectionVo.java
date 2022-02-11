@@ -32,6 +32,8 @@ public class CollectionVo implements Serializable {
     private JSONObject filter;
     @EntityField(name = "根节点，用于显示数据时从该节点开始截取数据", type = ApiParamType.STRING)
     private String docroot;
+    @EntityField(name = "集合显示名", type = ApiParamType.STRING)
+    private String collection_label;
 
     @Override
     public boolean equals(Object o) {
@@ -52,6 +54,14 @@ public class CollectionVo implements Serializable {
             c.andOperator(filterCriteriaList);
         }
         return c;
+    }
+
+    public String getCollection_label() {
+        return collection_label;
+    }
+
+    public void setCollection_label(String collection_label) {
+        this.collection_label = collection_label;
     }
 
     public String getDocroot() {
