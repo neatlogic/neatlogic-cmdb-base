@@ -51,7 +51,7 @@ public interface IResourceCenterAccountCrossoverService extends ICrossoverServic
     /**
      * 删除账号
      *
-     * @param accountId 账号id
+     * @param accountIdList 账号idList
      */
-    void deleteAccount(Long accountId, boolean isTagent);
+    void deleteAccount(List<Long> accountIdList, boolean isTagent);
 }
