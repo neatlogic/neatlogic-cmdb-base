@@ -176,6 +176,8 @@ public interface ResourceCenterMapper {
 
     AccountVo getResourceAccountByIpAndPort(@Param("host")String host,@Param("port") Integer port);
 
+    AccountVo getAccountByTagentIpAndPort(@Param("ip")String ip,@Param("port") Integer port);
+
     List<AccountVo> getAccountListByIpList(@Param("ipList") List<String> ipList);
 
     List<AccountVo> getResourceAccountListByResourceId(Long resourceId);
