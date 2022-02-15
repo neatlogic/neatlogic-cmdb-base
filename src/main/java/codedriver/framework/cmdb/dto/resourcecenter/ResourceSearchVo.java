@@ -6,7 +6,9 @@
 package codedriver.framework.cmdb.dto.resourcecenter;
 
 import codedriver.framework.asynchronization.threadlocal.TenantContext;
+import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
+import codedriver.framework.restful.annotation.EntityField;
 
 import java.util.List;
 
@@ -15,25 +17,45 @@ import java.util.List;
  * @since 2021/6/9 20:01
  **/
 public class ResourceSearchVo extends BasePageVo {
+    @EntityField(name = "类型id", type = ApiParamType.LONG)
     private Long typeId;
+    @EntityField(name = "类型id列表", type = ApiParamType.JSONARRAY)
     private List<Long> typeIdList;
+    @EntityField(name = "IP地址", type = ApiParamType.STRING)
     private String ip;
+    @EntityField(name = "端口", type = ApiParamType.INTEGER)
     private String port;
+    @EntityField(name = "应用环境id", type = ApiParamType.LONG)
     private Long envId;
+    @EntityField(name = "应用模块id", type = ApiParamType.LONG)
     private Long appModuleId;
+    @EntityField(name = "协议id列表", type = ApiParamType.JSONARRAY)
     private List<Long> protocolIdList;
+    @EntityField(name = "协议列表", type = ApiParamType.JSONARRAY)
     private List<String> protocolList;
+    @EntityField(name = "状态id列表", type = ApiParamType.JSONARRAY)
     private List<Long> stateIdList;
+    @EntityField(name = "应用环境id列表", type = ApiParamType.JSONARRAY)
     private List<Long> envIdList;
+    @EntityField(name = "应用系统id列表", type = ApiParamType.JSONARRAY)
     private List<Long> appSystemIdList;
+    @EntityField(name = "应用模块id列表", type = ApiParamType.JSONARRAY)
     private List<Long> appModuleIdList;
+    @EntityField(name = "标签id列表", type = ApiParamType.JSONARRAY)
     private List<Long> tagIdList;
+    @EntityField(name = "资产id列表", type = ApiParamType.JSONARRAY)
     private List<Long> idList;
+    @EntityField(name = "ip地址列表", type = ApiParamType.JSONARRAY)
     private List<String> ipList;
+    @EntityField(name = "名称", type = ApiParamType.STRING)
     private String name;
+    @EntityField(name = "协议", type = ApiParamType.STRING)
     private String protocol;
+    @EntityField(name = "账号", type = ApiParamType.STRING)
     private String account;
+    @EntityField(name = "巡检状态列表", type = ApiParamType.JSONARRAY)
     private List<String> inspectStatusList;
+    @EntityField(name = "巡检作业状态列表", type = ApiParamType.JSONARRAY)
     private List<String> inspectJobPhaseNodeStatusList;
 
     public ResourceSearchVo() {
