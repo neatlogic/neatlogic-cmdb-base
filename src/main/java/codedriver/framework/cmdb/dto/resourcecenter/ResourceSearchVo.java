@@ -34,6 +34,7 @@ public class ResourceSearchVo extends BasePageVo {
     private String protocol;
     private String account;
     private List<String> inspectStatusList;
+    private List<String> inspectJobPhaseNodeStatusList;
 
     public ResourceSearchVo() {
     }
@@ -196,5 +197,13 @@ public class ResourceSearchVo extends BasePageVo {
 
     public void setInspectStatusList(List<String> inspectStatusList) {
         this.inspectStatusList = inspectStatusList;
+    }
+
+    public List<String> getInspectJobPhaseNodeStatusList() {
+        return inspectJobPhaseNodeStatusList;
+    }
+
+    public void setInspectJobPhaseNodeStatusList(List<String> inspectJobPhaseNodeStatusList) {
+        this.inspectJobPhaseNodeStatusList = inspectJobPhaseNodeStatusList;
     }
 }
