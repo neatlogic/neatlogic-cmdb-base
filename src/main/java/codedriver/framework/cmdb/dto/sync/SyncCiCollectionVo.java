@@ -31,6 +31,10 @@ public class SyncCiCollectionVo extends BasePageVo {
     private String ciName;
     @EntityField(name = "集合名称", type = ApiParamType.STRING)
     private String collectionName;
+    @EntityField(name = "集合名称列表", type = ApiParamType.JSONARRAY)
+    private List<String> collectionNameList;
+    @EntityField(name = "集合类型", type = ApiParamType.STRING)
+    private String collectionType;
     @EntityField(name = "父属性", type = ApiParamType.STRING)
     private String parentKey;
     @EntityField(name = "创建时间", type = ApiParamType.LONG)
@@ -81,6 +85,22 @@ public class SyncCiCollectionVo extends BasePageVo {
 
     public void setParentKey(String parentKey) {
         this.parentKey = parentKey;
+    }
+
+    public List<String> getCollectionNameList() {
+        return collectionNameList;
+    }
+
+    public void setCollectionNameList(List<String> collectionNameList) {
+        this.collectionNameList = collectionNameList;
+    }
+
+    public String getCollectionType() {
+        return collectionType;
+    }
+
+    public void setCollectionType(String collectionType) {
+        this.collectionType = collectionType;
     }
 
     public List<Long> getUniqueAttrIdList() {
