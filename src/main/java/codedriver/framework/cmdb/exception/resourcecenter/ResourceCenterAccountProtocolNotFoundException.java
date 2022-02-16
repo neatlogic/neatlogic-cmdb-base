@@ -8,8 +8,4 @@ public class ResourceCenterAccountProtocolNotFoundException extends ApiRuntimeEx
     public ResourceCenterAccountProtocolNotFoundException(Long id) {
         super("协议：" + id + "不存在");
     }
-
-    public ResourceCenterAccountProtocolNotFoundException() {
-        super("协议不存在");
-    }
 }
