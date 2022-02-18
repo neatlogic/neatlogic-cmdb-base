@@ -1128,7 +1128,7 @@
         select `id`, `name`, `port`
         from `cmdb_resourcecenter_account_protocol`
         where `id` in
-        <foreach collection="list" open="(" separator="," close=")">
+        <foreach collection="list" item="id" open="(" separator="," close=")">
             #{id}
         </foreach>
     </select>
