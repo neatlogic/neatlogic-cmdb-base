@@ -24,7 +24,7 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
     void getResourceAccountAndTag(List<Long> idList, List<ResourceVo> resourceVoList);
 
     /**
-     * 获取应用清单信息
+     * 获取应用列表
      *
      * @param paramObj
      * @return
