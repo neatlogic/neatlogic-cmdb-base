@@ -1118,9 +1118,19 @@
 
     <select id="getAccountProtocolVoByProtocolId"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo">
-        select `id`, `name`
+        select `id`, `name`, `port`
         from `cmdb_resourcecenter_account_protocol`
         where `id` = #{value}
+    </select>
+
+    <select id="getAccountProtocolListByIdList"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo">
+        select `id`, `name`, `port`
+        from `cmdb_resourcecenter_account_protocol`
+        where `id` in
+        <foreach collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </select>
 
     <select id="searchTagListByIdList" parameterType="java.util.List"
