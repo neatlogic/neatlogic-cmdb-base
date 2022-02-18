@@ -8,6 +8,7 @@ package codedriver.framework.cmdb.crossover;
 import codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
 import codedriver.framework.cmdb.dto.resourcecenter.ResourceVo;
 import codedriver.framework.crossover.ICrossoverService;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import java.util.List;
@@ -21,5 +22,13 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
      * @param resourceVoList
      */
     void getResourceAccountAndTag(List<Long> idList, List<ResourceVo> resourceVoList);
+
+    /**
+     * 获取应用清单信息
+     *
+     * @param paramObj
+     * @return
+     */
+    JSONArray getAppModuleResourceList(JSONObject paramObj);
 }
 
