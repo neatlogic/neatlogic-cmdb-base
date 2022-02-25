@@ -15,12 +15,25 @@ public class CiEntityInspectVo extends BasePageVo {
 
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
+    @EntityField(name = "作业id", type = ApiParamType.LONG)
+    private Long jobId;
     @EntityField(name = "配置项id", type = ApiParamType.LONG)
     private Long ciEntityId;
     @EntityField(name = "巡检时间", type = ApiParamType.LONG)
     private Date inspectTime;
     @EntityField(name = "巡检状态", type = ApiParamType.STRING)
     private String inspectStatus;
+
+    public CiEntityInspectVo() {
+
+    }
+
+    public CiEntityInspectVo(Long jobId, Long ciEntityId, Date inspectTime, String inspectStatus) {
+        this.jobId = jobId;
+        this.ciEntityId = ciEntityId;
+        this.inspectTime = inspectTime;
+        this.inspectStatus = inspectStatus;
+    }
 
     public Long getId() {
         if (id == null) {
@@ -31,6 +44,14 @@ public class CiEntityInspectVo extends BasePageVo {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(Long jobId) {
+        this.jobId = jobId;
     }
 
     public Long getCiEntityId() {
