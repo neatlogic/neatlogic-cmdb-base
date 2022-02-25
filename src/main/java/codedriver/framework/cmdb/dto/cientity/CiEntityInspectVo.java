@@ -4,6 +4,7 @@ import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
+import com.alibaba.fastjson.JSONObject;
 
 import java.util.Date;
 
@@ -28,11 +29,11 @@ public class CiEntityInspectVo extends BasePageVo {
 
     }
 
-    public CiEntityInspectVo(Long jobId, Long ciEntityId, Date inspectTime, String inspectStatus) {
-        this.jobId = jobId;
-        this.ciEntityId = ciEntityId;
-        this.inspectTime = inspectTime;
-        this.inspectStatus = inspectStatus;
+    public CiEntityInspectVo(JSONObject paramObj) {
+        this.jobId = paramObj.getLong("jobId");
+        this.ciEntityId = paramObj.getLong("ciEntityId");
+        this.inspectTime = new Date(paramObj.getLong("inspectTime"));
+        this.inspectStatus = paramObj.getString("inspectStatus");
     }
 
     public Long getId() {
