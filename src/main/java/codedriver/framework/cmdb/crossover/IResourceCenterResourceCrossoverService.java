@@ -17,11 +17,19 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
     ResourceSearchVo assembleResourceSearchVo(JSONObject jsonObj);
 
     /**
-     * 补充资产的账号信息和标签信息
+     * 补充资产的账号信息
      * @param idList
      * @param resourceVoList
      */
-    void getResourceAccountAndTag(List<Long> idList, List<ResourceVo> resourceVoList);
+    void addResourceAccount(List<Long> idList, List<ResourceVo> resourceVoList);
+
+    /**
+     * 补充资产的标签信息
+     *
+     * @param idList
+     * @param resourceVoList
+     */
+    void addResourceTag(List<Long> idList, List<ResourceVo> resourceVoList);
 
     /**
      * 获取对应模块的应用清单列表
