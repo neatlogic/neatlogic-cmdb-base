@@ -144,7 +144,7 @@ public interface ResourceCenterMapper {
 
     List<ResourceVo> getAppModuleListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
-    int checkAppModuleIsExists(@Param("id") Long id, @Param("schemaName") String schemaName);
+//    int checkAppModuleIsExists(@Param("id") Long id, @Param("schemaName") String schemaName);
 
     Set<Long> getIpObjectResourceTypeIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
 

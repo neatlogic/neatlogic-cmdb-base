@@ -1015,11 +1015,11 @@
         ORDER BY a.`id` DESC
     </select>
 
-    <select id="checkAppModuleIsExists" resultType="int">
+    <!--<select id="checkAppModuleIsExists" resultType="int">
         SELECT COUNT(1)
         FROM ${schemaName}.`resource_appmodule`
         WHERE `id` = #{id}
-    </select>
+    </select>-->
 
     <select id="getIpObjectResourceTypeIdListByAppModuleIdAndEnvId" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT a.`type_id`
