@@ -24,53 +24,57 @@ public interface ResourceCenterMapper {
 
     List<ResourceVo> getResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
+    int getIpObjectResourceCountByAppModuleIdAndTypeIdAndEnvId(ResourceSearchVo searchVo);
+
+    List<Long> getIpObjectResourceIdListByAppModuleIdAndTypeIdAndEnvId(ResourceSearchVo searchVo);
+
     int getOsResourceCount(ResourceSearchVo searchVo);
 
     List<Long> getOsResourceIdList(ResourceSearchVo searchVo);
 
     List<ResourceVo> getOsResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
-    int getStorageResourceCount(ResourceSearchVo searchVo);
+//    int getStorageResourceCount(ResourceSearchVo searchVo);
+//
+//    List<Long> getStorageResourceIdList(ResourceSearchVo searchVo);
+//
+//    List<ResourceVo> getStorageResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+//
+//    int getNetDevResourceCount(ResourceSearchVo searchVo);
+//
+//    List<Long> getNetDevResourceIdList(ResourceSearchVo searchVo);
+//
+//    List<ResourceVo> getNetDevResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
-    List<Long> getStorageResourceIdList(ResourceSearchVo searchVo);
-
-    List<ResourceVo> getStorageResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
-
-    int getNetDevResourceCount(ResourceSearchVo searchVo);
-
-    List<Long> getNetDevResourceIdList(ResourceSearchVo searchVo);
-
-    List<ResourceVo> getNetDevResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
-
-    int getAppInstanceResourceCount(ResourceSearchVo searchVo);
-
-    List<Long> getAppInstanceResourceIdList(ResourceSearchVo searchVo);
+//    int getAppInstanceResourceCount(ResourceSearchVo searchVo);
+//
+//    List<Long> getAppInstanceResourceIdList(ResourceSearchVo searchVo);
 
     List<ResourceVo> getAppInstanceResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
-    int getDbInstanceResourceCount(ResourceSearchVo searchVo);
-
-    List<Long> getDbInstanceResourceIdList(ResourceSearchVo searchVo);
+//    int getDbInstanceResourceCount(ResourceSearchVo searchVo);
+//
+//    List<Long> getDbInstanceResourceIdList(ResourceSearchVo searchVo);
 
     List<ResourceVo> getDbInstanceResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
-    int getAppInstanceClusterResourceCount(ResourceSearchVo searchVo);
-
-    List<Long> getAppInstanceClusterResourceIdList(ResourceSearchVo searchVo);
-
-    List<ResourceVo> getAppInstanceClusterResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
-
-    int getDbInstanceClusterResourceCount(ResourceSearchVo searchVo);
-
-    List<Long> getDbInstanceClusterResourceIdList(ResourceSearchVo searchVo);
-
-    List<ResourceVo> getDbInstanceClusterResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
-
-    int getAccessEndPointResourceCount(ResourceSearchVo searchVo);
-
-    List<Long> getAccessEndPointResourceIdList(ResourceSearchVo searchVo);
-
-    List<ResourceVo> getAccessEndPointResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+//    int getAppInstanceClusterResourceCount(ResourceSearchVo searchVo);
+//
+//    List<Long> getAppInstanceClusterResourceIdList(ResourceSearchVo searchVo);
+//
+//    List<ResourceVo> getAppInstanceClusterResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+//
+//    int getDbInstanceClusterResourceCount(ResourceSearchVo searchVo);
+//
+//    List<Long> getDbInstanceClusterResourceIdList(ResourceSearchVo searchVo);
+//
+//    List<ResourceVo> getDbInstanceClusterResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+//
+//    int getAccessEndPointResourceCount(ResourceSearchVo searchVo);
+//
+//    List<Long> getAccessEndPointResourceIdList(ResourceSearchVo searchVo);
+//
+//    List<ResourceVo> getAccessEndPointResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
     Long getResourceIdByIpAndPortAndName(ResourceSearchVo searchVo);
 
