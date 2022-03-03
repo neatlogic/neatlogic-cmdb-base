@@ -80,7 +80,7 @@ public interface ResourceCenterMapper {
 
     Long getResourceIdByIpAndPortAndNameWithFilter(ResourceSearchVo searchVo);
 
-    ResourceVo getResourceIpPortById(@Param("id") Long id, @Param("schemaName") String schemaName);
+//    ResourceVo getResourceIpPortById(@Param("id") Long id, @Param("schemaName") String schemaName);
 
     List<ResourceVo> getResourceByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
@@ -92,7 +92,7 @@ public interface ResourceCenterMapper {
 
     List<Long> checkResourceIdListIsExists(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
-    List<TagVo> getTagListByResourceId(Long resourceId);
+//    List<TagVo> getTagListByResourceId(Long resourceId);
 
     int getAccountCount(AccountVo searchVo);
 
@@ -102,7 +102,7 @@ public interface ResourceCenterMapper {
 
     int checkAccountNameIsRepeats(AccountVo vo);
 
-    int checkAccountHasBeenResourceReferredById(Long id);
+//    int checkAccountHasBeenResourceReferredById(Long id);
 
     int searchAccountCount(AccountVo searchVo);
 
@@ -130,9 +130,9 @@ public interface ResourceCenterMapper {
 
     List<Long> getAccountIdListByAccountAndProtocol(@Param("account") String account, @Param("protocol") String protocol);
 
-    List<Long> getNoCorrespondingAccountResourceIdListByTagListAndAccountIdAndProtocol(@Param("tagList") List<Long> tagList, @Param("account") String account, @Param("protocol") String protocol);
+//    List<Long> getNoCorrespondingAccountResourceIdListByTagListAndAccountIdAndProtocol(@Param("tagList") List<Long> tagList, @Param("account") String account, @Param("protocol") String protocol);
 
-    List<ResourceVo> getNoCorrespondingResourceListByAccountIdAndProtocol(ResourceSearchVo searchVo);
+//    List<ResourceVo> getNoCorrespondingResourceListByAccountIdAndProtocol(ResourceSearchVo searchVo);
 
     Long checkResourceIsExistsCorrespondingAccountByResourceIdAndAccountIdAndProtocol(@Param("resourceId") Long resourceId, @Param("account") String account, @Param("protocol") String protocol);
 
@@ -150,7 +150,7 @@ public interface ResourceCenterMapper {
 
     Set<Long> getOsResourceTypeIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
 
-    Set<Long> getNetWorkDeviceResourceTypeIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
+//    Set<Long> getNetWorkDeviceResourceTypeIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
 
     List<Long> getResourceIdListByProtocolIdList(ResourceSearchVo searchVo);
 
@@ -162,7 +162,7 @@ public interface ResourceCenterMapper {
 
     List<TagVo> getTagListByIdList(List<Long> idList);
 
-    List<Long> checkTagIdExistsByTagIdList(List<Long> tagIdList);
+//    List<Long> checkTagIdExistsByTagIdList(List<Long> tagIdList);
 
     List<ResourceAccountVo> getResourceAccountListByResourceIdList(List<Long> resourceIdList);
 
@@ -200,7 +200,7 @@ public interface ResourceCenterMapper {
 
     int checkAccountProtocolHasBeenReferredByProtocolId(Long id);
 
-    int checkAccountProtocolIsExistsById(Long id);
+//    int checkAccountProtocolIsExistsById(Long id);
 
     AccountProtocolVo getAccountProtocolVoByProtocolId(Long protocolId);
 
@@ -216,9 +216,9 @@ public interface ResourceCenterMapper {
 
     AccountProtocolVo getAccountProtocolVoByProtocolName(String name);
 
-    AccountVo getAccountByName(String name);
+//    AccountVo getAccountByName(String name);
 
-    List<AccountIpVo> getAccountIp(AccountIpVo ipVo);
+//    List<AccountIpVo> getAccountIp(AccountIpVo ipVo);
 
     int updateAccount(AccountVo vo);
 
