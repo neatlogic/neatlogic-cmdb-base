@@ -13,7 +13,7 @@ import java.util.List;
  * @author linbq
  * @since 2022/3/7 10:10
  **/
-public enum ModuleResourceType {
+public enum AppModuleResourceType {
     OS("OS","OS"),
     APP_INSTANCE("APPIns","APPIns"),
     APP_INSTANCE_CLUSTER("APPInsCluster","ipObject"),
@@ -25,7 +25,7 @@ public enum ModuleResourceType {
     private final String name;
     private final String action;
 
-    ModuleResourceType(String name, String action) {
+    AppModuleResourceType(String name, String action) {
         this.name = name;
         this.action = action;
     }
@@ -40,14 +40,14 @@ public enum ModuleResourceType {
 
     public static List<String> getNameList() {
         List<String> resultList = new ArrayList<>();
-        for (ModuleResourceType type : values()) {
+        for (AppModuleResourceType type : values()) {
             resultList.add(type.name);
         }
         return resultList;
     }
 
     public static String getAction(String name) {
-        for (ModuleResourceType type : values()) {
+        for (AppModuleResourceType type : values()) {
             if (type.name.equals(name)) {
                 return type.action;
             }
