@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -302,6 +302,19 @@ public class CiEntityTransactionVo implements Serializable {
      */
     public void addRelEntityData(RelVo relVo, String direction, Long ciId, Long ciEntityId) {
         addRelEntityData(relVo, direction, ciId, ciEntityId, null, null);
+    }
+
+    /**
+     * 添加需要操作的关系事务
+     *
+     * @param relVo      关系
+     * @param direction  方向
+     * @param ciId       目标模型id
+     * @param ciEntityId 目标配置项id
+     * @param action     动作
+     */
+    public void addRelEntityData(RelVo relVo, String direction, Long ciId, Long ciEntityId, String action) {
+        addRelEntityData(relVo, direction, ciId, ciEntityId, null, action);
     }
 
     /**

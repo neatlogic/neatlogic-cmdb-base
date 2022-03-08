@@ -1,17 +1,17 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
 package codedriver.framework.cmdb.enums;
 
 public enum RelActionType {
-    INSERT("insert", "新增"), DELETE("delete", "删除");
+    INSERT("insert", "新增"), DELETE("delete", "删除"), REPLACE("replace", "替换");
 
-    private String value;
-    private String text;
+    private final String value;
+    private final String text;
 
-    private RelActionType(String _value, String _text) {
+    RelActionType(String _value, String _text) {
         this.value = _value;
         this.text = _text;
     }
