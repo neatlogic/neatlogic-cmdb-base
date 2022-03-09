@@ -166,8 +166,6 @@ public interface ResourceCenterMapper {
 
     List<ResourceAccountVo> getResourceAccountListByResourceIdList(List<Long> resourceIdList);
 
-    List<ResourceAccountVo>  getResourceAccountListByAccountIdList(List<Long> accountIdList);
-
     List<ResourceAccountVo> getResourceAccountListByAccountId(Long accountId);
 
     List<ResourceTagVo> getResourceTagListByResourceIdList(List<Long> resourceIdList);
@@ -267,5 +265,4 @@ public interface ResourceCenterMapper {
     int deleteAccountIpByIpList(@Param("ipList") List<String> resourceIpList);
 
     int deleteResourceScriptByResourceId(Long resourceId);
-
 }
