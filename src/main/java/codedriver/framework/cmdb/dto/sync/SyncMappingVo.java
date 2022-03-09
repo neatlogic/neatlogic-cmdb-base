@@ -1,10 +1,11 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
 package codedriver.framework.cmdb.dto.sync;
 
+import codedriver.framework.cmdb.enums.RelActionType;
 import codedriver.framework.cmdb.enums.RelDirectionType;
 import codedriver.framework.cmdb.enums.sync.MatchMode;
 import codedriver.framework.common.constvalue.ApiParamType;
@@ -27,6 +28,8 @@ public class SyncMappingVo {
     private Long ciCollectionId;
     @EntityField(name = "匹配模式", type = ApiParamType.ENUM, member = MatchMode.class)
     private String matchMode;
+    @EntityField(name = "操作", type = ApiParamType.ENUM, member = RelActionType.class)
+    private String action;//这里只支持insert和replace
 
     public Long getId() {
         if (id == null) {
@@ -108,6 +111,17 @@ public class SyncMappingVo {
             }
         }
         return field;
+    }
+
+    public String getAction() {
+        if (StringUtils.isBlank(action)) {
+            action = RelActionType.INSERT.getValue();
+        }
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
     }
 
     public void setField(String field) {
