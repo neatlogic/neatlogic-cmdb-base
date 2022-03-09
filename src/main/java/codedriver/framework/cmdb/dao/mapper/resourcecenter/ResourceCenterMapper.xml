@@ -44,7 +44,7 @@
             </foreach>
         </if>
         <if test="appSystemIdList != null and appSystemIdList.size() > 0">
-            AND a.`app_system_id` IN
+            AND a.`id` IN
             <foreach collection="appSystemIdList" item="appSystemId" open="(" separator="," close=")">
                 #{appSystemId}
             </foreach>
