@@ -25,6 +25,10 @@ public class ResourceSearchVo extends BasePageVo {
     private String ip;
     @EntityField(name = "端口", type = ApiParamType.INTEGER)
     private String port;
+    @EntityField(name = "左编码", type = ApiParamType.INTEGER)
+    private Integer lft;
+    @EntityField(name = "右编码", type = ApiParamType.INTEGER)
+    private Integer rht;
     @EntityField(name = "应用环境id", type = ApiParamType.LONG)
     private Long envId;
     @EntityField(name = "应用模块id", type = ApiParamType.LONG)
@@ -99,6 +103,22 @@ public class ResourceSearchVo extends BasePageVo {
 
     public void setPort(String port) {
         this.port = port;
+    }
+
+    public Integer getLft() {
+        return lft;
+    }
+
+    public void setLft(Integer lft) {
+        this.lft = lft;
+    }
+
+    public Integer getRht() {
+        return rht;
+    }
+
+    public void setRht(Integer rht) {
+        this.rht = rht;
     }
 
     public Long getEnvId() {
