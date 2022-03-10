@@ -5,6 +5,7 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter;
 
+import codedriver.framework.cmdb.dto.tag.TagVo;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.constvalue.InspectStatus;
 import codedriver.framework.common.dto.BaseEditorVo;
@@ -74,10 +75,12 @@ public class ResourceVo extends BaseEditorVo {
     private List<OwnerVo> ownerList;
     @EntityField(name = "所属部门列表", type = ApiParamType.JSONARRAY)
     private List<BgVo> bgList;
-    @EntityField(name = "标签列表", type = ApiParamType.JSONARRAY)
+    @EntityField(name = "标签名称列表", type = ApiParamType.JSONARRAY)
     private List<String> tagList;
     @EntityField(name = "账号列表", type = ApiParamType.JSONARRAY)
     private List<AccountVo> accountList;
+    @EntityField(name = "标签列表", type = ApiParamType.JSONARRAY)
+    private List<TagVo> tagVoList;
     @EntityField(name = "脚本列表", type = ApiParamType.JSONARRAY)
     private ResourceScriptVo script;
     @EntityField(name = "集群id", type = ApiParamType.LONG)
@@ -336,6 +339,14 @@ public class ResourceVo extends BaseEditorVo {
 
     public void setAccountList(List<AccountVo> accountList) {
         this.accountList = accountList;
+    }
+
+    public List<TagVo> getTagVoList() {
+        return tagVoList;
+    }
+
+    public void setTagVoList(List<TagVo> tagVoList) {
+        this.tagVoList = tagVoList;
     }
 
     public ResourceScriptVo getScript() {
