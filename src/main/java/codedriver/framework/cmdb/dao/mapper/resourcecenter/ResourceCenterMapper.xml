@@ -750,22 +750,32 @@
 
     <select id="searchAccountCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo"
             resultType="int">
-        SELECT COUNT(1) FROM `cmdb_resourcecenter_account` a JOIN `cmdb_resourcecenter_account_protocol` b ON
-        b.`id`=a.`protocol_id`
+        SELECT COUNT(1)
+        <include refid="searchAccount"></include>
+    </select>
+
+    <sql id="searchAccount">
+        FROM `cmdb_resourcecenter_account` a JOIN `cmdb_resourcecenter_account_protocol` b ON b.`id`=a.`protocol_id`
         <where>
             <if test="keyword != null and keyword != ''">
-                and a.`name` like concat('%', #{keyword}, '%')
+                and (a.`name` like concat('%', #{keyword}, '%')
+                or b.`name` like concat('%', #{keyword}, '%')
+                or a.`account` like concat('%', #{keyword}, '%'))
             </if>
             <if test="protocolList != null and protocolList.size() > 0">
-                and
-                b.`name`
-                in
+                and b.name in
                 <foreach collection="protocolList" item="item" open="(" separator="," close=")">
                     #{item}
                 </foreach>
             </if>
+            <if test="defaultValue != null and defaultValue.size() > 0">
+                and a.`id` in
+                <foreach collection="defaultValue" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
         </where>
-    </select>
+    </sql>
 
     <resultMap id="accountMap" type="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
         <result column="id" property="id"/>
@@ -798,26 +808,7 @@
         a.`fcd`,
         a.`lcu`,
         a.`lcd`
-        FROM `cmdb_resourcecenter_account` a JOIN `cmdb_resourcecenter_account_protocol` b ON b.`id`=a.`protocol_id`
-        <where>
-            <if test="keyword != null and keyword != ''">
-                and (a.`name` like concat('%', #{keyword}, '%')
-                or b.`name` like concat('%', #{keyword}, '%')
-                or a.`account` like concat('%', #{keyword}, '%'))
-            </if>
-            <if test="protocolList != null and protocolList.size() > 0">
-                and b.name in
-                <foreach collection="protocolList" item="item" open="(" separator="," close=")">
-                    #{item}
-                </foreach>
-            </if>
-            <if test="defaultValue != null and defaultValue.size() > 0">
-                and a.`id` in
-                <foreach collection="defaultValue" item="item" open="(" separator="," close=")">
-                    #{item}
-                </foreach>
-            </if>
-        </where>
+        <include refid="searchAccount"></include>
         order by a.`lcd` desc
         <if test="needPage == true">
             limit #{startNum}, #{pageSize}
@@ -1124,6 +1115,19 @@
         WHERE `resource_id` in
         <foreach collection="list" item="resourceId" open="(" separator="," close=")">
             #{resourceId}
+        </foreach>
+    </select>
+
+
+    <select id="getResourceAccountListByAccountIdList"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceAccountVo">
+        SELECT
+        `resource_id` AS resourceId,
+        `account_id` AS accountId
+        FROM `cmdb_resourcecenter_resource_account`
+        WHERE `account_id` in
+        <foreach collection="list" item="accountId" open="(" separator="," close=")">
+            #{accountId}
         </foreach>
     </select>
 
