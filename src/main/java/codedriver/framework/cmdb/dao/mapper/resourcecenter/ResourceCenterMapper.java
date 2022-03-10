@@ -166,6 +166,8 @@ public interface ResourceCenterMapper {
 
     List<ResourceAccountVo> getResourceAccountListByResourceIdList(List<Long> resourceIdList);
 
+    List<ResourceAccountVo>  getResourceAccountListByAccountIdList(List<Long> accountIdList);
+
     List<ResourceAccountVo> getResourceAccountListByAccountId(Long accountId);
 
     List<ResourceTagVo> getResourceTagListByResourceIdList(List<Long> resourceIdList);
