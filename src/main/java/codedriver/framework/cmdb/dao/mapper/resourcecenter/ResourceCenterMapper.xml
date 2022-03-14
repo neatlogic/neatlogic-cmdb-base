@@ -785,8 +785,6 @@
         <result column="protocolId" property="protocolId"/>
         <result column="protocol" property="protocol"/>
         <result column="protocolPort" property="protocolPort"/>
-        <result column="resourceReferredCount" property="resourceReferredCount"/>
-        <result column="tagentReferredCount" property="tagentReferredCount"/>
         <result column="fcu" property="fcu"/>
         <result column="fcd" property="fcd"/>
         <result column="lcu" property="lcu"/>
@@ -801,9 +799,6 @@
         a.`account`,
         b.name as protocol,
         b.`port` as protocolPort,
-        (select count(1) from `cmdb_resourcecenter_resource_account` where `account_id` = a.`id`) as
-        resourceReferredCount,
-        (select count(1) from `tagent` where `account_id` = a.`id`) as tagentReferredCount,
         a.`fcu`,
         a.`fcd`,
         a.`lcu`,
