@@ -166,7 +166,7 @@ public interface ResourceCenterMapper {
 
     List<ResourceAccountVo> getResourceAccountListByResourceIdList(List<Long> resourceIdList);
 
-    List<ResourceAccountVo>  getResourceAccountListByAccountIdList(List<Long> accountIdList);
+    List<ResourceAccountVo> getResourceAccountListByAccountIdList(List<Long> accountIdList);
 
     List<ResourceAccountVo> getResourceAccountListByAccountId(Long accountId);
 
@@ -178,11 +178,11 @@ public interface ResourceCenterMapper {
 
     AccountVo getResourceAccountByResourceIdAndAccountId(@Param("resourceId") Long resourceId, @Param("accountId") Long accountId);
 
-    AccountVo getResourceAccountByIpAndAccountId(@Param("host")String host, @Param("accountId")Long accountId);
+    AccountVo getResourceAccountByIpAndAccountId(@Param("host") String host, @Param("accountId") Long accountId);
 
-    AccountVo getResourceAccountByIpAndPort(@Param("host")String host,@Param("port") Integer port);
+    AccountVo getResourceAccountByIpAndPort(@Param("host") String host, @Param("port") Integer port);
 
-    AccountVo getAccountByTagentIpAndPort(@Param("ip")String ip,@Param("port") Integer port);
+    AccountVo getAccountByTagentIpAndPort(@Param("ip") String ip, @Param("port") Integer port);
 
     List<AccountVo> getAccountListByIpList(@Param("ipList") List<String> ipList);
 
@@ -217,6 +217,16 @@ public interface ResourceCenterMapper {
     Integer searchAccountComponentCount(@Param("accountComponentVo") AccountComponentVo accountComponentVo, @Param("schemaName") String schemaName);
 
     AccountProtocolVo getAccountProtocolVoByProtocolName(String name);
+
+    /**
+     * 根据类型和IP列表查询资源
+     *
+     * @param schemaName
+     * @param typeIdList
+     * @param ipList
+     * @return
+     */
+    List<ResourceVo> getResourceListByTypeIdListAndIpList(@Param("schemaName") String schemaName, @Param("typeIdList") List<Long> typeIdList, @Param("ipList") List<String> ipList);
 
 //    AccountVo getAccountByName(String name);
 
