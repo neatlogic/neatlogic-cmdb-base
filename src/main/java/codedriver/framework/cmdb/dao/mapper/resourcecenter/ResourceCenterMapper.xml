@@ -103,6 +103,10 @@
         <result column="monitor_time" property="monitorTime"/>
         <result column="maintenance_window" property="maintenanceWindow"/>
         <result column="description" property="description"/>
+        <result column="fcu" property="fcu"/>
+        <result column="fcd" property="fcd"/>
+        <result column="lcu" property="lcu"/>
+        <result column="lcd" property="lcd"/>
         <result column="network_area" property="networkArea"/>
         <result column="port" property="port"/>
         <result column="ip" property="ip"/>
@@ -986,6 +990,7 @@
         SELECT
         a.`id`, a.`name`, a.`abbr_name`, a.`maintenance_window`, a.`description`,
         a.`inspect_status`, a.`inspect_time`, a.`monitor_status`, a.`monitor_time`,
+        a.`fcu`, a.`fcd`, a.`lcu`, a.`lcd`,
         b.`user_id`, b.`user_name`, b.`user_uuid`,
         c.`bg_id`, c.`bg_name`,
         e.`id` AS `app_system_id`, e.`name` AS app_system_name, e.`abbr_name` AS app_system_abbr_name
@@ -1497,6 +1502,19 @@
                  JOIN tagent t on t.account_id = a.id
         WHERE t.ip = #{ip}
           AND t.port = #{port}
+    </select>
+
+    <select id="getResourceListByTypeIdListAndIpList" resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
+        SELECT a.`id`, a.`ip`, a.`name`
+        FROM ${schemaName}.`resource_ipobject_detail` a
+        WHERE a.`type_id` IN
+        <foreach collection="typeIdList" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        AND a.`ip` IN
+        <foreach collection="ipList" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
     </select>
 
     <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
