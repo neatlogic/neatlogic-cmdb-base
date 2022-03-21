@@ -47,8 +47,8 @@ public class ResourceSearchVo extends BasePageVo {
     private List<Long> appModuleIdList;
     @EntityField(name = "标签id列表", type = ApiParamType.JSONARRAY)
     private List<Long> tagIdList;
-    @EntityField(name = "资产id列表", type = ApiParamType.JSONARRAY)
-    private List<Long> idList;
+//    @EntityField(name = "资产id列表", type = ApiParamType.JSONARRAY)
+//    private List<Long> idList;
     @EntityField(name = "ip地址列表", type = ApiParamType.JSONARRAY)
     private List<String> ipList;
     @EntityField(name = "名称", type = ApiParamType.STRING)
@@ -193,13 +193,13 @@ public class ResourceSearchVo extends BasePageVo {
         this.tagIdList = tagIdList;
     }
 
-    public List<Long> getIdList() {
-        return idList;
-    }
-
-    public void setIdList(List<Long> idList) {
-        this.idList = idList;
-    }
+//    public List<Long> getIdList() {
+//        return idList;
+//    }
+//
+//    public void setIdList(List<Long> idList) {
+//        this.idList = idList;
+//    }
 
     public String getName() {
         return name;

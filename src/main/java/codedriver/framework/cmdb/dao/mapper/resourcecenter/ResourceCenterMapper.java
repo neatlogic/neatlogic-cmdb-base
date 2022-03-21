@@ -152,9 +152,9 @@ public interface ResourceCenterMapper {
 
 //    Set<Long> getNetWorkDeviceResourceTypeIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
 
-    List<Long> getResourceIdListByProtocolIdList(ResourceSearchVo searchVo);
+//    List<Long> getResourceIdListByProtocolIdList(ResourceSearchVo searchVo);
 
-    List<Long> getResourceIdListByTagIdList(ResourceSearchVo searchVo);
+//    List<Long> getResourceIdListByTagIdList(ResourceSearchVo searchVo);
 
     List<Long> checkAccountIdListIsExists(List<Long> idList);
 
