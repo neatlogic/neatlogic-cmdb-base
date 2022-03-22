@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -36,6 +36,8 @@ public class CustomViewCiVo implements Serializable {
     private List<CustomViewAttrVo> attrList;
     @EntityField(name = "关系属性列表", type = ApiParamType.JSONARRAY)
     private List<CustomViewRelVo> relList;
+    @EntityField(name = "内部属性列表", type = ApiParamType.JSONARRAY)
+    private List<CustomViewConstAttrVo> constAttrList;
     @JSONField(serialize = false)
     private CiVo ciVo;
     @EntityField(name = "配置项列表", type = ApiParamType.JSONARRAY)
@@ -137,6 +139,14 @@ public class CustomViewCiVo implements Serializable {
 
     public void setAttrList(List<CustomViewAttrVo> attrList) {
         this.attrList = attrList;
+    }
+
+    public List<CustomViewConstAttrVo> getConstAttrList() {
+        return constAttrList;
+    }
+
+    public void setConstAttrList(List<CustomViewConstAttrVo> constAttrList) {
+        this.constAttrList = constAttrList;
     }
 
     public Integer getSort() {
