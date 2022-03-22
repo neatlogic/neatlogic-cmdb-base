@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -14,6 +14,7 @@ public class CustomViewConditionFilterVo implements Serializable {
     private String attrUuid;
     private String expression;// 用户sql查询的表达式
     private JSONArray valueList;
+    private String type;//类型，attr或constattr
 
     public CustomViewConditionFilterVo() {
 
@@ -23,6 +24,14 @@ public class CustomViewConditionFilterVo implements Serializable {
         this.attrUuid = _attrUuid;
         this.expression = _expression;
         this.valueList = _valueList;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getAttrUuid() {
