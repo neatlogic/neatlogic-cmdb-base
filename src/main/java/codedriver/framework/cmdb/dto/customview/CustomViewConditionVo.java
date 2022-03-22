@@ -11,7 +11,6 @@ import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.annotation.JSONField;
-import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,14 +88,6 @@ public class CustomViewConditionVo extends BasePageVo {
         this.fieldList = fieldList;
     }
 
-    public void addFieldList(List<CustomViewConditionFieldVo> fieldList) {
-        if (CollectionUtils.isNotEmpty(fieldList)) {
-            if (this.fieldList == null) {
-                this.fieldList = new ArrayList<>();
-            }
-            this.fieldList.addAll(fieldList);
-        }
-    }
 
     public String getGroupBy() {
         return groupBy;
