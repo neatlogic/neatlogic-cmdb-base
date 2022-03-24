@@ -86,9 +86,9 @@
         SELECT COUNT(DISTINCT a.`id`)
         <!--<include refid="resource_ipobject_from_join"/>-->
         FROM ${schemaName}.`resource_ipobject_detail` a
-        JOIN `cmdb_resourcecenter_resource_account` b ON b.`resource_id` = a.`id`
-        JOIN `cmdb_resourcecenter_account` c ON c.`id` = b.`account_id`
-        JOIN `cmdb_resourcecenter_resource_tag` d ON d.`resource_id` = a.`id`
+        LEFT JOIN `cmdb_resourcecenter_resource_account` b ON b.`resource_id` = a.`id`
+        LEFT JOIN `cmdb_resourcecenter_account` c ON c.`id` = b.`account_id`
+        LEFT JOIN `cmdb_resourcecenter_resource_tag` d ON d.`resource_id` = a.`id`
         <where>
             <include refid="resource_ipobject_where"/>
         </where>
@@ -99,9 +99,9 @@
         SELECT DISTINCT a.`id`
         <!--<include refid="resource_ipobject_from_join"/>-->
         FROM ${schemaName}.`resource_ipobject_detail` a
-        JOIN `cmdb_resourcecenter_resource_account` b ON b.`resource_id` = a.`id`
-        JOIN `cmdb_resourcecenter_account` c ON c.`id` = b.`account_id`
-        JOIN `cmdb_resourcecenter_resource_tag` d ON d.`resource_id` = a.`id`
+        LEFT JOIN `cmdb_resourcecenter_resource_account` b ON b.`resource_id` = a.`id`
+        LEFT JOIN `cmdb_resourcecenter_account` c ON c.`id` = b.`account_id`
+        LEFT JOIN `cmdb_resourcecenter_resource_tag` d ON d.`resource_id` = a.`id`
         <where>
             <include refid="resource_ipobject_where"/>
         </where>
@@ -1447,9 +1447,9 @@
         SELECT a.`id`
         <!--<include refid="resource_ipobject_from_join"/>-->
         FROM ${schemaName}.`resource_ipobject_detail` a
-        JOIN `cmdb_resourcecenter_resource_account` b ON b.`resource_id` = a.`id`
-        JOIN `cmdb_resourcecenter_account` c ON c.`id` = b.`account_id`
-        JOIN `cmdb_resourcecenter_resource_tag` d ON d.`resource_id` = a.`id`
+        LEFT JOIN `cmdb_resourcecenter_resource_account` b ON b.`resource_id` = a.`id`
+        LEFT JOIN `cmdb_resourcecenter_account` c ON c.`id` = b.`account_id`
+        LEFT JOIN `cmdb_resourcecenter_resource_tag` d ON d.`resource_id` = a.`id`
         WHERE a.`ip` = #{ip}
         <include refid="resource_ipobject_where"/>
         <choose>
