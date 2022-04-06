@@ -204,32 +204,6 @@
         LIMIT #{startNum}, #{pageSize}
     </select>
 
-    <select id="getOsResourceCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
-            resultType="int">
-        SELECT COUNT(1)
-        FROM ${schemaName}.`resource_softwareservice` a
-        <if test="envId != null">
-        JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id` AND h.`env_id` = #{envId}
-        </if>
-        JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id` AND i.`app_module_id` = #{appModuleId}
-        JOIN ${schemaName}.`resource_softwareservice_os` m on m.`resource_id` = a.`id`
-        WHERE m.`type_id` = #{typeId}
-    </select>
-
-    <select id="getOsResourceIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
-            resultType="java.lang.Long">
-        SELECT m.`os_id`
-        FROM ${schemaName}.`resource_softwareservice` a
-        <if test="envId != null">
-            JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id` AND h.`env_id` = #{envId}
-        </if>
-        JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id` AND i.`app_module_id` = #{appModuleId}
-        JOIN ${schemaName}.`resource_softwareservice_os` m on m.`resource_id` = a.`id`
-        WHERE m.`type_id` = #{typeId}
-        ORDER BY m.`os_id` DESC
-        LIMIT #{startNum}, #{pageSize}
-    </select>
-
     <select id="getOsResourceListByIdList" resultMap="resourceCenterMap">
         <!--SELECT a.`id`, a.`name`, a.`type_id`, a.`type_name`, a.`type_label`, a.`maintenance_window`, a.`description`,
         a.`network_area`, a.`ip`, a.`inspect_status`, a.`inspect_time`, a.`monitor_status`, a.`monitor_time`,

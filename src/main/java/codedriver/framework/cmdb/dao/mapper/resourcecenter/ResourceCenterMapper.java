@@ -28,10 +28,6 @@ public interface ResourceCenterMapper {
 
     List<Long> getIpObjectResourceIdListByAppModuleIdAndTypeIdAndEnvId(ResourceSearchVo searchVo);
 
-    int getOsResourceCount(ResourceSearchVo searchVo);
-
-    List<Long> getOsResourceIdList(ResourceSearchVo searchVo);
-
     List<ResourceVo> getOsResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
 //    int getStorageResourceCount(ResourceSearchVo searchVo);
