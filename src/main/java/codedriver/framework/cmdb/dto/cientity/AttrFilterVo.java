@@ -1,11 +1,12 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
 package codedriver.framework.cmdb.dto.cientity;
 
 import codedriver.framework.asynchronization.threadlocal.TenantContext;
+import codedriver.framework.cmdb.enums.SearchExpression;
 import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -18,6 +19,8 @@ import java.util.stream.Collectors;
 public class AttrFilterVo implements Serializable {
     private Long attrId;
     private Long ciId;
+    private String name;
+    private String label;
     private String type;
     private String expressionName; // 表达式名称
     private String expression;// 用户sql查询的表达式
@@ -32,6 +35,22 @@ public class AttrFilterVo implements Serializable {
                     .collect(Collectors.toList());
         }
         return null;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     public Long getCiId() {
@@ -101,6 +120,9 @@ public class AttrFilterVo implements Serializable {
     }
 
     public String getExpressionName() {
+        if (StringUtils.isNotBlank(expression) && StringUtils.isBlank(expressionName)) {
+            expressionName = SearchExpression.getText(expression);
+        }
         return expressionName;
     }
 
