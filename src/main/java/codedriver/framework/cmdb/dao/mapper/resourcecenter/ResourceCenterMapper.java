@@ -150,6 +150,10 @@ public interface ResourceCenterMapper {
 
     Set<Long> getOsResourceTypeIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
 
+    int getOsResourceCountByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
+
+    Set<Long> getOsResourceIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
+
 //    Set<Long> getNetWorkDeviceResourceTypeIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
 
 //    List<Long> getResourceIdListByProtocolIdList(ResourceSearchVo searchVo);
