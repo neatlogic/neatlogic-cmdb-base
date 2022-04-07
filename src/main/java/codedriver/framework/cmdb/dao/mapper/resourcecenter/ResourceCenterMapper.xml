@@ -1036,7 +1036,8 @@
     </select>
 
     <select id="getOsResourceIdListByAppModuleIdAndEnvIdAndTypeId" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
-        SELECT a.`id`
+        SELECT
+        DISTINCT a.`id`
         FROM ${schemaName}.`resource_softwareservice` a
         <if test="envId != null">
             JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id` AND h.`env_id` = #{envId}
