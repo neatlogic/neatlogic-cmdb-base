@@ -148,7 +148,7 @@ public interface ResourceCenterMapper {
 
     int getOsResourceCountByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
 
-    Set<Long> getOsResourceIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
+    List<Long> getOsResourceIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
 
 //    Set<Long> getNetWorkDeviceResourceTypeIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
 
