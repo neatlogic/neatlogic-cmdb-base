@@ -180,7 +180,7 @@
         </foreach>
     </select>
 
-    <select id="getIpObjectResourceCountByAppModuleIdAndTypeIdAndEnvId"
+    <select id="getIpObjectResourceCountByAppModuleIdAndTypeIdAndEnvIdAndTypeId"
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
         SELECT COUNT(1)
         FROM ${schemaName}.`resource_ipobject` a
@@ -191,7 +191,7 @@
         WHERE a.`type_id` = #{typeId}
     </select>
 
-    <select id="getIpObjectResourceIdListByAppModuleIdAndTypeIdAndEnvId"
+    <select id="getIpObjectResourceIdListByAppModuleIdAndTypeIdAndEnvIdAndTypeId"
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT a.`id`
         FROM ${schemaName}.`resource_ipobject` a
@@ -1024,7 +1024,7 @@
         JOIN ${schemaName}.`resource_softwareservice_os` m on m.`resource_id` = a.`id`
     </select>
 
-    <select id="getOsResourceCountByAppModuleIdAndEnvId" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
+    <select id="getOsResourceCountByAppModuleIdAndEnvIdAndTypeId" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_softwareservice` a
         <if test="envId != null">
@@ -1035,7 +1035,7 @@
        WHERE a.`type_id` = #{typeId}
     </select>
 
-    <select id="getOsResourceIdListByAppModuleIdAndEnvId" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
+    <select id="getOsResourceIdListByAppModuleIdAndEnvIdAndTypeId" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT a.`id`
         FROM ${schemaName}.`resource_softwareservice` a
         <if test="envId != null">
@@ -1044,6 +1044,8 @@
         JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id` AND i.`app_module_id` = #{appModuleId}
         JOIN ${schemaName}.`resource_softwareservice_os` m on m.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
+        ORDER BY a.`id` DESC
+        LIMIT #{startNum}, #{pageSize}
     </select>
 
     <!--<select id="getNetWorkDeviceResourceTypeIdListByAppModuleIdAndEnvId" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
