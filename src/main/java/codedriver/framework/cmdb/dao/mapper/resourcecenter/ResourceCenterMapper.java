@@ -24,13 +24,9 @@ public interface ResourceCenterMapper {
 
     List<ResourceVo> getResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
-    int getIpObjectResourceCountByAppModuleIdAndTypeIdAndEnvId(ResourceSearchVo searchVo);
+    int getIpObjectResourceCountByAppModuleIdAndTypeIdAndEnvIdAndTypeId(ResourceSearchVo searchVo);
 
-    List<Long> getIpObjectResourceIdListByAppModuleIdAndTypeIdAndEnvId(ResourceSearchVo searchVo);
-
-    int getOsResourceCount(ResourceSearchVo searchVo);
-
-    List<Long> getOsResourceIdList(ResourceSearchVo searchVo);
+    List<Long> getIpObjectResourceIdListByAppModuleIdAndTypeIdAndEnvIdAndTypeId(ResourceSearchVo searchVo);
 
     List<ResourceVo> getOsResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
@@ -149,6 +145,10 @@ public interface ResourceCenterMapper {
     Set<Long> getIpObjectResourceTypeIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
 
     Set<Long> getOsResourceTypeIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
+
+    int getOsResourceCountByAppModuleIdAndEnvIdAndTypeId(ResourceSearchVo searchVo);
+
+    List<Long> getOsResourceIdListByAppModuleIdAndEnvIdAndTypeId(ResourceSearchVo searchVo);
 
 //    Set<Long> getNetWorkDeviceResourceTypeIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
 
