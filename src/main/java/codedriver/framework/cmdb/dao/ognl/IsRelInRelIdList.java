@@ -6,7 +6,6 @@
 package codedriver.framework.cmdb.dao.ognl;
 
 import codedriver.framework.cmdb.dto.ci.RelVo;
-import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ import java.util.List;
  */
 public class IsRelInRelIdList {
     public static boolean isExists(RelVo relVo, List<Long> relIdList) {
-        if (relVo != null && CollectionUtils.isNotEmpty(relIdList)) {
+        if (relVo != null && relIdList != null) {
             return relIdList.stream().anyMatch(d -> d != null && d.equals(relVo.getId()));
         }
         return true;

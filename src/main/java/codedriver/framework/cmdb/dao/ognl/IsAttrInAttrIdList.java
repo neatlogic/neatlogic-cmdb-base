@@ -6,7 +6,6 @@
 package codedriver.framework.cmdb.dao.ognl;
 
 import codedriver.framework.cmdb.dto.ci.AttrVo;
-import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ import java.util.List;
  */
 public class IsAttrInAttrIdList {
     public static boolean isExists(AttrVo attrVo, List<Long> attrIdList) {
-        if (attrVo != null && CollectionUtils.isNotEmpty(attrIdList)) {
+        if (attrVo != null && attrIdList != null) {
             return attrIdList.stream().anyMatch(d -> d != null && d.equals(attrVo.getId()));
         }
         return true;
