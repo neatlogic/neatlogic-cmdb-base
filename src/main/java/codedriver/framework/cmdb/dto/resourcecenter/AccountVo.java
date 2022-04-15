@@ -43,6 +43,8 @@ public class AccountVo extends BaseEditorVo {
     private List<Long> tagIdList;
     @EntityField(name = "协议ID", type = ApiParamType.LONG)
     private Long protocolId;
+    @JSONField(serialize=false)
+    private  List<Long>  protocolIdList;
     @EntityField(name = "协议", type = ApiParamType.STRING)
     private String protocol;
     @EntityField(name = "协议端口", type = ApiParamType.INTEGER)
@@ -159,6 +161,14 @@ public class AccountVo extends BaseEditorVo {
 
     public void setProtocolId(Long protocolId) {
         this.protocolId = protocolId;
+    }
+
+    public List<Long> getProtocolIdList() {
+        return protocolIdList;
+    }
+
+    public void setProtocolIdList(List<Long> protocolIdList) {
+        this.protocolIdList = protocolIdList;
     }
 
     public Integer getProtocolPort() {
