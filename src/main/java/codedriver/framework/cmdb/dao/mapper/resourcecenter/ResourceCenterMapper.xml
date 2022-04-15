@@ -758,9 +758,9 @@
                 or b.`name` like concat('%', #{keyword}, '%')
                 or a.`account` like concat('%', #{keyword}, '%'))
             </if>
-            <if test="protocolList != null and protocolList.size() > 0">
-                and b.name in
-                <foreach collection="protocolList" item="item" open="(" separator="," close=")">
+            <if test="protocolIdList != null and protocolIdList.size() > 0">
+                and b.id in
+                <foreach collection="protocolIdList" item="item" open="(" separator="," close=")">
                     #{item}
                 </foreach>
             </if>
