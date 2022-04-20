@@ -188,7 +188,7 @@ public class RelVo implements Serializable {
         if (CollectionUtils.isEmpty(this.expressionList)) {
             expressionList = new ArrayList<>();
             for (SearchExpression expression : SearchExpression.values()) {
-                if (expression != SearchExpression.EQ && expression != SearchExpression.NE) {//排除掉等于和不等于两种表达式
+                if (expression == SearchExpression.LI || expression == SearchExpression.NL || expression == SearchExpression.NULL || expression == SearchExpression.NOTNULL) {//排除掉等于和不等于两种表达式
                     expressionList.add(new ValueTextVo(expression.getExpression(), expression.getText()));
                 }
             }
