@@ -40,4 +40,9 @@ public class ResourceNotFoundException extends ApiRuntimeException {
         super("资源：" + String.join(",", nameList) + "不存在");
 
     }
+
+    public ResourceNotFoundException() {
+        super("资源不存在");
+
+    }
 }

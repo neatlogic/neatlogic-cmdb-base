@@ -228,6 +228,10 @@ public interface ResourceCenterMapper {
      */
     List<ResourceVo> getResourceListByTypeIdListAndIpList(@Param("schemaName") String schemaName, @Param("typeIdList") List<Long> typeIdList, @Param("ipList") List<String> ipList);
 
+    ResourceVo getResourceByIpAndPort(@Param("schemaName") String schemaName, @Param("ip") String ip, @Param("port") Integer port);
+
+    List<AccountVo> getResourceAccountByResourceIdAndProtocolAndProtocolPortAndUsername(@Param("resourceId") Long resourceId,@Param("protocol") String protocol,@Param("protocolPort") Integer protocolPort,@Param("username") String username);
+
 //    AccountVo getAccountByName(String name);
 
 //    List<AccountIpVo> getAccountIp(AccountIpVo ipVo);
