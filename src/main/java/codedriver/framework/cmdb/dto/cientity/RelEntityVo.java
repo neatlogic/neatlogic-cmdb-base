@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -8,8 +8,6 @@ package codedriver.framework.cmdb.dto.cientity;
 import codedriver.framework.cmdb.dto.transaction.RelEntityTransactionVo;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
-import codedriver.framework.elasticsearch.annotation.ESKey;
-import codedriver.framework.elasticsearch.constvalue.ESKeyType;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
 import com.alibaba.fastjson.annotation.JSONField;
@@ -31,12 +29,12 @@ public class RelEntityVo extends BasePageVo {
     @EntityField(name = "关系类型名称", type = ApiParamType.STRING)
     private String relTypeName;
     @EntityField(name = "来源配置项id", type = ApiParamType.LONG)
-    @ESKey(type = ESKeyType.PKEY, name = "id")
+    //@ESKey(type = ESKeyType.PKEY, name = "id")
     private Long fromCiEntityId;
     @EntityField(name = "来源配置项名称", type = ApiParamType.STRING)
     private String fromCiEntityName;
     @EntityField(name = "目标配置项id", type = ApiParamType.LONG)
-    @ESKey(type = ESKeyType.PKEY, name = "id")
+    //@ESKey(type = ESKeyType.PKEY, name = "id")
     private Long toCiEntityId;
     @EntityField(name = "目标配置项名称", type = ApiParamType.STRING)
     private String toCiEntityName;
