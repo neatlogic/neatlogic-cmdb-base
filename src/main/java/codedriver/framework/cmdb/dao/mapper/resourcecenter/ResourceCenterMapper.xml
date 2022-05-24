@@ -987,10 +987,12 @@
         a.`fcu`, a.`fcd`, a.`lcu`, a.`lcd`,
         b.`user_id`, b.`user_name`, b.`user_uuid`,
         c.`bg_id`, c.`bg_name`,
-        e.`id` AS `app_system_id`, e.`name` AS app_system_name, e.`abbr_name` AS app_system_abbr_name
+        e.`id` AS `app_system_id`, e.`name` AS app_system_name, e.`abbr_name` AS app_system_abbr_name,
+        f.state_name as stateName
         FROM ${schemaName}.`resource_appmodule` a
         LEFT JOIN ${schemaName}.`resource_appmodule_owner` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_appmodule_bg` c ON c.`resource_id` = a.`id`
+        LEFT JOIN ${schemaName}.`resource_appmodule_state` f ON a.`id` = f.`resource_id`
         LEFT JOIN ${schemaName}.`resource_appsystem_appmodule` d on d.`app_module_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_appsystem` e on e.`id` = d.`resource_id`
         WHERE a.`id` IN
