@@ -121,7 +121,8 @@ public class ResourceDetailView implements ICustomView {
             Join join = new Join().withLeft(true).withRightItem(table).addOnExpression(equalsTo);
             plainSelect.addJoins(join)
                     .addSelectItems(new SelectExpressionItem(new Column(table, "state_id")).withAlias(new Alias("state_id")))
-                    .addSelectItems(new SelectExpressionItem(new Column(table, "state_name")).withAlias(new Alias("state_name")));
+                    .addSelectItems(new SelectExpressionItem(new Column(table, "state_name")).withAlias(new Alias("state_name")))
+                    .addSelectItems(new SelectExpressionItem(new Column(table, "state_label")).withAlias(new Alias("state_label")));
         }
         {
             Table table = new Table(TenantContext.get().getDataDbName(),"resource_ipobject_datacenter").withAlias(new Alias("g").withUseAs(false));
