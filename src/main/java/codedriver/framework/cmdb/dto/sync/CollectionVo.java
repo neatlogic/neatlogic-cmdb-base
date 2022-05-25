@@ -34,6 +34,8 @@ public class CollectionVo implements Serializable {
     private String docroot;
     @EntityField(name = "集合显示名", type = ApiParamType.STRING)
     private String collection_label;
+    @EntityField(name = "数据量", type = ApiParamType.INTEGER)
+    private long dataCount;
 
     @Override
     public boolean equals(Object o) {
@@ -54,6 +56,14 @@ public class CollectionVo implements Serializable {
             c.andOperator(filterCriteriaList);
         }
         return c;
+    }
+
+    public long getDataCount() {
+        return dataCount;
+    }
+
+    public void setDataCount(long dataCount) {
+        this.dataCount = dataCount;
     }
 
     public String getCollection_label() {
