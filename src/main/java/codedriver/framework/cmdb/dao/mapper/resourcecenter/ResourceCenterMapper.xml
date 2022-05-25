@@ -130,6 +130,7 @@
         <result column="ip" property="ip"/>
         <result column="state_id" property="stateId"/>
         <result column="state_name" property="stateName"/>
+        <result column="state_label" property="stateLabel"/>
         <result column="datacenter_id" property="dataCenterId"/>
         <result column="datacenter_name" property="dataCenterName"/>
         <result column="env_id" property="envId"/>
@@ -988,7 +989,8 @@
         b.`user_id`, b.`user_name`, b.`user_uuid`,
         c.`bg_id`, c.`bg_name`,
         e.`id` AS `app_system_id`, e.`name` AS app_system_name, e.`abbr_name` AS app_system_abbr_name,
-        f.state_name as stateName
+        f.state_name as stateName,
+        f.state_label as stateLabel
         FROM ${schemaName}.`resource_appmodule` a
         LEFT JOIN ${schemaName}.`resource_appmodule_owner` b ON b.`resource_id` = a.`id`
         LEFT JOIN ${schemaName}.`resource_appmodule_bg` c ON c.`resource_id` = a.`id`

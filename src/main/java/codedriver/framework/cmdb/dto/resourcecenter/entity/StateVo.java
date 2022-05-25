@@ -24,6 +24,9 @@ public class StateVo {
     @EntityField(name = "状态名", type = ApiParamType.STRING)
     @ResourceField(name = "state_name")
     private String stateName;
+    @EntityField(name = "状态描述", type = ApiParamType.STRING)
+    @ResourceField(name = "state_label")
+    private String stateLabel;
     @EntityField(name = "资源id", type = ApiParamType.LONG)
     @ResourceField(name = "resource_id")
     private Long resourceId;
@@ -42,6 +45,14 @@ public class StateVo {
 
     public void setStateName(String stateName) {
         this.stateName = stateName;
+    }
+
+    public String getStateLabel() {
+        return stateLabel;
+    }
+
+    public void setStateLabel(String stateLabel) {
+        this.stateLabel = stateLabel;
     }
 
     public Long getResourceId() {
