@@ -43,6 +43,8 @@ public class ResourceVo extends BaseEditorVo {
     private Long stateId;
     @EntityField(name = "状态名称", type = ApiParamType.STRING)
     private String stateName;
+    @EntityField(name = "状态描述", type = ApiParamType.STRING)
+    private String stateLabel;
     @EntityField(name = "应用系统id", type = ApiParamType.LONG)
     private Long appSystemId;
     @EntityField(name = "应用系统名称", type = ApiParamType.STRING)
@@ -195,6 +197,14 @@ public class ResourceVo extends BaseEditorVo {
 
     public void setStateName(String stateName) {
         this.stateName = stateName;
+    }
+
+    public String getStateLabel() {
+        return stateLabel;
+    }
+
+    public void setStateLabel(String stateLabel) {
+        this.stateLabel = stateLabel;
     }
 
     public Long getAppSystemId() {
