@@ -12,5 +12,5 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface IAppSystemMapper extends ICrossoverService {
-    List<AppEnvironmentVo> getAppEnvironmentListByAppResourceIdAndModuleResourceIdList(@Param("appResourceId") Long appResourceId, @Param("moduleResourceIdList") List<Long> moduleIdList,@Param("schemaName") String schemaName);
+    List<AppEnvironmentVo> getAppEnvListByAppSystemIdAndModuleIdList(@Param("appResourceId") Long appResourceId, @Param("moduleResourceIdList") List<Long> moduleIdList, @Param("schemaName") String schemaName);
 }
