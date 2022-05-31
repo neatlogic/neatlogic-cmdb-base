@@ -5,6 +5,7 @@
 
 package codedriver.framework.cmdb.crossover;
 
+import codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
 import codedriver.framework.cmdb.dto.resourcecenter.entity.AppEnvironmentVo;
 import codedriver.framework.crossover.ICrossoverService;
 import org.apache.ibatis.annotations.Param;
@@ -13,4 +14,6 @@ import java.util.List;
 
 public interface IAppSystemMapper extends ICrossoverService {
     List<AppEnvironmentVo> getAppEnvListByAppSystemIdAndModuleIdList(@Param("appResourceId") Long appResourceId, @Param("moduleResourceIdList") List<Long> moduleIdList, @Param("schemaName") String schemaName);
+
+    Integer getAppSystemIdListCount(ResourceSearchVo searchVo);
 }
