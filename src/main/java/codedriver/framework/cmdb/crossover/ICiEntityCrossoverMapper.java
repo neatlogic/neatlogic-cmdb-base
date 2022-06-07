@@ -1,7 +1,11 @@
 package codedriver.framework.cmdb.crossover;
 
+import codedriver.framework.cmdb.dto.cientity.AttrEntityVo;
 import codedriver.framework.cmdb.dto.cientity.CiEntityVo;
 import codedriver.framework.crossover.ICrossoverService;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author longrf
@@ -16,4 +20,14 @@ public interface ICiEntityCrossoverMapper extends ICrossoverService {
      * @return CiEntityVo
      */
     CiEntityVo getCiEntityBaseInfoById(Long ciEntityId);
+
+    /**
+     * 返回来源配置项引用的所有目标属性
+     *
+     * @param attrId         属性id
+     * @param fromCiEntityId 来源配置项id
+     * @param limit          限制数量
+     * @return 属性列表
+     */
+    List<AttrEntityVo> getAttrEntityByAttrIdAndFromCiEntityId(@Param("fromCiEntityId") Long fromCiEntityId, @Param("attrId") Long attrId, @Param("limit") Long limit);
 }
