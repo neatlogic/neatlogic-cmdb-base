@@ -7,9 +7,13 @@ package codedriver.framework.cmdb.crossover;
 
 import codedriver.framework.cmdb.dto.ci.AttrVo;
 import codedriver.framework.crossover.ICrossoverService;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface IAttrCrossoverMapper extends ICrossoverService {
     List<AttrVo> getAttrByCiId(Long ciId);
+
+    AttrVo getAttrByCiIdAndName(@Param("ciId") Long ciId, @Param("attrName") String attrName);
+
 }
