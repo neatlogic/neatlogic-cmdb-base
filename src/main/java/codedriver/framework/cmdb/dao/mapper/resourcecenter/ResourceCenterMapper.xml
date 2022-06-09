@@ -1057,6 +1057,32 @@
         </if>
         and cra.account = #{username}
     </select>
+    <select id="getResourceByIpAndPortAndNameAndTypeName"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
+        SELECT
+            ri.NAME,
+            ri.`ip`,
+            ri.id,
+            rs.PORT,
+            ri.type_name AS typeName
+        FROM
+            ${schemaName}.`resource_ipobject` ri
+                LEFT JOIN ${schemaName}.`resource_softwareservice` rs ON ri.`id` = rs.`id`
+        WHERE
+        ri.ip = #{ip}
+        <if test="typeName != null and typeName != ''">
+            and ri.type_name = #{typeName}
+        </if>
+        <if test="port != null">
+            and rs.port = #{port}
+        </if>
+        <if test="port == null">
+            and rs.port is null
+        </if>
+        <if test="name != null and typeName != ''">
+            and ri.name = #{name}
+        </if>
+    </select>
 
     <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
         update `cmdb_resourcecenter_account` a set

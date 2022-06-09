@@ -230,6 +230,8 @@ public interface ResourceCenterMapper {
 
     ResourceVo getResourceByIpAndPort(@Param("schemaName") String schemaName, @Param("ip") String ip, @Param("port") Integer port);
 
+    ResourceVo getResourceByIpAndPortAndNameAndTypeName(@Param("schemaName")String dataDbName,@Param("ip") String ip,@Param("port") Integer port,@Param("name") String nodeName,@Param("typeName") String nodeType);
+
     List<AccountVo> getResourceAccountByResourceIdAndProtocolAndProtocolPortAndUsername(@Param("resourceId") Long resourceId,@Param("protocol") String protocol,@Param("protocolPort") Integer protocolPort,@Param("username") String username);
 
 //    AccountVo getAccountByName(String name);
@@ -281,4 +283,5 @@ public interface ResourceCenterMapper {
     int deleteAccountIpByIpList(@Param("ipList") List<String> resourceIpList);
 
     int deleteResourceScriptByResourceId(Long resourceId);
+
 }
