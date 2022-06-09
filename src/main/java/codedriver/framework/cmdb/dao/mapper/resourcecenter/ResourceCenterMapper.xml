@@ -710,6 +710,9 @@
             <if test="resource.port == null">
                 and rs.port is null
             </if>
+            <if test="resource.name != null">
+                and ri.name = #{resource.name}
+            </if>
         </foreach>
     </select>
 

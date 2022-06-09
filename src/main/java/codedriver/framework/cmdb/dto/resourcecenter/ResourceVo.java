@@ -106,9 +106,10 @@ public class ResourceVo extends BaseEditorVo {
     public ResourceVo() {
     }
 
-    public ResourceVo(String ip, Integer port) {
+    public ResourceVo(String ip, Integer port, String name) {
         this.ip = ip;
         this.port = port;
+        this.name = name;
     }
 
     public Long getId() {
