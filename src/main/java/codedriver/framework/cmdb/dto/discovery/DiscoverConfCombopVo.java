@@ -6,22 +6,22 @@
 package codedriver.framework.cmdb.dto.discovery;
 
 public class DiscoverConfCombopVo {
-    private String confId;
+    private Long confId;
     private Long combopId;
 
     public DiscoverConfCombopVo() {
     }
 
-    public DiscoverConfCombopVo(String _confId, Long _combopId) {
+    public DiscoverConfCombopVo(Long _confId, Long _combopId) {
         this.confId = _confId;
         this.combopId = _combopId;
     }
 
-    public String getConfId() {
+    public Long getConfId() {
         return confId;
     }
 
-    public void setConfId(String confId) {
+    public void setConfId(Long confId) {
         this.confId = confId;
     }
 
