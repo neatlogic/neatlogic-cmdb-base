@@ -552,6 +552,23 @@
         </where>
     </select>
 
+    <select id="getAppModuleListByAppSystemIdList"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.entity.ModuleVo">
+        SELECT
+               `resource_id` AS resourceId,
+               `app_module_id` AS appModuleId,
+               `app_module_name` AS appModuleName,
+               `app_module_abbr_name` AS appModuleAbbrName
+        FROM ${schemaName}.`resource_appsystem_appmodule`
+        <where>
+            `resource_id` IN
+            <foreach collection="appSystemIdList" item="appSystemId" open="(" separator="," close=")">
+                #{appSystemId}
+            </foreach>
+        </where>
+    </select>
+
     <select id="getAppModuleListByIdList" parameterType="java.util.List" resultMap="resourceCenterMap">
         SELECT
         a.`id`, a.`name`, a.`abbr_name`, a.`maintenance_window`, a.`description`,

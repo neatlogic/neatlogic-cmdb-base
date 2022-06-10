@@ -6,6 +6,7 @@
 package codedriver.framework.cmdb.dao.mapper.resourcecenter;
 
 import codedriver.framework.cmdb.dto.resourcecenter.*;
+import codedriver.framework.cmdb.dto.resourcecenter.entity.ModuleVo;
 import codedriver.framework.cmdb.dto.tag.TagVo;
 import org.apache.ibatis.annotations.Param;
 
@@ -137,6 +138,8 @@ public interface ResourceCenterMapper {
     List<Long> getAppModuleIdList(ResourceSearchVo searchVo);
 
     List<Long> getAppModuleIdListByAppSystemIdList(ResourceSearchVo searchVo);
+
+    List<ModuleVo> getAppModuleListByAppSystemIdList(ResourceSearchVo searchVo);
 
     List<ResourceVo> getAppModuleListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
