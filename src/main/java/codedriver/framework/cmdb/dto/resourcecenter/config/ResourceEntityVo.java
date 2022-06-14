@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -36,6 +36,9 @@ public class ResourceEntityVo {
     private String error;
     @EntityField(name = "初始化时间", type = ApiParamType.LONG)
     private Date initTime;
+    @EntityField(name = "关联模型id", type = ApiParamType.LONG)
+    private Long ciId;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -130,6 +133,17 @@ public class ResourceEntityVo {
 
     public void setCi(CiVo ci) {
         this.ci = ci;
+    }
+
+    public Long getCiId() {
+        if (ciId == null && ci != null) {
+            ciId = ci.getId();
+        }
+        return ciId;
+    }
+
+    public void setCiId(Long ciId) {
+        this.ciId = ciId;
     }
 
     public Date getInitTime() {
