@@ -29,6 +29,7 @@ public class SyncCiCollectionVo extends BasePageVo {
     private String ciLabel;
     @EntityField(name = "模型唯一标识", type = ApiParamType.STRING)
     private String ciName;
+
     @EntityField(name = "集合名称", type = ApiParamType.STRING)
     private String collectionName;
     @EntityField(name = "集合名称列表", type = ApiParamType.JSONARRAY)
