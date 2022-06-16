@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSureCo.,Ltd.AllRightsReserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -47,8 +47,8 @@ public class ResourceSearchVo extends BasePageVo {
     private List<Long> appModuleIdList;
     @EntityField(name = "标签id列表", type = ApiParamType.JSONARRAY)
     private List<Long> tagIdList;
-//    @EntityField(name = "资产id列表", type = ApiParamType.JSONARRAY)
-//    private List<Long> idList;
+    @EntityField(name = "资产id列表", type = ApiParamType.JSONARRAY)
+    private List<Long> idList;
     @EntityField(name = "ip地址列表", type = ApiParamType.JSONARRAY)
     private List<String> ipList;
     @EntityField(name = "名称", type = ApiParamType.STRING)
@@ -71,6 +71,14 @@ public class ResourceSearchVo extends BasePageVo {
 
     public final String getSchemaName() {
         return TenantContext.get().getDataDbName();
+    }
+
+    public List<Long> getIdList() {
+        return idList;
+    }
+
+    public void setIdList(List<Long> idList) {
+        this.idList = idList;
     }
 
     public Long getTypeId() {
