@@ -38,4 +38,7 @@ public interface ICiEntityCrossoverMapper extends ICrossoverService {
      * @return 多个CiEntityVo
      */
     List<CiEntityVo> getCiEntityBaseInfoByIdList(@Param("ciEntityIdList") List<Long> ciEntityIdList);
+
+    List<CiEntityVo> getResourceEnvByAppSystemIdAndAppModuleId(@Param("appSystemId") Long appSystemId, @Param("appModuleId") Long appModuleId);
+
 }
