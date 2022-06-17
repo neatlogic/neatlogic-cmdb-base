@@ -83,8 +83,6 @@ public class ResourceVo extends BaseEditorVo {
     private List<AccountVo> accountList;
     @EntityField(name = "标签列表", type = ApiParamType.JSONARRAY)
     private List<TagVo> tagVoList;
-    @EntityField(name = "脚本")
-    private ResourceScriptVo scriptVo;
     @EntityField(name = "集群id", type = ApiParamType.LONG)
     private Long clusterId;
     @EntityField(name = "集群名", type = ApiParamType.STRING)
@@ -358,14 +356,6 @@ public class ResourceVo extends BaseEditorVo {
 
     public void setTagVoList(List<TagVo> tagVoList) {
         this.tagVoList = tagVoList;
-    }
-
-    public ResourceScriptVo getScriptVo() {
-        return scriptVo;
-    }
-
-    public void setScriptVo(ResourceScriptVo scriptVo) {
-        this.scriptVo = scriptVo;
     }
 
     public Long getClusterId() {
