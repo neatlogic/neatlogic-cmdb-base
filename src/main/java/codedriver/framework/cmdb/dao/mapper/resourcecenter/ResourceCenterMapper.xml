@@ -969,29 +969,6 @@
         limit 1
     </select>
 
-    <select id="getResourceScriptListByResourceIdList"
-            parameterType="java.util.List"
-            resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceScriptVo">
-        SELECT
-        `resource_id` AS resourceId,
-        `script_id` AS scriptId,
-        `config` as configStr
-        FROM `cmdb_resourcecenter_resource_script`
-        WHERE `resource_id` in
-        <foreach collection="resourceIdList" item="resourceId" open="(" separator="," close=")">
-            #{resourceId}
-        </foreach>
-    </select>
-
-    <select id="getResourceScriptByResourceId"
-            resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceScriptVo">
-        select `resource_id` as resourceId,
-               `script_id`   as scriptId,
-               `config`      as configStr
-        from `cmdb_resourcecenter_resource_script`
-        WHERE `resource_id` = #{value}
-    </select>
-
     <select id="getResourceAccountListByResourceId"
             resultMap="accountMap">
         SELECT cra.id,
@@ -1202,11 +1179,6 @@
         VALUES (#{accountId}, #{ip})
     </insert>
 
-    <insert id="insertResourceScript">
-        insert into `cmdb_resourcecenter_resource_script`(`resource_id`, `script_id`, `config`)
-        values (#{resourceId}, #{scriptId}, #{config})
-    </insert>
-
     <delete id="deleteAccountById" parameterType="java.lang.Long">
         delete
         from `cmdb_resourcecenter_account`
@@ -1283,11 +1255,6 @@
         <foreach collection="ipList" open="(" close=")" separator="," item="ip">
             #{ip}
         </foreach>
-    </delete>
-    <delete id="deleteResourceScriptByResourceId">
-        delete
-        from `cmdb_resourcecenter_resource_script`
-        where `resource_id` = #{value}
     </delete>
 
 </mapper>
