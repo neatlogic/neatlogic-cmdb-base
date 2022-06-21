@@ -38,4 +38,13 @@ public interface ICiEntityCrossoverMapper extends ICrossoverService {
      * @return 多个CiEntityVo
      */
     List<CiEntityVo> getCiEntityBaseInfoByIdList(@Param("ciEntityIdList") List<Long> ciEntityIdList);
+
+
+    /**
+     * 根据模型名称查询配置项个数
+     *
+     * @param ciName
+     * @return
+     */
+    int getCiEntityIdListCountByCiName(@Param("ciName") String ciName);
 }
