@@ -16,4 +16,6 @@ public interface IAppSystemMapper extends ICrossoverService {
     List<AppEnvironmentVo> getAppEnvListByAppSystemIdAndModuleIdList(@Param("appResourceId") Long appResourceId, @Param("moduleResourceIdList") List<Long> moduleIdList, @Param("schemaName") String schemaName);
 
     Integer getAppSystemIdListCount(ResourceSearchVo searchVo);
+
+    List<Long> getAppSystemIdListByAppModuleName(@Param("keyword") String keyword, @Param("schemaName") String schemaName);
 }
