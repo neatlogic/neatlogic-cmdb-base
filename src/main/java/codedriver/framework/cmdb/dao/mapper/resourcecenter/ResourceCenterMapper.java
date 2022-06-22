@@ -177,6 +177,8 @@ public interface ResourceCenterMapper {
 
     List<ResourceVo> getResourceListByResourceVoList(@Param("resourceList") List<ResourceVo> resourceList, @Param("schemaName") String schemaName);
 
+    List<ResourceVo> getResourceByAppSystemIdAndModuleIdAndEnvId(@Param("appSystemId") Long appSystemId, @Param("moduleId") Long moduleId, @Param("envId") Long envId);
+
     List<AccountVo> getResourceAccountListByResourceIdAndProtocolAndAccount(@Param("resourceIdList") List<Long> resourceIdList, @Param("protocolId") Long protocolId, @Param("userName") String userName);
 
     AccountVo getResourceAccountByResourceIdAndAccountId(@Param("resourceId") Long resourceId, @Param("accountId") Long accountId);

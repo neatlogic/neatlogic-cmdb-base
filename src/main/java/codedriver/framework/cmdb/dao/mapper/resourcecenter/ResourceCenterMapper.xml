@@ -733,6 +733,19 @@
         </foreach>
     </select>
 
+    <select id="getResourceByAppSystemIdAndModuleIdAndEnvId"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
+        SELECT id,
+               name,
+               ip,
+               port,
+               maintenance_window AS maintenanceWindow
+        FROM codedriver_develop_data.resource_ipobject_detail
+        WHERE app_system_id = #{appSystemId}
+          AND app_module_id = #{moduleId}
+          AND env_id = #{envId}
+    </select>
+
     <select id="getResourceAccountListByResourceIdAndProtocolAndAccount"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
         SELECT crap.name as protocol,cra.id,cra.`account` ,cra.`password` as passwordCipher,crra.`resource_id`
