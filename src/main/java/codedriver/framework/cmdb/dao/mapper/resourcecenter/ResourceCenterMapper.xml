@@ -733,17 +733,15 @@
         </foreach>
     </select>
 
-    <select id="getResourceByAppSystemIdAndModuleIdAndEnvId"
+    <select id="getResourceListByAppSystemIdAndModuleIdAndEnvId"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
-        SELECT id,
-               name,
-               ip,
-               port,
-               maintenance_window AS maintenanceWindow
-        FROM codedriver_develop_data.resource_ipobject_detail
-        WHERE app_system_id = #{appSystemId}
-          AND app_module_id = #{moduleId}
-          AND env_id = #{envId}
+        SELECT *
+        FROM ${schemaName}.resource_ipobject_detail
+        WHERE app_system_id = #{resourceVo.appSystemId}
+          AND app_module_id = #{resourceVo.appModuleId}
+          AND env_id = #{resourceVo.envId}
+        ORDER BY id DESC
+            LIMIT #{resourceVo.startNum}, #{resourceVo.pageSize}
     </select>
 
     <select id="getResourceAccountListByResourceIdAndProtocolAndAccount"
