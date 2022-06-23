@@ -552,6 +552,14 @@
         </where>
     </select>
 
+    <select id="getAppSystemModuleIdListByAppSystemId"
+            resultType="java.lang.Long">
+        SELECT `app_module_id` FROM ${schemaName}.`resource_appsystem_appmodule`
+        <where>
+            `resource_id` = #{appSystemId}
+        </where>
+    </select>
+
     <select id="getAppModuleListByAppSystemIdList"
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.entity.ModuleVo">
@@ -733,14 +741,18 @@
         </foreach>
     </select>
 
-    <select id="getResourceListByAppSystemIdAndModuleIdAndEnvId"
-            resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
-        SELECT *
-        FROM ${schemaName}.resource_ipobject_detail
-        WHERE app_system_id = #{resourceVo.appSystemId}
-          AND app_module_id = #{resourceVo.appModuleId}
-          AND env_id = #{resourceVo.envId}
-        ORDER BY id DESC
+    <select id="getResourceIdListByAppSystemIdAndModuleIdAndEnvId"
+            resultType="java.lang.Long">
+        SELECT rse.resource_id
+        FROM ${schemaName}.resource_appsystem_appmodule raa
+        JOIN ${schemaName}.resource_ipobject_appmodule ria ON raa.app_module_id = ria.app_module_id
+        JOIN cmdb_cientity cc ON cc.id = ria.resource_id
+        JOIN cmdb_ci cci ON cci.id=cc.ci_id
+        JOIN ${schemaName}.resource_softwareservice_env rse ON ria.resource_id = rse.resource_id
+        WHERE raa.resource_id = #{resourceVo.appSystemId}
+          AND ria.app_module_id = #{resourceVo.appModuleId}
+          AND rse.env_id = #{resourceVo.envId}
+        ORDER BY rse.resource_id DESC
             LIMIT #{resourceVo.startNum}, #{resourceVo.pageSize}
     </select>
 
