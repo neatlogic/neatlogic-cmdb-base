@@ -552,6 +552,14 @@
         </where>
     </select>
 
+    <select id="getAppSystemModuleIdListByAppSystemId"
+            resultType="java.lang.Long">
+        SELECT `app_module_id` FROM ${schemaName}.`resource_appsystem_appmodule`
+        <where>
+            `resource_id` = #{appSystemId}
+        </where>
+    </select>
+
     <select id="getAppModuleListByAppSystemIdList"
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.entity.ModuleVo">
@@ -731,6 +739,19 @@
                 and ri.name = #{resource.name}
             </if>
         </foreach>
+    </select>
+
+    <select id="getResourceIdListByAppSystemIdAndModuleIdAndEnvId"
+            resultType="java.lang.Long">
+        SELECT rse.resource_id
+        FROM ${schemaName}.resource_appsystem_appmodule raa
+        JOIN ${schemaName}.resource_ipobject_appmodule ria ON raa.app_module_id = ria.app_module_id
+        JOIN ${schemaName}.resource_softwareservice_env rse ON ria.resource_id = rse.resource_id
+        WHERE raa.resource_id = #{resourceVo.appSystemId}
+          AND ria.app_module_id = #{resourceVo.appModuleId}
+          AND rse.env_id = #{resourceVo.envId}
+        ORDER BY rse.resource_id DESC
+            LIMIT #{resourceVo.startNum}, #{resourceVo.pageSize}
     </select>
 
     <select id="getResourceAccountListByResourceIdAndProtocolAndAccount"
