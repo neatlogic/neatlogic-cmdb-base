@@ -6,13 +6,16 @@
 package codedriver.framework.cmdb.dto.resourcecenter.customview;
 
 import codedriver.framework.asynchronization.threadlocal.TenantContext;
-import net.sf.jsqlparser.expression.Alias;
+import codedriver.framework.jsqlparser.OrExpressionList;
+import net.sf.jsqlparser.expression.*;
+import net.sf.jsqlparser.expression.operators.conditional.AndExpression;
 import net.sf.jsqlparser.expression.operators.relational.EqualsTo;
+import net.sf.jsqlparser.expression.operators.relational.ExpressionList;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
 
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * @author linbq
@@ -177,4 +180,40 @@ public class ResourceDetailView implements ICustomView {
         return plainSelect.toString();
     }
 
+    public static void main(String[] args) {
+        String fromTableName = "cmdb_" + 111;
+        String fromTableAlias = "resource_ipobject";
+        Table fromTable = new Table(fromTableName).withAlias(new Alias(fromTableAlias).withUseAs(false));
+        PlainSelect plainSelect = new PlainSelect()
+                .withFromItem(fromTable)
+                .addSelectItems(new SelectExpressionItem(new Function().withName("COUNT").withDistinct(true).withParameters(new ExpressionList(Arrays.asList(new Column(fromTable, "id"))))))
+                ;
+        ;
+//        InExpression inExpression = new InExpression(new Column(fromTable, "id"), new ExpressionList(Arrays.asList(new LongValue(10L))));
+//        plainSelect.setWhere(inExpression);
+        OrExpressionList expressionList = new OrExpressionList();
+        expressionList.addExpressions(new EqualsTo(new Column(new Table("a"), "b"), new StringValue("c")));
+        expressionList.addExpressions(new EqualsTo(new Column(new Table("d"), "e"), new StringValue("f")));
+        expressionList.addExpressions(new EqualsTo(new Column(new Table("g"), "h"), new StringValue("i")));
+        System.out.println(new AndExpression(new EqualsTo(new Column(new Table("a"), "b"), new StringValue("c")), expressionList));
+//        plainSelect.setWhere(expressionList);
+        System.out.println(plainSelect.toString());
+//        String sql = "select COUNT(DISTINCT a.`id`) as num, a.`id`, a.`name` from user a where a.`id` = ?";
+//        try {
+//            Statement statement = CCJSqlParserUtil.parse(sql);
+//            Select select = (Select) statement;
+//            PlainSelect plainSelect = (PlainSelect) select.getSelectBody();
+//            Table table = (Table) plainSelect.getFromItem();
+//            System.out.println(table.getName());
+//            System.out.println(table.getAlias().getName());
+//            List<SelectItem> selectItems = plainSelect.getSelectItems();
+//            for (SelectItem selectItem : selectItems) {
+//                SelectExpressionItem selectExpressionItem = (SelectExpressionItem)selectItem;
+//                System.out.println(selectItem.toString());
+//            }
+//            Expression where = plainSelect.getWhere();
+//        } catch (JSQLParserException e) {
+//            e.printStackTrace();
+//        }
+    }
 }

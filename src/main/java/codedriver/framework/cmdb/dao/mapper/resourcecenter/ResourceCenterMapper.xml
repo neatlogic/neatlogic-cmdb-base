@@ -6,6 +6,17 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="codedriver.framework.cmdb.dao.mapper.resourcecenter.ResourceCenterMapper">
+    <select id="getResourceCount3" parameterType="java.lang.String" resultType="int">
+        ${sql}
+    </select>
+
+    <select id="getResourceIdList3" parameterType="java.lang.String" resultType="java.lang.Long">
+        ${sql}
+    </select>
+
+    <select id="getResourceListByIdList3" parameterType="java.lang.String" resultMap="resourceCenterMap">
+        ${sql}
+    </select>
 
     <sql id="resource_ipobject_where">
         <if test="keyword != null and keyword != ''">
@@ -90,6 +101,7 @@
         <where>
             <include refid="resource_ipobject_where"/>
         </where>
+        ORDER BY a.`id`
         LIMIT #{startNum}, #{pageSize}
     </select>
 
