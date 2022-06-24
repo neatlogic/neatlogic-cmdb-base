@@ -139,6 +139,8 @@ public interface ResourceCenterMapper {
 
     List<Long> getAppModuleIdListByAppSystemIdList(ResourceSearchVo searchVo);
 
+    List<Long> getAppSystemModuleIdListByAppSystemId(@Param("appSystemId") Long appSystemId, @Param("schemaName") String schemaName);
+
     List<ModuleVo> getAppModuleListByAppSystemIdList(ResourceSearchVo searchVo);
 
     List<ResourceVo> getAppModuleListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
@@ -176,6 +178,8 @@ public interface ResourceCenterMapper {
     List<ResourceTagVo> getResourceTagListByResourceIdList(List<Long> resourceIdList);
 
     List<ResourceVo> getResourceListByResourceVoList(@Param("resourceList") List<ResourceVo> resourceList, @Param("schemaName") String schemaName);
+
+    List<Long> getResourceIdListByAppSystemIdAndModuleIdAndEnvId(@Param("resourceVo")ResourceVo resourceVo, @Param("schemaName") String schemaName);
 
     List<AccountVo> getResourceAccountListByResourceIdAndProtocolAndAccount(@Param("resourceIdList") List<Long> resourceIdList, @Param("protocolId") Long protocolId, @Param("userName") String userName);
 
