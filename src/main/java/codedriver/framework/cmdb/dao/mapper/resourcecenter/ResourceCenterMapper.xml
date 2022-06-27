@@ -554,8 +554,10 @@
 
     <select id="searchAppModule"
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
-            resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
-        SELECT `id`, `name`, `abbr_name` as abbrName
+            resultMap="resourceCenterMap">
+        SELECT a.`id`, a.`name`, a.`abbr_name`, a.`maintenance_window`, a.`description`,
+        a.`inspect_status`, a.`inspect_time`, a.`monitor_status`, a.`monitor_time`,
+        a.`fcu`, a.`fcd`, a.`lcu`, a.`lcd`
         FROM ${schemaName}.`resource_appmodule` a
         <where>
             <if test="searchVo.keyword != null and searchVo.keyword != ''">
