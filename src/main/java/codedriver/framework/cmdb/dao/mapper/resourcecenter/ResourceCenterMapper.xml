@@ -564,6 +564,42 @@
         </where>
     </select>
 
+    <sql id="searchAppModuleWhere">
+        <where>
+            <if test="searchVo.keyword != null and searchVo.keyword != ''">
+                AND a.`name` LIKE concat('%', #{searchVo.keyword}, '%')
+            </if>
+            <if test="searchVo.appSystemIdList != null and searchVo.appSystemIdList.size() > 0">
+                AND EXISTS (
+                SELECT 1 FROM ${schemaName}.`resource_appsystem_appmodule` b
+                WHERE b.`app_module_id` = a.`id`
+                AND b.`resource_id` IN
+                <foreach collection="searchVo.appSystemIdList" item="appSystemId" open="(" separator="," close=")">
+                    #{appSystemId}
+                </foreach>
+                )
+            </if>
+        </where>
+    </sql>
+
+    <select id="searchAppModuleCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM ${schemaName}.`resource_appmodule` a
+        <include refid="searchAppModuleWhere"/>
+    </select>
+
+    <select id="searchAppModule"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+            resultMap="resourceCenterMap">
+        SELECT a.`id`, a.`name`, a.`abbr_name`, a.`maintenance_window`, a.`description`,
+        a.`inspect_status`, a.`inspect_time`, a.`monitor_status`, a.`monitor_time`,
+        a.`fcu`, a.`fcd`, a.`lcu`, a.`lcd`
+        FROM ${schemaName}.`resource_appmodule` a
+        <include refid="searchAppModuleWhere"/>
+        ORDER BY `id` DESC
+        LIMIT #{searchVo.startNum}, #{searchVo.pageSize}
+    </select>
+
     <select id="getAppSystemModuleIdListByAppSystemId"
             resultType="java.lang.Long">
         SELECT `app_module_id` FROM ${schemaName}.`resource_appsystem_appmodule`
@@ -1110,7 +1146,6 @@
             and ri.name = #{name}
         </if>
     </select>
-
     <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
         update `cmdb_resourcecenter_account` a set
         <if test="name != null">
