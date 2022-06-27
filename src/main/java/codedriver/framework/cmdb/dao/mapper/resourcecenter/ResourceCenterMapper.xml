@@ -537,6 +537,12 @@
             <if test="keyword != null and keyword != ''">
                 AND a.`name` LIKE concat('%', #{keyword}, '%')
             </if>
+            <if test="idList != null and idList.size() > 0">
+                AND a.`id` IN
+                <foreach collection="idList" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
         </where>
     </select>
 
