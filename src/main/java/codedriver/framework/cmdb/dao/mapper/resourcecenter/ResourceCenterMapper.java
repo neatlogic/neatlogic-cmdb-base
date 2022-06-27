@@ -141,6 +141,8 @@ public interface ResourceCenterMapper {
 
     List<Long> getHasModuleAppSystemIdListByAppSystemIdList(@Param("appSystemIdList") List<Long> appSystemIdList, @Param("schemaName") String schemaName);
 
+    int searchAppModuleCount(@Param("searchVo") ResourceSearchVo searchVo, @Param("schemaName") String schemaName);
+
     List<ResourceVo> searchAppModule(@Param("searchVo") ResourceSearchVo searchVo, @Param("schemaName") String schemaName);
 
     List<Long> getAppSystemModuleIdListByAppSystemId(@Param("appSystemId") Long appSystemId, @Param("schemaName") String schemaName);
