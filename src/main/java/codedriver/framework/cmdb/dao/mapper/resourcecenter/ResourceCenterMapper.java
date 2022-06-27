@@ -139,6 +139,8 @@ public interface ResourceCenterMapper {
 
     List<Long> getAppModuleIdListByAppSystemIdList(@Param("appSystemIdList") List<Long> appSystemIdList, @Param("schemaName") String schemaName);
 
+    List<ResourceVo> searchAppModule(@Param("searchVo") ResourceSearchVo searchVo, @Param("schemaName") String schemaName);
+
     List<Long> getAppSystemModuleIdListByAppSystemId(@Param("appSystemId") Long appSystemId, @Param("schemaName") String schemaName);
 
     List<ModuleVo> getAppModuleListByAppSystemIdList(ResourceSearchVo searchVo);
@@ -179,7 +181,7 @@ public interface ResourceCenterMapper {
 
     List<ResourceVo> getResourceListByResourceVoList(@Param("resourceList") List<ResourceVo> resourceList, @Param("schemaName") String schemaName);
 
-    List<Long> getResourceIdListByAppSystemIdAndModuleIdAndEnvId(@Param("resourceVo")ResourceVo resourceVo, @Param("schemaName") String schemaName);
+    List<Long> getResourceIdListByAppSystemIdAndModuleIdAndEnvId(@Param("resourceVo") ResourceVo resourceVo, @Param("schemaName") String schemaName);
 
     List<AccountVo> getResourceAccountListByResourceIdAndProtocolAndAccount(@Param("resourceIdList") List<Long> resourceIdList, @Param("protocolId") Long protocolId, @Param("userName") String userName);
 
@@ -233,9 +235,9 @@ public interface ResourceCenterMapper {
 
     ResourceVo getResourceByIpAndPort(@Param("schemaName") String schemaName, @Param("ip") String ip, @Param("port") Integer port);
 
-    ResourceVo getResourceByIpAndPortAndNameAndTypeName(@Param("schemaName")String dataDbName,@Param("ip") String ip,@Param("port") Integer port,@Param("name") String nodeName,@Param("typeName") String nodeType);
+    ResourceVo getResourceByIpAndPortAndNameAndTypeName(@Param("schemaName") String dataDbName, @Param("ip") String ip, @Param("port") Integer port, @Param("name") String nodeName, @Param("typeName") String nodeType);
 
-    List<AccountVo> getResourceAccountByResourceIdAndProtocolAndProtocolPortAndUsername(@Param("resourceId") Long resourceId,@Param("protocol") String protocol,@Param("protocolPort") Integer protocolPort,@Param("username") String username);
+    List<AccountVo> getResourceAccountByResourceIdAndProtocolAndProtocolPortAndUsername(@Param("resourceId") Long resourceId, @Param("protocol") String protocol, @Param("protocolPort") Integer protocolPort, @Param("username") String username);
 
 //    AccountVo getAccountByName(String name);
 

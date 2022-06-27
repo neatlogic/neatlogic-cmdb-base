@@ -537,12 +537,6 @@
             <if test="keyword != null and keyword != ''">
                 AND a.`name` LIKE concat('%', #{keyword}, '%')
             </if>
-            <if test="idList != null and idList.size() > 0">
-                AND a.`id` IN
-                <foreach collection="idList" item="item" open="(" separator="," close=")">
-                    #{item}
-                </foreach>
-            </if>
         </where>
     </select>
 
@@ -556,6 +550,30 @@
                 #{appSystemId}
             </foreach>
         </where>
+    </select>
+
+    <select id="searchAppModule"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+            resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
+        SELECT `id`, `name`, `abbr_name` as abbrName
+        FROM ${schemaName}.`resource_appmodule` a
+        <where>
+            <if test="searchVo.keyword != null and searchVo.keyword != ''">
+                AND a.`name` LIKE concat('%', #{searchVo.keyword}, '%')
+            </if>
+            <if test="searchVo.appSystemIdList != null and searchVo.appSystemIdList.size() > 0">
+                AND EXISTS (
+                SELECT 1 FROM ${schemaName}.`resource_appsystem_appmodule` b
+                WHERE b.`app_module_id` = a.`id`
+                AND b.`resource_id` IN
+                <foreach collection="searchVo.appSystemIdList" item="appSystemId" open="(" separator="," close=")">
+                    #{appSystemId}
+                </foreach>
+                )
+            </if>
+        </where>
+        ORDER BY `id` DESC
+        LIMIT #{searchVo.startNum}, #{searchVo.pageSize}
     </select>
 
     <select id="getAppSystemModuleIdListByAppSystemId"
