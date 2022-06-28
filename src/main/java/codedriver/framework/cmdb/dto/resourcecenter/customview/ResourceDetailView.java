@@ -6,7 +6,7 @@
 package codedriver.framework.cmdb.dto.resourcecenter.customview;
 
 import codedriver.framework.asynchronization.threadlocal.TenantContext;
-import net.sf.jsqlparser.expression.*;
+import net.sf.jsqlparser.expression.Alias;
 import net.sf.jsqlparser.expression.operators.relational.EqualsTo;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
