@@ -18,7 +18,6 @@ public class ResourceInfo {
 
     private Long resourceCiId;
     private String resourceCiName;
-    private CiVo resourceCiVo;
     private CiVo attrCiVo;
     private String attrCiName;
     private Long attrCiId;
@@ -123,13 +122,6 @@ public class ResourceInfo {
         this.resourceCiName = fromTableAlias;
     }
 
-    public CiVo getResourceCiVo() {
-        return resourceCiVo;
-    }
-
-    public void setResourceCiVo(CiVo resourceCiVo) {
-        this.resourceCiVo = resourceCiVo;
-    }
 
     public Long getAttrFromCiId() {
         return attrFromCiId;

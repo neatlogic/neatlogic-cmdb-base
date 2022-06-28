@@ -23,7 +23,6 @@ import net.sf.jsqlparser.expression.operators.relational.MinorThanEquals;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
-import net.sf.jsqlparser.util.cnfexpression.MultiAndExpression;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.*;
@@ -121,7 +120,6 @@ public class ResourceSearchGenerateSqlUtil {
                 CiVo ciVo = resourceEntityVo.getCi();
                 resourceInfo.setResourceCiName(ciVo.getName());
                 resourceInfo.setResourceCiId(ciVo.getId());
-                resourceInfo.setResourceCiVo(ciVo);
                 Set<ResourceEntityAttrVo> attrList = resourceEntityVo.getAttrList();
                 for (ResourceEntityAttrVo resourceEntityAttrVo : attrList) {
                     if (Objects.equals(resourceEntityAttrVo.getField(), resourceInfo.getColumnName())) {
@@ -215,7 +213,6 @@ public class ResourceSearchGenerateSqlUtil {
     public Column addJoinTableByResourceInfo(ResourceInfo resourceInfo, PlainSelect plainSelect) {
         Table mainTable = (Table) plainSelect.getFromItem();
         String attrCiName = resourceInfo.getAttrCiName();
-        Long attrCiId = resourceInfo.getAttrCiId();
         CiVo attrCiVo = resourceInfo.getAttrCiVo();
         String columnName = resourceInfo.getColumnName();
         Long attrId = resourceInfo.getAttrId();
@@ -247,23 +244,13 @@ public class ResourceSearchGenerateSqlUtil {
 //            (left) join cmdb_attrentity cmdb_attrentity_owner ON cmdb_attrentity_owner.from_cientity_id = IPObject.id and cmdb_attrentity_owner.attr_id = #{attrId}
 //            (LEFT) JOIN codedriver_develop_data.cmdb_479643459133440 cmdb_479643459133440_User ON cmdb_479643459133440_User.id = cmdb_attrentity_owner.to_cientity_id
             String resourceCiName = resourceInfo.getResourceCiName();
-            CiVo resourceCiVo = resourceInfo.getResourceCiVo();
             Table resourceCiTable = getTableByAlias(resourceCiName);
             if (resourceCiTable == null) {
                 resourceCiTable = new Table("cmdb_cientity").withAlias(new Alias(resourceCiName).withUseAs(false));
                 Column resourceCiTableIdColumn = new Column(resourceCiTable, "id");
                 Column mainTableIdColumn = new Column(mainTable, "id");
                 EqualsTo equalsTo = new EqualsTo(resourceCiTableIdColumn, mainTableIdColumn);
-
-                Table cmdbCi = new Table("cmdb_ci").withAlias(new Alias("ci_" + resourceCiName).withUseAs(false));
-                Column cmdbCiLftColumn = new Column(cmdbCi, "lft");
-                Column cmdbCiRhtColumn = new Column(cmdbCi, "rht");
-                Column resourceCiTableCiIdColumn = new Column(resourceCiTable, "ci_id");
-                GreaterThanEquals greaterThanEquals = new GreaterThanEquals(">=").withLeftExpression(cmdbCiLftColumn).withRightExpression(new LongValue(resourceCiVo.getLft()));
-                MinorThanEquals minorThanEquals = new MinorThanEquals("<=").withLeftExpression(cmdbCiRhtColumn).withRightExpression(new LongValue(resourceCiVo.getRht()));
-                SubSelect subSelect = new SubSelect().withSelectBody(new PlainSelect().withFromItem(cmdbCi).addSelectItems(new SelectExpressionItem(new Column(cmdbCi, "id"))).withWhere(new AndExpression(greaterThanEquals, minorThanEquals)));
-                InExpression inExpression = new InExpression(resourceCiTableCiIdColumn, subSelect);
-                Join join = new Join().withLeft(left).withRightItem(resourceCiTable).addOnExpression(new AndExpression(equalsTo, inExpression));
+                Join join = new Join().withLeft(left).withRightItem(resourceCiTable).addOnExpression(equalsTo);
                 plainSelect.addJoins(join);
                 addJoinTable(resourceCiTable);
                 addEqualColumn(resourceCiTableIdColumn, mainTableIdColumn);
@@ -285,6 +272,7 @@ public class ResourceSearchGenerateSqlUtil {
 
             if (Objects.equals(resourceInfo.getAttrCiIsVirtual(), 1)) {
                 //属性模型是虚拟模型时
+                Long attrCiId = resourceInfo.getAttrCiId();
                 Table cmdbCiIdTable = joinedTableMap.get("cmdb_" + attrCiId + "_" + attrCiName);
                 if (cmdbCiIdTable == null) {
                     cmdbCiIdTable = new Table(TenantContext.get().getDataDbName(), "cmdb_" + attrCiId)
@@ -297,10 +285,13 @@ public class ResourceSearchGenerateSqlUtil {
                     addEqualColumn(cmdbCiIdTableIdColumn, cmdbAttrentityTableToCientityIdColumn);
                 }
                 if (attrId == null) {
-                    plainSelect.addSelectItems(new SelectExpressionItem(new Column(cmdbCiIdTable, resourceInfo.getAttrName())).withAlias(new Alias(columnName)));
+                    Column column = new Column(cmdbCiIdTable, resourceInfo.getAttrName());
+                    plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(columnName)));
+                    return column;
                 } else {
                     Column column = new Column(cmdbCiIdTable, "`" + attrId + "`");
                     plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(columnName)));
+                    return column;
                 }
             } else {
                 //属性模型是非虚拟模型时
@@ -310,22 +301,15 @@ public class ResourceSearchGenerateSqlUtil {
                     Column attrCiTableIdColumn = new Column(attrCiTable, "id");
                     Column cmdbAttrentityTableToCientityIdColumn = new Column(cmdbAttrentityTable, "to_cientity_id");
                     EqualsTo equalsTo = new EqualsTo(attrCiTableIdColumn, cmdbAttrentityTableToCientityIdColumn);
-
-                    Column attrCiTableCiIdColumn = new Column(attrCiTable, "ci_id");
-                    Table cmdbCi = new Table("cmdb_ci").withAlias(new Alias("ci_" + attrCiName).withUseAs(false));
-                    Column cmdbCiLftColumn = new Column(cmdbCi, "lft");
-                    Column cmdbCiRhtColumn = new Column(cmdbCi, "rht");
-                    GreaterThanEquals greaterThanEquals = new GreaterThanEquals(">=").withLeftExpression(cmdbCiLftColumn).withRightExpression(new LongValue(attrCiVo.getLft()));
-                    MinorThanEquals minorThanEquals = new MinorThanEquals("<=").withLeftExpression(cmdbCiRhtColumn).withRightExpression(new LongValue(attrCiVo.getRht()));
-                    SubSelect subSelect = new SubSelect().withSelectBody(new PlainSelect().withFromItem(cmdbCi).addSelectItems(new SelectExpressionItem(new Column(cmdbCi, "id"))).withWhere(new AndExpression(greaterThanEquals, minorThanEquals)));
-                    InExpression inExpression = new InExpression(attrCiTableCiIdColumn, subSelect);
-                    Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(new AndExpression(equalsTo, inExpression));
+                    Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(equalsTo);
                     plainSelect.addJoins(join);
                     addJoinTable(attrCiTable);
                     addEqualColumn(attrCiTableIdColumn, cmdbAttrentityTableToCientityIdColumn);
                 }
                 if (attrId == null) {
-                    plainSelect.addSelectItems(new SelectExpressionItem(new Column(attrCiTable, resourceInfo.getAttrName())).withAlias(new Alias(columnName)));
+                    Column column = new Column(attrCiTable, resourceInfo.getAttrName());
+                    plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(columnName)));
+                    return column;
                 } else {
                     String tableName = "cmdb_" + resourceInfo.getAttrFromCiId();
                     String tableAlias = tableName + "_" + attrCiName;
@@ -341,14 +325,64 @@ public class ResourceSearchGenerateSqlUtil {
                     }
                     Column column = new Column(cmdbCiIdTable, "`" + attrId + "`");
                     plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(columnName)));
+                    return column;
                 }
-//                plainSelect.addSelectItems(new SelectExpressionItem(new Column(table3, "id")).withAlias(new Alias(searchConditionMapping.getColumnName())));
             }
-            return new Column(cmdbAttrentityTable, "to_cientity_id");
         } else if (resourceInfo.getJoinType() == JoinType.REL) {
             //关系
             if (Objects.equals(resourceInfo.getDirection(), RelDirectionType.FROM.getValue())) {
-                return null;
+                Table cmdbRelentityTable = joinedTableMap.get("cmdb_relentity_" + attrCiName);
+                if (cmdbRelentityTable == null) {
+                    cmdbRelentityTable = new Table("cmdb_relentity").withAlias(new Alias("cmdb_relentity_" + attrCiName).withUseAs(false));
+                    Column cmdbRelentityTableToCientityIdColumn = new Column(cmdbRelentityTable, "from_cientity_id");
+                    Column fromTableIdColumn = new Column(new Table(resourceInfo.getResourceCiName()), "id");
+                    Join join = new Join().withLeft(left).withRightItem(cmdbRelentityTable).addOnExpression(new EqualsTo(cmdbRelentityTableToCientityIdColumn, fromTableIdColumn));
+                    plainSelect.addJoins(join);
+                    addJoinTable(cmdbRelentityTable);
+                    addEqualColumn(cmdbRelentityTableToCientityIdColumn, fromTableIdColumn);
+                }
+
+                Table attrCiTable = joinedTableMap.get(attrCiName);
+                if (attrCiTable == null) {
+                    attrCiTable = new Table("cmdb_cientity").withAlias(new Alias(attrCiName).withUseAs(false));
+                    Column attrCiTableIdColumn = new Column(attrCiTable, "id");
+                    Column cmdbRelentityTableFromCientityIdColumn = new Column(cmdbRelentityTable, "to_cientity_id");
+                    EqualsTo equalsTo = new EqualsTo(attrCiTableIdColumn, cmdbRelentityTableFromCientityIdColumn);
+
+                    Column attrCiTableCiIdColumn = new Column(attrCiTable, "ci_id");
+                    Table cmdbCi = new Table("cmdb_ci").withAlias(new Alias("ci_" + attrCiName).withUseAs(false));
+                    Column cmdbCiLftColumn = new Column(cmdbCi, "lft");
+                    Column cmdbCiRhtColumn = new Column(cmdbCi, "rht");
+                    GreaterThanEquals greaterThanEquals = new GreaterThanEquals(">=").withLeftExpression(cmdbCiLftColumn).withRightExpression(new LongValue(attrCiVo.getLft()));
+                    MinorThanEquals minorThanEquals = new MinorThanEquals("<=").withLeftExpression(cmdbCiRhtColumn).withRightExpression(new LongValue(attrCiVo.getRht()));
+                    SubSelect subSelect = new SubSelect().withSelectBody(new PlainSelect().withFromItem(cmdbCi).addSelectItems(new SelectExpressionItem(new Column(cmdbCi, "id"))).withWhere(new AndExpression(greaterThanEquals, minorThanEquals)));
+                    InExpression inExpression = new InExpression(attrCiTableCiIdColumn, subSelect);
+                    Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(new AndExpression(equalsTo, inExpression));
+                    plainSelect.addJoins(join);
+                    addJoinTable(attrCiTable);
+                    addEqualColumn(attrCiTableIdColumn, cmdbRelentityTableFromCientityIdColumn);
+                }
+                if (attrId == null) {
+                    Column column = new Column(attrCiTable, resourceInfo.getAttrName());
+                    plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(columnName)));
+                    return column;
+                } else {
+                    String tableName = "cmdb_" + resourceInfo.getAttrFromCiId();
+                    String tableAlias = tableName + "_" + attrCiName;
+                    Table cmdbCiIdTable = joinedTableMap.get(tableAlias);
+                    if (cmdbCiIdTable == null) {
+                        cmdbCiIdTable = new Table(TenantContext.get().getDataDbName(), tableName).withAlias(new Alias(tableAlias).withUseAs(false));
+                        Column cmdbCiIdTableCientityIdColumn = new Column(cmdbCiIdTable, "cientity_id");
+                        Column attrCiTableIdColumn = new Column(attrCiTable, "id");
+                        Join join = new Join().withLeft(left).withRightItem(cmdbCiIdTable).addOnExpression(new EqualsTo(cmdbCiIdTableCientityIdColumn, attrCiTableIdColumn));
+                        plainSelect.addJoins(join);
+                        addJoinTable(cmdbCiIdTable);
+                        addEqualColumn(cmdbCiIdTableCientityIdColumn, attrCiTableIdColumn);
+                    }
+                    Column column = new Column(cmdbCiIdTable, "`" + attrId + "`");
+                    plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(columnName)));
+                    return column;
+                }
             } else {
                 //模块
 //                <resource id="resource_ipobject_appmodule" ci="IPObject">
@@ -377,20 +411,6 @@ public class ResourceSearchGenerateSqlUtil {
                     addEqualColumn(cmdbRelentityTableToCientityIdColumn, fromTableIdColumn);
                 }
 
-                Table cmdbRelTable = joinedTableMap.get("cmdb_rel_" + attrCiName);
-                if (cmdbRelTable == null) {
-                    cmdbRelTable = new Table("cmdb_rel").withAlias(new Alias("cmdb_rel_" + attrCiName).withUseAs(false));
-                    Column cmdbRelTableIdColumn = new Column(cmdbRelTable, "id");
-                    Column cmdbRelentityTableRelIdColumn = new Column(cmdbRelentityTable, "rel_id");
-                    EqualsTo equalsTo2 = new EqualsTo()
-                            .withLeftExpression(new Column(cmdbRelTable, "from_ci_id"))
-                            .withRightExpression(new LongValue(attrCiId));
-                    Join join = new Join().withLeft(left).withRightItem(cmdbRelTable).addOnExpression(new AndExpression(new EqualsTo(cmdbRelTableIdColumn, cmdbRelentityTableRelIdColumn), equalsTo2));
-                    plainSelect.addJoins(join);
-                    addJoinTable(cmdbRelTable);
-                    addEqualColumn(cmdbRelTableIdColumn, cmdbRelentityTableRelIdColumn);
-                }
-
                 Table attrCiTable = joinedTableMap.get(attrCiName);
                 if (attrCiTable == null) {
                     attrCiTable = new Table("cmdb_cientity").withAlias(new Alias(attrCiName).withUseAs(false));
@@ -412,7 +432,9 @@ public class ResourceSearchGenerateSqlUtil {
                     addEqualColumn(attrCiTableIdColumn, cmdbRelentityTableFromCientityIdColumn);
                 }
                 if (attrId == null) {
-                    plainSelect.addSelectItems(new SelectExpressionItem(new Column(attrCiTable, resourceInfo.getAttrName())).withAlias(new Alias(columnName)));
+                    Column column = new Column(attrCiTable, resourceInfo.getAttrName());
+                    plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(columnName)));
+                    return column;
                 } else {
                     String tableName = "cmdb_" + resourceInfo.getAttrFromCiId();
                     String tableAlias = tableName + "_" + attrCiName;
@@ -428,9 +450,8 @@ public class ResourceSearchGenerateSqlUtil {
                     }
                     Column column = new Column(cmdbCiIdTable, "`" + attrId + "`");
                     plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(columnName)));
+                    return column;
                 }
-//                plainSelect.addSelectItems(new SelectExpressionItem(new Column(table3, "id")).withAlias(new Alias(searchConditionMapping.getColumnName())));
-                return new Column(cmdbRelentityTable, "from_cientity_id");
             }
         } else {
             //非下拉框属性
