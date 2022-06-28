@@ -175,23 +175,4 @@ public class ResourceDetailView implements ICustomView {
         return plainSelect.toString();
     }
 
-    public static void main(String[] args) {
-//        String sql = "select COUNT(DISTINCT a.`id`) as num, a.`id`, a.`name` from user a where a.`id` = ?";
-//        try {
-//            Statement statement = CCJSqlParserUtil.parse(sql);
-//            Select select = (Select) statement;
-//            PlainSelect plainSelect = (PlainSelect) select.getSelectBody();
-//            Table table = (Table) plainSelect.getFromItem();
-//            System.out.println(table.getName());
-//            System.out.println(table.getAlias().getName());
-//            List<SelectItem> selectItems = plainSelect.getSelectItems();
-//            for (SelectItem selectItem : selectItems) {
-//                SelectExpressionItem selectExpressionItem = (SelectExpressionItem)selectItem;
-//                System.out.println(selectItem.toString());
-//            }
-//            Expression where = plainSelect.getWhere();
-//        } catch (JSQLParserException e) {
-//            e.printStackTrace();
-//        }
-    }
 }
