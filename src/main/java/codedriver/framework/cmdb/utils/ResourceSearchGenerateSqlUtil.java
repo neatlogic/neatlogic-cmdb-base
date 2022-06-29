@@ -90,7 +90,13 @@ public class ResourceSearchGenerateSqlUtil {
         Table cmdbCi = new Table("cmdb_ci").withAlias(new Alias("ci_" + mainTableAlias).withUseAs(false));
         Column cmdbCiIdColumn = new Column(cmdbCi, "id");
         Column mainTableCiIdColumn = new Column(mainTable, "ci_id");
-        Join joinCmdbCi = new Join().withRightItem(cmdbCi).addOnExpression(new EqualsTo(cmdbCiIdColumn, mainTableCiIdColumn));
+        EqualsTo equalsTo = new EqualsTo(cmdbCiIdColumn, mainTableCiIdColumn);
+        Column cmdbCiLftColumn = new Column(cmdbCi, "lft");
+        Column cmdbCiRhtColumn = new Column(cmdbCi, "rht");
+        GreaterThanEquals greaterThanEquals = new GreaterThanEquals(">=").withLeftExpression(cmdbCiLftColumn).withRightExpression(new LongValue(mainCiVo.getLft()));
+        MinorThanEquals minorThanEquals = new MinorThanEquals("<=").withLeftExpression(cmdbCiRhtColumn).withRightExpression(new LongValue(mainCiVo.getRht()));
+        AndExpression andExpression = new AndExpression(greaterThanEquals, minorThanEquals);
+        Join joinCmdbCi = new Join().withRightItem(cmdbCi).addOnExpression(new AndExpression(equalsTo, andExpression));
         plainSelect.addJoins(joinCmdbCi);
         addJoinTable(cmdbCi);
         addEqualColumn(cmdbCiIdColumn, mainTableCiIdColumn);
