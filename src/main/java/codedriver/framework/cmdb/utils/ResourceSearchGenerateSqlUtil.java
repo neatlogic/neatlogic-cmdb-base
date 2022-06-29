@@ -24,6 +24,7 @@ import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 
@@ -114,10 +115,16 @@ public class ResourceSearchGenerateSqlUtil {
      * 从数据初始化信息中ResourceInfo补充信息
      * @param resourceInfo
      */
-    public void additionalInformation(ResourceInfo resourceInfo) {
+    public boolean additionalInformation(ResourceInfo resourceInfo) {
         for (ResourceEntityVo resourceEntityVo : resourceEntityList) {
             if (Objects.equals(resourceEntityVo.getName(), resourceInfo.getResourceName())) {
+                if (StringUtils.isNotBlank(resourceEntityVo.getError())) {
+                    return false;
+                }
                 CiVo ciVo = resourceEntityVo.getCi();
+                if (ciVo == null) {
+                   return false;
+                }
                 resourceInfo.setResourceCiName(ciVo.getName());
                 resourceInfo.setResourceCiId(ciVo.getId());
                 Set<ResourceEntityAttrVo> attrList = resourceEntityVo.getAttrList();
@@ -197,11 +204,12 @@ public class ResourceSearchGenerateSqlUtil {
                                 }
                             }
                         }
-                        return;
+                        return true;
                     }
                 }
             }
         }
+        return false;
     }
 
     /**
