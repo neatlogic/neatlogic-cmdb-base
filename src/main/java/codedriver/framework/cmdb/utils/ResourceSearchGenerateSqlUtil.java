@@ -90,7 +90,18 @@ public class ResourceSearchGenerateSqlUtil {
         Table cmdbCi = new Table("cmdb_ci").withAlias(new Alias("ci_" + mainTableAlias).withUseAs(false));
         Column cmdbCiIdColumn = new Column(cmdbCi, "id");
         Column mainTableCiIdColumn = new Column(mainTable, "ci_id");
-        Join joinCmdbCi = new Join().withRightItem(cmdbCi).addOnExpression(new EqualsTo(cmdbCiIdColumn, mainTableCiIdColumn));
+        EqualsTo equalsTo = new EqualsTo(cmdbCiIdColumn, mainTableCiIdColumn);
+//        Column attrCiTableCiIdColumn = new Column(attrCiTable, "ci_id");
+//        Table cmdbCi = new Table("cmdb_ci").withAlias(new Alias("ci_" + attrCiName).withUseAs(false));
+        Column cmdbCiLftColumn = new Column(cmdbCi, "lft");
+        Column cmdbCiRhtColumn = new Column(cmdbCi, "rht");
+        GreaterThanEquals greaterThanEquals = new GreaterThanEquals(">=").withLeftExpression(cmdbCiLftColumn).withRightExpression(new LongValue(mainCiVo.getLft()));
+        MinorThanEquals minorThanEquals = new MinorThanEquals("<=").withLeftExpression(cmdbCiRhtColumn).withRightExpression(new LongValue(mainCiVo.getRht()));
+        AndExpression andExpression = new AndExpression(greaterThanEquals, minorThanEquals);
+//        SubSelect subSelect = new SubSelect().withSelectBody(new PlainSelect().withFromItem(cmdbCi).addSelectItems(new SelectExpressionItem(new Column(cmdbCi, "id"))).withWhere(new AndExpression(greaterThanEquals, minorThanEquals)));
+//        InExpression inExpression = new InExpression(attrCiTableCiIdColumn, subSelect);
+
+        Join joinCmdbCi = new Join().withRightItem(cmdbCi).addOnExpression(new AndExpression(equalsTo, andExpression));
         plainSelect.addJoins(joinCmdbCi);
         addJoinTable(cmdbCi);
         addEqualColumn(cmdbCiIdColumn, mainTableCiIdColumn);
