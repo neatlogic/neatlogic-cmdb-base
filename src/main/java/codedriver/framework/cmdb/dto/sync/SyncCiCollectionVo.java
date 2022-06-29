@@ -8,6 +8,7 @@ package codedriver.framework.cmdb.dto.sync;
 import codedriver.framework.cmdb.dto.transaction.TransactionGroupVo;
 import codedriver.framework.cmdb.enums.sync.CollectMode;
 import codedriver.framework.cmdb.enums.sync.MatchMode;
+import codedriver.framework.cmdb.enums.sync.SyncStatus;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
@@ -23,6 +24,8 @@ import java.util.Optional;
 public class SyncCiCollectionVo extends BasePageVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
+    @EntityField(name = "idList", type = ApiParamType.JSONARRAY)
+    private List<Long> idList;
     @EntityField(name = "模型id", type = ApiParamType.LONG)
     private Long ciId;
     @EntityField(name = "模型名称", type = ApiParamType.STRING)
@@ -42,6 +45,8 @@ public class SyncCiCollectionVo extends BasePageVo {
     private Date fcd;
     @EntityField(name = "创建人", type = ApiParamType.STRING)
     private String fcu;
+    @EntityField(name = "异常", type = ApiParamType.STRING)
+    private String error;
     @EntityField(name = "修改时间", type = ApiParamType.LONG)
     private Date lcd;
     @EntityField(name = "修改人", type = ApiParamType.STRING)
@@ -60,6 +65,10 @@ public class SyncCiCollectionVo extends BasePageVo {
     private String matchModeText;
     @EntityField(name = "唯一属性id列表", type = ApiParamType.JSONARRAY)
     private List<Long> uniqueAttrIdList;
+    @EntityField(name = "状态", type = ApiParamType.STRING)
+    private String status;
+    @EntityField(name = "状态名称", type = ApiParamType.STRING)
+    private String statusText;
     @JSONField(serialize = false)
     private TransactionGroupVo transactionGroup;
     @JSONField(serialize = false)
@@ -73,11 +82,42 @@ public class SyncCiCollectionVo extends BasePageVo {
     @EntityField(name = "说明", type = ApiParamType.STRING)
     private String description;
 
+    public List<Long> getIdList() {
+        return idList;
+    }
+
+    public void setIdList(List<Long> idList) {
+        this.idList = idList;
+    }
+
     public Long getId() {
         if (id == null) {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatusText() {
+        if (StringUtils.isBlank(statusText) && StringUtils.isNotBlank(status)) {
+            statusText = SyncStatus.getText(status);
+        }
+        return statusText;
     }
 
     public String getParentKey() {
