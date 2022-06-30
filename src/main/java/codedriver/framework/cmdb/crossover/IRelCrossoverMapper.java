@@ -7,9 +7,13 @@ package codedriver.framework.cmdb.crossover;
 
 import codedriver.framework.cmdb.dto.ci.RelVo;
 import codedriver.framework.crossover.ICrossoverService;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface IRelCrossoverMapper extends ICrossoverService {
     List<RelVo> getRelByCiId(Long ciId);
+
+    RelVo getRelByCiIdAndRelName(@Param("ciId") Long ciId, @Param("relName") String relName);
+
 }
