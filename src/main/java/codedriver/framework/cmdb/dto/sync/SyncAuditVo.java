@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -16,7 +16,9 @@ import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class SyncAuditVo extends BasePageVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
@@ -139,6 +141,13 @@ public class SyncAuditVo extends BasePageVo {
     }
 
     public String getError() {
+        if (StringUtils.isBlank(error) && !errorSet.isEmpty()) {
+            error = "";
+            for (String e : errorSet) {
+                error += e + "\n";
+            }
+            error = error.substring(0, error.length() - 1);
+        }
         return error;
     }
 
@@ -146,12 +155,17 @@ public class SyncAuditVo extends BasePageVo {
         this.error = error;
     }
 
+    private final Set<String> errorSet = new HashSet<>();
+
     public void appendError(String error) {
-        if (StringUtils.isBlank(this.error)) {
+        if (StringUtils.isNotBlank(error)) {
+            errorSet.add(error);
+        }
+       /* if (StringUtils.isBlank(this.error)) {
             this.error = error;
         } else {
             this.error += "\n" + error;
-        }
+        }*/
     }
 
     public Long getCiCollectionId() {

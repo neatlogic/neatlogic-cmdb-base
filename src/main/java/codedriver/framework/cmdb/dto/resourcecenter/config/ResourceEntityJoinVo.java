@@ -38,7 +38,7 @@ public class ResourceEntityJoinVo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ResourceEntityJoinVo that = (ResourceEntityJoinVo) o;
-        return joinType == that.joinType && ciName.equals(that.ciName) && direction.equals(that.direction);
+        return joinType == that.joinType && Objects.equals(ciName, that.ciName) && direction.equals(that.direction);
     }
 
     @Override

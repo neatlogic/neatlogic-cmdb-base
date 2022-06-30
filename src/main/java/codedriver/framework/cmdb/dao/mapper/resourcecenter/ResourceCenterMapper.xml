@@ -6,6 +6,17 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="codedriver.framework.cmdb.dao.mapper.resourcecenter.ResourceCenterMapper">
+    <select id="getResourceCountNew" parameterType="java.lang.String" resultType="int">
+        ${sql}
+    </select>
+
+    <select id="getResourceIdListNew" parameterType="java.lang.String" resultType="java.lang.Long">
+        ${sql}
+    </select>
+
+    <select id="getResourceListByIdListNew" parameterType="java.lang.String" resultMap="resourceCenterMap">
+        ${sql}
+    </select>
 
     <sql id="resource_ipobject_where">
         <if test="keyword != null and keyword != ''">
@@ -90,6 +101,7 @@
         <where>
             <include refid="resource_ipobject_where"/>
         </where>
+        ORDER BY a.`id`
         LIMIT #{startNum}, #{pageSize}
     </select>
 
@@ -146,7 +158,40 @@
     </resultMap>
 
     <select id="getResourceListByIdList" resultMap="resourceCenterMap">
-        SELECT a.*
+        SELECT
+        a.`id`,
+        a.`ip`,
+        a.`port`,
+        a.`type_id`,
+        a.`type_name`,
+        a.`type_label`,
+        a.`name`,
+        a.`monitor_status`,
+        a.`monitor_time`,
+        a.`inspect_status`,
+        a.`inspect_time`,
+        a.`network_area`,
+        a.`maintenance_window`,
+        a.`description`,
+        a.`app_module_id`,
+        a.`app_module_name`,
+        a.`app_module_abbr_name`,
+        a.`app_system_id`,
+        a.`app_system_name`,
+        a.`app_system_abbr_name`,
+        a.`allip_id`,
+        a.`allip_ip`,
+        a.`allip_label`,
+        a.`bg_id`,
+        a.`bg_name`,
+        a.`user_id`,
+        a.`user_uuid`,
+        a.`user_name`,
+        a.`state_id`,
+        a.`state_name`,
+        a.`state_label`,
+        a.`env_id`,
+        a.`env_name`
         FROM ${schemaName}.`resource_ipobject_detail` a
         WHERE a.`id` IN
         <foreach collection="idList" item="id" open="(" separator="," close=")">

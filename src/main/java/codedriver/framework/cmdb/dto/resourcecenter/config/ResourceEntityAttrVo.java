@@ -5,6 +5,7 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter.config;
 
+import codedriver.framework.cmdb.dto.ci.CiVo;
 import codedriver.framework.cmdb.enums.resourcecenter.JoinType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
@@ -29,7 +30,7 @@ public class ResourceEntityAttrVo {
     private String tableAlias;//表别名
     @EntityField(name = "关联类型，attr或rel，不同类型join的表不一样", type = ApiParamType.ENUM, member = JoinType.class)
     private JoinType joinType;
-
+    private CiVo ci;
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -105,5 +106,13 @@ public class ResourceEntityAttrVo {
 
     public void setEntity(String entity) {
         this.entity = entity;
+    }
+
+    public CiVo getCi() {
+        return ci;
+    }
+
+    public void setCi(CiVo ci) {
+        this.ci = ci;
     }
 }

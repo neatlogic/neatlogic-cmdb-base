@@ -12,8 +12,6 @@ import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
 
-import java.util.List;
-
 /**
  * @author linbq
  * @since 2022/2/8 17:03

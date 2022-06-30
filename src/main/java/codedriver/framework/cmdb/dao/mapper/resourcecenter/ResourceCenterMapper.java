@@ -19,6 +19,12 @@ import java.util.Set;
  **/
 public interface ResourceCenterMapper {
 
+    int getResourceCountNew(String sql);
+
+    List<Long> getResourceIdListNew(String sql);
+
+    List<ResourceVo> getResourceListByIdListNew(String sql);
+
     int getResourceCount(ResourceSearchVo searchVo);
 
     List<Long> getResourceIdList(ResourceSearchVo searchVo);
