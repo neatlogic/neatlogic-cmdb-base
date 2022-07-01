@@ -38,8 +38,10 @@ public class AttrVo extends BasePageVo {
     private String ciName;
     @EntityField(name = "模型名称", type = ApiParamType.STRING)
     private String ciLabel;
-    @EntityField(name = "目标模型配置项", type = ApiParamType.LONG)
+    @EntityField(name = "目标模型id", type = ApiParamType.LONG)
     private Long targetCiId;
+    @EntityField(name = "目标模型唯一标识", type = ApiParamType.STRING)
+    private String targetCiName;
     @EntityField(name = "目标模型是否虚拟模型", type = ApiParamType.INTEGER)
     private Integer targetIsVirtual;
     @EntityField(name = "属性配置", type = ApiParamType.JSONOBJECT)
@@ -407,6 +409,14 @@ public class AttrVo extends BasePageVo {
 
     public void setTargetCiId(Long targetCiId) {
         this.targetCiId = targetCiId;
+    }
+
+    public String getTargetCiName() {
+        return targetCiName;
+    }
+
+    public void setTargetCiName(String targetCiName) {
+        this.targetCiName = targetCiName;
     }
 
     public JSONObject getConfig() {
