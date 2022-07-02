@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -42,7 +42,7 @@ public class CiVo implements Serializable {
     @EntityField(name = "类型id", type = ApiParamType.LONG)
     private Long typeId;
     @EntityField(name = "类型名称", type = ApiParamType.STRING)
-    private Long typeName;
+    private String typeName;
     @EntityField(name = "是否私有模型，0:不是，1:是", type = ApiParamType.INTEGER)
     private Integer isPrivate;
     @EntityField(name = "是否在菜单中显示，0:不显示，1:显示", type = ApiParamType.INTEGER)
@@ -208,11 +208,11 @@ public class CiVo implements Serializable {
         this.isMenu = isMenu;
     }
 
-    public Long getTypeName() {
+    public String getTypeName() {
         return typeName;
     }
 
-    public void setTypeName(Long typeName) {
+    public void setTypeName(String typeName) {
         this.typeName = typeName;
     }
 
