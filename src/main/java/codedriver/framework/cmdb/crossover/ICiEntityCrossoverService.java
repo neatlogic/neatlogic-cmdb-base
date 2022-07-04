@@ -24,4 +24,6 @@ public interface ICiEntityCrossoverService extends ICrossoverService {
     List<Long> getCiEntityIdByCiId(CiEntityVo ciEntityVo);
 
     Long saveCiEntity(List<CiEntityTransactionVo> ciEntityTransactionList);
+
+    String getCiEntityNameByCiEntityId(Long ciEntityId);
 }
