@@ -18,6 +18,7 @@ import java.util.Date;
 @ResourceType(name = "resource_db_cluster", label = "数据库集群")
 @ResourceType(name = "resource_appinstance_cluster", label = "应用实例集群")
 @ResourceType(name = "resource_accessendpoint", label = "访问入口")
+@ResourceType(name = "resource_database", label = "DB库")
 public class SoftwareServiceVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "id")
