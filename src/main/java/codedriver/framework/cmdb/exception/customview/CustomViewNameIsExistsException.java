@@ -7,12 +7,9 @@ package codedriver.framework.cmdb.exception.customview;
 
 import codedriver.framework.exception.core.ApiRuntimeException;
 
-public class CustomViewNotFoundException extends ApiRuntimeException {
-    public CustomViewNotFoundException(Long id) {
-        super("自定义视图“" + id + "”不存在");
+public class CustomViewNameIsExistsException extends ApiRuntimeException {
+    public CustomViewNameIsExistsException(String name) {
+        super("自定义视图名称“" + name + "”已被使用");
     }
 
-    public CustomViewNotFoundException(String name) {
-        super("自定义视图“" + name + "”不存在");
-    }
 }
