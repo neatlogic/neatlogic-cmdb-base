@@ -22,6 +22,13 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
     ResourceSearchVo assembleResourceSearchVo(JSONObject jsonObj);
 
     /**
+     * 查询所有后代模型的id列表
+     * @param idList
+     * @return
+     */
+    List<Long> getDownwardCiIdListByCiIdList(List<Long> idList);
+
+    /**
      * 获取资产的账号信息
      *
      * @param idList
