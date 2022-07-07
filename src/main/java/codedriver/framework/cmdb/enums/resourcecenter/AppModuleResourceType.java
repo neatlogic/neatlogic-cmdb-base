@@ -14,7 +14,7 @@ import java.util.List;
  * @since 2022/3/7 10:10
  **/
 public enum AppModuleResourceType {
-    OS("OS","OS"),
+//    OS("OS","OS"),
     APP_INSTANCE("APPIns","APPIns"),
     APP_INSTANCE_CLUSTER("APPInsCluster","ipObject"),
     DB_INSTANCE("DBIns","DBIns"),
