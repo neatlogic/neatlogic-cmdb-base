@@ -225,7 +225,7 @@
         LIMIT #{startNum}, #{pageSize}
     </select>
 
-    <select id="getOsResourceListByIdList" resultMap="resourceCenterMap">
+    <!--<select id="getOsResourceListByIdList" resultMap="resourceCenterMap">
         SELECT a.*,
         n.`cluster_id`,
         n.`cluster_type_id`,
@@ -236,10 +236,32 @@
         <foreach collection="idList" item="id" open="(" separator="," close=")">
             #{id}
         </foreach>
-    </select>
+    </select>-->
 
-    <select id="getAppInstanceResourceListByIdList" resultMap="resourceCenterMap">
-        SELECT a.*,
+    <!--<select id="getAppInstanceResourceListByIdList" resultMap="resourceCenterMap">
+        SELECT
+        a.`id`,
+        a.`ip`,
+        a.`port`,
+        a.`name`,
+        a.`type_id`,
+        a.`monitor_status`,
+        a.`monitor_time`,
+        a.`inspect_status`,
+        a.`inspect_time`,
+        a.`network_area`,
+        a.`maintenance_window`,
+        a.`description`,
+        a.`bg_id`,
+        a.`bg_name`,
+        a.`user_id`,
+        a.`user_uuid`,
+        a.`user_name`,
+        a.`state_id`,
+        a.`state_name`,
+        a.`state_label`,
+        a.`env_id`,
+        a.`env_name`,
         n.`cluster_id`,
         n.`cluster_type_id`,
         n.`cluster_name`
@@ -249,10 +271,32 @@
         <foreach collection="idList" item="id" open="(" separator="," close=")">
             #{id}
         </foreach>
-    </select>
+    </select>-->
 
-    <select id="getDbInstanceResourceListByIdList" resultMap="resourceCenterMap">
-        SELECT a.*,
+    <!--<select id="getDbInstanceResourceListByIdList" resultMap="resourceCenterMap">
+        SELECT
+        a.`id`,
+        a.`ip`,
+        a.`port`,
+        a.`name`,
+        a.`type_id`,
+        a.`monitor_status`,
+        a.`monitor_time`,
+        a.`inspect_status`,
+        a.`inspect_time`,
+        a.`network_area`,
+        a.`maintenance_window`,
+        a.`description`,
+        a.`bg_id`,
+        a.`bg_name`,
+        a.`user_id`,
+        a.`user_uuid`,
+        a.`user_name`,
+        a.`state_id`,
+        a.`state_name`,
+        a.`state_label`,
+        a.`env_id`,
+        a.`env_name`,
         n.`cluster_id`,
         n.`cluster_type_id`,
         n.`cluster_name`
@@ -262,7 +306,7 @@
         <foreach collection="idList" item="id" open="(" separator="," close=")">
             #{id}
         </foreach>
-    </select>
+    </select>-->
 
     <select id="getResourceIdByIpAndPortAndName"
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
@@ -716,7 +760,7 @@
         JOIN ${schemaName}.`resource_softwareservice_os` m on m.`resource_id` = a.`id`
     </select>
 
-    <select id="getOsResourceCountByAppModuleIdAndEnvIdAndTypeId"
+    <!--<select id="getOsResourceCountByAppModuleIdAndEnvIdAndTypeId"
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_softwareservice` a
@@ -727,9 +771,9 @@
         #{appModuleId}
         JOIN ${schemaName}.`resource_softwareservice_os` m on m.`resource_id` = a.`id`
         WHERE a.`type_id` = #{typeId}
-    </select>
+    </select>-->
 
-    <select id="getOsResourceIdListByAppModuleIdAndEnvIdAndTypeId"
+    <!--<select id="getOsResourceIdListByAppModuleIdAndEnvIdAndTypeId"
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT
         DISTINCT a.`id`
@@ -743,7 +787,7 @@
         WHERE a.`type_id` = #{typeId}
         ORDER BY a.`id` DESC
         LIMIT #{startNum}, #{pageSize}
-    </select>
+    </select>-->
 
     <select id="checkAccountIdListIsExists" parameterType="java.util.List" resultType="java.lang.Long">
         SELECT `id`
@@ -1060,7 +1104,7 @@
           AND crap.port = #{port}
     </select>
 
-    <select id="getResourceIdByIpAndPortAndNameWithFilter"
+    <!--<select id="getResourceIdByIpAndPortAndNameWithFilter"
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT a.`id`
         FROM ${schemaName}.`resource_ipobject_detail` a
@@ -1081,7 +1125,7 @@
             and a.`name` = #{name}
         </if>
         limit 1
-    </select>
+    </select>-->
 
     <select id="getResourceAccountListByResourceId"
             resultMap="accountMap">
@@ -1122,7 +1166,7 @@
     <select id="getResourceListByTypeIdListAndIpList"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
         SELECT a.`id`, a.`ip`, a.`name`
-        FROM ${schemaName}.`resource_ipobject_detail` a
+        FROM ${schemaName}.`resource_ipobject` a
         WHERE a.`type_id` IN
         <foreach collection="typeIdList" item="item" open="(" separator="," close=")">
             #{item}
@@ -1135,13 +1179,14 @@
 
     <select id="getResourceByIpAndPort" resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
         SELECT a.`id`, a.`ip`, a.`name`
-        FROM ${schemaName}.`resource_ipobject_detail` a
+        FROM ${schemaName}.`resource_ipobject` a
+        LEFT JOIN ${schemaName}.`resource_softwareservice` b on b.`id` = a.`id`
         WHERE a.`ip` = #{ip} and
         <if test="port == null">
-            a.`port` is null
+            b.`port` is null
         </if>
         <if test="port != null">
-            a.`port` = #{port}
+            b.`port` = #{port}
         </if>
     </select>
     <select id="getResourceAccountByResourceIdAndProtocolAndProtocolPortAndUsername"

@@ -35,7 +35,7 @@ public interface ResourceCenterMapper {
 
     List<Long> getIpObjectResourceIdListByAppModuleIdAndTypeIdAndEnvIdAndTypeId(ResourceSearchVo searchVo);
 
-    List<ResourceVo> getOsResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+//    List<ResourceVo> getOsResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
 //    int getStorageResourceCount(ResourceSearchVo searchVo);
 //
@@ -53,13 +53,13 @@ public interface ResourceCenterMapper {
 //
 //    List<Long> getAppInstanceResourceIdList(ResourceSearchVo searchVo);
 
-    List<ResourceVo> getAppInstanceResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+//    List<ResourceVo> getAppInstanceResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
 //    int getDbInstanceResourceCount(ResourceSearchVo searchVo);
 //
 //    List<Long> getDbInstanceResourceIdList(ResourceSearchVo searchVo);
 
-    List<ResourceVo> getDbInstanceResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+//    List<ResourceVo> getDbInstanceResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
 //    int getAppInstanceClusterResourceCount(ResourceSearchVo searchVo);
 //
@@ -81,7 +81,7 @@ public interface ResourceCenterMapper {
 
     Long getResourceIdByIpAndPortAndName(ResourceSearchVo searchVo);
 
-    Long getResourceIdByIpAndPortAndNameWithFilter(ResourceSearchVo searchVo);
+//    Long getResourceIdByIpAndPortAndNameWithFilter(ResourceSearchVo searchVo);
 
 //    ResourceVo getResourceIpPortById(@Param("id") Long id, @Param("schemaName") String schemaName);
 
@@ -163,9 +163,9 @@ public interface ResourceCenterMapper {
 
     Set<Long> getOsResourceTypeIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
 
-    int getOsResourceCountByAppModuleIdAndEnvIdAndTypeId(ResourceSearchVo searchVo);
+//    int getOsResourceCountByAppModuleIdAndEnvIdAndTypeId(ResourceSearchVo searchVo);
 
-    List<Long> getOsResourceIdListByAppModuleIdAndEnvIdAndTypeId(ResourceSearchVo searchVo);
+//    List<Long> getOsResourceIdListByAppModuleIdAndEnvIdAndTypeId(ResourceSearchVo searchVo);
 
 //    Set<Long> getNetWorkDeviceResourceTypeIdListByAppModuleIdAndEnvId(ResourceSearchVo searchVo);
 
