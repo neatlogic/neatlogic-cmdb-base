@@ -770,7 +770,7 @@
         JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id` AND i.`app_module_id` =
         #{appModuleId}
         JOIN ${schemaName}.`resource_softwareservice_os` m on m.`resource_id` = a.`id`
-        WHERE m.`type_id` = #{typeId}
+        WHERE a.`type_id` = #{typeId}
     </select>-->
 
     <!--<select id="getOsResourceIdListByAppModuleIdAndEnvIdAndTypeId"
