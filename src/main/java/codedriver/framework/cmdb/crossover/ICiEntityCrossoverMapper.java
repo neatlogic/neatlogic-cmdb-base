@@ -22,6 +22,14 @@ public interface ICiEntityCrossoverMapper extends ICrossoverService {
     CiEntityVo getCiEntityBaseInfoById(Long ciEntityId);
 
     /**
+     * 根据配置项名称获取配置项
+     *
+     * @param ciEntityVo 配置项名称
+     * @return 配置项列表
+     */
+    List<CiEntityVo> getCiEntityBaseInfoByName(CiEntityVo ciEntityVo);
+
+    /**
      * 返回来源配置项引用的所有目标属性
      *
      * @param attrId         属性id
