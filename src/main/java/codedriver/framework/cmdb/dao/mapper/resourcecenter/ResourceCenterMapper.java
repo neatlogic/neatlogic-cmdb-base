@@ -21,8 +21,6 @@ public interface ResourceCenterMapper {
 
     int getResourceCount(String sql);
 
-    Long getResourceId(String sql);
-
     List<Long> getResourceIdList(String sql);
 
     List<ResourceVo> getResourceListByIdList(String sql);

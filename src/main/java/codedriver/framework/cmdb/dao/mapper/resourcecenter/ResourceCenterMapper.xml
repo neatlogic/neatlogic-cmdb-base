@@ -10,10 +10,6 @@
         ${sql}
     </select>
 
-    <select id="getResourceId" parameterType="java.lang.String" resultType="java.lang.Long">
-        ${sql}
-    </select>
-
     <select id="getResourceIdList" parameterType="java.lang.String" resultType="java.lang.Long">
         ${sql}
     </select>
@@ -754,7 +750,7 @@
 
     <select id="getOsResourceTypeIdListByAppModuleIdAndEnvId"
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
-        SELECT m.`type_id`
+        SELECT a.`type_id`
         FROM ${schemaName}.`resource_softwareservice` a
         <if test="envId != null">
             JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id` AND h.`env_id` = #{envId}
@@ -766,7 +762,7 @@
 
     <!--<select id="getOsResourceCountByAppModuleIdAndEnvIdAndTypeId"
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
-        SELECT COUNT(DISTINCT m.`os_id`)
+        SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_softwareservice` a
         <if test="envId != null">
             JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id` AND h.`env_id` = #{envId}
@@ -780,7 +776,7 @@
     <!--<select id="getOsResourceIdListByAppModuleIdAndEnvIdAndTypeId"
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT
-        DISTINCT m.`os_id`
+        DISTINCT a.`id`
         FROM ${schemaName}.`resource_softwareservice` a
         <if test="envId != null">
             JOIN ${schemaName}.`resource_softwareservice_env` h on h.`resource_id` = a.`id` AND h.`env_id` = #{envId}
@@ -788,7 +784,7 @@
         JOIN ${schemaName}.`resource_ipobject_appmodule` i on i.`resource_id` = a.`id` AND i.`app_module_id` =
         #{appModuleId}
         JOIN ${schemaName}.`resource_softwareservice_os` m on m.`resource_id` = a.`id`
-        WHERE m.`type_id` = #{typeId}
+        WHERE a.`type_id` = #{typeId}
         ORDER BY a.`id` DESC
         LIMIT #{startNum}, #{pageSize}
     </select>-->
