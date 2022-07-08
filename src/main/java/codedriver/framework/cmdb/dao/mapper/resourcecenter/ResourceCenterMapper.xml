@@ -6,19 +6,8 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="codedriver.framework.cmdb.dao.mapper.resourcecenter.ResourceCenterMapper">
-    <select id="getResourceCount" parameterType="java.lang.String" resultType="int">
-        ${sql}
-    </select>
 
-    <select id="getResourceIdList" parameterType="java.lang.String" resultType="java.lang.Long">
-        ${sql}
-    </select>
-
-    <select id="getResourceListByIdList" parameterType="java.lang.String" resultMap="resourceCenterMap">
-        ${sql}
-    </select>
-
-    <sql id="resource_ipobject_where">
+    <!--<sql id="resource_ipobject_where">
         <if test="keyword != null and keyword != ''">
             AND (a.`name` LIKE CONCAT('%', #{keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{keyword}, '%') OR a.`port`
             LIKE CONCAT('%', #{keyword}, '%'))
@@ -77,7 +66,7 @@
                 #{tagId}
             </foreach>
         </if>
-    </sql>
+    </sql>-->
 
     <!--<select id="getResourceCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
             resultType="int">
