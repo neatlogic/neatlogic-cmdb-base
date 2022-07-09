@@ -101,6 +101,7 @@ public class CiVo implements Serializable {
         this.parentCi = parentCi;
     }
 
+
     public String getParentCiLabel() {
         return parentCiLabel;
     }
