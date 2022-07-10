@@ -14,8 +14,6 @@ import codedriver.framework.cmdb.dto.resourcecenter.config.ResourceEntityVo;
 import codedriver.framework.cmdb.dto.resourcecenter.config.ResourceInfo;
 import codedriver.framework.cmdb.enums.RelDirectionType;
 import codedriver.framework.cmdb.enums.resourcecenter.JoinType;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import net.sf.jsqlparser.expression.*;
 import net.sf.jsqlparser.expression.operators.conditional.AndExpression;
 import net.sf.jsqlparser.expression.operators.relational.*;
@@ -26,7 +24,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
-import java.util.function.BiConsumer;
 
 public class ResourceSearchGenerateSqlUtil {
 
@@ -108,7 +105,7 @@ public class ResourceSearchGenerateSqlUtil {
      * @param resourceId
      * @return
      */
-    public CiVo getCiByResourceId(String resourceId) {
+    private CiVo getCiByResourceId(String resourceId) {
         for (ResourceEntityVo resourceEntityVo : resourceEntityList) {
             if (Objects.equals(resourceEntityVo.getName(), resourceId)) {
                 return resourceEntityVo.getCi();
@@ -140,7 +137,7 @@ public class ResourceSearchGenerateSqlUtil {
                         if (attrCiVo == null) {
                             attrCiVo = ciVo;
                         }
-                        resourceInfo.setAttrCiVo(attrCiVo);
+//                        resourceInfo.setAttrCiVo(attrCiVo);
                         resourceInfo.setAttrCiName(attrCiVo.getName());
                         resourceInfo.setAttrCiId(attrCiVo.getId());
                         resourceInfo.setAttrCiIsVirtual(attrCiVo.getIsVirtual());
@@ -228,7 +225,7 @@ public class ResourceSearchGenerateSqlUtil {
         Table mainTable = (Table) plainSelect.getFromItem();
         String attrCiName = resourceInfo.getAttrCiName();
         Long attrCiId = resourceInfo.getAttrCiId();
-        CiVo attrCiVo = resourceInfo.getAttrCiVo();
+//        CiVo attrCiVo = resourceInfo.getAttrCiVo();
         String columnName = resourceInfo.getColumnName();
         Long attrId = resourceInfo.getAttrId();
         boolean left = resourceInfo.getLeft();
@@ -623,225 +620,4 @@ public class ResourceSearchGenerateSqlUtil {
         return addWhere(plainSelect, expression);
     }
 
-    /**
-     * 资产清单常用的搜索条件
-     * @param plainSelect
-     * @param paramObj
-     * @param unavailableResourceInfoList
-     * @return
-     */
-    public PlainSelect addWhereCommonCondition(PlainSelect plainSelect, JSONObject paramObj, List<ResourceInfo> unavailableResourceInfoList) {
-        Map<String, ResourceInfo> searchConditionMappingMap = new HashMap<>();
-        searchConditionMappingMap.put("typeIdList", new ResourceInfo("resource_ipobject","type_id", false));
-        searchConditionMappingMap.put("stateIdList", new ResourceInfo("resource_ipobject_state","state_id", false));
-        searchConditionMappingMap.put("envIdList", new ResourceInfo("resource_softwareservice_env","env_id", false));
-        searchConditionMappingMap.put("appSystemIdList", new ResourceInfo("resource_appmodule_appsystem","app_system_id", false));
-        searchConditionMappingMap.put("appModuleIdList", new ResourceInfo("resource_ipobject_appmodule","app_module_id", false));
-        searchConditionMappingMap.put("defaultValue", new ResourceInfo("resource_ipobject","id", false));
-        searchConditionMappingMap.put("inspectStatusList", new ResourceInfo("resource_ipobject","inspect_status", false));
-
-//        for (Map.Entry<String, ResourceInfo> entry : searchConditionMappingMap.entrySet()) {
-//            String key = entry.getKey();
-//            JSONArray jsonArray = paramObj.getJSONArray(key);
-//            if (CollectionUtils.isNotEmpty(jsonArray)) {
-//                ResourceInfo resourceInfo = entry.getValue();
-//                if (additionalInformation(resourceInfo)) {
-//                    Column column = addJoinTableByResourceInfo(resourceInfo, plainSelect);
-//                    addWhere(plainSelect, column, new InExpression(), jsonArray);
-//                } else {
-//                    unavailableResourceInfoList.add(resourceInfo);
-//                }
-//            }
-//        }
-
-        JSONArray defaultValue = paramObj.getJSONArray("defaultValue");
-        if (CollectionUtils.isNotEmpty(defaultValue)) {
-            List<Long> idList = defaultValue.toJavaList(Long.class);
-            ResourceInfo resourceInfo = searchConditionMappingMap.get("defaultValue");
-            if (additionalInformation(resourceInfo)) {
-                Column column = addJoinTableByResourceInfo(resourceInfo, plainSelect);
-                addWhere(plainSelect, column, new InExpression(), idList);
-            } else {
-                unavailableResourceInfoList.add(resourceInfo);
-            }
-        }
-
-        JSONArray typeIdList = paramObj.getJSONArray("typeIdList");
-        if (CollectionUtils.isNotEmpty(typeIdList)) {
-            ResourceInfo resourceInfo = searchConditionMappingMap.get("typeIdList");
-            if (additionalInformation(resourceInfo)) {
-                Column column = addJoinTableByResourceInfo(resourceInfo, plainSelect);
-                addWhere(plainSelect, column, new InExpression(), typeIdList);
-            }else {
-                unavailableResourceInfoList.add(resourceInfo);
-            }
-        }
-
-        JSONArray inspectStatusList = paramObj.getJSONArray("inspectStatusList");
-        if (CollectionUtils.isNotEmpty(inspectStatusList)) {
-            ResourceInfo resourceInfo = searchConditionMappingMap.get("inspectStatusList");
-            if (additionalInformation(resourceInfo)) {
-                Column column = addJoinTableByResourceInfo(resourceInfo, plainSelect);
-                addWhere(plainSelect, column, new InExpression(), inspectStatusList);
-            } else {
-                unavailableResourceInfoList.add(resourceInfo);
-            }
-        }
-
-        JSONArray stateIdList = paramObj.getJSONArray("stateIdList");
-        if (CollectionUtils.isNotEmpty(stateIdList)) {
-            ResourceInfo resourceInfo = searchConditionMappingMap.get("stateIdList");
-            if (additionalInformation(resourceInfo)) {
-                Column column = addJoinTableByResourceInfo(resourceInfo, plainSelect);
-                addWhere(plainSelect, column, new InExpression(), stateIdList);
-            } else {
-                unavailableResourceInfoList.add(resourceInfo);
-            }
-        }
-
-        JSONArray envIdList = paramObj.getJSONArray("envIdList");
-        if (CollectionUtils.isNotEmpty(envIdList)) {
-            ResourceInfo resourceInfo = searchConditionMappingMap.get("envIdList");
-            if (additionalInformation(resourceInfo)) {
-                Column column = addJoinTableByResourceInfo(resourceInfo, plainSelect);
-                addWhere(plainSelect, column, new InExpression(), envIdList);
-            } else {
-                unavailableResourceInfoList.add(resourceInfo);
-            }
-        }
-
-        JSONArray appModuleIdList = paramObj.getJSONArray("appModuleIdList");
-        JSONArray appSystemIdList = paramObj.getJSONArray("appSystemIdList");
-        if (CollectionUtils.isNotEmpty(appModuleIdList) || CollectionUtils.isNotEmpty(appSystemIdList)) {
-            ResourceInfo resourceInfo = searchConditionMappingMap.get("appModuleIdList");
-            if (additionalInformation(resourceInfo)) {
-                Column column = addJoinTableByResourceInfo(resourceInfo, plainSelect);
-                if (CollectionUtils.isNotEmpty(appModuleIdList)) {
-                    addWhere(plainSelect, column, new InExpression(), appModuleIdList);
-                }
-            } else {
-                unavailableResourceInfoList.add(resourceInfo);
-            }
-        }
-        if (CollectionUtils.isNotEmpty(appSystemIdList)) {
-            ResourceInfo resourceInfo = searchConditionMappingMap.get("appSystemIdList");
-            if (additionalInformation(resourceInfo)) {
-                Column column = addJoinTableByResourceInfo(resourceInfo, plainSelect);
-                addWhere(plainSelect, column, new InExpression(), appSystemIdList);
-            } else {
-                unavailableResourceInfoList.add(resourceInfo);
-            }
-        }
-        return plainSelect;
-    }
-
-    public BiConsumer<ResourceSearchGenerateSqlUtil, PlainSelect> getCommonConditionBiconsumer(JSONObject paramObj, List<ResourceInfo> unavailableResourceInfoList) {
-        BiConsumer<ResourceSearchGenerateSqlUtil, PlainSelect> biConsumer = new BiConsumer<ResourceSearchGenerateSqlUtil, PlainSelect>() {
-            @Override
-            public void accept(ResourceSearchGenerateSqlUtil resourceSearchGenerateSqlUtil, PlainSelect plainSelect) {
-                Map<String, ResourceInfo> searchConditionMappingMap = new HashMap<>();
-                searchConditionMappingMap.put("typeIdList", new ResourceInfo("resource_ipobject","type_id", false));
-                searchConditionMappingMap.put("stateIdList", new ResourceInfo("resource_ipobject_state","state_id", false));
-                searchConditionMappingMap.put("envIdList", new ResourceInfo("resource_softwareservice_env","env_id", false));
-                searchConditionMappingMap.put("appSystemIdList", new ResourceInfo("resource_appmodule_appsystem","app_system_id", false));
-                searchConditionMappingMap.put("appModuleIdList", new ResourceInfo("resource_ipobject_appmodule","app_module_id", false));
-                searchConditionMappingMap.put("defaultValue", new ResourceInfo("resource_ipobject","id", false));
-                searchConditionMappingMap.put("inspectStatusList", new ResourceInfo("resource_ipobject","inspect_status", false));
-
-//        for (Map.Entry<String, ResourceInfo> entry : searchConditionMappingMap.entrySet()) {
-//            String key = entry.getKey();
-//            JSONArray jsonArray = paramObj.getJSONArray(key);
-//            if (CollectionUtils.isNotEmpty(jsonArray)) {
-//                ResourceInfo resourceInfo = entry.getValue();
-//                if (additionalInformation(resourceInfo)) {
-//                    Column column = addJoinTableByResourceInfo(resourceInfo, plainSelect);
-//                    addWhere(plainSelect, column, new InExpression(), jsonArray);
-//                } else {
-//                    unavailableResourceInfoList.add(resourceInfo);
-//                }
-//            }
-//        }
-
-                JSONArray defaultValue = paramObj.getJSONArray("defaultValue");
-                if (CollectionUtils.isNotEmpty(defaultValue)) {
-                    List<Long> idList = defaultValue.toJavaList(Long.class);
-                    ResourceInfo resourceInfo = searchConditionMappingMap.get("defaultValue");
-                    if (additionalInformation(resourceInfo)) {
-                        Column column = addJoinTableByResourceInfo(resourceInfo, plainSelect);
-                        addWhere(plainSelect, column, new InExpression(), idList);
-                    } else {
-                        unavailableResourceInfoList.add(resourceInfo);
-                    }
-                }
-
-                JSONArray typeIdList = paramObj.getJSONArray("typeIdList");
-                if (CollectionUtils.isNotEmpty(typeIdList)) {
-                    ResourceInfo resourceInfo = searchConditionMappingMap.get("typeIdList");
-                    if (additionalInformation(resourceInfo)) {
-                        Column column = addJoinTableByResourceInfo(resourceInfo, plainSelect);
-                        addWhere(plainSelect, column, new InExpression(), typeIdList);
-                    }else {
-                        unavailableResourceInfoList.add(resourceInfo);
-                    }
-                }
-
-                JSONArray inspectStatusList = paramObj.getJSONArray("inspectStatusList");
-                if (CollectionUtils.isNotEmpty(inspectStatusList)) {
-                    ResourceInfo resourceInfo = searchConditionMappingMap.get("inspectStatusList");
-                    if (additionalInformation(resourceInfo)) {
-                        Column column = addJoinTableByResourceInfo(resourceInfo, plainSelect);
-                        addWhere(plainSelect, column, new InExpression(), inspectStatusList);
-                    } else {
-                        unavailableResourceInfoList.add(resourceInfo);
-                    }
-                }
-
-                JSONArray stateIdList = paramObj.getJSONArray("stateIdList");
-                if (CollectionUtils.isNotEmpty(stateIdList)) {
-                    ResourceInfo resourceInfo = searchConditionMappingMap.get("stateIdList");
-                    if (additionalInformation(resourceInfo)) {
-                        Column column = addJoinTableByResourceInfo(resourceInfo, plainSelect);
-                        addWhere(plainSelect, column, new InExpression(), stateIdList);
-                    } else {
-                        unavailableResourceInfoList.add(resourceInfo);
-                    }
-                }
-
-                JSONArray envIdList = paramObj.getJSONArray("envIdList");
-                if (CollectionUtils.isNotEmpty(envIdList)) {
-                    ResourceInfo resourceInfo = searchConditionMappingMap.get("envIdList");
-                    if (additionalInformation(resourceInfo)) {
-                        Column column = addJoinTableByResourceInfo(resourceInfo, plainSelect);
-                        addWhere(plainSelect, column, new InExpression(), envIdList);
-                    } else {
-                        unavailableResourceInfoList.add(resourceInfo);
-                    }
-                }
-
-                JSONArray appModuleIdList = paramObj.getJSONArray("appModuleIdList");
-                JSONArray appSystemIdList = paramObj.getJSONArray("appSystemIdList");
-                if (CollectionUtils.isNotEmpty(appModuleIdList) || CollectionUtils.isNotEmpty(appSystemIdList)) {
-                    ResourceInfo resourceInfo = searchConditionMappingMap.get("appModuleIdList");
-                    if (additionalInformation(resourceInfo)) {
-                        Column column = addJoinTableByResourceInfo(resourceInfo, plainSelect);
-                        if (CollectionUtils.isNotEmpty(appModuleIdList)) {
-                            addWhere(plainSelect, column, new InExpression(), appModuleIdList);
-                        }
-                    } else {
-                        unavailableResourceInfoList.add(resourceInfo);
-                    }
-                }
-                if (CollectionUtils.isNotEmpty(appSystemIdList)) {
-                    ResourceInfo resourceInfo = searchConditionMappingMap.get("appSystemIdList");
-                    if (additionalInformation(resourceInfo)) {
-                        Column column = addJoinTableByResourceInfo(resourceInfo, plainSelect);
-                        addWhere(plainSelect, column, new InExpression(), appSystemIdList);
-                    } else {
-                        unavailableResourceInfoList.add(resourceInfo);
-                    }
-                }
-            }
-        };
-        return biConsumer;
-    }
 }

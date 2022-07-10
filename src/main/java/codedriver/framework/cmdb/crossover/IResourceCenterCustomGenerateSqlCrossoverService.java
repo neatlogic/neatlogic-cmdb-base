@@ -5,13 +5,9 @@
 
 package codedriver.framework.cmdb.crossover;
 
-import codedriver.framework.cmdb.dto.resourcecenter.ResourceVo;
-import codedriver.framework.cmdb.dto.resourcecenter.config.ResourceEntityVo;
 import codedriver.framework.cmdb.dto.resourcecenter.config.ResourceInfo;
 import codedriver.framework.cmdb.utils.ResourceSearchGenerateSqlUtil;
-import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.crossover.ICrossoverService;
-import com.alibaba.fastjson.JSONObject;
 import net.sf.jsqlparser.statement.select.PlainSelect;
 
 import java.util.List;
@@ -19,10 +15,11 @@ import java.util.function.BiConsumer;
 
 public interface IResourceCenterCustomGenerateSqlCrossoverService extends ICrossoverService {
 
-    BiConsumer<ResourceSearchGenerateSqlUtil, PlainSelect> getBiConsumerByProtocolIdList(JSONObject paramObj, List<ResourceInfo> unavailableResourceInfoList);
+    BiConsumer<ResourceSearchGenerateSqlUtil, PlainSelect> getBiConsumerByProtocolIdList(List<Long> protocolIdList, List<ResourceInfo> unavailableResourceInfoList);
 
-    BiConsumer<ResourceSearchGenerateSqlUtil, PlainSelect> getBiConsumerByTagIdList(JSONObject paramObj, List<ResourceInfo> unavailableResourceInfoList);
+    BiConsumer<ResourceSearchGenerateSqlUtil, PlainSelect> getBiConsumerByTagIdList(List<Long> tagIdList, List<ResourceInfo> unavailableResourceInfoList);
 
-    BiConsumer<ResourceSearchGenerateSqlUtil, PlainSelect> getBiConsumerByKeyword(JSONObject paramObj, List<ResourceInfo> unavailableResourceInfoList);
+    BiConsumer<ResourceSearchGenerateSqlUtil, PlainSelect> getBiConsumerByKeyword(String keyword, List<ResourceInfo> unavailableResourceInfoList);
 
+    List<ResourceInfo> getTheadList();
 }
