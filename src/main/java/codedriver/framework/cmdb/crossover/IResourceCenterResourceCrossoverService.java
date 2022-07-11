@@ -8,8 +8,6 @@ package codedriver.framework.cmdb.crossover;
 import codedriver.framework.cmdb.dto.resourcecenter.AccountVo;
 import codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
 import codedriver.framework.cmdb.dto.resourcecenter.ResourceVo;
-import codedriver.framework.cmdb.dto.resourcecenter.config.ResourceEntityVo;
-import codedriver.framework.cmdb.dto.resourcecenter.config.ResourceInfo;
 import codedriver.framework.cmdb.dto.tag.TagVo;
 import codedriver.framework.crossover.ICrossoverService;
 import com.alibaba.fastjson.JSONArray;
@@ -17,7 +15,6 @@ import com.alibaba.fastjson.JSONObject;
 
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
 public interface IResourceCenterResourceCrossoverService extends ICrossoverService {
     ResourceSearchVo assembleResourceSearchVo(JSONObject jsonObj);
