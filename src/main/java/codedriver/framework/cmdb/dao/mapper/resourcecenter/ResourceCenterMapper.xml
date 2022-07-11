@@ -1236,6 +1236,21 @@
             and ri.name = #{name}
         </if>
     </select>
+
+    <select id="getAppSystemIdBySystemName" parameterType="java.lang.String"
+            resultType="java.lang.Long">
+        SELECT `id` FROM ${schemaName}.`resource_appsystem`
+        WHERE (`name` = #{systemName} OR `abbr_name` = #{systemName})
+        LIMIT 1
+    </select>
+
+    <select id="getAppModuleIdByModuleName"
+            resultType="java.lang.Long">
+        SELECT a.`id` FROM ${schemaName}.`resource_appmodule` a
+        WHERE (a.`name` = #{moduleName} OR a.`abbr_name` = #{moduleName})
+        LIMIT 1
+    </select>
+
     <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
         update `cmdb_resourcecenter_account` a set
         <if test="name != null">
