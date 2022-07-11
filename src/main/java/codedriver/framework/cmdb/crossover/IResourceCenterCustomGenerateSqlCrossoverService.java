@@ -8,6 +8,7 @@ package codedriver.framework.cmdb.crossover;
 import codedriver.framework.cmdb.dto.resourcecenter.config.ResourceInfo;
 import codedriver.framework.cmdb.utils.ResourceSearchGenerateSqlUtil;
 import codedriver.framework.crossover.ICrossoverService;
+import com.alibaba.fastjson.JSONObject;
 import net.sf.jsqlparser.statement.select.PlainSelect;
 
 import java.util.List;
@@ -22,4 +23,6 @@ public interface IResourceCenterCustomGenerateSqlCrossoverService extends ICross
     BiConsumer<ResourceSearchGenerateSqlUtil, PlainSelect> getBiConsumerByKeyword(String keyword, List<ResourceInfo> unavailableResourceInfoList);
 
     List<ResourceInfo> getTheadList();
+
+    BiConsumer<ResourceSearchGenerateSqlUtil, PlainSelect> getBiConsumerByCommonCondition(JSONObject paramObj, List<ResourceInfo> unavailableResourceInfoList);
 }
