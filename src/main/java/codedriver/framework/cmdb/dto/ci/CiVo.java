@@ -23,6 +23,8 @@ public class CiVo implements Serializable {
     private Long id;
     @EntityField(name = "父亲模型id", type = ApiParamType.LONG)
     private Long parentCiId;
+    @EntityField(name = "父亲模型图标", type = ApiParamType.STRING)
+    private String parentCiIcon;
     @EntityField(name = "父亲模型名称", type = ApiParamType.STRING)
     private String parentCiLabel;
     @EntityField(name = "父亲模型唯一标识", type = ApiParamType.STRING)
@@ -79,6 +81,8 @@ public class CiVo implements Serializable {
     private List<Long> typeIdList;//类型列表，搜索用
     @EntityField(name = "配置项数量", type = ApiParamType.INTEGER)
     private int ciEntityCount;
+    @EntityField(name = "采集策略数量", type = ApiParamType.INTEGER)
+    private int syncPolicyCount;
 
     @Override
     public boolean equals(Object o) {
@@ -101,6 +105,13 @@ public class CiVo implements Serializable {
         this.parentCi = parentCi;
     }
 
+    public int getSyncPolicyCount() {
+        return syncPolicyCount;
+    }
+
+    public void setSyncPolicyCount(int syncPolicyCount) {
+        this.syncPolicyCount = syncPolicyCount;
+    }
 
     public String getParentCiLabel() {
         return parentCiLabel;
@@ -313,6 +324,14 @@ public class CiVo implements Serializable {
 
     public void setParentCiId(Long parentCiId) {
         this.parentCiId = parentCiId;
+    }
+
+    public String getParentCiIcon() {
+        return parentCiIcon;
+    }
+
+    public void setParentCiIcon(String parentCiIcon) {
+        this.parentCiIcon = parentCiIcon;
     }
 
     public List<CiVo> getChildren() {
