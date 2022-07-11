@@ -17,7 +17,6 @@ public class ResourceInfo {
 
     private Long resourceCiId;
     private String resourceCiName;
-//    private CiVo attrCiVo;
     private String attrCiName;
     private Long attrCiId;
     private Integer attrCiIsVirtual;
@@ -64,14 +63,6 @@ public class ResourceInfo {
     public void setAttrName(String attrName) {
         this.attrName = attrName;
     }
-
-//    public CiVo getAttrCiVo() {
-//        return attrCiVo;
-//    }
-
-//    public void setAttrCiVo(CiVo attrCiVo) {
-//        this.attrCiVo = attrCiVo;
-//    }
 
     public String getAttrCiName() {
         return attrCiName;

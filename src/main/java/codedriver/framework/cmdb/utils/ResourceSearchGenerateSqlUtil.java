@@ -137,7 +137,6 @@ public class ResourceSearchGenerateSqlUtil {
                         if (attrCiVo == null) {
                             attrCiVo = ciVo;
                         }
-//                        resourceInfo.setAttrCiVo(attrCiVo);
                         resourceInfo.setAttrCiName(attrCiVo.getName());
                         resourceInfo.setAttrCiId(attrCiVo.getId());
                         resourceInfo.setAttrCiIsVirtual(attrCiVo.getIsVirtual());
@@ -225,7 +224,6 @@ public class ResourceSearchGenerateSqlUtil {
         Table mainTable = (Table) plainSelect.getFromItem();
         String attrCiName = resourceInfo.getAttrCiName();
         Long attrCiId = resourceInfo.getAttrCiId();
-//        CiVo attrCiVo = resourceInfo.getAttrCiVo();
         String columnName = resourceInfo.getColumnName();
         Long attrId = resourceInfo.getAttrId();
         boolean left = resourceInfo.getLeft();
@@ -367,16 +365,6 @@ public class ResourceSearchGenerateSqlUtil {
                     Column attrCiTableIdColumn = new Column(attrCiTable, "id");
                     Column cmdbRelentityTableToCientityIdColumn = new Column(cmdbRelentityTable, "to_cientity_id");
                     EqualsTo equalsTo = new EqualsTo(attrCiTableIdColumn, cmdbRelentityTableToCientityIdColumn);
-
-//                    Column attrCiTableCiIdColumn = new Column(attrCiTable, "ci_id");
-//                    Table cmdbCi = new Table("cmdb_ci").withAlias(new Alias("cientity_" + attrCiName + "_ci").withUseAs(false));
-//                    Column cmdbCiLftColumn = new Column(cmdbCi, "lft");
-//                    Column cmdbCiRhtColumn = new Column(cmdbCi, "rht");
-//                    GreaterThanEquals greaterThanEquals = new GreaterThanEquals(">=").withLeftExpression(cmdbCiLftColumn).withRightExpression(new LongValue(attrCiVo.getLft()));
-//                    MinorThanEquals minorThanEquals = new MinorThanEquals("<=").withLeftExpression(cmdbCiRhtColumn).withRightExpression(new LongValue(attrCiVo.getRht()));
-//                    SubSelect subSelect = new SubSelect().withSelectBody(new PlainSelect().withFromItem(cmdbCi).addSelectItems(new SelectExpressionItem(new Column(cmdbCi, "id"))).withWhere(new AndExpression(greaterThanEquals, minorThanEquals)));
-//                    InExpression inExpression = new InExpression(attrCiTableCiIdColumn, subSelect);
-//                    Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(new AndExpression(equalsTo, inExpression));
                     Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(equalsTo);
                     plainSelect.addJoins(join);
                     addJoinTable(attrCiTable);
@@ -443,16 +431,6 @@ public class ResourceSearchGenerateSqlUtil {
                     Column attrCiTableIdColumn = new Column(attrCiTable, "id");
                     Column cmdbRelentityTableFromCientityIdColumn = new Column(cmdbRelentityTable, "from_cientity_id");
                     EqualsTo equalsTo = new EqualsTo(attrCiTableIdColumn, cmdbRelentityTableFromCientityIdColumn);
-
-//                    Column attrCiTableCiIdColumn = new Column(attrCiTable, "ci_id");
-//                    Table cmdbCi = new Table("cmdb_ci").withAlias(new Alias("cientity_" + attrCiName + "_ci").withUseAs(false));
-//                    Column cmdbCiLftColumn = new Column(cmdbCi, "lft");
-//                    Column cmdbCiRhtColumn = new Column(cmdbCi, "rht");
-//                    GreaterThanEquals greaterThanEquals = new GreaterThanEquals(">=").withLeftExpression(cmdbCiLftColumn).withRightExpression(new LongValue(attrCiVo.getLft()));
-//                    MinorThanEquals minorThanEquals = new MinorThanEquals("<=").withLeftExpression(cmdbCiRhtColumn).withRightExpression(new LongValue(attrCiVo.getRht()));
-//                    SubSelect subSelect = new SubSelect().withSelectBody(new PlainSelect().withFromItem(cmdbCi).addSelectItems(new SelectExpressionItem(new Column(cmdbCi, "id"))).withWhere(new AndExpression(greaterThanEquals, minorThanEquals)));
-//                    InExpression inExpression = new InExpression(attrCiTableCiIdColumn, subSelect);
-//                    Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(new AndExpression(equalsTo, inExpression));
                     Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(equalsTo);
                     plainSelect.addJoins(join);
                     addJoinTable(attrCiTable);
