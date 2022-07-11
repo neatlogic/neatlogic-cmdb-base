@@ -19,11 +19,11 @@ import java.util.Set;
  **/
 public interface ResourceCenterMapper {
 
-//    int getResourceCount(ResourceSearchVo searchVo);
-//
-//    List<Long> getResourceIdList(ResourceSearchVo searchVo);
-//
-//    List<ResourceVo> getResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+    int getResourceCount(ResourceSearchVo searchVo);
+
+    List<Long> getResourceIdList(ResourceSearchVo searchVo);
+
+    List<ResourceVo> getResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
     int getIpObjectResourceCountByAppModuleIdAndTypeIdAndEnvIdAndTypeId(ResourceSearchVo searchVo);
 
@@ -47,13 +47,13 @@ public interface ResourceCenterMapper {
 //
 //    List<Long> getAppInstanceResourceIdList(ResourceSearchVo searchVo);
 
-//    List<ResourceVo> getAppInstanceResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+    List<ResourceVo> getAppInstanceResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
 //    int getDbInstanceResourceCount(ResourceSearchVo searchVo);
 //
 //    List<Long> getDbInstanceResourceIdList(ResourceSearchVo searchVo);
 
-//    List<ResourceVo> getDbInstanceResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+    List<ResourceVo> getDbInstanceResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
 //    int getAppInstanceClusterResourceCount(ResourceSearchVo searchVo);
 //
@@ -75,7 +75,7 @@ public interface ResourceCenterMapper {
 
     Long getResourceIdByIpAndPortAndName(ResourceSearchVo searchVo);
 
-//    Long getResourceIdByIpAndPortAndNameWithFilter(ResourceSearchVo searchVo);
+    Long getResourceIdByIpAndPortAndNameWithFilter(ResourceSearchVo searchVo);
 
 //    ResourceVo getResourceIpPortById(@Param("id") Long id, @Param("schemaName") String schemaName);
 

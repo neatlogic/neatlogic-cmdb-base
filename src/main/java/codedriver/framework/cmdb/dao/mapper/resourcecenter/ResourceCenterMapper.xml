@@ -7,7 +7,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="codedriver.framework.cmdb.dao.mapper.resourcecenter.ResourceCenterMapper">
 
-    <!--<sql id="resource_ipobject_where">
+    <sql id="resource_ipobject_where">
         <if test="keyword != null and keyword != ''">
             AND (a.`name` LIKE CONCAT('%', #{keyword}, '%') OR a.`ip` LIKE CONCAT('%', #{keyword}, '%') OR a.`port`
             LIKE CONCAT('%', #{keyword}, '%'))
@@ -66,9 +66,9 @@
                 #{tagId}
             </foreach>
         </if>
-    </sql>-->
+    </sql>
 
-    <!--<select id="getResourceCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+    <select id="getResourceCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
             resultType="int">
         SELECT COUNT(DISTINCT a.`id`)
         FROM ${schemaName}.`resource_ipobject_detail` a
@@ -78,9 +78,9 @@
         <where>
             <include refid="resource_ipobject_where"/>
         </where>
-    </select>-->
+    </select>
 
-    <!--<select id="getResourceIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+    <select id="getResourceIdList" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
             resultType="java.lang.Long">
         SELECT DISTINCT a.`id`
         FROM ${schemaName}.`resource_ipobject_detail` a
@@ -92,7 +92,7 @@
         </where>
         ORDER BY a.`id`
         LIMIT #{startNum}, #{pageSize}
-    </select>-->
+    </select>
 
     <resultMap id="resourceCenterMap" type="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
         <id column="id" property="id"/>
@@ -146,7 +146,7 @@
         </collection>
     </resultMap>
 
-    <!--<select id="getResourceListByIdList" resultMap="resourceCenterMap">
+    <select id="getResourceListByIdList" resultMap="resourceCenterMap">
         SELECT
         a.`id`,
         a.`ip`,
@@ -186,7 +186,7 @@
         <foreach collection="idList" item="id" open="(" separator="," close=")">
             #{id}
         </foreach>
-    </select>-->
+    </select>
 
     <select id="getIpObjectResourceCountByAppModuleIdAndTypeIdAndEnvIdAndTypeId"
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="int">
@@ -227,7 +227,7 @@
         </foreach>
     </select>-->
 
-    <!--<select id="getAppInstanceResourceListByIdList" resultMap="resourceCenterMap">
+    <select id="getAppInstanceResourceListByIdList" resultMap="resourceCenterMap">
         SELECT
         a.`id`,
         a.`ip`,
@@ -260,9 +260,9 @@
         <foreach collection="idList" item="id" open="(" separator="," close=")">
             #{id}
         </foreach>
-    </select>-->
+    </select>
 
-    <!--<select id="getDbInstanceResourceListByIdList" resultMap="resourceCenterMap">
+    <select id="getDbInstanceResourceListByIdList" resultMap="resourceCenterMap">
         SELECT
         a.`id`,
         a.`ip`,
@@ -295,7 +295,7 @@
         <foreach collection="idList" item="id" open="(" separator="," close=")">
             #{id}
         </foreach>
-    </select>-->
+    </select>
 
     <select id="getResourceIdByIpAndPortAndName"
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
@@ -1093,7 +1093,7 @@
           AND crap.port = #{port}
     </select>
 
-    <!--<select id="getResourceIdByIpAndPortAndNameWithFilter"
+    <select id="getResourceIdByIpAndPortAndNameWithFilter"
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Long">
         SELECT a.`id`
         FROM ${schemaName}.`resource_ipobject_detail` a
@@ -1114,7 +1114,7 @@
             and a.`name` = #{name}
         </if>
         limit 1
-    </select>-->
+    </select>
 
     <select id="getResourceAccountListByResourceId"
             resultMap="accountMap">
