@@ -46,7 +46,7 @@ public interface IResourceCenterCustomGenerateSqlCrossoverService extends ICross
      */
     List<ResourceInfo> getTheadList();
     /**
-     * 资产清单中常用的过滤条件，类型、状态、环境、系统、模块、巡检状态、名称、IP地址、端口
+     * 资产清单中常用的过滤条件，类型、状态、环境、系统、模块、巡检状态、名称、IP地址
      * @param paramObj
      * @param unavailableResourceInfoList
      * @return
