@@ -16,10 +16,7 @@ import codedriver.framework.cmdb.enums.RelDirectionType;
 import codedriver.framework.cmdb.enums.resourcecenter.JoinType;
 import net.sf.jsqlparser.expression.*;
 import net.sf.jsqlparser.expression.operators.conditional.AndExpression;
-import net.sf.jsqlparser.expression.operators.relational.EqualsTo;
-import net.sf.jsqlparser.expression.operators.relational.GreaterThanEquals;
-import net.sf.jsqlparser.expression.operators.relational.InExpression;
-import net.sf.jsqlparser.expression.operators.relational.MinorThanEquals;
+import net.sf.jsqlparser.expression.operators.relational.*;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
@@ -108,7 +105,7 @@ public class ResourceSearchGenerateSqlUtil {
      * @param resourceId
      * @return
      */
-    public CiVo getCiByResourceId(String resourceId) {
+    private CiVo getCiByResourceId(String resourceId) {
         for (ResourceEntityVo resourceEntityVo : resourceEntityList) {
             if (Objects.equals(resourceEntityVo.getName(), resourceId)) {
                 return resourceEntityVo.getCi();
@@ -140,7 +137,6 @@ public class ResourceSearchGenerateSqlUtil {
                         if (attrCiVo == null) {
                             attrCiVo = ciVo;
                         }
-                        resourceInfo.setAttrCiVo(attrCiVo);
                         resourceInfo.setAttrCiName(attrCiVo.getName());
                         resourceInfo.setAttrCiId(attrCiVo.getId());
                         resourceInfo.setAttrCiIsVirtual(attrCiVo.getIsVirtual());
@@ -228,7 +224,6 @@ public class ResourceSearchGenerateSqlUtil {
         Table mainTable = (Table) plainSelect.getFromItem();
         String attrCiName = resourceInfo.getAttrCiName();
         Long attrCiId = resourceInfo.getAttrCiId();
-        CiVo attrCiVo = resourceInfo.getAttrCiVo();
         String columnName = resourceInfo.getColumnName();
         Long attrId = resourceInfo.getAttrId();
         boolean left = resourceInfo.getLeft();
@@ -370,16 +365,6 @@ public class ResourceSearchGenerateSqlUtil {
                     Column attrCiTableIdColumn = new Column(attrCiTable, "id");
                     Column cmdbRelentityTableToCientityIdColumn = new Column(cmdbRelentityTable, "to_cientity_id");
                     EqualsTo equalsTo = new EqualsTo(attrCiTableIdColumn, cmdbRelentityTableToCientityIdColumn);
-
-//                    Column attrCiTableCiIdColumn = new Column(attrCiTable, "ci_id");
-//                    Table cmdbCi = new Table("cmdb_ci").withAlias(new Alias("cientity_" + attrCiName + "_ci").withUseAs(false));
-//                    Column cmdbCiLftColumn = new Column(cmdbCi, "lft");
-//                    Column cmdbCiRhtColumn = new Column(cmdbCi, "rht");
-//                    GreaterThanEquals greaterThanEquals = new GreaterThanEquals(">=").withLeftExpression(cmdbCiLftColumn).withRightExpression(new LongValue(attrCiVo.getLft()));
-//                    MinorThanEquals minorThanEquals = new MinorThanEquals("<=").withLeftExpression(cmdbCiRhtColumn).withRightExpression(new LongValue(attrCiVo.getRht()));
-//                    SubSelect subSelect = new SubSelect().withSelectBody(new PlainSelect().withFromItem(cmdbCi).addSelectItems(new SelectExpressionItem(new Column(cmdbCi, "id"))).withWhere(new AndExpression(greaterThanEquals, minorThanEquals)));
-//                    InExpression inExpression = new InExpression(attrCiTableCiIdColumn, subSelect);
-//                    Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(new AndExpression(equalsTo, inExpression));
                     Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(equalsTo);
                     plainSelect.addJoins(join);
                     addJoinTable(attrCiTable);
@@ -446,16 +431,6 @@ public class ResourceSearchGenerateSqlUtil {
                     Column attrCiTableIdColumn = new Column(attrCiTable, "id");
                     Column cmdbRelentityTableFromCientityIdColumn = new Column(cmdbRelentityTable, "from_cientity_id");
                     EqualsTo equalsTo = new EqualsTo(attrCiTableIdColumn, cmdbRelentityTableFromCientityIdColumn);
-
-//                    Column attrCiTableCiIdColumn = new Column(attrCiTable, "ci_id");
-//                    Table cmdbCi = new Table("cmdb_ci").withAlias(new Alias("cientity_" + attrCiName + "_ci").withUseAs(false));
-//                    Column cmdbCiLftColumn = new Column(cmdbCi, "lft");
-//                    Column cmdbCiRhtColumn = new Column(cmdbCi, "rht");
-//                    GreaterThanEquals greaterThanEquals = new GreaterThanEquals(">=").withLeftExpression(cmdbCiLftColumn).withRightExpression(new LongValue(attrCiVo.getLft()));
-//                    MinorThanEquals minorThanEquals = new MinorThanEquals("<=").withLeftExpression(cmdbCiRhtColumn).withRightExpression(new LongValue(attrCiVo.getRht()));
-//                    SubSelect subSelect = new SubSelect().withSelectBody(new PlainSelect().withFromItem(cmdbCi).addSelectItems(new SelectExpressionItem(new Column(cmdbCi, "id"))).withWhere(new AndExpression(greaterThanEquals, minorThanEquals)));
-//                    InExpression inExpression = new InExpression(attrCiTableCiIdColumn, subSelect);
-//                    Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(new AndExpression(equalsTo, inExpression));
                     Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(equalsTo);
                     plainSelect.addJoins(join);
                     addJoinTable(attrCiTable);
@@ -540,4 +515,87 @@ public class ResourceSearchGenerateSqlUtil {
             }
         }
     }
+
+    /**
+     * 向sql语句where后添加过滤条件
+     * @param plainSelect
+     * @param expression
+     * @return
+     */
+    public PlainSelect addWhere(PlainSelect plainSelect, Expression expression) {
+        Expression where = plainSelect.getWhere();
+        if (where == null) {
+            plainSelect.setWhere(expression);
+        } else {
+            plainSelect.setWhere(new AndExpression(where, expression));
+        }
+        return plainSelect;
+    }
+
+    /**
+     * 向sql语句where后添加过滤条件
+     * @param plainSelect
+     * @param column
+     * @param expression
+     * @return
+     */
+    public PlainSelect addWhere(PlainSelect plainSelect, Column column, Expression expression) {
+        return addWhere(plainSelect, column, expression, null);
+    }
+
+    /**
+     * 向sql语句where后添加过滤条件
+     * @param plainSelect
+     * @param column
+     * @param expression
+     * @param value
+     * @return
+     */
+    public PlainSelect addWhere(PlainSelect plainSelect, Column column, Expression expression, Object value) {
+        if (expression instanceof EqualsTo) {
+            Expression rightExpression = null;
+            if (value instanceof Long) {
+                rightExpression = new LongValue((Long)value);
+            } else if (value instanceof Integer) {
+                rightExpression = new LongValue((Integer)value);
+            } else if (value instanceof String) {
+                rightExpression = new StringValue((String)value);
+            } else {
+                throw new RuntimeException("还不支持" + value.getClass().getName() + "类型数值，请补充逻辑");
+            }
+            ((EqualsTo) expression).withLeftExpression(column).withRightExpression(rightExpression);
+        } else if (expression instanceof InExpression) {
+            if (value == null) {
+                return plainSelect;
+            }
+            if (value instanceof List) {
+                List list = (List) value;
+                if (CollectionUtils.isNotEmpty(list)) {
+                    ExpressionList expressionList = new ExpressionList();
+                    for (Object val : list) {
+                        if (val instanceof Long) {
+                            expressionList.addExpressions(new LongValue((Long)val));
+                        } else if (val instanceof Integer) {
+                            expressionList.addExpressions(new LongValue((Integer)val));
+                        } else if (val instanceof String) {
+                            expressionList.addExpressions(new StringValue((String)val));
+                        } else {
+                            throw new RuntimeException("还不支持" + val.getClass().getName() + "类型数值，请补充逻辑");
+                        }
+                    }
+                    ((InExpression) expression).withLeftExpression(column).setRightItemsList(expressionList);
+                }
+            } else if (value instanceof SubSelect) {
+                ((InExpression) expression).withLeftExpression(column).withRightExpression((SubSelect) value);
+            } else {
+                throw new RuntimeException("还不支持" + value.getClass().getName() + "类型数值，请补充逻辑");
+            }
+        } else if (expression instanceof IsNullExpression) {
+            ((IsNullExpression) expression).setLeftExpression(column);
+        } else {
+            throw new RuntimeException("还不支持" + expression.getClass().getName() + "类型表达式，请补充逻辑");
+        }
+        return addWhere(plainSelect, expression);
+    }
+
 }

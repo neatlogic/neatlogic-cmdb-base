@@ -110,6 +110,47 @@ public class ResourceVo extends BaseEditorVo {
         this.name = name;
     }
 
+    public ResourceVo(ResourceVo resourceVo) {
+        this.id = resourceVo.id;
+        this.name = resourceVo.name;
+        this.abbrName = resourceVo.abbrName;
+        this.typeId = resourceVo.typeId;
+        this.typeName = resourceVo.typeName;
+        this.typeLabel = resourceVo.typeLabel;
+        this.networkArea = resourceVo.networkArea;
+        this.dataCenterId = resourceVo.dataCenterId;
+        this.dataCenterName = resourceVo.dataCenterName;
+        this.stateId = resourceVo.stateId;
+        this.stateName = resourceVo.stateName;
+        this.stateLabel = resourceVo.stateLabel;
+        this.appSystemId = resourceVo.appSystemId;
+        this.appSystemName = resourceVo.appSystemName;
+        this.appSystemAbbrName = resourceVo.appSystemAbbrName;
+        this.appModuleId = resourceVo.appModuleId;
+        this.appModuleName = resourceVo.appModuleName;
+        this.appModuleAbbrName = resourceVo.appModuleAbbrName;
+        this.envId = resourceVo.envId;
+        this.envName = resourceVo.envName;
+        this.maintenanceWindow = resourceVo.maintenanceWindow;
+        this.description = resourceVo.description;
+        this.ip = resourceVo.ip;
+        this.allIp = resourceVo.allIp;
+        this.port = resourceVo.port;
+        this.ownerList = resourceVo.ownerList;
+        this.bgList = resourceVo.bgList;
+        this.tagList = resourceVo.tagList;
+        this.accountList = resourceVo.accountList;
+        this.tagVoList = resourceVo.tagVoList;
+        this.clusterId = resourceVo.clusterId;
+        this.clusterName = resourceVo.clusterName;
+        this.clusterTypeId = resourceVo.clusterTypeId;
+        this.inspectStatus = resourceVo.inspectStatus;
+        this.inspectStatusJson = resourceVo.inspectStatusJson;
+        this.inspectTime = resourceVo.inspectTime;
+        this.monitorStatus = resourceVo.monitorStatus;
+        this.monitorTime = resourceVo.monitorTime;
+    }
+
     public Long getId() {
         return id;
     }
