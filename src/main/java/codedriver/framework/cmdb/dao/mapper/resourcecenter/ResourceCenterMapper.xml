@@ -1225,6 +1225,7 @@
             and ri.name = #{name}
         </if>
     </select>
+
     <update id="updateAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
         update `cmdb_resourcecenter_account` a set
         <if test="name != null">

@@ -55,4 +55,13 @@ public interface ICiEntityCrossoverMapper extends ICrossoverService {
      * @return
      */
     int getCiEntityIdListCountByCiName(@Param("ciName") String ciName);
+
+    /**
+     * 根据模型名称和配置项名称查询配置项ID
+     *
+     * @param ciName
+     * @param ciEntityName
+     * @return
+     */
+    Long getCiEntityIdByCiNameAndCiEntityName(@Param("ciName") String ciName, @Param("ciEntityName") String ciEntityName);
 }
