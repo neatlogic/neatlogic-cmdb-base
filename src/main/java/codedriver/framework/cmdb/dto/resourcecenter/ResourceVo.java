@@ -110,6 +110,12 @@ public class ResourceVo extends BaseEditorVo {
         this.name = name;
     }
 
+    public ResourceVo(Long appSystemId, Long appModuleId, Long envId) {
+        this.appSystemId = appSystemId;
+        this.appModuleId = appModuleId;
+        this.envId = envId;
+    }
+
     public ResourceVo(ResourceVo resourceVo) {
         this.id = resourceVo.id;
         this.name = resourceVo.name;
