@@ -22,4 +22,8 @@ public class AppModuleNotFoundException extends ApiRuntimeException {
     public AppModuleNotFoundException(String name) {
         super("应用模块：'" + name + "'不存在");
     }
+
+    public AppModuleNotFoundException() {
+        super("应用模块 id | name 不存在");
+    }
 }
