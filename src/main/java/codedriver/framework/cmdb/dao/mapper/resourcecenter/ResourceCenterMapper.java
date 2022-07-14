@@ -49,6 +49,8 @@ public interface ResourceCenterMapper {
 
     List<ResourceVo> getAppInstanceResourceListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
 
+    List<ResourceVo> getAppInstanceResourceListByIdListSimple(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+
 //    int getDbInstanceResourceCount(ResourceSearchVo searchVo);
 //
 //    List<Long> getDbInstanceResourceIdList(ResourceSearchVo searchVo);
@@ -145,11 +147,13 @@ public interface ResourceCenterMapper {
 
     List<ResourceVo> searchAppModule(@Param("searchVo") ResourceSearchVo searchVo, @Param("schemaName") String schemaName);
 
-    List<Long> getAppSystemModuleIdListByAppSystemId(@Param("appSystemId") Long appSystemId, @Param("schemaName") String schemaName);
+    List<Long> getAppSystemModuleIdListByAppSystemId(@Param("appSystemId") Long appSystemId);
 
     List<ModuleVo> getAppModuleListByAppSystemIdList(ResourceSearchVo searchVo);
 
     List<ResourceVo> getAppModuleListByIdList(@Param("idList") List<Long> idList, @Param("schemaName") String schemaName);
+
+    List<ResourceVo> getAppModuleListByIdListSimple(@Param("idList") List<Long> idList);
 
 //    int checkAppModuleIsExists(@Param("id") Long id, @Param("schemaName") String schemaName);
 
