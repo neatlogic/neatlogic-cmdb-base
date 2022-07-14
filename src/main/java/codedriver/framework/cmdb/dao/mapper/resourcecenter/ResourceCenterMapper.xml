@@ -262,6 +262,37 @@
         </foreach>
     </select>
 
+    <select id="getAppInstanceResourceListByIdListSimple" resultMap="resourceCenterMap">
+        SELECT
+        a.`id`,
+        a.`ip`,
+        a.`port`,
+        a.`name`,
+        a.`type_id`,
+        a.`monitor_status`,
+        a.`monitor_time`,
+        a.`inspect_status`,
+        a.`inspect_time`,
+        a.`network_area`,
+        a.`maintenance_window`,
+        a.`description`,
+        a.`bg_id`,
+        a.`bg_name`,
+        a.`user_id`,
+        a.`user_uuid`,
+        a.`user_name`,
+        a.`state_id`,
+        a.`state_name`,
+        a.`state_label`,
+        a.`env_id`,
+        a.`env_name`
+        FROM ${schemaName}.`resource_ipobject_detail` a
+        WHERE a.`id` IN
+        <foreach collection="idList" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
     <select id="getDbInstanceResourceListByIdList" resultMap="resourceCenterMap">
         SELECT
         a.`id`,
@@ -680,7 +711,7 @@
 
     <select id="getAppSystemModuleIdListByAppSystemId"
             resultType="java.lang.Long">
-        SELECT `app_module_id` FROM ${schemaName}.`resource_appsystem_appmodule`
+        SELECT `app_module_id` FROM `resource_appsystem_appmodule`
         <where>
             `resource_id` = #{appSystemId}
         </where>
@@ -724,6 +755,19 @@
             #{id}
         </foreach>
         ORDER BY a.`id` DESC
+    </select>
+
+    <select id="getAppModuleListByIdListSimple" parameterType="java.util.List" resultMap="resourceCenterMap">
+        SELECT
+        a.`id`, a.`name`, a.`abbr_name`, a.`maintenance_window`, a.`description`,
+        a.`inspect_status`, a.`inspect_time`, a.`monitor_status`, a.`monitor_time`,
+        a.`fcu`, a.`fcd`, a.`lcu`, a.`lcd`
+        FROM `resource_appmodule` a
+        WHERE a.`id` IN
+        <foreach collection="idList" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        order by CONVERT(a.`name` USING gbk) COLLATE gbk_chinese_ci ASC
     </select>
 
     <select id="getIpObjectResourceTypeIdListByAppModuleIdAndEnvId"
