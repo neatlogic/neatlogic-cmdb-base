@@ -109,6 +109,9 @@ public class SceneEntityVo {
     }
 
     public Long getCiId() {
+        if (ciId == null && ci != null) {
+            ciId = ci.getId();
+        }
         return ciId;
     }
 

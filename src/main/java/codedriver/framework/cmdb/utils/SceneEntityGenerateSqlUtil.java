@@ -40,7 +40,6 @@ public class SceneEntityGenerateSqlUtil {
     public String getSql() {
         PlainSelect plainSelect = initPlainSelectByMainResourceId(sceneEntityVo.getCi());
         for (SceneEntityAttrVo sceneEntityAttrVo : sceneEntityVo.getAttrList()) {
-            System.out.println("sceneEntityAttrVo:" + JSONObject.toJSONString(sceneEntityAttrVo));
             addJoinTableBySceneEntityAttr(sceneEntityAttrVo, plainSelect);
         }
         return plainSelect.toString();

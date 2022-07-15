@@ -5,8 +5,8 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter.config;
 
+import codedriver.framework.cmdb.dto.ci.AttrVo;
 import codedriver.framework.cmdb.dto.ci.CiVo;
-import codedriver.framework.cmdb.enums.RelDirectionType;
 import codedriver.framework.cmdb.enums.resourcecenter.JoinType;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
@@ -18,7 +18,6 @@ public class SceneEntityJoinVo {
     private String resource;
     private String field;
     private String ciName;
-//    private String direction = RelDirectionType.FROM.getValue();
     private String direction;
     private String fromAttr;
     private String fromCi;
@@ -30,17 +29,13 @@ public class SceneEntityJoinVo {
     private CiVo toCiVo;
     @EntityField(name = "模型属性id", type = ApiParamType.LONG)
     private Long fromAttrId;
-//    @EntityField(name = "模型属性id", type = ApiParamType.LONG)
-//    private Long toAttrId;
-//    @EntityField(name = "模型属性id", type = ApiParamType.LONG)
-//    private Long toAttrCiId;
     @EntityField(name = "模型属性id", type = ApiParamType.LONG)
     private Long fromAttrCiId;
-//    @EntityField(name = "模型属性id", type = ApiParamType.STRING)
-//    private String toAttrCiName;
     @EntityField(name = "模型属性id", type = ApiParamType.STRING)
     private String fromAttrCiName;
-//    private Integer toCiIsVirtual;
+    @JSONField(serialize = false)
+    private AttrVo fromAttrVo;
+
     public SceneEntityJoinVo(JoinType _joinType) {
         joinType = _joinType;
     }
@@ -145,6 +140,9 @@ public class SceneEntityJoinVo {
     }
 
     public Long getFromAttrId() {
+        if (fromAttrId == null && fromAttrVo != null) {
+            fromAttrId = fromAttrVo.getId();
+        }
         return fromAttrId;
     }
 
@@ -152,23 +150,10 @@ public class SceneEntityJoinVo {
         this.fromAttrId = fromAttrId;
     }
 
-//    public Long getToAttrId() {
-//        return toAttrId;
-//    }
-//
-//    public void setToAttrId(Long toAttrId) {
-//        this.toAttrId = toAttrId;
-//    }
-//
-//    public Long getToAttrCiId() {
-//        return toAttrCiId;
-//    }
-//
-//    public void setToAttrCiId(Long toAttrCiId) {
-//        this.toAttrCiId = toAttrCiId;
-//    }
-
     public Long getFromAttrCiId() {
+        if (fromAttrCiId == null && fromAttrVo != null) {
+            fromAttrCiId = fromAttrVo.getCiId();
+        }
         return fromAttrCiId;
     }
 
@@ -176,15 +161,10 @@ public class SceneEntityJoinVo {
         this.fromAttrCiId = fromAttrCiId;
     }
 
-//    public String getToAttrCiName() {
-//        return toAttrCiName;
-//    }
-//
-//    public void setToAttrCiName(String toAttrCiName) {
-//        this.toAttrCiName = toAttrCiName;
-//    }
-
     public String getFromAttrCiName() {
+        if (fromAttrCiName == null && fromAttrVo != null) {
+            fromAttrCiName = fromAttrVo.getCiName();
+        }
         return fromAttrCiName;
     }
 
@@ -192,11 +172,11 @@ public class SceneEntityJoinVo {
         this.fromAttrCiName = fromAttrCiName;
     }
 
-//    public Integer getToCiIsVirtual() {
-//        return toCiIsVirtual;
-//    }
-//
-//    public void setToCiIsVirtual(Integer toCiIsVirtual) {
-//        this.toCiIsVirtual = toCiIsVirtual;
-//    }
+    public AttrVo getFromAttrVo() {
+        return fromAttrVo;
+    }
+
+    public void setFromAttrVo(AttrVo fromAttrVo) {
+        this.fromAttrVo = fromAttrVo;
+    }
 }
