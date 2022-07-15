@@ -8,8 +8,6 @@ package codedriver.framework.cmdb.dto.resourcecenter.config;
 import codedriver.framework.cmdb.dto.ci.AttrVo;
 import codedriver.framework.cmdb.dto.ci.CiVo;
 import codedriver.framework.cmdb.enums.resourcecenter.JoinType;
-import codedriver.framework.common.constvalue.ApiParamType;
-import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.annotation.JSONField;
 
 public class SceneEntityAttrVo {
@@ -33,6 +31,7 @@ public class SceneEntityAttrVo {
     private Integer toCiIsVirtual;
     private Long fromCiId;
     private Long toCiId;
+
     @JSONField(serialize = false)
     private CiVo fromCiVo;
     @JSONField(serialize = false)
@@ -75,6 +74,9 @@ public class SceneEntityAttrVo {
     }
 
     public String getFromCi() {
+        if (fromCi == null && fromCiVo != null) {
+            fromCi = fromCiVo.getName();
+        }
         return fromCi;
     }
 
@@ -83,6 +85,9 @@ public class SceneEntityAttrVo {
     }
 
     public String getToCi() {
+        if (toCi == null && toCiVo != null) {
+            toCi = toCiVo.getName();
+        }
         return toCi;
     }
 
@@ -91,6 +96,9 @@ public class SceneEntityAttrVo {
     }
 
     public String getFromAttr() {
+        if (fromAttr == null && fromAttrVo != null) {
+            fromAttr = fromAttrVo.getName();
+        }
         return fromAttr;
     }
 
@@ -99,6 +107,9 @@ public class SceneEntityAttrVo {
     }
 
     public String getToAttr() {
+        if (toAttr == null && toAttrVo != null) {
+            toAttr = toAttrVo.getName();
+        }
         return toAttr;
     }
 

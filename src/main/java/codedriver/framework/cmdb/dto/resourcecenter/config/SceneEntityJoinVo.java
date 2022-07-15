@@ -8,16 +8,12 @@ package codedriver.framework.cmdb.dto.resourcecenter.config;
 import codedriver.framework.cmdb.dto.ci.AttrVo;
 import codedriver.framework.cmdb.dto.ci.CiVo;
 import codedriver.framework.cmdb.enums.resourcecenter.JoinType;
-import codedriver.framework.common.constvalue.ApiParamType;
-import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.annotation.JSONField;
 
 public class SceneEntityJoinVo {
     private final JoinType joinType;
-    @EntityField(name = "字段所在视图名", type = ApiParamType.STRING)
     private String resource;
     private String field;
-    private String ciName;
     private String direction;
     private String fromAttr;
     private String fromCi;
@@ -27,12 +23,6 @@ public class SceneEntityJoinVo {
     private CiVo fromCiVo;
     @JSONField(serialize = false)
     private CiVo toCiVo;
-    @EntityField(name = "模型属性id", type = ApiParamType.LONG)
-    private Long fromAttrId;
-    @EntityField(name = "模型属性id", type = ApiParamType.LONG)
-    private Long fromAttrCiId;
-    @EntityField(name = "模型属性id", type = ApiParamType.STRING)
-    private String fromAttrCiName;
     @JSONField(serialize = false)
     private AttrVo fromAttrVo;
 
@@ -66,15 +56,6 @@ public class SceneEntityJoinVo {
         return joinType;
     }
 
-
-    public String getCiName() {
-        return ciName;
-    }
-
-    public void setCiName(String ciName) {
-        this.ciName = ciName;
-    }
-
     public String getField() {
         return field;
     }
@@ -100,6 +81,9 @@ public class SceneEntityJoinVo {
     }
 
     public String getFromCi() {
+        if (fromCi == null && fromCiVo != null) {
+            fromCi = fromCiVo.getName();
+        }
         return fromCi;
     }
 
@@ -116,6 +100,9 @@ public class SceneEntityJoinVo {
     }
 
     public String getToCi() {
+        if (toCi == null && toCiVo != null) {
+            toCi = toCiVo.getName();
+        }
         return toCi;
     }
 
@@ -139,38 +126,6 @@ public class SceneEntityJoinVo {
         this.toCiVo = toCiVo;
     }
 
-    public Long getFromAttrId() {
-        if (fromAttrId == null && fromAttrVo != null) {
-            fromAttrId = fromAttrVo.getId();
-        }
-        return fromAttrId;
-    }
-
-    public void setFromAttrId(Long fromAttrId) {
-        this.fromAttrId = fromAttrId;
-    }
-
-    public Long getFromAttrCiId() {
-        if (fromAttrCiId == null && fromAttrVo != null) {
-            fromAttrCiId = fromAttrVo.getCiId();
-        }
-        return fromAttrCiId;
-    }
-
-    public void setFromAttrCiId(Long fromAttrCiId) {
-        this.fromAttrCiId = fromAttrCiId;
-    }
-
-    public String getFromAttrCiName() {
-        if (fromAttrCiName == null && fromAttrVo != null) {
-            fromAttrCiName = fromAttrVo.getCiName();
-        }
-        return fromAttrCiName;
-    }
-
-    public void setFromAttrCiName(String fromAttrCiName) {
-        this.fromAttrCiName = fromAttrCiName;
-    }
 
     public AttrVo getFromAttrVo() {
         return fromAttrVo;
