@@ -10,6 +10,8 @@ import codedriver.framework.cmdb.dto.ci.CiVo;
 import codedriver.framework.cmdb.enums.resourcecenter.JoinType;
 import com.alibaba.fastjson.annotation.JSONField;
 
+import java.util.Objects;
+
 public class SceneEntityJoinVo {
     private final JoinType joinType;
     private String resource;
@@ -39,18 +41,18 @@ public class SceneEntityJoinVo {
     }
 
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        SceneEntityJoinVo that = (SceneEntityJoinVo) o;
-//        return joinType == that.joinType && Objects.equals(ciName, that.ciName) && direction.equals(that.direction);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(joinType, ciName, direction);
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SceneEntityJoinVo that = (SceneEntityJoinVo) o;
+        return Objects.equals(field, that.field);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(field);
+    }
 
     public JoinType getJoinType() {
         return joinType;

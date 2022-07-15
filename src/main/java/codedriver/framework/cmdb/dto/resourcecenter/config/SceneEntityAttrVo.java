@@ -10,6 +10,8 @@ import codedriver.framework.cmdb.dto.ci.CiVo;
 import codedriver.framework.cmdb.enums.resourcecenter.JoinType;
 import com.alibaba.fastjson.annotation.JSONField;
 
+import java.util.Objects;
+
 public class SceneEntityAttrVo {
 
     private String resource;
@@ -135,10 +137,6 @@ public class SceneEntityAttrVo {
         return toAttrId;
     }
 
-//    public void setToAttrId(Long toAttrId) {
-//        this.toAttrId = toAttrId;
-//    }
-
     public Long getToAttrCiId() {
         if (toAttrCiId == null && toAttrVo != null) {
             toAttrCiId = toAttrVo.getCiId();
@@ -155,10 +153,6 @@ public class SceneEntityAttrVo {
             fromAttrCiId = fromAttrVo.getCiId();
         }
         return fromAttrCiId;
-    }
-
-    public void setFromAttrCiId(Long fromAttrCiId) {
-        this.fromAttrCiId = fromAttrCiId;
     }
 
     public String getToAttrCiName() {
@@ -179,20 +173,12 @@ public class SceneEntityAttrVo {
         return fromAttrCiName;
     }
 
-    public void setFromAttrCiName(String fromAttrCiName) {
-        this.fromAttrCiName = fromAttrCiName;
-    }
-
     public Integer getToCiIsVirtual() {
         if (toCiIsVirtual == null && toCiVo != null) {
             toCiIsVirtual = toCiVo.getIsVirtual();
         }
         return toCiIsVirtual;
     }
-
-//    public void setToCiIsVirtual(Integer toCiIsVirtual) {
-//        this.toCiIsVirtual = toCiIsVirtual;
-//    }
 
     public Long getFromCiId() {
         if (fromCiId == null && fromCiVo != null) {
@@ -201,20 +187,12 @@ public class SceneEntityAttrVo {
         return fromCiId;
     }
 
-//    public void setFromCiId(Long fromCiId) {
-//        this.fromCiId = fromCiId;
-//    }
-
     public Long getToCiId() {
         if (toCiId == null && toCiVo != null) {
             toCiId = toCiVo.getId();
         }
         return toCiId;
     }
-
-//    public void setToCiId(Long toCiId) {
-//        this.toCiId = toCiId;
-//    }
 
     public CiVo getFromCiVo() {
         return fromCiVo;
@@ -247,17 +225,18 @@ public class SceneEntityAttrVo {
     public void setToAttrVo(AttrVo toAttrVo) {
         this.toAttrVo = toAttrVo;
     }
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        SceneEntityAttrVo that = (SceneEntityAttrVo) o;
-//        return Objects.equals(field, that.field) && Objects.equals(ciId, that.ciId);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(field, ciId);
-//    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SceneEntityAttrVo that = (SceneEntityAttrVo) o;
+        return Objects.equals(field, that.field);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(field);
+    }
 
 }
