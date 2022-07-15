@@ -5,6 +5,7 @@
 
 package codedriver.framework.cmdb.exception.resourcecenter;
 
+import codedriver.framework.cmdb.enums.resourcecenter.JoinType;
 import codedriver.framework.exception.core.ApiRuntimeException;
 
 public class ResourceCenterConfigIrregularException extends ApiRuntimeException {
@@ -14,6 +15,10 @@ public class ResourceCenterConfigIrregularException extends ApiRuntimeException 
 
     public ResourceCenterConfigIrregularException(String resourceEntityName, String nodeName, String attrName) {
         super("资源节点：" + resourceEntityName + "缺少field为：" + attrName + "的" + nodeName + "节点");
+    }
+
+    public ResourceCenterConfigIrregularException(String resourceEntityName, JoinType joinType, String attrName) {
+        super("资源节点：" + resourceEntityName  + "的" + joinType.getValue() + "节点"+ "缺少：" + attrName + "属性");
     }
 
     public ResourceCenterConfigIrregularException(String resourceEntityName, String nodeName, String fieldName, String attrName) {
