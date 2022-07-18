@@ -931,11 +931,21 @@
         JOIN ${schemaName}.resource_ipobject_appmodule ria ON raa.app_module_id = ria.app_module_id
         JOIN ${schemaName}.resource_softwareservice_env rse ON ria.resource_id = rse.resource_id
         JOIN ${schemaName}.resource_appinstance ra ON ra.id = rse.resource_id
-        WHERE raa.resource_id = #{resourceVo.appSystemId}
-          AND ria.app_module_id = #{resourceVo.appModuleId}
-          AND rse.env_id = #{resourceVo.envId}
+        <where>
+            <if test="resourceVo.appSystemId != null">
+                AND raa.resource_id = #{resourceVo.appSystemId}
+            </if>
+            <if test="resourceVo.appModuleId != null">
+                AND ria.app_module_id = #{resourceVo.appModuleId}
+            </if>
+            <if test="resourceVo.envId != null">
+                AND rse.env_id = #{resourceVo.envId}
+            </if>
+        </where>
         ORDER BY rse.resource_id DESC
+        <if test="resourceVo.needPage">
             LIMIT #{resourceVo.startNum}, #{resourceVo.pageSize}
+        </if>
     </select>
 
     <select id="getResourceAccountListByResourceIdAndProtocolAndAccount"
