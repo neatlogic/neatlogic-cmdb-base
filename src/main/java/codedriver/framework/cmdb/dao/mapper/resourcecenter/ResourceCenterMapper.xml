@@ -706,7 +706,8 @@
         </where>
     </sql>
 
-    <select id="searchAppModuleCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo" resultType="java.lang.Integer">
+    <select id="searchAppModuleCount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+            resultType="java.lang.Integer">
         SELECT count(1)
         FROM ${schemaName}.`resource_appmodule` a
         <include refid="searchAppModuleWhere"/>
@@ -736,10 +737,10 @@
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.entity.ModuleVo">
         SELECT
-               `resource_id` AS resourceId,
-               `app_module_id` AS appModuleId,
-               `app_module_name` AS appModuleName,
-               `app_module_abbr_name` AS appModuleAbbrName
+        `resource_id` AS resourceId,
+        `app_module_id` AS appModuleId,
+        `app_module_name` AS appModuleName,
+        `app_module_abbr_name` AS appModuleAbbrName
         FROM ${schemaName}.`resource_appsystem_appmodule`
         <where>
             `resource_id` IN
@@ -930,13 +931,13 @@
             resultType="java.lang.Long">
         SELECT rse.resource_id
         FROM ${schemaName}.resource_appsystem_appmodule raa
-        JOIN ${schemaName}.resource_ipobject_appmodule ria ON raa.app_module_id = ria.app_module_id
-        JOIN ${schemaName}.resource_softwareservice_env rse ON ria.resource_id = rse.resource_id
+                 JOIN ${schemaName}.resource_ipobject_appmodule ria ON raa.app_module_id = ria.app_module_id
+                 JOIN ${schemaName}.resource_softwareservice_env rse ON ria.resource_id = rse.resource_id
         WHERE raa.resource_id = #{resourceVo.appSystemId}
           AND ria.app_module_id = #{resourceVo.appModuleId}
           AND rse.env_id = #{resourceVo.envId}
         ORDER BY rse.resource_id DESC
-            LIMIT #{resourceVo.startNum}, #{resourceVo.pageSize}
+        LIMIT #{resourceVo.startNum}, #{resourceVo.pageSize}
     </select>
 
     <select id="getAppInstanceResourceIdListByAppSystemIdAndModuleIdAndEnvId"
@@ -1202,21 +1203,29 @@
     <select id="getResourceAccountListByResourceId"
             resultMap="accountMap">
         SELECT cra.id,
-               cra.name,
-               cra.account,
-               crap.`name` as protocol,
-               crap.`port` as protocolPort,
-               cra.`fcu`,
-               cra.`fcd`,
-               cra.`lcu`,
-               cra.`lcd`
+        cra.name,
+        cra.account,
+        crap.`name` as protocol,
+        crap.`port` as protocolPort,
+        cra.`fcu`,
+        cra.`fcd`,
+        cra.`lcu`,
+        cra.`lcd`
         FROM cmdb_resourcecenter_resource_account crra
-                 left join cmdb_resourcecenter_account cra on cra.id = crra.account_id
-                 left join cmdb_resourcecenter_account_protocol crap on crap.id = cra.protocol_id
+        left join cmdb_resourcecenter_account cra on cra.id = crra.account_id
+        left join cmdb_resourcecenter_account_protocol crap on crap.id = cra.protocol_id
         WHERE crra.resource_id = #{resourceId}
         <if test="protocol != null">
             And crap.name = #{protocol}
         </if>
+    </select>
+
+    <select id="getAllAccountList" resultType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">
+        SELECT cra.id,
+               cra.name,
+               cra.account,
+               cra.password as passwordCipher
+        from cmdb_resourcecenter_account cra
     </select>
 
     <select id="getTagListByAccountId" resultType="codedriver.framework.cmdb.dto.tag.TagVo">
@@ -1288,14 +1297,14 @@
     <select id="getResourceByIpAndPortAndNameAndTypeName"
             resultType="codedriver.framework.cmdb.dto.resourcecenter.ResourceVo">
         SELECT
-            ri.NAME,
-            ri.`ip`,
-            ri.id,
-            rs.PORT,
-            ri.type_name AS typeName
+        ri.NAME,
+        ri.`ip`,
+        ri.id,
+        rs.PORT,
+        ri.type_name AS typeName
         FROM
-            ${schemaName}.`resource_ipobject` ri
-                LEFT JOIN ${schemaName}.`resource_softwareservice` rs ON ri.`id` = rs.`id`
+        ${schemaName}.`resource_ipobject` ri
+        LEFT JOIN ${schemaName}.`resource_softwareservice` rs ON ri.`id` = rs.`id`
         WHERE
         ri.ip = #{ip}
         <if test="typeName != null and typeName != ''">
@@ -1341,6 +1350,11 @@
             `lcd`  = now(3),
             `lcu`  = #{lcu}
         where `id` = #{id}
+    </update>
+    <update id="updateAccountPasswordById">
+        update `cmdb_resourcecenter_account`
+        set password = #{password}
+        where id = #{id}
     </update>
 
     <insert id="insertAccount" parameterType="codedriver.framework.cmdb.dto.resourcecenter.AccountVo">

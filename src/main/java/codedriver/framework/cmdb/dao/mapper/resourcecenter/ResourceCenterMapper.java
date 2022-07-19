@@ -209,6 +209,8 @@ public interface ResourceCenterMapper {
 
     List<AccountVo> getResourceAccountListByResourceId(@Param("resourceId") Long resourceId, @Param("protocol") String protocol);
 
+    List<AccountVo> getAllAccountList();
+
     List<AccountProtocolVo> searchAccountProtocolListByProtocolName(AccountProtocolVo searchVo);
 
     int checkAccountProtocolIsRepeats(AccountProtocolVo searchVo);
@@ -256,6 +258,8 @@ public interface ResourceCenterMapper {
 //    List<AccountIpVo> getAccountIp(AccountIpVo ipVo);
 
     int updateAccount(AccountVo vo);
+
+    int updateAccountPasswordById(@Param("id") Long id, @Param("password") String password);
 
     int updateTag(TagVo vo);
 

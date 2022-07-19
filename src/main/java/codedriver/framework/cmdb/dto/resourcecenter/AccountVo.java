@@ -7,7 +7,6 @@ package codedriver.framework.cmdb.dto.resourcecenter;
 
 import codedriver.framework.cmdb.dto.tag.TagVo;
 import codedriver.framework.common.constvalue.ApiParamType;
-import codedriver.framework.common.constvalue.CiphertextPrefix;
 import codedriver.framework.common.dto.BaseEditorVo;
 import codedriver.framework.common.util.RC4Util;
 import codedriver.framework.dto.OperateVo;
@@ -43,8 +42,8 @@ public class AccountVo extends BaseEditorVo {
     private List<Long> tagIdList;
     @EntityField(name = "协议ID", type = ApiParamType.LONG)
     private Long protocolId;
-    @JSONField(serialize=false)
-    private  List<Long>  protocolIdList;
+    @JSONField(serialize = false)
+    private List<Long> protocolIdList;
     @EntityField(name = "协议", type = ApiParamType.STRING)
     private String protocol;
     @EntityField(name = "协议端口", type = ApiParamType.INTEGER)
@@ -65,12 +64,12 @@ public class AccountVo extends BaseEditorVo {
 
     private List<String> protocolList;
 
-   public AccountVo(){
+    public AccountVo() {
 
     }
 
-    public AccountVo(String name, Long protocolId, Integer protocolPort, String ip, String passwordPlain){
-        this.name=name;
+    public AccountVo(String name, Long protocolId, Integer protocolPort, String ip, String passwordPlain) {
+        this.name = name;
         this.protocolId = protocolId;
         this.protocolPort = protocolPort;
         this.ip = ip;
@@ -120,11 +119,7 @@ public class AccountVo extends BaseEditorVo {
     public String getPasswordPlain() {
         if (StringUtils.isBlank(passwordPlain)) {
             if (StringUtils.isNotBlank(passwordCipher)) {
-                if (passwordCipher.startsWith(CiphertextPrefix.RC4.getValue())) {
-                    this.passwordPlain = RC4Util.decrypt(this.passwordCipher.substring(4));
-                } else {
-                    this.passwordPlain = this.passwordCipher;
-                }
+                this.passwordPlain = RC4Util.decrypt(this.passwordCipher);
             }
         }
         return passwordPlain;
@@ -137,7 +132,7 @@ public class AccountVo extends BaseEditorVo {
     public String getPasswordCipher() {
         if (StringUtils.isBlank(passwordCipher)) {
             if (StringUtils.isNotBlank(passwordPlain)) {
-                this.passwordCipher = CiphertextPrefix.RC4.getValue() + RC4Util.encrypt(passwordPlain);
+                this.passwordCipher = RC4Util.encrypt(passwordPlain);
             }
         }
         return passwordCipher;
