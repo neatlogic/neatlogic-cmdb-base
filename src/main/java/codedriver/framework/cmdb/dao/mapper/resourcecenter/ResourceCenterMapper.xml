@@ -664,9 +664,24 @@
     <select id="getHasModuleAppSystemIdListByAppSystemIdList"
             parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
             resultType="java.lang.Long">
-        SELECT `resource_id` FROM ${schemaName}.`resource_appsystem_appmodule`
+        SELECT `resource_id` FROM `resource_appsystem_appmodule`
         <where>
             `resource_id` IN
+            <foreach collection="appSystemIdList" item="appSystemId" open="(" separator="," close=")">
+                #{appSystemId}
+            </foreach>
+        </where>
+    </select>
+
+    <select id="getHasEnvAppSystemIdListByAppSystemIdList"
+            parameterType="codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo"
+            resultType="java.lang.Long">
+        SELECT raa.resource_id
+        FROM resource_appsystem_appmodule raa
+        JOIN resource_ipobject_appmodule ria ON raa.app_module_id = ria.app_module_id
+        JOIN resource_softwareservice_env rse ON ria.resource_id = rse.resource_id
+        <where>
+            raa.resource_id IN
             <foreach collection="appSystemIdList" item="appSystemId" open="(" separator="," close=")">
                 #{appSystemId}
             </foreach>
