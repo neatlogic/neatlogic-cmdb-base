@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -323,6 +323,18 @@ public class AttrEntityVo extends BasePageVo {
      * @return 值
      */
     public String getValue() {
+        if (CollectionUtils.isNotEmpty(valueList)) {
+            if (valueList.size() == 1) {
+                return valueList.getString(0);
+            } else {
+                return valueList.toString();
+            }
+        }
+        return null;
+    }
+
+    public String getActualValue() {
+        JSONArray valueList = this.getActualValueList();
         if (CollectionUtils.isNotEmpty(valueList)) {
             if (valueList.size() == 1) {
                 return valueList.getString(0);
