@@ -18,4 +18,8 @@ public class AppEnvNotFoundException extends ApiRuntimeException {
     public AppEnvNotFoundException(String name) {
         super("环境：'" + name + "'不存在");
     }
+
+    public AppEnvNotFoundException(Long id) {
+        super("环境：'" + id + "'不存在");
+    }
 }

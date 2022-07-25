@@ -14,4 +14,7 @@ public class AppSystemNotFoundException extends ApiRuntimeException {
     public AppSystemNotFoundException(String name) {
         super("应用：'" + name + "'不存在");
     }
+    public AppSystemNotFoundException(Long id) {
+        super("应用：'" + id + "'不存在");
+    }
 }

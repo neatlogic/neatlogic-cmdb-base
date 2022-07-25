@@ -6,7 +6,8 @@
 package codedriver.framework.cmdb.enums.resourcecenter;
 
 public enum ScenceView {
-    RESOURCE_IPOBJECT_DETAIL("resource_ipobject_detail", "资产清单视图");
+    RESOURCE_IPOBJECT_DETAIL("resource_ipobject_detail", "资产清单视图"),
+    RESOURCE_ENV("resource_env", "环境视图");
     private final String value;
     private final String text;
 

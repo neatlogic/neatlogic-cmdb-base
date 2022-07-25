@@ -256,6 +256,11 @@ public interface ResourceCenterMapper {
 //    AccountVo getAccountByName(String name);
 
 //    List<AccountIpVo> getAccountIp(AccountIpVo ipVo);
+    ResourceVo getAppSystemById(@Param("id") Long id, @Param("schemaName") String schemaName);
+
+    ResourceVo getAppModuleById(@Param("id") Long id, @Param("schemaName") String schemaName);
+
+    ResourceVo getAppEnvById(@Param("id") Long id, @Param("schemaName") String schemaName);
 
     int updateAccount(AccountVo vo);
 
