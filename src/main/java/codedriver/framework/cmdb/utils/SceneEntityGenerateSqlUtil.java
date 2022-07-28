@@ -274,7 +274,11 @@ public class SceneEntityGenerateSqlUtil {
                 }
                 if (toAttrId == null) {
                     if (toAttr.startsWith("_")) {
-                        toAttr = toAttr.substring(1);
+                        if ("_typeId".equals(toAttr)) {
+                            toAttr = "ci_id";
+                        } else {
+                            toAttr = toAttr.substring(1);
+                        }
                     }
                     Column column = new Column(attrCiTable, toAttr);
                     plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
@@ -343,7 +347,11 @@ public class SceneEntityGenerateSqlUtil {
                 }
                 if (fromAttrId == null) {
                     if (fromAttr.startsWith("_")) {
-                        fromAttr = fromAttr.substring(1);
+                        if ("_type".equals(fromAttr)) {
+                            fromAttr = "ci_id";
+                        } else {
+                            fromAttr = fromAttr.substring(1);
+                        }
                     }
                     Column column = new Column(attrCiTable, fromAttr);
                     plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));

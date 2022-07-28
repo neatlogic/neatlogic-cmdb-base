@@ -12,6 +12,7 @@ import codedriver.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.annotation.JSONField;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 public class SceneEntityVo {
@@ -22,9 +23,9 @@ public class SceneEntityVo {
     @JSONField(serialize = false)
     private CiVo ci;//对应的模型
     @EntityField(name = "属性列表", type = ApiParamType.JSONARRAY)
-    private Set<SceneEntityAttrVo> attrList;
+    private List<SceneEntityAttrVo> attrList;
     @EntityField(name = "连接列表", type = ApiParamType.JSONARRAY)
-    private Set<SceneEntityJoinVo> joinList;
+    private List<SceneEntityJoinVo> joinList;
     @EntityField(name = "状态", type = ApiParamType.ENUM, member = Status.class)
     private String status = "";
     @EntityField(name = "状态名称", type = ApiParamType.STRING)
@@ -60,19 +61,19 @@ public class SceneEntityVo {
         this.ci = ci;
     }
 
-    public Set<SceneEntityAttrVo> getAttrList() {
+    public List<SceneEntityAttrVo> getAttrList() {
         return attrList;
     }
 
-    public void setAttrList(Set<SceneEntityAttrVo> attrList) {
+    public void setAttrList (List<SceneEntityAttrVo> attrList) {
         this.attrList = attrList;
     }
 
-    public Set<SceneEntityJoinVo> getJoinList() {
+    public List<SceneEntityJoinVo> getJoinList() {
         return joinList;
     }
 
-    public void setJoinList(Set<SceneEntityJoinVo> joinList) {
+    public void setJoinList(List<SceneEntityJoinVo> joinList) {
         this.joinList = joinList;
     }
 
