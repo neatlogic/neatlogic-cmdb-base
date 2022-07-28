@@ -64,4 +64,12 @@ public interface ICiEntityCrossoverMapper extends ICrossoverService {
      * @return
      */
     Long getCiEntityIdByCiNameAndCiEntityName(@Param("ciName") String ciName, @Param("ciEntityName") String ciEntityName);
+
+    /**
+     * 根据配置项名称获取虚拟模型配置项
+     *
+     * @param ciEntityVo 条件
+     * @return 配置项列表
+     */
+    List<CiEntityVo> getVirtualCiEntityBaseInfoByName(CiEntityVo ciEntityVo);
 }
