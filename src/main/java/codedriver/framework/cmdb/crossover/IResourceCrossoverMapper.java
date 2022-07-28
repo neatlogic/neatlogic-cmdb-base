@@ -68,4 +68,6 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
     ResourceVo getAppModuleByName(@Param("name") String name, @Param("schemaName") String schemaName);
 
     ResourceVo getAppEnvById(@Param("id") Long id, @Param("schemaName") String schemaName);
+
+    ResourceVo getResourceByIpAndPort(@Param("schemaName") String dataDbName, @Param("ip") String ip, @Param("port") Integer port);
 }
