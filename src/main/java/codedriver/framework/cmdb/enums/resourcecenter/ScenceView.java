@@ -14,6 +14,7 @@ public enum ScenceView {
     SCENCE_APPINSTANCE_DETAIL_CLUSTER("scence_appinstance_detail_cluster", "应用实例详情及集群场景"),
     SCENCE_DBINSTANCE_DETAIL_CLUSTER("scence_dbinstance_detail_cluster", "DB实例详情及集群场景"),
     SCENCE_IPOBJECT_ENV_APPMODULE_APPSYSTEM("scence_ipobject_env_appmodule_appsystem", "IP软硬件环境和模块及应用场景"),
+    SCENCE_APPINSTANCE_ENV_APPMODULE_APPSYSTEM("scence_appinstance_env_appmodule_appsystem", "应用实例环境和模块及应用场景"),
     SCENCE_APPSYSTEM_APPMODULE("scence_appsystem_appmodule", "应用和模块场景"),
     SCENCE_APPSYSTEM("scence_appsystem", "应用基本信息场景"),
     SCENCE_APPMODULE("scence_appmodule", "模块基本信息场景"),
