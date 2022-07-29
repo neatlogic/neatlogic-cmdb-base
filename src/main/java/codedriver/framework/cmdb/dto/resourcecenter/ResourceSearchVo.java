@@ -33,8 +33,6 @@ public class ResourceSearchVo extends BasePageVo {
     private Long envId;
     @EntityField(name = "应用模块id", type = ApiParamType.LONG)
     private Long appModuleId;
-    @EntityField(name = "应用id", type = ApiParamType.LONG)
-    private Long appSystemId;
     @EntityField(name = "协议id列表", type = ApiParamType.JSONARRAY)
     private List<Long> protocolIdList;
     @EntityField(name = "协议列表", type = ApiParamType.JSONARRAY)
@@ -145,14 +143,6 @@ public class ResourceSearchVo extends BasePageVo {
 
     public void setAppModuleId(Long appModuleId) {
         this.appModuleId = appModuleId;
-    }
-
-    public Long getAppSystemId() {
-        return appSystemId;
-    }
-
-    public void setAppSystemId(Long appSystemId) {
-        this.appSystemId = appSystemId;
     }
 
     public List<Long> getProtocolIdList() {
