@@ -8,6 +8,7 @@ package codedriver.framework.cmdb.crossover;
 import codedriver.framework.cmdb.dto.resourcecenter.AccountIpVo;
 import codedriver.framework.cmdb.dto.resourcecenter.AccountProtocolVo;
 import codedriver.framework.cmdb.dto.resourcecenter.AccountVo;
+import codedriver.framework.cmdb.dto.resourcecenter.ResourceVo;
 import codedriver.framework.crossover.ICrossoverService;
 import org.apache.ibatis.annotations.Param;
 
@@ -50,4 +51,6 @@ public interface IResourceAccountCrossoverMapper extends ICrossoverService {
     int deleteAccountTagByAccountId(Long accountId);
 
     int deleteResourceAccountByAccountId(Long accountId);
+
+    ResourceVo getAppEnvByName(@Param("name") String name, @Param("schemaName") String schemaName);
 }
