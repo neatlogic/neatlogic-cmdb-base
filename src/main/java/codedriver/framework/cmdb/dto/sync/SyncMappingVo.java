@@ -29,7 +29,7 @@ public class SyncMappingVo {
     @EntityField(name = "匹配模式", type = ApiParamType.ENUM, member = MatchMode.class)
     private String matchMode;
     @EntityField(name = "操作", type = ApiParamType.ENUM, member = RelActionType.class)
-    private String action;//这里只支持insert和replace
+    private String action;
 
     public Long getId() {
         if (id == null) {
