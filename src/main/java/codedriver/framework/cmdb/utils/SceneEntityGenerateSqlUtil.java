@@ -10,7 +10,6 @@ import codedriver.framework.cmdb.dto.ci.CiVo;
 import codedriver.framework.cmdb.dto.resourcecenter.config.*;
 import codedriver.framework.cmdb.enums.RelDirectionType;
 import codedriver.framework.cmdb.enums.resourcecenter.JoinType;
-import com.alibaba.fastjson.JSONObject;
 import net.sf.jsqlparser.expression.Alias;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.LongValue;
@@ -42,6 +41,7 @@ public class SceneEntityGenerateSqlUtil {
         for (SceneEntityAttrVo sceneEntityAttrVo : sceneEntityVo.getAttrList()) {
             addJoinTableBySceneEntityAttr(sceneEntityAttrVo, plainSelect);
         }
+        System.out.println(plainSelect.toString() + ";");
         return plainSelect.toString();
     }
 
@@ -93,8 +93,13 @@ public class SceneEntityGenerateSqlUtil {
         EqualsTo equalsTo = new EqualsTo(cmdbCiIdColumn, mainTableCiIdColumn);
         Column cmdbCiLftColumn = new Column(cmdbCi, "lft");
         Column cmdbCiRhtColumn = new Column(cmdbCi, "rht");
-        GreaterThanEquals greaterThanEquals = new GreaterThanEquals(">=").withLeftExpression(cmdbCiLftColumn).withRightExpression(new LongValue(mainCiVo.getLft()));
-        MinorThanEquals minorThanEquals = new MinorThanEquals("<=").withLeftExpression(cmdbCiRhtColumn).withRightExpression(new LongValue(mainCiVo.getRht()));
+//        GreaterThanEquals greaterThanEquals = new GreaterThanEquals(">=").withLeftExpression(cmdbCiLftColumn).withRightExpression(new LongValue(mainCiVo.getLft()));
+//        MinorThanEquals minorThanEquals = new MinorThanEquals("<=").withLeftExpression(cmdbCiRhtColumn).withRightExpression(new LongValue(mainCiVo.getRht()));
+        Table cmdbCiTable = new Table("cmdb_ci");
+        SubSelect subSelectLft = new SubSelect().withSelectBody(new PlainSelect().withFromItem(cmdbCiTable).addSelectItems(new SelectExpressionItem(new Column( "lft"))).withWhere(new EqualsTo(new Column("id"), new LongValue(mainCiVo.getId()))));
+        SubSelect subSelectRht = new SubSelect().withSelectBody(new PlainSelect().withFromItem(cmdbCiTable).addSelectItems(new SelectExpressionItem(new Column( "rht"))).withWhere(new EqualsTo(new Column("id"), new LongValue(mainCiVo.getId()))));
+        GreaterThanEquals greaterThanEquals = new GreaterThanEquals(">=").withLeftExpression(cmdbCiLftColumn).withRightExpression(subSelectLft);
+        MinorThanEquals minorThanEquals = new MinorThanEquals("<=").withLeftExpression(cmdbCiRhtColumn).withRightExpression(subSelectRht);
         AndExpression andExpression = new AndExpression(greaterThanEquals, minorThanEquals);
         Join joinCmdbCi = new Join().withRightItem(cmdbCi).addOnExpression(new AndExpression(equalsTo, andExpression));
         plainSelect.addJoins(joinCmdbCi);
