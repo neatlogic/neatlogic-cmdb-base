@@ -7,6 +7,7 @@ package codedriver.framework.cmdb.crossover;
 
 import codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
 import codedriver.framework.cmdb.dto.resourcecenter.ResourceVo;
+import codedriver.framework.cmdb.dto.resourcecenter.entity.AppEnvironmentVo;
 import codedriver.framework.cmdb.dto.resourcecenter.entity.ModuleVo;
 import codedriver.framework.crossover.ICrossoverService;
 import com.alibaba.fastjson.JSONArray;
@@ -75,6 +76,8 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
     ResourceVo getAppEnvById(@Param("id") Long id, @Param("schemaName") String schemaName);
 
     ResourceVo getAppEnvByName(@Param("name") String name, @Param("schemaName") String schemaName);
+
+    List<AppEnvironmentVo> getAllAppEnv(@Param("schemaName") String schemaName);
 
     ResourceVo getResourceByIpAndPort(@Param("schemaName") String dataDbName, @Param("ip") String ip, @Param("port") Integer port);
 }
