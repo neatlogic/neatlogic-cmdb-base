@@ -61,6 +61,8 @@ public class ResourceVo extends BaseEditorVo {
     private Long envId;
     @EntityField(name = "应用环境名称", type = ApiParamType.STRING)
     private String envName;
+    @EntityField(name = "应用环境序号", type = ApiParamType.INTEGER)
+    private Integer envSeqNo;
     @EntityField(name = "维护窗口", type = ApiParamType.STRING)
     private String maintenanceWindow;
     @EntityField(name = "描述", type = ApiParamType.STRING)
@@ -137,6 +139,7 @@ public class ResourceVo extends BaseEditorVo {
         this.appModuleAbbrName = resourceVo.appModuleAbbrName;
         this.envId = resourceVo.envId;
         this.envName = resourceVo.envName;
+        this.envSeqNo = resourceVo.envSeqNo;
         this.maintenanceWindow = resourceVo.maintenanceWindow;
         this.description = resourceVo.description;
         this.ip = resourceVo.ip;
@@ -315,6 +318,14 @@ public class ResourceVo extends BaseEditorVo {
 
     public void setEnvName(String envName) {
         this.envName = envName;
+    }
+
+    public Integer getEnvSeqNo() {
+        return envSeqNo;
+    }
+
+    public void setEnvSeqNo(Integer envSeqNo) {
+        this.envSeqNo = envSeqNo;
     }
 
     public String getMaintenanceWindow() {
