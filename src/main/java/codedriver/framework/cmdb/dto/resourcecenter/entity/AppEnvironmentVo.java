@@ -24,8 +24,8 @@ public class AppEnvironmentVo {
     @ResourceField(name = "env_name")
     private String envName;
     @EntityField(name = "序号", type = ApiParamType.INTEGER)
-    @ResourceField(name = "seq_no")
-    private Integer seqNo;
+    @ResourceField(name = "env_seq_no")
+    private Integer envSeqNo;
     @EntityField(name = "资源id", type = ApiParamType.LONG)
     @ResourceField(name = "resource_id")
     private Long resourceId;
@@ -46,12 +46,12 @@ public class AppEnvironmentVo {
         this.envName = envName;
     }
 
-    public Integer getSeqNo() {
-        return seqNo;
+    public Integer getEnvSeqNo() {
+        return envSeqNo;
     }
 
-    public void setSeqNo(Integer seqNo) {
-        this.seqNo = seqNo;
+    public void setEnvSeqNo(Integer envSeqNo) {
+        this.envSeqNo = envSeqNo;
     }
 
     public Long getResourceId() {
