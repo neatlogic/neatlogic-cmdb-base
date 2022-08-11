@@ -22,6 +22,7 @@ public enum ScenceView {
     SCENCE_APPSYSTEM_PRODUCTIONTIMEPERIOD("scence_appsystem_productiontimeperiod", "应用系统投产时段场景"),
     SCENCE_APPSYSTEM("scence_appsystem", "应用基本信息场景"),
     SCENCE_APPMODULE("scence_appmodule", "模块基本信息场景"),
+    SCENCE_STATE("scence_state", "资产状态基本信息场景"),
     SCENCE_ENV("scence_env", "环境基本信息场景");
     private final String value;
     private final String text;

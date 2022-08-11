@@ -41,7 +41,6 @@ public class SceneEntityGenerateSqlUtil {
         for (SceneEntityAttrVo sceneEntityAttrVo : sceneEntityVo.getAttrList()) {
             addJoinTableBySceneEntityAttr(sceneEntityAttrVo, plainSelect);
         }
-        System.out.println(plainSelect.toString() + ";");
         return plainSelect.toString();
     }
 
