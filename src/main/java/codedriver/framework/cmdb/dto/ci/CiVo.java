@@ -7,6 +7,7 @@ package codedriver.framework.cmdb.dto.ci;
 
 import codedriver.framework.asynchronization.threadlocal.TenantContext;
 import codedriver.framework.common.constvalue.ApiParamType;
+import codedriver.framework.file.dto.FileVo;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
 import com.alibaba.fastjson.annotation.JSONField;
@@ -83,6 +84,8 @@ public class CiVo implements Serializable {
     private int ciEntityCount;
     @EntityField(name = "采集策略数量", type = ApiParamType.INTEGER)
     private int syncPolicyCount;
+    @EntityField(name = "虚拟模型配置文件vo", type = ApiParamType.JSONOBJECT)
+    private FileVo fileVo;
 
     @Override
     public boolean equals(Object o) {
@@ -418,4 +421,11 @@ public class CiVo implements Serializable {
         this.nameAttrId = nameAttrId;
     }
 
+    public FileVo getFileVo() {
+        return fileVo;
+    }
+
+    public void setFileVo(FileVo fileVo) {
+        this.fileVo = fileVo;
+    }
 }
