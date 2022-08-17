@@ -61,6 +61,12 @@ public class ResourceSearchVo extends BasePageVo {
     private List<String> inspectStatusList;
     @EntityField(name = "巡检作业状态列表", type = ApiParamType.JSONARRAY)
     private List<String> inspectJobPhaseNodeStatusList;
+    @EntityField(name = "以IP字段排序", type = ApiParamType.INTEGER)
+    private Integer isIpFieldSort;
+    @EntityField(name = "以name字段排序", type = ApiParamType.INTEGER)
+    private Integer isNameFieldSort;
+    @EntityField(name = "以port字段排序", type = ApiParamType.INTEGER)
+    private Integer isPortFieldSort;
 
     public ResourceSearchVo() {
     }
@@ -255,5 +261,29 @@ public class ResourceSearchVo extends BasePageVo {
 
     public void setInspectJobPhaseNodeStatusList(List<String> inspectJobPhaseNodeStatusList) {
         this.inspectJobPhaseNodeStatusList = inspectJobPhaseNodeStatusList;
+    }
+
+    public Integer getIsIpFieldSort() {
+        return isIpFieldSort;
+    }
+
+    public void setIsIpFieldSort(Integer isIpFieldSort) {
+        this.isIpFieldSort = isIpFieldSort;
+    }
+
+    public Integer getIsNameFieldSort() {
+        return isNameFieldSort;
+    }
+
+    public void setIsNameFieldSort(Integer isNameFieldSort) {
+        this.isNameFieldSort = isNameFieldSort;
+    }
+
+    public Integer getIsPortFieldSort() {
+        return isPortFieldSort;
+    }
+
+    public void setIsPortFieldSort(Integer isPortFieldSort) {
+        this.isPortFieldSort = isPortFieldSort;
     }
 }
