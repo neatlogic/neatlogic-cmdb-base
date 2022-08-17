@@ -65,8 +65,6 @@ public class ResourceSearchVo extends BasePageVo {
     private Integer isIpFieldSort;
     @EntityField(name = "以name字段排序", type = ApiParamType.INTEGER)
     private Integer isNameFieldSort;
-    @EntityField(name = "以port字段排序", type = ApiParamType.INTEGER)
-    private Integer isPortFieldSort;
 
     public ResourceSearchVo() {
     }
@@ -277,13 +275,5 @@ public class ResourceSearchVo extends BasePageVo {
 
     public void setIsNameFieldSort(Integer isNameFieldSort) {
         this.isNameFieldSort = isNameFieldSort;
-    }
-
-    public Integer getIsPortFieldSort() {
-        return isPortFieldSort;
-    }
-
-    public void setIsPortFieldSort(Integer isPortFieldSort) {
-        this.isPortFieldSort = isPortFieldSort;
     }
 }
