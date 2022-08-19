@@ -4,6 +4,7 @@ import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BaseEditorVo;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
+import com.alibaba.fastjson.annotation.JSONField;
 
 public class AccountProtocolVo extends BaseEditorVo {
 
@@ -13,6 +14,9 @@ public class AccountProtocolVo extends BaseEditorVo {
     private String name;
     @EntityField(name = "协议端口", type = ApiParamType.INTEGER)
     private Integer port;
+
+    @JSONField(serialize = false)
+    private Integer excludeTagent = 0;// 查询时是否排除tagent
 
     public AccountProtocolVo() {
 
@@ -52,5 +56,13 @@ public class AccountProtocolVo extends BaseEditorVo {
 
     public void setPort(Integer port) {
         this.port = port;
+    }
+
+    public Integer getExcludeTagent() {
+        return excludeTagent;
+    }
+
+    public void setExcludeTagent(Integer excludeTagent) {
+        this.excludeTagent = excludeTagent;
     }
 }
