@@ -16,7 +16,7 @@ public class AccountProtocolVo extends BaseEditorVo {
     private Integer port;
 
     @JSONField(serialize = false)
-    private Integer excludeTagent = 0;// 查询时是否排除tagent
+    private Integer isExcludeTagent = 0;// 查询时是否排除tagent
 
     public AccountProtocolVo() {
 
@@ -58,11 +58,11 @@ public class AccountProtocolVo extends BaseEditorVo {
         this.port = port;
     }
 
-    public Integer getExcludeTagent() {
-        return excludeTagent;
+    public Integer getIsExcludeTagent() {
+        return isExcludeTagent;
     }
 
-    public void setExcludeTagent(Integer excludeTagent) {
-        this.excludeTagent = excludeTagent;
+    public void setIsExcludeTagent(Integer isExcludeTagent) {
+        this.isExcludeTagent = isExcludeTagent;
     }
 }
