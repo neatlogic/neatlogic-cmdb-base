@@ -26,12 +26,14 @@ public class AccountAccessTestVo {
     private String username;
     @EntityField(name = "密码", type = ApiParamType.STRING)
     private String password;
+    @EntityField(name = "账号名称", type = ApiParamType.STRING)
+    private String name;
 
     public AccountAccessTestVo() {
 
     }
 
-    public AccountAccessTestVo(String host, Object port, Object protocolPort, String protocol, String nodeName, String nodeType, String username, String password) {
+    public AccountAccessTestVo(String host, Object port, Object protocolPort, String protocol, String nodeName, String nodeType, String username, String password, String name) {
         this.host = host;
         this.port = port;
         this.protocolPort = protocolPort;
@@ -40,6 +42,7 @@ public class AccountAccessTestVo {
         this.nodeType = nodeType;
         this.username = username;
         this.password = password;
+        this.name = name;
     }
 
     public String getHost() {
@@ -74,4 +77,7 @@ public class AccountAccessTestVo {
         return password != null ? password : StringUtils.EMPTY;
     }
 
+    public String getName() {
+        return name;
+    }
 }
