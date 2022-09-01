@@ -108,6 +108,9 @@ public class RelVo implements Serializable {
     @JSONField(serialize = false)
     private Long maxRelEntityCount = CiEntityVo.MAX_RELENTITY_COUNT;//限制查询时最多返回多少关系
 
+    @EntityField(name = "当先关系的下一个关系", type = ApiParamType.JSONOBJECT)
+    private RelVo nextRel;
+
     public RelVo() {
 
     }
@@ -466,6 +469,14 @@ public class RelVo implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         RelVo relVo = (RelVo) o;
         return id.equals(relVo.id) && direction.equals(relVo.direction);
+    }
+
+    public RelVo getNextRel() {
+        return nextRel;
+    }
+
+    public void setNextRel(RelVo nextRel) {
+        this.nextRel = nextRel;
     }
 
     @Override

@@ -22,6 +22,7 @@ public class CiRelVo {
 
     }
 
+
     public CiRelVo(Long _ciId) {
         ciId = _ciId;
     }
