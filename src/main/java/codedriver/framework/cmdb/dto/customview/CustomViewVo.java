@@ -1,11 +1,12 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
 package codedriver.framework.cmdb.dto.customview;
 
 import codedriver.framework.cmdb.dto.tag.TagVo;
+import codedriver.framework.cmdb.enums.customview.CustomViewType;
 import codedriver.framework.cmdb.exception.customview.*;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
@@ -25,10 +26,12 @@ public class CustomViewVo extends BasePageVo implements Serializable {
     private Long id;
     @EntityField(name = "名称", type = ApiParamType.STRING)
     private String name;
-    @EntityField(name = "是否私有视图", type = ApiParamType.INTEGER)
-    private Integer isPrivate;
     @EntityField(name = "是否激活", type = ApiParamType.INTEGER)
     private Integer isActive;
+    @EntityField(name = "类型", type = ApiParamType.ENUM, member = CustomViewType.class)
+    private String type;
+    @EntityField(name = "类型名称", type = ApiParamType.STRING)
+    private String typeName;
     @JSONField(serialize = false)
     private boolean isAdmin;//是否管理员 如果是true，则同时搜索公共视图和个人视图
     @EntityField(name = "创建人", type = ApiParamType.STRING)
@@ -47,6 +50,10 @@ public class CustomViewVo extends BasePageVo implements Serializable {
     private List<CustomViewLinkVo> linkList;
     @JSONField(serialize = false)
     private String configStr;
+
+    @EntityField(name = "场景视图关联的模型id", type = ApiParamType.LONG)
+    private Long ciId;
+
     @EntityField(name = "授权列表", type = ApiParamType.JSONARRAY)
     private List<CustomViewAuthVo> authList;
     @EntityField(name = "标签列表", type = ApiParamType.JSONARRAY)
@@ -112,6 +119,13 @@ public class CustomViewVo extends BasePageVo implements Serializable {
         return true;
     }
 
+    public Long getCiId() {
+        return ciId;
+    }
+
+    public void setCiId(Long ciId) {
+        this.ciId = ciId;
+    }
 
     public String getStartCustomViewCiUuid() {
         if (StringUtils.isBlank(startCustomViewCiUuid)) {
@@ -208,6 +222,24 @@ public class CustomViewVo extends BasePageVo implements Serializable {
         return op.orElse(null);
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getTypeName() {
+        if (StringUtils.isNotBlank(type) && StringUtils.isBlank(typeName)) {
+            typeName = CustomViewType.getText(type);
+        }
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
 
     /**
      * 显示所有属性
@@ -252,14 +284,6 @@ public class CustomViewVo extends BasePageVo implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getIsPrivate() {
-        return isPrivate;
-    }
-
-    public void setIsPrivate(Integer isPrivate) {
-        this.isPrivate = isPrivate;
     }
 
 
