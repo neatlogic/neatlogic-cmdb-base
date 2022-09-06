@@ -5,6 +5,10 @@
 
 package codedriver.framework.cmdb.dto.ci;
 
+import codedriver.framework.cmdb.enums.RelDirectionType;
+import codedriver.framework.common.constvalue.ApiParamType;
+import codedriver.framework.restful.annotation.EntityField;
+
 import java.util.Objects;
 
 /*
@@ -17,6 +21,8 @@ public class CiRelVo {
     private Long relId;
     private String relName;
     private String relLabel;
+    @EntityField(name = "关系方向", type = ApiParamType.ENUM, member = RelDirectionType.class)
+    private String direction;
 
     public CiRelVo() {
 
@@ -91,5 +97,13 @@ public class CiRelVo {
 
     public void setRelLabel(String relLabel) {
         this.relLabel = relLabel;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
 }
