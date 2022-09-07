@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -14,13 +14,12 @@ import java.util.stream.Collectors;
 
 public class RelUtil {
     /**
-     * 如果出现子模型引用父模型的情况，会由于集成关系出现两条关系，所以需要去除
+     * 如果出现子模型引用父模型的情况，会由于继承关系出现两条关系，所以需要去除
      *
      * @param relList 关系列表
      * @return 关系列表
      */
     public static List<RelVo> ClearRepeatRel(List<RelVo> relList) {
-
         List<RelVo> originalRelList = relList.stream().filter(rel -> rel.getIsExtended().equals(0)).collect(Collectors.toList());
         if (CollectionUtils.isNotEmpty(originalRelList)) {
             relList.removeIf(rel -> rel.getIsExtended().equals(1) && originalRelList.stream().anyMatch(er -> er.getFromCiId().equals(rel.getFromCiId()) && er.getToCiId().equals(rel.getToCiId())));
