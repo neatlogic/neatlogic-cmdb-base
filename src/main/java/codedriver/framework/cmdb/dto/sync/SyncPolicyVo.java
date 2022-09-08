@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -54,8 +54,13 @@ public class SyncPolicyVo {
                     Criteria c = Criteria.where(conditionVo.getField());
                     if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.IS.getValue())) {
                         c.is(conditionVo.getFormatValue());
+                    } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.NE.getValue())) {
+                        c.ne(conditionVo.getFormatValue());
                     } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.IN.getValue())) {
                         Pattern pattern = Pattern.compile("^.*" + conditionVo.getFormatValue() + ".*$", Pattern.CASE_INSENSITIVE);
+                        c.regex(pattern);
+                    } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.NOTIN.getValue())) {
+                        Pattern pattern = Pattern.compile("^((?!" + conditionVo.getFormatValue() + ").)*$", Pattern.CASE_INSENSITIVE);
                         c.regex(pattern);
                     } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.GT.getValue())) {
                         c.gt(conditionVo.getFormatValue());

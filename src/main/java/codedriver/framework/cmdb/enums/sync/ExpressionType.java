@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -11,7 +11,9 @@ import java.util.List;
 
 public enum ExpressionType {
     IS("is", "等于", true, new String[]{"String", "float", "int"}),
+    NE("ne", "不等于", true, new String[]{"String", "float", "int"}),
     IN("in", "包含", true, new String[]{"String"}),
+    NOTIN("notin", "不包含", true, new String[]{"String"}),
     //ISNULL("isnull", "为空", false, new String[]{"String", "float", "int"}),
     //ISNOTNULL("isnotnull", "不为空", false, new String[]{"String", "float", "int"}),
     GT("gt", "大于", true, new String[]{"float", "int"}),
