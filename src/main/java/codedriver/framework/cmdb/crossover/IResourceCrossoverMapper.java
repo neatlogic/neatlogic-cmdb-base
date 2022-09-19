@@ -47,7 +47,7 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
 
     List<ModuleVo> getAppModuleListByAppSystemIdList(ResourceSearchVo searchVo);
 
-    List<ResourceVo> getAppModuleListByIdListSimple(@Param("idList") List<Long> idList);
+    List<ResourceVo> getAppModuleListByIdListSimple(@Param("idList") List<Long> idList, @Param("needOrder") boolean needOrder);
 
     List<ResourceVo> getResourceListByResourceVoList(@Param("resourceList") List<ResourceVo> resourceList, @Param("schemaName") String schemaName);
 
