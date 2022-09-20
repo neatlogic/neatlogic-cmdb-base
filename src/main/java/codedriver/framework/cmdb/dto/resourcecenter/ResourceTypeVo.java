@@ -7,7 +7,6 @@ package codedriver.framework.cmdb.dto.resourcecenter;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.CollectionUtils;
-import org.docx4j.wml.P;
 
 import java.util.ArrayList;
 import java.util.Iterator;
