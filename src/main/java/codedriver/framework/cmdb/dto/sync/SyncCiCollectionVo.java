@@ -75,6 +75,9 @@ public class SyncCiCollectionVo extends BasePageVo {
     private SyncAuditVo syncAudit;
     @JSONField(serialize = false)
     private SyncPolicyVo syncPolicy;
+
+    @EntityField(name = "策略列表", type = ApiParamType.JSONARRAY)
+    private List<SyncPolicyVo> syncPolicyList;
     @EntityField(name = "执行次数", type = ApiParamType.INTEGER)
     private int execCount;
     @EntityField(name = "最后采集时间", type = ApiParamType.LONG)
@@ -111,6 +114,14 @@ public class SyncCiCollectionVo extends BasePageVo {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<SyncPolicyVo> getSyncPolicyList() {
+        return syncPolicyList;
+    }
+
+    public void setSyncPolicyList(List<SyncPolicyVo> syncPolicyList) {
+        this.syncPolicyList = syncPolicyList;
     }
 
     public String getStatusText() {
