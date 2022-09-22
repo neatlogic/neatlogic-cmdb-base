@@ -5,7 +5,6 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter;
 
-import codedriver.framework.asynchronization.threadlocal.TenantContext;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
@@ -71,10 +70,6 @@ public class ResourceSearchVo extends BasePageVo {
 
     public ResourceSearchVo(List<Long> tagIdList) {
         this.tagIdList = tagIdList;
-    }
-
-    public final String getSchemaName() {
-        return TenantContext.get().getDataDbName();
     }
 
     public List<Long> getIdList() {
