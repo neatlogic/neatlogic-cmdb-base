@@ -5,9 +5,6 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter;
 
-import codedriver.framework.cmdb.annotation.ResourceField;
-import codedriver.framework.cmdb.annotation.ResourceType;
-import codedriver.framework.cmdb.dto.resourcecenter.entity.ResourceEntityBaseVo;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.constvalue.GroupSearch;
 import codedriver.framework.restful.annotation.EntityField;
