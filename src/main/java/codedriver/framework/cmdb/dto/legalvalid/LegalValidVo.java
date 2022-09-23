@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -36,6 +36,8 @@ public class LegalValidVo implements Serializable {
     private String ruleStr;
     @EntityField(name = "规则", type = ApiParamType.JSONOBJECT)
     private JSONObject rule;
+    @EntityField(name = "不合法配置项数量", type = ApiParamType.INTEGER)
+    private int illegalCiEntityCount;
 
     public Long getId() {
         if (id == null) {
@@ -54,6 +56,14 @@ public class LegalValidVo implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getIllegalCiEntityCount() {
+        return illegalCiEntityCount;
+    }
+
+    public void setIllegalCiEntityCount(int illegalCiEntityCount) {
+        this.illegalCiEntityCount = illegalCiEntityCount;
     }
 
     public String getTypeText() {
