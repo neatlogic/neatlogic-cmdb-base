@@ -64,6 +64,9 @@ public class AccountVo extends BaseEditorVo {
 
     private List<String> protocolList;
 
+    @EntityField(name = "类型", type = ApiParamType.STRING)
+    private String type;
+
     public AccountVo() {
 
     }
@@ -240,5 +243,13 @@ public class AccountVo extends BaseEditorVo {
 
     public Integer getReferredCount() {
         return tagentReferredCount + resourceReferredCount;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
