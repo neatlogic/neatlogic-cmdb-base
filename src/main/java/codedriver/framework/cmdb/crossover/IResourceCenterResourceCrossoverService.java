@@ -37,7 +37,7 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
      * 获取资产的标签信息
      *
      * @param idList 资产id列表
-     * @return 标签列表
+     * @return map<资产id ， 标签列表>
      */
     Map<Long, List<TagVo>> getResourceTagByResourceIdList(List<Long> idList);
 
