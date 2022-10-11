@@ -71,7 +71,7 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
      * 获取模块列表
      *
      * @param searchVo resourceSearchVo
-     * @return 资产列表
+     * @return 模块列表
      */
     List<ResourceVo> getAppModuleList(ResourceSearchVo searchVo);
 
