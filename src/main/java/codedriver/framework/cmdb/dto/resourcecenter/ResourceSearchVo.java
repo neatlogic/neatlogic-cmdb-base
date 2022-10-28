@@ -8,7 +8,10 @@ package codedriver.framework.cmdb.dto.resourcecenter;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -64,7 +67,12 @@ public class ResourceSearchVo extends BasePageVo {
     private Integer isIpFieldSort;
     @EntityField(name = "以name字段排序", type = ApiParamType.INTEGER)
     private Integer isNameFieldSort;
-
+    @EntityField(name = "批量搜索字段", type = ApiParamType.STRING)
+    private String searchField;
+    @EntityField(name = "批量搜索值", type = ApiParamType.STRING)
+    private String searchValue;
+    @EntityField(name = "批量搜索值列表", type = ApiParamType.JSONARRAY)
+    private List<String> searchValueList;
     public ResourceSearchVo() {
     }
 
@@ -270,5 +278,33 @@ public class ResourceSearchVo extends BasePageVo {
 
     public void setIsNameFieldSort(Integer isNameFieldSort) {
         this.isNameFieldSort = isNameFieldSort;
+    }
+
+    public String getSearchField() {
+        return searchField;
+    }
+
+    public void setSearchField(String searchField) {
+        this.searchField = searchField;
+    }
+
+    public String getSearchValue() {
+        return searchValue;
+    }
+
+    public void setSearchValue(String searchValue) {
+        this.searchValue = searchValue;
+    }
+
+    public List<String> getSearchValueList() {
+        if (CollectionUtils.isEmpty(searchValueList) && StringUtils.isNotBlank(searchValue)) {
+            String[] split = searchValue.split("\n");
+            searchValueList = Arrays.asList(split);
+        }
+        return searchValueList;
+    }
+
+    public void setSearchValueList(List<String> searchValueList) {
+        this.searchValueList = searchValueList;
     }
 }
