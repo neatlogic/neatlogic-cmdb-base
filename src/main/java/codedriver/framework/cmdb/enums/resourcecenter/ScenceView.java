@@ -23,7 +23,9 @@ public enum ScenceView {
     SCENCE_APPSYSTEM("scence_appsystem", "应用基本信息场景"),
     SCENCE_APPMODULE("scence_appmodule", "模块基本信息场景"),
     SCENCE_STATE("scence_state", "资产状态基本信息场景"),
-    SCENCE_ENV("scence_env", "环境基本信息场景");
+    SCENCE_ENV("scence_env", "环境基本信息场景"),
+    SCENCE_OS_SOFTWARESERVICE_ENV_APPMODULE("scence_os_softwareservice_env_appmodule", "操作系统与软件服务、环境、模块场景"),
+    SCENCE_OS_SOFTWARESERVICE_ENV_APPMODULE_APPSYSTEM("scence_os_softwareservice_env_appmodule_appsystem", "操作系统与软件服务、环境、模块及应用场景");
     private final String value;
     private final String text;
 
