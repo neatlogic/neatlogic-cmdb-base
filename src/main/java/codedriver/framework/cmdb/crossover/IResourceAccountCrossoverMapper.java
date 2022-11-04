@@ -37,6 +37,8 @@ public interface IResourceAccountCrossoverMapper extends ICrossoverService {
 
     AccountProtocolVo getAccountProtocolVoByProtocolName(String name);
 
+    AccountProtocolVo getAccountProtocolVoByNameAndPort(@Param("name") String name, @Param("port") Integer port);
+
     int updateAccount(AccountVo vo);
 
     int updateAccountPasswordById(@Param("id") Long id, @Param("password") String password);
