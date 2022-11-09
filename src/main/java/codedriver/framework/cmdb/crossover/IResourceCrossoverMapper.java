@@ -14,6 +14,7 @@ import com.alibaba.fastjson.JSONArray;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Set;
 
 public interface IResourceCrossoverMapper extends ICrossoverService {
 
@@ -22,6 +23,14 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
     List<Long> getResourceIdList(ResourceSearchVo searchVo);
 
     List<ResourceVo> getResourceListByIdList(List<Long> idList);
+
+    int getIpObjectResourceCountByAppSystemIdAndAppModuleIdAndEnvIdAndTypeId(ResourceSearchVo searchVo);
+
+    List<Long> getIpObjectResourceIdListByAppSystemIdAndAppModuleIdAndEnvIdAndTypeId(ResourceSearchVo searchVo);
+
+    int getOsResourceCountByAppSystemIdAndAppModuleIdAndEnvIdAndTypeId(ResourceSearchVo searchVo);
+
+    List<Long> getOsResourceIdListByAppSystemIdAndAppModuleIdAndEnvIdAndTypeId(ResourceSearchVo searchVo);
 
     List<ResourceVo> getAppInstanceResourceListByIdList(List<Long> idList);
 
@@ -46,6 +55,10 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
     List<ModuleVo> getAppModuleListByAppSystemIdList(ResourceSearchVo searchVo);
 
     List<ResourceVo> getAppModuleListByIdListSimple(@Param("idList") List<Long> idList, @Param("needOrder") boolean needOrder);
+
+    Set<Long> getIpObjectResourceTypeIdListByAppSystemIdAndEnvId(ResourceSearchVo searchVo);
+
+    Set<Long> getOsResourceTypeIdListByAppSystemIdAndEnvId(ResourceSearchVo searchVo);
 
     List<ResourceVo> getResourceListByResourceVoList(@Param("resourceList") List<ResourceVo> resourceList);
 
