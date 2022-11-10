@@ -5,10 +5,12 @@
 
 package codedriver.framework.cmdb.crossover;
 
+import codedriver.framework.cmdb.dto.resourcecenter.AppSystemVo;
 import codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
 import codedriver.framework.cmdb.dto.resourcecenter.ResourceVo;
 import codedriver.framework.cmdb.dto.resourcecenter.entity.AppEnvironmentVo;
 import codedriver.framework.cmdb.dto.resourcecenter.entity.ModuleVo;
+import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.crossover.ICrossoverService;
 import com.alibaba.fastjson.JSONArray;
 import org.apache.ibatis.annotations.Param;
@@ -90,4 +92,8 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
     List<AppEnvironmentVo> getAllAppEnv();
 
     ResourceVo getResourceByIpAndPort(@Param("ip") String ip, @Param("port") Integer port);
+
+    int getAppSystemCountByKeyword(BasePageVo searchVo);
+
+    List<AppSystemVo> getAppSystemListByKeyword(BasePageVo searchVo);
 }
