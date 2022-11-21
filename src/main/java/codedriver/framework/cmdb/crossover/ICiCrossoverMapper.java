@@ -20,4 +20,7 @@ public interface ICiCrossoverMapper extends ICrossoverService {
     List<CiVo> getDownwardCiListByLR(@Param("lft") Integer lft, @Param("rht") Integer rht);
 
     CiVo getCiById(Long ciId);
+
+    List<CiVo> getCiByIdList(@Param("ciIdList") List<Long> ciIds);
+
 }
