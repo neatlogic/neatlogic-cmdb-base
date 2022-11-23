@@ -85,14 +85,6 @@ public class SyncCiCollectionVo extends BasePageVo {
     @EntityField(name = "说明", type = ApiParamType.STRING)
     private String description;
 
-    public SyncCiCollectionVo() {
-    }
-
-    public SyncCiCollectionVo(String ciName, String matchMode) {
-        this.ciName = ciName;
-        this.matchMode = matchMode;
-    }
-
     public List<Long> getIdList() {
         return idList;
     }
