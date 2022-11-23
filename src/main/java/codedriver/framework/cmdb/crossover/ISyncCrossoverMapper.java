@@ -4,8 +4,8 @@
  */
 package codedriver.framework.cmdb.crossover;
 
-import codedriver.framework.cmdb.dto.sync.SyncCiCollectionVo;
 import codedriver.framework.crossover.ICrossoverService;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ import java.util.List;
  * @date 2022/11/21 15:07
  */
 
-public interface ISyncCrossoverService extends ICrossoverService {
+public interface ISyncCrossoverMapper extends ICrossoverService {
 
-    List<SyncCiCollectionVo> searchSyncCiCollection(SyncCiCollectionVo syncCiCollectionVo);
+    List<String> getSyncCiCollectionNameListByCiNameListAndCollectMode(@Param("ciNameList") List<String> ciNameList, @Param("collectMode") String collectMode);
 
 }

@@ -88,8 +88,8 @@ public class SyncCiCollectionVo extends BasePageVo {
     public SyncCiCollectionVo() {
     }
 
-    public SyncCiCollectionVo(String collectionName, String matchMode) {
-        this.collectionName = collectionName;
+    public SyncCiCollectionVo(String ciName, String matchMode) {
+        this.ciName = ciName;
         this.matchMode = matchMode;
     }
 
