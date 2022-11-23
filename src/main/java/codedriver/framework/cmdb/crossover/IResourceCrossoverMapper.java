@@ -62,7 +62,11 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
 
     Set<Long> getOsResourceTypeIdListByAppSystemIdAndEnvId(ResourceSearchVo searchVo);
 
+    Set<Long> getOsResourceAppSystemIdListByOsId(Long id);
+
     List<ResourceVo> getResourceListByResourceVoList(@Param("resourceList") List<ResourceVo> resourceList);
+
+    Long getAppSystemIdByResourceId(Long id);
 
     List<Long> getResourceIdListByAppSystemIdAndModuleIdAndEnvId(ResourceVo resourceVo);
 
@@ -96,4 +100,7 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
     int getAppSystemCountByKeyword(BasePageVo searchVo);
 
     List<AppSystemVo> getAppSystemListByKeyword(BasePageVo searchVo);
+
+    List<ResourceVo> searchAppSystemListByIdList(List<Long> idList);
+
 }

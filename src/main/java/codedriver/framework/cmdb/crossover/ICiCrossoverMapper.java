@@ -23,4 +23,13 @@ public interface ICiCrossoverMapper extends ICrossoverService {
 
     List<CiVo> getCiByIdList(@Param("ciIdList") List<Long> ciIds);
 
+    /**
+     * 查找所有父模型包括自己
+     *
+     * @param lft 子模型左编码
+     * @param rht 子模型右编码
+     * @return 模型列表
+     */
+    List<CiVo> getUpwardCiListByLR(@Param("lft") Integer lft, @Param("rht") Integer rht);
+
 }
