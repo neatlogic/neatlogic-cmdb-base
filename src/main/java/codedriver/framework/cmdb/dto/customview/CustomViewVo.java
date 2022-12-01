@@ -69,6 +69,9 @@ public class CustomViewVo extends BasePageVo implements Serializable {
     @EntityField(name = "起始模型uuid", type = ApiParamType.STRING)
     private String startCustomViewCiUuid;
 
+    @EntityField(name = "自定义模板", type = ApiParamType.JSONOBJECT)
+    private CustomViewTemplateVo customViewTemplate;
+
     public Long getId() {
         if (id == null) {
             id = SnowflakeUtil.uniqueLong();
@@ -78,6 +81,14 @@ public class CustomViewVo extends BasePageVo implements Serializable {
 
     public boolean isAdmin() {
         return isAdmin;
+    }
+
+    public CustomViewTemplateVo getCustomViewTemplate() {
+        return customViewTemplate;
+    }
+
+    public void setCustomViewTemplate(CustomViewTemplateVo customViewTemplate) {
+        this.customViewTemplate = customViewTemplate;
     }
 
     public void setAdmin(boolean admin) {

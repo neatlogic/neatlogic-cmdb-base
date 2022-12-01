@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -11,9 +11,17 @@ public class CustomViewConditionFieldVo implements Serializable {
     private String name;
     private String type;
 
+    private String alias;
+
     public CustomViewConditionFieldVo(String _name, String _type) {
         name = _name;
         type = _type;
+    }
+
+    public CustomViewConditionFieldVo(String _name, String _type, String _alias) {
+        name = _name;
+        type = _type;
+        alias = _alias;
     }
 
     public String getName() {
@@ -30,5 +38,13 @@ public class CustomViewConditionFieldVo implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 }
