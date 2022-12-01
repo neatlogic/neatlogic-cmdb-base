@@ -5,10 +5,12 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter;
 
+import codedriver.framework.cmdb.dto.ci.CiVo;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.restful.annotation.EntityField;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class AppModuleVo implements Serializable {
     private static final long serialVersionUID = 3794860793337591802L;
@@ -21,6 +23,9 @@ public class AppModuleVo implements Serializable {
     private String abbrName;
     @EntityField(name = "应用id", type = ApiParamType.LONG)
     private Long appSystemId;
+
+    @EntityField(name = "模型列表", type = ApiParamType.JSONARRAY)
+    private List<CiVo> ciVoList;
 
     public Long getId() {
         return id;
@@ -52,5 +57,13 @@ public class AppModuleVo implements Serializable {
 
     public void setAppSystemId(Long appSystemId) {
         this.appSystemId = appSystemId;
+    }
+
+    public List<CiVo> getCiVoList() {
+        return ciVoList;
+    }
+
+    public void setCiVoList(List<CiVo> ciVoList) {
+        this.ciVoList = ciVoList;
     }
 }
