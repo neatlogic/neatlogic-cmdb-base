@@ -68,7 +68,6 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
      */
     JSONArray getAppModuleResourceList(ResourceSearchVo searchVo);
 
-
     /**
      * 获取模块列表
      *
