@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -26,6 +26,8 @@ public class CustomViewAttrVo implements Serializable {
     private Long attrId;
     @EntityField(name = "别名", type = ApiParamType.STRING)
     private String alias;
+    @EntityField(name = "唯一标识", type = ApiParamType.STRING)
+    private String name;
     @EntityField(name = "排序", type = ApiParamType.INTEGER)
     private Integer sort = 0;
     @EntityField(name = "条件", type = ApiParamType.JSONOBJECT)
@@ -51,12 +53,20 @@ public class CustomViewAttrVo implements Serializable {
         if (MapUtils.isNotEmpty(conf)) {
             this.attrId = conf.getLong("attrId");
             this.alias = conf.getString("alias");
+            this.name = conf.getString("name");
             this.isHidden = conf.getIntValue("isHidden");
             this.sort = conf.getIntValue("sort");
             this.condition = conf.getJSONObject("condition");
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Long getAttrId() {
         return attrId;

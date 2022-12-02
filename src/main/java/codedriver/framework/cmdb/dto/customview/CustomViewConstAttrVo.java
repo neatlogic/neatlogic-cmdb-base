@@ -21,6 +21,8 @@ public class CustomViewConstAttrVo implements Serializable {
     private String customViewCiUuid;
     @EntityField(name = "属性名称", type = ApiParamType.STRING)
     private String constName;
+    @EntityField(name = "唯一标识", type = ApiParamType.STRING)
+    private String name;
     @EntityField(name = "别名", type = ApiParamType.STRING)
     private String alias;
     @EntityField(name = "排序", type = ApiParamType.INTEGER)
@@ -42,9 +44,18 @@ public class CustomViewConstAttrVo implements Serializable {
         if (MapUtils.isNotEmpty(conf)) {
             this.constName = conf.getString("constName");
             this.alias = conf.getString("alias");
+            this.name = conf.getString("name");
             this.isHidden = conf.getIntValue("isHidden");
             this.sort = conf.getIntValue("sort");
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getConstName() {
