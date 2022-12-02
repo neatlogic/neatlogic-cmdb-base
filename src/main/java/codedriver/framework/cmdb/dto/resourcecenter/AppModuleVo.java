@@ -25,7 +25,7 @@ public class AppModuleVo implements Serializable {
     private Long appSystemId;
 
     @EntityField(name = "模型列表", type = ApiParamType.JSONARRAY)
-    private List<CiVo> ciVoList;
+    private List<CiVo> ciList;
 
     public Long getId() {
         return id;
@@ -59,11 +59,11 @@ public class AppModuleVo implements Serializable {
         this.appSystemId = appSystemId;
     }
 
-    public List<CiVo> getCiVoList() {
-        return ciVoList;
+    public List<CiVo> getCiList() {
+        return ciList;
     }
 
-    public void setCiVoList(List<CiVo> ciVoList) {
-        this.ciVoList = ciVoList;
+    public void setCiList(List<CiVo> ciList) {
+        this.ciList = ciList;
     }
 }
