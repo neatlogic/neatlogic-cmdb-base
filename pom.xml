@@ -32,7 +32,7 @@
 		<dependency>
 			<groupId>com.techsure</groupId>
 			<artifactId>codedriver-framework</artifactId>
-			<version>${codedrover.framework}</version>
+			<version>${codedriver.framework}</version>
 			<optional>true</optional>
 		</dependency>
 	</dependencies>
