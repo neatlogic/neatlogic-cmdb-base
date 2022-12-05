@@ -35,67 +35,71 @@ public class RelVo implements Serializable {
     private String direction;
     @EntityField(name = "数据录入方式", type = ApiParamType.STRING)
     private String inputType = InputType.MT.getValue();
-    @EntityField(name = "来源端模型id", type = ApiParamType.LONG)
+    @EntityField(name = "上游端模型id", type = ApiParamType.LONG)
     private Long fromCiId;
-    @EntityField(name = "来源端模型图标", type = ApiParamType.STRING)
+    @EntityField(name = "上游端模型图标", type = ApiParamType.STRING)
     private String fromCiIcon;
-    @EntityField(name = "来源端模型唯一标识", type = ApiParamType.STRING)
+    @EntityField(name = "上游端模型唯一标识", type = ApiParamType.STRING)
     private String fromCiName;
-    @EntityField(name = "来源端模型名称", type = ApiParamType.STRING)
+    @EntityField(name = "上游端模型名称", type = ApiParamType.STRING)
     private String fromCiLabel;
-    @EntityField(name = "来源端名称", type = ApiParamType.STRING)
+    @EntityField(name = "上游端名称", type = ApiParamType.STRING)
     private String fromName;
-    @EntityField(name = "来源端标签", type = ApiParamType.STRING)
+    @EntityField(name = "上游端标签", type = ApiParamType.STRING)
     private String fromLabel;
-    @EntityField(name = "来源端类型id", type = ApiParamType.LONG)
+    @EntityField(name = "上游端类型id", type = ApiParamType.LONG)
     private Long fromTypeId;
-    @EntityField(name = "来源端规则", type = ApiParamType.STRING)
+    @EntityField(name = "上游端规则", type = ApiParamType.STRING)
     private String fromRule;
-    @EntityField(name = "来源端规则名称", type = ApiParamType.STRING)
+    @EntityField(name = "上游端规则名称", type = ApiParamType.STRING)
     private String fromRuleText;
-    @EntityField(name = "来源端分组id", type = ApiParamType.LONG)
+    @EntityField(name = "上游端分组id", type = ApiParamType.LONG)
     private String fromGroupId;
-    @EntityField(name = "来源端分组名称", type = ApiParamType.STRING)
+    @EntityField(name = "上游端分组名称", type = ApiParamType.STRING)
     private String fromGroupName;
-    @EntityField(name = "来源端是否唯一", type = ApiParamType.INTEGER)
+    @EntityField(name = "上游端是否唯一", type = ApiParamType.INTEGER)
     private Integer fromIsUnique;
-    @EntityField(name = "来源端是否必填", type = ApiParamType.INTEGER)
+    @EntityField(name = "上游端是否必填", type = ApiParamType.INTEGER)
     private Integer fromIsRequired;
-    @EntityField(name = "来源端是否允许添加新配置项", type = ApiParamType.BOOLEAN)
+    @EntityField(name = "上游端是否级联删除", type = ApiParamType.INTEGER)
+    private Integer fromIsCascadeDelete;
+    @EntityField(name = "上游端是否允许添加新配置项", type = ApiParamType.BOOLEAN)
     private Boolean fromAllowInsert;
-    @EntityField(name = "来源端是否虚拟模型", type = ApiParamType.INTEGER)
+    @EntityField(name = "上游端是否虚拟模型", type = ApiParamType.INTEGER)
     private Integer fromIsVirtual;
-    @EntityField(name = "目标端模型id", type = ApiParamType.LONG)
+    @EntityField(name = "下游端模型id", type = ApiParamType.LONG)
     private Long toCiId;
-    @EntityField(name = "目标端模型图标", type = ApiParamType.STRING)
+    @EntityField(name = "下游端模型图标", type = ApiParamType.STRING)
     private String toCiIcon;
-    @EntityField(name = "来源端模型唯一标识", type = ApiParamType.STRING)
+    @EntityField(name = "上游端模型唯一标识", type = ApiParamType.STRING)
     private String toCiName;
-    @EntityField(name = "来源端模型名称", type = ApiParamType.STRING)
+    @EntityField(name = "上游端模型名称", type = ApiParamType.STRING)
     private String toCiLabel;
-    @EntityField(name = "目标端名称", type = ApiParamType.STRING)
+    @EntityField(name = "下游端名称", type = ApiParamType.STRING)
     private String toName;
-    @EntityField(name = "目标端标签", type = ApiParamType.STRING)
+    @EntityField(name = "下游端标签", type = ApiParamType.STRING)
     private String toLabel;
-    @EntityField(name = "目标端类型id", type = ApiParamType.LONG)
+    @EntityField(name = "下游端类型id", type = ApiParamType.LONG)
     private Long toTypeId;
-    @EntityField(name = "目标端规则", type = ApiParamType.STRING)
+    @EntityField(name = "下游端规则", type = ApiParamType.STRING)
     private String toRule;
-    @EntityField(name = "目标端规则名称", type = ApiParamType.STRING)
+    @EntityField(name = "下游端规则名称", type = ApiParamType.STRING)
     private String toRuleText;
-    @EntityField(name = "目标端分组id", type = ApiParamType.LONG)
+    @EntityField(name = "下游端分组id", type = ApiParamType.LONG)
     private String toGroupId;
-    @EntityField(name = "目标端分组名称", type = ApiParamType.STRING)
+    @EntityField(name = "下游端分组名称", type = ApiParamType.STRING)
     private String toGroupName;
-    @EntityField(name = "目标端是否唯一", type = ApiParamType.INTEGER)
+    @EntityField(name = "下游端是否唯一", type = ApiParamType.INTEGER)
     private Integer toIsUnique;
-    @EntityField(name = "目标端是否必填", type = ApiParamType.INTEGER)
+    @EntityField(name = "下游端是否必填", type = ApiParamType.INTEGER)
     private Integer toIsRequired;
-    @EntityField(name = "目标端是否允许添加新配置项", type = ApiParamType.BOOLEAN)
+    @EntityField(name = "下游端是否级联删除", type = ApiParamType.INTEGER)
+    private Integer toIsCascadeDelete;
+    @EntityField(name = "下游端是否允许添加新配置项", type = ApiParamType.BOOLEAN)
     private Boolean toAllowInsert;
     @EntityField(name = "是否继承属性", type = ApiParamType.INTEGER)
     private Integer isExtended;
-    @EntityField(name = "目标端是否虚拟模型", type = ApiParamType.INTEGER)
+    @EntityField(name = "下游端是否虚拟模型", type = ApiParamType.INTEGER)
     private Integer toIsVirtual;
     @EntityField(name = "支持的搜索表达式列表", type = ApiParamType.JSONARRAY)
     private List<ValueTextVo> expressionList;
@@ -477,6 +481,22 @@ public class RelVo implements Serializable {
 
     public void setNextRel(RelVo nextRel) {
         this.nextRel = nextRel;
+    }
+
+    public Integer getFromIsCascadeDelete() {
+        return fromIsCascadeDelete;
+    }
+
+    public void setFromIsCascadeDelete(Integer fromIsCascadeDelete) {
+        this.fromIsCascadeDelete = fromIsCascadeDelete;
+    }
+
+    public Integer getToIsCascadeDelete() {
+        return toIsCascadeDelete;
+    }
+
+    public void setToIsCascadeDelete(Integer toIsCascadeDelete) {
+        this.toIsCascadeDelete = toIsCascadeDelete;
     }
 
     @Override
