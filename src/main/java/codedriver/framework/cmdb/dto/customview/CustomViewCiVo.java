@@ -44,6 +44,8 @@ public class CustomViewCiVo implements Serializable {
     private List<JSONObject> ciEntityList;
     @EntityField(name = "别名", type = ApiParamType.STRING)
     private String alias;
+    @EntityField(name = "唯一标识", type = ApiParamType.STRING)
+    private String name;
 
     public CustomViewCiVo() {
 
@@ -56,6 +58,7 @@ public class CustomViewCiVo implements Serializable {
             this.sort = conf.getInteger("index");
             this.isHidden = conf.getIntValue("isHidden");
             this.alias = conf.getString("alias");
+            this.name = conf.getString("name");
             this.isStart = conf.getIntValue("isStart");
         }
         this.uuid = jsonObj.getString("uuid");
@@ -97,6 +100,13 @@ public class CustomViewCiVo implements Serializable {
         return null;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getUuid() {
         return uuid;

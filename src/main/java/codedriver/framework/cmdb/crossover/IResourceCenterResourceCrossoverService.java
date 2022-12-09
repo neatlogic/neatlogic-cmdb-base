@@ -6,6 +6,7 @@
 package codedriver.framework.cmdb.crossover;
 
 import codedriver.framework.cmdb.dto.resourcecenter.AccountVo;
+import codedriver.framework.cmdb.dto.resourcecenter.AppEnvVo;
 import codedriver.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
 import codedriver.framework.cmdb.dto.resourcecenter.ResourceVo;
 import codedriver.framework.cmdb.dto.tag.TagVo;
@@ -13,6 +14,7 @@ import codedriver.framework.crossover.ICrossoverService;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -66,7 +68,6 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
      */
     JSONArray getAppModuleResourceList(ResourceSearchVo searchVo);
 
-
     /**
      * 获取模块列表
      *
@@ -75,5 +76,12 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
      */
     List<ResourceVo> getAppModuleList(ResourceSearchVo searchVo);
 
+    /**
+     * 获取应用巡检批量巡检时的环境列表（环境会包含模块列表，模块还会包含模型列表）
+     *
+     * @param searchVo resourceSearchVo
+     * @return 应用巡检批量巡检时的环境列表
+     */
+    Collection<AppEnvVo> getAppEnvList(ResourceSearchVo searchVo);
 }
 
