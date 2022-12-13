@@ -158,6 +158,7 @@ public class CiEntityVo extends BasePageVo implements Serializable {
 
     }
 
+
     public CiEntityVo(Long id) {
         this.id = id;
     }
