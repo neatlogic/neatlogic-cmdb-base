@@ -12,6 +12,7 @@ import codedriver.framework.cmdb.enums.RelDirectionType;
 import codedriver.framework.cmdb.enums.resourcecenter.JoinType;
 import net.sf.jsqlparser.expression.Alias;
 import net.sf.jsqlparser.expression.Expression;
+import net.sf.jsqlparser.expression.Function;
 import net.sf.jsqlparser.expression.LongValue;
 import net.sf.jsqlparser.expression.operators.conditional.AndExpression;
 import net.sf.jsqlparser.expression.operators.relational.*;
@@ -21,6 +22,7 @@ import net.sf.jsqlparser.statement.select.Join;
 import net.sf.jsqlparser.statement.select.PlainSelect;
 import net.sf.jsqlparser.statement.select.SelectExpressionItem;
 import net.sf.jsqlparser.statement.select.SubSelect;
+import net.sf.jsqlparser.util.cnfexpression.MultiOrExpression;
 
 import java.util.*;
 
@@ -104,6 +106,7 @@ public class SceneEntityGenerateSqlUtil {
         plainSelect.addJoins(joinCmdbCi);
         addJoinTable(cmdbCi);
         addEqualColumn(cmdbCiIdColumn, mainTableCiIdColumn);
+        plainSelect.withWhere(getExpiredExpression(mainTable));
         return plainSelect;
     }
 
@@ -214,7 +217,8 @@ public class SceneEntityGenerateSqlUtil {
                     Column attrCiTableIdColumn = new Column(attrCiTable, "id");
                     Column cmdbAttrentityTableToCientityIdColumn = new Column(cmdbAttrentityTable, "to_cientity_id");
                     EqualsTo equalsTo = new EqualsTo(attrCiTableIdColumn, cmdbAttrentityTableToCientityIdColumn);
-                    Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(equalsTo);
+                    AndExpression andExpression = new AndExpression(equalsTo, getExpiredExpression(attrCiTable));
+                    Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(andExpression);
                     plainSelect.addJoins(join);
                     addJoinTable(attrCiTable);
                     addEqualColumn(attrCiTableIdColumn, cmdbAttrentityTableToCientityIdColumn);
@@ -271,7 +275,8 @@ public class SceneEntityGenerateSqlUtil {
                     Column attrCiTableIdColumn = new Column(attrCiTable, "id");
                     Column cmdbRelentityTableToCientityIdColumn = new Column(cmdbRelentityTable, "to_cientity_id");
                     EqualsTo equalsTo = new EqualsTo(attrCiTableIdColumn, cmdbRelentityTableToCientityIdColumn);
-                    Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(equalsTo);
+                    AndExpression andExpression = new AndExpression(equalsTo, getExpiredExpression(attrCiTable));
+                    Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(andExpression);
                     plainSelect.addJoins(join);
                     addJoinTable(attrCiTable);
                     addEqualColumn(attrCiTableIdColumn, cmdbRelentityTableToCientityIdColumn);
@@ -344,7 +349,8 @@ public class SceneEntityGenerateSqlUtil {
                     Column attrCiTableIdColumn = new Column(attrCiTable, "id");
                     Column cmdbRelentityTableFromCientityIdColumn = new Column(cmdbRelentityTable, "from_cientity_id");
                     EqualsTo equalsTo = new EqualsTo(attrCiTableIdColumn, cmdbRelentityTableFromCientityIdColumn);
-                    Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(equalsTo);
+                    AndExpression andExpression = new AndExpression(equalsTo, getExpiredExpression(attrCiTable));
+                    Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(andExpression);
                     plainSelect.addJoins(join);
                     addJoinTable(attrCiTable);
                     addEqualColumn(attrCiTableIdColumn, cmdbRelentityTableFromCientityIdColumn);
@@ -468,5 +474,27 @@ public class SceneEntityGenerateSqlUtil {
             }
         }
     }
+    private Expression getExpiredExpression(Table mainTable) {
+          /*
+               (not exists (select 1 from cmdb_cientity_expiredtime xx where xx.cientity_id = `ci_base`.id) or exists
+            (select 1 from cmdb_cientity_expiredtime xx where xx.cientity_id = `ci_base`.id
+            and xx.expired_time &gt;= NOW()))
+             */
 
+        List<Expression> expressionList = new ArrayList<>();
+        expressionList.add(new ExistsExpression()
+                .withNot(true)
+                .withRightExpression(new SubSelect()
+                        .withSelectBody(new PlainSelect()
+                                .withFromItem(new Table("cmdb_cientity_expiredtime").withAlias(new Alias("ex")))
+                                .addSelectItems(new SelectExpressionItem(new Column("1")))
+                                .withWhere(new EqualsTo(new Column("ex.cientity_id"), new Column(mainTable,"id"))))));
+        expressionList.add(new ExistsExpression().withRightExpression(new SubSelect()
+                .withSelectBody((new PlainSelect()
+                        .withFromItem(new Table("cmdb_cientity_expiredtime").withAlias(new Alias("ex")))
+                        .addSelectItems(new SelectExpressionItem(new Column("1")))
+                        .withWhere(new AndExpression().withLeftExpression(new EqualsTo(new Column("ex.cientity_id"), new Column(mainTable,"id")))
+                                .withRightExpression(new GreaterThanEquals().withLeftExpression(new Column("ex.expired_time")).withRightExpression(new Function().withName("now"))))))));
+        return new MultiOrExpression(expressionList);
+    }
 }
