@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -9,6 +9,7 @@ import codedriver.framework.cmdb.enums.TransactionActionType;
 import codedriver.framework.cmdb.enums.TransactionStatus;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.constvalue.InputFrom;
+import codedriver.framework.common.constvalue.SystemUser;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
 import codedriver.framework.util.SnowflakeUtil;
@@ -277,6 +278,9 @@ public class TransactionVo extends BasePageVo {
     }
 
     public String getCreateUserName() {
+        if (SystemUser.SYSTEM.getUserId().equals(createUser)) {
+            return SystemUser.SYSTEM.getUserName();
+        }
         return createUserName;
     }
 
