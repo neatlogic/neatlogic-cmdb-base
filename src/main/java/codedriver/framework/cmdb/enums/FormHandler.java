@@ -9,8 +9,11 @@ import codedriver.framework.form.constvalue.IFormHandler;
 
 public enum FormHandler implements IFormHandler {
     CIENTITYSELECT("cientityselect", "配置项修改组件"),
+    FORMCIENTITYMODIFY("formcientitymodify", "配置项修改组件"),
     FORMCMDBCIENTITY("formcmdbcientity", "配置项组件"),
+    FORMCIENTITYSELECTOR("formcientityselector", "配置项选择组件"),
     PROTOCOL("protocol", "连接协议"),
+    FORMPROTOCOL("formprotocol", "连接协议"),
     FORMRESOURECES("formresoureces", "执行目标"),
     ;
 
