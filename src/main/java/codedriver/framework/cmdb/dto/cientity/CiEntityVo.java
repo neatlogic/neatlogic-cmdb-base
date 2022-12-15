@@ -135,6 +135,8 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private String description;
     @EntityField(name = "巡检时间", type = ApiParamType.LONG)
     private Date inspectTime;
+    @EntityField(name = "过期时间", type = ApiParamType.LONG)
+    private Date expiredTime;
     @EntityField(name = "巡检状态", type = ApiParamType.STRING)
     private String inspectStatus;
     @EntityField(name = "监控时间", type = ApiParamType.LONG)
@@ -149,10 +151,13 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private Boolean limitRelEntity;//限制关系数量，避免查询返回的结果集太大
     @JSONField(serialize = false)
     private Boolean limitAttrEntity;//限制引用属性数量，避免查询返回的结果集太大
+    @EntityField(name = "过期天数", type = ApiParamType.INTEGER)
+    private Integer expiredDay;
 
     public CiEntityVo() {
 
     }
+
 
     public CiEntityVo(Long id) {
         this.id = id;
@@ -954,5 +959,21 @@ public class CiEntityVo extends BasePageVo implements Serializable {
 
     public void setMonitorStatus(String monitorStatus) {
         this.monitorStatus = monitorStatus;
+    }
+
+    public Date getExpiredTime() {
+        return expiredTime;
+    }
+
+    public void setExpiredTime(Date expiredTime) {
+        this.expiredTime = expiredTime;
+    }
+
+    public Integer getExpiredDay() {
+        return expiredDay;
+    }
+
+    public void setExpiredDay(Integer expiredDay) {
+        this.expiredDay = expiredDay;
     }
 }

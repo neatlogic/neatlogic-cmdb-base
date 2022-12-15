@@ -86,6 +86,8 @@ public class CiVo implements Serializable {
     private int syncPolicyCount;
     @EntityField(name = "虚拟模型配置文件vo", type = ApiParamType.JSONOBJECT)
     private FileVo fileVo;
+    @EntityField(name = "有效日期", type = ApiParamType.INTEGER)
+    private int expiredDay;
 
     @Override
     public boolean equals(Object o) {
@@ -137,6 +139,14 @@ public class CiVo implements Serializable {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public int getExpiredDay() {
+        return expiredDay;
+    }
+
+    public void setExpiredDay(int expiredDay) {
+        this.expiredDay = expiredDay;
     }
 
     public List<Long> getTypeIdList() {
