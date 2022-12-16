@@ -18,4 +18,5 @@ public interface ISyncCrossoverMapper extends ICrossoverService {
 
     List<String> getSyncCiCollectionNameListByCiNameListAndCollectMode(@Param("ciNameList") List<String> ciNameList, @Param("collectMode") String collectMode);
 
+    String getSyncCiCollectionNameListByCiNameAndCollectMode(@Param("ciName") String ciName, @Param("collectMode") String collectMode);
 }
