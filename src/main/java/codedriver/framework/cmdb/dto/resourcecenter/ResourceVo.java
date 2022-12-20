@@ -103,6 +103,9 @@ public class ResourceVo extends BaseEditorVo {
     @EntityField(name = "监控时间", type = ApiParamType.LONG)
     private Date monitorTime;
 
+    @EntityField(name = "监控状态Vo", type = ApiParamType.JSONOBJECT)
+    private JSONObject monitorStatusJson;
+
     public ResourceVo() {
     }
 
@@ -477,6 +480,13 @@ public class ResourceVo extends BaseEditorVo {
             inspectStatusJson = InspectStatus.getInspectStatusJson(inspectStatus);
         }
         return inspectStatusJson;
+    }
+
+    public JSONObject getMonitorStatusJson() {
+        if (StringUtils.isNotBlank(monitorStatus)) {
+            monitorStatusJson = InspectStatus.getInspectStatusJson(monitorStatus);
+        }
+        return monitorStatusJson;
     }
 
 }
