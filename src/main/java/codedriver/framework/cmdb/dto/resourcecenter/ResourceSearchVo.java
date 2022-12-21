@@ -39,6 +39,9 @@ public class ResourceSearchVo extends BasePageVo {
     private List<String> protocolList;
     @EntityField(name = "状态id列表", type = ApiParamType.JSONARRAY)
     private List<Long> stateIdList;
+
+    @EntityField(name = "厂商id列表", type = ApiParamType.JSONARRAY)
+    private List<Long> vendorIdList;
     @EntityField(name = "应用环境id列表", type = ApiParamType.JSONARRAY)
     private List<Long> envIdList;
     @EntityField(name = "应用系统id列表", type = ApiParamType.JSONARRAY)
@@ -178,6 +181,14 @@ public class ResourceSearchVo extends BasePageVo {
 
     public void setStateIdList(List<Long> stateIdList) {
         this.stateIdList = stateIdList;
+    }
+
+    public List<Long> getVendorIdList() {
+        return vendorIdList;
+    }
+
+    public void setVendorIdList(List<Long> vendorIdList) {
+        this.vendorIdList = vendorIdList;
     }
 
     public List<Long> getEnvIdList() {
