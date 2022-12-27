@@ -9,7 +9,9 @@ import codedriver.framework.applicationlistener.core.ModuleInitializedListenerBa
 import codedriver.framework.bootstrap.CodedriverWebApplicationContext;
 import codedriver.framework.common.RootComponent;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RootComponent
@@ -17,8 +19,14 @@ public class ResourcecenterConditionFactory extends ModuleInitializedListenerBas
 
     private static final Map<String, IResourcecenterCondition> conditionComponentMap = new HashMap<>();
 
+    private static final List<IResourcecenterCondition> conditionHandlerList = new ArrayList<>();
+
     public static IResourcecenterCondition getHandler(String name) {
         return conditionComponentMap.get(name);
+    }
+
+    public static List<IResourcecenterCondition> getConditionHandlerList() {
+        return conditionHandlerList;
     }
 
     @Override
@@ -27,6 +35,7 @@ public class ResourcecenterConditionFactory extends ModuleInitializedListenerBas
         for (Map.Entry<String, IResourcecenterCondition> entry : myMap.entrySet()) {
             IResourcecenterCondition condition = entry.getValue();
             conditionComponentMap.put(condition.getName(), condition);
+            conditionHandlerList.add(condition);
         }
     }
 
