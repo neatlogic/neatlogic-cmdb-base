@@ -8,6 +8,8 @@ package codedriver.framework.cmdb.dto.resourcecenter;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.common.dto.BasePageVo;
 import codedriver.framework.restful.annotation.EntityField;
+import org.apache.commons.collections4.CollectionUtils;
+
 import java.util.List;
 
 /**
@@ -72,6 +74,8 @@ public class ResourceSearchVo extends BasePageVo {
     private String searchField;
     @EntityField(name = "批量搜索值列表", type = ApiParamType.JSONARRAY)
     private List<String> batchSearchList;
+    @EntityField(name = "是否存在未配置环境", type = ApiParamType.BOOLEAN)
+    private Boolean isExistNoEnv = false;
     public ResourceSearchVo() {
     }
 
@@ -196,7 +200,11 @@ public class ResourceSearchVo extends BasePageVo {
     }
 
     public void setEnvIdList(List<Long> envIdList) {
-        this.envIdList = envIdList;
+        if(CollectionUtils.isNotEmpty(envIdList) && envIdList.contains(-2L)){
+            isExistNoEnv = true;
+        }else {
+            this.envIdList = envIdList;
+        }
     }
 
     public List<Long> getAppSystemIdList() {
@@ -309,5 +317,9 @@ public class ResourceSearchVo extends BasePageVo {
 
     public void setBatchSearchList(List<String> batchSearchList) {
         this.batchSearchList = batchSearchList;
+    }
+
+    public Boolean getExistNoEnv() {
+        return isExistNoEnv;
     }
 }
