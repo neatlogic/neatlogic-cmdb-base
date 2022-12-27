@@ -6,15 +6,18 @@
 package codedriver.framework.cmdb.dto.resourcecenter;
 
 import codedriver.framework.common.constvalue.ApiParamType;
-import codedriver.framework.common.dto.BasePageVo;
+import codedriver.framework.dto.condition.ConditionConfigVo;
+import codedriver.framework.dto.condition.ConditionVo;
 import codedriver.framework.restful.annotation.EntityField;
+
 import java.util.List;
 
 /**
  * @author linbq
  * @since 2021/6/9 20:01
  **/
-public class ResourceSearchVo extends BasePageVo {
+public class ResourceSearchVo extends ConditionConfigVo {
+    private static final long serialVersionUID = 4837890773475493034L;
     @EntityField(name = "类型id", type = ApiParamType.LONG)
     private Long typeId;
     @EntityField(name = "类型id列表", type = ApiParamType.JSONARRAY)
@@ -298,5 +301,10 @@ public class ResourceSearchVo extends BasePageVo {
 
     public void setBatchSearchList(List<String> batchSearchList) {
         this.batchSearchList = batchSearchList;
+    }
+
+    @Override
+    public void buildMyConditionWhereSql(StringBuilder sqlSb, String handler, List<ConditionVo> conditionVoList, int conditionIndex) {
+
     }
 }
