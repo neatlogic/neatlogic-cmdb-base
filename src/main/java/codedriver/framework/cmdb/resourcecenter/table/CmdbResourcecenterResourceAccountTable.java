@@ -16,8 +16,8 @@ public class CmdbResourcecenterResourceAccountTable implements ISqlTable {
     }
 
     public enum FieldEnum {
-        UUID("resource_id", "资产id","resourceId"),
-        NAME("account_id", "账号id","accountId")
+        RESOURCE_ID("resource_id", "资产id","resourceId"),
+        ACCOUNT_ID("account_id", "账号id","accountId")
         ;
         private final String name;
         private final String text;

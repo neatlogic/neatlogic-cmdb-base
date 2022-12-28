@@ -5,9 +5,12 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter;
 
+import codedriver.framework.cmdb.resourcecenter.condition.IResourcecenterCondition;
+import codedriver.framework.cmdb.resourcecenter.condition.ResourcecenterConditionFactory;
 import codedriver.framework.common.constvalue.ApiParamType;
 import codedriver.framework.dto.condition.ConditionConfigVo;
 import codedriver.framework.dto.condition.ConditionVo;
+import codedriver.framework.exception.condition.ConditionNotFoundException;
 import codedriver.framework.restful.annotation.EntityField;
 
 import java.util.List;
@@ -75,6 +78,7 @@ public class ResourceSearchVo extends ConditionConfigVo {
     private String searchField;
     @EntityField(name = "批量搜索值列表", type = ApiParamType.JSONARRAY)
     private List<String> batchSearchList;
+
     public ResourceSearchVo() {
     }
 
@@ -316,6 +320,11 @@ public class ResourceSearchVo extends ConditionConfigVo {
 
     @Override
     public void buildMyConditionWhereSql(StringBuilder sqlSb, String handler, List<ConditionVo> conditionVoList, int conditionIndex) {
-
+        IResourcecenterCondition resourcecenterCondition = ResourcecenterConditionFactory.getHandler(handler);
+        if (resourcecenterCondition == null) {
+            throw new ConditionNotFoundException(handler);
+        }
+        resourcecenterCondition.getSqlConditionWhere(conditionVoList, conditionIndex, sqlSb);
     }
+
 }

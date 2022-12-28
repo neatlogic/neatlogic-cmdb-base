@@ -3,21 +3,29 @@ package codedriver.framework.cmdb.resourcecenter.table;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CmdbResourcecenterAccountTable implements ISqlTable {
+public class ScenceIpobjectDetailTable implements ISqlTable {
 
     @Override
     public String getName() {
-        return "cmdb_resourcecenter_account";
+        return "scence_ipobject_detail";
     }
 
     @Override
     public String getShortName() {
-        return "cra";
+        return "sid";
     }
 
     public enum FieldEnum {
-        PROTOCOL_ID("protocol_id", "协议id","protocolId"),
-        ID("id", "账号id","id")
+        APP_SYSTEM_ID("app_system_id", "应用系统id","appSystemId"),
+        APP_MODULE_ID("app_module_id", "应用模块id","appModuleId"),
+        ENV_ID("env_id","环境id","envId"),
+        VENDOR_ID("vendor_id","厂商id","vendorId"),
+        STATE_ID("state_id","资产状态id","stateId"),
+        TYPE_ID("type_id","资产类型id","typeId"),
+        ID("id","资产id","id"),
+        INSPECT_STATUS("inspect_status","巡检状态","inspectStatus"),
+        NAME("name","资产名","name"),
+        IP("ip","资产ip","ip"),
         ;
         private final String name;
         private final String text;

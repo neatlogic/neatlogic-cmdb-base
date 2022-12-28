@@ -3,7 +3,7 @@ package codedriver.framework.cmdb.resourcecenter.table;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CmdbResourcecenterAccountTable implements ISqlTable {
+public class CmdbResourcecenterResourceTagTable implements ISqlTable {
 
     @Override
     public String getName() {
@@ -12,12 +12,12 @@ public class CmdbResourcecenterAccountTable implements ISqlTable {
 
     @Override
     public String getShortName() {
-        return "cra";
+        return "crrt";
     }
 
     public enum FieldEnum {
-        PROTOCOL_ID("protocol_id", "协议id","protocolId"),
-        ID("id", "账号id","id")
+        TAG_ID("protocol_id", "协议id","protocolId"),
+        RESOURCE_ID("resource_id", "资产id","resourceId")
         ;
         private final String name;
         private final String text;

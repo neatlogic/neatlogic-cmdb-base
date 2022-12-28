@@ -6,6 +6,11 @@
 package codedriver.framework.cmdb.resourcecenter.condition;
 
 import codedriver.framework.condition.core.IConditionHandler;
+import codedriver.framework.dto.condition.ConditionVo;
+
+import java.util.List;
 
 public interface IResourcecenterCondition extends IConditionHandler {
+
+    void getSqlConditionWhere(List<ConditionVo> conditionList, Integer index, StringBuilder sqlSb);
 }

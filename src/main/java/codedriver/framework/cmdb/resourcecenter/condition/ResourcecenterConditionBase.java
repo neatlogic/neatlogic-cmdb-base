@@ -6,7 +6,13 @@
 package codedriver.framework.cmdb.resourcecenter.condition;
 
 import codedriver.framework.cmdb.enums.resourcecenter.condition.ConditionConfigType;
+import codedriver.framework.common.constvalue.Expression;
+import codedriver.framework.dto.condition.ConditionVo;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.List;
 
 public abstract class ResourcecenterConditionBase implements IResourcecenterCondition{
 
@@ -26,4 +32,16 @@ public abstract class ResourcecenterConditionBase implements IResourcecenterCond
     }
 
     public abstract JSONObject getConfig(ConditionConfigType type);
+
+
+    protected void getSimpleSqlConditionWhere(ConditionVo condition, StringBuilder sqlSb, String tableShortName, String columnName) {
+        Object value = StringUtils.EMPTY;
+        if (condition.getValueList() instanceof String) {
+            value = condition.getValueList();
+        } else if (condition.getValueList() instanceof List) {
+            List<String> values = JSON.parseArray(JSON.toJSONString(condition.getValueList()), String.class);
+            value = String.join("','", values);
+        }
+        sqlSb.append(Expression.getExpressionSql(condition.getExpression(), tableShortName, columnName, value.toString()));
+    }
 }
