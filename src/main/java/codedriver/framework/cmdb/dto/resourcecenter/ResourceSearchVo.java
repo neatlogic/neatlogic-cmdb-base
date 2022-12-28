@@ -5,8 +5,12 @@
 
 package codedriver.framework.cmdb.dto.resourcecenter;
 
+import codedriver.framework.cmdb.resourcecenter.condition.IResourcecenterCondition;
+import codedriver.framework.cmdb.resourcecenter.condition.ResourcecenterConditionFactory;
 import codedriver.framework.common.constvalue.ApiParamType;
-import codedriver.framework.common.dto.BasePageVo;
+import codedriver.framework.dto.condition.ConditionConfigVo;
+import codedriver.framework.dto.condition.ConditionVo;
+import codedriver.framework.exception.condition.ConditionNotFoundException;
 import codedriver.framework.restful.annotation.EntityField;
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -16,7 +20,8 @@ import java.util.List;
  * @author linbq
  * @since 2021/6/9 20:01
  **/
-public class ResourceSearchVo extends BasePageVo {
+public class ResourceSearchVo extends ConditionConfigVo {
+    private static final long serialVersionUID = 4837890773475493034L;
     @EntityField(name = "类型id", type = ApiParamType.LONG)
     private Long typeId;
     @EntityField(name = "类型id列表", type = ApiParamType.JSONARRAY)
@@ -322,4 +327,14 @@ public class ResourceSearchVo extends BasePageVo {
     public Boolean getExistNoEnv() {
         return isExistNoEnv;
     }
+
+    @Override
+    public void buildMyConditionWhereSql(StringBuilder sqlSb, String handler, List<ConditionVo> conditionVoList, int conditionIndex) {
+        IResourcecenterCondition resourcecenterCondition = ResourcecenterConditionFactory.getHandler(handler);
+        if (resourcecenterCondition == null) {
+            throw new ConditionNotFoundException(handler);
+        }
+        resourcecenterCondition.getSqlConditionWhere(conditionVoList, conditionIndex, sqlSb);
+    }
+
 }
