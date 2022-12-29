@@ -26,6 +26,12 @@ public class ScenceIpobjectDetailTable implements ISqlTable {
         INSPECT_STATUS("inspect_status","巡检状态","inspectStatus"),
         NAME("name","资产名","name"),
         IP("ip","资产ip","ip"),
+        PORT("port","端口","port"),
+        DESCRIPTION("description","描述","description"),
+        NETWORK_AREA("network_area","网络区域","networkArea"),
+        MAINTENANCE_WINDOW("maintenance_window","网络区域","maintenanceWindow"),
+        USER_UUID("user_uuid","所有者","userUuid"),
+        BG_ID("bg_id","所属部门","bgId"),
         ;
         private final String name;
         private final String text;
