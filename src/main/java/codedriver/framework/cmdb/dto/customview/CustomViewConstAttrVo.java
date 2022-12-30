@@ -29,6 +29,8 @@ public class CustomViewConstAttrVo implements Serializable {
     private Integer sort = 0;
     @EntityField(name = "是否隐藏", type = ApiParamType.INTEGER)
     private Integer isHidden = 0;
+    @EntityField(name = "是否主键", type = ApiParamType.INTEGER)
+    private Integer isPrimary = 0;
 
     public CustomViewConstAttrVo() {
 
@@ -47,6 +49,7 @@ public class CustomViewConstAttrVo implements Serializable {
             this.name = conf.getString("name");
             this.isHidden = conf.getIntValue("isHidden");
             this.sort = conf.getIntValue("sort");
+            this.isPrimary = conf.getIntValue("isPrimary");
         }
     }
 
@@ -117,4 +120,11 @@ public class CustomViewConstAttrVo implements Serializable {
         this.isHidden = isHidden;
     }
 
+    public Integer getIsPrimary() {
+        return isPrimary;
+    }
+
+    public void setIsPrimary(Integer isPrimary) {
+        this.isPrimary = isPrimary;
+    }
 }
