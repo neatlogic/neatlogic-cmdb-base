@@ -22,7 +22,7 @@ public class AppEnvVo implements Serializable {
     @EntityField(name = "名称", type = ApiParamType.STRING)
     private String name;
     @EntityField(name = "应用环境序号", type = ApiParamType.INTEGER)
-    private Integer envSeqNo;
+    private Integer seqNo;
 
     @EntityField(name = "应用模块列表", type = ApiParamType.JSONARRAY)
     private List<AppModuleVo> appModuleList;
@@ -43,12 +43,12 @@ public class AppEnvVo implements Serializable {
         this.name = name;
     }
 
-    public Integer getEnvSeqNo() {
-        return envSeqNo;
+    public Integer getSeqNo() {
+        return seqNo;
     }
 
-    public void setEnvSeqNo(Integer envSeqNo) {
-        this.envSeqNo = envSeqNo;
+    public void setSeqNo(Integer seqNo) {
+        this.seqNo = seqNo;
     }
 
     public List<AppModuleVo> getAppModuleList() {
