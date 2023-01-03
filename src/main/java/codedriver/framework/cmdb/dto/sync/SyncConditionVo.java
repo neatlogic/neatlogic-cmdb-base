@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2023 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -67,10 +67,20 @@ public class SyncConditionVo {
     public Object getFormatValue() {
         if (StringUtils.isNotEmpty(value)) {
             if (this.getType().equalsIgnoreCase(FieldType.STRING.getValue())) {
-                return value;
-            } else if (this.getType().equalsIgnoreCase(FieldType.INTEGER.getValue())) {
+                if (value.contains(",")) {
+                    return value.split(",");
+                } else {
+                    return value;
+                }
+            } else if (this.getType().equalsIgnoreCase(FieldType.INTEGER.getValue()) || this.getType().equalsIgnoreCase(FieldType.INT.getValue())) {
                 try {
                     return Integer.parseInt(value);
+                } catch (Exception ignored) {
+
+                }
+            } else if (this.getType().equalsIgnoreCase(FieldType.FLOAT.getValue())) {
+                try {
+                    return Float.parseFloat(value);
                 } catch (Exception ignored) {
 
                 }

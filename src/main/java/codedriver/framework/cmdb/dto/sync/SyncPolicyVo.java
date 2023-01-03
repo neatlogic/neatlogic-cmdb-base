@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2022 TechSure Co., Ltd. All Rights Reserved.
+ * Copyright(c) 2023 TechSure Co., Ltd. All Rights Reserved.
  * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
  */
 
@@ -51,30 +51,98 @@ public class SyncPolicyVo {
             List<Criteria> criteriaList = new ArrayList<>();
             for (SyncConditionVo conditionVo : this.getConditionList()) {
                 if (StringUtils.isNotBlank(conditionVo.getExpression()) && StringUtils.isNotBlank(conditionVo.getValue()) && StringUtils.isNotBlank(conditionVo.getField())) {
-                    Criteria c = Criteria.where(conditionVo.getField());
+
                     if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.IS.getValue())) {
-                        c.is(conditionVo.getFormatValue());
+                        if (!(conditionVo.getFormatValue() instanceof String[])) {
+                            Criteria c = Criteria.where(conditionVo.getField());
+                            c.is(conditionVo.getFormatValue());
+                            criteriaList.add(c);
+                        } else {
+                            String[] values = (String[]) conditionVo.getFormatValue();
+                            List<Criteria> orCriteriaList = new ArrayList<>();
+                            for (String v : values) {
+                                v = v.trim();
+                                Criteria c = Criteria.where(conditionVo.getField());
+                                c.is(v);
+                                orCriteriaList.add(c);
+                            }
+                            if (CollectionUtils.isNotEmpty(orCriteriaList)) {
+                                finalCriteria.orOperator(orCriteriaList);
+                            }
+                        }
                     } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.NE.getValue())) {
-                        c.ne(conditionVo.getFormatValue());
+                        if (!(conditionVo.getFormatValue() instanceof String[])) {
+                            Criteria c = Criteria.where(conditionVo.getField());
+                            c.ne(conditionVo.getFormatValue());
+                            criteriaList.add(c);
+                        } else {
+                            String[] values = (String[]) conditionVo.getFormatValue();
+                            for (String v : values) {
+                                v = v.trim();
+                                Criteria c = Criteria.where(conditionVo.getField());
+                                c.ne(v);
+                                criteriaList.add(c);
+                            }
+                        }
                     } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.IN.getValue())) {
-                        Pattern pattern = Pattern.compile("^.*" + conditionVo.getFormatValue() + ".*$", Pattern.CASE_INSENSITIVE);
-                        c.regex(pattern);
+                        if (!(conditionVo.getFormatValue() instanceof String[])) {
+                            Criteria c = Criteria.where(conditionVo.getField());
+                            Pattern pattern = Pattern.compile("^.*" + conditionVo.getFormatValue() + ".*$", Pattern.CASE_INSENSITIVE);
+                            c.regex(pattern);
+                            criteriaList.add(c);
+                        } else {
+                            String[] values = (String[]) conditionVo.getFormatValue();
+                            List<Criteria> orCriteriaList = new ArrayList<>();
+                            for (String v : values) {
+                                v = v.trim();
+                                Criteria c = Criteria.where(conditionVo.getField());
+                                Pattern pattern = Pattern.compile("^.*" + v + ".*$", Pattern.CASE_INSENSITIVE);
+                                c.regex(pattern);
+                                orCriteriaList.add(c);
+                            }
+                            if (CollectionUtils.isNotEmpty(orCriteriaList)) {
+                                finalCriteria.orOperator(orCriteriaList);
+                            }
+                        }
                     } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.NOTIN.getValue())) {
-                        Pattern pattern = Pattern.compile("^((?!" + conditionVo.getFormatValue() + ").)*$", Pattern.CASE_INSENSITIVE);
-                        c.regex(pattern);
+                        if (!(conditionVo.getFormatValue() instanceof String[])) {
+                            Criteria c = Criteria.where(conditionVo.getField());
+                            Pattern pattern = Pattern.compile("^((?!" + conditionVo.getFormatValue() + ").)*$", Pattern.CASE_INSENSITIVE);
+                            c.regex(pattern);
+                            criteriaList.add(c);
+                        } else {
+                            String[] values = (String[]) conditionVo.getFormatValue();
+                            for (String v : values) {
+                                v = v.trim();
+                                Criteria c = Criteria.where(conditionVo.getField());
+                                Pattern pattern = Pattern.compile("^((?!" + v + ").)*$", Pattern.CASE_INSENSITIVE);
+                                c.regex(pattern);
+                                criteriaList.add(c);
+                            }
+                        }
                     } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.GT.getValue())) {
+                        Criteria c = Criteria.where(conditionVo.getField());
                         c.gt(conditionVo.getFormatValue());
+                        criteriaList.add(c);
                     } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.LT.getValue())) {
+                        Criteria c = Criteria.where(conditionVo.getField());
                         c.lt(conditionVo.getFormatValue());
+                        criteriaList.add(c);
                     } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.GTE.getValue())) {
+                        Criteria c = Criteria.where(conditionVo.getField());
                         c.gte(conditionVo.getFormatValue());
+                        criteriaList.add(c);
                     } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.LTE.getValue())) {
+                        Criteria c = Criteria.where(conditionVo.getField());
                         c.lte(conditionVo.getFormatValue());
+                        criteriaList.add(c);
                     }
-                    criteriaList.add(c);
+
                 }
             }
-            finalCriteria.andOperator(criteriaList);
+            if (CollectionUtils.isNotEmpty(criteriaList)) {
+                finalCriteria.andOperator(criteriaList);
+            }
         }
         return finalCriteria;
     }
