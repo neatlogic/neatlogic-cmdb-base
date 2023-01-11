@@ -81,6 +81,7 @@ public class ResourceSearchVo extends ConditionConfigVo {
     private List<String> batchSearchList;
     @EntityField(name = "是否存在未配置环境", type = ApiParamType.BOOLEAN)
     private Boolean isExistNoEnv = false;
+
     public ResourceSearchVo() {
     }
 
@@ -205,9 +206,9 @@ public class ResourceSearchVo extends ConditionConfigVo {
     }
 
     public void setEnvIdList(List<Long> envIdList) {
-        if(CollectionUtils.isNotEmpty(envIdList) && envIdList.contains(-2L)){
+        if (CollectionUtils.isNotEmpty(envIdList) && envIdList.contains(-2L)) {
             isExistNoEnv = true;
-        }else {
+        } else {
             this.envIdList = envIdList;
         }
     }
@@ -329,12 +330,12 @@ public class ResourceSearchVo extends ConditionConfigVo {
     }
 
     @Override
-    public void buildMyConditionWhereSql(StringBuilder sqlSb, String handler, List<ConditionVo> conditionVoList, int conditionIndex) {
+    public void buildMyConditionWhereSql(StringBuilder sqlSb, String handler, List<ConditionVo> conditionVoList, int conditionIndex, String searchMode) {
         IResourcecenterCondition resourcecenterCondition = ResourcecenterConditionFactory.getHandler(handler);
         if (resourcecenterCondition == null) {
             throw new ConditionNotFoundException(handler);
         }
-        resourcecenterCondition.getSqlConditionWhere(conditionVoList, conditionIndex, sqlSb);
+        resourcecenterCondition.getSqlConditionWhere(conditionVoList, conditionIndex, sqlSb, searchMode);
     }
 
 }

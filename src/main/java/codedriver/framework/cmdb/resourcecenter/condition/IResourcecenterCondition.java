@@ -37,5 +37,6 @@ public interface IResourcecenterCondition {
      * @param index 当前条件下标
      * @param sqlSb 动态where sql
      */
-    void getSqlConditionWhere(List<ConditionVo> conditionList, Integer index, StringBuilder sqlSb);
+    void getSqlConditionWhere(List<ConditionVo> conditionList, Integer index, StringBuilder sqlSb, String searchMode);
+    
 }

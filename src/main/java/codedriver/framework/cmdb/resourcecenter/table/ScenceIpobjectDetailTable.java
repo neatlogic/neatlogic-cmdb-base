@@ -22,6 +22,8 @@ public class ScenceIpobjectDetailTable implements ISqlTable {
         VENDOR_ID("vendor_id","厂商id","vendorId"),
         STATE_ID("state_id","资产状态id","stateId"),
         TYPE_ID("type_id","资产类型id","typeId"),
+        TYPE_NAME("type_name","资产类型","typeName"),
+        TYPE_LABEL("type_label","资产类型名","typeLabel"),
         ID("id","资产id","id"),
         INSPECT_STATUS("inspect_status","巡检状态","inspectStatus"),
         NAME("name","资产名","name"),
