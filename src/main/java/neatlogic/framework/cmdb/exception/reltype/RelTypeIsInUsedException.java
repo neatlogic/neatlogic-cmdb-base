@@ -1,0 +1,15 @@
+/*
+ * Copyright(c) 2021 TechSure Co., Ltd. All Rights Reserved.
+ * 本内容仅限于深圳市赞悦科技有限公司内部传阅，禁止外泄以及用于其他的商业项目。
+ */
+
+package neatlogic.framework.cmdb.exception.reltype;
+
+import neatlogic.framework.exception.core.ApiRuntimeException;
+
+@SuppressWarnings("serial")
+public class RelTypeIsInUsedException extends ApiRuntimeException {
+    public RelTypeIsInUsedException() {
+        super("当前关系类型正在使用中");
+    }
+}

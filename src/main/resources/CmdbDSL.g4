@@ -1,6 +1,6 @@
 grammar CmdbDSL;
 @header{
-    package codedriver.framework.cmdb.dsl;
+    package neatlogic.framework.cmdb.dsl;
 }
 
 
