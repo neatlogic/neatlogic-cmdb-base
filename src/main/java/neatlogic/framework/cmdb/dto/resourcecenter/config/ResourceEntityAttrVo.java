@@ -1,0 +1,129 @@
+/*
+ * Copyright(c) 2023 NeatLogic Co., Ltd. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package neatlogic.framework.cmdb.dto.resourcecenter.config;
+
+import neatlogic.framework.cmdb.dto.ci.CiVo;
+import neatlogic.framework.cmdb.enums.resourcecenter.JoinType;
+import neatlogic.framework.common.constvalue.ApiParamType;
+import neatlogic.framework.restful.annotation.EntityField;
+import com.alibaba.fastjson.annotation.JSONField;
+
+import java.util.Objects;
+
+public class ResourceEntityAttrVo {
+    @EntityField(name = "资源实体名称", type = ApiParamType.STRING)
+    private String entity;
+    @EntityField(name = "视图字段名", type = ApiParamType.STRING)
+    private String field;
+    @EntityField(name = "模型属性名", type = ApiParamType.STRING)
+    private String attr;
+    @EntityField(name = "模型属性id", type = ApiParamType.LONG)
+    private Long attrId;
+    @EntityField(name = "模型id", type = ApiParamType.LONG)
+    private Long ciId;
+    @EntityField(name = "模型名称", type = ApiParamType.STRING)
+    private String ciName;
+    @JSONField(serialize = false)
+    private String tableAlias;//表别名
+    @EntityField(name = "关联类型，attr或rel，不同类型join的表不一样", type = ApiParamType.ENUM, member = JoinType.class)
+    private JoinType joinType;
+    private CiVo ci;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ResourceEntityAttrVo that = (ResourceEntityAttrVo) o;
+        return Objects.equals(field, that.field) && Objects.equals(ciId, that.ciId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(field, ciId);
+    }
+
+    public String getField() {
+        return field;
+    }
+
+    public void setField(String field) {
+        this.field = field;
+    }
+
+    public String getAttr() {
+        return attr;
+    }
+
+    public void setAttr(String attr) {
+        this.attr = attr;
+    }
+
+    public Long getAttrId() {
+        return attrId;
+    }
+
+    public void setAttrId(Long attrId) {
+        this.attrId = attrId;
+    }
+
+    public Long getCiId() {
+        return ciId;
+    }
+
+    public void setCiId(Long ciId) {
+        this.ciId = ciId;
+    }
+
+    public String getCiName() {
+        return ciName;
+    }
+
+    public void setCiName(String ciName) {
+        this.ciName = ciName;
+    }
+
+    public JoinType getJoinType() {
+        return joinType;
+    }
+
+    public void setJoinType(JoinType joinType) {
+        this.joinType = joinType;
+    }
+
+    public String getTableAlias() {
+        return tableAlias;
+    }
+
+    public void setTableAlias(String tableAlias) {
+        this.tableAlias = tableAlias;
+    }
+
+    public String getEntity() {
+        return entity;
+    }
+
+    public void setEntity(String entity) {
+        this.entity = entity;
+    }
+
+    public CiVo getCi() {
+        return ci;
+    }
+
+    public void setCi(CiVo ci) {
+        this.ci = ci;
+    }
+}
