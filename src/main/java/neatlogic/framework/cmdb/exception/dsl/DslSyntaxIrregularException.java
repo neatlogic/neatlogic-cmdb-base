@@ -23,8 +23,4 @@ public class DslSyntaxIrregularException extends ApiRuntimeException {
         super("exception.cmdb.dslsyntaxirregularexception", row, col, msg);
     }
 
-    public DslSyntaxIrregularException(String msg) {
-        super(msg);
-    }
-
 }

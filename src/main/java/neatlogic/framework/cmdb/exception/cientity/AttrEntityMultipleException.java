@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class AttrEntityMultipleException extends ApiRuntimeException {
     public AttrEntityMultipleException(AttrVo attrVo) {
-        super("属性“" + attrVo.getLabel() + "(" + attrVo.getName() + ")”只能单选");
+        super("exception.cmdb.attrentitymultipleexception", attrVo.getLabel(), attrVo.getName());
     }
 }

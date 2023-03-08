@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class AttrTargetCiIdNotFoundException extends ApiRuntimeException {
     public AttrTargetCiIdNotFoundException(String attrName) {
-        super("配置项模型属性：" + attrName + " 没有关联目标模型");
+        super("exception.cmdb.attrtargetciidnotfoundexception", attrName);
     }
 }

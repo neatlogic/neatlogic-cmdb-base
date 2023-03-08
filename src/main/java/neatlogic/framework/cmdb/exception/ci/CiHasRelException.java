@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiHasRelException extends ApiRuntimeException {
     public CiHasRelException(String msg) {
-        super("当前模型已经被模型“" + msg + "”引用，请先删除引用关系");
+        super("exception.cmdb.cihasrelexception", msg);
     }
 }

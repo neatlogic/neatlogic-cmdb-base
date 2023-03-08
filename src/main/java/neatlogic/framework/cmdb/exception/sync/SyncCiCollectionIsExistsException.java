@@ -18,12 +18,14 @@ package neatlogic.framework.cmdb.exception.sync;
 
 import neatlogic.framework.cmdb.dto.sync.SyncCiCollectionVo;
 import neatlogic.framework.exception.core.ApiRuntimeException;
-import org.apache.commons.lang3.StringUtils;
 
 public class SyncCiCollectionIsExistsException extends ApiRuntimeException {
     public SyncCiCollectionIsExistsException(SyncCiCollectionVo syncCiCollectionVo) {
-        super("集合“" + syncCiCollectionVo.getCollectionName() + "”->模型“" + syncCiCollectionVo.getCiLabel() + "”"
-                + (StringUtils.isNotBlank(syncCiCollectionVo.getParentKey()) ? "在父属性“" + syncCiCollectionVo.getParentKey() + "”" : "") +
-                "的映射配置已存在");
+        super("exception.cmdb.synccicollectionisexistsexception", syncCiCollectionVo.getCollectionName(), syncCiCollectionVo.getCiLabel());
     }
+
+    public SyncCiCollectionIsExistsException(SyncCiCollectionVo syncCiCollectionVo, boolean isHasParentKey) {
+        super("exception.cmdb.synccicollectionisexistsexception.1", syncCiCollectionVo.getCollectionName(), syncCiCollectionVo.getCiLabel(), syncCiCollectionVo.getParentKey());
+    }
+
 }

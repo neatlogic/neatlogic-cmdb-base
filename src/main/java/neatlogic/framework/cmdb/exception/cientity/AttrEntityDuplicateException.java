@@ -27,11 +27,11 @@ public class AttrEntityDuplicateException extends ApiRuntimeException {
     private static final long serialVersionUID = 2014077344222321741L;
 
     public AttrEntityDuplicateException(CiVo ciVo, String label, JSONArray valueList) {
-        super("模型“" + ciVo.getLabel() + "(" + ciVo.getName() + ")“属性“" + label + "”值等于“" + valueList.stream().map(Object::toString).collect(Collectors.joining("”,“")) + "”的配置项已存在");
+        super("exception.cmdb.attrentityduplicateexception", ciVo.getLabel(), ciVo.getName(), label, valueList.stream().map(Object::toString).collect(Collectors.joining("”,“")));
     }
 
     public AttrEntityDuplicateException(CiVo ciVo, String label, List<String> valueList) {
-        super("模型“" + ciVo.getLabel() + "(" + ciVo.getName() + ")“属性“" + label + "”值等于“" + String.join("”,“", valueList) + "”的配置项已存在");
+        super("exception.cmdb.attrentityduplicateexception.1", ciVo.getLabel(), ciVo.getName(), label, String.join("”,“", valueList));
     }
 
 }

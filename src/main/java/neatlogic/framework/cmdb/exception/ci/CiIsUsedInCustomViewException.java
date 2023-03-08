@@ -25,6 +25,6 @@ import java.util.stream.Collectors;
 
 public class CiIsUsedInCustomViewException extends ApiRuntimeException {
     public CiIsUsedInCustomViewException(CiVo ciVo, List<CustomViewVo> viewList) {
-        super("模型“" + ciVo.getLabel() + "(" + ciVo.getName() + ")”已被自定义视图“" + viewList.stream().map(CustomViewVo::getName).collect(Collectors.joining("”,“")) + "”引用，请先删除");
+        super("exception.cmdb.ciisusedincustomviewexception", ciVo.getLabel(), ciVo.getName(), viewList.stream().map(CustomViewVo::getName).collect(Collectors.joining("”,“")));
     }
 }

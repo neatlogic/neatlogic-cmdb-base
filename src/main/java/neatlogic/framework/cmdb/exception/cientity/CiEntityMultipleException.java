@@ -20,7 +20,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiEntityMultipleException extends ApiRuntimeException {
     public CiEntityMultipleException(Long ciEntityId) {
-        super("配置项：" + ciEntityId + " 存在多条数据");
+        super("exception.cmdb.cientitymultipleexception", ciEntityId);
     }
 
 }

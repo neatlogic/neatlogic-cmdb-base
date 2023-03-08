@@ -20,7 +20,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class DeleteCustomViewFailedException extends ApiRuntimeException {
     public DeleteCustomViewFailedException(String msg) {
-        super("删除视图失败，异常：" + msg);
+        super("exception.cmdb.deletecustomviewfailedexception", msg);
     }
 
 }

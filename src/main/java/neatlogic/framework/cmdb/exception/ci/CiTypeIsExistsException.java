@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 @SuppressWarnings("serial")
 public class CiTypeIsExistsException extends ApiRuntimeException {
     public CiTypeIsExistsException(String name) {
-        super("模型类型：" + name + "已存在");
+        super("exception.cmdb.citypeisexistsexception", name);
     }
 }

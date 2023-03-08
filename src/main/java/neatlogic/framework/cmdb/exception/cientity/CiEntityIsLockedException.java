@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiEntityIsLockedException extends ApiRuntimeException {
     public CiEntityIsLockedException(Long id) {
-        super("配置项：" + id + " 已被锁定编辑");
+        super("exception.cmdb.cientityislockedexception", id);
     }
 }

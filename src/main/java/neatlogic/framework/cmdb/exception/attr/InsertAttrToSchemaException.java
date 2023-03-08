@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class InsertAttrToSchemaException extends ApiRuntimeException {
     public InsertAttrToSchemaException(String attrName) {
-        super("无法将属性“" + attrName + "”添加到数据表，具体错误请查看系统日志");
+        super("exception.cmdb.insertattrtoschemaexception", attrName);
     }
 }

@@ -23,9 +23,9 @@ public class AppSystemNotFoundException extends ApiRuntimeException {
     private static final long serialVersionUID = 1625737834478103452L;
 
     public AppSystemNotFoundException(String name) {
-        super("应用：'" + name + "'不存在");
+        super("exception.cmdb.appsystemnotfoundexception", name);
     }
     public AppSystemNotFoundException(Long id) {
-        super("应用：'" + id + "'不存在");
+        super("exception.cmdb.appsystemnotfoundexception", id);
     }
 }

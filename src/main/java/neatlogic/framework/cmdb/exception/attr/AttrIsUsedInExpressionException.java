@@ -25,15 +25,15 @@ import java.util.stream.Collectors;
 
 public class AttrIsUsedInExpressionException extends ApiRuntimeException {
     public AttrIsUsedInExpressionException(AttrVo attrVo) {
-        super("当前属性已被表达式属性“" + attrVo.getLabel() + "(" + attrVo.getName() + ")" + "”引用，请先删除。");
+        super("exception.cmdb.attrisusedinexpressionexception", attrVo.getLabel(), attrVo.getName());
     }
 
     public AttrIsUsedInExpressionException(CiVo ciVo, AttrVo attrVo) {
-        super("当前属性已被模型“" + ciVo.getLabel() + "(" + ciVo.getName() + ")" + "”的表达式属性“" + attrVo.getLabel() + "(" + attrVo.getName() + ")" + "”引用，请先删除。");
+        super("exception.cmdb.attrisusedinexpressionexception.1", ciVo.getLabel(), ciVo.getName(), attrVo.getLabel(), attrVo.getName());
     }
 
     public AttrIsUsedInExpressionException(List<AttrVo> attrList) {
-        super("表达式属性“" + attrList.stream().map(a -> a.getLabel() + "(" + a.getName() + ")").collect(Collectors.joining("”,“")) + "”引用了父模型属性，请先删除。");
+        super("exception.cmdb.attrisusedinexpressionexception.2" , attrList.stream().map(a -> a.getLabel() + "(" + a.getName() + ")").collect(Collectors.joining("”,“")) );
     }
 
 }

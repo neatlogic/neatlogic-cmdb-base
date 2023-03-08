@@ -20,7 +20,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class IsolatedCustomViewCiException extends ApiRuntimeException {
     public IsolatedCustomViewCiException() {
-        super("当前视图存在孤立模型（没有任何关系连入或连出的模型）");
+        super("exception.cmdb.isolatedcustomviewciexception");
     }
 
 }

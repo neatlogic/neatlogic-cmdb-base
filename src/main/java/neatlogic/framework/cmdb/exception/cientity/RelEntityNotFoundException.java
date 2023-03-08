@@ -20,7 +20,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class RelEntityNotFoundException extends ApiRuntimeException {
     public RelEntityNotFoundException(String label) {
-        super("关系“" + label + "”不能为空");
+        super("exception.cmdb.relentitynotfoundexception", label);
     }
 
 }

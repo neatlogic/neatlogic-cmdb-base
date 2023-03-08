@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class AttrIsUsedInTargetException extends ApiRuntimeException {
     public AttrIsUsedInTargetException() {
-        super("当前属性已存在数据，不能更改目标模型");
+        super("exception.cmdb.attrisusedintargetexception");
     }
 }

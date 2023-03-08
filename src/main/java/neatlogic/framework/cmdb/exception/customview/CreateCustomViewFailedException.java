@@ -20,7 +20,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CreateCustomViewFailedException extends ApiRuntimeException {
     public CreateCustomViewFailedException(String msg) {
-        super("创建视图失败，异常：" + msg);
+        super("exception.cmdb.createcustomviewfailedexception", msg);
     }
 
 }

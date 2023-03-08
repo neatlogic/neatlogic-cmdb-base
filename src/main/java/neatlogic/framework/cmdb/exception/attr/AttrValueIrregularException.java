@@ -22,7 +22,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 public class AttrValueIrregularException extends ApiRuntimeException {
 
     public AttrValueIrregularException(AttrVo attrVo, String value) {
-        super("属性“" + attrVo.getLabel() + "(" + attrVo.getName() + ")”的值“" + value + "”不是合法的" + attrVo.getTypeText() + "类型");
+        super("exception.cmdb.attrvalueirregularexception", attrVo.getLabel(), attrVo.getName(), value, attrVo.getTypeText());
     }
 
 }

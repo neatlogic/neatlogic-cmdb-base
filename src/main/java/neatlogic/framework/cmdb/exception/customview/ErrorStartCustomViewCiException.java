@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class ErrorStartCustomViewCiException extends ApiRuntimeException {
     public ErrorStartCustomViewCiException(CustomViewCiVo ci) {
-        super("“" + ci.getAlias() + "”是起始模型，不能存在连入关系");
+        super("exception.cmdb.errorstartcustomviewciexception", ci.getAlias());
     }
 }

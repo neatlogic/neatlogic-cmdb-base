@@ -20,7 +20,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class AttrEntityValueEmptyException extends ApiRuntimeException {
     public AttrEntityValueEmptyException(String msg) {
-        super("属性“" + msg + "”值不能为空");
+        super("exception.cmdb.attrentityvalueemptyexception", msg);
     }
 
 }

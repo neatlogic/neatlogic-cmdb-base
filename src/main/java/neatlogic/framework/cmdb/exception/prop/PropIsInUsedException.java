@@ -21,7 +21,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 @SuppressWarnings("serial")
 public class PropIsInUsedException extends ApiRuntimeException {
     public PropIsInUsedException(String msg) {
-        super("属性定义：" + msg + " 已存在");
+        super("exception.cmdb.propisinusedexception", msg);
     }
 
 }

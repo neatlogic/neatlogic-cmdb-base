@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiIsAbstractedException extends ApiRuntimeException {
     public CiIsAbstractedException(String ciName) {
-        super("配置项模型：" + ciName + "是抽象模型，不能直接添加数据。");
+        super("exception.cmdb.ciisabstractedexception", ciName);
     }
 }

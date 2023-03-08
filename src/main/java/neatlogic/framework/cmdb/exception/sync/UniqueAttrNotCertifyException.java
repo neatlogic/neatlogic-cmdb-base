@@ -22,6 +22,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class UniqueAttrNotCertifyException extends ApiRuntimeException {
     public UniqueAttrNotCertifyException(SyncCiCollectionVo syncCiCollectionVo, CiVo ciVo) {
-        super("请确保配置“" + syncCiCollectionVo.getCollectionName() + "->" + ciVo.getLabel() + "(" + ciVo.getName() + ")”中所有唯一规则属性都已经配置映射关系，并且集合中对应的属性值不能为空");
+        super("exception.cmdb.uniqueattrnotcertifyexception", syncCiCollectionVo.getCollectionName(), ciVo.getLabel(), ciVo.getName());
     }
 }

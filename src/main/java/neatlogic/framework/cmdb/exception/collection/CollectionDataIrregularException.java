@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CollectionDataIrregularException extends ApiRuntimeException {
     public CollectionDataIrregularException(String param, String dataType) {
-        super("参数“" + param + "”不是合法的" + dataType + "类型");
+        super("exception.cmdb.collectiondatairregularexception", param, dataType);
     }
 }

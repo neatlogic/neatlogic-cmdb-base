@@ -20,7 +20,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CustomViewNameIsExistsException extends ApiRuntimeException {
     public CustomViewNameIsExistsException(String name) {
-        super("自定义视图名称“" + name + "”已被使用");
+        super("exception.cmdb.customviewnameisexistsexception", name);
     }
 
 }

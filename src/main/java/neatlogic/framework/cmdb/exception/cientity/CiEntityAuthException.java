@@ -23,18 +23,18 @@ public class CiEntityAuthException extends ApiRuntimeException {
     private static final long serialVersionUID = 3825462374254380532L;
 
     public CiEntityAuthException(String action) {
-        super("您没有权限" + action + "配置项");
+        super("exception.cmdb.cientityauthexception", action);
     }
 
     public CiEntityAuthException(CiVo ciVo, String action) {
-        super("您没有权限" + action + "“" + ciVo.getLabel() + "(" + ciVo.getName() + ")”的配置项");
+        super("exception.cmdb.cientityauthexception.1", action, ciVo.getLabel(), ciVo.getName());
     }
 
     public CiEntityAuthException(String ciLabel, String action) {
-        super("您没有权限" + action + "“" + ciLabel + "”的配置项");
+        super("exception.cmdb.cientityauthexception.2", action, ciLabel);
     }
 
     public CiEntityAuthException(Long ciEntityId, String ciEntityName, String action) {
-        super("您没有权限" + action + "配置项“" + ciEntityName + "”");
+        super("exception.cmdb.cientityauthexception.3", action, ciEntityName, ciEntityId);
     }
 }

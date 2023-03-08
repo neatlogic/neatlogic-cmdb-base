@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CustomViewEmptyException extends ApiRuntimeException {
     public CustomViewEmptyException() {
-        super("请创建至少一个节点");
+        super("exception.cmdb.customviewemptyexception");
     }
 }

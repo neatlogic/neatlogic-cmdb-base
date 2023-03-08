@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class AttrTypeNotFoundException extends ApiRuntimeException {
     public AttrTypeNotFoundException(String attrType) {
-        super("属性类型：" + attrType + "不存在");
+        super("exception.cmdb.attrtypenotfoundexception", attrType);
     }
 }

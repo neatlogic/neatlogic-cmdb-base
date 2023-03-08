@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiUniqueRuleNotFoundException extends ApiRuntimeException {
     public CiUniqueRuleNotFoundException(CiVo ciVo) {
-        super("模型“" + ciVo.getLabel() + "(" + ciVo.getName() + ")”没有配置唯一规则");
+        super("exception.cmdb.ciuniquerulenotfoundexception", ciVo.getLabel(), ciVo.getName());
     }
 }

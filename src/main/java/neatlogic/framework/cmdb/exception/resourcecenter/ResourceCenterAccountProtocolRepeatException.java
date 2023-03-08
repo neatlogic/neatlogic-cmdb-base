@@ -6,6 +6,6 @@ public class ResourceCenterAccountProtocolRepeatException extends ApiRuntimeExce
     private static final long serialVersionUID = -6105727584092064358L;
 
     public ResourceCenterAccountProtocolRepeatException(String protocol) {
-        super(String.format("协议：%s已存在", protocol));
+        super("exception.cmdb.resourcecenteraccountprotocolrepeatexception", protocol);
     }
 }

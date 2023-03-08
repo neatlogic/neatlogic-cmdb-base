@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CollectionNotFoundException extends ApiRuntimeException {
     public CollectionNotFoundException(String name) {
-        super("MongoDB集合“" + name + "”不存在");
+        super("exception.cmdb.collectionnotfoundexception", name);
     }
 }
