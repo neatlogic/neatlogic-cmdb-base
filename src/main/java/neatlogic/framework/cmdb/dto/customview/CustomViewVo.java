@@ -54,6 +54,8 @@ public class CustomViewVo extends BasePageVo implements Serializable {
     private Date fcd;
     @EntityField(name = "修改时间", type = ApiParamType.LONG)
     private Date lcd;
+    @EntityField(name = "起始模型id", type = ApiParamType.LONG)
+    private Long startCiId;
     @EntityField(name = "配置", type = ApiParamType.JSONOBJECT)
     private JSONObject config;
     @EntityField(name = "模型列表", type = ApiParamType.JSONARRAY)
@@ -93,6 +95,14 @@ public class CustomViewVo extends BasePageVo implements Serializable {
     private List<String> teamUuidList;
     @JSONField(serialize = false)
     private List<String> roleUuidList;
+
+    public Long getStartCiId() {
+        return startCiId;
+    }
+
+    public void setStartCiId(Long startCiId) {
+        this.startCiId = startCiId;
+    }
 
     public Long getId() {
         if (id == null) {
