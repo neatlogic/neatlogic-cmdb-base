@@ -20,7 +20,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CustomViewTypeIrregularException extends ApiRuntimeException {
     public CustomViewTypeIrregularException(String name) {
-        super("当前视图不是“" + name + "”");
+        super("exception.cmdb.customviewtypeirregularexception", name);
     }
 
 }

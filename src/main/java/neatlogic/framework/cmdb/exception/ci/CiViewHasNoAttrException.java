@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiViewHasNoAttrException extends ApiRuntimeException {
     public CiViewHasNoAttrException() {
-        super("虚拟模型属性定义不能为空");
+        super("exception.cmdb.civiewhasnoattrexception");
     }
 }

@@ -16,7 +16,8 @@
 
 package neatlogic.framework.cmdb.dsl.core;
 
-import neatlogic.framework.cmdb.exception.dsl.DslSyntaxIrregularException;
+import neatlogic.framework.cmdb.exception.dsl.DslSyntaxIrregularDecimalException;
+import neatlogic.framework.cmdb.exception.dsl.DslSyntaxIrregularIntegerException;
 import net.sf.jsqlparser.expression.*;
 import net.sf.jsqlparser.expression.operators.arithmetic.Addition;
 import net.sf.jsqlparser.expression.operators.arithmetic.Division;
@@ -137,13 +138,13 @@ public class SearchExpression {
                             try {
                                 expressionList.add(new DoubleValue(v));
                             } catch (Exception ex) {
-                                throw new DslSyntaxIrregularException("值“" + v + "”不是合法的小数类型");
+                                throw new DslSyntaxIrregularDecimalException(v);
                             }
                         } else {
                             try {
                                 expressionList.add(new LongValue(v));
                             } catch (Exception ex) {
-                                throw new DslSyntaxIrregularException("值“" + v + "”不是合法的整数类型");
+                                throw new DslSyntaxIrregularIntegerException(v);
                             }
                         }
                     }

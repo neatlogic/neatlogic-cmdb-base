@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiViewAttrIdMapEmptyException extends ApiRuntimeException {
     public CiViewAttrIdMapEmptyException() {
-        super("属性名称和id映射表不能为空");
+        super("exception.cmdb.civiewattridmapemptyexception");
     }
 }

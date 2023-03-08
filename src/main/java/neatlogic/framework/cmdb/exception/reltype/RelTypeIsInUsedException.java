@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 @SuppressWarnings("serial")
 public class RelTypeIsInUsedException extends ApiRuntimeException {
     public RelTypeIsInUsedException() {
-        super("当前关系类型正在使用中");
+        super("exception.cmdb.reltypeisinusedexception");
     }
 }

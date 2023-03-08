@@ -13,20 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package neatlogic.framework.cmdb.exception.customview;
+package neatlogic.framework.cmdb.exception.dsl;
 
 import neatlogic.framework.exception.core.ApiRuntimeException;
 
-public class CustomViewPrivilegeException extends ApiRuntimeException {
-    private static final long serialVersionUID = -5318738960665281854L;
+/**
+ * @author longrf
+ * @date 2023/3/7 17:55
+ */
 
-    public enum Action {
-        SAVE, READ, DELETE;
+public class DslSyntaxIrregularOperatorException extends ApiRuntimeException {
+    public DslSyntaxIrregularOperatorException() {
+        super("exception.cmdb.dslsyntaxirregularoperatorexception");
     }
-
-    public CustomViewPrivilegeException(Action action) {
-        super("exception.cmdb.customviewprivilegeexception", (action == Action.SAVE ? "保存" : (action == Action.DELETE ? "删除" : "查看")));
-    }
-
 }

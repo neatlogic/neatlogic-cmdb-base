@@ -20,7 +20,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class AttrEntityNotFoundException extends ApiRuntimeException {
     public AttrEntityNotFoundException(Long attrId) {
-        super("属性：" + attrId + " 不存在");
+        super("exception.cmdb.attrentitynotfoundexception", attrId);
     }
 
 }

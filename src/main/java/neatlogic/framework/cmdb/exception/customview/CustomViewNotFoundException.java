@@ -20,10 +20,10 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CustomViewNotFoundException extends ApiRuntimeException {
     public CustomViewNotFoundException(Long id) {
-        super("自定义视图“" + id + "”不存在");
+        super("exception.cmdb.customviewnotfoundexception", id);
     }
 
     public CustomViewNotFoundException(String name) {
-        super("自定义视图“" + name + "”不存在");
+        super("exception.cmdb.customviewnotfoundexception", name);
     }
 }

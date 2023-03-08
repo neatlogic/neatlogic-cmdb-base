@@ -21,7 +21,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 public class GraphNotFoundException extends ApiRuntimeException {
 
     public GraphNotFoundException(Long id) {
-        super("拓扑视图“" + id + "”不存在");
+        super("exception.cmdb.graphnotfoundexception", id);
     }
 
 }

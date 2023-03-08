@@ -13,18 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package neatlogic.framework.cmdb.exception.graph;
 
 import neatlogic.framework.exception.core.ApiRuntimeException;
 
-public class GraphPrivilegeException extends ApiRuntimeException {
-    public enum Action {
-        SAVE, READ, DELETE;
-    }
+/**
+ * @author longrf
+ * @date 2023/3/3 17:36
+ */
 
-    public GraphPrivilegeException(Action action) {
-        super("您没有权限" + (action == Action.SAVE ? "保存" : (action == Action.DELETE ? "删除" : "查看")) + "公共拓扑视图");
+public class GraphPrivilegeReadException extends ApiRuntimeException {
+    public GraphPrivilegeReadException() {
+        super("exception.cmdb.graphprivilegereadexception");
     }
-
 }

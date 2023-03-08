@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class LegalValidNotFoundException extends ApiRuntimeException {
     public LegalValidNotFoundException(Long id) {
-        super("合规校验规则“" + id + "”不存在");
+        super("exception.cmdb.legalvalidnotfoundexception", id);
     }
 }

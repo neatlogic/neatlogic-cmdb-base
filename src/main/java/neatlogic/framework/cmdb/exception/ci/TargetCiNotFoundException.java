@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 public class TargetCiNotFoundException extends ApiRuntimeException {
 
     public TargetCiNotFoundException(String attrName, String ciName) {
-        super("属性“" + attrName + "”的关联模型“" + ciName + "”不存在");
+        super("exception.cmdb.targetcinotfoundexception", attrName, ciName);
     }
 }

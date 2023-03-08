@@ -20,7 +20,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class UniqueMappingNotFoundException extends ApiRuntimeException {
     public UniqueMappingNotFoundException(Long attrId) {
-        super("配置项唯一属性：" + attrId + "没有配置同步映射规则");
+        super("exception.cmdb.uniquemappingnotfoundexception", attrId);
     }
 }
 

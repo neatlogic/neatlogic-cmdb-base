@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiViewAttrNotFoundException extends ApiRuntimeException {
     public CiViewAttrNotFoundException(String attrName) {
-        super("SQL语句缺少属性：" + attrName);
+        super("exception.cmdb.civiewattrnotfoundexception", attrName);
     }
 }

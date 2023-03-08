@@ -20,7 +20,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CustomViewCiNotFoundException extends ApiRuntimeException {
     public CustomViewCiNotFoundException() {
-        super("当前视图没有放置任何配置项模型");
+        super("exception.cmdb.customviewcinotfoundexception");
     }
 
 }

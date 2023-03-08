@@ -20,10 +20,10 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiAuthException extends ApiRuntimeException {
     public CiAuthException() {
-        super("您没有权限修改配置项模型");
+        super("exception.cmdb.ciauthexception");
     }
 
     public CiAuthException(String ciLabel) {
-        super("您没有权限修改配置项模型：" + ciLabel);
+        super("exception.cmdb.ciauthexception.1", ciLabel);
     }
 }

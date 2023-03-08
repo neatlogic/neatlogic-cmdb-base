@@ -20,7 +20,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class AttrIsUsedInNameAttrException extends ApiRuntimeException {
     public AttrIsUsedInNameAttrException() {
-        super("名称属性使用了父模型属性，请先删除。");
+        super("exception.cmdb.attrisusedinnameattrexception");
     }
 
 

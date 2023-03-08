@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 @SuppressWarnings("serial")
 public class RelGroupNameIsExistsException extends ApiRuntimeException {
     public RelGroupNameIsExistsException(String name) {
-        super("模型关系分组：" + name + " 已存在");
+        super("exception.cmdb.relgroupnameisexistsexception", name);
     }
 }

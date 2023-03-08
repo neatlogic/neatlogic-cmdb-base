@@ -20,7 +20,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class ParentCiNotFoundException extends ApiRuntimeException {
     public ParentCiNotFoundException(String ciName) {
-        super("父模型：" + ciName + "不存在");
+        super("exception.cmdb.parentcinotfoundexception", ciName);
     }
 
 }
