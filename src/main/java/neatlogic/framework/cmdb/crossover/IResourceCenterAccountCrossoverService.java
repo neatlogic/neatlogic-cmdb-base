@@ -16,6 +16,7 @@
 
 package neatlogic.framework.cmdb.crossover;
 
+import neatlogic.framework.cmdb.dto.resourcecenter.AccountProtocolVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.AccountVo;
 import neatlogic.framework.crossover.ICrossoverService;
 
@@ -50,13 +51,13 @@ public interface IResourceCenterAccountCrossoverService extends ICrossoverServic
      * @param accountByResourceList     通过执行节点的资产id+协议id+执行用户 查询回来的帐号列表
      * @param tagentIpAccountMap        通过执行节点的ip 查询回来的站好列表
      * @param resourceId                执行节点的资产id
-     * @param executeAccountVo          执行节点协议
+     * @param protocolVo                执行节点协议
      * @param ip                        执行节点的ip
      * @param resourceOSResourceMap     节点resourceId->对应操作系统resourceId
      * @param protocolDefaultAccountMap 协议对应的默认帐号
      * @return 匹配的帐号
      */
-    AccountVo filterAccountByRules(List<AccountVo> accountByResourceList, Map<String, AccountVo> tagentIpAccountMap, Long resourceId, AccountVo executeAccountVo, String ip, Map<Long, Long> resourceOSResourceMap, Map<Long, AccountVo> protocolDefaultAccountMap);
+    AccountVo filterAccountByRules(List<AccountVo> accountByResourceList, Map<String, AccountVo> tagentIpAccountMap, Long resourceId, AccountProtocolVo protocolVo, String ip, Map<Long, Long> resourceOSResourceMap, Map<Long, AccountVo> protocolDefaultAccountMap);
 
     /**
      * 删除帐号
