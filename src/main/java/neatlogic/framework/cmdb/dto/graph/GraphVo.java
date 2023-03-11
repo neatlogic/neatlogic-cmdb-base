@@ -50,6 +50,10 @@ public class GraphVo extends BaseEditorVo {
     private Long toGraphId;
     @EntityField(name = "配置项id列表", type = ApiParamType.JSONARRAY)
     private List<Long> ciEntityIdList;
+
+    @EntityField(name = "配置项id", type = ApiParamType.LONG)
+    private Long ciEntityId;
+
     @EntityField(name = "是否拥有父视图", type = ApiParamType.BOOLEAN)
     private Boolean hasParent;
 
@@ -89,6 +93,14 @@ public class GraphVo extends BaseEditorVo {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public Long getCiEntityId() {
+        return ciEntityId;
+    }
+
+    public void setCiEntityId(Long ciEntityId) {
+        this.ciEntityId = ciEntityId;
     }
 
     public List<Long> getCiEntityIdList() {
