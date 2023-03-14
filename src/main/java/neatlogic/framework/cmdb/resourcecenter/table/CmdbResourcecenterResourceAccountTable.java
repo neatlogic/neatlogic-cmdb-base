@@ -1,5 +1,6 @@
 package neatlogic.framework.cmdb.resourcecenter.table;
 
+import neatlogic.framework.util.I18nUtils;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,8 +17,8 @@ public class CmdbResourcecenterResourceAccountTable implements ISqlTable {
     }
 
     public enum FieldEnum {
-        RESOURCE_ID("resource_id", "资产id","resourceId"),
-        ACCOUNT_ID("account_id", "帐号id","accountId")
+        RESOURCE_ID("resource_id", "enum.cmdb.fieldenum.resource_id","resourceId"),
+        ACCOUNT_ID("account_id", "enum.cmdb.fieldenum.account_id","accountId")
         ;
         private final String name;
         private final String text;
@@ -36,7 +37,7 @@ public class CmdbResourcecenterResourceAccountTable implements ISqlTable {
         }
 
         public String getText() {
-            return text;
+            return I18nUtils.getMessage(text);
         }
 
         public String getProValue() {

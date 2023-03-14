@@ -16,8 +16,10 @@
 
 package neatlogic.framework.cmdb.enums.sync;
 
+import neatlogic.framework.util.I18nUtils;
+
 public enum MatchMode {
-    KEY("key", "节点名称"), LEVEL("level", "层次关系");
+    KEY("key", "enum.cmdb.matchmode.key"), LEVEL("level", "enum.cmdb.matchmode.level");
     private final String type;
     private final String text;
 
@@ -31,7 +33,7 @@ public enum MatchMode {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getText(String name) {

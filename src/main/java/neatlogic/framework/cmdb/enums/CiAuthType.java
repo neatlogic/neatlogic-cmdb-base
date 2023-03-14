@@ -16,15 +16,17 @@
 
 package neatlogic.framework.cmdb.enums;
 
+import neatlogic.framework.util.I18nUtils;
+
 public enum CiAuthType {
-    CIENTITYINSERT("cientityinsert", "配置项添加"),
-    CIENTITYUPDATE("cientityupdate", "配置项更新"),
-    CIENTITYDELETE("cientitydelete", "配置项删除"),
-    CIENTITYQUERY("cientityquery", "配置项查询"),
-    CIMANAGE("cimanage", "模型管理"),
-    TRANSACTIONMANAGE("transactionmanage", "事务管理"),
-    CIENTITYRECOVER("cientityrecover", "配置项恢复"),
-    PASSWORDVIEW("passwordview", "密码字段查看");
+    CIENTITYINSERT("cientityinsert", "enum.cmdb.ciauthtype.cientityinsert"),
+    CIENTITYUPDATE("cientityupdate", "enum.cmdb.ciauthtype.cientityupdate"),
+    CIENTITYDELETE("cientitydelete", "enum.cmdb.ciauthtype.cientitydelete"),
+    CIENTITYQUERY("cientityquery", "enum.cmdb.ciauthtype.cientityquery"),
+    CIMANAGE("cimanage", "enum.cmdb.ciauthtype.cimanage"),
+    TRANSACTIONMANAGE("transactionmanage", "enum.cmdb.ciauthtype.transactionmanage"),
+    CIENTITYRECOVER("cientityrecover", "enum.cmdb.ciauthtype.cientityrecover"),
+    PASSWORDVIEW("passwordview", "enum.cmdb.ciauthtype.passwordview");
 
     private final String value;
     private final String text;
@@ -48,7 +50,7 @@ public enum CiAuthType {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getValue(String _status) {

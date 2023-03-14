@@ -16,8 +16,10 @@
 
 package neatlogic.framework.cmdb.enums;
 
+import neatlogic.framework.util.I18nUtils;
+
 public enum InputType {
-    AT("at", "自动发现"), MT("mt", "人工录入");
+    AT("at", "enum.cmdb.inputtype.at"), MT("mt", "enum.cmdb.inputtype.mt");
 
     private final String value;
     private final String text;
@@ -32,7 +34,7 @@ public enum InputType {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getValue(String _status) {

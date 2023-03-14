@@ -17,10 +17,15 @@
 package neatlogic.framework.cmdb.enums.sync;
 
 import neatlogic.framework.cmdb.enums.BatchImportStatus;
+import neatlogic.framework.util.I18nUtils;
 
 public enum FieldType {
-    STRING("string", "字符串"), DATETIME("datetime", "日期"), DOCUMENT("document", "文档"), INTEGER("integer", "整型"), INT("int", "整型"),
-    FLOAT("float", "单精度");
+    STRING("string", "enum.cmdb.fieldtype.string"),
+    DATETIME("datetime", "enum.cmdb.fieldtype.datetime"),
+    DOCUMENT("document", "enum.cmdb.fieldtype.document"),
+    INTEGER("integer", "enum.cmdb.fieldtype.integer"),
+    INT("int", "enum.cmdb.fieldtype.int"),
+    FLOAT("float", "enum.cmdb.fieldtype.float");
     private final String type;
     private final String text;
 
@@ -34,7 +39,7 @@ public enum FieldType {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getValue(String name) {

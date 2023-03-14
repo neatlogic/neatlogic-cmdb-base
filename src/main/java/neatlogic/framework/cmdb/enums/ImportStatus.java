@@ -19,14 +19,15 @@ package neatlogic.framework.cmdb.enums;
 import neatlogic.framework.common.constvalue.IEnum;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import neatlogic.framework.util.I18nUtils;
 
 import java.util.List;
 
 public enum ImportStatus implements IEnum {
 
-    RUNNING("running", "导入中"),
-    SUCCESS("success", "成功"),
-    FAILED("failed", "失败");
+    RUNNING("running", "enum.cmdb.importstatus.running"),
+    SUCCESS("success", "enum.cmdb.importstatus.success"),
+    FAILED("failed", "enum.cmdb.importstatus.failed");
 
     private final String value;
     private final String text;
@@ -41,7 +42,7 @@ public enum ImportStatus implements IEnum {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getValue(String _status) {

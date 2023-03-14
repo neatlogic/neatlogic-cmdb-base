@@ -16,8 +16,12 @@
 
 package neatlogic.framework.cmdb.enums;
 
+import neatlogic.framework.util.I18nUtils;
+
 public enum CiAttrType {
-    SIMPLE("simple", "简单属性"), COMPLEX("complex", "复杂属性"), CUSTOM("custom", "自定义属性");
+    SIMPLE("simple", "enum.cmdb.ciattrtype.simple"),
+    COMPLEX("complex", "enum.cmdb.ciattrtype.complex"),
+    CUSTOM("custom", "enum.cmdb.ciattrtype.custom");
 
     private final String value;
     private final String text;
@@ -32,7 +36,7 @@ public enum CiAttrType {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getText(String name) {

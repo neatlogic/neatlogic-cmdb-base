@@ -19,7 +19,9 @@ package neatlogic.framework.cmdb.enums.sync;
 import neatlogic.framework.cmdb.enums.BatchImportStatus;
 
 public enum ExecType {
-    PAGE("page", "页面"), CRON("cron", "定时"), REST("rest", "接口");
+    PAGE("page", "enum.cmdb.exectype.page"),
+    CRON("cron", "enum.cmdb.exectype.cron"),
+    REST("rest", "enum.cmdb.exectype.rest");
     private final String type;
     private final String text;
 

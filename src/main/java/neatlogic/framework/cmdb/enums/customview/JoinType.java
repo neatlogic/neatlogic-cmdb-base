@@ -16,8 +16,10 @@
 
 package neatlogic.framework.cmdb.enums.customview;
 
+import neatlogic.framework.util.I18nUtils;
+
 public enum JoinType {
-    LEFTJOIN("leftjoin", "左连接"), JOIN("join", "全连接"), RIGHTJOIN("rightjoin", "右连接");
+    LEFTJOIN("leftjoin", "enum.cmdb.jointype.leftjoin"), JOIN("join", "enum.cmdb.jointype.join"), RIGHTJOIN("rightjoin", "enum.cmdb.jointype.rightjoin");
 
     private final String value;
     private final String text;
@@ -32,7 +34,7 @@ public enum JoinType {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getText(String name) {

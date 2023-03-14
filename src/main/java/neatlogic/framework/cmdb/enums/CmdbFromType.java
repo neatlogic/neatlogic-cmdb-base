@@ -1,13 +1,14 @@
 package neatlogic.framework.cmdb.enums;
 
 import neatlogic.framework.dependency.core.IFromType;
+import neatlogic.framework.util.I18nUtils;
 
 /**
  * @author longrf
  * @date 2022/3/10 5:14 下午
  */
 public enum CmdbFromType implements IFromType {
-    RESOURCE_ACCOUNT("resourceaccount", "资产帐号");
+    RESOURCE_ACCOUNT("resourceaccount", "enum.cmdb.cmdbfromtype.resource_account");
 
     private String value;
     private String text;
@@ -34,6 +35,6 @@ public enum CmdbFromType implements IFromType {
      */
     @Override
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 }

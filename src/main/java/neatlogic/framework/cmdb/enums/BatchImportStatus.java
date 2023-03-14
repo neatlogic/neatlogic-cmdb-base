@@ -16,8 +16,13 @@
 
 package neatlogic.framework.cmdb.enums;
 
+import neatlogic.framework.util.I18nUtils;
+
 public enum BatchImportStatus {
-    RUNNING("running", "执行中"), SUCCEED("succeed", "已成功"), FAILED("failed", "已失败"), STOPPED("stopped", "已停止");
+    RUNNING("running", "enum.cmdb.batchimportstatus.running"),
+    SUCCEED("succeed", "enum.cmdb.batchimportstatus.succeed"),
+    FAILED("failed", "enum.cmdb.batchimportstatus.failed"),
+    STOPPED("stopped", "enum.cmdb.batchimportstatus.stopped");
     private final String type;
     private final String text;
 
@@ -31,7 +36,7 @@ public enum BatchImportStatus {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getValue(String name) {

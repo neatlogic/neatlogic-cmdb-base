@@ -18,14 +18,15 @@ package neatlogic.framework.cmdb.enums.graph;
 
 import com.alibaba.fastjson.JSONObject;
 import neatlogic.framework.common.constvalue.IEnum;
+import neatlogic.framework.util.I18nUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public enum GraphType implements IEnum<JSONObject> {
-    PRIVATE("private", "个人视图"),
-    PUBLIC("public", "公共视图"),
-    SCENE("scene", "场景视图");
+    PRIVATE("private", "enum.cmdb.graphtype.private"),
+    PUBLIC("public", "enum.cmdb.graphtype.public"),
+    SCENE("scene", "enum.cmdb.graphtype.scene");
 
     private final String value;
     private final String text;
@@ -54,7 +55,7 @@ public enum GraphType implements IEnum<JSONObject> {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getText(String name) {

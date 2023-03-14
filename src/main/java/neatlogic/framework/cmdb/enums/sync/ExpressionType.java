@@ -16,21 +16,23 @@
 
 package neatlogic.framework.cmdb.enums.sync;
 
+import neatlogic.framework.util.I18nUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public enum ExpressionType {
-    IS("is", "等于", true, new String[]{"String", "float", "int"}),
-    NE("ne", "不等于", true, new String[]{"String", "float", "int"}),
-    IN("in", "包含", true, new String[]{"String"}),
-    NOTIN("notin", "不包含", true, new String[]{"String"}),
+    IS("is", "enum.cmdb.expressiontype.is", true, new String[]{"String", "float", "int"}),
+    NE("ne", "enum.cmdb.expressiontype.ne", true, new String[]{"String", "float", "int"}),
+    IN("in", "enum.cmdb.expressiontype.in", true, new String[]{"String"}),
+    NOTIN("notin", "enum.cmdb.expressiontype.notin", true, new String[]{"String"}),
     //ISNULL("isnull", "为空", false, new String[]{"String", "float", "int"}),
     //ISNOTNULL("isnotnull", "不为空", false, new String[]{"String", "float", "int"}),
-    GT("gt", "大于", true, new String[]{"float", "int"}),
-    LT("lt", "小于", true, new String[]{"float", "int"}),
-    GTE("gte", "大于等于", true, new String[]{"float", "int"}),
-    LTE("lte", "小于等于", true, new String[]{"float", "int"});
+    GT("gt", "enum.cmdb.expressiontype.gt", true, new String[]{"float", "int"}),
+    LT("lt", "enum.cmdb.expressiontype.lt", true, new String[]{"float", "int"}),
+    GTE("gte", "enum.cmdb.expressiontype.gte", true, new String[]{"float", "int"}),
+    LTE("lte", "enum.cmdb.expressiontype.lte", true, new String[]{"float", "int"});
     private final String type;
     private final String text;
     private final Boolean needValue;
@@ -58,7 +60,7 @@ public enum ExpressionType {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public String[] getSupportType() {

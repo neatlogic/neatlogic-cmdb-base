@@ -18,14 +18,15 @@ package neatlogic.framework.cmdb.enums.customview;
 
 import neatlogic.framework.common.constvalue.IEnum;
 import com.alibaba.fastjson.JSONObject;
+import neatlogic.framework.util.I18nUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public enum CustomViewType implements IEnum<JSONObject> {
-    PRIVATE("private", "个人视图"),
-    PUBLIC("public", "公共视图"),
-    SCENE("scene", "场景视图");
+    PRIVATE("private", "enum.cmdb.customviewtype.private"),
+    PUBLIC("public", "enum.cmdb.customviewtype.public"),
+    SCENE("scene", "enum.cmdb.customviewtype.scene");
 
     private final String value;
     private final String text;
@@ -54,7 +55,7 @@ public enum CustomViewType implements IEnum<JSONObject> {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getText(String name) {
