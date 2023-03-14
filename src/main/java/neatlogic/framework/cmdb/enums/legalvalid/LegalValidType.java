@@ -18,12 +18,13 @@ package neatlogic.framework.cmdb.enums.legalvalid;
 
 import neatlogic.framework.common.constvalue.IEnum;
 import neatlogic.framework.common.dto.ValueTextVo;
+import neatlogic.framework.util.I18nUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public enum LegalValidType implements IEnum<ValueTextVo> {
-    CI("ci", "模型规则"), CUSTOM("custom", "自定义规则");
+    CI("ci", "enum.cmdb.legalvalidtype.ci"), CUSTOM("custom", "enum.cmdb.legalvalidtype.custom");
     private final String type;
     private final String text;
 
@@ -37,7 +38,7 @@ public enum LegalValidType implements IEnum<ValueTextVo> {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getText(String name) {

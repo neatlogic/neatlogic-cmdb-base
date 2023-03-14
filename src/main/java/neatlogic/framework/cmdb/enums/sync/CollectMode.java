@@ -16,8 +16,11 @@
 
 package neatlogic.framework.cmdb.enums.sync;
 
+import neatlogic.framework.util.I18nUtils;
+
 public enum CollectMode {
-    INITIATIVE("initiative", "主动采集"), PASSIVE("passive", "被动采集");
+    INITIATIVE("initiative", "enum.cmdb.collectmode.initiative"),
+    PASSIVE("passive", "enum.cmdb.collectmode.passive");
     private final String type;
     private final String text;
 
@@ -31,7 +34,7 @@ public enum CollectMode {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getText(String name) {

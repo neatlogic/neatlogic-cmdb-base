@@ -19,12 +19,13 @@ package neatlogic.framework.cmdb.enums.resourcecenter;
 import neatlogic.framework.common.constvalue.IEnum;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import neatlogic.framework.util.I18nUtils;
 
 import java.util.List;
 
 public enum AccountType implements IEnum {
-    PRIVATE("private", "私有类型"),
-    PUBLIC("public", "公有类型");
+    PRIVATE("private", "enum.cmdb.accounttype.private"),
+    PUBLIC("public", "enum.cmdb.accounttype.public");
     private String value;
     private String text;
 
@@ -38,7 +39,7 @@ public enum AccountType implements IEnum {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     @Override

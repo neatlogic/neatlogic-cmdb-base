@@ -1,5 +1,6 @@
 package neatlogic.framework.cmdb.resourcecenter.table;
 
+import neatlogic.framework.util.I18nUtils;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,24 +17,24 @@ public class ScenceIpobjectDetailTable implements ISqlTable {
     }
 
     public enum FieldEnum {
-        APP_SYSTEM_ID("app_system_id", "应用系统id","appSystemId"),
-        APP_MODULE_ID("app_module_id", "应用模块id","appModuleId"),
-        ENV_ID("env_id","环境id","envId"),
-        VENDOR_ID("vendor_id","厂商id","vendorId"),
-        STATE_ID("state_id","资产状态id","stateId"),
-        TYPE_ID("type_id","资产类型id","typeId"),
-        TYPE_NAME("type_name","资产类型","typeName"),
-        TYPE_LABEL("type_label","资产类型名","typeLabel"),
-        ID("id","资产id","id"),
-        INSPECT_STATUS("inspect_status","巡检状态","inspectStatus"),
-        NAME("name","资产名","name"),
-        IP("ip","资产ip","ip"),
-        PORT("port","端口","port"),
-        DESCRIPTION("description","描述","description"),
-        NETWORK_AREA("network_area","网络区域","networkArea"),
-        MAINTENANCE_WINDOW("maintenance_window","网络区域","maintenanceWindow"),
-        USER_UUID("user_uuid","所有者","userUuid"),
-        BG_ID("bg_id","所属部门","bgId"),
+        APP_SYSTEM_ID("app_system_id", "enum.cmdb.fieldenum.app_system_id","appSystemId"),
+        APP_MODULE_ID("app_module_id", "enum.cmdb.fieldenum.app_module_id","appModuleId"),
+        ENV_ID("env_id","enum.cmdb.fieldenum.env_id","envId"),
+        VENDOR_ID("vendor_id","enum.cmdb.fieldenum.vendor_id","vendorId"),
+        STATE_ID("state_id","enum.cmdb.fieldenum.state_id","stateId"),
+        TYPE_ID("type_id","enum.cmdb.fieldenum.type_id","typeId"),
+        TYPE_NAME("type_name","enum.cmdb.fieldenum.type_name","typeName"),
+        TYPE_LABEL("type_label","enum.cmdb.fieldenum.type_label","typeLabel"),
+        ID("id","enum.cmdb.fieldenum.id","id"),
+        INSPECT_STATUS("inspect_status","enum.cmdb.fieldenum.inspect_status","inspectStatus"),
+        NAME("name","enum.cmdb.fieldenum.name","name"),
+        IP("ip","enum.cmdb.fieldenum.ip","ip"),
+        PORT("port","enum.cmdb.fieldenum.port","port"),
+        DESCRIPTION("description","enum.cmdb.fieldenum.description","description"),
+        NETWORK_AREA("network_area","enum.cmdb.fieldenum.network_area","networkArea"),
+        MAINTENANCE_WINDOW("maintenance_window","enum.cmdb.fieldenum.maintenance_window","maintenanceWindow"),
+        USER_UUID("user_uuid","enum.cmdb.fieldenum.user_uuid","userUuid"),
+        BG_ID("bg_id","enum.cmdb.fieldenum.bg_id","bgId"),
         ;
         private final String name;
         private final String text;
@@ -52,7 +53,7 @@ public class ScenceIpobjectDetailTable implements ISqlTable {
         }
 
         public String getText() {
-            return text;
+            return I18nUtils.getMessage(text);
         }
 
         public String getProValue() {

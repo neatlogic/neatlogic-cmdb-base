@@ -16,8 +16,11 @@
 
 package neatlogic.framework.cmdb.enums.group;
 
+import neatlogic.framework.util.I18nUtils;
+
 public enum GroupType {
-    MAINTAIN("maintain", "维护"), READONLY("readonly", "只读");
+    MAINTAIN("maintain", "enum.cmdb.grouptype.maintain"),
+    READONLY("readonly", "enum.cmdb.grouptype.readonly");
 
     private final String value;
     private final String text;
@@ -32,7 +35,7 @@ public enum GroupType {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getValue(String _status) {
