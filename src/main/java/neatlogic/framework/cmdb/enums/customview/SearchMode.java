@@ -16,9 +16,11 @@
 
 package neatlogic.framework.cmdb.enums.customview;
 
+import neatlogic.framework.util.I18nUtils;
+
 public enum SearchMode {
-    NORMAL("normal", "正常模式"), GROUP("group", "分组模式"),
-    DATA("data", "数据模式");
+    NORMAL("normal", "enum.cmdb.searchmode.normal"), GROUP("group", "enum.cmdb.searchmode.group"),
+    DATA("data", "enum.cmdb.searchmode.data");
 
     private final String value;
     private final String text;
@@ -33,7 +35,7 @@ public enum SearchMode {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getText(String name) {

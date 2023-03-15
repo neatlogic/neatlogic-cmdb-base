@@ -16,8 +16,12 @@
 
 package neatlogic.framework.cmdb.enums;
 
+import neatlogic.framework.util.I18nUtils;
+
 public enum RelActionType {
-    INSERT("insert", "新增"), DELETE("delete", "删除"), REPLACE("replace", "替换");
+    INSERT("insert", "enum.cmdb.relactiontype.insert"),
+    DELETE("delete", "enum.cmdb.relactiontype.delete"),
+    REPLACE("replace", "enum.cmdb.relactiontype.replace");
 
     private final String value;
     private final String text;
@@ -32,7 +36,7 @@ public enum RelActionType {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getValue(String _status) {

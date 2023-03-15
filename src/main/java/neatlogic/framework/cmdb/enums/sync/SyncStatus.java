@@ -16,9 +16,11 @@
 
 package neatlogic.framework.cmdb.enums.sync;
 
+import neatlogic.framework.util.I18nUtils;
+
 public enum SyncStatus {
-    DOING("doing", "同步中"),
-    DONE("done", "已完成");
+    DOING("doing", "enum.cmdb.syncstatus.doing"),
+    DONE("done", "enum.cmdb.syncstatus.done");
 
     private final String status;
     private final String text;
@@ -33,7 +35,7 @@ public enum SyncStatus {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
 

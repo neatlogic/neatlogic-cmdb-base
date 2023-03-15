@@ -18,13 +18,16 @@ package neatlogic.framework.cmdb.enums;
 
 import neatlogic.framework.common.constvalue.IEnum;
 import neatlogic.framework.common.dto.ValueTextVo;
+import neatlogic.framework.util.I18nUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public enum TransactionStatus implements IEnum<ValueTextVo> {
-    COMMITED("commited", "已提交"), UNCOMMIT("uncommit", "未提交"), RECOVER("recover", "已恢复"),
-    EXPIRED("expired", "已失效");
+    COMMITED("commited", "enum.cmdb.transactionstatus.commited"),
+    UNCOMMIT("uncommit", "enum.cmdb.transactionstatus.uncommit"),
+    RECOVER("recover", "enum.cmdb.transactionstatus.recover"),
+    EXPIRED("expired", "enum.cmdb.transactionstatus.expired");
 
     private final String value;
     private final String text;
@@ -39,7 +42,7 @@ public enum TransactionStatus implements IEnum<ValueTextVo> {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getValue(String _status) {

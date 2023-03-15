@@ -16,16 +16,18 @@
 
 package neatlogic.framework.cmdb.enums;
 
+import neatlogic.framework.util.I18nUtils;
+
 public enum SearchExpression {
-    EQ("eq", "equal", "等于"),
+    EQ("eq", "equal", "enum.cmdb.searchexpression.eq"),
     //LT("lt", "less-than", "小于"),
     //GT("gt", "greater-than", "大于"),
-    BT("bt", "between", "在此区间"),
-    NE("ne", "notequal", "不等于"),
-    NL("nl", "notlike", "不包含"),
-    LI("li", "like", "包含"),
-    NULL("null", "is-null", "为空"),
-    NOTNULL("notnull", "is-not-null", "不为空");
+    BT("bt", "between", "enum.cmdb.searchexpression.bt"),
+    NE("ne", "notequal", "enum.cmdb.searchexpression.ne"),
+    NL("nl", "notlike", "enum.cmdb.searchexpression.nl"),
+    LI("li", "like", "enum.cmdb.searchexpression.li"),
+    NULL("null", "is-null", "enum.cmdb.searchexpression.null"),
+    NOTNULL("notnull", "is-not-null", "enum.cmdb.searchexpression.notnull");
 
     private final String value;
     private final String text;
@@ -51,7 +53,7 @@ public enum SearchExpression {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public String getExpression() {

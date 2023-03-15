@@ -16,8 +16,10 @@
 
 package neatlogic.framework.cmdb.enums.group;
 
+import neatlogic.framework.util.I18nUtils;
+
 public enum Status {
-    DOING("doing", "应用中"), DONE("done", "已完成");
+    DOING("doing", "enum.cmdb.status.doing"), DONE("done", "enum.cmdb.status.done");
 
     private final String value;
     private final String text;
@@ -32,7 +34,7 @@ public enum Status {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getValue(String _status) {

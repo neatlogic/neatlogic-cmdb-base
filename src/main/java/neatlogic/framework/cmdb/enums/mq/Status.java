@@ -16,10 +16,12 @@
 
 package neatlogic.framework.cmdb.enums.mq;
 
+import neatlogic.framework.util.I18nUtils;
+
 public enum Status {
-    ERROR("error", "异常"),
-    PENDING("pending", "已就绪"),
-    READY("running", "订阅中");
+    ERROR("error", "enum.cmdb.status.error"),
+    PENDING("pending", "enum.cmdb.status.pending"),
+    READY("running", "enum.cmdb.status.running");
 
     private final String status;
     private final String text;
@@ -34,7 +36,7 @@ public enum Status {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
 
