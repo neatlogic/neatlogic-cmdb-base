@@ -16,8 +16,10 @@
 
 package neatlogic.framework.cmdb.enums;
 
+import neatlogic.framework.util.I18nUtils;
+
 public enum UniqueType {
-    TYPE("type", "同类唯一"), GLOBAL("global", "全局唯一");
+    TYPE("type", "enum.cmdb.uniquetype.type"), GLOBAL("global", "enum.cmdb.uniquetype.global");
 
     private String value;
     private String text;
@@ -32,7 +34,7 @@ public enum UniqueType {
 	}
 
 	public String getText() {
-		return text;
+		return I18nUtils.getMessage(text);
 	}
 
 	public static String getValue(String _status) {

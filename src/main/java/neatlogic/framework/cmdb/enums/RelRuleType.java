@@ -19,11 +19,12 @@ package neatlogic.framework.cmdb.enums;
 import neatlogic.framework.common.constvalue.IEnum;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import neatlogic.framework.util.I18nUtils;
 
 import java.util.List;
 
 public enum RelRuleType implements IEnum {
-    O("O", "一个"), N("N", "多个");
+    O("O", "enum.cmdb.relruletype.o"), N("N", "enum.cmdb.relruletype.n");
 
     private final String value;
     private final String text;
@@ -38,7 +39,7 @@ public enum RelRuleType implements IEnum {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getValue(String _status) {

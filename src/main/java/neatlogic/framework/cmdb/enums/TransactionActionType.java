@@ -18,12 +18,17 @@ package neatlogic.framework.cmdb.enums;
 
 import neatlogic.framework.common.constvalue.IEnum;
 import com.alibaba.fastjson.JSONObject;
+import neatlogic.framework.util.I18nUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public enum TransactionActionType implements IEnum<JSONObject> {
-    INSERT("insert", "新增"), UPDATE("update", "修改"), DELETE("delete", "删除"), RECOVER("recover", "恢复"), VIEW("view", "查看");
+    INSERT("insert", "enum.cmdb.transactionactiontype.insert"),
+    UPDATE("update", "enum.cmdb.transactionactiontype.update"),
+    DELETE("delete", "enum.cmdb.transactionactiontype.delete"),
+    RECOVER("recover", "enum.cmdb.transactionactiontype.recover"),
+    VIEW("view", "enum.cmdb.transactionactiontype.view");
 
     private final String value;
     private final String text;
@@ -38,7 +43,7 @@ public enum TransactionActionType implements IEnum<JSONObject> {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getValue(String _status) {

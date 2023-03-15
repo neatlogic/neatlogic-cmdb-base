@@ -19,11 +19,12 @@ package neatlogic.framework.cmdb.enums;
 import neatlogic.framework.common.constvalue.IEnum;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import neatlogic.framework.util.I18nUtils;
 
 import java.util.List;
 
 public enum RelDirectionType implements IEnum {
-    FROM("from", "当前模型处于上游位置"), TO("to", "当前模型处于下游位置");
+    FROM("from", "enum.cmdb.reldirectiontype.from"), TO("to", "enum.cmdb.reldirectiontype.to");
 
     private String value;
     private String text;
@@ -50,7 +51,7 @@ public enum RelDirectionType implements IEnum {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static RelDirectionType get(String _value) {

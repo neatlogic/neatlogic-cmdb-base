@@ -16,8 +16,10 @@
 
 package neatlogic.framework.cmdb.enums;
 
+import neatlogic.framework.util.I18nUtils;
+
 public enum SaveModeType {
-    REPLACE("replace", "替换模式"), MERGE("merge", "合并模式");
+    REPLACE("replace", "enum.cmdb.savemodetype.replace"), MERGE("merge", "enum.cmdb.savemodetype.merge");
 
     private final String value;
     private final String text;
@@ -32,7 +34,7 @@ public enum SaveModeType {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static String getValue(String _status) {

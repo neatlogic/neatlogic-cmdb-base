@@ -19,6 +19,7 @@ package neatlogic.framework.cmdb.enums.resourcecenter;
 import neatlogic.framework.common.constvalue.IEnum;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import neatlogic.framework.util.I18nUtils;
 
 import java.util.List;
 import java.util.Objects;
@@ -30,10 +31,10 @@ import java.util.Objects;
  * @since 2021/6/1 11:51
  **/
 public enum Protocol implements IEnum {
-    APPLICATION("application", "应用"),
-    DATABASE("database", "数据库"),
-    TAGENT("tagent", "代理"),
-    SSH("ssh", "ssh");
+    APPLICATION("application", "enum.cmdb.protocol.application"),
+    DATABASE("database", "enum.cmdb.protocol.database"),
+    TAGENT("tagent", "enum.cmdb.protocol.tagent"),
+    SSH("ssh", "enum.cmdb.protocol.ssh");
     private final String value;
     private final String text;
 
@@ -47,7 +48,7 @@ public enum Protocol implements IEnum {
     }
 
     public String getText() {
-        return text;
+        return I18nUtils.getMessage(text);
     }
 
     public static Protocol getProtocol(String value) {
