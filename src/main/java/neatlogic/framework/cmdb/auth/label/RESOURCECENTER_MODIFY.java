@@ -45,6 +45,6 @@ public class RESOURCECENTER_MODIFY extends AuthBase {
 
     @Override
     public List<Class<? extends AuthBase>> getIncludeAuths() {
-        return Arrays.asList(CMDB_BASE.class, RESOURCECENTER_BASE.class, RESOURCECENTER_TAG_MODIFY.class, RESOURCECENTER_TAG_MODIFY.class);
+        return Arrays.asList(RESOURCECENTER_TAG_MODIFY.class, RESOURCECENTER_ACCOUNT_MODIFY.class);
     }
 }
