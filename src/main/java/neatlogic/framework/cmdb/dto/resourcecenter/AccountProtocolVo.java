@@ -31,6 +31,11 @@ public class AccountProtocolVo extends BaseEditorVo {
         this.name = name;
     }
 
+    public AccountProtocolVo(String name, Integer port) {
+        this.name = name;
+        this.port = port;
+    }
+
     public synchronized Long getId() {
         if (id == null) {
             id = SnowflakeUtil.uniqueLong();
