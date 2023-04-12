@@ -115,6 +115,8 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
 
     ResourceVo getResourceByIpAndPort(@Param("ip") String ip, @Param("port") Integer port);
 
+    List<AppSystemVo> getAppSystemListByIdList(List<Long> appSystemIdList);
+
     int getAppSystemCountByKeyword(BasePageVo searchVo);
 
     List<AppSystemVo> getAppSystemListByKeyword(BasePageVo searchVo);
