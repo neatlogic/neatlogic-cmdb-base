@@ -25,12 +25,19 @@ import neatlogic.framework.cmdb.dto.resourcecenter.config.ResourceEntityVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.config.ResourceInfo;
 import neatlogic.framework.cmdb.enums.RelDirectionType;
 import neatlogic.framework.cmdb.enums.resourcecenter.JoinType;
-import net.sf.jsqlparser.expression.*;
+import neatlogic.framework.cmdb.exception.sql.ResourceSearchGenerateSqlTypeException;
+import net.sf.jsqlparser.expression.Alias;
+import net.sf.jsqlparser.expression.Expression;
+import net.sf.jsqlparser.expression.LongValue;
+import net.sf.jsqlparser.expression.StringValue;
 import net.sf.jsqlparser.expression.operators.conditional.AndExpression;
 import net.sf.jsqlparser.expression.operators.relational.*;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
-import net.sf.jsqlparser.statement.select.*;
+import net.sf.jsqlparser.statement.select.Join;
+import net.sf.jsqlparser.statement.select.PlainSelect;
+import net.sf.jsqlparser.statement.select.SelectExpressionItem;
+import net.sf.jsqlparser.statement.select.SubSelect;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -572,7 +579,7 @@ public class ResourceSearchGenerateSqlUtil {
             } else if (value instanceof String) {
                 rightExpression = new StringValue((String)value);
             } else {
-                throw new RuntimeException("还不支持" + value.getClass().getName() + "类型数值，请补充逻辑");
+                throw new ResourceSearchGenerateSqlTypeException(value.getClass().getName());
             }
             ((EqualsTo) expression).withLeftExpression(column).withRightExpression(rightExpression);
         } else if (expression instanceof InExpression) {
@@ -591,7 +598,7 @@ public class ResourceSearchGenerateSqlUtil {
                         } else if (val instanceof String) {
                             expressionList.addExpressions(new StringValue((String)val));
                         } else {
-                            throw new RuntimeException("还不支持" + val.getClass().getName() + "类型数值，请补充逻辑");
+                            throw new ResourceSearchGenerateSqlTypeException(val.getClass().getName());
                         }
                     }
                     ((InExpression) expression).withLeftExpression(column).setRightItemsList(expressionList);
@@ -599,12 +606,12 @@ public class ResourceSearchGenerateSqlUtil {
             } else if (value instanceof SubSelect) {
                 ((InExpression) expression).withLeftExpression(column).withRightExpression((SubSelect) value);
             } else {
-                throw new RuntimeException("还不支持" + value.getClass().getName() + "类型数值，请补充逻辑");
+                throw new ResourceSearchGenerateSqlTypeException(value.getClass().getName());
             }
         } else if (expression instanceof IsNullExpression) {
             ((IsNullExpression) expression).setLeftExpression(column);
         } else {
-            throw new RuntimeException("还不支持" + expression.getClass().getName() + "类型表达式，请补充逻辑");
+            throw new ResourceSearchGenerateSqlTypeException(expression.getClass().getName());
         }
         return addWhere(plainSelect, expression);
     }
