@@ -86,6 +86,8 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
 
     Long getAppSystemIdByResourceId(Long id);
 
+    Set<Long> getResourceTypeIdListByAppSystemIdAndModuleIdAndEnvIdAndInspectStatusList(ResourceSearchVo searchVo);
+
     List<Long> getResourceIdListByAppSystemIdAndModuleIdAndEnvId(ResourceVo resourceVo);
 
     List<Long> getAppInstanceResourceIdListByAppSystemIdAndModuleIdAndEnvId(ResourceVo resourceVo);
