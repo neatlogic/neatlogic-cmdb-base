@@ -26,4 +26,5 @@ public class CiEntityNotFoundException extends ApiRuntimeException {
     public CiEntityNotFoundException(String ciEntityName) {
         super("exception.cmdb.cientitynotfoundexception", ciEntityName);
     }
+
 }
