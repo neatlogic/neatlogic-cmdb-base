@@ -58,7 +58,7 @@ public class AccountVo extends AccountBaseVo {
     private String type;
 
     @EntityField(name = "是否默认帐号", type = ApiParamType.INTEGER)
-    private Integer isDefault;
+    private Integer isDefault = 0;
 
     public AccountVo() {
 
