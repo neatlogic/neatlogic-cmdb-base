@@ -86,6 +86,8 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
 
     Long getAppSystemIdByResourceId(Long id);
 
+    Set<Long> getResourceTypeIdListByAppSystemIdAndModuleIdAndEnvIdAndInspectStatusList(ResourceSearchVo searchVo);
+
     List<Long> getResourceIdListByAppSystemIdAndModuleIdAndEnvId(ResourceVo resourceVo);
 
     List<Long> getAppInstanceResourceIdListByAppSystemIdAndModuleIdAndEnvId(ResourceVo resourceVo);
@@ -114,6 +116,8 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
     List<AppEnvironmentVo> getAllAppEnv();
 
     ResourceVo getResourceByIpAndPort(@Param("ip") String ip, @Param("port") Integer port);
+
+    List<AppSystemVo> getAppSystemListByIdList(List<Long> appSystemIdList);
 
     int getAppSystemCountByKeyword(BasePageVo searchVo);
 
