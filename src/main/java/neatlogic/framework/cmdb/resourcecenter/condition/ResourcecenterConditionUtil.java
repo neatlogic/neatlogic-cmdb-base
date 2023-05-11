@@ -25,7 +25,11 @@ import java.util.List;
 import java.util.Map;
 
 public class ResourcecenterConditionUtil {
-
+    /**
+     * 将过滤器高级模式的结构转换自然语言表达式
+     * @param conditionConfigVo
+     * @return
+     */
     public static String getBuildNaturalLanguageExpressions(ConditionConfigVo conditionConfigVo) {
         List<ConditionGroupVo> conditionGroupList = conditionConfigVo.getConditionGroupList();
         Map<String, ConditionGroupVo> conditionGroupMap = conditionConfigVo.getConditionGroupMap();
