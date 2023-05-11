@@ -19,11 +19,13 @@ package neatlogic.framework.cmdb.dto.resourcecenter;
 import neatlogic.framework.cmdb.resourcecenter.condition.IResourcecenterCondition;
 import neatlogic.framework.cmdb.resourcecenter.condition.ResourcecenterConditionFactory;
 import neatlogic.framework.common.constvalue.ApiParamType;
+import neatlogic.framework.common.constvalue.Expression;
 import neatlogic.framework.dto.condition.ConditionConfigVo;
 import neatlogic.framework.dto.condition.ConditionVo;
 import neatlogic.framework.exception.condition.ConditionNotFoundException;
 import neatlogic.framework.restful.annotation.EntityField;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -347,6 +349,27 @@ public class ResourceSearchVo extends ConditionConfigVo {
             throw new ConditionNotFoundException(handler);
         }
         resourcecenterCondition.getSqlConditionWhere(conditionVoList, conditionIndex, sqlSb, searchMode);
+    }
+
+    @Override
+    public String getBuildNaturalLanguageExpressions(ConditionVo conditionVo) {
+        IResourcecenterCondition conditionHandler = ResourcecenterConditionFactory.getHandler(conditionVo.getName());
+        if (conditionHandler == null) {
+            return StringUtils.EMPTY;
+        }
+        String textStr = StringUtils.EMPTY;
+        Object textObj = conditionHandler.valueConversionText(conditionVo.getValueList(), null);
+        if (textObj != null) {
+            if (textObj instanceof List) {
+                List<String> textList = (List<String>) textObj;
+                textStr = String.join("|", textList);
+            } else {
+                textStr = textObj.toString();
+            }
+        }
+        String label = conditionHandler.getDisplayName();
+        String expressionName = Expression.getExpressionName(conditionVo.getExpression());
+        return label + " " + expressionName + " " + textStr;
     }
 
 }
