@@ -144,7 +144,7 @@ public class ResourceSearchGenerateSqlUtil {
                 }
                 CiVo ciVo = resourceEntityVo.getCi();
                 if (ciVo == null) {
-                   return false;
+                    return false;
                 }
                 resourceInfo.setResourceCiName(ciVo.getName());
                 resourceInfo.setResourceCiId(ciVo.getId());
