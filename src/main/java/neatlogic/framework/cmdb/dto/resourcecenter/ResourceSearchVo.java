@@ -16,6 +16,8 @@
 
 package neatlogic.framework.cmdb.dto.resourcecenter;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import neatlogic.framework.cmdb.resourcecenter.condition.IResourcecenterCondition;
 import neatlogic.framework.cmdb.resourcecenter.condition.ResourcecenterConditionFactory;
 import neatlogic.framework.common.constvalue.ApiParamType;
@@ -98,6 +100,9 @@ public class ResourceSearchVo extends ConditionConfigVo {
     public ResourceSearchVo() {
     }
 
+    public ResourceSearchVo(JSONObject jsonObj) {
+        super(jsonObj);
+    }
     public ResourceSearchVo(List<Long> tagIdList) {
         this.tagIdList = tagIdList;
     }
