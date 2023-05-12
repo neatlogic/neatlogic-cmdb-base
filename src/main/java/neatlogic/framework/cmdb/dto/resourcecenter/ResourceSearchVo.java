@@ -16,7 +16,6 @@
 
 package neatlogic.framework.cmdb.dto.resourcecenter;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import neatlogic.framework.cmdb.resourcecenter.condition.IResourcecenterCondition;
 import neatlogic.framework.cmdb.resourcecenter.condition.ResourcecenterConditionFactory;
