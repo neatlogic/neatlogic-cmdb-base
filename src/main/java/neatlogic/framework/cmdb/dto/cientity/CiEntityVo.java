@@ -164,6 +164,8 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private Boolean limitAttrEntity;//限制引用属性数量，避免查询返回的结果集太大
     @EntityField(name = "过期天数", type = ApiParamType.INTEGER)
     private Integer expiredDay;
+    @EntityField(name = "账号", type = ApiParamType.STRING)
+    private String account;
 
     public CiEntityVo() {
 
@@ -986,5 +988,13 @@ public class CiEntityVo extends BasePageVo implements Serializable {
 
     public void setExpiredDay(Integer expiredDay) {
         this.expiredDay = expiredDay;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 }
