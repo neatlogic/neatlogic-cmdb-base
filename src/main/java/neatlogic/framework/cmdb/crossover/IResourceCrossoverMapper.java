@@ -56,6 +56,8 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
 
     List<ResourceVo> getAppInstanceResourceListByIdListSimple(List<Long> idList);
 
+    Long getResourceIdByIpAndPortAndName(ResourceSearchVo searchVo);
+
     List<ResourceVo> getResourceByIdList(List<Long> idList);
 
     ResourceVo getResourceById(Long id);
