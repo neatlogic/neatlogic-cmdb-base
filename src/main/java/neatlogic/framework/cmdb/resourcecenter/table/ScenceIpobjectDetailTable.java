@@ -25,7 +25,7 @@ public class ScenceIpobjectDetailTable implements ISqlTable {
         TYPE_ID("type_id","enum.cmdb.fieldenum.type_id","typeId"),
         TYPE_NAME("type_name","enum.cmdb.fieldenum.type_name","typeName"),
         TYPE_LABEL("type_label","enum.cmdb.fieldenum.type_label","typeLabel"),
-        ID("id","enum.cmdb.fieldenum.id","id"),
+        ID("id","common.assetid","id"),
         INSPECT_STATUS("inspect_status","enum.cmdb.fieldenum.inspect_status","inspectStatus"),
         NAME("name","enum.cmdb.fieldenum.name","name"),
         IP("ip","enum.cmdb.fieldenum.ip","ip"),

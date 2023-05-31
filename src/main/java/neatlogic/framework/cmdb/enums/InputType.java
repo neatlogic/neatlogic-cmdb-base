@@ -19,7 +19,7 @@ package neatlogic.framework.cmdb.enums;
 import neatlogic.framework.util.I18nUtils;
 
 public enum InputType {
-    AT("at", "enum.cmdb.inputtype.at"), MT("mt", "enum.cmdb.inputtype.mt");
+    AT("at", "common.automaticdiscovery"), MT("mt", "enum.cmdb.inputtype.mt");
 
     private final String value;
     private final String text;

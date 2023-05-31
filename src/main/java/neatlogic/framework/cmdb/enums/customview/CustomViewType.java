@@ -24,9 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum CustomViewType implements IEnum<JSONObject> {
-    PRIVATE("private", "enum.cmdb.customviewtype.private"),
-    PUBLIC("public", "enum.cmdb.customviewtype.public"),
-    SCENE("scene", "enum.cmdb.customviewtype.scene");
+    PRIVATE("private", "common.personalview"),
+    PUBLIC("public", "common.publicview"),
+    SCENE("scene", "common.sceneview");
 
     private final String value;
     private final String text;

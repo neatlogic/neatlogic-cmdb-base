@@ -19,8 +19,8 @@ package neatlogic.framework.cmdb.enums.mq;
 import neatlogic.framework.util.I18nUtils;
 
 public enum Status {
-    ERROR("error", "enum.cmdb.status.error"),
-    PENDING("pending", "enum.cmdb.status.pending"),
+    ERROR("error", "common.exception"),
+    PENDING("pending", "common.ready"),
     READY("running", "enum.cmdb.status.running");
 
     private final String status;

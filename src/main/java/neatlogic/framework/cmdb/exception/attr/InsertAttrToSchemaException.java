@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class InsertAttrToSchemaException extends ApiRuntimeException {
     public InsertAttrToSchemaException(String attrName) {
-        super("exception.cmdb.insertattrtoschemaexception", attrName);
+        super("common.cannotad", attrName);
     }
 }

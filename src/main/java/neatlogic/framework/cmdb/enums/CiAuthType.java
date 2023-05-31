@@ -19,9 +19,9 @@ package neatlogic.framework.cmdb.enums;
 import neatlogic.framework.util.I18nUtils;
 
 public enum CiAuthType {
-    CIENTITYINSERT("cientityinsert", "enum.cmdb.ciauthtype.cientityinsert"),
+    CIENTITYINSERT("cientityinsert", "common.addcientity"),
     CIENTITYUPDATE("cientityupdate", "enum.cmdb.ciauthtype.cientityupdate"),
-    CIENTITYDELETE("cientitydelete", "enum.cmdb.ciauthtype.cientitydelete"),
+    CIENTITYDELETE("cientitydelete", "common.deleteconfigurationitem"),
     CIENTITYQUERY("cientityquery", "enum.cmdb.ciauthtype.cientityquery"),
     CIMANAGE("cimanage", "enum.cmdb.ciauthtype.cimanage"),
     TRANSACTIONMANAGE("transactionmanage", "enum.cmdb.ciauthtype.transactionmanage"),

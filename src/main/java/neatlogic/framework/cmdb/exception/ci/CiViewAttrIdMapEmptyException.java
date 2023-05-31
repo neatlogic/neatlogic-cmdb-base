@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiViewAttrIdMapEmptyException extends ApiRuntimeException {
     public CiViewAttrIdMapEmptyException() {
-        super("exception.cmdb.civiewattridmapemptyexception");
+        super("common.propnameandidcannotbenull");
     }
 }

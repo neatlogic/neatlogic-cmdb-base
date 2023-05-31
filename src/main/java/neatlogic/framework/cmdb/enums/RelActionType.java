@@ -19,9 +19,9 @@ package neatlogic.framework.cmdb.enums;
 import neatlogic.framework.util.I18nUtils;
 
 public enum RelActionType {
-    INSERT("insert", "enum.cmdb.relactiontype.insert"),
-    DELETE("delete", "enum.cmdb.relactiontype.delete"),
-    REPLACE("replace", "enum.cmdb.relactiontype.replace");
+    INSERT("insert", "common.new"),
+    DELETE("delete", "common.delete"),
+    REPLACE("replace", "common.replace");
 
     private final String value;
     private final String text;

@@ -25,7 +25,7 @@ import java.util.List;
 
 public enum TransactionStatus implements IEnum<ValueTextVo> {
     COMMITED("commited", "enum.cmdb.transactionstatus.commited"),
-    UNCOMMIT("uncommit", "enum.cmdb.transactionstatus.uncommit"),
+    UNCOMMIT("uncommit", "common.draftdesc"),
     RECOVER("recover", "enum.cmdb.transactionstatus.recover"),
     EXPIRED("expired", "enum.cmdb.transactionstatus.expired");
 

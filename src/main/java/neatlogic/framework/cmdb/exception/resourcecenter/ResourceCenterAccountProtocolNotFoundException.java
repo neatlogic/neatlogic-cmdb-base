@@ -6,10 +6,10 @@ public class ResourceCenterAccountProtocolNotFoundException extends ApiRuntimeEx
     private static final long serialVersionUID = -5055024535330898128L;
 
     public ResourceCenterAccountProtocolNotFoundException(Long id) {
-        super("exception.cmdb.resourcecenteraccountprotocolnotfoundexception", id);
+        super("common.pro", id);
     }
 
     public ResourceCenterAccountProtocolNotFoundException(String name) {
-        super("exception.cmdb.resourcecenteraccountprotocolnotfoundexception", name);
+        super("common.pro", name);
     }
 }

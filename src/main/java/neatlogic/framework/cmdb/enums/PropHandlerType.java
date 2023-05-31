@@ -24,18 +24,18 @@ import neatlogic.framework.util.I18nUtils;
 import java.util.List;
 
 public enum PropHandlerType implements IEnum {
-    TEXT("text", "enum.cmdb.prophandlertype.text.a", "ts-code"),
+    TEXT("text", "common.textbox", "ts-code"),
     MTEXT("mtext", "enum.cmdb.prophandlertype.mtext", "ts-bars"),
-    DATE("date", "enum.cmdb.prophandlertype.date", "ts-calendar"),
-    TEXTAREA("textarea", "enum.cmdb.prophandlertype.textarea", "ts-textmodule"),
-    SELECT("select", "enum.cmdb.prophandlertype.select", "ts-list"),
-    CHECKBOX("checkbox", "enum.cmdb.prophandlertype.checkbox", "ts-check-square-o"),
-    RADIO("radio", "enum.cmdb.prophandlertype.radio", "ts-round-s"),
-    FILE("file", "enum.cmdb.prophandlertype.file", "ts-file"),
-    URL("url", "enum.cmdb.prophandlertype.url", "ts-link"),
-    PASSWORD("password", "enum.cmdb.prophandlertype.password", "ts-eye-close"),
+    DATE("date", "common.date", "ts-calendar"),
+    TEXTAREA("textarea", "common.textarea", "ts-textmodule"),
+    SELECT("select", "common.select", "ts-list"),
+    CHECKBOX("checkbox", "common.checkbox", "ts-check-square-o"),
+    RADIO("radio", "common.radiobutton", "ts-round-s"),
+    FILE("file", "common.attachment", "ts-file"),
+    URL("url", "common.link", "ts-link"),
+    PASSWORD("password", "common.password", "ts-eye-close"),
     /*USER("user", "用户", "ts-user"), TEAM("team", "组织", "ts-team"),*/
-    TABLE("table", "enum.cmdb.prophandlertype.table", "ts-tablechart");
+    TABLE("table", "common.table", "ts-tablechart");
 
     private String type;
     private String text;

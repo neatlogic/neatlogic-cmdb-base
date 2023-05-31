@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 @SuppressWarnings("serial")
 public class PropLabelIsExistsException extends ApiRuntimeException {
     public PropLabelIsExistsException(String msg) {
-        super("exception.cmdb.proplabelisexistsexception", msg);
+        super("exception.propisexistsexception", msg);
     }
 }

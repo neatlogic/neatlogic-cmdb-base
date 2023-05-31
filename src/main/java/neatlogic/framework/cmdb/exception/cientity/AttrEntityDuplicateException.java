@@ -27,11 +27,11 @@ public class AttrEntityDuplicateException extends ApiRuntimeException {
     private static final long serialVersionUID = 2014077344222321741L;
 
     public AttrEntityDuplicateException(CiVo ciVo, String label, JSONArray valueList) {
-        super("exception.cmdb.attrentityduplicateexception.a", ciVo.getLabel(), ciVo.getName(), label, valueList.stream().map(Object::toString).collect(Collectors.joining("”,“")));
+        super("exception.attrentityduplicateexception", ciVo.getLabel(), ciVo.getName(), label, valueList.stream().map(Object::toString).collect(Collectors.joining("”,“")));
     }
 
     public AttrEntityDuplicateException(CiVo ciVo, String label, List<String> valueList) {
-        super("exception.cmdb.attrentityduplicateexception.b", ciVo.getLabel(), ciVo.getName(), label, String.join("”,“", valueList));
+        super("exception.attrentityduplicateexception", ciVo.getLabel(), ciVo.getName(), label, String.join("”,“", valueList));
     }
 
 }

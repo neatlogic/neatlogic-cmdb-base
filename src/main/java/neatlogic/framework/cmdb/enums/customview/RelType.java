@@ -20,7 +20,7 @@ import neatlogic.framework.util.I18nUtils;
 
 public enum RelType {
     ATTR("attr", "enum.cmdb.reltype.attr"),
-    CI("ci", "enum.cmdb.reltype.ci"),
+    CI("ci", "common.ci"),
     REL("rel", "enum.cmdb.reltype.rel"),
     CONST_ATTR("constattr", "enum.cmdb.reltype.const_attr");
     private final String value;

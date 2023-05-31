@@ -21,7 +21,7 @@ import neatlogic.framework.util.I18nUtils;
 public enum CiAttrType {
     SIMPLE("simple", "enum.cmdb.ciattrtype.simple"),
     COMPLEX("complex", "enum.cmdb.ciattrtype.complex"),
-    CUSTOM("custom", "enum.cmdb.ciattrtype.custom");
+    CUSTOM("custom", "common.customprop");
 
     private final String value;
     private final String text;

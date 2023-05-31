@@ -20,8 +20,8 @@ import neatlogic.framework.util.I18nUtils;
 
 public enum BatchImportStatus {
     RUNNING("running", "enum.cmdb.batchimportstatus.running"),
-    SUCCEED("succeed", "enum.cmdb.batchimportstatus.succeed"),
-    FAILED("failed", "enum.cmdb.batchimportstatus.failed"),
+    SUCCEED("succeed", "common.succeed"),
+    FAILED("failed", "common.failed"),
     STOPPED("stopped", "enum.cmdb.batchimportstatus.stopped");
     private final String type;
     private final String text;

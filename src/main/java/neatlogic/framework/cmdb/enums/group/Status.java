@@ -19,7 +19,7 @@ package neatlogic.framework.cmdb.enums.group;
 import neatlogic.framework.util.I18nUtils;
 
 public enum Status {
-    DOING("doing", "enum.cmdb.status.doing"), DONE("done", "enum.cmdb.status.done");
+    DOING("doing", "enum.cmdb.status.doing"), DONE("done", "common.completed");
 
     private final String value;
     private final String text;

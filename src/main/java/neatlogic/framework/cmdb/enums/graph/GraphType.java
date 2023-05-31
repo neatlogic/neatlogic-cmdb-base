@@ -24,9 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum GraphType implements IEnum<JSONObject> {
-    PRIVATE("private", "enum.cmdb.graphtype.private"),
-    PUBLIC("public", "enum.cmdb.graphtype.public"),
-    SCENE("scene", "enum.cmdb.graphtype.scene");
+    PRIVATE("private", "common.personalview"),
+    PUBLIC("public", "common.publicview"),
+    SCENE("scene", "common.sceneview");
 
     private final String value;
     private final String text;

@@ -20,7 +20,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class AttrNotFoundException extends ApiRuntimeException {
     public AttrNotFoundException(Long attrId) {
-        super("exception.cmdb.attrnotfoundexception.a", attrId);
+        super("common.configurationi", attrId);
     }
 
     public AttrNotFoundException(String ciName, String attrName) {
@@ -28,6 +28,6 @@ public class AttrNotFoundException extends ApiRuntimeException {
     }
 
     public AttrNotFoundException(String attrName) {
-        super("exception.cmdb.attrnotfoundexception.c", attrName);
+        super("common.configurationi", attrName);
     }
 }

@@ -23,10 +23,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum ExpressionType {
-    IS("is", "enum.cmdb.expressiontype.is", true, new String[]{"String", "float", "int"}),
-    NE("ne", "enum.cmdb.expressiontype.ne", true, new String[]{"String", "float", "int"}),
-    IN("in", "enum.cmdb.expressiontype.in", true, new String[]{"String"}),
-    NOTIN("notin", "enum.cmdb.expressiontype.notin", true, new String[]{"String"}),
+    IS("is", "common.equals", true, new String[]{"String", "float", "int"}),
+    NE("ne", "common.unequal", true, new String[]{"String", "float", "int"}),
+    IN("in", "common.include", true, new String[]{"String"}),
+    NOTIN("notin", "common.exclude", true, new String[]{"String"}),
     //ISNULL("isnull", "为空", false, new String[]{"String", "float", "int"}),
     //ISNOTNULL("isnotnull", "不为空", false, new String[]{"String", "float", "int"}),
     GT("gt", "enum.cmdb.expressiontype.gt.a", true, new String[]{"float", "int"}),

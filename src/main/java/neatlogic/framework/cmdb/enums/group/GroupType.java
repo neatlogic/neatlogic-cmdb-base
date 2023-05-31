@@ -20,7 +20,7 @@ import neatlogic.framework.util.I18nUtils;
 
 public enum GroupType {
     MAINTAIN("maintain", "enum.cmdb.grouptype.maintain"),
-    READONLY("readonly", "enum.cmdb.grouptype.readonly");
+    READONLY("readonly", "common.read-only");
 
     private final String value;
     private final String text;

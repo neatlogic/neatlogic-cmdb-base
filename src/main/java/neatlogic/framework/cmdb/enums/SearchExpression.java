@@ -19,15 +19,15 @@ package neatlogic.framework.cmdb.enums;
 import neatlogic.framework.util.I18nUtils;
 
 public enum SearchExpression {
-    EQ("eq", "equal", "enum.cmdb.searchexpression.eq"),
+    EQ("eq", "equal", "common.equals"),
     //LT("lt", "less-than", "小于"),
     //GT("gt", "greater-than", "大于"),
-    BT("bt", "between", "enum.cmdb.searchexpression.bt"),
-    NE("ne", "notequal", "enum.cmdb.searchexpression.ne"),
-    NL("nl", "notlike", "enum.cmdb.searchexpression.nl"),
-    LI("li", "like", "enum.cmdb.searchexpression.li"),
-    NULL("null", "is-null", "enum.cmdb.searchexpression.null"),
-    NOTNULL("notnull", "is-not-null", "enum.cmdb.searchexpression.notnull");
+    BT("bt", "between", "common.inthisrange"),
+    NE("ne", "notequal", "common.unequal"),
+    NL("nl", "notlike", "common.exclude"),
+    LI("li", "like", "common.include"),
+    NULL("null", "is-null", "common.null"),
+    NOTNULL("notnull", "is-not-null", "common.notempty");
 
     private final String value;
     private final String text;

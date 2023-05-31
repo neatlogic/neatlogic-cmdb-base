@@ -31,8 +31,8 @@ import java.util.Objects;
  * @since 2021/6/1 11:51
  **/
 public enum Protocol implements IEnum {
-    APPLICATION("application", "enum.cmdb.protocol.application"),
-    DATABASE("database", "enum.cmdb.protocol.database"),
+    APPLICATION("application", "common.app"),
+    DATABASE("database", "common.database"),
     TAGENT("tagent", "enum.cmdb.protocol.tagent"),
     SSH("ssh", "enum.cmdb.protocol.ssh");
     private final String value;

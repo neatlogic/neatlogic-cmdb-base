@@ -26,6 +26,6 @@ public class CiViewSqlIrregularException extends ApiRuntimeException {
     }
 
     public CiViewSqlIrregularException() {
-        super("exception.cmdb.civiewsqlirregularexception.c");
+        super("exception.configurationfileisnotavalidxmlfile");
     }
 }
