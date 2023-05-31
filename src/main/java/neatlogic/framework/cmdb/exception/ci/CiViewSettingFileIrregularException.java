@@ -22,14 +22,14 @@ public class CiViewSettingFileIrregularException extends ApiRuntimeException {
     private static final long serialVersionUID = 6974123602685866857L;
 
     public CiViewSettingFileIrregularException(Exception ex) {
-        super("exception.cmdb.civiewsettingfileirregularexception.1", ex.getMessage());
+        super("exception.cmdb.civiewsettingfileirregularexception.b", ex.getMessage());
     }
 
     public CiViewSettingFileIrregularException(String nodeName) {
-        super("exception.cmdb.civiewsettingfileirregularexception.2", nodeName);
+        super("exception.cmdb.civiewsettingfileirregularexception.c", nodeName);
     }
 
     public CiViewSettingFileIrregularException(String nodeName, String attrName) {
-        super("exception.cmdb.civiewsettingfileirregularexception.3", nodeName, attrName);
+        super("exception.cmdb.civiewsettingfileirregularexception.d", nodeName, attrName);
     }
 }

@@ -20,10 +20,10 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiAuthException extends ApiRuntimeException {
     public CiAuthException() {
-        super("exception.cmdb.ciauthexception");
+        super("exception.cmdb.ciauthexception.a");
     }
 
     public CiAuthException(String ciLabel) {
-        super("exception.cmdb.ciauthexception.1", ciLabel);
+        super("exception.cmdb.ciauthexception.b", ciLabel);
     }
 }

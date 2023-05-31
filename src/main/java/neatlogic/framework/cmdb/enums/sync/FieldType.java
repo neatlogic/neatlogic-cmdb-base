@@ -24,7 +24,7 @@ public enum FieldType {
     DATETIME("datetime", "enum.cmdb.fieldtype.datetime"),
     DOCUMENT("document", "enum.cmdb.fieldtype.document"),
     INTEGER("integer", "enum.cmdb.fieldtype.integer"),
-    INT("int", "enum.cmdb.fieldtype.int"),
+    INT("int", "enum.cmdb.fieldtype.int.a"),
     FLOAT("float", "enum.cmdb.fieldtype.float");
     private final String type;
     private final String text;

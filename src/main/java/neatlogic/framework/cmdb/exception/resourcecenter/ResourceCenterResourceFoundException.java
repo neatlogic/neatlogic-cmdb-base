@@ -21,10 +21,10 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 public class ResourceCenterResourceFoundException extends ApiRuntimeException {
 
     public ResourceCenterResourceFoundException(String resource, String field) {
-        super("exception.cmdb.resourcecenterresourcefoundexception.1", resource, field);
+        super("exception.cmdb.resourcecenterresourcefoundexception.b", resource, field);
     }
 
     public ResourceCenterResourceFoundException(String resource) {
-        super("exception.cmdb.resourcecenterresourcefoundexception.2", resource);
+        super("exception.cmdb.resourcecenterresourcefoundexception.c", resource);
     }
 }

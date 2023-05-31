@@ -23,18 +23,18 @@ public class CiEntityAuthException extends ApiRuntimeException {
     private static final long serialVersionUID = 3825462374254380532L;
 
     public CiEntityAuthException(String action) {
-        super("exception.cmdb.cientityauthexception", action);
+        super("exception.cmdb.cientityauthexception.a", action);
     }
 
     public CiEntityAuthException(CiVo ciVo, String action) {
-        super("exception.cmdb.cientityauthexception.1", action, ciVo.getLabel(), ciVo.getName());
+        super("exception.cmdb.cientityauthexception.b", action, ciVo.getLabel(), ciVo.getName());
     }
 
     public CiEntityAuthException(String ciLabel, String action) {
-        super("exception.cmdb.cientityauthexception.2", action, ciLabel);
+        super("exception.cmdb.cientityauthexception.c", action, ciLabel);
     }
 
     public CiEntityAuthException(Long ciEntityId, String ciEntityName, String action) {
-        super("exception.cmdb.cientityauthexception.3", action, ciEntityName, ciEntityId);
+        super("exception.cmdb.cientityauthexception.d", action, ciEntityName, ciEntityId);
     }
 }

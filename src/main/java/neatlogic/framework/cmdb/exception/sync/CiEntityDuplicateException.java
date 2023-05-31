@@ -26,11 +26,11 @@ public class CiEntityDuplicateException extends ApiRuntimeException {
     private static final long serialVersionUID = -5366776714628472298L;
 
     public CiEntityDuplicateException() {
-        super("exception.cmdb.cientityduplicateexception.1");
+        super("exception.cmdb.cientityduplicateexception.b");
     }
 
     public CiEntityDuplicateException(CiEntityVo attrConditionVo, JSONObject dataObj) {
-        super("exception.cmdb.cientityduplicateexception.2", attrConditionVo.getAttrFilterList().stream().map(d -> d.getLabel() + "(" + d.getName() + ") " + d.getExpressionName() + " " + String.join(",", d.getValueList()))
+        super("exception.cmdb.cientityduplicateexception.c", attrConditionVo.getAttrFilterList().stream().map(d -> d.getLabel() + "(" + d.getName() + ") " + d.getExpressionName() + " " + String.join(",", d.getValueList()))
                 .collect(Collectors.joining(" and ")), attrConditionVo.getCiLabel(), attrConditionVo.getCiName(), dataObj.toString());
     }
 

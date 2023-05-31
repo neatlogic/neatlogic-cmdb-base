@@ -27,10 +27,10 @@ public class CiEntityIsInUsedException extends ApiRuntimeException {
     private static final long serialVersionUID = 4514486027062482261L;
 
     public CiEntityIsInUsedException(List<AttrVo> attrList) {
-        super("exception.cmdb.cientityisinusedexception.1", attrList.stream().map(attr -> attr.getLabel() + "(" + attr.getCiLabel() + ")").collect(Collectors.joining(",")));
+        super("exception.cmdb.cientityisinusedexception.b", attrList.stream().map(attr -> attr.getLabel() + "(" + attr.getCiLabel() + ")").collect(Collectors.joining(",")));
     }
 
     public CiEntityIsInUsedException(CiEntityVo ciEntityVo, List<AttrVo> attrList) {
-        super("exception.cmdb.cientityisinusedexception.2", ciEntityVo.getName(), attrList.stream().map(attr -> attr.getCiLabel() + "(" + attr.getCiName() + ")" + ":" + attr.getLabel() + "(" + attr.getName() + ")").collect(Collectors.joining(",")));
+        super("exception.cmdb.cientityisinusedexception.c", ciEntityVo.getName(), attrList.stream().map(attr -> attr.getCiLabel() + "(" + attr.getCiName() + ")" + ":" + attr.getLabel() + "(" + attr.getName() + ")").collect(Collectors.joining(",")));
     }
 }

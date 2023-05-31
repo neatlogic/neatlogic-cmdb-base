@@ -29,8 +29,8 @@ public enum ExpressionType {
     NOTIN("notin", "enum.cmdb.expressiontype.notin", true, new String[]{"String"}),
     //ISNULL("isnull", "为空", false, new String[]{"String", "float", "int"}),
     //ISNOTNULL("isnotnull", "不为空", false, new String[]{"String", "float", "int"}),
-    GT("gt", "enum.cmdb.expressiontype.gt", true, new String[]{"float", "int"}),
-    LT("lt", "enum.cmdb.expressiontype.lt", true, new String[]{"float", "int"}),
+    GT("gt", "enum.cmdb.expressiontype.gt.a", true, new String[]{"float", "int"}),
+    LT("lt", "enum.cmdb.expressiontype.lt.a", true, new String[]{"float", "int"}),
     GTE("gte", "enum.cmdb.expressiontype.gte", true, new String[]{"float", "int"}),
     LTE("lte", "enum.cmdb.expressiontype.lte", true, new String[]{"float", "int"});
     private final String type;

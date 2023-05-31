@@ -25,10 +25,10 @@ public class RelEntityIsUsedException extends ApiRuntimeException {
     private static final long serialVersionUID = -4949859498621326901L;
 
     public RelEntityIsUsedException(RelDirectionType direction, RelVo relVo, RelEntityVo relEntityVo) {
-        super("exception.cmdb.relentityisusedexception.1", (direction == RelDirectionType.FROM ? relVo.getToLabel() : relVo.getFromLabel()), (direction == RelDirectionType.FROM ? relEntityVo.getToCiEntityName() : relEntityVo.getFromCiEntityName()));
+        super("exception.cmdb.relentityisusedexception.b", (direction == RelDirectionType.FROM ? relVo.getToLabel() : relVo.getFromLabel()), (direction == RelDirectionType.FROM ? relEntityVo.getToCiEntityName() : relEntityVo.getFromCiEntityName()));
     }
 
     public RelEntityIsUsedException(RelDirectionType direction, RelVo relVo, Boolean other) {
-        super("exception.cmdb.relentityisusedexception.2", (direction == RelDirectionType.FROM ? relVo.getToLabel() : relVo.getFromLabel()));
+        super("exception.cmdb.relentityisusedexception.c", (direction == RelDirectionType.FROM ? relVo.getToLabel() : relVo.getFromLabel()));
     }
 }

@@ -22,10 +22,10 @@ public class CreateCiSchemaException extends ApiRuntimeException {
     private static final long serialVersionUID = 1868035134643467683L;
 
     public CreateCiSchemaException(String ciName) {
-        super("exception.cmdb.createcischemaexception.1", ciName);
+        super("exception.cmdb.createcischemaexception.b", ciName);
     }
 
     public CreateCiSchemaException(String ciName, boolean isView) {
-        super("exception.cmdb.createcischemaexception.2", ciName);
+        super("exception.cmdb.createcischemaexception.c", ciName);
     }
 }

@@ -25,15 +25,15 @@ import java.util.stream.Collectors;
 
 public class AttrIsUsedInExpressionException extends ApiRuntimeException {
     public AttrIsUsedInExpressionException(AttrVo attrVo) {
-        super("exception.cmdb.attrisusedinexpressionexception", attrVo.getLabel(), attrVo.getName());
+        super("exception.cmdb.attrisusedinexpressionexception.a", attrVo.getLabel(), attrVo.getName());
     }
 
     public AttrIsUsedInExpressionException(CiVo ciVo, AttrVo attrVo) {
-        super("exception.cmdb.attrisusedinexpressionexception.1", ciVo.getLabel(), ciVo.getName(), attrVo.getLabel(), attrVo.getName());
+        super("exception.cmdb.attrisusedinexpressionexception.b", ciVo.getLabel(), ciVo.getName(), attrVo.getLabel(), attrVo.getName());
     }
 
     public AttrIsUsedInExpressionException(List<AttrVo> attrList) {
-        super("exception.cmdb.attrisusedinexpressionexception.2" , attrList.stream().map(a -> a.getLabel() + "(" + a.getName() + ")").collect(Collectors.joining("”,“")) );
+        super("exception.cmdb.attrisusedinexpressionexception.c" , attrList.stream().map(a -> a.getLabel() + "(" + a.getName() + ")").collect(Collectors.joining("”,“")) );
     }
 
 }

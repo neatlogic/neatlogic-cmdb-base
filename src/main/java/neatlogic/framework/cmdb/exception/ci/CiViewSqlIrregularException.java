@@ -22,10 +22,10 @@ public class CiViewSqlIrregularException extends ApiRuntimeException {
     private static final long serialVersionUID = -7400715176683665370L;
 
     public CiViewSqlIrregularException(Exception msg) {
-        super("exception.cmdb.civiewsqlirregularexception.1", msg.getMessage());
+        super("exception.cmdb.civiewsqlirregularexception.b", msg.getMessage());
     }
 
     public CiViewSqlIrregularException() {
-        super("exception.cmdb.civiewsqlirregularexception.2");
+        super("exception.cmdb.civiewsqlirregularexception.c");
     }
 }

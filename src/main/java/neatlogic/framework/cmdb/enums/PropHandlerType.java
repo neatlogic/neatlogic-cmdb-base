@@ -24,7 +24,7 @@ import neatlogic.framework.util.I18nUtils;
 import java.util.List;
 
 public enum PropHandlerType implements IEnum {
-    TEXT("text", "enum.cmdb.prophandlertype.text", "ts-code"),
+    TEXT("text", "enum.cmdb.prophandlertype.text.a", "ts-code"),
     MTEXT("mtext", "enum.cmdb.prophandlertype.mtext", "ts-bars"),
     DATE("date", "enum.cmdb.prophandlertype.date", "ts-calendar"),
     TEXTAREA("textarea", "enum.cmdb.prophandlertype.textarea", "ts-textmodule"),

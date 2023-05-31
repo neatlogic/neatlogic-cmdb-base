@@ -23,15 +23,15 @@ public class ResourceCenterAccountNotFoundException extends ApiRuntimeException 
     private static final long serialVersionUID = 560397839803209200L;
 
     public ResourceCenterAccountNotFoundException(Long id) {
-        super("exception.cmdb.resourcecenteraccountnotfoundexception.1", id);
+        super("exception.cmdb.resourcecenteraccountnotfoundexception.b", id);
     }
 
     public ResourceCenterAccountNotFoundException(String name) {
-        super("exception.cmdb.resourcecenteraccountnotfoundexception.1", name);
+        super("exception.cmdb.resourcecenteraccountnotfoundexception.b", name);
     }
 
     public ResourceCenterAccountNotFoundException() {
-        super("exception.cmdb.resourcecenteraccountnotfoundexception.2");
+        super("exception.cmdb.resourcecenteraccountnotfoundexception.c");
     }
 
 }

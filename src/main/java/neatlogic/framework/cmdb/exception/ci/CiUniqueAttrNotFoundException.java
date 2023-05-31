@@ -27,15 +27,15 @@ public class CiUniqueAttrNotFoundException extends ApiRuntimeException {
     private static final long serialVersionUID = 6853526342242823864L;
 
     public CiUniqueAttrNotFoundException(String ciName) {
-        super("exception.cmdb.ciuniqueattrnotfoundexception.1", ciName);
+        super("exception.cmdb.ciuniqueattrnotfoundexception.b", ciName);
     }
 
     public CiUniqueAttrNotFoundException(CiVo ciVo, AttrVo attrVo) {
-        super("exception.cmdb.ciuniqueattrnotfoundexception.2", ciVo.getLabel(), ciVo.getName(), attrVo.getLabel(), attrVo.getName());
+        super("exception.cmdb.ciuniqueattrnotfoundexception.c", ciVo.getLabel(), ciVo.getName(), attrVo.getLabel(), attrVo.getName());
     }
 
     public CiUniqueAttrNotFoundException(AttrVo attrVo) {
-        super("exception.cmdb.ciuniqueattrnotfoundexception.3", attrVo.getLabel(), attrVo.getName());
+        super("exception.cmdb.ciuniqueattrnotfoundexception.d", attrVo.getLabel(), attrVo.getName());
     }
 
     public CiUniqueAttrNotFoundException(Long ciId, Long attrId) {
@@ -43,6 +43,6 @@ public class CiUniqueAttrNotFoundException extends ApiRuntimeException {
     }
 
     public CiUniqueAttrNotFoundException(SyncCiCollectionVo syncCiCollectionVo, CiVo ciVo, String key, JSONObject dataObj) {
-        super("exception.cmdb.ciuniqueattrnotfoundexception.5", syncCiCollectionVo.getCollectionName(), ciVo.getLabel(), ciVo.getName(), key, dataObj.toString());
+        super("exception.cmdb.ciuniqueattrnotfoundexception.f", syncCiCollectionVo.getCollectionName(), ciVo.getLabel(), ciVo.getName(), key, dataObj.toString());
     }
 }

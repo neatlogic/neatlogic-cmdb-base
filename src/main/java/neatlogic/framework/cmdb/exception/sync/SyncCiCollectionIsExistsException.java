@@ -21,11 +21,11 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class SyncCiCollectionIsExistsException extends ApiRuntimeException {
     public SyncCiCollectionIsExistsException(SyncCiCollectionVo syncCiCollectionVo) {
-        super("exception.cmdb.synccicollectionisexistsexception", syncCiCollectionVo.getCollectionName(), syncCiCollectionVo.getCiLabel());
+        super("exception.cmdb.synccicollectionisexistsexception.a", syncCiCollectionVo.getCollectionName(), syncCiCollectionVo.getCiLabel());
     }
 
     public SyncCiCollectionIsExistsException(SyncCiCollectionVo syncCiCollectionVo, boolean isHasParentKey) {
-        super("exception.cmdb.synccicollectionisexistsexception.1", syncCiCollectionVo.getCollectionName(), syncCiCollectionVo.getCiLabel(), syncCiCollectionVo.getParentKey());
+        super("exception.cmdb.synccicollectionisexistsexception.b", syncCiCollectionVo.getCollectionName(), syncCiCollectionVo.getCiLabel(), syncCiCollectionVo.getParentKey());
     }
 
 }

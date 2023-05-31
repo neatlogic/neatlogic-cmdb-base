@@ -23,15 +23,15 @@ public class ResourceCenterConfigIrregularException extends ApiRuntimeException 
     private static final long serialVersionUID = 7793373552474922744L;
 
     public ResourceCenterConfigIrregularException(Exception ex) {
-        super("exception.cmdb.resourcecenterconfigirregularexception.1", ex.getMessage());
+        super("exception.cmdb.resourcecenterconfigirregularexception.b", ex.getMessage());
     }
 
     public ResourceCenterConfigIrregularException(String resourceEntityName, String nodeName, String attrName) {
-        super("exception.cmdb.resourcecenterconfigirregularexception.2", resourceEntityName, nodeName, attrName);
+        super("exception.cmdb.resourcecenterconfigirregularexception.c", resourceEntityName, nodeName, attrName);
     }
 
     public ResourceCenterConfigIrregularException(String resourceEntityName, JoinType joinType, String attrName) {
-        super("exception.cmdb.resourcecenterconfigirregularexception.3", resourceEntityName, joinType.getValue(), attrName);
+        super("exception.cmdb.resourcecenterconfigirregularexception.d", resourceEntityName, joinType.getValue(), attrName);
     }
 
     public ResourceCenterConfigIrregularException(String resourceEntityName, String nodeName, String fieldName, String attrName) {
@@ -39,6 +39,6 @@ public class ResourceCenterConfigIrregularException extends ApiRuntimeException 
     }
 
     public ResourceCenterConfigIrregularException(String nodeName, String attrName) {
-        super("exception.cmdb.resourcecenterconfigirregularexception.5", nodeName, attrName);
+        super("exception.cmdb.resourcecenterconfigirregularexception.f", nodeName, attrName);
     }
 }
