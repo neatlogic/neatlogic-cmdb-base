@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiNameIsBlankException extends ApiRuntimeException {
     public CiNameIsBlankException() {
-        super("exception.cmdb.cinameisblankexception");
+        super("模型唯一标识为空");
     }
 }

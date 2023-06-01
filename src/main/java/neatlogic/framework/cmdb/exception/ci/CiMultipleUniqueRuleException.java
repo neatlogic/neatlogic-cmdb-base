@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiMultipleUniqueRuleException extends ApiRuntimeException {
     public CiMultipleUniqueRuleException(CiVo ciVo) {
-        super("exception.cmdb.cimultipleuniqueruleexception", ciVo.getLabel(), ciVo.getName());
+        super("模型“{0}({1})”唯一规则包含了多个属性，引用属性关联单值不支持这种配置方式", ciVo.getLabel(), ciVo.getName());
     }
 }

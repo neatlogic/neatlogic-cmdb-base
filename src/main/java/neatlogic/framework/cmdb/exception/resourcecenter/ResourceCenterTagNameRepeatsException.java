@@ -23,6 +23,6 @@ public class ResourceCenterTagNameRepeatsException extends ApiRuntimeException {
     private static final long serialVersionUID = -5055038535330898128L;
 
     public ResourceCenterTagNameRepeatsException(String name) {
-        super("exception.cmdb.resourcecentertagnamerepeatsexception", name);
+        super("标签：“{0}”已存在", name);
     }
 }

@@ -25,12 +25,12 @@ public class CIENTITY_ALERT_MODIFY extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "auth.cmdb.cientityalertmodify.name";
+        return "配置项告警管理权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "auth.cmdb.cientityalertmodify.introduction";
+        return "更新配置项告警状态";
     }
 
     @Override

@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class ValidatorNotFoundException extends ApiRuntimeException {
     public ValidatorNotFoundException(Long validatorId) {
-        super("exception.cmdb.validatornotfoundexception", validatorId);
+        super("验证规则“{0}”不存在", validatorId);
     }
 }

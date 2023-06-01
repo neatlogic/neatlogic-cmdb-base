@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 @SuppressWarnings("serial")
 public class AttrExpressionInvalidedException extends ApiRuntimeException {
     public AttrExpressionInvalidedException() {
-        super("exception.cmdb.attrexpressioninvalidedexception");
+        super("当前属性是表达式类型，表达式不能为空");
     }
 }

@@ -24,6 +24,6 @@ import java.util.stream.Collectors;
 
 public class CiHasBeenExtendedException extends ApiRuntimeException {
     public CiHasBeenExtendedException(String ciLabel, List<CiVo> childCiList) {
-        super("exception.cmdb.cihasbeenextendedexception", ciLabel, childCiList.stream().map(CiVo::getLabel).collect(Collectors.joining(",")));
+        super("配置项模型：{0}已被以下模型继承：{1}", ciLabel, childCiList.stream().map(CiVo::getLabel).collect(Collectors.joining(",")));
     }
 }

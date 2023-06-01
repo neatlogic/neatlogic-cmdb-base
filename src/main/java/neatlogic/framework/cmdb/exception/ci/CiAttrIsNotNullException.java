@@ -24,6 +24,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiAttrIsNotNullException extends ApiRuntimeException {
     public CiAttrIsNotNullException() {
-        super("exception.cmdb.ciattrisnotnullexception");
+        super("模型属性不能为空");
     }
 }

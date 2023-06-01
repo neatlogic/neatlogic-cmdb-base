@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiNameExpressionAttrTypeNotSupportedException extends ApiRuntimeException {
     public CiNameExpressionAttrTypeNotSupportedException(String attrName) {
-        super("exception.cmdb.cinameexpressionattrtypenotsupportedexception", attrName);
+        super("名字表达式包含了非法类型属性：{0}", attrName);
     }
 }

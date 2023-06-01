@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class VirtualCiSettingFileNotFoundException extends ApiRuntimeException {
     public VirtualCiSettingFileNotFoundException() {
-        super("exception.cmdb.virtualcisettingfilenotfoundexception");
+        super("虚拟模型配置文件不能为空");
     }
 }

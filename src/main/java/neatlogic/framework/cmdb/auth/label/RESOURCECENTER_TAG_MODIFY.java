@@ -25,12 +25,12 @@ public class RESOURCECENTER_TAG_MODIFY extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "auth.cmdb.resourcecentertagmodify.name";
+        return "资源中心-标签管理权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "auth.cmdb.resourcecentertagmodify.introduction";
+        return "对资源中心的标签进行新增、修改、删除、编辑操作";
     }
 
     @Override

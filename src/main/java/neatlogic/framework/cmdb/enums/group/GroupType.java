@@ -19,8 +19,8 @@ package neatlogic.framework.cmdb.enums.group;
 import neatlogic.framework.util.I18nUtils;
 
 public enum GroupType {
-    MAINTAIN("maintain", "enum.cmdb.grouptype.maintain"),
-    READONLY("readonly", "common.read-only");
+    MAINTAIN("maintain", "维护"),
+    READONLY("readonly", "只读");
 
     private final String value;
     private final String text;

@@ -25,12 +25,12 @@ public class ALERTLEVEL_MODIFY extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "auth.cmdb.alertlevelmodify.name";
+        return "配置项告警级别管理";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "auth.cmdb.alertlevelmodify.introduction";
+        return "对配置项告警级别进行添加、修改和删除";
     }
 
     @Override

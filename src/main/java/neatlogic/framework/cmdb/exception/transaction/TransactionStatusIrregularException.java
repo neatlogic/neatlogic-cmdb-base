@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class TransactionStatusIrregularException extends ApiRuntimeException {
     public TransactionStatusIrregularException(TransactionStatus status) {
-        super("exception.cmdb.transactionstatusirregularexception", status.getText());
+        super("当前事务：{0}", status.getText());
     }
 }

@@ -24,18 +24,18 @@ import neatlogic.framework.util.I18nUtils;
 import java.util.List;
 
 public enum PropHandlerType implements IEnum {
-    TEXT("text", "common.textbox", "ts-code"),
-    MTEXT("mtext", "enum.cmdb.prophandlertype.mtext", "ts-bars"),
-    DATE("date", "common.date", "ts-calendar"),
-    TEXTAREA("textarea", "common.textarea", "ts-textmodule"),
-    SELECT("select", "common.select", "ts-list"),
-    CHECKBOX("checkbox", "common.checkbox", "ts-check-square-o"),
-    RADIO("radio", "common.radiobutton", "ts-round-s"),
-    FILE("file", "common.attachment", "ts-file"),
-    URL("url", "common.link", "ts-link"),
-    PASSWORD("password", "common.password", "ts-eye-close"),
+    TEXT("text", "文本框", "ts-code"),
+    MTEXT("mtext", "多文本框", "ts-bars"),
+    DATE("date", "日期", "ts-calendar"),
+    TEXTAREA("textarea", "文本域", "ts-textmodule"),
+    SELECT("select", "下拉框", "ts-list"),
+    CHECKBOX("checkbox", "复选框", "ts-check-square-o"),
+    RADIO("radio", "单选框", "ts-round-s"),
+    FILE("file", "附件", "ts-file"),
+    URL("url", "链接", "ts-link"),
+    PASSWORD("password", "密码", "ts-eye-close"),
     /*USER("user", "用户", "ts-user"), TEAM("team", "组织", "ts-team"),*/
-    TABLE("table", "common.table", "ts-tablechart");
+    TABLE("table", "表格", "ts-tablechart");
 
     private String type;
     private String text;

@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class InitiativeSyncCiCollectionNotFoundException extends ApiRuntimeException {
     public InitiativeSyncCiCollectionNotFoundException(String collectName) {
-        super("exception.cmdb.initiativesynccicollectionnotfoundexception", collectName);
+        super("集合“{0}”还没有主动采集模式的映射配置，请先配置", collectName);
     }
 }

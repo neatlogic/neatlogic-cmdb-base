@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class SyncCiCollectionNotFoundException extends ApiRuntimeException {
     public SyncCiCollectionNotFoundException(Long id) {
-        super("exception.cmdb.synccicollectionnotfoundexception", id);
+        super("同步配置“{0}”不存在", id);
     }
 }

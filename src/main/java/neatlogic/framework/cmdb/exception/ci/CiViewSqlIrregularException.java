@@ -22,10 +22,10 @@ public class CiViewSqlIrregularException extends ApiRuntimeException {
     private static final long serialVersionUID = -7400715176683665370L;
 
     public CiViewSqlIrregularException(Exception msg) {
-        super("exception.cmdb.civiewsqlirregularexception.b", msg.getMessage());
+        super("虚拟模型SQL语句不是合法的SELECT语句：{0}", msg.getMessage());
     }
 
     public CiViewSqlIrregularException() {
-        super("exception.configurationfileisnotavalidxmlfile");
+        super("配置文件不是合法的XML文件");
     }
 }

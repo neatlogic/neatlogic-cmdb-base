@@ -21,7 +21,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiSyncIsDoingException extends ApiRuntimeException {
     public CiSyncIsDoingException(CiVo ciVo) {
-        super("exception.cmdb.cisyncisdoingexception", ciVo.getLabel(), ciVo.getName());
+        super("模型{0}({1})正在同步，请等待同步结束再发起新的同步作业。", ciVo.getLabel(), ciVo.getName());
     }
 
 }

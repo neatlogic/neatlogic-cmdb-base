@@ -25,6 +25,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 public class DslSyntaxIrregularDecimalException extends ApiRuntimeException {
 
     public DslSyntaxIrregularDecimalException(String str) {
-        super("exception.cmdb.dslsyntaxirregulardecimalexception", str);
+        super("值“{0}”不是合法的小数类型", str);
     }
 }

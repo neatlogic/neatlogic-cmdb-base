@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class DatetimeAttrFormatIrregularException extends ApiRuntimeException {
     public DatetimeAttrFormatIrregularException(AttrVo attrVo, String value, String format) {
-        super("exception.cmdb.datetimeattrformatirregularexception", attrVo.getLabel(), attrVo.getName(), value, format);
+        super("属性“{0}({1})”的值“{2}”不符合格式“{3}”", attrVo.getLabel(), attrVo.getName(), value, format);
     }
 }

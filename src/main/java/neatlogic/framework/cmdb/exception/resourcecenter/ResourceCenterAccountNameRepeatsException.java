@@ -23,6 +23,6 @@ public class ResourceCenterAccountNameRepeatsException extends ApiRuntimeExcepti
     private static final long serialVersionUID = -5603907717678572757L;
 
     public ResourceCenterAccountNameRepeatsException(String name) {
-        super("exception.cmdb.resourcecenteraccountnamerepeatsexception", name);
+        super("账号：“{0}”已存在", name);
     }
 }

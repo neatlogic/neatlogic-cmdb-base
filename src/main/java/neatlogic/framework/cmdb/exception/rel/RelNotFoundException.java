@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class RelNotFoundException extends ApiRuntimeException {
     public RelNotFoundException(Long relId) {
-        super("exception.cmdb.relnotfoundexception", relId);
+        super("配置项模型关系“{0}”不存在", relId);
     }
 }

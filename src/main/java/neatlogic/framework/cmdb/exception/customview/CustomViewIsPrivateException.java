@@ -21,7 +21,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CustomViewIsPrivateException extends ApiRuntimeException {
     public CustomViewIsPrivateException(CustomViewVo customViewVo) {
-        super("exception.cmdb.customviewisprivateexception", customViewVo.getName());
+        super("自定义视图：{0}是私有视图", customViewVo.getName());
     }
 
 }

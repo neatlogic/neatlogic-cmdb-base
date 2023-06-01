@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiNameExpressionHasNotExistsAttrException extends ApiRuntimeException {
     public CiNameExpressionHasNotExistsAttrException(String attrName) {
-        super("exception.cmdb.cinameexpressionhasnotexistsattrexception", attrName);
+        super("名字表达式包含不存在的属性：{0}", attrName);
     }
 }

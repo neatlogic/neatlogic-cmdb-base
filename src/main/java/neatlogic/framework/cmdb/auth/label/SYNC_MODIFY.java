@@ -25,12 +25,12 @@ public class SYNC_MODIFY extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "auth.cmdb.syncmodify.name";
+        return "配置项模型自动采集映射管理权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "auth.cmdb.syncmodify.introduction";
+        return "管理配置项模型的属性或关系与采集数据之间的映射关系，配置了映射关系后才能使用自动采集功能。";
     }
 
     @Override

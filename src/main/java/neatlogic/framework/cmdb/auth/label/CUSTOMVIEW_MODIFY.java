@@ -25,12 +25,12 @@ public class CUSTOMVIEW_MODIFY extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "auth.cmdb.customviewmodify.name";
+        return "公共自定义视图管理权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "auth.cmdb.customviewmodify.introduction";
+        return "对公共视图进行添加、修改和删除";
     }
 
     @Override

@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class SyncMappingNotFoundException extends ApiRuntimeException {
     public SyncMappingNotFoundException() {
-        super("exception.cmdb.syncmappingnotfoundexception");
+        super("映射关系不能为空");
     }
 }

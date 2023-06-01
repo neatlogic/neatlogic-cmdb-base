@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 @SuppressWarnings("serial")
 public class AttrNameRepeatException extends ApiRuntimeException {
     public AttrNameRepeatException(String name) {
-        super("exception.cmdb.attrnamerepeatexception", name);
+        super("配置项模型属性：{0}已存在", name);
     }
 }

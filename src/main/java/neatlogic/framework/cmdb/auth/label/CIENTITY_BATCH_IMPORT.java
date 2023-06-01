@@ -22,12 +22,12 @@ public class CIENTITY_BATCH_IMPORT extends AuthBase {
 
 	@Override
 	public String getAuthDisplayName() {
-		return "auth.cmdb.cientitybatchimport.name";
+		return "批量导入配置项权限";
 	}
 
 	@Override
 	public String getAuthIntroduction() {
-		return "auth.cmdb.cientitybatchimport.introduction";
+		return "批量导入配置项";
 	}
 
 	@Override

@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiIsVirtualException extends ApiRuntimeException {
     public CiIsVirtualException(String ciName) {
-        super("exception.cmdb.ciisvirtualexception", ciName);
+        super("配置项模型：{0}是虚拟模型，不能添加数据。", ciName);
     }
 }

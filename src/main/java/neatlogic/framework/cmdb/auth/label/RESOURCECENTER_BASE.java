@@ -25,12 +25,12 @@ public class RESOURCECENTER_BASE extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "auth.cmdb.resourcecenterbase.name";
+        return "资源中心-清单权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "auth.cmdb.resourcecenterbase.introduction";
+        return "对资源中心应用清单、资产清单的权限";
     }
 
     @Override

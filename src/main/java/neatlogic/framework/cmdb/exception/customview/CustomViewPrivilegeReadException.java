@@ -24,6 +24,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CustomViewPrivilegeReadException extends ApiRuntimeException {
     public CustomViewPrivilegeReadException(){
-        super("exception.cmdb.customviewprivilegereadexception");
+        super("您没有权限查看{0}公共数据视图");
     }
 }

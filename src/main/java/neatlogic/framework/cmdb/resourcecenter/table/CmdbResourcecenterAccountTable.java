@@ -17,8 +17,8 @@ public class CmdbResourcecenterAccountTable implements ISqlTable {
     }
 
     public enum FieldEnum {
-        PROTOCOL_ID("protocol_id", "enum.cmdb.fieldenum.protocol_id","protocolId"),
-        ID("id", "enum.cmdb.fieldenum.account_id","id")
+        PROTOCOL_ID("protocol_id", "协议id","protocolId"),
+        ID("id", "帐号id","id")
         ;
         private final String name;
         private final String text;

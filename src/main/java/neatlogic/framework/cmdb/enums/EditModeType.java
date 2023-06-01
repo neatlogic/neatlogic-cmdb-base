@@ -19,8 +19,8 @@ package neatlogic.framework.cmdb.enums;
 import neatlogic.framework.util.I18nUtils;
 
 public enum EditModeType {
-    GLOBAL("global", "enum.cmdb.editmodetype.global"), //不给属性代表删除
-    PARTIAL("partial", "enum.cmdb.editmodetype.partial"); //不给属性则不改
+    GLOBAL("global", "全局模式"), //不给属性代表删除
+    PARTIAL("partial", "局部模式"); //不给属性则不改
 
     private final String value;
     private final String text;

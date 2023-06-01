@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiViewSqlFieldNotExistsException extends ApiRuntimeException {
     public CiViewSqlFieldNotExistsException(String field) {
-        super("exception.cmdb.civiewsqlfieldnotexistsexception", field);
+        super("虚拟模型SQL语句缺少字段：{0}", field);
     }
 }

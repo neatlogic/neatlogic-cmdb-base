@@ -23,6 +23,6 @@ import java.util.List;
 
 public class ValidatorIsInUsedException extends ApiRuntimeException {
     public ValidatorIsInUsedException(List<AttrVo> attrList) {
-        super("exception.cmdb.validatorisinusedexception",attrList.size());
+        super("当前校验规则已被{0}个属性使用，请先删除",attrList.size());
     }
 }

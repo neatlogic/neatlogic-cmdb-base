@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class DeleteAttrFromSchemaException extends ApiRuntimeException {
     public DeleteAttrFromSchemaException(String attrName) {
-        super("exception.cmdb.deleteattrfromschemaexception", attrName);
+        super("无法将属性：{0} 从数据表中删除，具体错误请查看系统日志", attrName);
     }
 }

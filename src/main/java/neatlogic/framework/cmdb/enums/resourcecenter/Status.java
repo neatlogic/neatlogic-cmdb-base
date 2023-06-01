@@ -19,9 +19,9 @@ package neatlogic.framework.cmdb.enums.resourcecenter;
 import neatlogic.framework.util.I18nUtils;
 
 public enum Status {
-    ERROR("error", "common.exception"),
-    PENDING("pending", "common.ready"),
-    READY("ready", "enum.cmdb.status.ready");
+    ERROR("error", "异常"),
+    PENDING("pending", "已就绪"),
+    READY("ready", "可使用");
 
     private final String status;
     private final String text;

@@ -23,22 +23,22 @@ public class ResourceCenterConfigIrregularException extends ApiRuntimeException 
     private static final long serialVersionUID = 7793373552474922744L;
 
     public ResourceCenterConfigIrregularException(Exception ex) {
-        super("exception.cmdb.resourcecenterconfigirregularexception.b", ex.getMessage());
+        super("资源中心配置文件内容不合法：{0}", ex.getMessage());
     }
 
     public ResourceCenterConfigIrregularException(String resourceEntityName, String nodeName, String attrName) {
-        super("exception.cmdb.resourcecenterconfigirregularexception.c", resourceEntityName, nodeName, attrName);
+        super("资源节点：{0}缺少field为：{2}的{1}节点", resourceEntityName, nodeName, attrName);
     }
 
     public ResourceCenterConfigIrregularException(String resourceEntityName, JoinType joinType, String attrName) {
-        super("exception.cmdb.resourcecenterconfigirregularexception.d", resourceEntityName, joinType.getValue(), attrName);
+        super("资源节点：{0}的{1}节点缺少：{2}属性", resourceEntityName, joinType.getValue(), attrName);
     }
 
     public ResourceCenterConfigIrregularException(String resourceEntityName, String nodeName, String fieldName, String attrName) {
-        super("exception.cmdb.resourcecenterconfigirregularexception.4", resourceEntityName, nodeName, fieldName, attrName);
+        super("资源节点：{0}中field为：{2}的{1}节点缺少属性：{3}", resourceEntityName, nodeName, fieldName, attrName);
     }
 
     public ResourceCenterConfigIrregularException(String nodeName, String attrName) {
-        super("exception.cmdb.resourcecenterconfigirregularexception.f", nodeName, attrName);
+        super("资源节点：{0}缺少属性：{1}", nodeName, attrName);
     }
 }

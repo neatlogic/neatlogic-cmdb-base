@@ -21,7 +21,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 @SuppressWarnings("serial")
 public class PropNotFoundException extends ApiRuntimeException {
     public PropNotFoundException(Long propId) {
-        super("exception.cmdb.propnotfoundexception", propId);
+        super("属性定义：{0} 不存在", propId);
     }
 
 }

@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum LegalValidType implements IEnum<ValueTextVo> {
-    CI("ci", "enum.cmdb.legalvalidtype.ci"), CUSTOM("custom", "enum.cmdb.legalvalidtype.custom");
+    CI("ci", "模型规则"), CUSTOM("custom", "自定义规则");
     private final String type;
     private final String text;
 

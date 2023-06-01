@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 @SuppressWarnings("serial")
 public class CiLabelIsExistsException extends ApiRuntimeException {
     public CiLabelIsExistsException(String label) {
-        super("exception.cmdb.cilabelisexistsexception", label);
+        super("模型名称：{0} 已存在", label);
     }
 }

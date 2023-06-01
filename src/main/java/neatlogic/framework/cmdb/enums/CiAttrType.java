@@ -19,9 +19,9 @@ package neatlogic.framework.cmdb.enums;
 import neatlogic.framework.util.I18nUtils;
 
 public enum CiAttrType {
-    SIMPLE("simple", "enum.cmdb.ciattrtype.simple"),
-    COMPLEX("complex", "enum.cmdb.ciattrtype.complex"),
-    CUSTOM("custom", "common.customprop");
+    SIMPLE("simple", "简单属性"),
+    COMPLEX("complex", "复杂属性"),
+    CUSTOM("custom", "自定义属性");
 
     private final String value;
     private final String text;

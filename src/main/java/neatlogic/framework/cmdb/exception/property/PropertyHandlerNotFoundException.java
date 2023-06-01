@@ -6,7 +6,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 public class PropertyHandlerNotFoundException extends ApiRuntimeException {
 
     public PropertyHandlerNotFoundException(String msg) {
-        super("exception.cmdb.propertyhandlernotfoundexception", msg);
+        super("属性类型：{0} 不存在", msg);
     }
 
 }

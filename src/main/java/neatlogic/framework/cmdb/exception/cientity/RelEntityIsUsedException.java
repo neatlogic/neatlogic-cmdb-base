@@ -25,10 +25,10 @@ public class RelEntityIsUsedException extends ApiRuntimeException {
     private static final long serialVersionUID = -4949859498621326901L;
 
     public RelEntityIsUsedException(RelDirectionType direction, RelVo relVo, RelEntityVo relEntityVo) {
-        super("exception.cmdb.relentityisusedexception.b", (direction == RelDirectionType.FROM ? relVo.getToLabel() : relVo.getFromLabel()), (direction == RelDirectionType.FROM ? relEntityVo.getToCiEntityName() : relEntityVo.getFromCiEntityName()));
+        super("关系“{0}”是唯一关系，它的值“{1}”已被其他配置项引用，请修改", (direction == RelDirectionType.FROM ? relVo.getToLabel() : relVo.getFromLabel()), (direction == RelDirectionType.FROM ? relEntityVo.getToCiEntityName() : relEntityVo.getFromCiEntityName()));
     }
 
     public RelEntityIsUsedException(RelDirectionType direction, RelVo relVo, Boolean other) {
-        super("exception.cmdb.relentityisusedexception.c", (direction == RelDirectionType.FROM ? relVo.getToLabel() : relVo.getFromLabel()));
+        super("当前模型在关系“{0}”中是唯一引用，因此不能关联多个配置项，请修改", (direction == RelDirectionType.FROM ? relVo.getToLabel() : relVo.getFromLabel()));
     }
 }

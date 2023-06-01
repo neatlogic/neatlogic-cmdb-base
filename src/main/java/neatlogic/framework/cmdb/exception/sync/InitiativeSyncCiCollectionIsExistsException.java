@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class InitiativeSyncCiCollectionIsExistsException extends ApiRuntimeException {
     public InitiativeSyncCiCollectionIsExistsException(String name) {
-        super("exception.cmdb.initiativesynccicollectionisexistsexception", name);
+        super("集合“{0}”已配置了主动采集配置项模型，不能重复配置", name);
     }
 }

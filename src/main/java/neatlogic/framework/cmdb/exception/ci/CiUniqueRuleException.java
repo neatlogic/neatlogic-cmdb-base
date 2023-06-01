@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiUniqueRuleException extends ApiRuntimeException {
     public CiUniqueRuleException(CiVo ciVo) {
-        super("exception.cmdb.ciuniqueruleexception", ciVo.getLabel(), ciVo.getName());
+        super("模型“{0}({1})”存在拥有相同唯一规则属性的配置项", ciVo.getLabel(), ciVo.getName());
     }
 }

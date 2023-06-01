@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class ResourceCenterConfigNotFoundException extends ApiRuntimeException {
     public ResourceCenterConfigNotFoundException() {
-        super("exception.cmdb.resourcecenterconfignotfoundexception");
+        super("找不到资源中心配置信息");
     }
 }

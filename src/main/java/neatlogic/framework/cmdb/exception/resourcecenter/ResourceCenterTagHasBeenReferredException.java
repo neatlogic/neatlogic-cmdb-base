@@ -23,6 +23,6 @@ public class ResourceCenterTagHasBeenReferredException extends ApiRuntimeExcepti
     private static final long serialVersionUID = -1683484225455319988L;
 
     public ResourceCenterTagHasBeenReferredException(String name) {
-        super("exception.cmdb.resourcecentertaghasbeenreferredexception", name);
+        super("标签：“{0}”已被引用", name);
     }
 }

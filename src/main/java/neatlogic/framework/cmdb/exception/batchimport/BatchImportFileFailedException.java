@@ -24,6 +24,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class BatchImportFileFailedException extends ApiRuntimeException {
     public BatchImportFileFailedException(String message) {
-        super("exception.cmdb.batchimportfilefailedexception", message);
+        super("读取文件失败，{0}", message);
     }
 }

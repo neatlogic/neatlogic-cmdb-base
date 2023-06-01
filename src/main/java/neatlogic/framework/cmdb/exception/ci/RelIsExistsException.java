@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class RelIsExistsException extends ApiRuntimeException {
     public RelIsExistsException(String fromName, String toName) {
-        super("exception.cmdb.relisexistsexception", fromName, toName);
+        super("关系“{0}”->“{1}”已存在", fromName, toName);
     }
 }

@@ -24,6 +24,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class BatchImportUuidLengthIsInvalidException extends ApiRuntimeException {
     public BatchImportUuidLengthIsInvalidException() {
-        super("exception.cmdb.batchimportuuidlengthisinvalidexception");
+        super("uuid应该是一个由英文字母和数字组成的长度为32的字符串");
     }
 }

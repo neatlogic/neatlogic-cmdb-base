@@ -27,6 +27,6 @@ public class ResourceCenterResourceHasRepeatAccountException extends ApiRuntimeE
     private static final long serialVersionUID = 6934793951984585148L;
 
     public ResourceCenterResourceHasRepeatAccountException(String resourceId, String account, String protocol) {
-        super("exception.cmdb.resourcecenterresourcehasrepeataccountexception", resourceId, protocol, account);
+        super("资源“{0}”存在多个 协议为“{2}”用户名为“{1}”的账号,请联系管理员", resourceId, protocol, account);
     }
 }

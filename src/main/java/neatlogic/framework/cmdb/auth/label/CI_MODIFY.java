@@ -25,12 +25,12 @@ public class CI_MODIFY extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "auth.cmdb.cimodify.name";
+        return "配置项模型管理权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "auth.cmdb.cimodify.introduction";
+        return "对配置项模型进行添加、修改和删除";
     }
 
     @Override

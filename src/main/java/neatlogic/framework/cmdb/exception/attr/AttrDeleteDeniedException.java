@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 @SuppressWarnings("serial")
 public class AttrDeleteDeniedException extends ApiRuntimeException {
     public AttrDeleteDeniedException() {
-        super("exception.cmdb.attrdeletedeniedexception");
+        super("内部属性不允许删除");
     }
 }

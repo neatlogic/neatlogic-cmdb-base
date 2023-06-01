@@ -21,7 +21,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CustomViewAttrNameIsExistsException extends ApiRuntimeException {
     public CustomViewAttrNameIsExistsException(CustomViewAttrVo customViewAttrVo) {
-        super("exception.cmdb.customviewattrnameisexistsexception" , customViewAttrVo.getName());
+        super("属性唯一标识“{0}”已存在" , customViewAttrVo.getName());
     }
 
 }

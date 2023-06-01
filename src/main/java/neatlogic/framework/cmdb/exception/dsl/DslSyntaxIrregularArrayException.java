@@ -24,7 +24,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class DslSyntaxIrregularArrayException extends ApiRuntimeException {
     public DslSyntaxIrregularArrayException() {
-        super("exception.cmdb.dslsyntaxirregulararrayexception");
+        super("数组比较只能使用include或exclude运算符");
     }
 }
 

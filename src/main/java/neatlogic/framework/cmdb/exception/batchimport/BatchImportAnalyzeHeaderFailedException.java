@@ -24,6 +24,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class BatchImportAnalyzeHeaderFailedException extends ApiRuntimeException {
     public BatchImportAnalyzeHeaderFailedException(String message) {
-        super("exception.cmdb.batchimportanalyzeheaderfailedexception", message);
+        super("分析表头失败：{0}", message);
     }
 }

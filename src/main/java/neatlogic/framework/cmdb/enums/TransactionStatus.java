@@ -24,10 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum TransactionStatus implements IEnum<ValueTextVo> {
-    COMMITED("commited", "enum.cmdb.transactionstatus.commited"),
-    UNCOMMIT("uncommit", "common.draftdesc"),
-    RECOVER("recover", "enum.cmdb.transactionstatus.recover"),
-    EXPIRED("expired", "enum.cmdb.transactionstatus.expired");
+    COMMITED("commited", "已提交"),
+    UNCOMMIT("uncommit", "未提交"),
+    RECOVER("recover", "已恢复"),
+    EXPIRED("expired", "已失效");
 
     private final String value;
     private final String text;

@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiParentCanNotBeChangedException extends ApiRuntimeException {
     public CiParentCanNotBeChangedException(String ciName, int ciEntityCount) {
-        super("exception.cmdb.ciparentcannotbechangedexception", ciName, ciEntityCount);
+        super("模型“{0}”及其子模型共包含{1}条配置项数据，删除后才能修改继承关系", ciName, ciEntityCount);
     }
 }

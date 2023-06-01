@@ -26,10 +26,10 @@ public class ResourceCenterTagNotFoundException extends ApiRuntimeException {
     private static final long serialVersionUID = 3633279262424771861L;
 
     public ResourceCenterTagNotFoundException(Long id) {
-        super("exception.cmdb.resourcecentertagnotfoundexception", id);
+        super("标签：“{0}”不存在", id);
     }
 
     public ResourceCenterTagNotFoundException(List<Long> idList) {
-        super("exception.cmdb.resourcecentertagnotfoundexception", String.join(",", CollectionUtils.collect(idList, String::valueOf)));
+        super("标签：“{0}”不存在", String.join(",", CollectionUtils.collect(idList, String::valueOf)));
     }
 }

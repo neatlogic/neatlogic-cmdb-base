@@ -26,6 +26,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class GraphPrivilegeSaveException extends ApiRuntimeException {
     public GraphPrivilegeSaveException() {
-        super("exception.cmdb.graphprivilegesaveexception");
+        super("您没有权限保存公共拓扑视图");
     }
 }

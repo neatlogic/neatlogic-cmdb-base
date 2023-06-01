@@ -3,7 +3,7 @@ package neatlogic.framework.cmdb.enums.resourcecenter.condition;
 import neatlogic.framework.util.I18nUtils;
 
 public enum ConditionConfigType {
-  DEFAULT("default","common.default");
+  DEFAULT("default","默认");
 
   private final String value;
   private final String name;

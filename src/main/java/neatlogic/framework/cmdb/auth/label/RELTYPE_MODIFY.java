@@ -25,12 +25,12 @@ public class RELTYPE_MODIFY extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "auth.cmdb.reltypemodify.name";
+        return "关系类型修改权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "auth.cmdb.reltypemodify.introduction";
+        return "对关系类型进行添加、修改和删除";
     }
 
     @Override

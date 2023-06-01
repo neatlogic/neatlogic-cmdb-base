@@ -25,12 +25,12 @@ public class RESOURCECENTER_ACCOUNT_MODIFY extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "auth.cmdb.resourcecenteraccountmodify.name";
+        return "资源中心-账号管理权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "auth.cmdb.resourcecenteraccountmodify.introduction";
+        return "对资源中心的账号进行新增、修改、删除、编辑操作";
     }
 
     @Override

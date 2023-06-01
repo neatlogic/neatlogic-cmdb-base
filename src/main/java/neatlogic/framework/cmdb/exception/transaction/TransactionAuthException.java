@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class TransactionAuthException extends ApiRuntimeException {
     public TransactionAuthException() {
-        super("exception.cmdb.transactionauthexception");
+        super("您没有权限处理当前事务");
     }
 }

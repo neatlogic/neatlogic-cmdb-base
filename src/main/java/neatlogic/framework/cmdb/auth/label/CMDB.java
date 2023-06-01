@@ -22,12 +22,12 @@ public class CMDB extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "auth.cmdb.cmdb.name";
+        return "配置管理基础权限（接口）";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "auth.cmdb.cmdb.introduction";
+        return "拥有此权限可以通过接口访问配置管理一些底层功能，例如消费资源中心等";
     }
 
     @Override

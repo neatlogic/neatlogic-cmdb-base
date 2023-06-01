@@ -6,10 +6,10 @@ public class ResourceCenterAccountProtocolNotFoundException extends ApiRuntimeEx
     private static final long serialVersionUID = -5055024535330898128L;
 
     public ResourceCenterAccountProtocolNotFoundException(Long id) {
-        super("common.pro", id);
+        super("协议：{0}不存在", id);
     }
 
     public ResourceCenterAccountProtocolNotFoundException(String name) {
-        super("common.pro", name);
+        super("协议：{0}不存在", name);
     }
 }

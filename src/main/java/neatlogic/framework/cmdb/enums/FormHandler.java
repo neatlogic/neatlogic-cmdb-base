@@ -20,11 +20,11 @@ import neatlogic.framework.form.constvalue.IFormHandler;
 import neatlogic.framework.util.I18nUtils;
 
 public enum FormHandler implements IFormHandler {
-    FORMCIENTITYMODIFY("formcientitymodify", "enum.cmdb.formhandler.formcientitymodify"),
-    FORMCIENTITYSELECTOR("formcientityselector", "enum.cmdb.formhandler.formcientityselector"),
-    FORMACCOUNTS("formaccounts", "enum.cmdb.formhandler.formaccounts"),
-    FORMPROTOCOL("formprotocol", "enum.cmdb.formhandler.formprotocol"),
-    FORMRESOURECES("formresoureces", "enum.cmdb.formhandler.formresoureces"),
+    FORMCIENTITYMODIFY("formcientitymodify", "配置项修改组件"),
+    FORMCIENTITYSELECTOR("formcientityselector", "配置项选择组件"),
+    FORMACCOUNTS("formaccounts", "帐号组件"),
+    FORMPROTOCOL("formprotocol", "连接协议"),
+    FORMRESOURECES("formresoureces", "执行目标"),
     ;
 
     private final String handler;

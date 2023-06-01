@@ -19,8 +19,8 @@ package neatlogic.framework.cmdb.enums.customview;
 import neatlogic.framework.util.I18nUtils;
 
 public enum SearchMode {
-    NORMAL("normal", "enum.cmdb.searchmode.normal"), GROUP("group", "enum.cmdb.searchmode.group"),
-    DATA("data", "enum.cmdb.searchmode.data");
+    NORMAL("normal", "正常模式"), GROUP("group", "分组模式"),
+    DATA("data", "数据模式");
 
     private final String value;
     private final String text;

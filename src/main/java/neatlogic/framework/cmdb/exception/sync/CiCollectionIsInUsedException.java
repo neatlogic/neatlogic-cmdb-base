@@ -24,6 +24,6 @@ import java.util.stream.Collectors;
 
 public class CiCollectionIsInUsedException extends ApiRuntimeException {
     public CiCollectionIsInUsedException(List<SyncPolicyVo> policyList) {
-        super("exception.cmdb.cicollectionisinusedexception", policyList.stream().map(SyncPolicyVo::getName).collect(Collectors.joining("”,“")));
+        super("当前采集映射已被策略“{0}”使用，请先删除", policyList.stream().map(SyncPolicyVo::getName).collect(Collectors.joining("”,“")));
     }
 }

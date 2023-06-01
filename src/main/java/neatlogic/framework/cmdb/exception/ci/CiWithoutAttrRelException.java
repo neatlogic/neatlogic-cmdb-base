@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiWithoutAttrRelException extends ApiRuntimeException {
     public CiWithoutAttrRelException(String ciName) {
-        super("exception.cmdb.ciwithoutattrrelexception", ciName);
+        super("配置项模型：{0}没有任何属性或关系。", ciName);
     }
 }

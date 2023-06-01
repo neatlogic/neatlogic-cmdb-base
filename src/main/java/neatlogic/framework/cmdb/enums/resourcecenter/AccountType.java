@@ -24,8 +24,8 @@ import neatlogic.framework.util.I18nUtils;
 import java.util.List;
 
 public enum AccountType implements IEnum {
-    PRIVATE("private", "enum.cmdb.accounttype.private"),
-    PUBLIC("public", "enum.cmdb.accounttype.public");
+    PRIVATE("private", "私有类型"),
+    PUBLIC("public", "公有类型");
     private String value;
     private String text;
 

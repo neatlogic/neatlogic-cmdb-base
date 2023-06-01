@@ -25,12 +25,12 @@ public class GROUP_MODIFY extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "auth.cmdb.groupmodify.name";
+        return "团体管理权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "auth.cmdb.groupmodify.introduction";
+        return "对团体进行添加、修改和删除";
     }
 
     @Override

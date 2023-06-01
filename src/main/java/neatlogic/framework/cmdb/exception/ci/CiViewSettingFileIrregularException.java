@@ -22,14 +22,14 @@ public class CiViewSettingFileIrregularException extends ApiRuntimeException {
     private static final long serialVersionUID = 6974123602685866857L;
 
     public CiViewSettingFileIrregularException(Exception ex) {
-        super("exception.cmdb.civiewsettingfileirregularexception.b", ex.getMessage());
+        super("虚拟模型配置文件内容不合法：{0}", ex.getMessage());
     }
 
     public CiViewSettingFileIrregularException(String nodeName) {
-        super("exception.cmdb.civiewsettingfileirregularexception.c", nodeName);
+        super("虚拟模型配置文件缺少节点：{0}", nodeName);
     }
 
     public CiViewSettingFileIrregularException(String nodeName, String attrName) {
-        super("exception.cmdb.civiewsettingfileirregularexception.d", nodeName, attrName);
+        super("虚拟模型配置文件{0}节点缺少属性{1}", nodeName, attrName);
     }
 }

@@ -27,10 +27,10 @@ public class AppModuleNotFoundException extends ApiRuntimeException {
     private static final long serialVersionUID = 8738518138638398100L;
 
     public AppModuleNotFoundException(Long id) {
-        super("exception.cmdb.appmodulenotfoundexception", id);
+        super("应用模块：“{0}”不存在", id);
     }
 
     public AppModuleNotFoundException(String name) {
-        super("exception.cmdb.appmodulenotfoundexception", name);
+        super("应用模块：“{0}”不存在", name);
     }
 }

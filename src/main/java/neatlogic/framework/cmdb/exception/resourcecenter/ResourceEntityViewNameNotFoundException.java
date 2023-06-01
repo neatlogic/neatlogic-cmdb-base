@@ -20,7 +20,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class ResourceEntityViewNameNotFoundException extends ApiRuntimeException {
     public ResourceEntityViewNameNotFoundException() {
-        super("exception.cmdb.resourceentityviewnamenotfoundexception");
+        super("资源实体类缺少annotation ResourceType");
     }
 
 }

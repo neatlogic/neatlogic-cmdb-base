@@ -20,7 +20,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class RelEntityMultipleException extends ApiRuntimeException {
     public RelEntityMultipleException(String label) {
-        super("exception.cmdb.relentitymultipleexception", label);
+        super("关系“{0}”不能存在多个", label);
     }
 
 }

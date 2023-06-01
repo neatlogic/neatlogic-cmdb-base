@@ -20,11 +20,11 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiEntityNotFoundException extends ApiRuntimeException {
     public CiEntityNotFoundException(Long ciEntityId) {
-        super("exception.cmdb.cientitynotfoundexception", ciEntityId);
+        super("配置项：{0} 不存在", ciEntityId);
     }
 
     public CiEntityNotFoundException(String ciEntityName) {
-        super("exception.cmdb.cientitynotfoundexception", ciEntityName);
+        super("配置项：{0} 不存在", ciEntityName);
     }
 
 }

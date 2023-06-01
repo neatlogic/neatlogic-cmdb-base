@@ -19,8 +19,8 @@ package neatlogic.framework.cmdb.enums.sync;
 import neatlogic.framework.util.I18nUtils;
 
 public enum SyncStatus {
-    DOING("doing", "common.synchronizing"),
-    DONE("done", "common.completed");
+    DOING("doing", "同步中"),
+    DONE("done", "已完成");
 
     private final String status;
     private final String text;

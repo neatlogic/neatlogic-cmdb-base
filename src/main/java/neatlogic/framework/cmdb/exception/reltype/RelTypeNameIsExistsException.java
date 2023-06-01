@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 @SuppressWarnings("serial")
 public class RelTypeNameIsExistsException extends ApiRuntimeException {
     public RelTypeNameIsExistsException(String name) {
-        super("exception.cmdb.reltypenameisexistsexception", name);
+        super("关系类型：{0} 已存在", name);
     }
 }

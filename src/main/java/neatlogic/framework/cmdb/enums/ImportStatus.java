@@ -25,9 +25,9 @@ import java.util.List;
 
 public enum ImportStatus implements IEnum {
 
-    RUNNING("running", "enum.cmdb.importstatus.running"),
-    SUCCESS("success", "common.success"),
-    FAILED("failed", "common.fail");
+    RUNNING("running", "导入中"),
+    SUCCESS("success", "成功"),
+    FAILED("failed", "失败");
 
     private final String value;
     private final String text;

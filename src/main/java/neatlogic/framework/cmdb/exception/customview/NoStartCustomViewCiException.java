@@ -20,7 +20,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class NoStartCustomViewCiException extends ApiRuntimeException {
     public NoStartCustomViewCiException() {
-        super("exception.cmdb.nostartcustomviewciexception");
+        super("当前视图缺少起始模型");
     }
 
 }

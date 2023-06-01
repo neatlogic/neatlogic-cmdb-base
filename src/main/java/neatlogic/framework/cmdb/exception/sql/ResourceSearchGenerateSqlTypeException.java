@@ -24,6 +24,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class ResourceSearchGenerateSqlTypeException extends ApiRuntimeException {
     public ResourceSearchGenerateSqlTypeException(String s) {
-        super("exception.cmdb.resourcesearchgeneratesqltypeexception", s);
+        super("还不支持{0}类型数值，请补充逻辑", s);
     }
 }

@@ -19,8 +19,8 @@ package neatlogic.framework.cmdb.enums.sync;
 import neatlogic.framework.util.I18nUtils;
 
 public enum CollectMode {
-    INITIATIVE("initiative", "enum.cmdb.collectmode.initiative"),
-    PASSIVE("passive", "enum.cmdb.collectmode.passive");
+    INITIATIVE("initiative", "主动采集"),
+    PASSIVE("passive", "被动采集");
     private final String type;
     private final String text;
 

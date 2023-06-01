@@ -21,12 +21,12 @@ import neatlogic.framework.auth.core.AuthBase;
 public class TRANSACTION_MANAGE extends AuthBase {
     @Override
     public String getAuthDisplayName() {
-        return "auth.cmdb.transactionmanage.name";
+        return "事务审计权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "auth.cmdb.transactionmanage.introduction";
+        return "查看事务审计权限，可以查看所有配置项的修改记录";
     }
 
     @Override

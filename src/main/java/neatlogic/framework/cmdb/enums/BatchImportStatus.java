@@ -19,10 +19,10 @@ package neatlogic.framework.cmdb.enums;
 import neatlogic.framework.util.I18nUtils;
 
 public enum BatchImportStatus {
-    RUNNING("running", "enum.cmdb.batchimportstatus.running"),
-    SUCCEED("succeed", "common.succeed"),
-    FAILED("failed", "common.failed"),
-    STOPPED("stopped", "enum.cmdb.batchimportstatus.stopped");
+    RUNNING("running", "执行中"),
+    SUCCEED("succeed", "已成功"),
+    FAILED("failed", "已失败"),
+    STOPPED("stopped", "已停止");
     private final String type;
     private final String text;
 

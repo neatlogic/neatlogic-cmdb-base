@@ -8,7 +8,7 @@ import neatlogic.framework.util.I18nUtils;
  * @date 2022/3/10 5:14 下午
  */
 public enum CmdbFromType implements IFromType {
-    RESOURCE_ACCOUNT("resourceaccount", "enum.cmdb.cmdbfromtype.resource_account");
+    RESOURCE_ACCOUNT("resourceaccount", "资产帐号");
 
     private String value;
     private String text;

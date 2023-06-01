@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class SyncPolicyNotFoundException extends ApiRuntimeException {
     public SyncPolicyNotFoundException(Long id) {
-        super("exception.cmdb.syncpolicynotfoundexception", id);
+        super("同步策略：“{0}”不存在", id);
     }
 }

@@ -24,6 +24,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class GraphPrivilegeReadException extends ApiRuntimeException {
     public GraphPrivilegeReadException() {
-        super("exception.cmdb.graphprivilegereadexception");
+        super("您没有权限查看公共拓扑视图");
     }
 }

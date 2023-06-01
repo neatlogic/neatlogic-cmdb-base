@@ -24,6 +24,6 @@ public class CiEntityHasUnCommitTransactionException extends ApiRuntimeException
     private static final long serialVersionUID = -1712487564827336261L;
 
     public CiEntityHasUnCommitTransactionException(CiEntityVo ciEntityVo, TransactionActionType action) {
-        super("exception.cmdb.cientityhasuncommittransactionexception", ciEntityVo.getName(), action.getText());
+        super("配置项“{0}”存在未提交的{1}事务", ciEntityVo.getName(), action.getText());
     }
 }

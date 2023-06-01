@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiViewCiIdEmptyException extends ApiRuntimeException {
     public CiViewCiIdEmptyException() {
-        super("exception.cmdb.civiewciidemptyexception");
+        super("模型id不能为空");
     }
 }

@@ -20,12 +20,12 @@ import neatlogic.framework.cmdb.enums.BatchImportStatus;
 import neatlogic.framework.util.I18nUtils;
 
 public enum FieldType {
-    STRING("string", "common.string"),
-    DATETIME("datetime", "common.date"),
-    DOCUMENT("document", "enum.cmdb.fieldtype.document"),
-    INTEGER("integer", "common.int"),
-    INT("int", "common.int"),
-    FLOAT("float", "enum.cmdb.fieldtype.float");
+    STRING("string", "字符串"),
+    DATETIME("datetime", "日期"),
+    DOCUMENT("document", "文档"),
+    INTEGER("integer", "整型"),
+    INT("int", "整型"),
+    FLOAT("float", "单精度");
     private final String type;
     private final String text;
 

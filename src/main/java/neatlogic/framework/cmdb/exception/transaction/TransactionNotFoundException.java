@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 @SuppressWarnings("serial")
 public class TransactionNotFoundException extends ApiRuntimeException {
     public TransactionNotFoundException(Long transactionId) {
-        super("exception.cmdb.transactionnotfoundexception", transactionId);
+        super("事务：{0}不存在", transactionId);
     }
 }

@@ -24,6 +24,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class BatchImportMouldIsMustException extends ApiRuntimeException {
     public BatchImportMouldIsMustException() {
-        super("exception.cmdb.batchimportmouldismustexception");
+        super("请正确填写模版与选择导入模式，【只添加】不需要填写ID；【只更新】必须填写ID");
     }
 }

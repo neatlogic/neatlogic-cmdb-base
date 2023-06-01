@@ -24,6 +24,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class NewCiEntityNotFoundException extends ApiRuntimeException {
     public NewCiEntityNotFoundException(String attrCiEntityUuid) {
-        super("exception.cmdb.Newcientitynotfoundexception", attrCiEntityUuid);
+        super("找不到{0}的新配置项", attrCiEntityUuid);
     }
 }

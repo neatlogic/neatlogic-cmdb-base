@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiIsNotEmptyException extends ApiRuntimeException {
     public CiIsNotEmptyException(Long ciId, int ciEntityCount) {
-        super("exception.cmdb.ciisnotemptyexception", ciId, ciEntityCount);
+        super("配置项模型：{0}及其子模型共拥有：{1}个配置项，请先删除", ciId, ciEntityCount);
     }
 }

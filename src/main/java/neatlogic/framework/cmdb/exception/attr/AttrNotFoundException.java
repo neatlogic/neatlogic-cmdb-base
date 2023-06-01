@@ -20,14 +20,14 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class AttrNotFoundException extends ApiRuntimeException {
     public AttrNotFoundException(Long attrId) {
-        super("common.configurationi", attrId);
+        super("配置项模型属性“{0}”不存在", attrId);
     }
 
     public AttrNotFoundException(String ciName, String attrName) {
-        super("exception.cmdb.attrnotfoundexception.b", ciName, attrName);
+        super("配置项模型“{0}”不存在属性“{1}”", ciName, attrName);
     }
 
     public AttrNotFoundException(String attrName) {
-        super("common.configurationi", attrName);
+        super("配置项模型属性“{0}”不存在", attrName);
     }
 }

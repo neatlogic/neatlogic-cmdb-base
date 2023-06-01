@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiEntityIsRecoveredException extends ApiRuntimeException {
     public CiEntityIsRecoveredException(String ciEntityName) {
-        super("exception.cmdb.cientityisrecoveredexception", ciEntityName);
+        super("配置项：{0} 已恢复", ciEntityName);
     }
 }

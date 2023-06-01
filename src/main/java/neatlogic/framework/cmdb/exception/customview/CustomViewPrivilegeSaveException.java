@@ -24,6 +24,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CustomViewPrivilegeSaveException extends ApiRuntimeException {
     public CustomViewPrivilegeSaveException (){
-        super("exception.cmdb.customviewprivilegesaveexception");
+        super("您没有权限保存{0}公共数据视图");
     }
 }

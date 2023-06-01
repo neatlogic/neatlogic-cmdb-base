@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 public class DiscoverConfNotFoundException extends ApiRuntimeException {
 
     public DiscoverConfNotFoundException(Long id) {
-        super("exception.cmdb.discoverconfnotfoundexception", id);
+        super("发现配置“{0}”的配置信息不存在", id);
     }
 }

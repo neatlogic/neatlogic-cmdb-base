@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class GroupNotFoundException extends ApiRuntimeException {
     public GroupNotFoundException(Long id) {
-        super("exception.cmdb.groupnotfoundexception", id);
+        super("团体“{0}”不存在", id);
     }
 }

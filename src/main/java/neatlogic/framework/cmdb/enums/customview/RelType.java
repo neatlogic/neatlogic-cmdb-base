@@ -19,10 +19,10 @@ package neatlogic.framework.cmdb.enums.customview;
 import neatlogic.framework.util.I18nUtils;
 
 public enum RelType {
-    ATTR("attr", "enum.cmdb.reltype.attr"),
-    CI("ci", "common.ci"),
-    REL("rel", "enum.cmdb.reltype.rel"),
-    CONST_ATTR("constattr", "enum.cmdb.reltype.const_attr");
+    ATTR("attr", "属性"),
+    CI("ci", "模型"),
+    REL("rel", "关系"),
+    CONST_ATTR("constattr", "内部属性");
     private final String value;
     private final String text;
 

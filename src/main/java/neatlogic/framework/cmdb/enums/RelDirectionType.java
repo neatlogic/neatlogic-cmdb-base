@@ -24,7 +24,7 @@ import neatlogic.framework.util.I18nUtils;
 import java.util.List;
 
 public enum RelDirectionType implements IEnum {
-    FROM("from", "enum.cmdb.reldirectiontype.from"), TO("to", "enum.cmdb.reldirectiontype.to");
+    FROM("from", "当前模型处于上游位置"), TO("to", "当前模型处于下游位置");
 
     private String value;
     private String text;

@@ -24,6 +24,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CustomViewPrivilegeDeleteException extends ApiRuntimeException {
     public CustomViewPrivilegeDeleteException(){
-        super("exception.cmdb.customviewprivilegedeleteexception");
+        super("您没有权限删除{0}公共数据视图");
     }
 }

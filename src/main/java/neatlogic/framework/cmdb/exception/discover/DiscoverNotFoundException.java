@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 public class DiscoverNotFoundException extends ApiRuntimeException {
 
     public DiscoverNotFoundException(Long id) {
-        super("exception.cmdb.discovernotfoundexception", id);
+        super("发现配置“{0}”不存在", id);
     }
 }

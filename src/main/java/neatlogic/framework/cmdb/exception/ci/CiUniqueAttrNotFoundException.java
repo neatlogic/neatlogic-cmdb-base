@@ -27,22 +27,22 @@ public class CiUniqueAttrNotFoundException extends ApiRuntimeException {
     private static final long serialVersionUID = 6853526342242823864L;
 
     public CiUniqueAttrNotFoundException(String ciName) {
-        super("exception.cmdb.ciuniqueattrnotfoundexception.b", ciName);
+        super("配置项模型“{0}”缺少唯一属性，请设置", ciName);
     }
 
     public CiUniqueAttrNotFoundException(CiVo ciVo, AttrVo attrVo) {
-        super("exception.cmdb.ciuniqueattrnotfoundexception.c", ciVo.getLabel(), ciVo.getName(), attrVo.getLabel(), attrVo.getName());
+        super("模型“{0}({1})”的唯一规则属性“{2}({3})”没有配置匹配字段，请先配置", ciVo.getLabel(), ciVo.getName(), attrVo.getLabel(), attrVo.getName());
     }
 
     public CiUniqueAttrNotFoundException(AttrVo attrVo) {
-        super("exception.cmdb.ciuniqueattrnotfoundexception.d", attrVo.getLabel(), attrVo.getName());
+        super("唯一规则属性“{0}({1})”的值为空", attrVo.getLabel(), attrVo.getName());
     }
 
     public CiUniqueAttrNotFoundException(Long ciId, Long attrId) {
-        super("exception.cmdb.ciuniqueattrnotfoundexception.4", ciId, attrId);
+        super("获取模型“{0}”的配置项事务hash失败，唯一属性“{1}”没有值", ciId, attrId);
     }
 
     public CiUniqueAttrNotFoundException(SyncCiCollectionVo syncCiCollectionVo, CiVo ciVo, String key, JSONObject dataObj) {
-        super("exception.cmdb.ciuniqueattrnotfoundexception.f", syncCiCollectionVo.getCollectionName(), ciVo.getLabel(), ciVo.getName(), key, dataObj.toString());
+        super("配置“{0}->{1}({2})”的唯一键映射属性“{3}”的值不存在，原始数据：{4}", syncCiCollectionVo.getCollectionName(), ciVo.getLabel(), ciVo.getName(), key, dataObj.toString());
     }
 }

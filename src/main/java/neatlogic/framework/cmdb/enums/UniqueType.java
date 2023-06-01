@@ -19,7 +19,7 @@ package neatlogic.framework.cmdb.enums;
 import neatlogic.framework.util.I18nUtils;
 
 public enum UniqueType {
-    TYPE("type", "enum.cmdb.uniquetype.type"), GLOBAL("global", "enum.cmdb.uniquetype.global");
+    TYPE("type", "同类唯一"), GLOBAL("global", "全局唯一");
 
     private String value;
     private String text;

@@ -31,10 +31,10 @@ import java.util.Objects;
  * @since 2021/6/1 11:51
  **/
 public enum Protocol implements IEnum {
-    APPLICATION("application", "common.app"),
-    DATABASE("database", "common.database"),
-    TAGENT("tagent", "enum.cmdb.protocol.tagent"),
-    SSH("ssh", "enum.cmdb.protocol.ssh");
+    APPLICATION("application", "应用"),
+    DATABASE("database", "数据库"),
+    TAGENT("tagent", "代理"),
+    SSH("ssh", "ssh");
     private final String value;
     private final String text;
 

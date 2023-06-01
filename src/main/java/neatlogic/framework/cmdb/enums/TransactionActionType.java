@@ -24,11 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum TransactionActionType implements IEnum<JSONObject> {
-    INSERT("insert", "common.new"),
-    UPDATE("update", "common.modify"),
-    DELETE("delete", "common.delete"),
-    RECOVER("recover", "common.recover"),
-    VIEW("view", "common.view");
+    INSERT("insert", "新增"),
+    UPDATE("update", "修改"),
+    DELETE("delete", "删除"),
+    RECOVER("recover", "恢复"),
+    VIEW("view", "查看");
 
     private final String value;
     private final String text;

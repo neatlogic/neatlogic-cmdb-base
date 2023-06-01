@@ -24,6 +24,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class DslSyntaxIrregularIntegerException extends ApiRuntimeException {
     public DslSyntaxIrregularIntegerException(String str) {
-        super("exception.cmdb.dslsyntaxirregularintegerexception", str);
+        super("值“{0}”不是合法的整数类型", str);
     }
 }

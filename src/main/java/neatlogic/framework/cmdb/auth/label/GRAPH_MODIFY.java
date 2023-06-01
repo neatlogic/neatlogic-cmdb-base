@@ -25,12 +25,12 @@ public class GRAPH_MODIFY extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "auth.cmdb.graphmodify.name";
+        return "公共拓扑视图编辑权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "auth.cmdb.graphmodify.introduction";
+        return "对公共拓扑视图进行添加、修改和删除";
     }
 
     @Override

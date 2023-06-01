@@ -25,10 +25,10 @@ import java.util.List;
 
 public enum ShowType implements IEnum {
 
-    NONE("none", "enum.cmdb.showtype.none"),
-    LIST("list", "enum.cmdb.showtype.list"),
-    ALL("all", "enum.cmdb.showtype.all"),
-    DETAIL("detail", "enum.cmdb.showtype.detail");
+    NONE("none", "不显示"),
+    LIST("list", "仅列表"),
+    ALL("all", "全展示"),
+    DETAIL("detail", "仅明细");
 
     private final String value;
     private final String text;

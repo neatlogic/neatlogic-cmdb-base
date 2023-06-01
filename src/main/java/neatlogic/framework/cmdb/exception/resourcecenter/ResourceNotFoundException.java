@@ -30,20 +30,20 @@ public class ResourceNotFoundException extends ApiRuntimeException {
     private static final long serialVersionUID = 8748508038438348100L;
 
     public ResourceNotFoundException(Long id) {
-        super("exception.cmdb.resourcenotfoundexception.b", id);
+        super("资源{0}不存在", id);
     }
 
     public ResourceNotFoundException(String name) {
-        super("exception.cmdb.resourcenotfoundexception.b", name);
+        super("资源{0}不存在", name);
     }
 
     public ResourceNotFoundException(List<String> nameList) {
-        super("exception.cmdb.resourcenotfoundexception.c", String.join(",", nameList));
+        super("common.errorMessage.empty.resource", String.join(",", nameList));
 
     }
 
     public ResourceNotFoundException() {
-        super("exception.cmdb.resourcenotfoundexception.b", StringUtils.EMPTY);
+        super("资源{0}不存在", StringUtils.EMPTY);
 
     }
 }

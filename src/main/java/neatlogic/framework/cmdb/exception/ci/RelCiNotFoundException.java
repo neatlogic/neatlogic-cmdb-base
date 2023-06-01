@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 public class RelCiNotFoundException extends ApiRuntimeException {
 
     public RelCiNotFoundException(String relName, String ciName) {
-        super("exception.cmdb.relcinotfoundexception", relName, ciName);
+        super("关系“{0}”的关联模型“{1}”不存在", relName, ciName);
     }
 }

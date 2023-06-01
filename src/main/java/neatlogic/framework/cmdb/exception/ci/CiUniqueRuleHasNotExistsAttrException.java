@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiUniqueRuleHasNotExistsAttrException extends ApiRuntimeException {
     public CiUniqueRuleHasNotExistsAttrException(Long attrId) {
-        super("exception.cmdb.ciuniquerulehasnotexistsattrexception", attrId);
+        super("唯一规则包含不存在的属性：{0}", attrId);
     }
 }

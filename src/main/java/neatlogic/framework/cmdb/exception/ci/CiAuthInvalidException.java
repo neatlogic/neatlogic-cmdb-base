@@ -21,6 +21,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 @SuppressWarnings("serial")
 public class CiAuthInvalidException extends ApiRuntimeException {
     public CiAuthInvalidException() {
-        super("exception.cmdb.ciauthinvalidexception");
+        super("授权信息不完整");
     }
 }

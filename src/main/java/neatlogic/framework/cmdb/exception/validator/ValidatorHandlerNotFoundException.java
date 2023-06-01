@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class ValidatorHandlerNotFoundException extends ApiRuntimeException {
     public ValidatorHandlerNotFoundException(String name) {
-        super("exception.cmdb.validatorhandlernotfoundexception", name);
+        super("验证组件“{0}”不存在", name);
     }
 }

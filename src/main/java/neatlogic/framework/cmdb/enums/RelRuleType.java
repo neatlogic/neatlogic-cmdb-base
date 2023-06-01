@@ -24,7 +24,7 @@ import neatlogic.framework.util.I18nUtils;
 import java.util.List;
 
 public enum RelRuleType implements IEnum {
-    O("O", "enum.cmdb.relruletype.o"), N("N", "enum.cmdb.relruletype.n");
+    O("O", "一个"), N("N", "多个");
 
     private final String value;
     private final String text;

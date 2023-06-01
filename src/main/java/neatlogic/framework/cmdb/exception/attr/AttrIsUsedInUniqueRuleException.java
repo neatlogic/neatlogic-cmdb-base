@@ -20,6 +20,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class AttrIsUsedInUniqueRuleException extends ApiRuntimeException {
     public AttrIsUsedInUniqueRuleException() {
-        super("exception.cmdb.attrisusedinuniqueruleexception");
+        super("唯一规则使用了父模型属性，请先删除。");
     }
 }

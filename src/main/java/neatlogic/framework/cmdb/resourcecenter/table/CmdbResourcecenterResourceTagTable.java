@@ -17,8 +17,8 @@ public class CmdbResourcecenterResourceTagTable implements ISqlTable {
     }
 
     public enum FieldEnum {
-        TAG_ID("tag_id", "enum.cmdb.fieldenum.tag_id","tagId"),
-        RESOURCE_ID("resource_id", "common.assetid","resourceId")
+        TAG_ID("tag_id", "标签id","tagId"),
+        RESOURCE_ID("resource_id", "资产id","resourceId")
         ;
         private final String name;
         private final String text;

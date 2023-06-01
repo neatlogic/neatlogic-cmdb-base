@@ -27,10 +27,10 @@ public class AppEnvNotFoundException extends ApiRuntimeException {
     private static final long serialVersionUID = -5353639287406720093L;
 
     public AppEnvNotFoundException(String name) {
-        super("exception.cmdb.appenvnotfoundexception", name);
+        super("环境：“{0}”不存在", name);
     }
 
     public AppEnvNotFoundException(Long id) {
-        super("exception.cmdb.appenvnotfoundexception", id);
+        super("环境：“{0}”不存在", id);
     }
 }

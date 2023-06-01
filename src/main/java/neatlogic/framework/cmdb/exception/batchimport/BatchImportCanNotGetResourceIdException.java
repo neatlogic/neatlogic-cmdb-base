@@ -24,6 +24,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class BatchImportCanNotGetResourceIdException extends ApiRuntimeException {
     public BatchImportCanNotGetResourceIdException(String message) {
-        super("exception.cmdb.batchimportcannotgetresourceidexception", message);
+        super("无法获取到配置项id：{0}", message);
     }
 }

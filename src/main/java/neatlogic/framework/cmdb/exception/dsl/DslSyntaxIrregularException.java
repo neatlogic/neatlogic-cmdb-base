@@ -20,7 +20,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class DslSyntaxIrregularException extends ApiRuntimeException {
     public DslSyntaxIrregularException(int row, int col, String msg) {
-        super("exception.cmdb.dslsyntaxirregularexception", row, col, msg);
+        super("行{0}，列{1}出现语法错误：{2}", row, col, msg);
     }
 
 }

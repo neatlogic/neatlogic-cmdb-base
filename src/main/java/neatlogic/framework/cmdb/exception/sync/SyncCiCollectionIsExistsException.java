@@ -21,11 +21,11 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class SyncCiCollectionIsExistsException extends ApiRuntimeException {
     public SyncCiCollectionIsExistsException(SyncCiCollectionVo syncCiCollectionVo) {
-        super("exception.cmdb.synccicollectionisexistsexception.a", syncCiCollectionVo.getCollectionName(), syncCiCollectionVo.getCiLabel());
+        super("集合“{0}”->模型“{1}”的映射配置已存在", syncCiCollectionVo.getCollectionName(), syncCiCollectionVo.getCiLabel());
     }
 
     public SyncCiCollectionIsExistsException(SyncCiCollectionVo syncCiCollectionVo, boolean isHasParentKey) {
-        super("exception.cmdb.synccicollectionisexistsexception.b", syncCiCollectionVo.getCollectionName(), syncCiCollectionVo.getCiLabel(), syncCiCollectionVo.getParentKey());
+        super("集合“{0}”->模型“{1}”在父属性“{2}”的映射配置已存在", syncCiCollectionVo.getCollectionName(), syncCiCollectionVo.getCiLabel(), syncCiCollectionVo.getParentKey());
     }
 
 }
