@@ -1,6 +1,6 @@
 package neatlogic.framework.cmdb.resourcecenter.table;
 
-import neatlogic.framework.util.I18nUtils;
+import neatlogic.framework.util.$;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -37,7 +37,7 @@ public class CmdbResourcecenterResourceTagTable implements ISqlTable {
         }
 
         public String getText() {
-            return I18nUtils.getMessage(text);
+            return $.t(text);
         }
 
         public String getProValue() {

@@ -16,7 +16,7 @@
 
 package neatlogic.framework.cmdb.enums;
 
-import neatlogic.framework.util.I18nUtils;
+import neatlogic.framework.util.$;
 
 public enum BatchImportStatus {
     RUNNING("running", "执行中"),
@@ -36,7 +36,7 @@ public enum BatchImportStatus {
     }
 
     public String getText() {
-        return I18nUtils.getMessage(text);
+        return $.t(text);
     }
 
     public static String getValue(String name) {

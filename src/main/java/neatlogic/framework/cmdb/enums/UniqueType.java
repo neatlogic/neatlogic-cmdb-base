@@ -16,7 +16,7 @@
 
 package neatlogic.framework.cmdb.enums;
 
-import neatlogic.framework.util.I18nUtils;
+import neatlogic.framework.util.$;
 
 public enum UniqueType {
     TYPE("type", "同类唯一"), GLOBAL("global", "全局唯一");
@@ -34,7 +34,7 @@ public enum UniqueType {
 	}
 
 	public String getText() {
-		return I18nUtils.getMessage(text);
+		return $.t(text);
 	}
 
 	public static String getValue(String _status) {

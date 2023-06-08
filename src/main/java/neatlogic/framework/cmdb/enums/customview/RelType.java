@@ -16,7 +16,7 @@
 
 package neatlogic.framework.cmdb.enums.customview;
 
-import neatlogic.framework.util.I18nUtils;
+import neatlogic.framework.util.$;
 
 public enum RelType {
     ATTR("attr", "属性"),
@@ -36,7 +36,7 @@ public enum RelType {
     }
 
     public String getText() {
-        return I18nUtils.getMessage(text);
+        return $.t(text);
     }
 
     public static String getText(String name) {

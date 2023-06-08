@@ -16,7 +16,7 @@
 
 package neatlogic.framework.cmdb.enums;
 
-import neatlogic.framework.util.I18nUtils;
+import neatlogic.framework.util.$;
 
 public enum RelActionType {
     INSERT("insert", "新增"),
@@ -36,7 +36,7 @@ public enum RelActionType {
     }
 
     public String getText() {
-        return I18nUtils.getMessage(text);
+        return $.t(text);
     }
 
     public static String getValue(String _status) {

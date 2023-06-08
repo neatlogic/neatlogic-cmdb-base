@@ -16,7 +16,7 @@ limitations under the License.
 
 package neatlogic.framework.cmdb.enums.resourcecenter;
 
-import neatlogic.framework.util.I18nUtils;
+import neatlogic.framework.util.$;
 
 public enum ScenceView {
     SCENCE_IPOBJECT_DETAIL("scence_ipobject_detail", "资产清单场景"),
@@ -57,6 +57,6 @@ public enum ScenceView {
     }
 
     public String getText() {
-        return I18nUtils.getMessage(text);
+        return $.t(text);
     }
 }

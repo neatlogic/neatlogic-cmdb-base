@@ -16,7 +16,7 @@
 
 package neatlogic.framework.cmdb.enums;
 
-import neatlogic.framework.util.I18nUtils;
+import neatlogic.framework.util.$;
 
 public enum CiAttrType {
     SIMPLE("simple", "简单属性"),
@@ -36,7 +36,7 @@ public enum CiAttrType {
     }
 
     public String getText() {
-        return I18nUtils.getMessage(text);
+        return $.t(text);
     }
 
     public static String getText(String name) {

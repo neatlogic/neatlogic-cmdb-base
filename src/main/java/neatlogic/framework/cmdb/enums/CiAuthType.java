@@ -16,7 +16,7 @@
 
 package neatlogic.framework.cmdb.enums;
 
-import neatlogic.framework.util.I18nUtils;
+import neatlogic.framework.util.$;
 
 public enum CiAuthType {
     CIENTITYINSERT("cientityinsert", "配置项添加"),
@@ -51,7 +51,7 @@ public enum CiAuthType {
     }
 
     public String getText() {
-        return I18nUtils.getMessage(text);
+        return $.t(text);
     }
 
     public static String getValue(String _status) {

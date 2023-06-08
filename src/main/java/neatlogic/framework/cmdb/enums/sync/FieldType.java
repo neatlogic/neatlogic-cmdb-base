@@ -17,7 +17,7 @@
 package neatlogic.framework.cmdb.enums.sync;
 
 import neatlogic.framework.cmdb.enums.BatchImportStatus;
-import neatlogic.framework.util.I18nUtils;
+import neatlogic.framework.util.$;
 
 public enum FieldType {
     STRING("string", "字符串"),
@@ -39,7 +39,7 @@ public enum FieldType {
     }
 
     public String getText() {
-        return I18nUtils.getMessage(text);
+        return $.t(text);
     }
 
     public static String getValue(String name) {

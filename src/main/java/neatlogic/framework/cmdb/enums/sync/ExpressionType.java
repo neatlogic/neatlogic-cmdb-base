@@ -16,7 +16,7 @@
 
 package neatlogic.framework.cmdb.enums.sync;
 
-import neatlogic.framework.util.I18nUtils;
+import neatlogic.framework.util.$;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,7 +60,7 @@ public enum ExpressionType {
     }
 
     public String getText() {
-        return I18nUtils.getMessage(text);
+        return $.t(text);
     }
 
     public String[] getSupportType() {

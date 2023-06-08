@@ -16,9 +16,9 @@
 
 package neatlogic.framework.cmdb.enums.customview;
 
-import neatlogic.framework.common.constvalue.IEnum;
 import com.alibaba.fastjson.JSONObject;
-import neatlogic.framework.util.I18nUtils;
+import neatlogic.framework.common.constvalue.IEnum;
+import neatlogic.framework.util.$;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +55,7 @@ public enum CustomViewType implements IEnum<JSONObject> {
     }
 
     public String getText() {
-        return I18nUtils.getMessage(text);
+        return $.t(text);
     }
 
     public static String getText(String name) {

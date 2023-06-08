@@ -16,7 +16,7 @@
 
 package neatlogic.framework.cmdb.enums;
 
-import neatlogic.framework.util.I18nUtils;
+import neatlogic.framework.util.$;
 
 public enum SearchExpression {
     EQ("eq", "equal", "等于"),
@@ -53,7 +53,7 @@ public enum SearchExpression {
     }
 
     public String getText() {
-        return I18nUtils.getMessage(text);
+        return $.t(text);
     }
 
     public String getExpression() {

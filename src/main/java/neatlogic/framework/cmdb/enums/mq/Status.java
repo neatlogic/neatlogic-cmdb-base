@@ -16,7 +16,7 @@
 
 package neatlogic.framework.cmdb.enums.mq;
 
-import neatlogic.framework.util.I18nUtils;
+import neatlogic.framework.util.$;
 
 public enum Status {
     ERROR("error", "异常"),
@@ -36,7 +36,7 @@ public enum Status {
     }
 
     public String getText() {
-        return I18nUtils.getMessage(text);
+        return $.t(text);
     }
 
 

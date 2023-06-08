@@ -16,7 +16,7 @@
 
 package neatlogic.framework.cmdb.enums;
 
-import neatlogic.framework.util.I18nUtils;
+import neatlogic.framework.util.$;
 
 public enum EditModeType {
     GLOBAL("global", "全局模式"), //不给属性代表删除
@@ -35,7 +35,7 @@ public enum EditModeType {
     }
 
     public String getText() {
-        return I18nUtils.getMessage(text);
+        return $.t(text);
     }
 
     public static String getValue(String _status) {

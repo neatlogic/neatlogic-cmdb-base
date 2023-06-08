@@ -16,7 +16,7 @@
 
 package neatlogic.framework.cmdb.enums.sync;
 
-import neatlogic.framework.util.I18nUtils;
+import neatlogic.framework.util.$;
 
 public enum SyncStatus {
     DOING("doing", "同步中"),
@@ -35,7 +35,7 @@ public enum SyncStatus {
     }
 
     public String getText() {
-        return I18nUtils.getMessage(text);
+        return $.t(text);
     }
 
 

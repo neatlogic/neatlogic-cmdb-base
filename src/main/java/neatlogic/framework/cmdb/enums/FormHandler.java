@@ -17,7 +17,7 @@ limitations under the License.
 package neatlogic.framework.cmdb.enums;
 
 import neatlogic.framework.form.constvalue.IFormHandler;
-import neatlogic.framework.util.I18nUtils;
+import neatlogic.framework.util.$;
 
 public enum FormHandler implements IFormHandler {
     FORMCIENTITYMODIFY("formcientitymodify", "配置项修改组件"),
@@ -42,6 +42,6 @@ public enum FormHandler implements IFormHandler {
 
     @Override
     public String getHandlerName() {
-        return I18nUtils.getMessage(handlerName);
+        return $.t(handlerName);
     }
 }

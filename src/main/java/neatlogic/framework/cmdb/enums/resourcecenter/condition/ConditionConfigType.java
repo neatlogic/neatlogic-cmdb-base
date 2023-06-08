@@ -1,6 +1,6 @@
 package neatlogic.framework.cmdb.enums.resourcecenter.condition;
 
-import neatlogic.framework.util.I18nUtils;
+import neatlogic.framework.util.$;
 
 public enum ConditionConfigType {
   DEFAULT("default","默认");
@@ -18,7 +18,7 @@ public enum ConditionConfigType {
   }
 
   public String getName() {
-    return I18nUtils.getMessage(name);
+    return $.t(name);
   }
 
   public static String getValue(String _value) {
