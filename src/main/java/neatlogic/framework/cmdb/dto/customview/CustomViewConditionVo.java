@@ -47,6 +47,16 @@ public class CustomViewConditionVo extends BasePageVo {
     private List<CustomViewValueFilterVo> valueFilterList;
     private Long ciEntityId;//查询单个配置项档案时用
 
+    private Integer limit = 10000;//最多返回10000数据，用在count查询
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
+    }
+
     public Long getCiEntityId() {
         return ciEntityId;
     }
