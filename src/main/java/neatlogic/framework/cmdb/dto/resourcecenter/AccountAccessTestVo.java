@@ -37,7 +37,7 @@ public class AccountAccessTestVo {
     private String username;
     @EntityField(name = "密码", type = ApiParamType.STRING)
     private String password;
-    @EntityField(name = "帐号名称", type = ApiParamType.STRING)
+    @EntityField(name = "账号名称", type = ApiParamType.STRING)
     private String name;
 
     public AccountAccessTestVo() {

@@ -79,7 +79,7 @@ public class ResourceSearchVo extends ConditionConfigVo {
     private String name;
     @EntityField(name = "协议", type = ApiParamType.STRING)
     private String protocol;
-    @EntityField(name = "帐号", type = ApiParamType.STRING)
+    @EntityField(name = "账号", type = ApiParamType.STRING)
     private String account;
     @EntityField(name = "巡检状态列表", type = ApiParamType.JSONARRAY)
     private List<String> inspectStatusList;

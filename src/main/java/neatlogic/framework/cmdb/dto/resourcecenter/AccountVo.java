@@ -32,7 +32,7 @@ import java.util.Objects;
  **/
 public class AccountVo extends AccountBaseVo {
     private static final long serialVersionUID = 4163974111792082330L;
-    @EntityField(name = "帐号", type = ApiParamType.STRING)
+    @EntityField(name = "账号", type = ApiParamType.STRING)
     private String account;
     @EntityField(name = "标签", type = ApiParamType.JSONARRAY)
     private List<TagVo> tagList;
@@ -57,7 +57,7 @@ public class AccountVo extends AccountBaseVo {
     @EntityField(name = "类型", type = ApiParamType.STRING)
     private String type;
 
-    @EntityField(name = "是否默认帐号", type = ApiParamType.INTEGER)
+    @EntityField(name = "是否默认账号", type = ApiParamType.INTEGER)
     private Integer isDefault = 0;
 
     public AccountVo() {

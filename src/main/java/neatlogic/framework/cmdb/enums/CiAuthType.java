@@ -26,7 +26,7 @@ public enum CiAuthType {
     CIMANAGE("cimanage", "模型管理"),
     TRANSACTIONMANAGE("transactionmanage", "事务管理"),
     CIENTITYRECOVER("cientityrecover", "配置项恢复"),
-    ACCOUNTMANAGEMENT("accountmanagement", "帐号管理"),
+    ACCOUNTMANAGEMENT("accountmanagement", "账号管理"),
     PASSWORDVIEW("passwordview", "密码字段查看");
 
     private final String value;
