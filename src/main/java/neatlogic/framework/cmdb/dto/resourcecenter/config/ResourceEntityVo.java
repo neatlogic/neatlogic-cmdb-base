@@ -33,7 +33,7 @@ public class ResourceEntityVo {
     private String name;
     @EntityField(name = "对象名称", type = ApiParamType.STRING)
     private String label;
-    @JSONField(serialize = false)
+    @EntityField(name = "关联模型", type = ApiParamType.JSONOBJECT)
     private CiVo ci;//对应的模型
     @EntityField(name = "属性列表", type = ApiParamType.JSONARRAY)
     private Set<ResourceEntityAttrVo> attrList;
