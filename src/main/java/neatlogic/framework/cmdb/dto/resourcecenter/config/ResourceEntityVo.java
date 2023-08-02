@@ -29,31 +29,31 @@ import java.util.Objects;
 import java.util.Set;
 
 public class ResourceEntityVo {
-    @EntityField(name = "对象唯一标识（视图名）", type = ApiParamType.STRING)
+    @EntityField(name = "common.name", type = ApiParamType.STRING)
     private String name;
-    @EntityField(name = "对象名称", type = ApiParamType.STRING)
+    @EntityField(name = "common.cnname", type = ApiParamType.STRING)
     private String label;
-    @EntityField(name = "关联模型", type = ApiParamType.JSONOBJECT)
+    @EntityField(name = "term.cmdb.ciinfo", type = ApiParamType.JSONOBJECT)
     private CiVo ci;//对应的模型
-    @EntityField(name = "属性列表", type = ApiParamType.JSONARRAY)
+    @EntityField(name = "common.attributelist", type = ApiParamType.JSONARRAY)
     private Set<ResourceEntityAttrVo> attrList;
-    @EntityField(name = "连接列表", type = ApiParamType.JSONARRAY)
+    @EntityField(name = "term.cmdb.joinlist", type = ApiParamType.JSONARRAY)
     private Set<ResourceEntityJoinVo> joinList;
-    @EntityField(name = "状态", type = ApiParamType.ENUM, member = Status.class)
+    @EntityField(name = "common.status", type = ApiParamType.ENUM, member = Status.class)
     private String status = "";
-    @EntityField(name = "状态名称", type = ApiParamType.STRING)
+    @EntityField(name = "common.statusname", type = ApiParamType.STRING)
     private String statusText;
-    @EntityField(name = "异常", type = ApiParamType.STRING)
+    @EntityField(name = "common.errorinfo", type = ApiParamType.STRING)
     private String error;
-    @EntityField(name = "初始化时间", type = ApiParamType.LONG)
+    @EntityField(name = "common.inittime", type = ApiParamType.LONG)
     private Date initTime;
-    @EntityField(name = "关联模型id", type = ApiParamType.LONG)
+    @EntityField(name = "term.cmdb.ciid", type = ApiParamType.LONG)
     private Long ciId;
-    @EntityField(name = "类型", type = ApiParamType.STRING)
+    @EntityField(name = "common.type", type = ApiParamType.STRING)
     private String type;
-    @EntityField(name = "配置信息", type = ApiParamType.STRING)
+    @EntityField(name = "common.config", type = ApiParamType.STRING)
     private String xml;
-    @EntityField(name = "描述", type = ApiParamType.STRING)
+    @EntityField(name = "common.description", type = ApiParamType.STRING)
     private String description;
 
     @Override
