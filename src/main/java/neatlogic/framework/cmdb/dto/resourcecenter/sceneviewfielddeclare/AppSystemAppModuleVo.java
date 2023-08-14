@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package neatlogic.framework.cmdb.dto.resourcecenter.sceneview;
+package neatlogic.framework.cmdb.dto.resourcecenter.sceneviewfielddeclare;
 
 import neatlogic.framework.cmdb.annotation.ResourceField;
 import neatlogic.framework.cmdb.annotation.ResourceType;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 
-@ResourceType(name = "scence_ipobject_ip_port", label = "IP软硬件IP和端口场景")
-public class IpObjectIpPortVo {
+@ResourceType(name = "scence_appsystem_appmodule", label = "应用系统和应用模块场景")
+public class AppSystemAppModuleVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;
@@ -30,6 +30,10 @@ public class IpObjectIpPortVo {
     @EntityField(name = "名称", type = ApiParamType.STRING)
     @ResourceField(name = "name")
     private String name;
+
+    @EntityField(name = "简称", type = ApiParamType.STRING)
+    @ResourceField(name = "abbrName")
+    private String abbrName;
 
     @EntityField(name = "类型id", type = ApiParamType.LONG)
     @ResourceField(name = "type_id")
@@ -41,11 +45,13 @@ public class IpObjectIpPortVo {
     @ResourceField(name = "type_label")
     private String typeLabel;
 
-    @EntityField(name = "IP地址", type = ApiParamType.STRING)
-    @ResourceField(name = "ip")
-    private String ip;
-
-    @EntityField(name = "端口", type = ApiParamType.INTEGER)
-    @ResourceField(name = "port")
-    private Integer port;
+    @EntityField(name = "模块id", type = ApiParamType.LONG)
+    @ResourceField(name = "app_module_id")
+    private Long appModuleId;
+    @EntityField(name = "模块名", type = ApiParamType.STRING)
+    @ResourceField(name = "app_module_name")
+    private String appModuleName;
+    @EntityField(name = "模块简称", type = ApiParamType.STRING)
+    @ResourceField(name = "app_module_abbr_name")
+    private String appModuleAbbrName;
 }

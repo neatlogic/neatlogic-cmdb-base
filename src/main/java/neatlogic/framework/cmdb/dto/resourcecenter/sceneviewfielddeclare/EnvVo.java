@@ -14,26 +14,28 @@
  * limitations under the License.
  */
 
-package neatlogic.framework.cmdb.dto.resourcecenter.sceneview;
+package neatlogic.framework.cmdb.dto.resourcecenter.sceneviewfielddeclare;
 
 import neatlogic.framework.cmdb.annotation.ResourceField;
 import neatlogic.framework.cmdb.annotation.ResourceType;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 
-@ResourceType(name = "scence_ipobject_id", label = "IP软硬件ID场景")
-public class IpObjectIdVo {
+@ResourceType(name = "scence_env", label = "环境场景")
+public class EnvVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;
 
-    @EntityField(name = "类型id", type = ApiParamType.LONG)
-    @ResourceField(name = "type_id")
-    private Long typeId;
-    @EntityField(name = "类型名称", type = ApiParamType.STRING)
-    @ResourceField(name = "type_name")
-    private String typeName;
-    @EntityField(name = "类型label", type = ApiParamType.STRING)
-    @ResourceField(name = "type_label")
-    private String typeLabel;
+    @EntityField(name = "名称", type = ApiParamType.STRING)
+    @ResourceField(name = "name")
+    private String name;
+
+    @EntityField(name = "序号", type = ApiParamType.STRING)
+    @ResourceField(name = "env_seq_no")
+    private String envSeqNo;
+
+    @EntityField(name = "描述", type = ApiParamType.STRING)
+    @ResourceField(name = "description")
+    private String description;
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package neatlogic.framework.cmdb.dto.resourcecenter.sceneview;
+package neatlogic.framework.cmdb.dto.resourcecenter.sceneviewfielddeclare;
 
 import neatlogic.framework.cmdb.annotation.ResourceField;
 import neatlogic.framework.cmdb.annotation.ResourceType;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package neatlogic.framework.cmdb.dto.resourcecenter.sceneview;
+package neatlogic.framework.cmdb.dto.resourcecenter.sceneviewfielddeclare;
 
 import neatlogic.framework.cmdb.annotation.ResourceField;
 import neatlogic.framework.cmdb.annotation.ResourceType;
@@ -23,8 +23,8 @@ import neatlogic.framework.restful.annotation.EntityField;
 
 import java.util.Date;
 
-@ResourceType(name = "scence_ipobject_detail", label = "资产清单视图")
-public class IpObjectDetailVo {
+@ResourceType(name = "scence_appmodule_appsystem", label = "应用模块和应用系统场景")
+public class AppModuleAppSystemVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;
@@ -33,9 +33,9 @@ public class IpObjectDetailVo {
     @ResourceField(name = "name")
     private String name;
 
-    @EntityField(name = "IP地址", type = ApiParamType.STRING)
-    @ResourceField(name = "ip")
-    private String ip;
+    @EntityField(name = "简称", type = ApiParamType.STRING)
+    @ResourceField(name = "abbrName")
+    private String abbrName;
 
     @EntityField(name = "类型id", type = ApiParamType.LONG)
     @ResourceField(name = "type_id")
@@ -67,9 +67,6 @@ public class IpObjectDetailVo {
     @EntityField(name = "描述", type = ApiParamType.STRING)
     @ResourceField(name = "description")
     private String description;
-    @EntityField(name = "网络区域", type = ApiParamType.STRING)
-    @ResourceField(name = "network_area")
-    private String networkArea;
 
     @EntityField(name = "巡检状态", type = ApiParamType.STRING)
     @ResourceField(name = "inspect_status")
@@ -84,26 +81,12 @@ public class IpObjectDetailVo {
     @ResourceField(name = "monitor_time")
     private Date monitorTime;
 
-    @EntityField(name = "端口", type = ApiParamType.INTEGER)
-    @ResourceField(name = "port")
-    private Integer port;
-
     @EntityField(name = "分组id", type = ApiParamType.LONG)
     @ResourceField(name = "bg_id")
     private Long bgId;
     @EntityField(name = "名称", type = ApiParamType.STRING)
     @ResourceField(name = "bg_name")
     private String bgName;
-
-    @EntityField(name = "ip的id", type = ApiParamType.LONG)
-    @ResourceField(name = "allip_id")
-    private Long allIpId;
-    @EntityField(name = "ip", type = ApiParamType.STRING)
-    @ResourceField(name = "allip_ip")
-    private String allIpIp;
-    @EntityField(name = "ip描述", type = ApiParamType.STRING)
-    @ResourceField(name = "allip_label")
-    private String allIpLabel;
 
     @EntityField(name = "用户uuid", type = ApiParamType.STRING)
     @ResourceField(name = "user_uuid")
@@ -114,53 +97,6 @@ public class IpObjectDetailVo {
     @EntityField(name = "用户名", type = ApiParamType.STRING)
     @ResourceField(name = "user_name")
     private String userName;
-
-    @EntityField(name = "id", type = ApiParamType.LONG)
-    @ResourceField(name = "state_id")
-    private Long stateId;
-    @EntityField(name = "状态名", type = ApiParamType.STRING)
-    @ResourceField(name = "state_name")
-    private String stateName;
-    @EntityField(name = "状态描述", type = ApiParamType.STRING)
-    @ResourceField(name = "state_label")
-    private String stateLabel;
-
-    @EntityField(name = "厂商id", type = ApiParamType.LONG)
-    @ResourceField(name = "vendor_id")
-    private Long vendorId;
-    @EntityField(name = "厂商名称", type = ApiParamType.STRING)
-    @ResourceField(name = "vendor_name")
-    private String vendorName;
-    @EntityField(name = "厂商描述", type = ApiParamType.STRING)
-    @ResourceField(name = "vendor_label")
-    private String vendorLabel;
-
-    @EntityField(name = "数据中心id", type = ApiParamType.LONG)
-    @ResourceField(name = "datacenter_id")
-    private Long dataCenterId;
-    @EntityField(name = "名称", type = ApiParamType.STRING)
-    @ResourceField(name = "datacenter_name")
-    private String dataCenterName;
-
-    @EntityField(name = "环境id", type = ApiParamType.LONG)
-    @ResourceField(name = "env_id")
-    private Long envId;
-    @EntityField(name = "环境名称", type = ApiParamType.STRING)
-    @ResourceField(name = "env_name")
-    private String envName;
-    @EntityField(name = "序号", type = ApiParamType.INTEGER)
-    @ResourceField(name = "env_seq_no")
-    private Integer envSeqNo;
-
-    @EntityField(name = "模块id", type = ApiParamType.LONG)
-    @ResourceField(name = "app_module_id")
-    private Long appModuleId;
-    @EntityField(name = "模块名", type = ApiParamType.STRING)
-    @ResourceField(name = "app_module_name")
-    private String appModuleName;
-    @EntityField(name = "模块简称", type = ApiParamType.STRING)
-    @ResourceField(name = "app_module_abbr_name")
-    private String appModuleAbbrName;
 
     @EntityField(name = "应用id", type = ApiParamType.LONG)
     @ResourceField(name = "app_system_id")
