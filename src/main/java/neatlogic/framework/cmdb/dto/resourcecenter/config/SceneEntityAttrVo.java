@@ -25,7 +25,7 @@ import java.util.Objects;
 
 public class SceneEntityAttrVo {
 
-    private String resource;
+//    private String resource;
     private String field;
     private String direction;
     private JoinType joinType;
@@ -54,13 +54,13 @@ public class SceneEntityAttrVo {
     @JSONField(serialize = false)
     private AttrVo toAttrVo;
 
-    public String getResource() {
-        return resource;
-    }
-
-    public void setResource(String resource) {
-        this.resource = resource;
-    }
+//    public String getResource() {
+//        return resource;
+//    }
+//
+//    public void setResource(String resource) {
+//        this.resource = resource;
+//    }
 
     public String getField() {
         return field;

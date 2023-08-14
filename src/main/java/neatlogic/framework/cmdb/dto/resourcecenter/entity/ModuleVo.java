@@ -21,9 +21,9 @@ import neatlogic.framework.cmdb.annotation.ResourceType;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 
-@ResourceType(name = "resource_appsystem_appmodule", label = "应用系统模块关系")
-@ResourceType(name = "resource_ipobject_appmodule", label = "IP软硬件模块关系")
-@ResourceType(name = "resource_database_appmodule", label = "DB库模块关系")
+//@ResourceType(name = "resource_appsystem_appmodule", label = "应用系统模块关系")
+//@ResourceType(name = "resource_ipobject_appmodule", label = "IP软硬件模块关系")
+//@ResourceType(name = "resource_database_appmodule", label = "DB库模块关系")
 public class ModuleVo {
     @EntityField(name = "资源id", type = ApiParamType.LONG)
     @ResourceField(name = "resource_id")

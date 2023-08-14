@@ -25,7 +25,7 @@ import java.util.Objects;
 
 public class SceneEntityJoinVo {
     private final JoinType joinType;
-    private String resource;
+//    private String resource;
     private String field;
     private String direction;
     private String fromAttr;
@@ -85,13 +85,13 @@ public class SceneEntityJoinVo {
         this.fromAttr = fromAttr;
     }
 
-    public String getResource() {
-        return resource;
-    }
-
-    public void setResource(String resource) {
-        this.resource = resource;
-    }
+//    public String getResource() {
+//        return resource;
+//    }
+//
+//    public void setResource(String resource) {
+//        this.resource = resource;
+//    }
 
     public String getFromCi() {
         if (fromCi == null && fromCiVo != null) {

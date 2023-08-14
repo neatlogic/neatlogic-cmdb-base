@@ -25,8 +25,7 @@ import neatlogic.framework.restful.annotation.EntityField;
  * @author linbq
  * @since 2021/5/27 14:29
  **/
-//@ResourceType(name = "resource_ipobject_env", label = "IP软硬件环境")
-@ResourceType(name = "resource_softwareservice_env", label = "软件服务环境")
+//@ResourceType(name = "resource_softwareservice_env", label = "软件服务环境")
 public class AppEnvironmentVo {
     @EntityField(name = "环境id", type = ApiParamType.LONG)
     @ResourceField(name = "env_id")
