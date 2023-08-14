@@ -21,7 +21,7 @@ import neatlogic.framework.cmdb.annotation.ResourceType;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 
-@ResourceType(name = "resource_softwareservice_os", label = "软件服务与操作系统关系")
+//@ResourceType(name = "resource_softwareservice_os", label = "软件服务与操作系统关系")
 public class SoftwareServiceOSVo {
     @EntityField(name = "操作系统id", type = ApiParamType.LONG)
     @ResourceField(name = "os_id")

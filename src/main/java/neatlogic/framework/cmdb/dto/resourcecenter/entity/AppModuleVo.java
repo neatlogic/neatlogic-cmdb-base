@@ -23,7 +23,7 @@ import neatlogic.framework.restful.annotation.EntityField;
 
 import java.util.Date;
 
-@ResourceType(name = "resource_appmodule", label = "应用系统模块")
+//@ResourceType(name = "resource_appmodule", label = "应用系统模块")
 public class AppModuleVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "id")
