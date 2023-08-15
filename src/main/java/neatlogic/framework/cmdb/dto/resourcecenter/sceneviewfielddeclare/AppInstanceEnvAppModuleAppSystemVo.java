@@ -49,10 +49,6 @@ public class AppInstanceEnvAppModuleAppSystemVo {
     @ResourceField(name = "type_label")
     private String typeLabel;
 
-    @EntityField(name = "巡检状态", type = ApiParamType.STRING)
-    @ResourceField(name = "inspect_status")
-    private String inspectStatus;
-
     @EntityField(name = "环境id", type = ApiParamType.LONG)
     @ResourceField(name = "env_id")
     private Long envId;

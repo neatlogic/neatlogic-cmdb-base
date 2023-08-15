@@ -32,7 +32,7 @@ public class AppSystemAppModuleVo {
     private String name;
 
     @EntityField(name = "简称", type = ApiParamType.STRING)
-    @ResourceField(name = "abbrName")
+    @ResourceField(name = "abbr_name")
     private String abbrName;
 
     @EntityField(name = "类型id", type = ApiParamType.LONG)

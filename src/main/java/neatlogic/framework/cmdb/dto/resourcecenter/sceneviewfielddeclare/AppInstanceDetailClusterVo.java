@@ -25,7 +25,6 @@ import java.util.Date;
 
 @ResourceType(name = "scence_appinstance_detail_cluster", label = "应用实例详情及集群场景")
 @ResourceType(name = "scence_dbinstance_detail_cluster", label = "DB实例详情及集群场景")
-@ResourceType(name = "scence_os_detail_cluster", label = "操作系统详情及集群场景")
 public class AppInstanceDetailClusterVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     @ResourceField(name = "id")
