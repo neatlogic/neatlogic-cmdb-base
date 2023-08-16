@@ -17,7 +17,7 @@ limitations under the License.
 package neatlogic.framework.cmdb.enums.resourcecenter;
 
 import neatlogic.framework.util.$;
-
+@Deprecated
 public enum ScenceView {
     SCENCE_IPOBJECT_DETAIL("scence_ipobject_detail", "资产清单场景"),
     SCENCE_IPOBJECT_ID("scence_ipobject_id", "IP软硬件ID场景"),
