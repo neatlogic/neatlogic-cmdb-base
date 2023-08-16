@@ -16,17 +16,16 @@
 
 package neatlogic.framework.cmdb.dto.resourcecenter.config;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.cmdb.dto.ci.CiVo;
 import neatlogic.framework.cmdb.enums.resourcecenter.Status;
 import neatlogic.framework.common.constvalue.ApiParamType;
+import neatlogic.framework.common.dto.ValueTextVo;
 import neatlogic.framework.restful.annotation.EntityField;
-import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class ResourceEntityVo {
     @EntityField(name = "common.name", type = ApiParamType.STRING)
@@ -55,6 +54,15 @@ public class ResourceEntityVo {
     private String xml;
     @EntityField(name = "common.description", type = ApiParamType.STRING)
     private String description;
+
+    @EntityField(name = "主模型", type = ApiParamType.STRING)
+    private String mainCi;
+    @EntityField(name = "字段列表", type = ApiParamType.JSONARRAY)
+    private List<ValueTextVo> fieldList;
+    @EntityField(name = "配置", type = ApiParamType.JSONOBJECT)
+    private ResourceEntityConfigVo config;
+    @JSONField(serialize = false)
+    private String configStr;
 
     @Override
     public boolean equals(Object o) {
@@ -193,5 +201,50 @@ public class ResourceEntityVo {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getMainCi() {
+        return mainCi;
+    }
+
+    public void setMainCi(String mainCi) {
+        this.mainCi = mainCi;
+    }
+
+    public List<ValueTextVo> getFieldList() {
+        return fieldList;
+    }
+
+    public void setFieldList(List<ValueTextVo> fieldList) {
+        this.fieldList = fieldList;
+    }
+
+    public ResourceEntityConfigVo getConfig() {
+        if (config == null && StringUtils.isNotBlank(configStr)) {
+            try {
+                config = JSONObject.parseObject(configStr, ResourceEntityConfigVo.class);
+            } catch (Exception ignored) {
+
+            }
+        }
+        if (config == null) {
+            return new ResourceEntityConfigVo();
+        }
+        return config;
+    }
+
+    public void setConfig(ResourceEntityConfigVo config) {
+        this.config = config;
+    }
+
+    public String getConfigStr() {
+        if (StringUtils.isBlank(configStr) && config != null) {
+            configStr = JSONObject.toJSONString(config);
+        }
+        return configStr;
+    }
+
+    public void setConfigStr(String configStr) {
+        this.configStr = configStr;
     }
 }
