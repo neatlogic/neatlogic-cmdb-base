@@ -16,6 +16,8 @@
 
 package neatlogic.framework.cmdb.dto.resourcecenter.config;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class ResourceEntityFieldMappingVo {
 
     private String field;
@@ -25,6 +27,22 @@ public class ResourceEntityFieldMappingVo {
     private String toCi;
     private String toAttr;
     private String direction;
+    @JSONField(serialize = false)
+    private Long fromCiId;
+    @JSONField(serialize = false)
+    private Long fromAttrId;
+    @JSONField(serialize = false)
+    private Long fromAttrCiId;
+    @JSONField(serialize = false)
+    private Long toCiId;
+    @JSONField(serialize = false)
+    private Integer toCiIsVirtual;
+    @JSONField(serialize = false)
+    private Long toAttrId;
+    @JSONField(serialize = false)
+    private Long toAttrCiId;
+    @JSONField(serialize = false)
+    private String toAttrCiName;
 
     public String getField() {
         return field;
@@ -80,5 +98,81 @@ public class ResourceEntityFieldMappingVo {
 
     public void setDirection(String direction) {
         this.direction = direction;
+    }
+
+    public Long getFromCiId() {
+        return fromCiId;
+    }
+
+    public void setFromCiId(Long fromCiId) {
+        this.fromCiId = fromCiId;
+    }
+
+    public Long getFromAttrId() {
+        return fromAttrId;
+    }
+
+    public void setFromAttrId(Long fromAttrId) {
+        this.fromAttrId = fromAttrId;
+    }
+
+    public Long getFromAttrCiId() {
+//        if (fromAttrCiId == null && fromAttrVo != null) {
+//            fromAttrCiId = fromAttrVo.getCiId();
+//        }
+        return fromAttrCiId;
+    }
+
+    public void setFromAttrCiId(Long fromAttrCiId) {
+        this.fromAttrCiId = fromAttrCiId;
+    }
+
+    public Long getToCiId() {
+        return toCiId;
+    }
+
+    public void setToCiId(Long toCiId) {
+        this.toCiId = toCiId;
+    }
+
+    public Long getToAttrId() {
+        return toAttrId;
+    }
+
+    public void setToAttrId(Long toAttrId) {
+        this.toAttrId = toAttrId;
+    }
+
+    public Long getToAttrCiId() {
+//        if (toAttrCiId == null && toAttrVo != null) {
+//            toAttrCiId = toAttrVo.getCiId();
+//        }
+        return toAttrCiId;
+    }
+
+    public void setToAttrCiId(Long toAttrCiId) {
+        this.toAttrCiId = toAttrCiId;
+    }
+
+    public String getToAttrCiName() {
+//        if (toAttrCiName == null && toAttrVo != null) {
+//            toAttrCiName = toAttrVo.getCiName();
+//        }
+        return toAttrCiName;
+    }
+
+    public void setToAttrCiName(String toAttrCiName) {
+        this.toAttrCiName = toAttrCiName;
+    }
+
+    public Integer getToCiIsVirtual() {
+//        if (toCiIsVirtual == null && toCiVo != null) {
+//            toCiIsVirtual = toCiVo.getIsVirtual();
+//        }
+        return toCiIsVirtual;
+    }
+
+    public void setToCiIsVirtual(Integer toCiIsVirtual) {
+        this.toCiIsVirtual = toCiIsVirtual;
     }
 }

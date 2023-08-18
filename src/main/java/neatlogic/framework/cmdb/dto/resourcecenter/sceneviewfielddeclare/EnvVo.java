@@ -16,10 +16,16 @@
 
 package neatlogic.framework.cmdb.dto.resourcecenter.sceneviewfielddeclare;
 
+import com.alibaba.fastjson.JSONObject;
 import neatlogic.framework.cmdb.annotation.ResourceField;
 import neatlogic.framework.cmdb.annotation.ResourceType;
+import neatlogic.framework.cmdb.dto.resourcecenter.config.ResourceEntityConfigVo;
+import neatlogic.framework.cmdb.dto.resourcecenter.config.ResourceEntityFieldMappingVo;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @ResourceType(name = "scence_env", label = "环境场景")
 public class EnvVo {
@@ -38,4 +44,49 @@ public class EnvVo {
     @EntityField(name = "描述", type = ApiParamType.STRING)
     @ResourceField(name = "description")
     private String description;
+
+    public ResourceEntityConfigVo getConfig() {
+        ResourceEntityConfigVo config = new ResourceEntityConfigVo();
+        config.setMainCi("APPEnv");
+        List<ResourceEntityFieldMappingVo> list = new ArrayList<>();
+        {
+            ResourceEntityFieldMappingVo fieldMappingVo = new ResourceEntityFieldMappingVo();
+            fieldMappingVo.setField("id");
+            fieldMappingVo.setType("const");
+            fieldMappingVo.setFromCi("APPEnv");
+            fieldMappingVo.setFromAttr("_id");
+            list.add(fieldMappingVo);
+        }
+        {
+            ResourceEntityFieldMappingVo fieldMappingVo = new ResourceEntityFieldMappingVo();
+            fieldMappingVo.setField("name");
+            fieldMappingVo.setType("attr");
+            fieldMappingVo.setFromCi("APPEnv");
+            fieldMappingVo.setFromAttr("name");
+            list.add(fieldMappingVo);
+        }
+        {
+            ResourceEntityFieldMappingVo fieldMappingVo = new ResourceEntityFieldMappingVo();
+            fieldMappingVo.setField("description");
+            fieldMappingVo.setType("attr");
+            fieldMappingVo.setFromCi("APPEnv");
+            fieldMappingVo.setFromAttr("label");
+            list.add(fieldMappingVo);
+        }
+        {
+            ResourceEntityFieldMappingVo fieldMappingVo = new ResourceEntityFieldMappingVo();
+            fieldMappingVo.setField("env_seq_no");
+            fieldMappingVo.setType("attr");
+            fieldMappingVo.setFromCi("APPEnv");
+            fieldMappingVo.setFromAttr("seq_no");
+            list.add(fieldMappingVo);
+        }
+        config.setFieldMappingList(list);
+        return config;
+    }
+
+    public static void main(String[] args) {
+        EnvVo envVo = new EnvVo();
+        System.out.println(JSONObject.toJSONString(envVo.getConfig()));
+    }
 }

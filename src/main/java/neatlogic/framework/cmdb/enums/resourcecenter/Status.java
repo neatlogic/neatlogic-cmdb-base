@@ -19,6 +19,9 @@ package neatlogic.framework.cmdb.enums.resourcecenter;
 import neatlogic.framework.util.$;
 
 public enum Status {
+    NO_CONFIGURE_VIEW_RULE("no_configure_view_rule", "未配置视图规则"),
+    NO_CREATE_VIEW("no_create_view", "未创建视图"),
+    CREATED_VIEW("created_view", "已创建视图"),
     ERROR("error", "异常"),
     PENDING("pending", "已就绪"),
     READY("ready", "可使用");
