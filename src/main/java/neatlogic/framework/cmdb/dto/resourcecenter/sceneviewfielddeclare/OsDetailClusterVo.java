@@ -84,10 +84,10 @@ public class OsDetailClusterVo {
     @ResourceField(name = "monitor_time")
     private Date monitorTime;
 
-    @EntityField(name = "分组id", type = ApiParamType.LONG)
+    @EntityField(name = "分组ID", type = ApiParamType.LONG)
     @ResourceField(name = "bg_id")
     private Long bgId;
-    @EntityField(name = "名称", type = ApiParamType.STRING)
+    @EntityField(name = "分组名称", type = ApiParamType.STRING)
     @ResourceField(name = "bg_name")
     private String bgName;
 
@@ -101,7 +101,7 @@ public class OsDetailClusterVo {
     @ResourceField(name = "user_name")
     private String userName;
 
-    @EntityField(name = "id", type = ApiParamType.LONG)
+    @EntityField(name = "状态ID", type = ApiParamType.LONG)
     @ResourceField(name = "state_id")
     private Long stateId;
     @EntityField(name = "状态名", type = ApiParamType.STRING)
@@ -111,10 +111,10 @@ public class OsDetailClusterVo {
     @ResourceField(name = "state_label")
     private String stateLabel;
 
-    @EntityField(name = "数据中心id", type = ApiParamType.LONG)
+    @EntityField(name = "数据中心ID", type = ApiParamType.LONG)
     @ResourceField(name = "datacenter_id")
     private Long dataCenterId;
-    @EntityField(name = "名称", type = ApiParamType.STRING)
+    @EntityField(name = "数据中心名称", type = ApiParamType.STRING)
     @ResourceField(name = "datacenter_name")
     private String dataCenterName;
 

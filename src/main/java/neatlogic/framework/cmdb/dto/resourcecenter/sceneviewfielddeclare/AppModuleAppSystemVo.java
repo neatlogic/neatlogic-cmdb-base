@@ -81,10 +81,10 @@ public class AppModuleAppSystemVo {
     @ResourceField(name = "monitor_time")
     private Date monitorTime;
 
-    @EntityField(name = "分组id", type = ApiParamType.LONG)
+    @EntityField(name = "分组ID", type = ApiParamType.LONG)
     @ResourceField(name = "bg_id")
     private Long bgId;
-    @EntityField(name = "名称", type = ApiParamType.STRING)
+    @EntityField(name = "分组名称", type = ApiParamType.STRING)
     @ResourceField(name = "bg_name")
     private String bgName;
 
@@ -98,13 +98,13 @@ public class AppModuleAppSystemVo {
     @ResourceField(name = "user_name")
     private String userName;
 
-    @EntityField(name = "应用id", type = ApiParamType.LONG)
+    @EntityField(name = "应用系统ID", type = ApiParamType.LONG)
     @ResourceField(name = "app_system_id")
     private Long appSystemId;
-    @EntityField(name = "应用名", type = ApiParamType.STRING)
+    @EntityField(name = "应用系统名", type = ApiParamType.STRING)
     @ResourceField(name = "app_system_name")
     private String appSystemName;
-    @EntityField(name = "应用简称", type = ApiParamType.STRING)
+    @EntityField(name = "应用系统简称", type = ApiParamType.STRING)
     @ResourceField(name = "app_system_abbr_name")
     private String appSystemAbbrName;
 }

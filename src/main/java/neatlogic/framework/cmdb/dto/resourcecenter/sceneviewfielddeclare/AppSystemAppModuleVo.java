@@ -45,13 +45,13 @@ public class AppSystemAppModuleVo {
     @ResourceField(name = "type_label")
     private String typeLabel;
 
-    @EntityField(name = "模块id", type = ApiParamType.LONG)
+    @EntityField(name = "应用模块ID", type = ApiParamType.LONG)
     @ResourceField(name = "app_module_id")
     private Long appModuleId;
-    @EntityField(name = "模块名", type = ApiParamType.STRING)
+    @EntityField(name = "应用模块名", type = ApiParamType.STRING)
     @ResourceField(name = "app_module_name")
     private String appModuleName;
-    @EntityField(name = "模块简称", type = ApiParamType.STRING)
+    @EntityField(name = "应用模块简称", type = ApiParamType.STRING)
     @ResourceField(name = "app_module_abbr_name")
     private String appModuleAbbrName;
 }
