@@ -117,9 +117,6 @@ public class ResourceEntityFieldMappingVo {
     }
 
     public Long getFromAttrCiId() {
-//        if (fromAttrCiId == null && fromAttrVo != null) {
-//            fromAttrCiId = fromAttrVo.getCiId();
-//        }
         return fromAttrCiId;
     }
 
@@ -144,9 +141,6 @@ public class ResourceEntityFieldMappingVo {
     }
 
     public Long getToAttrCiId() {
-//        if (toAttrCiId == null && toAttrVo != null) {
-//            toAttrCiId = toAttrVo.getCiId();
-//        }
         return toAttrCiId;
     }
 
@@ -155,9 +149,6 @@ public class ResourceEntityFieldMappingVo {
     }
 
     public String getToAttrCiName() {
-//        if (toAttrCiName == null && toAttrVo != null) {
-//            toAttrCiName = toAttrVo.getCiName();
-//        }
         return toAttrCiName;
     }
 
@@ -166,9 +157,6 @@ public class ResourceEntityFieldMappingVo {
     }
 
     public Integer getToCiIsVirtual() {
-//        if (toCiIsVirtual == null && toCiVo != null) {
-//            toCiIsVirtual = toCiVo.getIsVirtual();
-//        }
         return toCiIsVirtual;
     }
 

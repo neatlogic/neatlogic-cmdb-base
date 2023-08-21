@@ -16,14 +16,11 @@
 
 package neatlogic.framework.cmdb.utils;
 
-import com.alibaba.fastjson.JSONObject;
 import neatlogic.framework.asynchronization.threadlocal.TenantContext;
 import neatlogic.framework.cmdb.dto.ci.CiVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.config.ResourceEntityConfigVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.config.ResourceEntityFieldMappingVo;
-import neatlogic.framework.cmdb.dto.resourcecenter.config.SceneEntityAttrVo;
 import neatlogic.framework.cmdb.enums.RelDirectionType;
-import neatlogic.framework.cmdb.enums.resourcecenter.JoinType;
 import net.sf.jsqlparser.expression.Alias;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.Function;
@@ -57,7 +54,6 @@ public class ResourceViewGenerateSqlUtil {
     public String getSql() {
         PlainSelect plainSelect = initPlainSelectByMainResourceId(mainCiVo);
         for (ResourceEntityFieldMappingVo fieldMappingVo : fieldMappingList) {
-            System.out.println(JSONObject.toJSONString(fieldMappingVo));
             addJoinTableByFieldMapping(fieldMappingVo, plainSelect);
         }
         return plainSelect.toString();
@@ -162,37 +158,8 @@ public class ResourceViewGenerateSqlUtil {
         Integer attrCiIsVirtual = fieldMappingVo.getToCiIsVirtual();
         String direction = fieldMappingVo.getDirection();
         boolean left = true;
-//        JoinType joinType = fieldMappingVo.getJoinType();
-//        if (joinType == JoinType.ATTR) {
         String type = fieldMappingVo.getType();
         if (Objects.equals(type, "attr")) {
-            // 下拉框类型属
-            // 例如状态属性state AS state_id
-//            <resource id="resource_ipobject_state" ci="IPObject">
-//                <attr field="resource_id" attr="_id"/>
-//                <attr field="state_name" ci="CIState" attr="name"/>
-//                <attr field="state_label" ci="CIState" attr="label"/>
-//                <join>
-//                    <attr field="state_id" ci="CIState" joinAttrName="state"/>
-//                </join>
-//            </resource>
-//            (left) join cmdb_cientity IPObject ON IPObject.id = IPObject.id
-//            (left) join cmdb_attrentity cmdb_attrentity_state ON cmdb_attrentity_state.from_cientity_id = IPObject.id and cmdb_attrentity_state.attr_id = #{attrId}
-//            (left) join cmdb_cientity CIState ON CIState.id = cmdb_attrentity_state.to_cientity_id
-            //负责人属性owner AS user_id
-//            <resource id="resource_ipobject_owner" ci="IPObject">
-//                <attr field="resource_id" attr="_id"/>
-//                <attr field="user_name" ci="User" attr="user_name"/>
-//                <attr field="user_uuid" ci="User" attr="_uuid"/>
-//                <join>
-//                    <attr field="user_id" ci="User" joinAttrName="owner"/>
-//                </join>
-//            </resource>
-//            (left) join cmdb_cientity IPObject ON IPObject.id = IPObject.id
-//            (left) join cmdb_attrentity cmdb_attrentity_owner ON cmdb_attrentity_owner.from_cientity_id = IPObject.id and cmdb_attrentity_owner.attr_id = #{attrId}
-//            (LEFT) JOIN neatlogic_develop_data.cmdb_479643459133440 cmdb_479643459133440_User ON cmdb_479643459133440_User.id = cmdb_attrentity_owner.to_cientity_id
-
-            if (toCiId != null) {
             Table resourceCiTable = getTableByAlias("cientity_" + fromCi);
             if (resourceCiTable == null) {
                 resourceCiTable = new Table("cmdb_cientity").withAlias(new Alias("cientity_" + fromCi).withUseAs(false));
@@ -204,19 +171,21 @@ public class ResourceViewGenerateSqlUtil {
                 addJoinTable(resourceCiTable);
                 addEqualColumn(resourceCiTableIdColumn, mainTableIdColumn);
             }
-            Table cmdbAttrentityTable = joinedTableMap.get("cmdb_attrentity_" + fromAttr);
-            if (cmdbAttrentityTable == null) {
-                cmdbAttrentityTable = new Table("cmdb_attrentity").withAlias(new Alias("cmdb_attrentity_" + fromAttr).withUseAs(false));
-                Column cmdbAttrentityTableFromCientityIdColumn = new Column(cmdbAttrentityTable, "from_cientity_id");
-                Column resourceCiTableIdColumn = new Column(resourceCiTable, "id");
-                EqualsTo equalsTo1 = new EqualsTo(cmdbAttrentityTableFromCientityIdColumn, resourceCiTableIdColumn);
-                EqualsTo equalsTo2 = new EqualsTo(new Column(cmdbAttrentityTable, "attr_id"), new LongValue(fromAttrId));
-                Expression onExpression = new AndExpression(equalsTo1, equalsTo2);
-                Join join = new Join().withLeft(left).withRightItem(cmdbAttrentityTable).addOnExpression(onExpression);
-                plainSelect.addJoins(join);
-                addJoinTable(cmdbAttrentityTable);
-                addEqualColumn(cmdbAttrentityTableFromCientityIdColumn, resourceCiTableIdColumn);
-            }
+            // 下拉框类型属
+            if (toCiId != null) {
+                Table cmdbAttrentityTable = joinedTableMap.get("cmdb_attrentity_" + fromAttr);
+                if (cmdbAttrentityTable == null) {
+                    cmdbAttrentityTable = new Table("cmdb_attrentity").withAlias(new Alias("cmdb_attrentity_" + fromAttr).withUseAs(false));
+                    Column cmdbAttrentityTableFromCientityIdColumn = new Column(cmdbAttrentityTable, "from_cientity_id");
+                    Column resourceCiTableIdColumn = new Column(resourceCiTable, "id");
+                    EqualsTo equalsTo1 = new EqualsTo(cmdbAttrentityTableFromCientityIdColumn, resourceCiTableIdColumn);
+                    EqualsTo equalsTo2 = new EqualsTo(new Column(cmdbAttrentityTable, "attr_id"), new LongValue(fromAttrId));
+                    Expression onExpression = new AndExpression(equalsTo1, equalsTo2);
+                    Join join = new Join().withLeft(left).withRightItem(cmdbAttrentityTable).addOnExpression(onExpression);
+                    plainSelect.addJoins(join);
+                    addJoinTable(cmdbAttrentityTable);
+                    addEqualColumn(cmdbAttrentityTableFromCientityIdColumn, resourceCiTableIdColumn);
+                }
                 if (Objects.equals(attrCiIsVirtual, 1)) {
                     //属性模型是虚拟模型时
                     Table cmdbCiIdTable = joinedTableMap.get("cmdb_" + toAttrCiId + "_" + toAttrCiName);
@@ -282,24 +251,14 @@ public class ResourceViewGenerateSqlUtil {
                     }
                 }
             } else {
-                Table attrCiTable = joinedTableMap.get("cientity_" + fromCi);
-                if (attrCiTable == null) {
-                    attrCiTable = new Table("cmdb_cientity").withAlias(new Alias("cientity_" + fromCi).withUseAs(false));
-                    Column attrCiTableIdColumn = new Column(attrCiTable, "id");
-                    Column fromTableIdColumn = new Column(mainTable, "id");
-                    Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(new EqualsTo(attrCiTableIdColumn, fromTableIdColumn));
-                    plainSelect.addJoins(join);
-                    addJoinTable(attrCiTable);
-                    addEqualColumn(attrCiTableIdColumn, fromTableIdColumn);
-                }
-
+                //非下拉框属性
                 String tableName = "cmdb_" + fromAttrCiId;
                 String tableAlias = tableName + "_" + fromCi;
                 Table cmdbCiIdTable = joinedTableMap.get(tableAlias);
                 if (cmdbCiIdTable == null) {
                     cmdbCiIdTable = new Table(TenantContext.get().getDataDbName(), tableName).withAlias(new Alias(tableAlias).withUseAs(false));
                     Column cmdbCiIdTableCientityIdColumn = new Column(cmdbCiIdTable, "cientity_id");
-                    Column attrCiTableIdColumn = new Column(attrCiTable, "id");
+                    Column attrCiTableIdColumn = new Column(resourceCiTable, "id");
                     Join join = new Join().withLeft(left).withRightItem(cmdbCiIdTable).addOnExpression(new EqualsTo(cmdbCiIdTableCientityIdColumn, attrCiTableIdColumn));
                     plainSelect.addJoins(join);
                     addJoinTable(cmdbCiIdTable);
@@ -309,9 +268,8 @@ public class ResourceViewGenerateSqlUtil {
                 plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
                 return column;
             }
-
         } else if (Objects.equals(type, "rel")) {
-            //关系
+            //上游关系
             if (Objects.equals(direction, RelDirectionType.FROM.getValue())) {
                 Table cmdbRelentityTable = joinedTableMap.get("cmdb_relentity_" + fromCi);
                 if (cmdbRelentityTable == null) {
@@ -372,22 +330,7 @@ public class ResourceViewGenerateSqlUtil {
                     return column;
                 }
             } else {
-                //模块
-//                <resource id="resource_ipobject_appmodule" ci="IPObject">
-//                    <attr field="resource_id" attr="_id"/>
-//                    <attr field="app_module_name" ci="APPComponent" attr="name"/>
-//                    <attr field="app_module_abbr_name" ci="APPComponent" attr="abbrName"/>
-//                    <join>
-//                        <rel field="app_module_id" ci="APPComponent" direction="to"/>
-//                    </join>
-//                </resource>
-
-//                LEFT JOIN cmdb_relentity cmdb_relentity_APPComponent ON cmdb_relentity_APPComponent.to_cientity_id = IPObject.id
-//                LEFT JOIN cmdb_rel cmdb_rel_APPComponent ON cmdb_rel_APPComponent.id = cmdb_relentity_APPComponent.rel_id AND cmdb_rel_APPComponent.from_ci_id = 479610550624256
-//                LEFT JOIN cmdb_cientity APPComponent ON APPComponent.id = cmdb_relentity_APPComponent.from_cientity_id
-
-//                LEFT JOIN neatlogic_develop_data.cmdb_441087512551424 cmdb_441087512551424_APPComponent ON cmdb_441087512551424_APPComponent.cientity_id = APPComponent.id
-//                LEFT JOIN neatlogic_develop_data.cmdb_479610550624256 cmdb_479610550624256_APPComponent ON cmdb_479610550624256_APPComponent.cientity_id = APPComponent.id
+                //下游关系
                 Table cmdbRelentityTable = joinedTableMap.get("cmdb_relentity_" + toCi);
                 if (cmdbRelentityTable == null) {
                     cmdbRelentityTable = new Table("cmdb_relentity").withAlias(new Alias("cmdb_relentity_" + toCi).withUseAs(false));
@@ -448,67 +391,40 @@ public class ResourceViewGenerateSqlUtil {
             }
         } else {
             //非下拉框属性
-//            	<resource id="resource_ipobject" ci="IPObject">
-//                    <attr field="id" attr="_id"/>
-//                    <attr field="name" attr="name"/>
-//                    <attr field="ip" attr="ip"/>
-//                    <attr field="type_id" attr="_typeId"/>
-//                    <attr field="type_name" attr="_typeName"/>
-//                    <attr field="type_label" attr="_typeLabel"/>
-//                    <attr field="fcu" attr="_fcu"/>
-//                    <attr field="fcd" attr="_fcd"/>
-//                    <attr field="lcu" attr="_lcu"/>
-//                    <attr field="lcd" attr="_lcd"/>
-//                    <attr field="maintenance_window" attr="maintenance_window"/>
-//                    <attr field="description" attr="description"/>
-//                    <attr field="network_area" attr="network_area"/>
-//                    <attr field="inspect_status" attr="_inspectStatus"/>
-//                    <attr field="inspect_time" attr="_inspectTime"/>
-//                    <attr field="monitor_status" attr="_monitorStatus"/>
-//                    <attr field="monitor_time" attr="_monitorTime"/>
-//                </resource>
-            //例如ip属性
-//            LEFT JOIN neatlogic_develop_data.cmdb_442011534499840 cmdb_442011534499840_IPObject ON cmdb_442011534499840_IPObject.cientity_id = IPObject.id
-//            if (fromAttrId == null) {
-                if ("_id".equals(fromAttr)) {
-                    fromAttr = "id";
-                } else if ("_uuid".equals(fromAttr)) {
-                    fromAttr = "uuid";
-                } else if ("_name".equals(fromAttr)) {
-                    fromAttr = "name";
-                } else if ("_fcu".equals(fromAttr)) {
-                    fromAttr = "fcu";
-                } else if ("_fcd".equals(fromAttr)) {
-                    fromAttr = "fcd";
-                } else if ("_lcu".equals(fromAttr)) {
-                    fromAttr = "lcu";
-                } else if ("_lcd".equals(fromAttr)) {
-                    fromAttr = "lcd";
-                } else if ("_inspectStatus".equals(fromAttr)) {
-                    fromAttr = "inspect_status";
-                } else if ("_inspectTime".equals(fromAttr)) {
-                    fromAttr = "inspect_time";
-                } else if ("_monitorStatus".equals(fromAttr)) {
-                    fromAttr = "monitor_status";
-                } else if ("_monitorTime".equals(fromAttr)) {
-                    fromAttr = "monitor_time";
-                } else if ("_typeId".equals(fromAttr)) {
-                    fromAttr = "ci_id";
-                } else if ("_typeName".equals(fromAttr)) {
-                    fromCi = fromCi + "_ci";
-                    fromAttr = "name";
-                } else if ("_typeLabel".equals(fromAttr)) {
-                    fromCi = fromCi + "_ci";
-                    fromAttr = "label";
-                } else {
-
-                }
-                Column column = new Column(new Table("cientity_" + fromCi), fromAttr);
-                plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
-                return column;
-//            } else {
-//
-//            }
+            if ("_id".equals(fromAttr)) {
+                fromAttr = "id";
+            } else if ("_uuid".equals(fromAttr)) {
+                fromAttr = "uuid";
+            } else if ("_name".equals(fromAttr)) {
+                fromAttr = "name";
+            } else if ("_fcu".equals(fromAttr)) {
+                fromAttr = "fcu";
+            } else if ("_fcd".equals(fromAttr)) {
+                fromAttr = "fcd";
+            } else if ("_lcu".equals(fromAttr)) {
+                fromAttr = "lcu";
+            } else if ("_lcd".equals(fromAttr)) {
+                fromAttr = "lcd";
+            } else if ("_inspectStatus".equals(fromAttr)) {
+                fromAttr = "inspect_status";
+            } else if ("_inspectTime".equals(fromAttr)) {
+                fromAttr = "inspect_time";
+            } else if ("_monitorStatus".equals(fromAttr)) {
+                fromAttr = "monitor_status";
+            } else if ("_monitorTime".equals(fromAttr)) {
+                fromAttr = "monitor_time";
+            } else if ("_typeId".equals(fromAttr)) {
+                fromAttr = "ci_id";
+            } else if ("_typeName".equals(fromAttr)) {
+                fromCi = fromCi + "_ci";
+                fromAttr = "name";
+            } else if ("_typeLabel".equals(fromAttr)) {
+                fromCi = fromCi + "_ci";
+                fromAttr = "label";
+            }
+            Column column = new Column(new Table("cientity_" + fromCi), fromAttr);
+            plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+            return column;
         }
     }
 }
