@@ -313,87 +313,13 @@ public class ResourceViewGenerateSqlUtil {
         } else if (Objects.equals(type, "rel")) {
             //关系
             if (Objects.equals(direction, RelDirectionType.FROM.getValue())) {
-                Table cmdbRelentityTable = joinedTableMap.get("cmdb_relentity_" + toCi);
-                if (cmdbRelentityTable == null) {
-                    cmdbRelentityTable = new Table("cmdb_relentity").withAlias(new Alias("cmdb_relentity_" + toCi).withUseAs(false));
-                    Column cmdbRelentityTableFromCientityIdColumn = new Column(cmdbRelentityTable, "from_cientity_id");
-                    Column fromTableIdColumn = new Column(new Table("cientity_" + fromCi), "id");
-                    EqualsTo equalsTo = new EqualsTo(cmdbRelentityTableFromCientityIdColumn, fromTableIdColumn);
-
-                    Column cmdbRelentityTableToCientityIdColumn = new Column(cmdbRelentityTable, "to_cientity_id");
-                    Table cmdbCiIdTable = new Table(TenantContext.get().getDataDbName(),"cmdb_" + toCiId);
-                    SubSelect subSelect = new SubSelect().withSelectBody(new PlainSelect().withFromItem(cmdbCiIdTable).addSelectItems(new SelectExpressionItem(new Column(cmdbCiIdTable, "cientity_id"))));
-                    InExpression inExpression = new InExpression(cmdbRelentityTableToCientityIdColumn, subSelect);
-
-                    Join join = new Join().withLeft(left).withRightItem(cmdbRelentityTable).addOnExpression(new AndExpression(equalsTo, inExpression));
-                    plainSelect.addJoins(join);
-                    addJoinTable(cmdbRelentityTable);
-                    addEqualColumn(cmdbRelentityTableFromCientityIdColumn, fromTableIdColumn);
-                }
-
-                Table attrCiTable = joinedTableMap.get("cientity_" + toCi);
-                if (attrCiTable == null) {
-                    attrCiTable = new Table("cmdb_cientity").withAlias(new Alias("cientity_" + toCi).withUseAs(false));
-                    Column attrCiTableIdColumn = new Column(attrCiTable, "id");
-                    Column cmdbRelentityTableToCientityIdColumn = new Column(cmdbRelentityTable, "to_cientity_id");
-                    EqualsTo equalsTo = new EqualsTo(attrCiTableIdColumn, cmdbRelentityTableToCientityIdColumn);
-                    AndExpression andExpression = new AndExpression(equalsTo, getExpiredExpression(attrCiTable));
-                    Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(andExpression);
-                    plainSelect.addJoins(join);
-                    addJoinTable(attrCiTable);
-                    addEqualColumn(attrCiTableIdColumn, cmdbRelentityTableToCientityIdColumn);
-                }
-                if (toAttrId == null) {
-                    if (toAttr.startsWith("_")) {
-                        if ("_typeId".equals(toAttr)) {
-                            toAttr = "ci_id";
-                        } else {
-                            toAttr = toAttr.substring(1);
-                        }
-                    }
-                    Column column = new Column(attrCiTable, toAttr);
-                    plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
-                    return column;
-                } else {
-                    String tableName = "cmdb_" + toAttrCiId;
-                    String tableAlias = tableName + "_" + toCi;
-                    Table cmdbCiIdTable = joinedTableMap.get(tableAlias);
-                    if (cmdbCiIdTable == null) {
-                        cmdbCiIdTable = new Table(TenantContext.get().getDataDbName(), tableName).withAlias(new Alias(tableAlias).withUseAs(false));
-                        Column cmdbCiIdTableCientityIdColumn = new Column(cmdbCiIdTable, "cientity_id");
-                        Column attrCiTableIdColumn = new Column(attrCiTable, "id");
-                        Join join = new Join().withLeft(left).withRightItem(cmdbCiIdTable).addOnExpression(new EqualsTo(cmdbCiIdTableCientityIdColumn, attrCiTableIdColumn));
-                        plainSelect.addJoins(join);
-                        addJoinTable(cmdbCiIdTable);
-                        addEqualColumn(cmdbCiIdTableCientityIdColumn, attrCiTableIdColumn);
-                    }
-                    Column column = new Column(cmdbCiIdTable, "`" + toAttrId + "`");
-                    plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
-                    return column;
-                }
-            } else {
-                //模块
-//                <resource id="resource_ipobject_appmodule" ci="IPObject">
-//                    <attr field="resource_id" attr="_id"/>
-//                    <attr field="app_module_name" ci="APPComponent" attr="name"/>
-//                    <attr field="app_module_abbr_name" ci="APPComponent" attr="abbrName"/>
-//                    <join>
-//                        <rel field="app_module_id" ci="APPComponent" direction="to"/>
-//                    </join>
-//                </resource>
-
-//                LEFT JOIN cmdb_relentity cmdb_relentity_APPComponent ON cmdb_relentity_APPComponent.to_cientity_id = IPObject.id
-//                LEFT JOIN cmdb_rel cmdb_rel_APPComponent ON cmdb_rel_APPComponent.id = cmdb_relentity_APPComponent.rel_id AND cmdb_rel_APPComponent.from_ci_id = 479610550624256
-//                LEFT JOIN cmdb_cientity APPComponent ON APPComponent.id = cmdb_relentity_APPComponent.from_cientity_id
-
-//                LEFT JOIN neatlogic_develop_data.cmdb_441087512551424 cmdb_441087512551424_APPComponent ON cmdb_441087512551424_APPComponent.cientity_id = APPComponent.id
-//                LEFT JOIN neatlogic_develop_data.cmdb_479610550624256 cmdb_479610550624256_APPComponent ON cmdb_479610550624256_APPComponent.cientity_id = APPComponent.id
                 Table cmdbRelentityTable = joinedTableMap.get("cmdb_relentity_" + fromCi);
                 if (cmdbRelentityTable == null) {
                     cmdbRelentityTable = new Table("cmdb_relentity").withAlias(new Alias("cmdb_relentity_" + fromCi).withUseAs(false));
                     Column cmdbRelentityTableToCientityIdColumn = new Column(cmdbRelentityTable, "to_cientity_id");
-                    Column fromTableIdColumn = new Column(new Table("cientity_" + toCi), "id");
-                    EqualsTo equalsTo = new EqualsTo(cmdbRelentityTableToCientityIdColumn, fromTableIdColumn);
+                    Column toTableIdColumn = new Column(new Table("cientity_" + toCi), "id");
+                    EqualsTo equalsTo = new EqualsTo(cmdbRelentityTableToCientityIdColumn, toTableIdColumn);
+
                     Column cmdbRelentityTableFromCientityIdColumn = new Column(cmdbRelentityTable, "from_cientity_id");
                     Table cmdbCiIdTable = new Table(TenantContext.get().getDataDbName(),"cmdb_" + fromCiId);
                     SubSelect subSelect = new SubSelect().withSelectBody(new PlainSelect().withFromItem(cmdbCiIdTable).addSelectItems(new SelectExpressionItem(new Column(cmdbCiIdTable, "cientity_id"))));
@@ -402,7 +328,7 @@ public class ResourceViewGenerateSqlUtil {
                     Join join = new Join().withLeft(left).withRightItem(cmdbRelentityTable).addOnExpression(new AndExpression(equalsTo, inExpression));
                     plainSelect.addJoins(join);
                     addJoinTable(cmdbRelentityTable);
-                    addEqualColumn(cmdbRelentityTableToCientityIdColumn, fromTableIdColumn);
+                    addEqualColumn(cmdbRelentityTableToCientityIdColumn, toTableIdColumn);
                 }
 
                 Table attrCiTable = joinedTableMap.get("cientity_" + fromCi);
@@ -419,7 +345,7 @@ public class ResourceViewGenerateSqlUtil {
                 }
                 if (fromAttrId == null) {
                     if (fromAttr.startsWith("_")) {
-                        if ("_type".equals(fromAttr)) {
+                        if ("_typeId".equals(fromAttr)) {
                             fromAttr = "ci_id";
                         } else {
                             fromAttr = fromAttr.substring(1);
@@ -442,6 +368,80 @@ public class ResourceViewGenerateSqlUtil {
                         addEqualColumn(cmdbCiIdTableCientityIdColumn, attrCiTableIdColumn);
                     }
                     Column column = new Column(cmdbCiIdTable, "`" + fromAttrId + "`");
+                    plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                    return column;
+                }
+            } else {
+                //模块
+//                <resource id="resource_ipobject_appmodule" ci="IPObject">
+//                    <attr field="resource_id" attr="_id"/>
+//                    <attr field="app_module_name" ci="APPComponent" attr="name"/>
+//                    <attr field="app_module_abbr_name" ci="APPComponent" attr="abbrName"/>
+//                    <join>
+//                        <rel field="app_module_id" ci="APPComponent" direction="to"/>
+//                    </join>
+//                </resource>
+
+//                LEFT JOIN cmdb_relentity cmdb_relentity_APPComponent ON cmdb_relentity_APPComponent.to_cientity_id = IPObject.id
+//                LEFT JOIN cmdb_rel cmdb_rel_APPComponent ON cmdb_rel_APPComponent.id = cmdb_relentity_APPComponent.rel_id AND cmdb_rel_APPComponent.from_ci_id = 479610550624256
+//                LEFT JOIN cmdb_cientity APPComponent ON APPComponent.id = cmdb_relentity_APPComponent.from_cientity_id
+
+//                LEFT JOIN neatlogic_develop_data.cmdb_441087512551424 cmdb_441087512551424_APPComponent ON cmdb_441087512551424_APPComponent.cientity_id = APPComponent.id
+//                LEFT JOIN neatlogic_develop_data.cmdb_479610550624256 cmdb_479610550624256_APPComponent ON cmdb_479610550624256_APPComponent.cientity_id = APPComponent.id
+                Table cmdbRelentityTable = joinedTableMap.get("cmdb_relentity_" + toCi);
+                if (cmdbRelentityTable == null) {
+                    cmdbRelentityTable = new Table("cmdb_relentity").withAlias(new Alias("cmdb_relentity_" + toCi).withUseAs(false));
+                    Column cmdbRelentityTableFromCientityIdColumn = new Column(cmdbRelentityTable, "from_cientity_id");
+                    Column toTableIdColumn = new Column(new Table("cientity_" + fromCi), "id");
+                    EqualsTo equalsTo = new EqualsTo(cmdbRelentityTableFromCientityIdColumn, toTableIdColumn);
+                    Column cmdbRelentityTableToCientityIdColumn = new Column(cmdbRelentityTable, "to_cientity_id");
+                    Table cmdbCiIdTable = new Table(TenantContext.get().getDataDbName(),"cmdb_" + toCiId);
+                    SubSelect subSelect = new SubSelect().withSelectBody(new PlainSelect().withFromItem(cmdbCiIdTable).addSelectItems(new SelectExpressionItem(new Column(cmdbCiIdTable, "cientity_id"))));
+                    InExpression inExpression = new InExpression(cmdbRelentityTableToCientityIdColumn, subSelect);
+
+                    Join join = new Join().withLeft(left).withRightItem(cmdbRelentityTable).addOnExpression(new AndExpression(equalsTo, inExpression));
+                    plainSelect.addJoins(join);
+                    addJoinTable(cmdbRelentityTable);
+                    addEqualColumn(cmdbRelentityTableFromCientityIdColumn, toTableIdColumn);
+                }
+
+                Table attrCiTable = joinedTableMap.get("cientity_" + toCi);
+                if (attrCiTable == null) {
+                    attrCiTable = new Table("cmdb_cientity").withAlias(new Alias("cientity_" + toCi).withUseAs(false));
+                    Column attrCiTableIdColumn = new Column(attrCiTable, "id");
+                    Column cmdbRelentityTableToCientityIdColumn = new Column(cmdbRelentityTable, "to_cientity_id");
+                    EqualsTo equalsTo = new EqualsTo(attrCiTableIdColumn, cmdbRelentityTableToCientityIdColumn);
+                    AndExpression andExpression = new AndExpression(equalsTo, getExpiredExpression(attrCiTable));
+                    Join join = new Join().withLeft(left).withRightItem(attrCiTable).addOnExpression(andExpression);
+                    plainSelect.addJoins(join);
+                    addJoinTable(attrCiTable);
+                    addEqualColumn(attrCiTableIdColumn, cmdbRelentityTableToCientityIdColumn);
+                }
+                if (toAttrId == null) {
+                    if (toAttr.startsWith("_")) {
+                        if ("_type".equals(toAttr)) {
+                            toAttr = "ci_id";
+                        } else {
+                            toAttr = toAttr.substring(1);
+                        }
+                    }
+                    Column column = new Column(attrCiTable, toAttr);
+                    plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                    return column;
+                } else {
+                    String tableName = "cmdb_" + toAttrCiId;
+                    String tableAlias = tableName + "_" + toCi;
+                    Table cmdbCiIdTable = joinedTableMap.get(tableAlias);
+                    if (cmdbCiIdTable == null) {
+                        cmdbCiIdTable = new Table(TenantContext.get().getDataDbName(), tableName).withAlias(new Alias(tableAlias).withUseAs(false));
+                        Column cmdbCiIdTableCientityIdColumn = new Column(cmdbCiIdTable, "cientity_id");
+                        Column attrCiTableIdColumn = new Column(attrCiTable, "id");
+                        Join join = new Join().withLeft(left).withRightItem(cmdbCiIdTable).addOnExpression(new EqualsTo(cmdbCiIdTableCientityIdColumn, attrCiTableIdColumn));
+                        plainSelect.addJoins(join);
+                        addJoinTable(cmdbCiIdTable);
+                        addEqualColumn(cmdbCiIdTableCientityIdColumn, attrCiTableIdColumn);
+                    }
+                    Column column = new Column(cmdbCiIdTable, "`" + toAttrId + "`");
                     plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
                     return column;
                 }
