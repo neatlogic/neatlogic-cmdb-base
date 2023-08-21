@@ -55,8 +55,6 @@ public class ResourceEntityVo {
     @EntityField(name = "common.description", type = ApiParamType.STRING)
     private String description;
 
-//    @EntityField(name = "主模型", type = ApiParamType.STRING)
-//    private String mainCi;
     @EntityField(name = "字段列表", type = ApiParamType.JSONARRAY)
     private List<ValueTextVo> fieldList;
     @EntityField(name = "配置", type = ApiParamType.JSONOBJECT)
