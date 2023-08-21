@@ -91,12 +91,12 @@ public class OsDetailClusterVo {
     @ResourceField(name = "bg_name")
     private String bgName;
 
-    @EntityField(name = "用户uuid", type = ApiParamType.STRING)
-    @ResourceField(name = "user_uuid")
-    private String uuid;
-    @EntityField(name = "id", type = ApiParamType.LONG)
+    @EntityField(name = "用户ID", type = ApiParamType.LONG)
     @ResourceField(name = "user_id")
     private Long userId;
+    @EntityField(name = "用户UUID", type = ApiParamType.STRING)
+    @ResourceField(name = "user_uuid")
+    private String uuid;
     @EntityField(name = "用户名", type = ApiParamType.STRING)
     @ResourceField(name = "user_name")
     private String userName;
