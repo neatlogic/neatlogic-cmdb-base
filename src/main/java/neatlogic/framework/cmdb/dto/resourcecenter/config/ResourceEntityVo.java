@@ -55,8 +55,8 @@ public class ResourceEntityVo {
     @EntityField(name = "common.description", type = ApiParamType.STRING)
     private String description;
 
-    @EntityField(name = "主模型", type = ApiParamType.STRING)
-    private String mainCi;
+//    @EntityField(name = "主模型", type = ApiParamType.STRING)
+//    private String mainCi;
     @EntityField(name = "字段列表", type = ApiParamType.JSONARRAY)
     private List<ValueTextVo> fieldList;
     @EntityField(name = "配置", type = ApiParamType.JSONOBJECT)
@@ -201,14 +201,6 @@ public class ResourceEntityVo {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getMainCi() {
-        return mainCi;
-    }
-
-    public void setMainCi(String mainCi) {
-        this.mainCi = mainCi;
     }
 
     public List<ValueTextVo> getFieldList() {
