@@ -25,22 +25,18 @@ public class ResourceViewFieldMappingException extends ApiRuntimeException {
     private static final long serialVersionUID = 7793373552475922744L;
 
     public ResourceViewFieldMappingException(String viewName) {
-        super("资源视图{0}中主模型未设置", viewName);
+        super("nfcer.resourceviewfieldmappingexception.resourceviewfieldmappingexception_a", viewName);
     }
 
     public ResourceViewFieldMappingException(String viewName, List<String> fieldNameList) {
-        super("资源视图{0}中字段列表{1}未设置映射", viewName, String.join(",", fieldNameList));
+        super("nfcer.resourceviewfieldmappingexception.resourceviewfieldmappingexception_b", viewName, String.join(",", fieldNameList));
     }
 
     public ResourceViewFieldMappingException(String viewName, String mainCi) {
-        super("资源视图{0}中主模型{1}不存在", viewName, mainCi);
+        super("nfcer.resourceviewfieldmappingexception.resourceviewfieldmappingexception_c", viewName, mainCi);
     }
 
-//    public ResourceViewFieldMappingException(String viewName, String field, String type) {
-//        super("资源视图{0}中字段{1}映射类型{2}不存在", viewName, field, type);
-//    }
-
     public ResourceViewFieldMappingException(String viewName, String field, String attrName, String attrValue) {
-        super("资源视图{0}中字段{1}的映射{2}值为{3}，设置不正确", viewName, field, attrName, attrValue);
+        super("nfcer.resourceviewfieldmappingexception.resourceviewfieldmappingexception_d", viewName, field, attrName, attrValue);
     }
 }
