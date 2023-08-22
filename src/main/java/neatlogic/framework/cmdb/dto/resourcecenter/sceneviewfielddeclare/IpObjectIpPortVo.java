@@ -23,7 +23,7 @@ import neatlogic.framework.restful.annotation.EntityField;
 
 @ResourceType(name = "scence_ipobject_ip_port", label = "IP软硬件IP和端口场景")
 public class IpObjectIpPortVo {
-    @EntityField(name = "id", type = ApiParamType.LONG)
+    @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;
 
@@ -31,13 +31,13 @@ public class IpObjectIpPortVo {
     @ResourceField(name = "name")
     private String name;
 
-    @EntityField(name = "类型id", type = ApiParamType.LONG)
+    @EntityField(name = "类型ID", type = ApiParamType.LONG)
     @ResourceField(name = "type_id")
     private Long typeId;
     @EntityField(name = "类型名称", type = ApiParamType.STRING)
     @ResourceField(name = "type_name")
     private String typeName;
-    @EntityField(name = "类型label", type = ApiParamType.STRING)
+    @EntityField(name = "类型Label", type = ApiParamType.STRING)
     @ResourceField(name = "type_label")
     private String typeLabel;
 

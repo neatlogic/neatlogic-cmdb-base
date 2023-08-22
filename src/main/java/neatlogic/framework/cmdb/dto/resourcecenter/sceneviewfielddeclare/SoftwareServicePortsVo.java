@@ -24,15 +24,15 @@ import neatlogic.framework.restful.annotation.EntityField;
 @ResourceType(name = "scence_softwareservice_ports", label = "软件服务服务端口场景")
 @ResourceType(name = "scence_osservice_ports", label = "操作系统服务端口场景")
 public class SoftwareServicePortsVo {
-    @EntityField(name = "id", type = ApiParamType.LONG)
+    @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;
-    @EntityField(name = "名称", type = ApiParamType.STRING)
-    @ResourceField(name = "name")
-    private String name;
     @EntityField(name = "service_ports_id", type = ApiParamType.LONG)
     @ResourceField(name = "service_ports_id")
     private Long servicePortsId;
+    @EntityField(name = "名称", type = ApiParamType.STRING)
+    @ResourceField(name = "name")
+    private String name;
     @EntityField(name = "listen_port", type = ApiParamType.INTEGER)
     @ResourceField(name = "listen_port")
     private Integer listenPort;

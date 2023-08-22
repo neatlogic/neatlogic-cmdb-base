@@ -29,7 +29,7 @@ import java.util.List;
 
 @ResourceType(name = "scence_env", label = "环境场景")
 public class EnvVo {
-    @EntityField(name = "id", type = ApiParamType.LONG)
+    @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;
 

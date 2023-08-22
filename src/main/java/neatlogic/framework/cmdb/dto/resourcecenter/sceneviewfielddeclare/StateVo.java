@@ -24,7 +24,7 @@ import neatlogic.framework.restful.annotation.EntityField;
 @ResourceType(name = "scence_state", label = "资产状态基本信息场景")
 @ResourceType(name = "scence_vendor", label = "厂商基本信息场景")
 public class StateVo {
-    @EntityField(name = "id", type = ApiParamType.LONG)
+    @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;
 

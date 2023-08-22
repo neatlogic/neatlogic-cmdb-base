@@ -26,7 +26,7 @@ import java.util.Date;
 @ResourceType(name = "scence_appinstance_detail_cluster", label = "应用实例详情及集群场景")
 @ResourceType(name = "scence_dbinstance_detail_cluster", label = "DB实例详情及集群场景")
 public class AppInstanceDetailClusterVo {
-    @EntityField(name = "id", type = ApiParamType.LONG)
+    @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;
 
@@ -38,13 +38,13 @@ public class AppInstanceDetailClusterVo {
     @ResourceField(name = "ip")
     private String ip;
 
-    @EntityField(name = "类型id", type = ApiParamType.LONG)
+    @EntityField(name = "类型ID", type = ApiParamType.LONG)
     @ResourceField(name = "type_id")
     private Long typeId;
     @EntityField(name = "类型名称", type = ApiParamType.STRING)
     @ResourceField(name = "type_name")
     private String typeName;
-    @EntityField(name = "类型label", type = ApiParamType.STRING)
+    @EntityField(name = "类型Label", type = ApiParamType.STRING)
     @ResourceField(name = "type_label")
     private String typeLabel;
 

@@ -26,7 +26,7 @@ import java.util.Date;
 @ResourceType(name = "scence_appsystem", label = "应用系统场景")
 @ResourceType(name = "scence_appmodule", label = "应用模块场景")
 public class AppSystemVo {
-    @EntityField(name = "id", type = ApiParamType.LONG)
+    @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;
 
@@ -38,13 +38,13 @@ public class AppSystemVo {
     @ResourceField(name = "abbr_name")
     private String abbrName;
 
-    @EntityField(name = "类型id", type = ApiParamType.LONG)
+    @EntityField(name = "类型ID", type = ApiParamType.LONG)
     @ResourceField(name = "type_id")
     private Long typeId;
     @EntityField(name = "类型名称", type = ApiParamType.STRING)
     @ResourceField(name = "type_name")
     private String typeName;
-    @EntityField(name = "类型label", type = ApiParamType.STRING)
+    @EntityField(name = "类型Label", type = ApiParamType.STRING)
     @ResourceField(name = "type_label")
     private String typeLabel;
 
