@@ -44,49 +44,4 @@ public class EnvVo {
     @EntityField(name = "描述", type = ApiParamType.STRING)
     @ResourceField(name = "description")
     private String description;
-
-    public ResourceEntityConfigVo getConfig() {
-        ResourceEntityConfigVo config = new ResourceEntityConfigVo();
-        config.setMainCi("APPEnv");
-        List<ResourceEntityFieldMappingVo> list = new ArrayList<>();
-        {
-            ResourceEntityFieldMappingVo fieldMappingVo = new ResourceEntityFieldMappingVo();
-            fieldMappingVo.setField("id");
-            fieldMappingVo.setType("const");
-            fieldMappingVo.setFromCi("APPEnv");
-            fieldMappingVo.setFromAttr("_id");
-            list.add(fieldMappingVo);
-        }
-        {
-            ResourceEntityFieldMappingVo fieldMappingVo = new ResourceEntityFieldMappingVo();
-            fieldMappingVo.setField("name");
-            fieldMappingVo.setType("attr");
-            fieldMappingVo.setFromCi("APPEnv");
-            fieldMappingVo.setFromAttr("name");
-            list.add(fieldMappingVo);
-        }
-        {
-            ResourceEntityFieldMappingVo fieldMappingVo = new ResourceEntityFieldMappingVo();
-            fieldMappingVo.setField("description");
-            fieldMappingVo.setType("attr");
-            fieldMappingVo.setFromCi("APPEnv");
-            fieldMappingVo.setFromAttr("label");
-            list.add(fieldMappingVo);
-        }
-        {
-            ResourceEntityFieldMappingVo fieldMappingVo = new ResourceEntityFieldMappingVo();
-            fieldMappingVo.setField("env_seq_no");
-            fieldMappingVo.setType("attr");
-            fieldMappingVo.setFromCi("APPEnv");
-            fieldMappingVo.setFromAttr("seq_no");
-            list.add(fieldMappingVo);
-        }
-        config.setFieldMappingList(list);
-        return config;
-    }
-
-    public static void main(String[] args) {
-        EnvVo envVo = new EnvVo();
-        System.out.println(JSONObject.toJSONString(envVo.getConfig()));
-    }
 }

@@ -55,9 +55,9 @@ public class ResourceEntityVo {
     @EntityField(name = "common.description", type = ApiParamType.STRING)
     private String description;
 
-    @EntityField(name = "字段列表", type = ApiParamType.JSONARRAY)
+    @EntityField(name = "nfdd.datasourcevo.entityfield.name.fieldlist", type = ApiParamType.JSONARRAY)
     private List<ValueTextVo> fieldList;
-    @EntityField(name = "配置", type = ApiParamType.JSONOBJECT)
+    @EntityField(name = "common.config", type = ApiParamType.JSONOBJECT)
     private ResourceEntityConfigVo config;
     @JSONField(serialize = false)
     private String configStr;
