@@ -360,9 +360,6 @@ public class ResourceViewGenerateSqlUtil {
                     addJoinTable(attrCiTable);
                     addEqualColumn(attrCiTableIdColumn, cmdbRelentityTableToCientityIdColumn);
                 }
-                if (Objects.equals(field, "cluster_type_id")) {
-                    System.out.println("");
-                }
                 if (toAttrId == null) {
                     if (toAttr.startsWith("_")) {
                         if ("_typeId".equals(toAttr)) {
