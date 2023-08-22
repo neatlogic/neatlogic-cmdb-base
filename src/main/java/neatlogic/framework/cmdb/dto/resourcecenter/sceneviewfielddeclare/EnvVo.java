@@ -16,16 +16,10 @@
 
 package neatlogic.framework.cmdb.dto.resourcecenter.sceneviewfielddeclare;
 
-import com.alibaba.fastjson.JSONObject;
 import neatlogic.framework.cmdb.annotation.ResourceField;
 import neatlogic.framework.cmdb.annotation.ResourceType;
-import neatlogic.framework.cmdb.dto.resourcecenter.config.ResourceEntityConfigVo;
-import neatlogic.framework.cmdb.dto.resourcecenter.config.ResourceEntityFieldMappingVo;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @ResourceType(name = "scence_env", label = "环境场景")
 public class EnvVo {
