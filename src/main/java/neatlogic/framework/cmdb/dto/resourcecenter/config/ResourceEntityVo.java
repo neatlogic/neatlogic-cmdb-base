@@ -48,10 +48,6 @@ public class ResourceEntityVo {
     private Date initTime;
     @EntityField(name = "term.cmdb.ciid", type = ApiParamType.LONG)
     private Long ciId;
-    @EntityField(name = "common.type", type = ApiParamType.STRING)
-    private String type;
-    @EntityField(name = "common.config", type = ApiParamType.STRING)
-    private String xml;
     @EntityField(name = "common.description", type = ApiParamType.STRING)
     private String description;
 
@@ -175,22 +171,6 @@ public class ResourceEntityVo {
 
     public void setInitTime(Date initTime) {
         this.initTime = initTime;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getXml() {
-        return xml;
-    }
-
-    public void setXml(String xml) {
-        this.xml = xml;
     }
 
     public String getDescription() {
