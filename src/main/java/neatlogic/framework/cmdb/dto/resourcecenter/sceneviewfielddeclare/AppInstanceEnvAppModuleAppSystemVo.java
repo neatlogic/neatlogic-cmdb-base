@@ -23,8 +23,8 @@ import neatlogic.framework.restful.annotation.EntityField;
 
 @ResourceType(name = "scence_appinstance_env_appmodule_appsystem", label = "应用实例环境和模块及应用场景")
 public class AppInstanceEnvAppModuleAppSystemVo {
-    @EntityField(name = "id", type = ApiParamType.LONG)
-    @ResourceField(name = "ID")
+    @EntityField(name = "ID", type = ApiParamType.LONG)
+    @ResourceField(name = "id")
     private Long id;
 
     @EntityField(name = "名称", type = ApiParamType.STRING)
