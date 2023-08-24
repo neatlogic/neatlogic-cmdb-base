@@ -16,7 +16,6 @@
 
 package neatlogic.framework.cmdb.crossover;
 
-import neatlogic.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.entity.AppEnvironmentVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.entity.AppModuleVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.entity.AppSystemVo;
@@ -38,5 +37,5 @@ public interface IAppSystemMapper extends ICrossoverService {
 
     List<AppModuleVo> getAppModuleListByIdList(List<Long> idList);
 
-    List<AppEnvironmentVo> getAppEnvListByAppSystemIdAndModuleIdList(@Param("appResourceId") Long appResourceId, @Param("moduleResourceIdList") List<Long> moduleIdList);
+    List<AppEnvironmentVo> getAppEnvListByAppSystemIdAndModuleIdList(@Param("appSystemId") Long appSystemId, @Param("appModuleIdList") List<Long> appModuleIdList);
 }
