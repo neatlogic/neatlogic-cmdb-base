@@ -368,7 +368,7 @@ public class SceneEntityGenerateSqlUtil {
                 }
                 if (fromAttrId == null) {
                     if (fromAttr.startsWith("_")) {
-                        if ("_type".equals(fromAttr)) {
+                        if ("_typeId".equals(fromAttr)) {
                             fromAttr = "ci_id";
                         } else {
                             fromAttr = fromAttr.substring(1);

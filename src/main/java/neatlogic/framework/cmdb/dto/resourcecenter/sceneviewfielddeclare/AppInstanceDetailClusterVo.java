@@ -26,7 +26,7 @@ import java.util.Date;
 @ResourceType(name = "scence_appinstance_detail_cluster", label = "应用实例详情及集群场景")
 @ResourceType(name = "scence_dbinstance_detail_cluster", label = "DB实例详情及集群场景")
 public class AppInstanceDetailClusterVo {
-    @EntityField(name = "id", type = ApiParamType.LONG)
+    @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;
 
@@ -38,13 +38,13 @@ public class AppInstanceDetailClusterVo {
     @ResourceField(name = "ip")
     private String ip;
 
-    @EntityField(name = "类型id", type = ApiParamType.LONG)
+    @EntityField(name = "类型ID", type = ApiParamType.LONG)
     @ResourceField(name = "type_id")
     private Long typeId;
     @EntityField(name = "类型名称", type = ApiParamType.STRING)
     @ResourceField(name = "type_name")
     private String typeName;
-    @EntityField(name = "类型label", type = ApiParamType.STRING)
+    @EntityField(name = "类型Label", type = ApiParamType.STRING)
     @ResourceField(name = "type_label")
     private String typeLabel;
 
@@ -89,24 +89,24 @@ public class AppInstanceDetailClusterVo {
     @ResourceField(name = "port")
     private Integer port;
 
-    @EntityField(name = "分组id", type = ApiParamType.LONG)
+    @EntityField(name = "分组ID", type = ApiParamType.LONG)
     @ResourceField(name = "bg_id")
     private Long bgId;
-    @EntityField(name = "名称", type = ApiParamType.STRING)
+    @EntityField(name = "分组名称", type = ApiParamType.STRING)
     @ResourceField(name = "bg_name")
     private String bgName;
 
-    @EntityField(name = "用户uuid", type = ApiParamType.STRING)
-    @ResourceField(name = "user_uuid")
-    private String uuid;
-    @EntityField(name = "id", type = ApiParamType.LONG)
+    @EntityField(name = "用户ID", type = ApiParamType.LONG)
     @ResourceField(name = "user_id")
     private Long userId;
+    @EntityField(name = "用户UUID", type = ApiParamType.STRING)
+    @ResourceField(name = "user_uuid")
+    private String uuid;
     @EntityField(name = "用户名", type = ApiParamType.STRING)
     @ResourceField(name = "user_name")
     private String userName;
 
-    @EntityField(name = "id", type = ApiParamType.LONG)
+    @EntityField(name = "状态ID", type = ApiParamType.LONG)
     @ResourceField(name = "state_id")
     private Long stateId;
     @EntityField(name = "状态名", type = ApiParamType.STRING)
@@ -116,20 +116,20 @@ public class AppInstanceDetailClusterVo {
     @ResourceField(name = "state_label")
     private String stateLabel;
 
-    @EntityField(name = "数据中心id", type = ApiParamType.LONG)
+    @EntityField(name = "数据中心ID", type = ApiParamType.LONG)
     @ResourceField(name = "datacenter_id")
     private Long dataCenterId;
-    @EntityField(name = "名称", type = ApiParamType.STRING)
+    @EntityField(name = "数据中心名称", type = ApiParamType.STRING)
     @ResourceField(name = "datacenter_name")
     private String dataCenterName;
 
-    @EntityField(name = "环境id", type = ApiParamType.LONG)
+    @EntityField(name = "环境ID", type = ApiParamType.LONG)
     @ResourceField(name = "env_id")
     private Long envId;
     @EntityField(name = "环境名称", type = ApiParamType.STRING)
     @ResourceField(name = "env_name")
     private String envName;
-    @EntityField(name = "序号", type = ApiParamType.INTEGER)
+    @EntityField(name = "环境序号", type = ApiParamType.INTEGER)
     @ResourceField(name = "env_seq_no")
     private Integer envSeqNo;
 

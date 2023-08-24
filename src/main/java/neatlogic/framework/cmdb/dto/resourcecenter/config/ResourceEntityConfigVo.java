@@ -16,11 +16,34 @@
 
 package neatlogic.framework.cmdb.dto.resourcecenter.config;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import neatlogic.framework.cmdb.dto.ci.CiVo;
+
 import java.util.List;
 
 public class ResourceEntityConfigVo {
 
+    private String mainCi;
+    @JSONField(serialize = false)
+    private CiVo mainCiVo;
+
     private List<ResourceEntityFieldMappingVo> fieldMappingList;
+
+    public String getMainCi() {
+        return mainCi;
+    }
+
+    public void setMainCi(String mainCi) {
+        this.mainCi = mainCi;
+    }
+
+    public CiVo getMainCiVo() {
+        return mainCiVo;
+    }
+
+    public void setMainCiVo(CiVo mainCiVo) {
+        this.mainCiVo = mainCiVo;
+    }
 
     public List<ResourceEntityFieldMappingVo> getFieldMappingList() {
         return fieldMappingList;

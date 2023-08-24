@@ -25,7 +25,7 @@ import java.util.Date;
 
 @ResourceType(name = "scence_appmodule_appsystem", label = "应用模块和应用系统场景")
 public class AppModuleAppSystemVo {
-    @EntityField(name = "id", type = ApiParamType.LONG)
+    @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;
 
@@ -37,13 +37,13 @@ public class AppModuleAppSystemVo {
     @ResourceField(name = "abbr_name")
     private String abbrName;
 
-    @EntityField(name = "类型id", type = ApiParamType.LONG)
+    @EntityField(name = "类型ID", type = ApiParamType.LONG)
     @ResourceField(name = "type_id")
     private Long typeId;
     @EntityField(name = "类型名称", type = ApiParamType.STRING)
     @ResourceField(name = "type_name")
     private String typeName;
-    @EntityField(name = "类型label", type = ApiParamType.STRING)
+    @EntityField(name = "类型Label", type = ApiParamType.STRING)
     @ResourceField(name = "type_label")
     private String typeLabel;
 
@@ -81,30 +81,30 @@ public class AppModuleAppSystemVo {
     @ResourceField(name = "monitor_time")
     private Date monitorTime;
 
-    @EntityField(name = "分组id", type = ApiParamType.LONG)
+    @EntityField(name = "分组ID", type = ApiParamType.LONG)
     @ResourceField(name = "bg_id")
     private Long bgId;
-    @EntityField(name = "名称", type = ApiParamType.STRING)
+    @EntityField(name = "分组名称", type = ApiParamType.STRING)
     @ResourceField(name = "bg_name")
     private String bgName;
 
-    @EntityField(name = "用户uuid", type = ApiParamType.STRING)
-    @ResourceField(name = "user_uuid")
-    private String uuid;
-    @EntityField(name = "id", type = ApiParamType.LONG)
+    @EntityField(name = "用户ID", type = ApiParamType.LONG)
     @ResourceField(name = "user_id")
     private Long userId;
+    @EntityField(name = "用户UUID", type = ApiParamType.STRING)
+    @ResourceField(name = "user_uuid")
+    private String uuid;
     @EntityField(name = "用户名", type = ApiParamType.STRING)
     @ResourceField(name = "user_name")
     private String userName;
 
-    @EntityField(name = "应用id", type = ApiParamType.LONG)
+    @EntityField(name = "应用系统ID", type = ApiParamType.LONG)
     @ResourceField(name = "app_system_id")
     private Long appSystemId;
-    @EntityField(name = "应用名", type = ApiParamType.STRING)
+    @EntityField(name = "应用系统名", type = ApiParamType.STRING)
     @ResourceField(name = "app_system_name")
     private String appSystemName;
-    @EntityField(name = "应用简称", type = ApiParamType.STRING)
+    @EntityField(name = "应用系统简称", type = ApiParamType.STRING)
     @ResourceField(name = "app_system_abbr_name")
     private String appSystemAbbrName;
 }

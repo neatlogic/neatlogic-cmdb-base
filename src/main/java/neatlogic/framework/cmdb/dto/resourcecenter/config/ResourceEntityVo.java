@@ -48,18 +48,12 @@ public class ResourceEntityVo {
     private Date initTime;
     @EntityField(name = "term.cmdb.ciid", type = ApiParamType.LONG)
     private Long ciId;
-    @EntityField(name = "common.type", type = ApiParamType.STRING)
-    private String type;
-    @EntityField(name = "common.config", type = ApiParamType.STRING)
-    private String xml;
     @EntityField(name = "common.description", type = ApiParamType.STRING)
     private String description;
 
-    @EntityField(name = "主模型", type = ApiParamType.STRING)
-    private String mainCi;
-    @EntityField(name = "字段列表", type = ApiParamType.JSONARRAY)
+    @EntityField(name = "nfdd.datasourcevo.entityfield.name.fieldlist", type = ApiParamType.JSONARRAY)
     private List<ValueTextVo> fieldList;
-    @EntityField(name = "配置", type = ApiParamType.JSONOBJECT)
+    @EntityField(name = "common.config", type = ApiParamType.JSONOBJECT)
     private ResourceEntityConfigVo config;
     @JSONField(serialize = false)
     private String configStr;
@@ -179,36 +173,12 @@ public class ResourceEntityVo {
         this.initTime = initTime;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getXml() {
-        return xml;
-    }
-
-    public void setXml(String xml) {
-        this.xml = xml;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getMainCi() {
-        return mainCi;
-    }
-
-    public void setMainCi(String mainCi) {
-        this.mainCi = mainCi;
     }
 
     public List<ValueTextVo> getFieldList() {
