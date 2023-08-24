@@ -396,7 +396,7 @@ public class CiVo implements Serializable {
 
     @JSONField(serialize = false)
     public String getCiViewName() {
-        return TenantContext.get().getDataDbName() + ".`ci_" + this.getName() + "`";
+        return TenantContext.get().getDataDbName() + ".`ci_" + this.getName().toLowerCase() + "`";
     }
 
     public Integer getIsVirtual() {
