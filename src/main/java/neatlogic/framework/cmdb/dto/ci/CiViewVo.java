@@ -16,10 +16,11 @@
 
 package neatlogic.framework.cmdb.dto.ci;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.cmdb.enums.ShowType;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
-import com.alibaba.fastjson.annotation.JSONField;
+import neatlogic.framework.util.$;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -146,12 +147,19 @@ public class CiViewVo implements Serializable {
 
     public String getTypeText() {
         if (StringUtils.isBlank(typeText) && StringUtils.isNotBlank(type)) {
-            if (type.equals("attr")) {
-                typeText = "属性";
-            } else if (type.equals("const")) {
-                typeText = "内部属性";
-            } else {
-                typeText = "关系";
+            switch (type) {
+                case "attr":
+                    typeText = $.t("term.cmdb.attr");
+                    break;
+                case "const":
+                    typeText = $.t("nfre.systemattrtype");
+                    break;
+                case "global":
+                    typeText = $.t("term.cmdb.globalattr");
+                    break;
+                default:
+                    typeText = $.t("term.cmdb.rel");
+                    break;
             }
         }
         return typeText;

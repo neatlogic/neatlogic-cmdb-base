@@ -19,6 +19,7 @@ package neatlogic.framework.cmdb.dto.transaction;
 import neatlogic.framework.cmdb.dto.ci.AttrVo;
 import neatlogic.framework.cmdb.dto.ci.RelVo;
 import neatlogic.framework.cmdb.dto.cientity.CiEntityVo;
+import neatlogic.framework.cmdb.dto.globalattr.GlobalAttrItemVo;
 import neatlogic.framework.cmdb.enums.EditModeType;
 import neatlogic.framework.cmdb.enums.RelDirectionType;
 import neatlogic.framework.cmdb.enums.TransactionActionType;
@@ -60,14 +61,24 @@ public class CiEntityTransactionVo implements Serializable {
     private String actionText;
     @EntityField(name = "属性对象，以'attr_'+attrId为key", type = ApiParamType.JSONOBJECT)
     private JSONObject attrEntityData;
+
+    @EntityField(name = "全局属性，以'global_'+attrId为key", type = ApiParamType.JSONOBJECT)
+    private JSONObject globalAttrEntityData;
+
+
     @EntityField(name = "关系对象，以'relfrom_'+relId或'relto_'+relId为key", type = ApiParamType.JSONOBJECT)
     private JSONObject relEntityData;
     @EntityField(name = "更新属性数量", type = ApiParamType.INTEGER)
     private int updateAttrCount;
     @EntityField(name = "更新关系数量", type = ApiParamType.INTEGER)
     private int updateRelCount;
+    @EntityField(name = "更新全局属性数量", type = ApiParamType.INTEGER)
+    private int updateGlobalAttrCount;
     @JSONField(serialize = false)
     private List<AttrEntityTransactionVo> attrEntityTransactionList;
+
+    @JSONField(serialize = false)
+    private List<GlobalAttrEntityTransactionVo> globalAttrTransactionList;
     @JSONField(serialize = false)
     private List<RelEntityTransactionVo> relEntityTransactionList;
     @JSONField(serialize = false)
@@ -134,6 +145,40 @@ public class CiEntityTransactionVo implements Serializable {
         return null;
     }
 
+    /**
+     * 从修改数据中提取globalAttrTransaction实例
+     *
+     * @param attrId 属性id
+     * @return AttrEntityTransactionVo
+     */
+    @JSONField(serialize = false)
+    public GlobalAttrEntityTransactionVo getGlobalAttrTransactionByAttrId(Long attrId) {
+        if (MapUtils.isNotEmpty(globalAttrEntityData) && globalAttrEntityData.containsKey("global_" + attrId)) {
+            JSONObject attrDataObj = globalAttrEntityData.getJSONObject("global_" + attrId);
+            GlobalAttrEntityTransactionVo globalAttrVo = new GlobalAttrEntityTransactionVo();
+            globalAttrVo.setAttrId(attrId);
+            globalAttrVo.setAttrName(attrDataObj.getString("name"));
+            globalAttrVo.setAttrLabel(attrDataObj.getString("label"));
+            globalAttrVo.setCiEntityId(this.getCiEntityId());
+            globalAttrVo.setSaveMode(attrDataObj.getString("saveMode"));
+            JSONArray valueObjList = attrDataObj.getJSONArray("valueList");
+            if (CollectionUtils.isNotEmpty(valueObjList)) {
+                List<GlobalAttrItemVo> valueList = new ArrayList<>();
+                for (int i = 0; i < valueObjList.size(); i++) {
+                    GlobalAttrItemVo globalAttrItemVo = JSONObject.toJavaObject(valueObjList.getJSONObject(i), GlobalAttrItemVo.class);
+                    if (globalAttrItemVo.getId() != null) {
+                        valueList.add(globalAttrItemVo);
+                    }
+                }
+                if (CollectionUtils.isNotEmpty(valueList)) {
+                    globalAttrVo.setValueList(valueList);
+                }
+            }
+            return globalAttrVo;
+        }
+        return null;
+    }
+
     public CiEntityVo getOldCiEntityVo() {
         return oldCiEntityVo;
     }
@@ -142,6 +187,9 @@ public class CiEntityTransactionVo implements Serializable {
         this.oldCiEntityVo = oldCiEntityVo;
     }
 
+    public JSONObject getGlobalAttrEntityData() {
+        return globalAttrEntityData;
+    }
 
     public Long getId() {
         if (id == null) {
@@ -210,6 +258,10 @@ public class CiEntityTransactionVo implements Serializable {
      */
     public void removeAttrEntityData(Long attrId) {
         attrEntityData.remove("attr_" + attrId);
+    }
+
+    public void removeGlobalAttrEntityData(Long attrId) {
+        globalAttrEntityData.remove("global_" + attrId);
     }
 
     /**
@@ -386,6 +438,9 @@ public class CiEntityTransactionVo implements Serializable {
         }
     }
 
+    /**
+     * 删除一样的属性数据
+     */
     public void removeAttrEntityData(List<AttrEntityTransactionVo> attrEntityTransactionList) {
         if (CollectionUtils.isNotEmpty(attrEntityTransactionList)) {
             for (AttrEntityTransactionVo attrEntityTransactionVo : attrEntityTransactionList) {
@@ -394,7 +449,37 @@ public class CiEntityTransactionVo implements Serializable {
                 }
             }
         }
+    }
 
+    /**
+     * 删除一样的全局属性数据
+     */
+    public void removeGlobalAttrEntityData(List<GlobalAttrEntityTransactionVo> globalAttrTransactionList) {
+        if (CollectionUtils.isNotEmpty(globalAttrTransactionList)) {
+            for (GlobalAttrEntityTransactionVo globalAttrTransactionVo : globalAttrTransactionList) {
+                if (globalAttrTransactionVo.equals(this.getGlobalAttrTransactionByAttrId(globalAttrTransactionVo.getAttrId()))) {
+                    this.removeGlobalAttrEntityData(globalAttrTransactionVo.getAttrId());
+                }
+            }
+        }
+    }
+
+    public List<GlobalAttrEntityTransactionVo> getGlobalAttrTransactionList() {
+        globalAttrTransactionList = new ArrayList<>();
+        if (MapUtils.isNotEmpty(globalAttrEntityData)) {
+            for (String key : globalAttrEntityData.keySet()) {
+                Long attrId = null;
+                try {
+                    attrId = Long.parseLong(key.replace("global_", ""));
+                } catch (Exception ex) {
+                    logger.error(ex.getMessage(), ex);
+                }
+                if (attrId != null) {
+                    globalAttrTransactionList.add(this.getGlobalAttrTransactionByAttrId(attrId));
+                }
+            }
+        }
+        return globalAttrTransactionList;
     }
 
     public List<AttrEntityTransactionVo> getAttrEntityTransactionList() {
@@ -490,6 +575,7 @@ public class CiEntityTransactionVo implements Serializable {
             JSONObject jsonObj = new JSONObject();
             jsonObj.put("attrEntityData", this.getAttrEntityData());
             jsonObj.put("relEntityData", this.getRelEntityData());
+            jsonObj.put("globalAttrEntityData", this.getGlobalAttrEntityData());
             content = jsonObj.toJSONString();
         }
         return content;
@@ -501,6 +587,7 @@ public class CiEntityTransactionVo implements Serializable {
                 JSONObject jsonObj = JSONObject.parseObject(content);
                 this.attrEntityData = jsonObj.getJSONObject("attrEntityData");
                 this.relEntityData = jsonObj.getJSONObject("relEntityData");
+                this.globalAttrEntityData = jsonObj.getJSONObject("globalAttrEntityData");
             } catch (Exception ignored) {
 
             }
@@ -534,18 +621,17 @@ public class CiEntityTransactionVo implements Serializable {
     /**
      * 从快照中恢复数据
      */
-    public boolean restoreSnapshot() {
+    public void restoreSnapshot() {
         if (StringUtils.isNotBlank(snapshot)) {
             try {
                 JSONObject jsonObj = JSONObject.parseObject(snapshot);
                 this.attrEntityData = jsonObj.getJSONObject("attrEntityData");
                 this.relEntityData = jsonObj.getJSONObject("relEntityData");
-                return true;
+                this.globalAttrEntityData = jsonObj.getJSONObject("globalAttrEntityData");
             } catch (Exception ignored) {
 
             }
         }
-        return false;
     }
 
     public String getName() {
@@ -586,6 +672,14 @@ public class CiEntityTransactionVo implements Serializable {
         }
     }
 
+    public JSONObject getGlobalAttrEntityDataByAttrId(Long attrId) {
+        if (MapUtils.isNotEmpty(globalAttrEntityData)) {
+            return globalAttrEntityData.getJSONObject("global_" + attrId);
+        } else {
+            return null;
+        }
+    }
+
     /**
      * 根据关系id和方向获取关系数据
      *
@@ -601,6 +695,10 @@ public class CiEntityTransactionVo implements Serializable {
         this.attrEntityData = attrEntityData;
     }
 
+    public void setGlobalAttrEntityData(JSONObject globalAttrEntityData) {
+        this.globalAttrEntityData = globalAttrEntityData;
+    }
+
     public JSONObject getRelEntityData() {
         return relEntityData;
     }
@@ -612,6 +710,14 @@ public class CiEntityTransactionVo implements Serializable {
     public int getUpdateAttrCount() {
         if (MapUtils.isNotEmpty(this.getAttrEntityData())) {
             return this.getAttrEntityData().keySet().size();
+        } else {
+            return 0;
+        }
+    }
+
+    public int getUpdateGlobalAttrCount() {
+        if (MapUtils.isNotEmpty(this.getGlobalAttrEntityData())) {
+            return this.getGlobalAttrEntityData().keySet().size();
         } else {
             return 0;
         }

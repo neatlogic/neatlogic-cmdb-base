@@ -16,11 +16,15 @@
 
 package neatlogic.framework.cmdb.dto.cientity;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.asynchronization.threadlocal.TenantContext;
 import neatlogic.framework.asynchronization.threadlocal.UserContext;
 import neatlogic.framework.cmdb.dto.ci.AttrVo;
 import neatlogic.framework.cmdb.dto.ci.CiVo;
 import neatlogic.framework.cmdb.dto.ci.RelVo;
+import neatlogic.framework.cmdb.dto.globalattr.GlobalAttrItemVo;
 import neatlogic.framework.cmdb.dto.transaction.CiEntityTransactionVo;
 import neatlogic.framework.cmdb.enums.EditModeType;
 import neatlogic.framework.cmdb.enums.RelDirectionType;
@@ -29,9 +33,6 @@ import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
 import neatlogic.framework.util.UuidUtil;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -92,8 +93,14 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     // @EntityField(name = "属性列表", type = ApiParamType.JSONARRAY)
     @JSONField(serialize = false)
     private List<AttrEntityVo> attrEntityList;
+
+    @JSONField(serialize = false)
+    private List<GlobalAttrEntityVo> globalAttrEntityList;
     @EntityField(name = "属性对象，以'attr_'+attrId为key", type = ApiParamType.JSONOBJECT)
     private JSONObject attrEntityData = new JSONObject();
+
+    @EntityField(name = "全局属性，以'global_'+attrId为key", type = ApiParamType.JSONOBJECT)
+    private JSONObject globalAttrEntityData = new JSONObject();
     // @EntityField(name = "关系列表", type = ApiParamType.JSONARRAY)
     @JSONField(serialize = false)
     private List<RelEntityVo> relEntityList;
@@ -126,6 +133,8 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private Long transactionId;
     @JSONField(serialize = false) // 需要返回的属性列表，注意：为空代表返回所有属性！！！
     private List<Long> attrIdList;
+    @JSONField(serialize = false)// 需要返回的全局属性列表，注意：为空代表返回所有全局属性！！！
+    private List<Long> globalAttrIdList;
     @JSONField(serialize = false) // 需要返回的关系列表，注意：为空代表返回所有关系！！！
     private List<Long> relIdList;
     @JSONField(serialize = false)
@@ -274,6 +283,13 @@ public class CiEntityVo extends BasePageVo implements Serializable {
         this.description = description;
     }
 
+    public JSONObject getGlobalAttrEntityData() {
+        return globalAttrEntityData;
+    }
+
+    public void setGlobalAttrEntityData(JSONObject globalAttrEntityData) {
+        this.globalAttrEntityData = globalAttrEntityData;
+    }
 
     public String getActionType() {
         return actionType;
@@ -336,6 +352,7 @@ public class CiEntityVo extends BasePageVo implements Serializable {
         this.name = ciEntityTransactionVo.getName();
         this.attrEntityData = ciEntityTransactionVo.getAttrEntityData();
         this.relEntityData = ciEntityTransactionVo.getRelEntityData();
+        this.globalAttrEntityData = ciEntityTransactionVo.getGlobalAttrEntityData();
         this.description = ciEntityTransactionVo.getDescription();
     }
 
@@ -525,6 +542,14 @@ public class CiEntityVo extends BasePageVo implements Serializable {
         this.attrIdList = attrIdList;
     }
 
+    public List<Long> getGlobalAttrIdList() {
+        return globalAttrIdList;
+    }
+
+    public void setGlobalAttrIdList(List<Long> globalAttrIdList) {
+        this.globalAttrIdList = globalAttrIdList;
+    }
+
     public List<Long> getRelIdList() {
         return relIdList;
     }
@@ -611,6 +636,39 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     }
 
     /**
+     * 根据属性id获取全局属性对象
+     *
+     * @param attrId 属性id
+     * @return 包含数据的json
+     */
+    public GlobalAttrEntityVo getGlobalAttrEntityByAttrId(Long attrId) {
+        if (MapUtils.isNotEmpty(globalAttrEntityData) && globalAttrEntityData.containsKey("global_" + attrId)) {
+            GlobalAttrEntityVo attrEntityVo = new GlobalAttrEntityVo();
+            JSONObject attrEntityObj = globalAttrEntityData.getJSONObject("global_" + attrId);
+            attrEntityVo.setAttrId(attrId);
+            attrEntityVo.setAttrName(attrEntityObj.getString("name"));
+            attrEntityVo.setAttrLabel(attrEntityObj.getString("label"));
+            JSONArray valueObjList = attrEntityObj.getJSONArray("valueList");
+            if (CollectionUtils.isNotEmpty(valueObjList)) {
+                List<GlobalAttrItemVo> valueList = new ArrayList<>();
+                for (int i = 0; i < valueObjList.size(); i++) {
+                    GlobalAttrItemVo globalAttrItemVo = JSONObject.toJavaObject(valueObjList.getJSONObject(i), GlobalAttrItemVo.class);
+                    if (globalAttrItemVo.getId() != null) {
+                        valueList.add(globalAttrItemVo);
+                    }
+                }
+                if (CollectionUtils.isNotEmpty(valueList)) {
+                    attrEntityVo.setValueList(valueList);
+                }
+            }
+
+            return attrEntityVo;
+        }
+        return null;
+    }
+
+
+    /**
      * 根据属性id获取属性值
      *
      * @param attrId 属性id
@@ -639,6 +697,13 @@ public class CiEntityVo extends BasePageVo implements Serializable {
         attrEntityData.put("attr_" + attrId, attrObj);
     }
 
+    public void addGlobalAttrData(Long attrId, JSONObject attrObj) {
+        if (globalAttrEntityData == null) {
+            globalAttrEntityData = new JSONObject();
+        }
+        globalAttrEntityData.put("global_" + attrId, attrObj);
+    }
+
     public JSONObject getAttrEntityData() {
         return attrEntityData;
     }
@@ -653,6 +718,17 @@ public class CiEntityVo extends BasePageVo implements Serializable {
             }
         }
         return attrEntityList;
+    }
+
+    public List<GlobalAttrEntityVo> getGlobalAttrEntityList() {
+        globalAttrEntityList = new ArrayList<>();
+        if (MapUtils.isNotEmpty(globalAttrEntityData)) {
+            for (String key : globalAttrEntityData.keySet()) {
+                Long attrId = Long.parseLong(key.replace("global_", ""));
+                globalAttrEntityList.add(this.getGlobalAttrEntityByAttrId(attrId));
+            }
+        }
+        return globalAttrEntityList;
     }
 
     /**
