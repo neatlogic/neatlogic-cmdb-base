@@ -24,6 +24,7 @@ import neatlogic.framework.asynchronization.threadlocal.UserContext;
 import neatlogic.framework.cmdb.dto.ci.AttrVo;
 import neatlogic.framework.cmdb.dto.ci.CiVo;
 import neatlogic.framework.cmdb.dto.ci.RelVo;
+import neatlogic.framework.cmdb.dto.globalattr.GlobalAttrFilterVo;
 import neatlogic.framework.cmdb.dto.globalattr.GlobalAttrItemVo;
 import neatlogic.framework.cmdb.dto.transaction.CiEntityTransactionVo;
 import neatlogic.framework.cmdb.enums.EditModeType;
@@ -109,6 +110,9 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     // @EntityField(name = "属性过滤器列表", type = ApiParamType.JSONARRAY)
     @JSONField(serialize = false)
     private List<AttrFilterVo> attrFilterList;
+
+    @JSONField(serialize = false)
+    private List<GlobalAttrFilterVo> globalAttrFilterList;
     @JSONField(serialize = false)
     private List<RelFilterVo> relFilterList;
     @JSONField(serialize = false)//查询关系引用配置项时使用
@@ -472,6 +476,13 @@ public class CiEntityVo extends BasePageVo implements Serializable {
         this.isLocked = isLocked;
     }
 
+    public List<GlobalAttrFilterVo> getGlobalAttrFilterList() {
+        return globalAttrFilterList;
+    }
+
+    public void setGlobalAttrFilterList(List<GlobalAttrFilterVo> globalAttrFilterList) {
+        this.globalAttrFilterList = globalAttrFilterList;
+    }
 
     public List<AttrFilterVo> getAttrFilterList() {
         return attrFilterList;
