@@ -19,7 +19,7 @@ package neatlogic.framework.cmdb.enums;
 import neatlogic.framework.importexport.core.ImportExportHandlerType;
 
 public enum CmdbImportExportHandlerType implements ImportExportHandlerType {
-    PROTOCOL("protocol", "协议"),
+    PROTOCOL("protocol", "term.cmdb.protocol"),
     ;
 
     private String value;
