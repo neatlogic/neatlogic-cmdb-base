@@ -30,11 +30,11 @@ public class ResourceNotFoundException extends ApiRuntimeException {
     private static final long serialVersionUID = 8748508038438348100L;
 
     public ResourceNotFoundException(Long id) {
-        super("资源{0}不存在", id);
+        super("nfcer.resourcenotfoundexception.resourcenotfoundexception.id", id);
     }
 
     public ResourceNotFoundException(String name) {
-        super("资源{0}不存在", name);
+        super("nfcer.resourcenotfoundexception.resourcenotfoundexception.id", name);
     }
 
     public ResourceNotFoundException(List<String> nameList) {
@@ -43,7 +43,11 @@ public class ResourceNotFoundException extends ApiRuntimeException {
     }
 
     public ResourceNotFoundException() {
-        super("资源{0}不存在", StringUtils.EMPTY);
+        super("nfcer.resourcenotfoundexception.resourcenotfoundexception.id", StringUtils.EMPTY);
 
+    }
+
+    public ResourceNotFoundException(String ip, Integer port, String nodeName, String nodeType) {
+        super("nfcer.resourcenotfoundexception.resourcenotfoundexception.ip", ip, port, nodeName, nodeType);
     }
 }

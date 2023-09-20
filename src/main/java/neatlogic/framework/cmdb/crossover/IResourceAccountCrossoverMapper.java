@@ -28,6 +28,8 @@ public interface IResourceAccountCrossoverMapper extends ICrossoverService {
 
     AccountVo getAccountById(Long id);
 
+    AccountVo getPublicAccountByName(String name);
+
     AccountVo getResourceAccountByIpAndPort(@Param("host") String host, @Param("port") Integer port);
 
     AccountVo getAccountByTagentIpAndPort(@Param("ip") String ip, @Param("port") Integer port);
