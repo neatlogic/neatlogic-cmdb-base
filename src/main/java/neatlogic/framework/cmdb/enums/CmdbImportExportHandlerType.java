@@ -17,6 +17,7 @@
 package neatlogic.framework.cmdb.enums;
 
 import neatlogic.framework.importexport.core.ImportExportHandlerType;
+import neatlogic.framework.util.$;
 
 public enum CmdbImportExportHandlerType implements ImportExportHandlerType {
     PROTOCOL("protocol", "term.cmdb.protocol"),
@@ -36,6 +37,6 @@ public enum CmdbImportExportHandlerType implements ImportExportHandlerType {
 
     @Override
     public String getText() {
-        return this.text;
+        return $.t(this.text);
     }
 }
