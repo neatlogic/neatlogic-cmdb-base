@@ -34,6 +34,8 @@ public class AppModuleVo implements Serializable {
     private String abbrName;
     @EntityField(name = "应用id", type = ApiParamType.LONG)
     private Long appSystemId;
+    @EntityField(name = "是否包含环境", type = ApiParamType.INTEGER)
+    private Integer isHasEnv = 0;
 
     @EntityField(name = "模型列表", type = ApiParamType.JSONARRAY)
     private List<CiVo> ciList;
@@ -68,6 +70,14 @@ public class AppModuleVo implements Serializable {
 
     public void setAppSystemId(Long appSystemId) {
         this.appSystemId = appSystemId;
+    }
+
+    public Integer getIsHasEnv() {
+        return isHasEnv;
+    }
+
+    public void setIsHasEnv(Integer isHasEnv) {
+        this.isHasEnv = isHasEnv;
     }
 
     public List<CiVo> getCiList() {
