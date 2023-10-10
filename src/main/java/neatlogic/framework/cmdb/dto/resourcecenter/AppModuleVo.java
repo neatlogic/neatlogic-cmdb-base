@@ -26,18 +26,18 @@ import java.util.List;
 public class AppModuleVo implements Serializable {
     private static final long serialVersionUID = 3794860793337591802L;
 
-    @EntityField(name = "id", type = ApiParamType.LONG)
+    @EntityField(name = "common.id", type = ApiParamType.LONG)
     private Long id;
-    @EntityField(name = "名称", type = ApiParamType.STRING)
+    @EntityField(name = "common.name", type = ApiParamType.STRING)
     private String name;
-    @EntityField(name = "简称", type = ApiParamType.STRING)
+    @EntityField(name = "term.cmdb.abbrname", type = ApiParamType.STRING)
     private String abbrName;
-    @EntityField(name = "应用id", type = ApiParamType.LONG)
+    @EntityField(name = "term.cmdb.appsystemid", type = ApiParamType.LONG)
     private Long appSystemId;
-    @EntityField(name = "是否包含环境", type = ApiParamType.INTEGER)
+    @EntityField(name = "term.cmdb.ishasenv", type = ApiParamType.INTEGER)
     private Integer isHasEnv = 0;
 
-    @EntityField(name = "模型列表", type = ApiParamType.JSONARRAY)
+    @EntityField(name = "term.cmdb.cilist", type = ApiParamType.JSONARRAY)
     private List<CiVo> ciList;
 
     public Long getId() {
