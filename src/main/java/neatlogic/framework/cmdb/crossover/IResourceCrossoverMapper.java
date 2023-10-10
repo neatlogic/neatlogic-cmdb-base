@@ -66,6 +66,8 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
 
     int checkResourceIsExists(Long id);
 
+    List<Long> checkResourceIdListIsExists(List<Long> idList);
+
     List<Long> getHasModuleAppSystemIdListByAppSystemIdList(@Param("appSystemIdList") List<Long> appSystemIdList);
 
     List<Long> getHasEnvAppSystemIdListByAppSystemIdList(@Param("appSystemIdList") List<Long> appSystemIdList);
@@ -107,6 +109,8 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
 
     ResourceVo getAppSystemById(Long id);
 
+    List<ResourceVo> getAppSystemVoListByIdList(List<Long> idList);
+
     ResourceVo getAppSystemByName(String name);
 
     ResourceVo getAppModuleById(Long id);
@@ -114,6 +118,8 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
     ResourceVo getAppModuleByName(String name);
 
     ResourceVo getAppEnvById(Long id);
+
+    List<ResourceVo> getAppEnvListByIdList(List<Long> idList);
 
     ResourceVo getAppEnvByName(String name);
 
