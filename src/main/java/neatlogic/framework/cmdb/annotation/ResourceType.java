@@ -31,4 +31,6 @@ public @interface ResourceType {
     String label();
 
     String ciName() default "";
+
+    String[] functionPathList() default {};
 }

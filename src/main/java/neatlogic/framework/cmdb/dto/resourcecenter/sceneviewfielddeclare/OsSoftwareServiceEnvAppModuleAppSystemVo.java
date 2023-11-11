@@ -20,7 +20,7 @@ import neatlogic.framework.cmdb.annotation.ResourceField;
 import neatlogic.framework.cmdb.annotation.ResourceType;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
-@ResourceType(name = "scence_os_softwareservice_env_appmodule_appsystem", label = "操作系统与软件服务、环境、模块及应用场景")
+@ResourceType(name = "scence_os_softwareservice_env_appmodule_appsystem", label = "操作系统与软件服务、环境、模块及应用场景", functionPathList = {"配置管理/应用清单"})
 public class OsSoftwareServiceEnvAppModuleAppSystemVo {
     @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")
