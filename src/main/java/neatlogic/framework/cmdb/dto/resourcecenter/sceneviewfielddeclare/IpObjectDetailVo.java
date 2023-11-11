@@ -23,7 +23,7 @@ import neatlogic.framework.restful.annotation.EntityField;
 
 import java.util.Date;
 
-@ResourceType(name = "scence_ipobject_detail", label = "资产清单视图")
+@ResourceType(name = "scence_ipobject_detail", label = "资产清单视图", functionPathList = {"配置管理/资产清单"})
 public class IpObjectDetailVo {
     @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")

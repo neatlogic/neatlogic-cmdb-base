@@ -16,15 +16,14 @@ limitations under the License.
 
 package neatlogic.framework.cmdb.dto.resourcecenter.config;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.cmdb.dto.ci.CiVo;
 import neatlogic.framework.cmdb.enums.resourcecenter.Status;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
-import com.alibaba.fastjson.annotation.JSONField;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 public class SceneEntityVo {
     @EntityField(name = "对象唯一标识（视图名）", type = ApiParamType.STRING)
@@ -47,6 +46,8 @@ public class SceneEntityVo {
     private Date initTime;
     @EntityField(name = "关联模型id", type = ApiParamType.LONG)
     private Long ciId;
+    @EntityField(name = "描述", type = ApiParamType.STRING)
+    private String description;
 
     public String getName() {
         return name;
@@ -129,5 +130,13 @@ public class SceneEntityVo {
 
     public void setCiId(Long ciId) {
         this.ciId = ciId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
