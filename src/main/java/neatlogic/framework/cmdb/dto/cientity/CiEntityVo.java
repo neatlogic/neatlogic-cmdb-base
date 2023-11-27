@@ -32,8 +32,8 @@ import neatlogic.framework.cmdb.enums.RelDirectionType;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.restful.annotation.EntityField;
+import neatlogic.framework.util.Md5Util;
 import neatlogic.framework.util.SnowflakeUtil;
-import neatlogic.framework.util.UuidUtil;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -49,7 +49,7 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     public final static long MAX_ATTRENTITY_COUNT = 3L;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
-    @JSONField(serialize = false)
+    @EntityField(name = "uuid", type = ApiParamType.STRING)
     private String uuid;//uuid，人行上报需要用到
     @EntityField(name = "模型id", type = ApiParamType.LONG)
     private Long ciId;
@@ -340,7 +340,7 @@ public class CiEntityVo extends BasePageVo implements Serializable {
 
     public String getUuid() {
         if (StringUtils.isBlank(uuid)) {
-            uuid = UuidUtil.randomUuid();
+            uuid = Md5Util.encryptMD5(this.getId().toString());
         }
         return uuid;
     }
