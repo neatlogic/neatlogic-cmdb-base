@@ -25,12 +25,12 @@ public class CMDB_BASE extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "配置管理基础权限（页面）";
+        return "nfcal.cmdb_base.getauthdisplayname";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "拥有此权限才能在页面上查看配置管理模块，使用配置管理基本功能";
+        return "nfcal.cmdb_base.getauthintroduction";
     }
 
     @Override

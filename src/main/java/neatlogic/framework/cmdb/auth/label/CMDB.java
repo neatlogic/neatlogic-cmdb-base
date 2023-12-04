@@ -22,12 +22,12 @@ public class CMDB extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "配置管理基础权限（接口）";
+        return "nfcal.cmdb.getauthdisplayname";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "拥有此权限可以通过接口访问配置管理一些底层功能，例如消费资源中心等";
+        return "nfcal.cmdb.getauthintroduction";
     }
 
     @Override
@@ -38,5 +38,10 @@ public class CMDB extends AuthBase {
     @Override
     public Integer getSort() {
         return 1;
+    }
+
+    @Override
+    public boolean isShow() {
+        return false;
     }
 }
