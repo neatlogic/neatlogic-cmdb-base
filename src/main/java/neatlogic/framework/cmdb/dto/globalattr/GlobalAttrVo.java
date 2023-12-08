@@ -35,6 +35,10 @@ public class GlobalAttrVo {
     private Integer isMultiple;
     @EntityField(name = "common.description", type = ApiParamType.STRING)
     private String description;
+    @EntityField(name = "common.sort", type = ApiParamType.INTEGER)
+    private int sort;
+    @EntityField(name = "term.cmdb.allowedit", type = ApiParamType.INTEGER)
+    private Integer allowEdit;
 
     private List<GlobalAttrItemVo> itemList;
 
@@ -45,6 +49,21 @@ public class GlobalAttrVo {
         return id;
     }
 
+    public int getSort() {
+        return sort;
+    }
+
+    public void setSort(int sort) {
+        this.sort = sort;
+    }
+
+    public Integer getAllowEdit() {
+        return allowEdit;
+    }
+
+    public void setAllowEdit(Integer allowEdit) {
+        this.allowEdit = allowEdit;
+    }
 
     public List<GlobalAttrItemVo> getItemList() {
         return itemList;
