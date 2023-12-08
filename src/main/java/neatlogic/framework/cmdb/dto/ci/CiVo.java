@@ -16,12 +16,13 @@
 
 package neatlogic.framework.cmdb.dto.ci;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.asynchronization.threadlocal.TenantContext;
+import neatlogic.framework.cmdb.dto.globalattr.GlobalAttrVo;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.file.dto.FileVo;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
-import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.io.Serializable;
@@ -67,6 +68,8 @@ public class CiVo implements Serializable {
     private Integer isVirtual;
     @EntityField(name = "属性定义列表", type = ApiParamType.JSONARRAY)
     private List<AttrVo> attrList;
+    @EntityField(name = "全局属性定义列表", type = ApiParamType.JSONARRAY)
+    private List<GlobalAttrVo> globalAttrList;
     @EntityField(name = "关系定义列表", type = ApiParamType.JSONARRAY)
     private List<RelVo> relList;
     @EntityField(name = "授权列表", type = ApiParamType.JSONARRAY)
@@ -252,9 +255,17 @@ public class CiVo implements Serializable {
         this.typeName = typeName;
     }
 
+    public List<GlobalAttrVo> getGlobalAttrList() {
+        return globalAttrList;
+    }
+
+    public void setGlobalAttrList(List<GlobalAttrVo> globalAttrList) {
+        this.globalAttrList = globalAttrList;
+    }
     public List<AttrVo> getAttrList() {
         return attrList;
     }
+
 
     public AttrVo getAttrByName(String attrName) {
         if (CollectionUtils.isNotEmpty(attrList)) {

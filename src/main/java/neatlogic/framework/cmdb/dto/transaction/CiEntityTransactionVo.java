@@ -16,10 +16,14 @@
 
 package neatlogic.framework.cmdb.dto.transaction;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.cmdb.dto.ci.AttrVo;
 import neatlogic.framework.cmdb.dto.ci.RelVo;
 import neatlogic.framework.cmdb.dto.cientity.CiEntityVo;
 import neatlogic.framework.cmdb.dto.globalattr.GlobalAttrItemVo;
+import neatlogic.framework.cmdb.dto.globalattr.GlobalAttrVo;
 import neatlogic.framework.cmdb.enums.EditModeType;
 import neatlogic.framework.cmdb.enums.RelDirectionType;
 import neatlogic.framework.cmdb.enums.TransactionActionType;
@@ -27,9 +31,6 @@ import neatlogic.framework.cmdb.exception.ci.CiUniqueAttrNotFoundException;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -37,7 +38,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class CiEntityTransactionVo implements Serializable {
     static Logger logger = LoggerFactory.getLogger(CiEntityTransactionVo.class);
@@ -353,6 +356,23 @@ public class CiEntityTransactionVo implements Serializable {
         attrObj.put("targetCiId", attrVo.getTargetCiId());
         attrObj.put("valueList", valueList);
         attrEntityData.put("attr_" + attrVo.getId(), attrObj);
+    }
+
+    /**
+     * 添加一个全局属性数据项
+     *
+     * @param globalAttrVo 属性定义
+     * @param valueList    值列表
+     */
+    public void addGlobalAttrEntityData(GlobalAttrVo globalAttrVo, JSONArray valueList) {
+        if (globalAttrEntityData == null) {
+            globalAttrEntityData = new JSONObject();
+        }
+        JSONObject attrObj = new JSONObject();
+        attrObj.put("name", globalAttrVo.getName());
+        attrObj.put("label", globalAttrVo.getLabel());
+        attrObj.put("valueList", valueList);
+        globalAttrEntityData.put("global_" + globalAttrVo.getId(), attrObj);
     }
 
     /**
