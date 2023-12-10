@@ -38,6 +38,8 @@ public class CiVo implements Serializable {
     private Long parentCiId;
     @EntityField(name = "父亲模型图标", type = ApiParamType.STRING)
     private String parentCiIcon;
+    @EntityField(name = "是否有数据", type = ApiParamType.BOOLEAN)
+    private Boolean hasData;
     @EntityField(name = "父亲模型名称", type = ApiParamType.STRING)
     private String parentCiLabel;
     @EntityField(name = "父亲模型唯一标识", type = ApiParamType.STRING)
@@ -118,6 +120,14 @@ public class CiVo implements Serializable {
 
     public CiVo getParentCi() {
         return parentCi;
+    }
+
+    public Boolean getHasData() {
+        return hasData;
+    }
+
+    public void setHasData(Boolean hasData) {
+        this.hasData = hasData;
     }
 
     public void setParentCi(CiVo parentCi) {
@@ -262,6 +272,7 @@ public class CiVo implements Serializable {
     public void setGlobalAttrList(List<GlobalAttrVo> globalAttrList) {
         this.globalAttrList = globalAttrList;
     }
+
     public List<AttrVo> getAttrList() {
         return attrList;
     }
