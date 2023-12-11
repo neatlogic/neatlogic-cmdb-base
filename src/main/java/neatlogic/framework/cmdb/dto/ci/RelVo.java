@@ -65,7 +65,7 @@ public class RelVo implements Serializable {
     @EntityField(name = "上游端规则名称", type = ApiParamType.STRING)
     private String fromRuleText;
     @EntityField(name = "上游端分组id", type = ApiParamType.LONG)
-    private String fromGroupId;
+    private Long fromGroupId;
     @EntityField(name = "上游端分组名称", type = ApiParamType.STRING)
     private String fromGroupName;
     @EntityField(name = "上游端是否唯一", type = ApiParamType.INTEGER)
@@ -97,7 +97,7 @@ public class RelVo implements Serializable {
     @EntityField(name = "下游端规则名称", type = ApiParamType.STRING)
     private String toRuleText;
     @EntityField(name = "下游端分组id", type = ApiParamType.LONG)
-    private String toGroupId;
+    private Long toGroupId;
     @EntityField(name = "下游端分组名称", type = ApiParamType.STRING)
     private String toGroupName;
     @EntityField(name = "下游端是否唯一", type = ApiParamType.INTEGER)
@@ -238,11 +238,11 @@ public class RelVo implements Serializable {
         this.fromRule = fromRule;
     }
 
-    public String getFromGroupId() {
+    public Long getFromGroupId() {
         return fromGroupId;
     }
 
-    public void setFromGroupId(String fromGroupId) {
+    public void setFromGroupId(Long fromGroupId) {
         this.fromGroupId = fromGroupId;
     }
 
@@ -286,11 +286,11 @@ public class RelVo implements Serializable {
         this.toRule = toRule;
     }
 
-    public String getToGroupId() {
+    public Long getToGroupId() {
         return toGroupId;
     }
 
-    public void setToGroupId(String toGroupId) {
+    public void setToGroupId(Long toGroupId) {
         this.toGroupId = toGroupId;
     }
 

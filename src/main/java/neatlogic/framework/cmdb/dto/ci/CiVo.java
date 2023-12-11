@@ -104,6 +104,10 @@ public class CiVo implements Serializable {
     private FileVo fileVo;
     @EntityField(name = "有效日期", type = ApiParamType.INTEGER)
     private int expiredDay;
+    @EntityField(name = "字段显示设置列表", type = ApiParamType.JSONARRAY)
+    private List<CiViewVo> viewList;
+    @EntityField(name = "关系分组列表", type = ApiParamType.JSONARRAY)
+    private List<RelGroupVo> relGroupList;
 
     @Override
     public boolean equals(Object o) {
@@ -475,5 +479,21 @@ public class CiVo implements Serializable {
 
     public void setFileVo(FileVo fileVo) {
         this.fileVo = fileVo;
+    }
+
+    public List<CiViewVo> getViewList() {
+        return viewList;
+    }
+
+    public void setViewList(List<CiViewVo> viewList) {
+        this.viewList = viewList;
+    }
+
+    public List<RelGroupVo> getRelGroupList() {
+        return relGroupList;
+    }
+
+    public void setRelGroupList(List<RelGroupVo> relGroupList) {
+        this.relGroupList = relGroupList;
     }
 }
