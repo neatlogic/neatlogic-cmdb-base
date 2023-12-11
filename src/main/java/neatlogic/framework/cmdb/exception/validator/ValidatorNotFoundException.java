@@ -22,4 +22,7 @@ public class ValidatorNotFoundException extends ApiRuntimeException {
     public ValidatorNotFoundException(Long validatorId) {
         super("验证规则“{0}”不存在", validatorId);
     }
+    public ValidatorNotFoundException(String name) {
+        super("验证规则“{0}”不存在", name);
+    }
 }

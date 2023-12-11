@@ -27,6 +27,8 @@ public interface ValidatorMapper {
 
     ValidatorVo getValidatorById(Long validatorId);
 
+    ValidatorVo getValidatorByName(String name);
+
     void insertValidator(ValidatorVo validatorVo);
 
     void updateValidator(ValidatorVo validatorVo);

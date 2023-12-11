@@ -31,6 +31,19 @@ limitations under the License.
         WHERE id = #{value}
     </select>
 
+    <select id="getValidatorByName" parameterType="java.lang.String"
+            resultType="neatlogic.framework.cmdb.dto.validator.ValidatorVo">
+        SELECT `id`,
+               `name`,
+               `handler`,
+               `config`,
+               `description`,
+               `error_template` AS errorTemplate,
+               `is_active`      AS isActive
+        FROM `cmdb_validator`
+        WHERE name = #{value}
+    </select>
+
     <sql id="searchValidatorCondition">
         <where>
             <if test="keyword != null and keyword != ''">
