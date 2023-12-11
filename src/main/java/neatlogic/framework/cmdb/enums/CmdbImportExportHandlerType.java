@@ -21,6 +21,9 @@ import neatlogic.framework.util.$;
 
 public enum CmdbImportExportHandlerType implements ImportExportHandlerType {
     PROTOCOL("protocol", "term.cmdb.protocol"),
+    CI_TYPE("ciType", "模型类型"),
+    CI_VALIDATOR("cmdbValidator", "校验规则管理"),
+    CI_REL_TYPE("cmdbRelType", "关系类型管理"),
     ;
 
     private String value;
