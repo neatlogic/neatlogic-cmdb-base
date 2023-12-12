@@ -22,10 +22,10 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 public class RelTypeNotFoundException extends ApiRuntimeException {
 
     public RelTypeNotFoundException(Long id) {
-        super("关系类型：{0} 不存在", id);
+        super("nfcer.reltypenotfoundexception.reltypenotfoundexception", id);
     }
 
     public RelTypeNotFoundException(String name) {
-        super("关系类型：{0} 不存在", name);
+        super("nfcer.reltypenotfoundexception.reltypenotfoundexception", name);
     }
 }

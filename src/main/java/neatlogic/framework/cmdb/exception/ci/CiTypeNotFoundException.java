@@ -22,10 +22,10 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 public class CiTypeNotFoundException extends ApiRuntimeException {
 
     public CiTypeNotFoundException(Long id) {
-        super("模型类型：{0}不存在", id);
+        super("nfcec.citypenotfoundexception.citypenotfoundexception", id);
     }
 
     public CiTypeNotFoundException(String name) {
-        super("模型类型：{0}不存在", name);
+        super("nfcec.citypenotfoundexception.citypenotfoundexception", name);
     }
 }
