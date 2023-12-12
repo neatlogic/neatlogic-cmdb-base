@@ -407,7 +407,6 @@ public class ResourceViewGenerateSqlUtilForTiDB {
         } else if (Objects.equals(type, "globalAttr")) {
             SubSelect resourceCiTable = joinedSubSelectMap.get("cientity_" + fromCi);
             if (resourceCiTable == null) {
-//                resourceCiTable = new Table("cmdb_cientity").withAlias(new Alias("cientity_" + fromCi).withUseAs(false));
                 Column resourceCiTableIdColumn = new Column(resourceCiTable.getAlias().getName() + ".id");
                 Column mainTableIdColumn = new Column(mainTable.getAlias().getName() + ".id");
                 EqualsTo equalsTo = new EqualsTo(resourceCiTableIdColumn, mainTableIdColumn);
