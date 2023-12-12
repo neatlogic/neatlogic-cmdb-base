@@ -14,15 +14,18 @@
  * limitations under the License.
  */
 
-package neatlogic.framework.cmdb.exception.validator;
+package neatlogic.framework.cmdb.exception.ci;
 
 import neatlogic.framework.exception.core.ApiRuntimeException;
 
-public class ValidatorNotFoundException extends ApiRuntimeException {
-    public ValidatorNotFoundException(Long validatorId) {
-        super("nfcev.validatornotfoundexception.validatornotfoundexception", validatorId);
+@SuppressWarnings("serial")
+public class CiTypeNotFoundException extends ApiRuntimeException {
+
+    public CiTypeNotFoundException(Long id) {
+        super("nfcec.citypenotfoundexception.citypenotfoundexception", id);
     }
-    public ValidatorNotFoundException(String name) {
-        super("nfcev.validatornotfoundexception.validatornotfoundexception", name);
+
+    public CiTypeNotFoundException(String name) {
+        super("nfcec.citypenotfoundexception.citypenotfoundexception", name);
     }
 }

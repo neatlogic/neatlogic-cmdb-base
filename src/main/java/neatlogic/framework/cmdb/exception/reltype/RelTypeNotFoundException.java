@@ -14,15 +14,18 @@
  * limitations under the License.
  */
 
-package neatlogic.framework.cmdb.exception.validator;
+package neatlogic.framework.cmdb.exception.reltype;
 
 import neatlogic.framework.exception.core.ApiRuntimeException;
 
-public class ValidatorNotFoundException extends ApiRuntimeException {
-    public ValidatorNotFoundException(Long validatorId) {
-        super("nfcev.validatornotfoundexception.validatornotfoundexception", validatorId);
+@SuppressWarnings("serial")
+public class RelTypeNotFoundException extends ApiRuntimeException {
+
+    public RelTypeNotFoundException(Long id) {
+        super("nfcer.reltypenotfoundexception.reltypenotfoundexception", id);
     }
-    public ValidatorNotFoundException(String name) {
-        super("nfcev.validatornotfoundexception.validatornotfoundexception", name);
+
+    public RelTypeNotFoundException(String name) {
+        super("nfcer.reltypenotfoundexception.reltypenotfoundexception", name);
     }
 }
