@@ -21,10 +21,7 @@ import neatlogic.framework.cmdb.dto.ci.CiVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.config.ResourceEntityConfigVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.config.ResourceEntityFieldMappingVo;
 import neatlogic.framework.cmdb.enums.RelDirectionType;
-import net.sf.jsqlparser.expression.Alias;
-import net.sf.jsqlparser.expression.Expression;
-import net.sf.jsqlparser.expression.Function;
-import net.sf.jsqlparser.expression.LongValue;
+import net.sf.jsqlparser.expression.*;
 import net.sf.jsqlparser.expression.operators.conditional.AndExpression;
 import net.sf.jsqlparser.expression.operators.conditional.OrExpression;
 import net.sf.jsqlparser.expression.operators.relational.EqualsTo;
@@ -407,6 +404,62 @@ public class ResourceViewGenerateSqlUtilForTiDB {
                     return column;
                 }
             }
+        } else if (Objects.equals(type, "globalAttr")) {
+            SubSelect resourceCiTable = joinedSubSelectMap.get("cientity_" + fromCi);
+            if (resourceCiTable == null) {
+                Column resourceCiTableIdColumn = new Column(resourceCiTable.getAlias().getName() + ".id");
+                Column mainTableIdColumn = new Column(mainTable.getAlias().getName() + ".id");
+                EqualsTo equalsTo = new EqualsTo(resourceCiTableIdColumn, mainTableIdColumn);
+                Join join = new Join().withLeft(left).withRightItem(resourceCiTable).addOnExpression(equalsTo);
+                plainSelect.addJoins(join);
+                addJoinSubSelect(resourceCiTable);
+                addEqualColumn(resourceCiTableIdColumn, mainTableIdColumn);
+            }
+            Table cmdbCientityGlobalattritemTable = joinedTableMap.get("globalattritem_" + fromAttr);
+            if (cmdbCientityGlobalattritemTable == null) {
+                cmdbCientityGlobalattritemTable = new Table("cmdb_cientity_globalattritem").withAlias(new Alias("globalattritem_" + fromAttr).withUseAs(false));
+                Column cmdbCientityGlobalattritemTableCiEntityIdColumn = new Column(cmdbCientityGlobalattritemTable, "cientity_id");
+                Column resourceCiTableIdColumn = new Column(resourceCiTable.getAlias().getName() + ".id");
+                EqualsTo equalsTo = new EqualsTo(cmdbCientityGlobalattritemTableCiEntityIdColumn, resourceCiTableIdColumn);
+                Join join = new Join().withLeft(left).withRightItem(cmdbCientityGlobalattritemTable).addOnExpression(equalsTo);
+                plainSelect.addJoins(join);
+                addJoinTable(cmdbCientityGlobalattritemTable);
+                addEqualColumn(cmdbCientityGlobalattritemTableCiEntityIdColumn, resourceCiTableIdColumn);
+            }
+            Table globalAttrTable = joinedTableMap.get("global_attr_" + fromAttr);
+            if (globalAttrTable == null) {
+                globalAttrTable = new Table("cmdb_global_attr").withAlias(new Alias("global_attr_" + fromAttr).withUseAs(false));
+                Column globalAttrTableIdColumn = new Column(globalAttrTable, "id");
+                Column cmdbCientityGlobalattritemTableAttrIdColumn = new Column(cmdbCientityGlobalattritemTable, "attr_id");
+                EqualsTo equalsTo = new EqualsTo(globalAttrTableIdColumn, cmdbCientityGlobalattritemTableAttrIdColumn);
+                Column globalAttrTableNameColumn = new Column(globalAttrTable, "name");
+                EqualsTo equalsTo2 = new EqualsTo(globalAttrTableNameColumn, new StringValue(fromAttr));
+                Join join = new Join().withLeft(left).withRightItem(globalAttrTable).addOnExpression(new AndExpression(equalsTo, equalsTo2));
+                plainSelect.addJoins(join);
+                addJoinTable(globalAttrTable);
+                addEqualColumn(globalAttrTableIdColumn, cmdbCientityGlobalattritemTableAttrIdColumn);
+            }
+            Table globalAttritemTable = joinedTableMap.get("global_attritem_" + fromAttr);
+            if (globalAttritemTable == null) {
+                globalAttritemTable = new Table("cmdb_global_attritem").withAlias(new Alias("global_attritem_" + fromAttr).withUseAs(false));
+                Column globalAttritemTableIdColumn = new Column(globalAttritemTable, "id");
+                Column cmdbCientityGlobalattritemTableItemIdColumn = new Column(cmdbCientityGlobalattritemTable, "item_id");
+                EqualsTo equalsTo = new EqualsTo(globalAttritemTableIdColumn, cmdbCientityGlobalattritemTableItemIdColumn);
+                Column globalAttritemTableAttrIdColumn = new Column(globalAttritemTable, "attr_id");
+                Column cmdbCientityGlobalattritemTableAttrIdColumn = new Column(cmdbCientityGlobalattritemTable, "attr_id");
+                EqualsTo equalsTo2 = new EqualsTo(globalAttritemTableAttrIdColumn, cmdbCientityGlobalattritemTableAttrIdColumn);
+                Join join = new Join().withLeft(left).withRightItem(globalAttritemTable).addOnExpression(new AndExpression(equalsTo, equalsTo2));
+                plainSelect.addJoins(join);
+                addJoinTable(globalAttritemTable);
+                addEqualColumn(globalAttritemTableIdColumn, cmdbCientityGlobalattritemTableItemIdColumn);
+                addEqualColumn(globalAttritemTableAttrIdColumn, cmdbCientityGlobalattritemTableAttrIdColumn);
+            }
+            Column column = new Column(globalAttritemTable, toAttr);
+            plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+            return column;
+        }  else if (Objects.equals(type, "empty")) {
+            plainSelect.addSelectItems(new SelectExpressionItem(new NullValue()).withAlias(new Alias(field)));
+            return null;
         } else {
             //非下拉框属性
             if ("_id".equals(fromAttr)) {
