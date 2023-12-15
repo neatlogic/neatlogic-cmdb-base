@@ -60,6 +60,8 @@ public class CiVo implements Serializable {
     private Long typeId;
     @EntityField(name = "类型名称", type = ApiParamType.STRING)
     private String typeName;
+    @EntityField(name = "模型目录id", type = ApiParamType.LONG)
+    private Long catalogId;
     @EntityField(name = "是否私有模型，0:不是，1:是", type = ApiParamType.INTEGER)
     private Integer isPrivate;
     @EntityField(name = "是否在菜单中显示，0:不显示，1:显示", type = ApiParamType.INTEGER)
@@ -243,6 +245,14 @@ public class CiVo implements Serializable {
 
     public void setTypeId(Long typeId) {
         this.typeId = typeId;
+    }
+
+    public Long getCatalogId() {
+        return catalogId;
+    }
+
+    public void setCatalogId(Long catalogId) {
+        this.catalogId = catalogId;
     }
 
     public Integer getIsPrivate() {
