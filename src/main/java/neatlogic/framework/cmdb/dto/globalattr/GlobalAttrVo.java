@@ -39,6 +39,8 @@ public class GlobalAttrVo {
     private int sort;
     @EntityField(name = "term.cmdb.allowedit", type = ApiParamType.INTEGER)
     private Integer allowEdit;
+    @EntityField(name = "term.diagram.isprivate", type = ApiParamType.INTEGER)
+    private Integer isPrivate;
 
     private List<GlobalAttrItemVo> itemList;
 
@@ -115,5 +117,13 @@ public class GlobalAttrVo {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getIsPrivate() {
+        return isPrivate;
+    }
+
+    public void setIsPrivate(Integer isPrivate) {
+        this.isPrivate = isPrivate;
     }
 }
