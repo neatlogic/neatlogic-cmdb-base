@@ -17,10 +17,12 @@
 package neatlogic.framework.cmdb.dto.resourcecenter;
 
 import com.alibaba.fastjson.JSONObject;
+import neatlogic.framework.asynchronization.threadlocal.UserContext;
 import neatlogic.framework.cmdb.resourcecenter.condition.IResourcecenterCondition;
 import neatlogic.framework.cmdb.resourcecenter.condition.ResourcecenterConditionFactory;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.common.constvalue.Expression;
+import neatlogic.framework.dto.AuthenticationInfoVo;
 import neatlogic.framework.dto.condition.ConditionConfigVo;
 import neatlogic.framework.dto.condition.ConditionVo;
 import neatlogic.framework.exception.condition.ConditionNotFoundException;
@@ -40,6 +42,8 @@ public class ResourceSearchVo extends ConditionConfigVo {
     private Long typeId;
     @EntityField(name = "类型id列表", type = ApiParamType.JSONARRAY)
     private List<Long> typeIdList;
+    @EntityField(name = "满足权限的类型id列表", type = ApiParamType.JSONARRAY)
+    private List<Long> authedTypeIdList;
     @EntityField(name = "IP地址", type = ApiParamType.STRING)
     private String ip;
     @EntityField(name = "端口", type = ApiParamType.INTEGER)
@@ -95,6 +99,10 @@ public class ResourceSearchVo extends ConditionConfigVo {
     private List<String> batchSearchList;
     @EntityField(name = "是否存在未配置环境", type = ApiParamType.BOOLEAN)
     private Boolean isExistNoEnv = false;
+    @EntityField(name = "是否有cmdb管理权限（模型或配置项管理权限）或 is.resourcecenter.auth = 1", type = ApiParamType.BOOLEAN)
+    private Boolean isHasAuth = false;
+    @EntityField(name = "校验团体类型", type = ApiParamType.STRING)
+    private String cmdbGroupType = "readonly";
 
     public ResourceSearchVo() {
     }
@@ -128,6 +136,14 @@ public class ResourceSearchVo extends ConditionConfigVo {
 
     public void setTypeIdList(List<Long> typeIdList) {
         this.typeIdList = typeIdList;
+    }
+
+    public List<Long> getAuthedTypeIdList() {
+        return authedTypeIdList;
+    }
+
+    public void setAuthedTypeIdList(List<Long> authedTypeIdList) {
+        this.authedTypeIdList = authedTypeIdList;
     }
 
     public String getIp() {
@@ -376,4 +392,23 @@ public class ResourceSearchVo extends ConditionConfigVo {
         return label + " " + expressionName + " " + textStr;
     }
 
+    public AuthenticationInfoVo getAuthenticationInfo() {
+        return UserContext.get().getAuthenticationInfoVo();
+    }
+
+    public Boolean getIsHasAuth() {
+        return isHasAuth;
+    }
+
+    public void setIsHasAuth(Boolean isHasAuth) {
+        this.isHasAuth = isHasAuth;
+    }
+
+    public String getCmdbGroupType() {
+        return cmdbGroupType;
+    }
+
+    public void setCmdbGroupType(String cmdbGroupType) {
+        this.cmdbGroupType = cmdbGroupType;
+    }
 }
