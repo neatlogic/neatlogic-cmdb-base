@@ -92,7 +92,7 @@ public class CiVo implements Serializable {
     private List<Long> uniqueAttrIdList;
     @EntityField(name = "名称属性", type = ApiParamType.LONG)
     private Long nameAttrId;
-    @JSONField(serialize = false)
+//    @JSONField(serialize = false)
     private String viewXml;//虚拟模型xml定义
     @EntityField(name = "虚拟模型配置文件id", type = ApiParamType.LONG)
     private Long fileId;
