@@ -141,6 +141,8 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private List<Long> globalAttrIdList;
     @JSONField(serialize = false) // 需要返回的关系列表，注意：为空代表返回所有关系！！！
     private List<Long> relIdList;
+    @JSONField(serialize = false)//搜索时需要排除的relId
+    private List<Long> excludeRelIdList;
     @JSONField(serialize = false)
     private List<Long> groupIdList;// 查询时使用的群组id
     @JSONField(serialize = false)
@@ -225,6 +227,14 @@ public class CiEntityVo extends BasePageVo implements Serializable {
 
     public Boolean isLimitRelEntity() {
         return limitRelEntity;
+    }
+
+    public List<Long> getExcludeRelIdList() {
+        return excludeRelIdList;
+    }
+
+    public void setExcludeRelIdList(List<Long> excludeRelIdList) {
+        this.excludeRelIdList = excludeRelIdList;
     }
 
     public void setLimitRelEntity(Boolean limitRelEntity) {
