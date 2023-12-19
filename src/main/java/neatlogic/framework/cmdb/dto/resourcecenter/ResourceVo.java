@@ -119,6 +119,12 @@ public class ResourceVo extends BaseEditorVo {
     @EntityField(name = "监控端口", type = ApiParamType.INTEGER)
     private Integer listenPort;
 
+    @EntityField(name = "是否有编辑权限", type = ApiParamType.BOOLEAN)
+    private Boolean isCanEdit;
+
+    @EntityField(name = "是否有删除权限", type = ApiParamType.BOOLEAN)
+    private Boolean isCanDelete;
+
     public ResourceVo() {
     }
 
@@ -508,5 +514,21 @@ public class ResourceVo extends BaseEditorVo {
 
     public void setListenPort(Integer listenPort) {
         this.listenPort = listenPort;
+    }
+
+    public Boolean getIsCanEdit() {
+        return isCanEdit;
+    }
+
+    public void setIsCanEdit(Boolean isCanEdit) {
+        this.isCanEdit = isCanEdit;
+    }
+
+    public Boolean getIsCanDelete() {
+        return isCanDelete;
+    }
+
+    public void setIsCanDelete(Boolean isCanDelete) {
+        this.isCanDelete = isCanDelete;
     }
 }
