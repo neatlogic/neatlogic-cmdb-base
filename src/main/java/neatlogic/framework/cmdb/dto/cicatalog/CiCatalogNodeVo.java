@@ -1,6 +1,7 @@
 package neatlogic.framework.cmdb.dto.cicatalog;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import neatlogic.framework.cmdb.dto.ci.CiVo;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 import org.apache.commons.collections4.CollectionUtils;
@@ -25,8 +26,22 @@ public class CiCatalogNodeVo extends CiCatalogVo {
     @EntityField(name = "common.type", type = ApiParamType.STRING)
     private String type;
 
+    @EntityField(name = "图标", type = ApiParamType.STRING)
+    private String icon;
+
     @JSONField(serialize=false)
     private CiCatalogNodeVo parent;
+
+    public CiCatalogNodeVo() {
+    }
+
+    public CiCatalogNodeVo(CiVo ciVo) {
+        this.setId(ciVo.getId());
+        this.setName(ciVo.getLabel() + "(" + ciVo.getName() + ")");
+        this.setParentId(ciVo.getCatalogId());
+        this.setType(CiCatalogNodeVo.CI);
+        this.setIcon(ciVo.getIcon());
+    }
 
     public List<CiCatalogNodeVo> getChildren() {
         if (children == null && Objects.equals(type, CiCatalogNodeVo.CATALOG)) {
@@ -56,6 +71,14 @@ public class CiCatalogNodeVo extends CiCatalogVo {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public CiCatalogNodeVo getParent() {
