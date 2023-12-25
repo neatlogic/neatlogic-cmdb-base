@@ -16,11 +16,13 @@
 
 package neatlogic.framework.cmdb.dto.group;
 
+import neatlogic.framework.cmdb.enums.CmdbTenantConfig;
 import neatlogic.framework.cmdb.enums.group.GroupType;
 import neatlogic.framework.cmdb.enums.group.Status;
 import neatlogic.framework.common.config.Config;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.common.dto.BaseEditorVo;
+import neatlogic.framework.config.ConfigManager;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
 import com.alibaba.fastjson.annotation.JSONField;
@@ -193,6 +195,10 @@ public class GroupVo extends BaseEditorVo {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getIsResourcecenterAuth() {
+        return ConfigManager.getConfig(CmdbTenantConfig.IS_RESOURCECENTER_AUTH);
     }
 
 }
