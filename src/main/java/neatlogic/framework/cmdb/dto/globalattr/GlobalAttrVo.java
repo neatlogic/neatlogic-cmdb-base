@@ -20,9 +20,11 @@ import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class GlobalAttrVo {
+public class GlobalAttrVo implements Serializable {
+
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "common.uniquename", type = ApiParamType.STRING)
