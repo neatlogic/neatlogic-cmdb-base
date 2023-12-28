@@ -60,8 +60,6 @@ public class CiVo implements Serializable {
     private Long typeId;
     @EntityField(name = "类型名称", type = ApiParamType.STRING)
     private String typeName;
-    @EntityField(name = "模型目录id", type = ApiParamType.LONG)
-    private Long catalogId;
     @EntityField(name = "是否私有模型，0:不是，1:是", type = ApiParamType.INTEGER)
     private Integer isPrivate;
     @EntityField(name = "是否在菜单中显示，0:不显示，1:显示", type = ApiParamType.INTEGER)
@@ -92,7 +90,7 @@ public class CiVo implements Serializable {
     private List<Long> uniqueAttrIdList;
     @EntityField(name = "名称属性", type = ApiParamType.LONG)
     private Long nameAttrId;
-//    @JSONField(serialize = false)
+    //    @JSONField(serialize = false)
     private String viewXml;//虚拟模型xml定义
     @EntityField(name = "虚拟模型配置文件id", type = ApiParamType.LONG)
     private Long fileId;
@@ -110,6 +108,8 @@ public class CiVo implements Serializable {
     private List<CiViewVo> viewList;
     @EntityField(name = "关系分组列表", type = ApiParamType.JSONARRAY)
     private List<RelGroupVo> relGroupList;
+    @JSONField(serialize = false)
+    private int sort;
 
     @Override
     public boolean equals(Object o) {
@@ -134,6 +134,14 @@ public class CiVo implements Serializable {
 
     public void setHasData(Boolean hasData) {
         this.hasData = hasData;
+    }
+
+    public int getSort() {
+        return sort;
+    }
+
+    public void setSort(int sort) {
+        this.sort = sort;
     }
 
     public void setParentCi(CiVo parentCi) {
@@ -247,13 +255,6 @@ public class CiVo implements Serializable {
         this.typeId = typeId;
     }
 
-    public Long getCatalogId() {
-        return catalogId;
-    }
-
-    public void setCatalogId(Long catalogId) {
-        this.catalogId = catalogId;
-    }
 
     public Integer getIsPrivate() {
         return isPrivate;
