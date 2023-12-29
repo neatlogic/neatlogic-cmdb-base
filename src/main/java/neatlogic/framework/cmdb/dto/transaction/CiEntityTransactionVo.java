@@ -358,6 +358,10 @@ public class CiEntityTransactionVo implements Serializable {
         attrEntityData.put("attr_" + attrVo.getId(), attrObj);
     }
 
+    public void addGlobalAttrEntityData(GlobalAttrVo globalAttrVo) {
+        addGlobalAttrEntityData(globalAttrVo, new JSONArray());
+    }
+
     /**
      * 添加一个全局属性数据项
      *
