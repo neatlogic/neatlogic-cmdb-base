@@ -34,12 +34,14 @@ public class CiVo implements Serializable {
     private String keyword;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
-    @EntityField(name = "父亲模型id", type = ApiParamType.LONG)
+    @EntityField(name = "term.cmdb.parentciid", type = ApiParamType.LONG)
     private Long parentCiId;
-    @EntityField(name = "父亲模型图标", type = ApiParamType.STRING)
+    @EntityField(name = "term.cmdb.parentciicon", type = ApiParamType.STRING)
     private String parentCiIcon;
     @EntityField(name = "是否有数据", type = ApiParamType.BOOLEAN)
     private Boolean hasData;
+    @JSONField(serialize = false)
+    private Boolean hasRel;
     @EntityField(name = "父亲模型名称", type = ApiParamType.STRING)
     private String parentCiLabel;
     @EntityField(name = "父亲模型唯一标识", type = ApiParamType.STRING)
@@ -110,6 +112,8 @@ public class CiVo implements Serializable {
     private List<RelGroupVo> relGroupList;
     @JSONField(serialize = false)
     private int sort;
+    @EntityField(name = "是否包含子模型", type = ApiParamType.BOOLEAN)
+    private Boolean hasChildren;
 
     @Override
     public boolean equals(Object o) {
@@ -128,8 +132,24 @@ public class CiVo implements Serializable {
         return parentCi;
     }
 
+    public Boolean getHasChildren() {
+        return hasChildren;
+    }
+
+    public void setHasChildren(Boolean hasChildren) {
+        this.hasChildren = hasChildren;
+    }
+
     public Boolean getHasData() {
         return hasData;
+    }
+
+    public Boolean getHasRel() {
+        return hasRel;
+    }
+
+    public void setHasRel(Boolean hasRel) {
+        this.hasRel = hasRel;
     }
 
     public void setHasData(Boolean hasData) {

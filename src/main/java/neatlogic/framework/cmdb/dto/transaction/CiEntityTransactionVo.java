@@ -619,6 +619,9 @@ public class CiEntityTransactionVo implements Serializable {
     }
 
     public String getEditMode() {
+        if (StringUtils.isBlank(editMode)) {
+            editMode = EditModeType.GLOBAL.getValue();
+        }
         return editMode;
     }
 
