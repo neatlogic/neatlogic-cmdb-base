@@ -288,16 +288,23 @@ public class CiEntityTransactionVo implements Serializable {
         if (MapUtils.isNotEmpty(relEntityData) && relEntityData.containsKey("rel" + direction + "_" + relId) && relEntityData.getJSONObject("rel" + direction + "_" + relId).containsKey("valueList")) {
             JSONArray relList = relEntityData.getJSONObject("rel" + direction + "_" + relId).getJSONArray("valueList");
             if (CollectionUtils.isNotEmpty(relList)) {
-                List<Integer> removeList = new ArrayList<>();
-                for (int i = 0; i < relList.size(); i++) {
+//                List<Integer> removeList = new ArrayList<>();
+//                for (int i = 0; i < relList.size(); i++) {
+//                    JSONObject relObj = relList.getJSONObject(i);
+//                    //如果是新增加目标则不会有ciEntityId,所以必须要判断ciEntityId是否为空
+//                    if (relObj.containsKey("ciEntityId") && relObj.getLong("ciEntityId").equals(targetId)) {
+//                        removeList.add(i);
+//                    }
+//                }
+//                for (int index : removeList) {
+//                    relList.remove(index);
+//                }
+                for (int i = relList.size() - 1; i >= 0; i--) {
                     JSONObject relObj = relList.getJSONObject(i);
                     //如果是新增加目标则不会有ciEntityId,所以必须要判断ciEntityId是否为空
                     if (relObj.containsKey("ciEntityId") && relObj.getLong("ciEntityId").equals(targetId)) {
-                        removeList.add(i);
+                        relList.remove(i);
                     }
-                }
-                for (int index : removeList) {
-                    relList.remove(index);
                 }
                 if (CollectionUtils.isEmpty(relList)) {
                     relEntityData.remove("rel" + direction + "_" + relId);
@@ -356,6 +363,10 @@ public class CiEntityTransactionVo implements Serializable {
         attrObj.put("targetCiId", attrVo.getTargetCiId());
         attrObj.put("valueList", valueList);
         attrEntityData.put("attr_" + attrVo.getId(), attrObj);
+    }
+
+    public void addGlobalAttrEntityData(GlobalAttrVo globalAttrVo) {
+        addGlobalAttrEntityData(globalAttrVo, new JSONArray());
     }
 
     /**
@@ -615,6 +626,9 @@ public class CiEntityTransactionVo implements Serializable {
     }
 
     public String getEditMode() {
+        if (StringUtils.isBlank(editMode)) {
+            editMode = EditModeType.GLOBAL.getValue();
+        }
         return editMode;
     }
 

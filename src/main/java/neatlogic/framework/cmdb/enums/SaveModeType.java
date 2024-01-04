@@ -19,7 +19,9 @@ package neatlogic.framework.cmdb.enums;
 import neatlogic.framework.util.$;
 
 public enum SaveModeType {
-    REPLACE("replace", "替换模式"), MERGE("merge", "合并模式");
+    REPLACE("replace", "替换模式"),
+    MERGE("merge", "合并模式"),
+    ALLOW_EMPTY("allowEmpty", "允许空");
 
     private final String value;
     private final String text;

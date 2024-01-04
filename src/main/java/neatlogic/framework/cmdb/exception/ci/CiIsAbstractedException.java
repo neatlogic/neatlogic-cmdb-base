@@ -17,9 +17,26 @@
 package neatlogic.framework.cmdb.exception.ci;
 
 import neatlogic.framework.exception.core.ApiRuntimeException;
+import neatlogic.framework.util.$;
 
 public class CiIsAbstractedException extends ApiRuntimeException {
-    public CiIsAbstractedException(String ciName) {
-        super("配置项模型：{0}是抽象模型，不能直接添加数据。", ciName);
+
+    public enum Type {
+        DATA, UPDATEABSTRACT, UPDATEPARENT
     }
+
+    public CiIsAbstractedException(Type type, String ciName) {
+        super(getMessage(type, ciName));
+    }
+
+    private static String getMessage(Type type, String ciName) {
+        if (type == Type.DATA) {
+            return $.t("nfcec.ciisabstractedexception.data", ciName);
+        } else if (type == Type.UPDATEABSTRACT) {
+            return $.t("nfcec.ciisabstractedexception.updateabstract", ciName);
+        } else {
+            return $.t("nfcec.ciisabstractedexception.updateparent", ciName);
+        }
+    }
+
 }
