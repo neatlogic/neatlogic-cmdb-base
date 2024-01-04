@@ -22,6 +22,10 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiUniqueRuleAttrTypeIrregularException extends ApiRuntimeException {
     public CiUniqueRuleAttrTypeIrregularException(CiVo ciVo, AttrVo attrVo) {
-        super("模型“{0}({1})”的唯一规则属性“{2}({3})”不能是一个表达式属性或引用型属性", ciVo.getLabel(), ciVo.getName(), attrVo.getLabel(), attrVo.getName());
+        super("nfcec.ciuniqueruleattrtypeirregularexception.ciuniqueruleattrtypeirregularexception_a", ciVo.getLabel(), ciVo.getName(), attrVo.getLabel(), attrVo.getName());
+    }
+
+    public CiUniqueRuleAttrTypeIrregularException(AttrVo attrVo) {
+        super("nfcec.ciuniqueruleattrtypeirregularexception.ciuniqueruleattrtypeirregularexception_b", attrVo.getCiLabel(), attrVo.getCiName(), attrVo.getLabel(), attrVo.getName());
     }
 }
