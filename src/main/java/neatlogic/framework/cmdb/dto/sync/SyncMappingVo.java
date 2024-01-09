@@ -27,11 +27,11 @@ import org.apache.commons.lang3.StringUtils;
 public class SyncMappingVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
-    @EntityField(name = "属性id", type = ApiParamType.LONG)
+    @EntityField(name = "nmcaa.getattrapi.input.param.desc.id", type = ApiParamType.LONG)
     private Long attrId;
-    @EntityField(name = "关系id", type = ApiParamType.LONG)
+    @EntityField(name = "nmcac.searchcientityapi.input.param.desc.relid", type = ApiParamType.LONG)
     private Long relId;
-    @EntityField(name = "关系方向", type = ApiParamType.ENUM, member = RelDirectionType.class)
+    @EntityField(name = "term.rdm.reldirection", type = ApiParamType.ENUM, member = RelDirectionType.class)
     private String direction;
     @EntityField(name = "目标字段，支持jsonpath语法", type = ApiParamType.STRING)
     private String field;
