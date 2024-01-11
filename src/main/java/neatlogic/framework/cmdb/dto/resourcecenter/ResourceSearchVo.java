@@ -110,6 +110,12 @@ public class ResourceSearchVo extends ConditionConfigVo {
     public ResourceSearchVo(JSONObject jsonObj) {
         super(jsonObj);
     }
+
+    public ResourceSearchVo(ResourceVo resourceVo) {
+        this.ip = resourceVo.getIp();
+        this.port = resourceVo.getPort() != null ? resourceVo.getPort().toString() : null;
+    }
+
     public ResourceSearchVo(List<Long> tagIdList) {
         this.tagIdList = tagIdList;
     }

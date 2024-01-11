@@ -62,6 +62,8 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
 
     List<ResourceVo> getResourceByIdList(List<Long> idList);
 
+    List<ResourceVo> getAuthResourceList(ResourceSearchVo searchVo);
+
     ResourceVo getResourceById(Long id);
 
     int checkResourceIsExists(Long id);
@@ -88,7 +90,7 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
 
     List<ResourceVo> getResourceAppSystemListByResourceIdList(List<Long> id);
 
-    List<ResourceVo> getResourceListByResourceVoList(@Param("resourceList") List<ResourceVo> resourceList);
+    List<ResourceVo> getResourceListByResourceVoList(@Param("resourceList") List<ResourceVo> resourceList,@Param("searchVo") ResourceSearchVo searchVo);
 
     Long getAppSystemIdByResourceId(Long id);
 
