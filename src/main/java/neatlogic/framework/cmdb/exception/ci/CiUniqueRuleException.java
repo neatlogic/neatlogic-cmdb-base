@@ -23,4 +23,8 @@ public class CiUniqueRuleException extends ApiRuntimeException {
     public CiUniqueRuleException(CiVo ciVo) {
         super("模型“{0}({1})”存在拥有相同唯一规则属性的配置项", ciVo.getLabel(), ciVo.getName());
     }
+
+    public CiUniqueRuleException(CiVo ciVo, String value) {
+        super("模型“{0}({1})”存在拥有相同唯一规则属性的配置项“{2}”", ciVo.getLabel(), ciVo.getName(), value);
+    }
 }
