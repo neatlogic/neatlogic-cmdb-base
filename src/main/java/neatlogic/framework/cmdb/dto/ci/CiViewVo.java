@@ -28,25 +28,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CiViewVo implements Serializable {
-    @EntityField(name = "模型Id", type = ApiParamType.LONG)
+    @EntityField(name = "term.cmdb.ciid", type = ApiParamType.LONG)
     private Long ciId;
-    @EntityField(name = "属性或关系id", type = ApiParamType.LONG)
+    @EntityField(name = "term.ciview.itemid", type = ApiParamType.LONG)
     private Long itemId;
-    @EntityField(name = "属性或关系唯一标识", type = ApiParamType.STRING)
+    @EntityField(name = "term.ciview.name", type = ApiParamType.STRING)
     private String itemName;
-    @EntityField(name = "属性或关系名称", type = ApiParamType.STRING)
+    @EntityField(name = "term.ciview.label", type = ApiParamType.STRING)
     private String itemLabel;
-    @EntityField(name = "类型，attr或rel", type = ApiParamType.STRING)
+    @EntityField(name = "term.ciview.alias", type = ApiParamType.STRING)
+    private String alias;
+    @EntityField(name = "term.ciview.type", type = ApiParamType.STRING)
     private String type;
-    @EntityField(name = "类型名称", type = ApiParamType.STRING)
+    @EntityField(name = "common.typename", type = ApiParamType.STRING)
     private String typeText;
-    @EntityField(name = "排序", type = ApiParamType.INTEGER)
+    @EntityField(name = "common.sort", type = ApiParamType.INTEGER)
     private Integer sort;
-    @EntityField(name = "显示方式，none:不显示，all:全部显示，list:仅列表显示，detail:仅明细显示", type = ApiParamType.STRING)
+    @EntityField(name = "term.ciview.showtypedesc", type = ApiParamType.STRING)
     private String showType = ShowType.ALL.getValue();
-    @EntityField(name = "是否允许编辑，0不允许，1允许", type = ApiParamType.INTEGER)
+    @EntityField(name = "term.ciview.alleditdesc", type = ApiParamType.INTEGER)
     private Integer allowEdit = 1;
-    @EntityField(name = "显示方式名称", type = ApiParamType.STRING)
+    @EntityField(name = "term.ciview.showtypetext", type = ApiParamType.STRING)
     private String showTypeText;
     @JSONField(serialize = false)
     private List<String> showTypeList;
@@ -62,6 +64,14 @@ public class CiViewVo implements Serializable {
     public CiViewVo(Long ciId, String type) {
         this.ciId = ciId;
         this.type = type;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 
     public Integer getAllowEdit() {
@@ -190,6 +200,14 @@ public class CiViewVo implements Serializable {
 
     public String getItemLabel() {
         return itemLabel;
+    }
+
+    public String getAliasOrLabel() {
+        if (StringUtils.isNotBlank(alias)) {
+            return alias;
+        } else {
+            return itemLabel;
+        }
     }
 
     public void setItemLabel(String itemLabel) {
