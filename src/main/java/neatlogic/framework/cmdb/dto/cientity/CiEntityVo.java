@@ -147,6 +147,8 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private List<Long> groupIdList;// 查询时使用的群组id
     @JSONField(serialize = false)
     private List<Long> idList;// 需要查询的id列表
+    @JSONField(serialize = false)
+    private boolean globalAttrStrictMode;//全局属性严格模式，严格模式下不返回没有全局属性的配置项，只用在配置项搜索
     @EntityField(name = "当前用户权限情况", type = ApiParamType.JSONOBJECT)
     private Map<String, Boolean> authData;
     @JSONField(serialize = false)//动态属性
@@ -227,6 +229,14 @@ public class CiEntityVo extends BasePageVo implements Serializable {
 
     public Boolean isLimitRelEntity() {
         return limitRelEntity;
+    }
+
+    public boolean isGlobalAttrStrictMode() {
+        return globalAttrStrictMode;
+    }
+
+    public void setGlobalAttrStrictMode(boolean globalAttrStrictMode) {
+        this.globalAttrStrictMode = globalAttrStrictMode;
     }
 
     public List<Long> getExcludeRelIdList() {
