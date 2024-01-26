@@ -18,7 +18,7 @@ package neatlogic.framework.cmdb.auth.label;
 
 import neatlogic.framework.auth.core.AuthBase;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class RESOURCECENTER_ACCOUNT_MODIFY extends AuthBase {
@@ -45,6 +45,6 @@ public class RESOURCECENTER_ACCOUNT_MODIFY extends AuthBase {
 
     @Override
     public List<Class<? extends AuthBase>> getIncludeAuths() {
-        return Arrays.asList(CMDB_BASE.class, RESOURCECENTER_BASE.class);
+        return Collections.singletonList(CMDB_BASE.class);
     }
 }
