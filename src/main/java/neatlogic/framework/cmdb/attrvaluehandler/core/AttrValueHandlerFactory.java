@@ -16,12 +16,12 @@
 
 package neatlogic.framework.cmdb.attrvaluehandler.core;
 
+import com.sun.istack.NotNull;
 import neatlogic.framework.applicationlistener.core.ModuleInitializedListenerBase;
 import neatlogic.framework.bootstrap.NeatLogicWebApplicationContext;
 import neatlogic.framework.cmdb.dto.ci.AttrTypeVo;
 import neatlogic.framework.cmdb.exception.attrtype.AttrTypeNotFoundException;
 import neatlogic.framework.common.RootComponent;
-import com.sun.istack.NotNull;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -72,6 +72,7 @@ public class AttrValueHandlerFactory extends ModuleInitializedListenerBase {
                 attrType.setNeedWholeRow(handler.isNeedWholeRow());
                 attrType.setNeedTargetCi(handler.isNeedTargetCi());
                 attrType.setSort(handler.getSort());
+                attrType.setCanSearch(handler.isCanSearch());
                 attrTypeList.add(attrType);
             }
         }

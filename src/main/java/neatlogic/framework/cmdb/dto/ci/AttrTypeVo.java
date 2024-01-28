@@ -37,6 +37,8 @@ public class AttrTypeVo implements Serializable {
     private boolean needWholeRow;
     @EntityField(name = "排序", type = ApiParamType.INTEGER)
     private int sort;
+    @EntityField(name = "支持搜索", type = ApiParamType.BOOLEAN)
+    private boolean canSearch;
 
     public int getSort() {
         return sort;
@@ -44,6 +46,14 @@ public class AttrTypeVo implements Serializable {
 
     public void setSort(int sort) {
         this.sort = sort;
+    }
+
+    public boolean getCanSearch() {
+        return canSearch;
+    }
+
+    public void setCanSearch(boolean canSearch) {
+        this.canSearch = canSearch;
     }
 
     public String getName() {

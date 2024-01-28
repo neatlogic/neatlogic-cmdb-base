@@ -452,6 +452,7 @@ public class CiVo implements Serializable {
         return TenantContext.get().getDataDbName() + ".`cmdb_" + this.getId() + "`";
     }
 
+
     @JSONField(serialize = false)
     public String getCiViewName() {
         return TenantContext.get().getDataDbName() + ".`ci_" + this.getName().toLowerCase() + "`";

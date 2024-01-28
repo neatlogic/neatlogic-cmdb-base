@@ -16,6 +16,8 @@
 
 package neatlogic.framework.cmdb.dto.ci;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.nacos.client.naming.utils.CollectionUtils;
 import neatlogic.framework.asynchronization.threadlocal.TenantContext;
 import neatlogic.framework.cmdb.dto.cientity.CiEntityVo;
 import neatlogic.framework.cmdb.enums.InputType;
@@ -25,8 +27,6 @@ import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.common.dto.ValueTextVo;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
-import com.alibaba.fastjson.annotation.JSONField;
-import com.alibaba.nacos.client.naming.utils.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -58,6 +58,8 @@ public class RelVo implements Serializable {
     private String fromName;
     @EntityField(name = "上游端标签", type = ApiParamType.STRING)
     private String fromLabel;
+    @EntityField(name = "别名", type = ApiParamType.STRING)
+    private String alias;
     @EntityField(name = "上游端类型id", type = ApiParamType.LONG)
     private Long fromTypeId;
     @EntityField(name = "上游端规则", type = ApiParamType.STRING)
@@ -140,6 +142,14 @@ public class RelVo implements Serializable {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 
     public Long getMaxRelEntityCount() {

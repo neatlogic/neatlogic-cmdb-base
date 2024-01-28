@@ -16,6 +16,10 @@
 
 package neatlogic.framework.cmdb.dto.ci;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.nacos.client.naming.utils.CollectionUtils;
 import neatlogic.framework.asynchronization.threadlocal.TenantContext;
 import neatlogic.framework.cmdb.attrvaluehandler.core.AttrValueHandlerFactory;
 import neatlogic.framework.cmdb.attrvaluehandler.core.IAttrValueHandler;
@@ -27,10 +31,6 @@ import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.common.dto.ValueTextVo;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.annotation.JSONField;
-import com.alibaba.nacos.client.naming.utils.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -65,6 +65,8 @@ public class AttrVo extends BasePageVo {
     private String name;
     @EntityField(name = "中文名称，模型内唯一", type = ApiParamType.STRING)
     private String label;
+    @EntityField(name = "别名", type = ApiParamType.STRING)
+    private String alias;
     @EntityField(name = "描述", type = ApiParamType.STRING)
     private String description;
     @EntityField(name = "验证组件id", type = ApiParamType.LONG)
@@ -82,6 +84,8 @@ public class AttrVo extends BasePageVo {
     private Integer isUnique = 0;
     @EntityField(name = "是否模型唯一属性成员", type = ApiParamType.INTEGER)
     private Integer isCiUnique = 0;
+    @EntityField(name = "是否允许搜索", type = ApiParamType.INTEGER)
+    private Integer isSearchAble = 0;
     @EntityField(name = "是否私有属性", type = ApiParamType.INTEGER)
     private Integer isPrivate = 0;
     @EntityField(name = "是否继承属性", type = ApiParamType.INTEGER)
@@ -219,6 +223,14 @@ public class AttrVo extends BasePageVo {
         this.id = id;
     }
 
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
     public Long getCiId() {
         return ciId;
     }
@@ -275,6 +287,15 @@ public class AttrVo extends BasePageVo {
     public void setIsUnique(Integer isUnique) {
         this.isUnique = isUnique;
     }
+
+    public Integer getIsSearchAble() {
+        return isSearchAble;
+    }
+
+    public void setIsSearchAble(Integer isSearchAble) {
+        this.isSearchAble = isSearchAble;
+    }
+
 
     public String getInputType() {
         return inputType;

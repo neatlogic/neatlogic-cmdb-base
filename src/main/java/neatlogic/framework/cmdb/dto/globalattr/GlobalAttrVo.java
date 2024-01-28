@@ -31,6 +31,8 @@ public class GlobalAttrVo implements Serializable {
     private String name;
     @EntityField(name = "common.name", type = ApiParamType.STRING)
     private String label;
+    @EntityField(name = "term.ciview.alias", type = ApiParamType.STRING)
+    private String alias;
     @EntityField(name = "common.isactive", type = ApiParamType.INTEGER)
     private Integer isActive;
     @EntityField(name = "common.ismultiple", type = ApiParamType.INTEGER)
@@ -51,6 +53,14 @@ public class GlobalAttrVo implements Serializable {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 
     public int getSort() {
