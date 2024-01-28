@@ -38,6 +38,10 @@ public class CiUniqueAttrNotFoundException extends ApiRuntimeException {
         super("nfcec.ciuniqueattrnotfoundexception.ciuniqueattrnotfoundexception_c", attrVo.getCiLabel(), attrVo.getCiName(), attrVo.getLabel(), attrVo.getName());
     }
 
+    public CiUniqueAttrNotFoundException(AttrVo attrVo, String configurationPath, String actualPath) {
+        super("模型“{0}({1})”的唯一规则属性“{2}({3})”的值为空，配置路径：{4}，实际路径：{5}", attrVo.getCiLabel(), attrVo.getCiName(), attrVo.getLabel(), attrVo.getName(), configurationPath, actualPath);
+    }
+
     public CiUniqueAttrNotFoundException(Long ciId, Long attrId) {
         super("nfcec.ciuniqueattrnotfoundexception.ciuniqueattrnotfoundexception_d", ciId, attrId);
     }

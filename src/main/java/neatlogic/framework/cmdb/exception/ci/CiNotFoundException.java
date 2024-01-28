@@ -27,4 +27,8 @@ public class CiNotFoundException extends ApiRuntimeException {
     public CiNotFoundException(String ciName) {
         super("配置项模型“{0}”不存在", ciName);
     }
+
+    public CiNotFoundException(String ciName, String configurationPath, String actualPath) {
+        super("配置项模型“{0}”不存在，配置路径：{1}，实际路径：{2}", ciName, configurationPath, actualPath);
+    }
 }
