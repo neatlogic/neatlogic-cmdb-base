@@ -22,4 +22,8 @@ public class InsertAttrToSchemaException extends ApiRuntimeException {
     public InsertAttrToSchemaException(String attrName) {
         super("无法将属性“{0}”添加到数据表，具体错误请查看系统日志", attrName);
     }
+
+    public InsertAttrToSchemaException(String attrName, int limit) {
+        super("无法将属性“{0}”添加到数据表，索引数量已经超过上限{1}", attrName, limit);
+    }
 }
