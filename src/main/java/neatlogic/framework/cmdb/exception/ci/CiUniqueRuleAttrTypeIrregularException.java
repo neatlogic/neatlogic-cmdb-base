@@ -30,6 +30,6 @@ public class CiUniqueRuleAttrTypeIrregularException extends ApiRuntimeException 
     }
 
     public CiUniqueRuleAttrTypeIrregularException(AttrVo attrVo, String configurationPath, String actualPath) {
-        super("模型“{0}({1})”的唯一规则属性“{2}({3})”不能是一个表达式属性，配置路径：{4}，实际路径：{5}", attrVo.getCiLabel(), attrVo.getCiName(), attrVo.getLabel(), attrVo.getName(), configurationPath, actualPath);
+        super("nfcec.ciuniqueruleattrtypeirregularexception.ciuniqueruleattrtypeirregularexception_c", attrVo.getCiLabel(), attrVo.getCiName(), attrVo.getLabel(), attrVo.getName(), configurationPath, actualPath);
     }
 }
