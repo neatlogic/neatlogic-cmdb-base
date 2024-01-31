@@ -38,6 +38,10 @@ public class CiUniqueAttrNotFoundException extends ApiRuntimeException {
         super("nfcec.ciuniqueattrnotfoundexception.ciuniqueattrnotfoundexception_c", attrVo.getCiLabel(), attrVo.getCiName(), attrVo.getLabel(), attrVo.getName());
     }
 
+    public CiUniqueAttrNotFoundException(AttrVo attrVo, String configurationPath, String actualPath) {
+        super("nfcec.ciuniqueattrnotfoundexception.ciuniqueattrnotfoundexception_f", attrVo.getCiLabel(), attrVo.getCiName(), attrVo.getLabel(), attrVo.getName(), configurationPath, actualPath);
+    }
+
     public CiUniqueAttrNotFoundException(Long ciId, Long attrId) {
         super("nfcec.ciuniqueattrnotfoundexception.ciuniqueattrnotfoundexception_d", ciId, attrId);
     }

@@ -16,11 +16,16 @@
 
 package neatlogic.framework.cmdb.exception.cientity;
 
+import neatlogic.framework.cmdb.dto.ci.AttrVo;
+import neatlogic.framework.cmdb.dto.ci.CiVo;
 import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class AttrEntityValueEmptyException extends ApiRuntimeException {
     public AttrEntityValueEmptyException(String msg) {
-        super("属性“{0}”值不能为空", msg);
+        super("nfcec.attrentityvalueemptyexception.attrentityvalueemptyexception_a", msg);
     }
 
+    public AttrEntityValueEmptyException(CiVo ciVo, AttrVo attrVo) {
+        super("nfcec.attrentityvalueemptyexception.attrentityvalueemptyexception_b", ciVo.getLabel(), ciVo.getName(), attrVo.getLabel(), attrVo.getName());
+    }
 }

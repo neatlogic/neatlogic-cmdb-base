@@ -28,4 +28,8 @@ public class CiUniqueRuleAttrTypeIrregularException extends ApiRuntimeException 
     public CiUniqueRuleAttrTypeIrregularException(AttrVo attrVo) {
         super("nfcec.ciuniqueruleattrtypeirregularexception.ciuniqueruleattrtypeirregularexception_b", attrVo.getCiLabel(), attrVo.getCiName(), attrVo.getLabel(), attrVo.getName());
     }
+
+    public CiUniqueRuleAttrTypeIrregularException(AttrVo attrVo, String configurationPath, String actualPath) {
+        super("nfcec.ciuniqueruleattrtypeirregularexception.ciuniqueruleattrtypeirregularexception_c", attrVo.getCiLabel(), attrVo.getCiName(), attrVo.getLabel(), attrVo.getName(), configurationPath, actualPath);
+    }
 }

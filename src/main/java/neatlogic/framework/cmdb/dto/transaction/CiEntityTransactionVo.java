@@ -96,6 +96,10 @@ public class CiEntityTransactionVo implements Serializable {
     private String description;
     @EntityField(name = "唯一属性列表", type = ApiParamType.LONG)
     private List<Long> uniqueAttrIdList;
+    /** 配置路径列表 **/
+    private List<String> configurationPathList;
+    /** 实际路径列表 **/
+    private List<String> actualPathList;
 
     public CiEntityTransactionVo() {
 
@@ -792,5 +796,21 @@ public class CiEntityTransactionVo implements Serializable {
             hash = Objects.hash(this.ciId, jsonObj.toString());
         }
         return hash;
+    }
+
+    public List<String> getConfigurationPathList() {
+        return configurationPathList;
+    }
+
+    public void setConfigurationPathList(List<String> configurationPathList) {
+        this.configurationPathList = configurationPathList;
+    }
+
+    public List<String> getActualPathList() {
+        return actualPathList;
+    }
+
+    public void setActualPathList(List<String> actualPathList) {
+        this.actualPathList = actualPathList;
     }
 }

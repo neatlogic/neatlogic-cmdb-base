@@ -20,11 +20,15 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiNotFoundException extends ApiRuntimeException {
     public CiNotFoundException(Long ciId) {
-        super("配置项模型“{0}”不存在", ciId);
+        super("nfcec.cinotfoundexception.cinotfoundexception_a", ciId);
     }
 
 
     public CiNotFoundException(String ciName) {
-        super("配置项模型“{0}”不存在", ciName);
+        super("nfcec.cinotfoundexception.cinotfoundexception_a", ciName);
+    }
+
+    public CiNotFoundException(String ciName, String configurationPath, String actualPath) {
+        super("nfcec.cinotfoundexception.cinotfoundexception_b", ciName, configurationPath, actualPath);
     }
 }

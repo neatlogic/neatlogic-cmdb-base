@@ -16,6 +16,7 @@
 
 package neatlogic.framework.cmdb.exception.ci;
 
+import neatlogic.framework.cmdb.dto.ci.CiVo;
 import neatlogic.framework.exception.core.ApiRuntimeException;
 import neatlogic.framework.util.$;
 
@@ -27,6 +28,10 @@ public class CiIsAbstractedException extends ApiRuntimeException {
 
     public CiIsAbstractedException(Type type, String ciName) {
         super(getMessage(type, ciName));
+    }
+
+    public CiIsAbstractedException(CiVo ciVo, String configurationPath, String actualPath) {
+        super("nfcec.ciisabstractedexception.ciisabstractedexception_a", ciVo.getLabel(), ciVo.getName(), configurationPath, actualPath);
     }
 
     private static String getMessage(Type type, String ciName) {
