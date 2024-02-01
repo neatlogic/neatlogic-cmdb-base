@@ -50,4 +50,8 @@ public class ResourceNotFoundException extends ApiRuntimeException {
     public ResourceNotFoundException(String ip, Integer port, String nodeName, String nodeType) {
         super("nfcer.resourcenotfoundexception.resourcenotfoundexception.ip", ip, port, nodeName, nodeType);
     }
+
+    public ResourceNotFoundException(String ip, Integer port, String nodeName) {
+        super("nfcer.resourcenotfoundexception.resourcenotfoundexception.ipname", ip, port, nodeName);
+    }
 }

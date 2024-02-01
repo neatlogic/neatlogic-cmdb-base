@@ -114,6 +114,7 @@ public class ResourceSearchVo extends ConditionConfigVo {
     public ResourceSearchVo(ResourceVo resourceVo) {
         this.ip = resourceVo.getIp();
         this.port = resourceVo.getPort() != null ? resourceVo.getPort().toString() : null;
+        this.name = resourceVo.getName();
     }
 
     public ResourceSearchVo(List<Long> tagIdList) {
