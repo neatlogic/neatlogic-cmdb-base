@@ -18,6 +18,9 @@ package neatlogic.framework.cmdb.auth.label;
 
 import neatlogic.framework.auth.core.AuthBase;
 
+import java.util.Collections;
+import java.util.List;
+
 public class CIENTITY_BATCH_IMPORT extends AuthBase {
 
 	@Override
@@ -38,5 +41,10 @@ public class CIENTITY_BATCH_IMPORT extends AuthBase {
 	@Override
 	public Integer getSort() {
 		return 4;
+	}
+
+	@Override
+	public List<Class<? extends AuthBase>> getIncludeAuths() {
+		return Collections.singletonList(CMDB_BASE.class);
 	}
 }

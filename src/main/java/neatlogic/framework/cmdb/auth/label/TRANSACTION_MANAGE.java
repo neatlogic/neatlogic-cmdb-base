@@ -18,6 +18,9 @@ package neatlogic.framework.cmdb.auth.label;
 
 import neatlogic.framework.auth.core.AuthBase;
 
+import java.util.Collections;
+import java.util.List;
+
 public class TRANSACTION_MANAGE extends AuthBase {
     @Override
     public String getAuthDisplayName() {
@@ -37,5 +40,10 @@ public class TRANSACTION_MANAGE extends AuthBase {
     @Override
     public Integer getSort() {
         return 12;
+    }
+
+    @Override
+    public List<Class<? extends AuthBase>> getIncludeAuths() {
+        return Collections.singletonList(CMDB_BASE.class);
     }
 }
