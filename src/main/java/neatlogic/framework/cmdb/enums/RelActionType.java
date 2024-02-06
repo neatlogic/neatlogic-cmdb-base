@@ -19,9 +19,10 @@ package neatlogic.framework.cmdb.enums;
 import neatlogic.framework.util.$;
 
 public enum RelActionType {
-    INSERT("insert", "新增"),
-    DELETE("delete", "删除"),
-    REPLACE("replace", "替换");
+    INSERT("insert", "term.cmdb.append"),
+    DELETE("delete", "common.delete"),
+    REPLACE("replace", "term.cmdb.replace"),
+    UPDATE("update", "term.cmdb.update");
 
     private final String value;
     private final String text;

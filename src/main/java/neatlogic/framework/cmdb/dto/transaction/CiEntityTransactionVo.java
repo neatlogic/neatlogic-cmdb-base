@@ -96,9 +96,13 @@ public class CiEntityTransactionVo implements Serializable {
     private String description;
     @EntityField(name = "唯一属性列表", type = ApiParamType.LONG)
     private List<Long> uniqueAttrIdList;
-    /** 配置路径列表 **/
+    /**
+     * 配置路径列表
+     **/
     private List<String> configurationPathList;
-    /** 实际路径列表 **/
+    /**
+     * 实际路径列表
+     **/
     private List<String> actualPathList;
 
     public CiEntityTransactionVo() {
@@ -413,6 +417,16 @@ public class CiEntityTransactionVo implements Serializable {
      */
     public void addRelEntityData(RelVo relVo, String direction, Long ciId, Long ciEntityId) {
         addRelEntityData(relVo, direction, ciId, ciEntityId, null, null);
+    }
+
+    /**
+     * 添加一个空关系，主要用于删除关系
+     *
+     * @param relVo     关系
+     * @param direction 方向
+     */
+    public void addRelEntityData(RelVo relVo, String direction, String action) {
+        addRelEntityData(relVo, direction, null, null, null, action);
     }
 
     /**
