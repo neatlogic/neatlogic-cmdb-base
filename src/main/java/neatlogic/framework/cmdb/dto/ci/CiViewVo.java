@@ -56,6 +56,8 @@ public class CiViewVo implements Serializable {
     private Integer isExtended;//是否继承
     @JSONField(serialize = false)
     private String uniqueKey;//用于去掉继承的关系，具体参考RelUtil
+    @JSONField(serialize = false)
+    private Integer needAlias;//只返回有别名的数据
 
     public CiViewVo() {
 
@@ -72,6 +74,14 @@ public class CiViewVo implements Serializable {
 
     public void setAlias(String alias) {
         this.alias = alias;
+    }
+
+    public Integer getNeedAlias() {
+        return needAlias;
+    }
+
+    public void setNeedAlias(Integer needAlias) {
+        this.needAlias = needAlias;
     }
 
     public Integer getAllowEdit() {
