@@ -16,6 +16,7 @@
 
 package neatlogic.framework.cmdb.dto.transaction;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.cmdb.enums.TransactionActionType;
 import neatlogic.framework.cmdb.enums.TransactionStatus;
 import neatlogic.framework.common.constvalue.ApiParamType;
@@ -24,7 +25,6 @@ import neatlogic.framework.common.constvalue.SystemUser;
 import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
-import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
@@ -34,6 +34,8 @@ import java.util.Map;
 public class TransactionVo extends BasePageVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
+    @EntityField(name = "nmcac.exportcientityapi.input.param.desc.idlist", type = ApiParamType.JSONARRAY)
+    private List<Long> idList;
     @EntityField(name = "事务分组id", type = ApiParamType.LONG)
     private Long transactionGroupId;
     @JSONField(serialize = false)
@@ -116,6 +118,14 @@ public class TransactionVo extends BasePageVo {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public List<Long> getIdList() {
+        return idList;
+    }
+
+    public void setIdList(List<Long> idList) {
+        this.idList = idList;
     }
 
     public String getCiName() {
