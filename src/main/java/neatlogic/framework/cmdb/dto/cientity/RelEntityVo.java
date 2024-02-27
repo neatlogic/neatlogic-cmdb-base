@@ -16,13 +16,13 @@
 
 package neatlogic.framework.cmdb.dto.cientity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.google.common.base.Objects;
 import neatlogic.framework.cmdb.dto.transaction.RelEntityTransactionVo;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
-import com.alibaba.fastjson.annotation.JSONField;
-import com.google.common.base.Objects;
 
 import java.util.Date;
 
@@ -57,6 +57,14 @@ public class RelEntityVo extends BasePageVo {
     private Long toCiId;
     @EntityField(name = "来源模型id", type = ApiParamType.LONG)
     private Long fromCiId;
+    @EntityField(name = "来源模型图标", type = ApiParamType.STRING)
+    private String fromCiIcon;
+    @EntityField(name = "目标模型图标", type = ApiParamType.STRING)
+    private String toCiIcon;
+    @EntityField(name = "目标模型层级id", type = ApiParamType.LONG)
+    private Long toCiTypeId;
+    @EntityField(name = "来源模型层级id", type = ApiParamType.LONG)
+    private Long fromCiTypeId;
     @JSONField(serialize = false)
     private Integer fromIndex;//用于给前面数据排序，searchCiEntity时使用可以提升效率，不用返回全部数据
     @JSONField(serialize = false)
@@ -101,6 +109,22 @@ public class RelEntityVo extends BasePageVo {
         this.relativeRelHash = relativeRelHash;
     }
 
+    public Long getToCiTypeId() {
+        return toCiTypeId;
+    }
+
+    public void setToCiTypeId(Long toCiTypeId) {
+        this.toCiTypeId = toCiTypeId;
+    }
+
+    public Long getFromCiTypeId() {
+        return fromCiTypeId;
+    }
+
+    public void setFromCiTypeId(Long fromCiTypeId) {
+        this.fromCiTypeId = fromCiTypeId;
+    }
+
     public Integer getFromIndex() {
         return fromIndex;
     }
@@ -115,6 +139,22 @@ public class RelEntityVo extends BasePageVo {
 
     public void setToIndex(Integer toIndex) {
         this.toIndex = toIndex;
+    }
+
+    public String getFromCiIcon() {
+        return fromCiIcon;
+    }
+
+    public void setFromCiIcon(String fromCiIcon) {
+        this.fromCiIcon = fromCiIcon;
+    }
+
+    public String getToCiIcon() {
+        return toCiIcon;
+    }
+
+    public void setToCiIcon(String toCiIcon) {
+        this.toCiIcon = toCiIcon;
     }
 
     public Long getId() {
