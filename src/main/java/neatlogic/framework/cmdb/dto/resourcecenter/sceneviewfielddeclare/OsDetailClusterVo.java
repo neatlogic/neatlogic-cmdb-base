@@ -127,4 +127,14 @@ public class OsDetailClusterVo {
     @EntityField(name = "集群类型ID", type = ApiParamType.LONG)
     @ResourceField(name = "cluster_type_id")
     private Long clusterTypeId;
+
+    @EntityField(name = "环境ID", type = ApiParamType.LONG)
+    @ResourceField(name = "env_id")
+    private Long envId;
+    @EntityField(name = "环境名称", type = ApiParamType.STRING)
+    @ResourceField(name = "env_name")
+    private String envName;
+    @EntityField(name = "环境序号", type = ApiParamType.INTEGER)
+    @ResourceField(name = "env_seq_no")
+    private Integer envSeqNo;
 }
