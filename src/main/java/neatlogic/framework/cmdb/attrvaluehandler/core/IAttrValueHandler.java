@@ -16,10 +16,10 @@
 
 package neatlogic.framework.cmdb.attrvaluehandler.core;
 
+import com.alibaba.fastjson.JSONArray;
 import neatlogic.framework.cmdb.dto.ci.AttrVo;
 import neatlogic.framework.cmdb.enums.SearchExpression;
 import neatlogic.framework.cmdb.exception.attr.AttrValueIrregularException;
-import com.alibaba.fastjson.JSONArray;
 import org.apache.commons.collections4.CollectionUtils;
 
 public interface IAttrValueHandler {
@@ -156,7 +156,8 @@ public interface IAttrValueHandler {
      * @param valueList 数据库的数据
      * @return 用户导出的数据
      */
-    default void transferValueListToExport(AttrVo attrVo, JSONArray valueList) {
+    default JSONArray transferValueListToExport(AttrVo attrVo, JSONArray valueList) {
+        return valueList;
     }
 
     /**
