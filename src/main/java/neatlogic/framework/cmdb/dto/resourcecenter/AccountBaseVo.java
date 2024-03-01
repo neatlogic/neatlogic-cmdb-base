@@ -15,7 +15,6 @@
  */
 package neatlogic.framework.cmdb.dto.resourcecenter;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.common.dto.BaseEditorVo;
 import neatlogic.framework.common.util.RC4Util;
@@ -39,7 +38,6 @@ public class AccountBaseVo extends BaseEditorVo {
     private String name;
     @EntityField(name = "解密密码", type = ApiParamType.STRING)
     private String passwordPlain;
-    @JSONField(serialize = false)
     @EntityField(name = "加密密码", type = ApiParamType.STRING)
     private String passwordCipher;
     @EntityField(name = "协议ID", type = ApiParamType.LONG)
