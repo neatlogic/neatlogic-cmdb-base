@@ -24,6 +24,6 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class GraphPrivilegeDeleteException extends ApiRuntimeException {
     public GraphPrivilegeDeleteException() {
-        super("您没有权限删除公共拓扑视图");
+        super("nfceg.graphprivilegedeleteexception.graphprivilegedeleteexception");
     }
 }

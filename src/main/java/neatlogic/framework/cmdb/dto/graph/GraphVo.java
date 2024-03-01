@@ -18,10 +18,12 @@ package neatlogic.framework.cmdb.dto.graph;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
+import neatlogic.framework.asynchronization.threadlocal.UserContext;
 import neatlogic.framework.cmdb.enums.customview.CustomViewType;
 import neatlogic.framework.cmdb.enums.graph.GraphType;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.common.constvalue.GroupSearch;
+import neatlogic.framework.common.constvalue.UserType;
 import neatlogic.framework.common.dto.BaseEditorVo;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
@@ -30,6 +32,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class GraphVo extends BaseEditorVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
@@ -298,6 +301,46 @@ public class GraphVo extends BaseEditorVo {
             }
         }
         return graphAuthList;
+    }
+
+    public boolean hasPrivilege() {
+        if (Objects.equals(this.getType(), GraphType.PRIVATE.getValue())) {
+            return Objects.equals(this.getFcu(), UserContext.get().getUserUuid(true));
+        } else {
+            if (CollectionUtils.isEmpty(this.getGraphAuthList())) {
+                return true;
+            }
+            String pUserUuid = UserContext.get().getUserUuid(true);
+            List<String> pTeamUuidList = UserContext.get().getTeamUuidList();
+            List<String> pRoleUuidList = UserContext.get().getRoleUuidList();
+            for (GraphAuthVo authVo : this.getGraphAuthList()) {
+                switch (authVo.getType()) {
+                    case "common":
+                        if (authVo.getUuid().equals(UserType.ALL.getValue())) {
+                            return true;
+                        }
+                        break;
+                    case "user":
+                        if (pUserUuid.equals(authVo.getUuid())) {
+                            return true;
+                        }
+                        break;
+                    case "team":
+                        if (pTeamUuidList.contains(authVo.getUuid())) {
+                            return true;
+                        }
+                        break;
+                    case "role":
+                        if (pRoleUuidList.contains(authVo.getUuid())) {
+                            return true;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        return false;
     }
 
     public void setGraphAuthList(List<GraphAuthVo> graphAuthList) {

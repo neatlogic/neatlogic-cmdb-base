@@ -21,7 +21,7 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 public class GraphIsInvokedException extends ApiRuntimeException {
 
     public GraphIsInvokedException() {
-        super("当前视图已被其他视图引用，请先删除");
+        super("nfceg.graphisinvokedexception.graphisinvokedexception");
     }
 
 }
