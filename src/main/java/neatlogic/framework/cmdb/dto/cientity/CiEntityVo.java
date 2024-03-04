@@ -61,6 +61,9 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     private Long filterCiEntityId;//查询时条件，和idList区别是idList不能允许用户修改，用于框定查询范围，filterCiEntityId允许用户修改
     @JSONField(serialize = false)
     private Long filterCiId;//查询时条件，用于查询抽象模型数据时，可以指定子模型
+
+    @JSONField(serialize = false)
+    private List<Long> filterCiIdList;//查询时条件，用于查询抽象模型数据时，可以指定子模型
     @JSONField(serialize = false)
     private String dsl;//查询时条件，使用dsl模式进行查询
     @EntityField(name = "模型唯一标识", type = ApiParamType.STRING)
@@ -196,6 +199,14 @@ public class CiEntityVo extends BasePageVo implements Serializable {
     public CiEntityVo(Long ciId, Long id) {
         this.ciId = ciId;
         this.id = id;
+    }
+
+    public List<Long> getFilterCiIdList() {
+        return filterCiIdList;
+    }
+
+    public void setFilterCiIdList(List<Long> filterCiIdList) {
+        this.filterCiIdList = filterCiIdList;
     }
 
     public CiEntityVo(Long ciId, String name) {
