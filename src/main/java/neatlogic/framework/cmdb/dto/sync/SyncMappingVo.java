@@ -31,6 +31,8 @@ public class SyncMappingVo {
     private Long attrId;
     @EntityField(name = "nmcac.searchcientityapi.input.param.desc.relid", type = ApiParamType.LONG)
     private Long relId;
+    @EntityField(name = "term.cmdb.globalattrid", type = ApiParamType.LONG)
+    private Long globalAttrId;
     @EntityField(name = "term.rdm.reldirection", type = ApiParamType.ENUM, member = RelDirectionType.class)
     private String direction;
     @EntityField(name = "目标字段，支持jsonpath语法", type = ApiParamType.STRING)
@@ -55,6 +57,14 @@ public class SyncMappingVo {
 
     public String getDirection() {
         return direction;
+    }
+
+    public Long getGlobalAttrId() {
+        return globalAttrId;
+    }
+
+    public void setGlobalAttrId(Long globalAttrId) {
+        this.globalAttrId = globalAttrId;
     }
 
     public void setDirection(String direction) {

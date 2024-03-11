@@ -16,6 +16,7 @@
 
 package neatlogic.framework.cmdb.dto.transaction;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
@@ -176,7 +177,7 @@ public class CiEntityTransactionVo implements Serializable {
             if (CollectionUtils.isNotEmpty(valueObjList)) {
                 List<GlobalAttrItemVo> valueList = new ArrayList<>();
                 for (int i = 0; i < valueObjList.size(); i++) {
-                    GlobalAttrItemVo globalAttrItemVo = JSONObject.toJavaObject(valueObjList.getJSONObject(i), GlobalAttrItemVo.class);
+                    GlobalAttrItemVo globalAttrItemVo = JSON.toJavaObject(valueObjList.getJSONObject(i), GlobalAttrItemVo.class);
                     if (globalAttrItemVo.getId() != null) {
                         valueList.add(globalAttrItemVo);
                     }

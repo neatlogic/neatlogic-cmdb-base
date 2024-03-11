@@ -19,6 +19,8 @@ package neatlogic.framework.cmdb.dto.globalattr;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.util.List;
@@ -81,6 +83,28 @@ public class GlobalAttrVo implements Serializable {
 
     public List<GlobalAttrItemVo> getItemList() {
         return itemList;
+    }
+
+    public GlobalAttrItemVo getItem(String value) {
+        if (StringUtils.isNoneBlank(value) && CollectionUtils.isNotEmpty(this.getItemList())) {
+            for (GlobalAttrItemVo item : this.getItemList()) {
+                if (item.getValue().equalsIgnoreCase(value)) {
+                    return item;
+                }
+            }
+        }
+        return null;
+    }
+
+    public boolean containItem(String value) {
+        if (StringUtils.isNoneBlank(value) && CollectionUtils.isNotEmpty(this.getItemList())) {
+            for (GlobalAttrItemVo item : this.getItemList()) {
+                if (item.getValue().equalsIgnoreCase(value)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void setItemList(List<GlobalAttrItemVo> itemList) {
