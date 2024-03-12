@@ -16,6 +16,7 @@
 
 package neatlogic.framework.cmdb.dto.sync;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.cmdb.enums.sync.SyncStatus;
 import neatlogic.framework.common.config.Config;
 import neatlogic.framework.common.constvalue.ApiParamType;
@@ -23,7 +24,6 @@ import neatlogic.framework.common.constvalue.InputFrom;
 import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
-import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
@@ -36,6 +36,8 @@ public class SyncAuditVo extends BasePageVo {
     private Long id;
     @EntityField(name = "同步配置id", type = ApiParamType.LONG)
     private Long ciCollectionId;
+    @EntityField(name = "同步配置集合", type = ApiParamType.STRING)
+    private String ciCollectionName;
     @EntityField(name = "开始时间", type = ApiParamType.LONG)
     private Date startTime;
     @EntityField(name = "结束时间", type = ApiParamType.LONG)
@@ -82,6 +84,14 @@ public class SyncAuditVo extends BasePageVo {
 
     public void setDataCount(int dataCount) {
         this.dataCount = dataCount;
+    }
+
+    public String getCiCollectionName() {
+        return ciCollectionName;
+    }
+
+    public void setCiCollectionName(String ciCollectionName) {
+        this.ciCollectionName = ciCollectionName;
     }
 
     public void setId(Long id) {
