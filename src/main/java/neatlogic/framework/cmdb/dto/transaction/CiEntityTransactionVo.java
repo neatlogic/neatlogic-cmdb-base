@@ -64,6 +64,8 @@ public class CiEntityTransactionVo implements Serializable {
     private String actionText;
     @EntityField(name = "属性对象，以'attr_'+attrId为key", type = ApiParamType.JSONOBJECT)
     private JSONObject attrEntityData;
+    @JSONField(serialize = false)
+    private boolean isSkipUniqueCheck;//跳过唯一规则校验，用于自动采集
 
     @EntityField(name = "全局属性，以'global_'+attrId为key", type = ApiParamType.JSONOBJECT)
     private JSONObject globalAttrEntityData;
@@ -113,6 +115,14 @@ public class CiEntityTransactionVo implements Serializable {
         ciId = ciEntityVo.getCiId();
         ciEntityId = ciEntityVo.getId();
         description = ciEntityVo.getDescription();
+    }
+
+    public boolean getSkipUniqueCheck() {
+        return isSkipUniqueCheck;
+    }
+
+    public void setSkipUniqueCheck(boolean skipUniqueCheck) {
+        isSkipUniqueCheck = skipUniqueCheck;
     }
 
     public String getDescription() {

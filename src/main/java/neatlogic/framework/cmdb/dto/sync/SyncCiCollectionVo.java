@@ -84,7 +84,9 @@ public class SyncCiCollectionVo extends BasePageVo {
     @JSONField(serialize = false)
     private SyncAuditVo syncAudit;
     @JSONField(serialize = false)
-    private SyncPolicyVo syncPolicy;
+    private transient SyncPolicyVo syncPolicy;
+    @EntityField(name = "允许更新多条", type = ApiParamType.INTEGER)
+    private Integer isAllowMultiple;
 
     @EntityField(name = "策略列表", type = ApiParamType.JSONARRAY)
     private List<SyncPolicyVo> syncPolicyList;
@@ -108,6 +110,14 @@ public class SyncCiCollectionVo extends BasePageVo {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public Integer getIsAllowMultiple() {
+        return isAllowMultiple;
+    }
+
+    public void setIsAllowMultiple(Integer isAllowMultiple) {
+        this.isAllowMultiple = isAllowMultiple;
     }
 
     public String getError() {
