@@ -25,6 +25,7 @@ import neatlogic.framework.cmdb.dto.cientity.CiEntityVo;
 import neatlogic.framework.cmdb.dto.globalattr.GlobalAttrItemVo;
 import neatlogic.framework.cmdb.dto.globalattr.GlobalAttrVo;
 import neatlogic.framework.cmdb.enums.EditModeType;
+import neatlogic.framework.cmdb.enums.RelActionType;
 import neatlogic.framework.cmdb.enums.RelDirectionType;
 import neatlogic.framework.cmdb.enums.TransactionActionType;
 import neatlogic.framework.cmdb.exception.ci.CiUniqueAttrNotFoundException;
@@ -321,7 +322,10 @@ public class CiEntityTransactionVo implements Serializable {
                     JSONObject relObj = relList.getJSONObject(i);
                     //如果是新增加目标则不会有ciEntityId,所以必须要判断ciEntityId是否为空
                     if (relObj.containsKey("ciEntityId") && relObj.getLong("ciEntityId").equals(targetId)) {
-                        relList.remove(i);
+                        //如果是删除动作，则保留数据
+                        if (!Objects.equals(RelActionType.DELETE.getValue(), relObj.getString("action"))) {
+                            relList.remove(i);
+                        }
                     }
                 }
                 if (CollectionUtils.isEmpty(relList)) {

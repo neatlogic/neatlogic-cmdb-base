@@ -22,6 +22,9 @@ public class CiNotFoundException extends ApiRuntimeException {
         super("nfcec.cinotfoundexception.cinotfoundexception_a", ciId);
     }
 
+    public CiNotFoundException() {
+        super("nfcec.cinotfoundexception.cinotfoundexception_d");
+    }
 
     public CiNotFoundException(String ciName) {
         super("nfcec.cinotfoundexception.cinotfoundexception_a", ciName);

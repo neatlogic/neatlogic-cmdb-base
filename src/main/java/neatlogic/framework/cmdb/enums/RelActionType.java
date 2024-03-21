@@ -18,10 +18,10 @@ package neatlogic.framework.cmdb.enums;
 import neatlogic.framework.util.$;
 
 public enum RelActionType {
-    INSERT("insert", "term.cmdb.append"),
-    DELETE("delete", "common.delete"),
-    REPLACE("replace", "term.cmdb.replace"),
-    UPDATE("update", "term.cmdb.update");
+    INSERT("insert", "term.cmdb.append"),//新增关系
+    DELETE("delete", "common.delete"),//删除关系
+    REPLACE("replace", "term.cmdb.replace"),//用新关系替换成旧关系
+    UPDATE("update", "term.cmdb.update");//新关系为空时不做任何处理，新关系不为空时，替换成新的关系数据
 
     private final String value;
     private final String text;
