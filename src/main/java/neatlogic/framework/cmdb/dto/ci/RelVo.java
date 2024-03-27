@@ -23,18 +23,17 @@ import neatlogic.framework.cmdb.enums.InputType;
 import neatlogic.framework.cmdb.enums.RelRuleType;
 import neatlogic.framework.cmdb.enums.SearchExpression;
 import neatlogic.framework.common.constvalue.ApiParamType;
+import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.common.dto.ValueTextVo;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class RelVo implements Serializable {
-    private static final long serialVersionUID = 4262674515934863987L;
+public class RelVo extends BasePageVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "关系类型", type = ApiParamType.LONG)

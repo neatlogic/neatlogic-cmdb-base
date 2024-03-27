@@ -793,6 +793,8 @@ public class CiEntityVo extends BasePageVo implements Serializable {
                     relEntityVo.setRelLabel(relEntityDataObj.getString("label"));
                     if (direction.equals(RelDirectionType.FROM.getValue())) {
                         relEntityVo.setToCiId(relEntityObj.getLong("ciId"));
+                        relEntityVo.setToCiName(relEntityDataObj.getString("ciName"));
+                        relEntityVo.setToCiLabel(relEntityDataObj.getString("ciLabel"));
                         relEntityVo.setToCiEntityId(relEntityObj.getLong("ciEntityId"));
                         relEntityVo.setToCiEntityName(relEntityObj.getString("ciEntityName"));
                         relEntityVo.setDirection(RelDirectionType.FROM.getValue());
@@ -800,6 +802,8 @@ public class CiEntityVo extends BasePageVo implements Serializable {
                         relEntityVo.setFromCiId(this.getCiId());
                     } else {
                         relEntityVo.setFromCiId(relEntityObj.getLong("ciId"));
+                        relEntityVo.setFromCiName(relEntityDataObj.getString("ciName"));
+                        relEntityVo.setFromCiLabel(relEntityDataObj.getString("ciLabel"));
                         relEntityVo.setFromCiEntityId(relEntityObj.getLong("ciEntityId"));
                         relEntityVo.setFromCiEntityName(relEntityObj.getString("ciEntityName"));
                         relEntityVo.setDirection(RelDirectionType.TO.getValue());

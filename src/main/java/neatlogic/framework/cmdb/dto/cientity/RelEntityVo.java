@@ -60,6 +60,14 @@ public class RelEntityVo extends BasePageVo {
     private String fromCiIcon;
     @EntityField(name = "目标模型图标", type = ApiParamType.STRING)
     private String toCiIcon;
+    @EntityField(name = "来源模型唯一标识", type = ApiParamType.STRING)
+    private String fromCiName;
+    @EntityField(name = "来源模型名称", type = ApiParamType.STRING)
+    private String fromCiLabel;
+    @EntityField(name = "目标模型唯一标识", type = ApiParamType.STRING)
+    private String toCiName;
+    @EntityField(name = "目标模型名称", type = ApiParamType.STRING)
+    private String toCiLabel;
     @EntityField(name = "目标模型层级id", type = ApiParamType.LONG)
     private Long toCiTypeId;
     @EntityField(name = "来源模型层级id", type = ApiParamType.LONG)
@@ -90,6 +98,38 @@ public class RelEntityVo extends BasePageVo {
         direction = relEntityTransactionVo.getDirection();
         transactionId = relEntityTransactionVo.getTransactionId();
         validDay = relEntityTransactionVo.getValidDay();
+    }
+
+    public String getFromCiName() {
+        return fromCiName;
+    }
+
+    public void setFromCiName(String fromCiName) {
+        this.fromCiName = fromCiName;
+    }
+
+    public String getFromCiLabel() {
+        return fromCiLabel;
+    }
+
+    public void setFromCiLabel(String fromCiLabel) {
+        this.fromCiLabel = fromCiLabel;
+    }
+
+    public String getToCiName() {
+        return toCiName;
+    }
+
+    public void setToCiName(String toCiName) {
+        this.toCiName = toCiName;
+    }
+
+    public String getToCiLabel() {
+        return toCiLabel;
+    }
+
+    public void setToCiLabel(String toCiLabel) {
+        this.toCiLabel = toCiLabel;
     }
 
     public Long getSourceRelEntityId() {
