@@ -26,4 +26,6 @@ public interface IAttrCrossoverMapper extends ICrossoverService {
 
     AttrVo getAttrByCiIdAndName(@Param("ciId") Long ciId, @Param("attrName") String attrName);
 
+    AttrVo getAttrById(Long attrId);
+
 }
