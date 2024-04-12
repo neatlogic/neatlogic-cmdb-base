@@ -451,6 +451,14 @@ public class CiVo implements Serializable {
         return TenantContext.get().getDataDbName() + ".`cmdb_" + this.getId() + "`";
     }
 
+    public String getCiTableName(Boolean withSchema) {
+        if (!withSchema) {
+            return "cmdb_" + this.getId();
+        } else {
+            return getCiTableName();
+        }
+    }
+
 
     @JSONField(serialize = false)
     public String getCiViewName() {
