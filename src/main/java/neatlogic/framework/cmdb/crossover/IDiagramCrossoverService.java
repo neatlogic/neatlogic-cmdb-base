@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface IDiagramCrossoverService extends ICrossoverService {
     /**
      * 必要属性：id
-     * 选填属性：statusId,statusName,statusLabel三选一
+     * 选填属性：statusId,statusName,statusText三选一
      */
     @Transactional
     void updateDiagramVersionStatus(JSONArray diagramVersionList);
