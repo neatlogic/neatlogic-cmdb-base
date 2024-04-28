@@ -25,15 +25,25 @@ public class CustomViewConditionFilterVo implements Serializable {
     private String expression;// 用户sql查询的表达式
     private JSONArray valueList;
     private String type;//类型，attr或constattr
+    private String attrType;//属性的类型
 
     public CustomViewConditionFilterVo() {
 
     }
 
-    public CustomViewConditionFilterVo(String _attrUuid, String _expression, JSONArray _valueList) {
+    public CustomViewConditionFilterVo(String _attrUuid, String _attrType, String _expression, JSONArray _valueList) {
         this.attrUuid = _attrUuid;
+        this.attrType = _attrType;
         this.expression = _expression;
         this.valueList = _valueList;
+    }
+
+    public String getAttrType() {
+        return attrType;
+    }
+
+    public void setAttrType(String attrType) {
+        this.attrType = attrType;
     }
 
     public String getType() {
