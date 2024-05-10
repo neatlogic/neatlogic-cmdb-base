@@ -374,6 +374,10 @@ public class CiEntityTransactionVo implements Serializable {
      * @param valueList 值列表
      */
     public void addAttrEntityData(AttrVo attrVo, JSONArray valueList) {
+        addAttrEntityData(attrVo, valueList, null);
+    }
+
+    public void addAttrEntityData(AttrVo attrVo, JSONArray valueList, String saveMode) {
         if (attrEntityData == null) {
             attrEntityData = new JSONObject();
         }
@@ -384,8 +388,12 @@ public class CiEntityTransactionVo implements Serializable {
         attrObj.put("ciId", attrVo.getCiId());
         attrObj.put("targetCiId", attrVo.getTargetCiId());
         attrObj.put("valueList", valueList);
+        if (saveMode != null) {
+            attrObj.put("saveMode", saveMode);
+        }
         attrEntityData.put("attr_" + attrVo.getId(), attrObj);
     }
+
 
     public void addGlobalAttrEntityData(GlobalAttrVo globalAttrVo) {
         addGlobalAttrEntityData(globalAttrVo, new JSONArray());
