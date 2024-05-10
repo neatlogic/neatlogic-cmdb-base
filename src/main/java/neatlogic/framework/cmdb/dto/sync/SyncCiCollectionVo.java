@@ -18,6 +18,7 @@ package neatlogic.framework.cmdb.dto.sync;
 import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.cmdb.dto.transaction.TransactionGroupVo;
 import neatlogic.framework.cmdb.enums.sync.CollectMode;
+import neatlogic.framework.cmdb.enums.sync.ExpressionType;
 import neatlogic.framework.cmdb.enums.sync.MatchMode;
 import neatlogic.framework.cmdb.enums.sync.SyncStatus;
 import neatlogic.framework.common.constvalue.ApiParamType;
@@ -26,10 +27,13 @@ import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.mongodb.core.query.Criteria;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class SyncCiCollectionVo extends BasePageVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
@@ -90,6 +94,8 @@ public class SyncCiCollectionVo extends BasePageVo {
 
     @EntityField(name = "策略列表", type = ApiParamType.JSONARRAY)
     private List<SyncPolicyVo> syncPolicyList;
+    @EntityField(name = "筛选条件", type = ApiParamType.JSONARRAY)
+    private List<SyncConditionVo> conditionList;
     @EntityField(name = "执行次数", type = ApiParamType.INTEGER)
     private int execCount;
     @EntityField(name = "最后采集时间", type = ApiParamType.LONG)
@@ -110,6 +116,117 @@ public class SyncCiCollectionVo extends BasePageVo {
             id = SnowflakeUtil.uniqueLong();
         }
         return id;
+    }
+
+    public List<SyncConditionVo> getConditionList() {
+        return conditionList;
+    }
+
+    public void setConditionList(List<SyncConditionVo> conditionList) {
+        this.conditionList = conditionList;
+    }
+
+    @JSONField(serialize = false)
+    public Criteria getCriteria() {
+        Criteria finalCriteria = new Criteria();
+        if (CollectionUtils.isNotEmpty(this.getConditionList())) {
+            List<Criteria> criteriaList = new ArrayList<>();
+            for (SyncConditionVo conditionVo : this.getConditionList()) {
+                if (StringUtils.isNotBlank(conditionVo.getExpression()) && StringUtils.isNotBlank(conditionVo.getValue()) && StringUtils.isNotBlank(conditionVo.getField())) {
+
+                    if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.IS.getValue())) {
+                        if (!(conditionVo.getFormatValue() instanceof String[])) {
+                            Criteria c = Criteria.where(conditionVo.getField());
+                            c.is(conditionVo.getFormatValue());
+                            criteriaList.add(c);
+                        } else {
+                            String[] values = (String[]) conditionVo.getFormatValue();
+                            List<Criteria> orCriteriaList = new ArrayList<>();
+                            for (String v : values) {
+                                v = v.trim();
+                                Criteria c = Criteria.where(conditionVo.getField());
+                                c.is(v);
+                                orCriteriaList.add(c);
+                            }
+                            if (CollectionUtils.isNotEmpty(orCriteriaList)) {
+                                finalCriteria.orOperator(orCriteriaList);
+                            }
+                        }
+                    } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.NE.getValue())) {
+                        if (!(conditionVo.getFormatValue() instanceof String[])) {
+                            Criteria c = Criteria.where(conditionVo.getField());
+                            c.ne(conditionVo.getFormatValue());
+                            criteriaList.add(c);
+                        } else {
+                            String[] values = (String[]) conditionVo.getFormatValue();
+                            for (String v : values) {
+                                v = v.trim();
+                                Criteria c = Criteria.where(conditionVo.getField());
+                                c.ne(v);
+                                criteriaList.add(c);
+                            }
+                        }
+                    } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.IN.getValue())) {
+                        if (!(conditionVo.getFormatValue() instanceof String[])) {
+                            Criteria c = Criteria.where(conditionVo.getField());
+                            Pattern pattern = Pattern.compile("^.*" + conditionVo.getFormatValue() + ".*$", Pattern.CASE_INSENSITIVE);
+                            c.regex(pattern);
+                            criteriaList.add(c);
+                        } else {
+                            String[] values = (String[]) conditionVo.getFormatValue();
+                            List<Criteria> orCriteriaList = new ArrayList<>();
+                            for (String v : values) {
+                                v = v.trim();
+                                Criteria c = Criteria.where(conditionVo.getField());
+                                Pattern pattern = Pattern.compile("^.*" + v + ".*$", Pattern.CASE_INSENSITIVE);
+                                c.regex(pattern);
+                                orCriteriaList.add(c);
+                            }
+                            if (CollectionUtils.isNotEmpty(orCriteriaList)) {
+                                finalCriteria.orOperator(orCriteriaList);
+                            }
+                        }
+                    } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.NOTIN.getValue())) {
+                        if (!(conditionVo.getFormatValue() instanceof String[])) {
+                            Criteria c = Criteria.where(conditionVo.getField());
+                            Pattern pattern = Pattern.compile("^((?!" + conditionVo.getFormatValue() + ").)*$", Pattern.CASE_INSENSITIVE);
+                            c.regex(pattern);
+                            criteriaList.add(c);
+                        } else {
+                            String[] values = (String[]) conditionVo.getFormatValue();
+                            for (String v : values) {
+                                v = v.trim();
+                                Criteria c = Criteria.where(conditionVo.getField());
+                                Pattern pattern = Pattern.compile("^((?!" + v + ").)*$", Pattern.CASE_INSENSITIVE);
+                                c.regex(pattern);
+                                criteriaList.add(c);
+                            }
+                        }
+                    } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.GT.getValue())) {
+                        Criteria c = Criteria.where(conditionVo.getField());
+                        c.gt(conditionVo.getFormatValue());
+                        criteriaList.add(c);
+                    } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.LT.getValue())) {
+                        Criteria c = Criteria.where(conditionVo.getField());
+                        c.lt(conditionVo.getFormatValue());
+                        criteriaList.add(c);
+                    } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.GTE.getValue())) {
+                        Criteria c = Criteria.where(conditionVo.getField());
+                        c.gte(conditionVo.getFormatValue());
+                        criteriaList.add(c);
+                    } else if (conditionVo.getExpression().equalsIgnoreCase(ExpressionType.LTE.getValue())) {
+                        Criteria c = Criteria.where(conditionVo.getField());
+                        c.lte(conditionVo.getFormatValue());
+                        criteriaList.add(c);
+                    }
+
+                }
+            }
+            if (CollectionUtils.isNotEmpty(criteriaList)) {
+                finalCriteria.andOperator(criteriaList);
+            }
+        }
+        return finalCriteria;
     }
 
     public Integer getIsAllowMultiple() {

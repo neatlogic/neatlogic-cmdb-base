@@ -22,9 +22,10 @@ import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
-public class SyncConditionVo {
+public class SyncConditionVo implements Serializable {
     @EntityField(name = "策略id", type = ApiParamType.LONG)
     private Long syncPolicyId;
     @EntityField(name = "字段", type = ApiParamType.STRING)
