@@ -37,15 +37,14 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class CiEntityVo extends BasePageVo implements Serializable {
-    public final static long MAX_RELENTITY_COUNT = 3L;
-    public final static long MAX_ATTRENTITY_COUNT = 3L;
+public class CiEntityVo extends BasePageVo {
+    public static final long MAX_RELENTITY_COUNT = 3L;
+    public static final long MAX_ATTRENTITY_COUNT = 3L;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "uuid", type = ApiParamType.STRING)
