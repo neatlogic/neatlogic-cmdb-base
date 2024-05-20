@@ -142,6 +142,7 @@ public class RelVo extends BasePageVo {
         return id;
     }
 
+
     public String getAlias() {
         return alias;
     }
