@@ -34,5 +34,5 @@ public interface ITransactionCrossoverService extends ICrossoverService {
      * @param ciId
      * @return
      */
-    TransactionDetailVo getTransactionDetail(TransactionVo transactionVo, CiEntityTransactionVo ciEntityTransactionVo, Long ciId);
+    TransactionDetailVo getTransactionDetail(TransactionVo transactionVo, CiEntityTransactionVo ciEntityTransactionVo);
 }
