@@ -403,6 +403,14 @@ public class CiVo implements Serializable {
         return parentCiId;
     }
 
+    public Long getParentCiId(Boolean isTree) {
+        if (isTree) {
+            return parentCiId;
+        } else {
+            return getParentCiId();
+        }
+    }
+
     public void setParentCiId(Long parentCiId) {
         this.parentCiId = parentCiId;
     }
