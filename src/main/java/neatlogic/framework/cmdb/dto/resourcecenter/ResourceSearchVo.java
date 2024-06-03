@@ -102,6 +102,10 @@ public class ResourceSearchVo extends ConditionConfigVo {
     private Boolean isHasAuth = false;
     @EntityField(name = "校验团体类型", type = ApiParamType.STRING)
     private String cmdbGroupType = "readonly";
+    @EntityField(name = "IP字段映射的属性ID", type = ApiParamType.LONG)
+    private Long ipFieldAttrId;
+    @EntityField(name = "name字段映射的属性ID", type = ApiParamType.LONG)
+    private Long nameFieldAttrId;
 
     public ResourceSearchVo() {
     }
@@ -416,5 +420,21 @@ public class ResourceSearchVo extends ConditionConfigVo {
 
     public void setCmdbGroupType(String cmdbGroupType) {
         this.cmdbGroupType = cmdbGroupType;
+    }
+
+    public Long getIpFieldAttrId() {
+        return ipFieldAttrId;
+    }
+
+    public void setIpFieldAttrId(Long ipFieldAttrId) {
+        this.ipFieldAttrId = ipFieldAttrId;
+    }
+
+    public Long getNameFieldAttrId() {
+        return nameFieldAttrId;
+    }
+
+    public void setNameFieldAttrId(Long nameFieldAttrId) {
+        this.nameFieldAttrId = nameFieldAttrId;
     }
 }
