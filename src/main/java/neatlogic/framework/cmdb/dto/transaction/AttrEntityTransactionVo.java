@@ -15,6 +15,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.dto.transaction;
 
+import com.alibaba.fastjson.JSONArray;
 import neatlogic.framework.cmdb.attrvaluehandler.core.AttrValueHandlerFactory;
 import neatlogic.framework.cmdb.attrvaluehandler.core.IAttrValueHandler;
 import neatlogic.framework.cmdb.dto.cientity.AttrEntityVo;
@@ -23,7 +24,6 @@ import neatlogic.framework.cmdb.enums.TransactionActionType;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.HtmlUtil;
-import com.alibaba.fastjson.JSONArray;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -171,10 +171,10 @@ public class AttrEntityTransactionVo implements Serializable {
                                         break;
                                     }
                                     default:
-                                        if (v.equalsIgnoreCase(v2)) {
+                                        if (v.equals(v2)) {
                                             isExists = true;
                                             break LEVEL2;
-                                        } else if (HtmlUtil.encodeHtml(v).equalsIgnoreCase(v2)) {
+                                        } else if (HtmlUtil.encodeHtml(v).equals(v2)) {
                                             isExists = true;
                                             break LEVEL2;
                                         }
