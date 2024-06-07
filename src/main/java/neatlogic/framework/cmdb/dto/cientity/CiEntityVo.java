@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CiEntityVo extends BasePageVo {
     public static final long MAX_RELENTITY_COUNT = 3L;
@@ -515,6 +516,15 @@ public class CiEntityVo extends BasePageVo {
 
     public List<AttrFilterVo> getAttrFilterList() {
         return attrFilterList;
+    }
+
+    //用于打印日志
+    public String getAttrFilterString() {
+        if (CollectionUtils.isNotEmpty(attrFilterList)) {
+            return attrFilterList.stream().map(AttrFilterVo::toString)
+                    .collect(Collectors.joining("; "));
+        }
+        return "";
     }
 
     /**

@@ -15,9 +15,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.dto.cientity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.asynchronization.threadlocal.TenantContext;
 import neatlogic.framework.cmdb.enums.SearchExpression;
-import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.DigestUtils;
@@ -38,6 +38,19 @@ public class AttrFilterVo implements Serializable {
     private List<String> valueHashList;
     @JSONField(serialize = false)
     private Boolean needTargetCi;
+
+    @Override
+    public String toString() {
+        return "AttrFilterVo{" +
+                "attrId=" + attrId +
+                ", ciId=" + ciId +
+                ", name='" + name + '\'' +
+                ", label='" + label + '\'' +
+                ", type='" + type + '\'' +
+                ", expression='" + expression + '\'' +
+                ", valueList=" + valueList +
+                '}';
+    }
 
     public List<String> getValueHashList() {
         if (CollectionUtils.isNotEmpty(getValueList())) {
