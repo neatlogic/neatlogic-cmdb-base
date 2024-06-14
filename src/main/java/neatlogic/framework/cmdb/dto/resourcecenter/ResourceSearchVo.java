@@ -23,6 +23,7 @@ import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.common.constvalue.Expression;
 import neatlogic.framework.dto.AuthenticationInfoVo;
 import neatlogic.framework.dto.condition.ConditionConfigVo;
+import neatlogic.framework.dto.condition.ConditionGroupVo;
 import neatlogic.framework.dto.condition.ConditionVo;
 import neatlogic.framework.exception.condition.ConditionNotFoundException;
 import neatlogic.framework.restful.annotation.EntityField;
@@ -373,12 +374,12 @@ public class ResourceSearchVo extends ConditionConfigVo {
     }
 
     @Override
-    public void buildMyConditionWhereSql(StringBuilder sqlSb, String handler, List<ConditionVo> conditionVoList, int conditionIndex, String searchMode) {
+    public void buildMyConditionWhereSql(StringBuilder sqlSb, String handler, ConditionGroupVo groupVo, int conditionIndex, String searchMode) {
         IResourcecenterCondition resourcecenterCondition = ResourcecenterConditionFactory.getHandler(handler);
         if (resourcecenterCondition == null) {
             throw new ConditionNotFoundException(handler);
         }
-        resourcecenterCondition.getSqlConditionWhere(conditionVoList, conditionIndex, sqlSb, searchMode);
+        resourcecenterCondition.getSqlConditionWhere(groupVo.getConditionList(), conditionIndex, sqlSb, searchMode);
     }
 
     @Override
