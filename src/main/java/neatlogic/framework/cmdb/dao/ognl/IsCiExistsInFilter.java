@@ -17,6 +17,7 @@ package neatlogic.framework.cmdb.dao.ognl;
 
 import neatlogic.framework.cmdb.dto.ci.CiVo;
 import neatlogic.framework.cmdb.dto.cientity.AttrFilterVo;
+import neatlogic.framework.cmdb.dto.cientity.SortVo;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
@@ -25,10 +26,16 @@ import java.util.List;
  * 用于判断ci是否存在attrFilterList中，如果存在才进行join，提升查询配置项SQL性能
  */
 public class IsCiExistsInFilter {
-    public static boolean isExists(CiVo ciVo, List<AttrFilterVo> attrFilterList) {
-        if (ciVo != null && CollectionUtils.isNotEmpty(attrFilterList)) {
-            return attrFilterList.stream().anyMatch(d -> d != null && d.getCiId().equals(ciVo.getId()));
+    public static boolean isExists(CiVo ciVo, List<AttrFilterVo> attrFilterList, List<SortVo> sortList) {
+        boolean isExists = false;
+        if (ciVo != null) {
+            if (CollectionUtils.isNotEmpty(attrFilterList)) {
+                isExists = attrFilterList.stream().anyMatch(d -> d != null && d.getCiId().equals(ciVo.getId()));
+            }
+            if (!isExists && CollectionUtils.isNotEmpty(sortList)) {
+                isExists = sortList.stream().anyMatch(d -> d != null && d.getCiId().equals(ciVo.getId()));
+            }
         }
-        return false;
+        return isExists;
     }
 }
