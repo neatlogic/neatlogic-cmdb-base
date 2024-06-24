@@ -15,11 +15,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.dto.customview;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.cmdb.dto.ci.CiVo;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 
@@ -98,6 +98,16 @@ public class CustomViewCiVo implements Serializable {
                 }});
             }
         }
+    }
+
+    public CustomViewAttrVo getAttrByUuid(String uuid) {
+        if (CollectionUtils.isNotEmpty(attrList)) {
+            Optional<CustomViewAttrVo> op = attrList.stream().filter(attr -> attr.getUuid().equalsIgnoreCase(uuid)).findFirst();
+            if (op.isPresent()) {
+                return op.get();
+            }
+        }
+        return null;
     }
 
     public CustomViewRelVo getRelByUuid(String uuid) {

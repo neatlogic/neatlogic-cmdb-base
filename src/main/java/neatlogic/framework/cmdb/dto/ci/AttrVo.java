@@ -52,6 +52,8 @@ public class AttrVo extends BasePageVo {
     private Long targetCiId;
     @EntityField(name = "目标模型唯一标识", type = ApiParamType.STRING)
     private String targetCiName;
+    @EntityField(name = "目标模型名称", type = ApiParamType.STRING)
+    private String targetCiLabel;
     @EntityField(name = "目标模型是否虚拟模型", type = ApiParamType.INTEGER)
     private Integer targetIsVirtual;
     @EntityField(name = "属性配置", type = ApiParamType.JSONOBJECT)
@@ -177,6 +179,14 @@ public class AttrVo extends BasePageVo {
             return needIndex;
         }
 
+    }
+
+    public String getTargetCiLabel() {
+        return targetCiLabel;
+    }
+
+    public void setTargetCiLabel(String targetCiLabel) {
+        this.targetCiLabel = targetCiLabel;
     }
 
     public Long getMaxAttrEntityCount() {
