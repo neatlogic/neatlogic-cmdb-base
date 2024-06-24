@@ -18,18 +18,24 @@
 package neatlogic.framework.cmdb.dto.transaction;
 
 import com.alibaba.fastjson.JSONArray;
+import neatlogic.framework.common.constvalue.ApiParamType;
+import neatlogic.framework.restful.annotation.EntityField;
 
 public class TransactionDetailVo {
 
     private TransactionVo transaction;
 
     private JSONArray detail;
+    @EntityField(name = "允许恢复", type = ApiParamType.BOOLEAN)
+    private boolean allowRecover;
 
-    public TransactionDetailVo() {}
+    public TransactionDetailVo() {
+    }
 
-    public TransactionDetailVo(TransactionVo transaction, JSONArray detail) {
+    public TransactionDetailVo(TransactionVo transaction, JSONArray detail, boolean allowRecover) {
         this.transaction = transaction;
         this.detail = detail;
+        this.allowRecover = allowRecover;
     }
 
     public TransactionVo getTransaction() {
@@ -46,5 +52,13 @@ public class TransactionDetailVo {
 
     public void setDetail(JSONArray detail) {
         this.detail = detail;
+    }
+
+    public boolean getAllowRecover() {
+        return allowRecover;
+    }
+
+    public void setAllowRecover(boolean allowRecover) {
+        this.allowRecover = allowRecover;
     }
 }

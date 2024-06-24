@@ -15,6 +15,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.dto.ci;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
@@ -463,7 +464,7 @@ public class AttrVo extends BasePageVo {
     public JSONObject getConfig() {
         if (config == null && StringUtils.isNotBlank(configStr)) {
             try {
-                config = JSONObject.parseObject(configStr);
+                config = JSON.parseObject(configStr);
             } catch (Exception ignored) {
 
             }
@@ -478,16 +479,12 @@ public class AttrVo extends BasePageVo {
      * @return json对象
      */
     public JSONObject getConfig(boolean isNew) {
-        if (StringUtils.isNotBlank(configStr)) {
-            try {
-                if (isNew) {
-                    return JSONObject.parseObject(configStr);
-                } else {
-                    return this.getConfig();
-                }
-            } catch (Exception ignored) {
-
+        if (isNew) {
+            if (this.getConfig() != null) {
+                return JSON.parseObject(this.getConfig().toJSONString());
             }
+        } else {
+            return this.getConfig();
         }
         return null;
     }
