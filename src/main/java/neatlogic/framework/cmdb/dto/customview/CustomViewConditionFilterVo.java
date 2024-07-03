@@ -16,12 +16,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 package neatlogic.framework.cmdb.dto.customview;
 
 import com.alibaba.fastjson.JSONArray;
+import neatlogic.framework.common.constvalue.ApiParamType;
+import neatlogic.framework.restful.annotation.EntityField;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.io.Serializable;
 
 public class CustomViewConditionFilterVo implements Serializable {
+    @EntityField(name = "属性唯一标识", type = ApiParamType.STRING)
+    private String attrName;
+    @EntityField(name = "属性uuid", type = ApiParamType.STRING)
     private String attrUuid;
+    @EntityField(name = "表达式", type = ApiParamType.STRING)
     private String expression;// 用户sql查询的表达式
     private JSONArray valueList;
     private String type;//类型，attr或constattr
@@ -36,6 +42,14 @@ public class CustomViewConditionFilterVo implements Serializable {
         this.attrType = _attrType;
         this.expression = _expression;
         this.valueList = _valueList;
+    }
+
+    public String getAttrName() {
+        return attrName;
+    }
+
+    public void setAttrName(String attrName) {
+        this.attrName = attrName;
     }
 
     public String getAttrType() {
