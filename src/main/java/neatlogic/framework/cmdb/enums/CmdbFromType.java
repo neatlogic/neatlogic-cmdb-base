@@ -25,18 +25,16 @@ import neatlogic.framework.util.$;
 public enum CmdbFromType implements IFromType {
     RESOURCE_ACCOUNT("resourceaccount", "资产账号");
 
-    private String value;
-    private String text;
+    private final String value;
+    private final String text;
 
-    private CmdbFromType(String value, String text) {
+    CmdbFromType(String value, String text) {
         this.value = value;
         this.text = text;
     }
 
     /**
      * 被调用者类型值
-     *
-     * @return
      */
     @Override
     public String getValue() {
@@ -45,8 +43,6 @@ public enum CmdbFromType implements IFromType {
 
     /**
      * 被调用者类型名
-     *
-     * @return
      */
     @Override
     public String getText() {
