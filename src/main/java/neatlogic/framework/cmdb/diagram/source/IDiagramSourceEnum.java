@@ -20,4 +20,10 @@ package neatlogic.framework.cmdb.diagram.source;
 import neatlogic.framework.common.constvalue.IEnum;
 
 public interface IDiagramSourceEnum extends IEnum {
+    @Override
+    String getValue();
+
+    String getText();
+
+    String getDescription();
 }
