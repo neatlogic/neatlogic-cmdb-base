@@ -15,6 +15,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.dto.cientity;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.asynchronization.threadlocal.TenantContext;
 import neatlogic.framework.cmdb.attrvaluehandler.core.AttrValueHandlerFactory;
 import neatlogic.framework.cmdb.attrvaluehandler.core.IAttrValueHandler;
@@ -24,9 +27,6 @@ import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.HtmlUtil;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.DigestUtils;
@@ -334,10 +334,9 @@ public class AttrEntityVo extends BasePageVo {
      */
     public String getValue() {
         if (CollectionUtils.isNotEmpty(valueList)) {
-            if (valueList.size() == 1) {
-                return valueList.getString(0);
-            } else {
-                return valueList.toString();
+            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.getAttrType());
+            if (handler != null) {
+                return handler.getValue(valueList);
             }
         }
         return null;
@@ -349,7 +348,14 @@ public class AttrEntityVo extends BasePageVo {
             if (valueList.size() == 1) {
                 return valueList.getString(0);
             } else {
-                return valueList.toString();
+                String returnValue = "";
+                for (int i = 0; i < valueList.size(); i++) {
+                    if (StringUtils.isNotBlank(returnValue)) {
+                        returnValue = returnValue + ",";
+                    }
+                    returnValue = returnValue + valueList.getString(i);
+                }
+                return returnValue;
             }
         }
         return null;

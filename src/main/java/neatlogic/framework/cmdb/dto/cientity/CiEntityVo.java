@@ -644,6 +644,24 @@ public class CiEntityVo extends BasePageVo {
         }
     }
 
+    /**
+     * 添加一个属性数据值
+     *
+     * @param attrId    属性id
+     * @param valueList 属性值
+     */
+    public void addAttrEntityDataValue(Long attrId, Object valueList) {
+        if (valueList != null) {
+            if (valueList instanceof JSONArray) {
+                addAttrEntityDataValue(attrId, (JSONArray) valueList);
+            } else {
+                addAttrEntityDataValue(attrId, new JSONArray() {{
+                    this.add(valueList);
+                }});
+            }
+        }
+    }
+
 
     /**
      * 检查是否有数据项

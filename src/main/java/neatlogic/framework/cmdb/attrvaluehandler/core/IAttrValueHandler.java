@@ -117,6 +117,23 @@ public interface IAttrValueHandler {
     }
 
     /**
+     * 返回用于写入DB的值（批量转换）
+     *
+     * @param valueList 值列表
+     * @return 显示值列表
+     */
+    default String getValue(JSONArray valueList) {
+        if (CollectionUtils.isNotEmpty(valueList)) {
+            if (valueList.size() == 1) {
+                return valueList.getString(0);
+            } else {
+                return valueList.toString();
+            }
+        }
+        return null;
+    }
+
+    /**
      * 获取搜索表达式
      *
      * @return 表达式数组
@@ -146,6 +163,16 @@ public interface IAttrValueHandler {
      * @return 用于显示数据
      */
     default void transferValueListToDisplay(AttrVo attrVo, JSONArray valueList) {
+    }
+
+    /**
+     * 将值转换成前端控件需要的格式
+     *
+     * @param attrVo
+     * @param value
+     */
+    default Object transferValueListToInput(AttrVo attrVo, Object value) {
+        return value;
     }
 
     /**

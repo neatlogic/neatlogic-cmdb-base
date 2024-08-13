@@ -15,8 +15,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.dto.cientity;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.asynchronization.threadlocal.TenantContext;
+import neatlogic.framework.cmdb.attrvaluehandler.core.AttrValueHandlerFactory;
+import neatlogic.framework.cmdb.attrvaluehandler.core.IAttrValueHandler;
 import neatlogic.framework.cmdb.enums.SearchExpression;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -87,7 +90,12 @@ public class AttrFilterVo implements Serializable {
      */
     public String getValue() {
         if (CollectionUtils.isNotEmpty(valueList)) {
-            return valueList.get(0);
+            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.getType());
+            if (handler != null) {
+                JSONArray vList = new JSONArray();
+                vList.addAll(valueList);
+                return handler.getValue(vList);
+            }
         }
         return null;
     }
