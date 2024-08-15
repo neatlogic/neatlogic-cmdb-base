@@ -98,6 +98,10 @@ public class AttrVo extends BasePageVo {
     private Boolean needConfig;
     @EntityField(name = "是否需要一整行显示编辑组件", type = ApiParamType.BOOLEAN)
     private Boolean needWholeRow;
+    @EntityField(name = "是否允许成为名称属性", type = ApiParamType.BOOLEAN)
+    private Boolean allowBeName;
+    @EntityField(name = "是否允许成为唯一规则", type = ApiParamType.BOOLEAN)
+    private Boolean allowBeUnique;
 
     @EntityField(name = "录入方式，at:自动发现，mt:手动输入", type = ApiParamType.STRING)
     private String inputType = InputType.MT.getValue();
@@ -590,6 +594,23 @@ public class AttrVo extends BasePageVo {
             needWholeRow = handler.isNeedWholeRow();
         }
         return needWholeRow;
+    }
+
+    public Boolean getAllowBeName() {
+        if (StringUtils.isNotBlank(this.type)) {
+            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.type);
+            allowBeName = handler.isNameAttr();
+        }
+        return allowBeName;
+    }
+
+
+    public Boolean getAllowBeUnique() {
+        if (StringUtils.isNotBlank(this.type)) {
+            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.type);
+            allowBeUnique = handler.isUniqueAttr();
+        }
+        return allowBeUnique;
     }
 
 }

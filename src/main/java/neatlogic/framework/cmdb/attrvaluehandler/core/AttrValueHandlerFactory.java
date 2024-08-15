@@ -19,6 +19,7 @@ import com.sun.istack.NotNull;
 import neatlogic.framework.applicationlistener.core.ModuleInitializedListenerBase;
 import neatlogic.framework.bootstrap.NeatLogicWebApplicationContext;
 import neatlogic.framework.cmdb.dto.ci.AttrTypeVo;
+import neatlogic.framework.cmdb.exception.attrtype.AttrTypeNotFoundException;
 import neatlogic.framework.common.RootComponent;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -48,7 +49,11 @@ public class AttrValueHandlerFactory extends ModuleInitializedListenerBase {
      */
     public static IAttrValueHandler getHandler(@NotNull String type) {
         type = type.toLowerCase();
-        return componentMap.getOrDefault(type, null);
+        if (componentMap.containsKey(type)) {
+            return componentMap.get(type);
+        } else {
+            throw new AttrTypeNotFoundException(type);
+        }
     }
 
     @Override

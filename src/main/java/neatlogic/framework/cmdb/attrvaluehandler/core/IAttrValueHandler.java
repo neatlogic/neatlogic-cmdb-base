@@ -102,6 +102,20 @@ public interface IAttrValueHandler {
     boolean isNeedConfig();
 
     /**
+     * 是否允许成为名称属性
+     *
+     * @return boolean
+     */
+    boolean isNameAttr();
+
+    /**
+     * 是否允许成为唯一规则
+     *
+     * @return boolean
+     */
+    boolean isUniqueAttr();
+
+    /**
      * 返回用于显示的值（批量转换）
      *
      * @param attrVo    Attr设置
