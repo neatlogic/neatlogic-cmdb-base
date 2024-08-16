@@ -23,5 +23,7 @@ import neatlogic.framework.cmdb.dto.diagram.DiagramSourceDetailVo;
 public interface IDiagramSourceHandler {
     String getType();
 
+    String getTypeName();
+
     DiagramSourceDetailVo getDetail(JSONObject config);
 }
