@@ -28,4 +28,8 @@ public class AttrValueIrregularException extends ApiRuntimeException {
         super("nfcea.attrvalueirregularexception.attrvalueirregularexception_b", attrVo.getCiLabel(), attrVo.getCiName(), attrVo.getLabel(), attrVo.getName(), value, attrVo.getTypeText(), configurationPath, actualPath);
     }
 
+    public AttrValueIrregularException(AttrVo attrVo, IllegalArgumentException error) {
+        super("模型“{0}({1})”属性“{2}({3})”的值格式异常：{4}", attrVo.getCiLabel(), attrVo.getCiName(), attrVo.getLabel(), attrVo.getName(), error.getMessage());
+    }
+
 }
