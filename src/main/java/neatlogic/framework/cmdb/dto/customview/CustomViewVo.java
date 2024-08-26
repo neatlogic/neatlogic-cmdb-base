@@ -284,6 +284,17 @@ public class CustomViewVo extends BasePageVo implements Serializable {
         this.typeName = typeName;
     }
 
+
+    /**
+     * 显示所有全局属性
+     *
+     * @return 全局属性列表
+     */
+    @JSONField(serialize = false)//不能返回
+    public List<CustomViewGlobalAttrVo> getGlobalAttrList() {
+        return getGlobalAttrList(false);
+    }
+
     /**
      * 显示所有属性
      *
@@ -292,6 +303,29 @@ public class CustomViewVo extends BasePageVo implements Serializable {
     @JSONField(serialize = false)//不能返回，除非clone一次attrVo
     public List<CustomViewAttrVo> getAttrList() {
         return getAttrList(false);
+    }
+
+    /**
+     * 显示非隐藏全局属性
+     *
+     * @param hiddenHidden true:只返回非隐藏属性,false:返回所有属性
+     * @return 全局属性列表
+     */
+    @JSONField(serialize = false)
+    public List<CustomViewGlobalAttrVo> getGlobalAttrList(boolean hiddenHidden) {
+        if (CollectionUtils.isNotEmpty(ciList)) {
+            List<CustomViewGlobalAttrVo> attrList = new ArrayList<>();
+            for (CustomViewCiVo customViewCiVo : ciList) {
+                if (hiddenHidden) {
+                    attrList.addAll(customViewCiVo.getGlobalAttrList().stream().filter(a -> a.getIsHidden().equals(0)).collect(Collectors.toList()));
+                } else {
+                    attrList.addAll(customViewCiVo.getGlobalAttrList());
+                }
+            }
+            attrList.sort(Comparator.comparing(CustomViewGlobalAttrVo::getSort));
+            return attrList;
+        }
+        return null;
     }
 
     /**

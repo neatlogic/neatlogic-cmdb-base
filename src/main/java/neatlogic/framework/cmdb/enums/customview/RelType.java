@@ -18,6 +18,7 @@ package neatlogic.framework.cmdb.enums.customview;
 import neatlogic.framework.util.$;
 
 public enum RelType {
+    GLOBALATTR("globalattr", "全局属性"),
     ATTR("attr", "属性"),
     CI("ci", "模型"),
     REL("rel", "关系"),

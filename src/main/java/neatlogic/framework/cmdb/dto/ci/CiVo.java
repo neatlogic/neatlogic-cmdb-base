@@ -323,6 +323,16 @@ public class CiVo implements Serializable {
         return null;
     }
 
+    public GlobalAttrVo getGlobalAttrById(Long attrId) {
+        if (CollectionUtils.isNotEmpty(globalAttrList)) {
+            Optional<GlobalAttrVo> op = globalAttrList.stream().filter(attr -> attr.getId().equals(attrId)).findFirst();
+            if (op.isPresent()) {
+                return op.get();
+            }
+        }
+        return null;
+    }
+
     public AttrVo getAttrById(Long attrId) {
         if (CollectionUtils.isNotEmpty(attrList)) {
             Optional<AttrVo> op = attrList.stream().filter(attr -> attr.getId().equals(attrId)).findFirst();

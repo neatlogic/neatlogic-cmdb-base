@@ -21,6 +21,8 @@ import neatlogic.framework.restful.annotation.EntityField;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomViewConditionFilterVo implements Serializable {
     @EntityField(name = "属性唯一标识", type = ApiParamType.STRING)
@@ -30,16 +32,20 @@ public class CustomViewConditionFilterVo implements Serializable {
     @EntityField(name = "表达式", type = ApiParamType.STRING)
     private String expression;// 用户sql查询的表达式
     private JSONArray valueList;
-    private String type;//类型，attr或constattr
+    private JSONArray actualValueList;
+    private List<String> valueStringList;
+    private List<String> actualValueStringList;
+    private String type;//类型，attr或constattr或globalattr
     private String attrType;//属性的类型
 
     public CustomViewConditionFilterVo() {
 
     }
 
-    public CustomViewConditionFilterVo(String _attrUuid, String _attrType, String _expression, JSONArray _valueList) {
+    public CustomViewConditionFilterVo(String _attrUuid, String _type, String _attrType, String _expression, JSONArray _valueList) {
         this.attrUuid = _attrUuid;
         this.attrType = _attrType;
+        this.type = _type;
         this.expression = _expression;
         this.valueList = _valueList;
     }
@@ -89,8 +95,33 @@ public class CustomViewConditionFilterVo implements Serializable {
         return valueList;
     }
 
+
     public void setValueList(JSONArray valueList) {
         this.valueList = valueList;
+    }
+
+    public List<String> getValueStringList() {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < this.valueList.size(); i++) {
+            list.add(this.valueList.getString(i));
+        }
+        return list;
+    }
+
+    public List<String> getActualValueStringList() {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < this.actualValueList.size(); i++) {
+            list.add(this.actualValueList.getString(i));
+        }
+        return list;
+    }
+
+    public JSONArray getActualValueList() {
+        return actualValueList;
+    }
+
+    public void setActualValueList(JSONArray actualValueList) {
+        this.actualValueList = actualValueList;
     }
 
     /**

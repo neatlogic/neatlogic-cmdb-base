@@ -48,6 +48,8 @@ public class CustomViewCiVo implements Serializable {
     private List<CustomViewRelVo> relList;
     @EntityField(name = "内部属性列表", type = ApiParamType.JSONARRAY)
     private List<CustomViewConstAttrVo> constAttrList;
+    @EntityField(name = "全局属性列表", type = ApiParamType.JSONARRAY)
+    private List<CustomViewGlobalAttrVo> globalAttrList;
     @JSONField(serialize = false)
     private CiVo ciVo;
     @EntityField(name = "配置项列表", type = ApiParamType.JSONARRAY)
@@ -173,6 +175,18 @@ public class CustomViewCiVo implements Serializable {
 
     public List<CustomViewConstAttrVo> getConstAttrList() {
         return constAttrList;
+    }
+
+    public List<CustomViewGlobalAttrVo> getGlobalAttrList() {
+        return globalAttrList;
+    }
+
+    public void setGlobalAttrList(List<CustomViewGlobalAttrVo> globalAttrList) {
+        this.globalAttrList = globalAttrList;
+    }
+
+    public void setCiEntityList(List<JSONObject> ciEntityList) {
+        this.ciEntityList = ciEntityList;
     }
 
     public void setConstAttrList(List<CustomViewConstAttrVo> constAttrList) {
