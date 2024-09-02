@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GlobalAttrVo implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
