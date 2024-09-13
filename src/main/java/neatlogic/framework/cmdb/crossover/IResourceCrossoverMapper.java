@@ -99,6 +99,7 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
 
     List<Long> getAppInstanceResourceIdListByAppSystemIdAndModuleIdAndEnvId(ResourceVo resourceVo);
 
+    Integer getAppInstanceResourceIdCountByAppSystemIdAndModuleIdAndEnvId(ResourceVo resourceVo);
     /**
      * 根据类型和IP列表查询资源
      *
