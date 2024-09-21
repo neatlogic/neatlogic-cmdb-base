@@ -333,7 +333,7 @@ public class AttrVo extends BasePageVo {
 
     public void setValidConfig(String validConfigStr) {
         try {
-            this.validConfig = JSONObject.parseObject(validConfigStr);
+            this.validConfig = JSON.parseObject(validConfigStr);
         } catch (Exception ignored) {
         }
     }
