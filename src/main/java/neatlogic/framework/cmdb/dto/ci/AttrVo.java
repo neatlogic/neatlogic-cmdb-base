@@ -86,6 +86,8 @@ public class AttrVo extends BasePageVo {
     private Integer isUnique = 0;
     @EntityField(name = "是否模型唯一属性成员", type = ApiParamType.INTEGER)
     private Integer isCiUnique = 0;
+    @EntityField(name = "是否专有名词", type = ApiParamType.INTEGER)
+    private Integer isTerm = 0;
     @EntityField(name = "是否允许搜索", type = ApiParamType.INTEGER)
     private Integer isSearchAble = 0;
     @EntityField(name = "是否私有属性", type = ApiParamType.INTEGER)
@@ -184,6 +186,14 @@ public class AttrVo extends BasePageVo {
             return needIndex;
         }
 
+    }
+
+    public Integer getIsTerm() {
+        return isTerm;
+    }
+
+    public void setIsTerm(Integer isTerm) {
+        this.isTerm = isTerm;
     }
 
     public String getTargetCiLabel() {
