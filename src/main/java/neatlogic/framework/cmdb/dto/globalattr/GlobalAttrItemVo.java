@@ -16,14 +16,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 package neatlogic.framework.cmdb.dto.globalattr;
 
 import neatlogic.framework.common.constvalue.ApiParamType;
+import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-public class GlobalAttrItemVo implements Serializable {
+public class GlobalAttrItemVo extends BasePageVo {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "common.value", type = ApiParamType.STRING)
@@ -52,6 +52,7 @@ public class GlobalAttrItemVo implements Serializable {
         }
         return id;
     }
+
 
     public void setId(Long id) {
         this.id = id;
