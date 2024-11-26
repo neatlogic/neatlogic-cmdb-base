@@ -184,6 +184,8 @@ public class CiEntityVo extends BasePageVo {
     private String account;
     @JSONField(serialize = false)//接受前端数据时，用于保存特殊的变量，例如#expander
     private Map<String, Object> specialParamterMap;
+    @JSONField(serialize = false)//搜索时是否需要返回账号
+    private boolean needAccount;
 
     public CiEntityVo() {
 
@@ -204,6 +206,14 @@ public class CiEntityVo extends BasePageVo {
             specialParamterMap = new HashMap<>();
         }
         specialParamterMap.put(key, value);
+    }
+
+    public boolean getNeedAccount() {
+        return needAccount;
+    }
+
+    public void setNeedAccount(boolean needAccount) {
+        this.needAccount = needAccount;
     }
 
     public Map<String, Object> getSpecialParamterMap() {
