@@ -196,6 +196,9 @@ public class TransactionVo extends BasePageVo {
     }
 
     public String getCreateUser() {
+        if (StringUtils.isNotBlank(createUser) && createUser.startsWith("user#")) {
+            createUser = createUser.replace("user#", "");
+        }
         return createUser;
     }
 
@@ -212,6 +215,9 @@ public class TransactionVo extends BasePageVo {
     }
 
     public String getCommitUser() {
+        if (StringUtils.isNotBlank(commitUser) && commitUser.startsWith("user#")) {
+            commitUser = commitUser.replace("user#", "");
+        }
         return commitUser;
     }
 

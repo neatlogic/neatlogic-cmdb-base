@@ -59,6 +59,8 @@ public class SyncAuditVo extends BasePageVo {
     private Integer serverId;
     @EntityField(name = "异常", type = ApiParamType.STRING)
     private String error;
+    @EntityField(name = "异常数据量", type = ApiParamType.INTEGER)
+    private Integer errorDataCount;
     @EntityField(name = "处理的数据量", type = ApiParamType.INTEGER)
     private int dataCount;
     @JSONField(serialize = false)
@@ -99,6 +101,14 @@ public class SyncAuditVo extends BasePageVo {
 
     public List<Long> getIdList() {
         return idList;
+    }
+
+    public Integer getErrorDataCount() {
+        return errorDataCount;
+    }
+
+    public void setErrorDataCount(Integer errorDataCount) {
+        this.errorDataCount = errorDataCount;
     }
 
     public void setIdList(List<Long> idList) {
