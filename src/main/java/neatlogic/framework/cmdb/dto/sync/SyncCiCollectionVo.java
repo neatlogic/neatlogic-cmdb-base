@@ -102,6 +102,8 @@ public class SyncCiCollectionVo extends BasePageVo {
     private Date lastSyncDate;//最后一次同步时间
     @EntityField(name = "说明", type = ApiParamType.STRING)
     private String description;
+    @EntityField(name = "最后执行记录id", type = ApiParamType.LONG)
+    private Long lastAuditId;
 
     public List<Long> getIdList() {
         return idList;
@@ -124,6 +126,14 @@ public class SyncCiCollectionVo extends BasePageVo {
 
     public void setConditionList(List<SyncConditionVo> conditionList) {
         this.conditionList = conditionList;
+    }
+
+    public Long getLastAuditId() {
+        return lastAuditId;
+    }
+
+    public void setLastAuditId(Long lastAuditId) {
+        this.lastAuditId = lastAuditId;
     }
 
     @JSONField(serialize = false)

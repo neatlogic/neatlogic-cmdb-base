@@ -15,6 +15,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.dto.sync;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.cmdb.enums.sync.SyncStatus;
 import neatlogic.framework.common.config.Config;
@@ -62,7 +64,7 @@ public class SyncAuditVo extends BasePageVo {
     @EntityField(name = "异常数据量", type = ApiParamType.INTEGER)
     private Integer errorDataCount;
     @EntityField(name = "处理的数据量", type = ApiParamType.INTEGER)
-    private int dataCount;
+    private Integer dataCount;
     @JSONField(serialize = false)
     private List<String> startTimeRange;
     @JSONField(serialize = false)
@@ -71,6 +73,12 @@ public class SyncAuditVo extends BasePageVo {
     private Boolean hasError;//查询条件，是否有异常
     @JSONField(serialize = false)
     private List<Long> idList;//id列表，精确查找用
+    @EntityField(name = "当前数据id", type = ApiParamType.STRING)
+    private String currentDataId;
+    @EntityField(name = "额外配置", type = ApiParamType.JSONOBJECT)
+    private JSONObject config;
+    @JSONField(serialize = false)
+    private String configStr;
 
     public Long getId() {
         if (id == null) {
@@ -79,11 +87,11 @@ public class SyncAuditVo extends BasePageVo {
         return id;
     }
 
-    public int getDataCount() {
+    public Integer getDataCount() {
         return dataCount;
     }
 
-    public void setDataCount(int dataCount) {
+    public void setDataCount(Integer dataCount) {
         this.dataCount = dataCount;
     }
 
@@ -101,6 +109,14 @@ public class SyncAuditVo extends BasePageVo {
 
     public List<Long> getIdList() {
         return idList;
+    }
+
+    public String getCurrentDataId() {
+        return currentDataId;
+    }
+
+    public void setCurrentDataId(String currentDataId) {
+        this.currentDataId = currentDataId;
     }
 
     public Integer getErrorDataCount() {
@@ -161,6 +177,31 @@ public class SyncAuditVo extends BasePageVo {
         return statusText;
     }
 
+    public JSONObject getConfig() {
+        if (config == null && StringUtils.isNotBlank(configStr)) {
+            try {
+                config = JSON.parseObject(configStr);
+            } catch (Exception ignored) {
+
+            }
+        }
+        return config;
+    }
+
+    public void setConfig(JSONObject config) {
+        this.config = config;
+    }
+
+    public String getConfigStr() {
+        if (config != null) {
+            configStr = config.toJSONString();
+        }
+        return configStr;
+    }
+
+    public void setConfigStr(String configStr) {
+        this.configStr = configStr;
+    }
 
     public Boolean isHasError() {
         return hasError;

@@ -19,7 +19,9 @@ import neatlogic.framework.util.$;
 
 public enum SyncStatus {
     DOING("doing", "同步中"),
-    DONE("done", "已完成");
+    DONE("done", "已完成"),
+    PAUSING("pausing", "暂停中"),
+    PAUSED("paused", "已暂停");
 
     private final String status;
     private final String text;
