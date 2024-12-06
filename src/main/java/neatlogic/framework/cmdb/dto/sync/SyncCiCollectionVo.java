@@ -120,6 +120,7 @@ public class SyncCiCollectionVo extends BasePageVo {
         return id;
     }
 
+
     public List<SyncConditionVo> getConditionList() {
         return conditionList;
     }
