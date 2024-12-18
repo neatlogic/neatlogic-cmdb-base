@@ -158,6 +158,7 @@ public class CiEntityTransactionVo implements Serializable {
             attrEntityVo.setAttrLabel(attrDataObj.getString("label"));
             attrEntityVo.setCiId(attrDataObj.getLong("ciId"));
             attrEntityVo.setCiEntityId(this.getCiEntityId());
+            attrEntityVo.setAttrConfig(attrDataObj.getJSONObject("config"));
             attrEntityVo.setTargetCiId(attrDataObj.getLong("targetCiId"));
             attrEntityVo.setSaveMode(attrDataObj.getString("saveMode"));
             attrEntityVo.setValueList(attrDataObj.getJSONArray("valueList"));
@@ -385,6 +386,7 @@ public class CiEntityTransactionVo implements Serializable {
         attrObj.put("label", attrVo.getLabel());
         attrObj.put("type", attrVo.getType());
         attrObj.put("ciId", attrVo.getCiId());
+        attrObj.put("config", attrVo.getConfig(true));
         attrObj.put("targetCiId", attrVo.getTargetCiId());
         attrObj.put("valueList", valueList);
         if (saveMode != null) {
@@ -654,7 +656,7 @@ public class CiEntityTransactionVo implements Serializable {
     public void setContent(String content) {
         if (StringUtils.isNotBlank(content)) {
             try {
-                JSONObject jsonObj = JSONObject.parseObject(content);
+                JSONObject jsonObj = JSON.parseObject(content);
                 this.attrEntityData = jsonObj.getJSONObject("attrEntityData");
                 this.relEntityData = jsonObj.getJSONObject("relEntityData");
                 this.globalAttrEntityData = jsonObj.getJSONObject("globalAttrEntityData");
@@ -697,7 +699,7 @@ public class CiEntityTransactionVo implements Serializable {
     public void restoreSnapshot() {
         if (StringUtils.isNotBlank(snapshot)) {
             try {
-                JSONObject jsonObj = JSONObject.parseObject(snapshot);
+                JSONObject jsonObj = JSON.parseObject(snapshot);
                 this.attrEntityData = jsonObj.getJSONObject("attrEntityData");
                 this.relEntityData = jsonObj.getJSONObject("relEntityData");
                 this.globalAttrEntityData = jsonObj.getJSONObject("globalAttrEntityData");

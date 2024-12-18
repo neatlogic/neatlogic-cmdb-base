@@ -16,6 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 package neatlogic.framework.cmdb.dto.transaction;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import neatlogic.framework.cmdb.attrvaluehandler.core.AttrValueHandlerFactory;
 import neatlogic.framework.cmdb.attrvaluehandler.core.IAttrValueHandler;
 import neatlogic.framework.cmdb.dto.cientity.AttrEntityVo;
@@ -59,6 +60,8 @@ public class AttrEntityTransactionVo implements Serializable {
     private Long ciId;
     @EntityField(name = "目标模型id", type = ApiParamType.LONG)
     private Long targetCiId;
+    @EntityField(name = "属性配置", type = ApiParamType.JSONOBJECT)
+    private JSONObject attrConfig;
 
     public AttrEntityTransactionVo() {
 
@@ -99,6 +102,14 @@ public class AttrEntityTransactionVo implements Serializable {
 
     public void setAttrType(String attrType) {
         this.attrType = attrType;
+    }
+
+    public JSONObject getAttrConfig() {
+        return attrConfig;
+    }
+
+    public void setAttrConfig(JSONObject attrConfig) {
+        this.attrConfig = attrConfig;
     }
 
     @Override
