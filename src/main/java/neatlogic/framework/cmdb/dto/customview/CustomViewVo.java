@@ -96,6 +96,9 @@ public class CustomViewVo extends BasePageVo implements Serializable {
     @JSONField(serialize = false)
     private List<String> roleUuidList;
 
+    @EntityField(name = "引用数量", type = ApiParamType.INTEGER)
+    private Integer referenceCount;
+
     public Long getStartCiId() {
         return startCiId;
     }
@@ -556,5 +559,13 @@ public class CustomViewVo extends BasePageVo implements Serializable {
 
     public void setRoleUuidList(List<String> roleUuidList) {
         this.roleUuidList = roleUuidList;
+    }
+
+    public Integer getReferenceCount() {
+        return referenceCount;
+    }
+
+    public void setReferenceCount(Integer referenceCount) {
+        this.referenceCount = referenceCount;
     }
 }
