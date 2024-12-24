@@ -23,6 +23,9 @@ import neatlogic.framework.util.$;
  * @date 2022/3/10 5:14 下午
  */
 public enum CmdbFromType implements IFromType {
+    CMDBCI("cmdbci", "cmdb模型"),
+    CMDBCIATTR("cmdbciattr", "cmdb模型属性"),
+    CMDBCUSTOMVIEW("cmdbcustomview", "cmdb自定义视图"),
     RESOURCE_ACCOUNT("resourceaccount", "资产账号");
 
     private final String value;
