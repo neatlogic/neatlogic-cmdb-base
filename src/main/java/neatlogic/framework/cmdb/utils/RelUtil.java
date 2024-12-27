@@ -18,8 +18,10 @@ package neatlogic.framework.cmdb.utils;
 import neatlogic.framework.cmdb.dto.ci.CiViewVo;
 import neatlogic.framework.cmdb.dto.ci.RelVo;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class RelUtil {
@@ -37,11 +39,32 @@ public class RelUtil {
         return relList;
     }
 
-    public static List<CiViewVo> ClearCiViewRepeatRel(List<CiViewVo> ciViewList) {
+    public static List<CiViewVo> ClearCiViewRepeatRel(List<CiViewVo> ciViewList, Long ciId) {
         List<CiViewVo> originalRelList = ciViewList.stream().filter(view -> view.getIsExtended().equals(0) && view.getType().startsWith("rel")).collect(Collectors.toList());
         if (CollectionUtils.isNotEmpty(originalRelList)) {
+            //去掉和继承重复的关系
             ciViewList.removeIf(view -> view.getIsExtended().equals(1) && view.getType().startsWith("rel") && originalRelList.stream().anyMatch(er -> er.getUniqueKey().equals(view.getUniqueKey())));
+        }
+        if (ciId != null) {
+            //去掉由于继承导致的循环关系（A关联B，同时A继承了B，导致最后变成A关联A的关系）
+            ciViewList.removeIf(view -> view.getIsExtended().equals(1) &&
+                    (
+                            (
+                                    view.getType().startsWith("relto")
+                                            && StringUtils.isNotBlank(view.getUniqueKey())
+                                            && Objects.equals(ciId, Long.parseLong(view.getUniqueKey().split("-")[0]))
+                            ) || (
+                                    view.getType().startsWith("relfrom")
+                                            && StringUtils.isNotBlank(view.getUniqueKey())
+                                            && Objects.equals(ciId, Long.parseLong(view.getUniqueKey().split("-")[1]))
+                            )
+                    )
+            );
         }
         return ciViewList;
     }
+
+    /*public static List<CiViewVo> ClearCiViewRepeatRel(List<CiViewVo> ciViewList) {
+        return ClearCiViewRepeatRel(ciViewList, null);
+    }*/
 }
