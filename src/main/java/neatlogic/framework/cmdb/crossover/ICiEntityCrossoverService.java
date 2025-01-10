@@ -15,11 +15,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.crossover;
 
-import java.util.List;
-
 import neatlogic.framework.cmdb.dto.cientity.CiEntityVo;
 import neatlogic.framework.cmdb.dto.transaction.CiEntityTransactionVo;
 import neatlogic.framework.crossover.ICrossoverService;
+
+import java.util.HashMap;
+import java.util.List;
 
 public interface ICiEntityCrossoverService extends ICrossoverService {
     CiEntityVo getCiEntityById(Long ciId, Long ciEntityId);
@@ -30,6 +31,11 @@ public interface ICiEntityCrossoverService extends ICrossoverService {
 
 
     List<CiEntityVo> searchCiEntity(CiEntityVo ciEntityVo);
+
+    /**
+     * 该接口为了szbank升级时节约时间，升级后会删除
+     */
+    List<CiEntityVo> ciEntityBuilderForSuZhouBank(CiEntityVo ciEntityVo, List<HashMap<String, Object>> resultList);
 
     List<Long> getCiEntityIdByCiId(CiEntityVo ciEntityVo);
 
