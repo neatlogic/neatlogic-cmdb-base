@@ -33,7 +33,7 @@ public interface ICiEntityCrossoverService extends ICrossoverService {
     List<CiEntityVo> searchCiEntity(CiEntityVo ciEntityVo);
 
     /**
-     * 该接口为了szbank升级时节约时间，升级后会删除
+     * 该接口为了升级时节约时间，升级后会删除
      */
     List<CiEntityVo> ciEntityBuilder(CiEntityVo ciEntityVo, List<HashMap<String, Object>> resultList);
 
