@@ -35,7 +35,7 @@ public interface ICiEntityCrossoverService extends ICrossoverService {
     /**
      * 该接口为了szbank升级时节约时间，升级后会删除
      */
-    List<CiEntityVo> ciEntityBuilderForSuZhouBank(CiEntityVo ciEntityVo, List<HashMap<String, Object>> resultList);
+    List<CiEntityVo> ciEntityBuilder(CiEntityVo ciEntityVo, List<HashMap<String, Object>> resultList);
 
     List<Long> getCiEntityIdByCiId(CiEntityVo ciEntityVo);
 
