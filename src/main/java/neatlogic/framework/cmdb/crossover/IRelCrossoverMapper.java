@@ -26,4 +26,6 @@ public interface IRelCrossoverMapper extends ICrossoverService {
 
     RelVo getRelByCiIdAndRelName(@Param("ciId") Long ciId, @Param("relName") String relName);
 
+    RelVo getRelById(Long id);
+
 }
