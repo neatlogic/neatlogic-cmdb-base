@@ -23,6 +23,7 @@ import java.util.List;
  * @author linbq
  * @since 2022/3/7 10:10
  **/
+@Deprecated
 public enum AppModuleResourceType {
     OS("OS","OS"),
     APP_INSTANCE("APPIns","APPIns"),
