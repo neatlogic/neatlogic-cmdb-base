@@ -48,11 +48,11 @@ public interface ISceneViewDefinition {
     }
 
     /**
-     * 优先级，默认是最低优先级，客户模块可以通过设置该字段值为最高优先级来重写该视图配置
+     * 优先级，默认是最高优先级，该接口默认实现类会把该字段设置为最低优先级，客户模块如果实现该接口，则以客户模块的实现类逻辑
      * @return
      */
     default Ordered getOrdered() {
-        return Ordered.LOWEST_PRECEDENCE;
+        return Ordered.HIGHEST_PRECEDENCE;
     }
 
     List<SceneViewFieldVo> getFieldList();
