@@ -35,6 +35,8 @@ public class TransactionGroupVo implements Serializable {
     private List<TransactionVo> transactionList;
     @JSONField(serialize = false)
     private final Set<Long> excludeCiEntity = new HashSet<>();//记录本次事务组中需要排除的ciEntityId，排除掉的ciEntityId在补充关系事务时不会处理
+    @JSONField(serialize = false)
+    private boolean needLock = true;//修改配置项是否需要加锁，批量修改时如果设为true很容易导致死锁，某些场景修改范围不一样可以不需要锁
 
     public void addExclude(Long ciEntityId) {
         excludeCiEntity.add(ciEntityId);
@@ -43,6 +45,14 @@ public class TransactionGroupVo implements Serializable {
     @JSONField(serialize = false)
     public boolean isExclude(Long ciEntityId) {
         return excludeCiEntity.contains(ciEntityId);
+    }
+
+    public boolean isNeedLock() {
+        return needLock;
+    }
+
+    public void setNeedLock(boolean needLock) {
+        this.needLock = needLock;
     }
 
     public Long getId() {
