@@ -26,6 +26,12 @@ public class ResourceEntityConfigVo {
     @JSONField(serialize = false)
     private CiVo mainCiVo;
 
+    private ResourceEntityRelNodeVo relNode;
+
+    private List<ResourceEntityRelLinkVo> relLinkList;
+
+    List<ResourceEntityLeftJoinVo> leftJoinList;
+
     private List<ResourceEntityFieldMappingVo> fieldMappingList;
 
     public String getMainCi() {
@@ -42,6 +48,30 @@ public class ResourceEntityConfigVo {
 
     public void setMainCiVo(CiVo mainCiVo) {
         this.mainCiVo = mainCiVo;
+    }
+
+    public ResourceEntityRelNodeVo getRelNode() {
+        return relNode;
+    }
+
+    public void setRelNode(ResourceEntityRelNodeVo relNode) {
+        this.relNode = relNode;
+    }
+
+    public List<ResourceEntityRelLinkVo> getRelLinkList() {
+        return relLinkList;
+    }
+
+    public void setRelLinkList(List<ResourceEntityRelLinkVo> relLinkList) {
+        this.relLinkList = relLinkList;
+    }
+
+    public List<ResourceEntityLeftJoinVo> getLeftJoinList() {
+        return leftJoinList;
+    }
+
+    public void setLeftJoinList(List<ResourceEntityLeftJoinVo> leftJoinList) {
+        this.leftJoinList = leftJoinList;
     }
 
     public List<ResourceEntityFieldMappingVo> getFieldMappingList() {
