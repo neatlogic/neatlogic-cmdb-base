@@ -22,7 +22,6 @@ import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 
 import java.util.Date;
-import java.util.List;
 
 public class SceneEntityVo {
     @EntityField(name = "对象唯一标识（视图名）", type = ApiParamType.STRING)
@@ -31,10 +30,6 @@ public class SceneEntityVo {
     private String label;
     @JSONField(serialize = false)
     private CiVo ci;//对应的模型
-    @EntityField(name = "属性列表", type = ApiParamType.JSONARRAY)
-    private List<SceneEntityAttrVo> attrList;
-    @EntityField(name = "连接列表", type = ApiParamType.JSONARRAY)
-    private List<SceneEntityJoinVo> joinList;
     @EntityField(name = "状态", type = ApiParamType.ENUM, member = Status.class)
     private String status = "";
     @EntityField(name = "状态名称", type = ApiParamType.STRING)
@@ -70,22 +65,6 @@ public class SceneEntityVo {
 
     public void setCi(CiVo ci) {
         this.ci = ci;
-    }
-
-    public List<SceneEntityAttrVo> getAttrList() {
-        return attrList;
-    }
-
-    public void setAttrList (List<SceneEntityAttrVo> attrList) {
-        this.attrList = attrList;
-    }
-
-    public List<SceneEntityJoinVo> getJoinList() {
-        return joinList;
-    }
-
-    public void setJoinList(List<SceneEntityJoinVo> joinList) {
-        this.joinList = joinList;
     }
 
     public String getStatus() {
