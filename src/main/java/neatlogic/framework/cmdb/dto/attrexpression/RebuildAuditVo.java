@@ -24,6 +24,7 @@ import neatlogic.framework.util.SnowflakeUtil;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
+import java.util.concurrent.Semaphore;
 import java.util.stream.Collectors;
 
 public class RebuildAuditVo {
@@ -52,6 +53,7 @@ public class RebuildAuditVo {
     private Integer serverId;
     protected UserContext userContext;
     protected TenantContext tenantContext;
+    private Semaphore lock;//由于重建表达式是一个线程从队列中获取重建记录，因此顺序锁需要放到每个重建记录中，在重建记录进入队列时就要锁定顺序锁
 
 
     public RebuildAuditVo() {
@@ -59,7 +61,12 @@ public class RebuildAuditVo {
         tenantContext = TenantContext.get();
     }
 
-    public RebuildAuditVo(CiEntityVo _ciEntityVo, Type type) {
+    public RebuildAuditVo(CiEntityVo _ciEntityVo, Type type, Semaphore lock) {
+        build(_ciEntityVo, type);
+        this.lock = lock;
+    }
+
+    private void build(CiEntityVo _ciEntityVo, Type type) {
         this.ciId = _ciEntityVo.getCiId();
         this.ciEntityId = _ciEntityVo.getId();
         List<AttrEntityVo> attrList = _ciEntityVo.getAttrEntityList();
@@ -70,6 +77,18 @@ public class RebuildAuditVo {
         this.type = type.getValue();
         userContext = UserContext.get();
         tenantContext = TenantContext.get();
+    }
+
+    public RebuildAuditVo(CiEntityVo _ciEntityVo, Type type) {
+        build(_ciEntityVo, type);
+    }
+
+    public Semaphore getLock() {
+        return lock;
+    }
+
+    public void setLock(Semaphore lock) {
+        this.lock = lock;
     }
 
     public List<Long> getAttrIdList() {
