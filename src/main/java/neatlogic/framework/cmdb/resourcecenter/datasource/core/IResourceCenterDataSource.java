@@ -42,5 +42,5 @@ public interface IResourceCenterDataSource {
 
     List<ResourceTypeVo> getResourceTypeListTree(String keyword);
 
-    JSONArray getTheadList(JSONArray fieldNameList);
+    JSONArray getTheadList(List<String> fieldNameList);
 }
