@@ -19,6 +19,7 @@ package neatlogic.framework.cmdb.resourcecenter.datasource.core;
 
 import com.alibaba.fastjson.JSONArray;
 import neatlogic.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
+import neatlogic.framework.cmdb.dto.resourcecenter.ResourceTypeVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.ResourceVo;
 
 import java.util.List;
@@ -36,4 +37,10 @@ public interface IResourceCenterDataSource {
     JSONArray getAppResourceList(Long appSystemId, Long appModuleId, Long envId, List<Long> resourceTypeIdList, Integer currentPage, Integer pageSize);
 
     List<ResourceVo> getResourceList(ResourceSearchVo searchVo);
+
+    List<ResourceTypeVo> getResourceTypeTree(String keyword);
+
+    List<ResourceTypeVo> getResourceTypeListTree(String keyword);
+
+    JSONArray getTheadList(JSONArray fieldNameList);
 }
