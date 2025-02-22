@@ -102,7 +102,7 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
      * @param searchVo resourceSearchVo
      * @return 模块列表
      */
-    List<ResourceVo> getAppModuleList(ResourceSearchVo searchVo);
+//    List<ResourceVo> getAppModuleList(ResourceSearchVo searchVo);
 
     /**
      * 获取应用巡检批量巡检时的环境列表（环境会包含模块列表，模块还会包含模型列表）
