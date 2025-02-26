@@ -109,23 +109,29 @@ public class ResourceViewGenerateSqlUtil {
         PlainSelect plainSelect = new PlainSelect()
                 .withFromItem(mainTable);
         addJoinTable(mainTable);
-        Table cmdbCi = new Table("cmdb_ci").withAlias(new Alias("cientity_" + mainTableAlias + "_ci").withUseAs(false));
-        Column cmdbCiIdColumn = new Column(cmdbCi, "id");
-        Column mainTableCiIdColumn = new Column(mainTable, "ci_id");
-        EqualsTo equalsTo = new EqualsTo(cmdbCiIdColumn, mainTableCiIdColumn);
-        Column cmdbCiLftColumn = new Column(cmdbCi, "lft");
-        Column cmdbCiRhtColumn = new Column(cmdbCi, "rht");
-//        GreaterThanEquals greaterThanEquals = new GreaterThanEquals(">=").withLeftExpression(cmdbCiLftColumn).withRightExpression(new LongValue(mainCiVo.getLft()));
-//        MinorThanEquals minorThanEquals = new MinorThanEquals("<=").withLeftExpression(cmdbCiRhtColumn).withRightExpression(new LongValue(mainCiVo.getRht()));
-        Table cmdbCiTable = new Table("cmdb_ci");
-        SubSelect subSelectLft = new SubSelect().withSelectBody(new PlainSelect().withFromItem(cmdbCiTable).addSelectItems(new SelectExpressionItem(new Column( "lft"))).withWhere(new EqualsTo(new Column("id"), new LongValue(mainCiVo.getId()))));
-        SubSelect subSelectRht = new SubSelect().withSelectBody(new PlainSelect().withFromItem(cmdbCiTable).addSelectItems(new SelectExpressionItem(new Column( "rht"))).withWhere(new EqualsTo(new Column("id"), new LongValue(mainCiVo.getId()))));
-        GreaterThanEquals greaterThanEquals = new GreaterThanEquals(">=").withLeftExpression(cmdbCiLftColumn).withRightExpression(subSelectLft);
-        MinorThanEquals minorThanEquals = new MinorThanEquals("<=").withLeftExpression(cmdbCiRhtColumn).withRightExpression(subSelectRht);
-        AndExpression andExpression = new AndExpression(greaterThanEquals, minorThanEquals);
-        Join joinCmdbCi = new Join().withRightItem(cmdbCi).addOnExpression(new AndExpression(equalsTo, andExpression));
+
+        Table a = new Table("cmdb_ci").withAlias(new Alias("a").withUseAs(false));
+        Column aLftColumn = new Column(a, "lft");
+        Column aRhtColumn = new Column(a, "rht");
+
+        Table b = new Table("cmdb_ci").withAlias(new Alias("b").withUseAs(false));
+        Column bLftColumn = new Column(b, "lft");
+        Column bRhtColumn = new Column(b, "rht");
+
+        GreaterThanEquals greaterThanEquals = new GreaterThanEquals(">=").withLeftExpression(bLftColumn).withRightExpression(aLftColumn);
+        MinorThanEquals minorThanEquals = new MinorThanEquals("<=").withLeftExpression(bRhtColumn).withRightExpression(aRhtColumn);
+        Join join = new Join().withRightItem(b).addOnExpression(new AndExpression(greaterThanEquals, minorThanEquals));
+
+        SubSelect subSelect = new SubSelect().withSelectBody(
+                new PlainSelect().withFromItem(a).addJoins(join)
+                        .addSelectItems(new SelectExpressionItem(new Column( b, "*")))
+                        .withWhere(new EqualsTo(new Column(a, "id"), new LongValue(mainCiVo.getId())))
+        ).withAlias(new Alias("cientity_" + mainTableAlias + "_ci").withUseAs(false));
+
+        Column mainTableCiIdColumn = new Column(mainTable.getAlias().getName() + ".ci_id");
+        Column cmdbCiIdColumn = new Column( subSelect.getAlias().getName() + ".id");
+        Join joinCmdbCi = new Join().withRightItem(subSelect).addOnExpression(new EqualsTo(cmdbCiIdColumn, mainTableCiIdColumn));
         plainSelect.addJoins(joinCmdbCi);
-        addJoinTable(cmdbCi);
         addEqualColumn(cmdbCiIdColumn, mainTableCiIdColumn);
         plainSelect.withWhere(getExpiredExpression(mainTable));
         return plainSelect;
