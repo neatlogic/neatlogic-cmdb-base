@@ -104,10 +104,19 @@ public class ResourceViewGenerateSqlUtil {
     private PlainSelect initPlainSelectByMainResourceId(CiVo mainCiVo) {
         joinedTableMap = new HashMap<>();
         equalColumnMap = new HashMap<>();
+        String tableName = "cmdb_" + mainCiVo.getId();
+        String tableAlias = tableName + "_" + mainCiVo.getName();
+        Table cmdbCiIdTable = new Table(TenantContext.get().getDataDbName(), tableName).withAlias(new Alias(tableAlias).withUseAs(false));
+        PlainSelect plainSelect = new PlainSelect()
+                .withFromItem(cmdbCiIdTable);
+        addJoinTable(cmdbCiIdTable);
+
         String mainTableAlias = mainCiVo.getName();
         Table mainTable = new Table("cmdb_cientity").withAlias(new Alias("cientity_" + mainTableAlias).withUseAs(false));
-        PlainSelect plainSelect = new PlainSelect()
-                .withFromItem(mainTable);
+        Column cmdbCiIdTableCientityIdColumn = new Column(cmdbCiIdTable, "cientity_id");
+        Column mainTableIdColumn = new Column(mainTable, "id");
+        Join joinMainTable = new Join().withRightItem(mainTable).addOnExpression(new EqualsTo(cmdbCiIdTableCientityIdColumn, mainTableIdColumn));
+        plainSelect.addJoins(joinMainTable);
         addJoinTable(mainTable);
 
         Table a = new Table("cmdb_ci").withAlias(new Alias("a").withUseAs(false));
