@@ -119,27 +119,10 @@ public class ResourceViewGenerateSqlUtil {
         plainSelect.addJoins(joinMainTable);
         addJoinTable(mainTable);
 
-        Table a = new Table("cmdb_ci").withAlias(new Alias("a").withUseAs(false));
-        Column aLftColumn = new Column(a, "lft");
-        Column aRhtColumn = new Column(a, "rht");
-
-        Table b = new Table("cmdb_ci").withAlias(new Alias("b").withUseAs(false));
-        Column bLftColumn = new Column(b, "lft");
-        Column bRhtColumn = new Column(b, "rht");
-
-        GreaterThanEquals greaterThanEquals = new GreaterThanEquals(">=").withLeftExpression(bLftColumn).withRightExpression(aLftColumn);
-        MinorThanEquals minorThanEquals = new MinorThanEquals("<=").withLeftExpression(bRhtColumn).withRightExpression(aRhtColumn);
-        Join join = new Join().withRightItem(b).addOnExpression(new AndExpression(greaterThanEquals, minorThanEquals));
-
-        SubSelect subSelect = new SubSelect().withSelectBody(
-                new PlainSelect().withFromItem(a).addJoins(join)
-                        .addSelectItems(new SelectExpressionItem(new Column( b, "*")))
-                        .withWhere(new EqualsTo(new Column(a, "id"), new LongValue(mainCiVo.getId())))
-        ).withAlias(new Alias("cientity_" + mainTableAlias + "_ci").withUseAs(false));
-
+        Table cmdbCiTable = new Table("cmdb_ci").withAlias(new Alias("cientity_" + mainTableAlias + "_ci").withUseAs(false));
         Column mainTableCiIdColumn = new Column(mainTable.getAlias().getName() + ".ci_id");
-        Column cmdbCiIdColumn = new Column( subSelect.getAlias().getName() + ".id");
-        Join joinCmdbCi = new Join().withRightItem(subSelect).addOnExpression(new EqualsTo(cmdbCiIdColumn, mainTableCiIdColumn));
+        Column cmdbCiIdColumn = new Column( cmdbCiTable.getAlias().getName() + ".id");
+        Join joinCmdbCi = new Join().withRightItem(cmdbCiTable).addOnExpression(new EqualsTo(cmdbCiIdColumn, mainTableCiIdColumn));
         plainSelect.addJoins(joinCmdbCi);
         addEqualColumn(cmdbCiIdColumn, mainTableCiIdColumn);
         plainSelect.withWhere(getExpiredExpression(mainTable));
