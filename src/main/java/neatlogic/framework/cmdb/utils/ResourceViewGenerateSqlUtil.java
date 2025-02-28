@@ -50,7 +50,7 @@ public class ResourceViewGenerateSqlUtil {
     public String getSql() {
         PlainSelect plainSelect = initPlainSelectByMainResourceId(mainCiVo);
         for (ResourceEntityFieldMappingVo fieldMappingVo : fieldMappingList) {
-            addJoinTableByFieldMapping(fieldMappingVo, plainSelect);
+            addJoinTableByFieldMapping(fieldMappingVo, plainSelect, mainCiVo);
         }
         return plainSelect.toString();
     }
@@ -135,8 +135,8 @@ public class ResourceViewGenerateSqlUtil {
      * @param plainSelect
      * @return
      */
-    private Column addJoinTableByFieldMapping(ResourceEntityFieldMappingVo fieldMappingVo, PlainSelect plainSelect) {
-        Table mainTable = (Table) plainSelect.getFromItem();
+    private Column addJoinTableByFieldMapping(ResourceEntityFieldMappingVo fieldMappingVo, PlainSelect plainSelect, CiVo mainCiVo) {
+        Table mainTable = getTableByAlias("cientity_" + mainCiVo.getName());
         String field = fieldMappingVo.getField();
         String fromCi = fieldMappingVo.getFromCi();
         Long fromCiId = fieldMappingVo.getFromCiId();
