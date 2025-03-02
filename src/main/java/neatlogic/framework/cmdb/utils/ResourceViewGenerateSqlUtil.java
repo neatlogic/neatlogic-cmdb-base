@@ -134,6 +134,7 @@ public class ResourceViewGenerateSqlUtil {
         Column cmdbCiIdColumn = new Column( cmdbCiTable.getAlias().getName() + ".id");
         Join joinCmdbCi = new Join().withRightItem(cmdbCiTable).addOnExpression(new EqualsTo(cmdbCiIdColumn, mainTableCiIdColumn));
         plainSelect.addJoins(joinCmdbCi);
+        addJoinTable(cmdbCiTable);
         addEqualColumn(cmdbCiIdColumn, mainTableCiIdColumn);
         plainSelect.withWhere(getExpiredExpression(mainTable));
         return plainSelect;
