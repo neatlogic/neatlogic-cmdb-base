@@ -42,6 +42,8 @@ public class SceneEntityVo {
     private Long ciId;
     @EntityField(name = "描述", type = ApiParamType.STRING)
     private String description;
+    @EntityField(name = "是否支持创建多张视图", type = ApiParamType.BOOLEAN)
+    private Boolean isMultiple;
 
     public String getName() {
         return name;
@@ -116,5 +118,13 @@ public class SceneEntityVo {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean getIsMultiple() {
+        return isMultiple;
+    }
+
+    public void setIsMultiple(Boolean isMultiple) {
+        this.isMultiple = isMultiple;
     }
 }

@@ -31,5 +31,7 @@ public @interface ResourceType {
 
     String ciName() default "";
 
+    boolean isMultiple() default false;
+
     String[] functionPathList() default {};
 }

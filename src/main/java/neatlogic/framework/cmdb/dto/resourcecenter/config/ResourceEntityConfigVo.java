@@ -34,6 +34,8 @@ public class ResourceEntityConfigVo {
 
     private List<ResourceEntityFieldMappingVo> fieldMappingList;
 
+    private String sceneTemplateName;
+
     public String getMainCi() {
         return mainCi;
     }
@@ -80,5 +82,13 @@ public class ResourceEntityConfigVo {
 
     public void setFieldMappingList(List<ResourceEntityFieldMappingVo> fieldMappingList) {
         this.fieldMappingList = fieldMappingList;
+    }
+
+    public String getSceneTemplateName() {
+        return sceneTemplateName;
+    }
+
+    public void setSceneTemplateName(String sceneTemplateName) {
+        this.sceneTemplateName = sceneTemplateName;
     }
 }
