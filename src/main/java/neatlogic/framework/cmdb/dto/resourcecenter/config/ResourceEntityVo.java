@@ -50,6 +50,8 @@ public class ResourceEntityVo {
     private List<ValueTextVo> fieldList;
     @EntityField(name = "common.config", type = ApiParamType.JSONOBJECT)
     private ResourceEntityConfigVo config;
+    @EntityField(name = "是否支持创建多张视图", type = ApiParamType.BOOLEAN)
+    private Boolean isMultiple;
     @JSONField(serialize = false)
     private String configStr;
 
@@ -180,5 +182,13 @@ public class ResourceEntityVo {
 
     public void setConfigStr(String configStr) {
         this.configStr = configStr;
+    }
+
+    public Boolean getIsMultiple() {
+        return isMultiple;
+    }
+
+    public void setIsMultiple(Boolean isMultiple) {
+        this.isMultiple = isMultiple;
     }
 }
