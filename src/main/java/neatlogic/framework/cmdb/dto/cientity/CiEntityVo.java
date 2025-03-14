@@ -147,6 +147,8 @@ public class CiEntityVo extends BasePageVo {
     @JSONField(serialize = false)
     private List<Long> idList;// 需要查询的id列表
     @JSONField(serialize = false)
+    private List<Long> includeIdList;//需要包含的id列表
+    @JSONField(serialize = false)
     private boolean globalAttrStrictMode;//全局属性严格模式，严格模式下不返回没有全局属性的配置项，只用在配置项搜索
     @EntityField(name = "当前用户权限情况", type = ApiParamType.JSONOBJECT)
     private Map<String, Boolean> authData;
@@ -191,6 +193,13 @@ public class CiEntityVo extends BasePageVo {
 
     }
 
+    public List<Long> getIncludeIdList() {
+        return includeIdList;
+    }
+
+    public void setIncludeIdList(List<Long> includeIdList) {
+        this.includeIdList = includeIdList;
+    }
 
     public CiEntityVo(Long id) {
         this.id = id;
