@@ -20,6 +20,7 @@ package neatlogic.framework.cmdb.resourcecenter.datasource.core;
 import com.alibaba.fastjson.JSONArray;
 import neatlogic.framework.cmdb.dto.resourcecenter.*;
 import neatlogic.framework.common.dto.BasePageVo;
+import neatlogic.framework.common.dto.ValueTextVo;
 
 import java.util.List;
 
@@ -33,7 +34,7 @@ public interface IResourceCenterDataSource {
         return Ordered.HIGHEST_PRECEDENCE;
     }
 
-    JSONArray getAppResourceList(Long appSystemId, Long appModuleId, Long envId, List<Long> resourceTypeIdList, Integer currentPage, Integer pageSize);
+    JSONArray getAppResourceList(Long appSystemId, Long appModuleId, Long envId, List<Long> resourceTypeIdList, String viewName, Integer currentPage, Integer pageSize);
 
     List<ResourceVo> getResourceList(ResourceSearchVo searchVo);
 
@@ -42,6 +43,10 @@ public interface IResourceCenterDataSource {
     List<ResourceTypeVo> getResourceTypeListTree(String keyword);
 
     JSONArray getTheadList(List<String> fieldNameList);
+
+    List<ValueTextVo> getAssertAllTheadList();
+
+    List<ValueTextVo> getAppAssertAllTheadList();
 
     List<AppSystemVo> getAppSystemListForTree(BasePageVo searchVo);
 

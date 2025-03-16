@@ -55,6 +55,12 @@ public class ResourceVo extends BaseEditorVo {
     private String stateName;
     @EntityField(name = "状态描述", type = ApiParamType.STRING)
     private String stateLabel;
+    @EntityField(name = "厂商id", type = ApiParamType.LONG)
+    private Long vendorId;
+    @EntityField(name = "厂商名称", type = ApiParamType.STRING)
+    private String vendorName;
+    @EntityField(name = "厂商描述", type = ApiParamType.STRING)
+    private String vendorLabel;
     @EntityField(name = "应用系统id", type = ApiParamType.LONG)
     private Long appSystemId;
     @EntityField(name = "应用系统名称", type = ApiParamType.STRING)
@@ -152,6 +158,9 @@ public class ResourceVo extends BaseEditorVo {
         this.stateId = resourceVo.stateId;
         this.stateName = resourceVo.stateName;
         this.stateLabel = resourceVo.stateLabel;
+        this.vendorId = resourceVo.vendorId;
+        this.vendorName = resourceVo.vendorName;
+        this.vendorLabel = resourceVo.vendorLabel;
         this.appSystemId = resourceVo.appSystemId;
         this.appSystemName = resourceVo.appSystemName;
         this.appSystemAbbrName = resourceVo.appSystemAbbrName;
@@ -275,6 +284,30 @@ public class ResourceVo extends BaseEditorVo {
 
     public void setStateLabel(String stateLabel) {
         this.stateLabel = stateLabel;
+    }
+
+    public Long getVendorId() {
+        return vendorId;
+    }
+
+    public void setVendorId(Long vendorId) {
+        this.vendorId = vendorId;
+    }
+
+    public String getVendorName() {
+        return vendorName;
+    }
+
+    public void setVendorName(String vendorName) {
+        this.vendorName = vendorName;
+    }
+
+    public String getVendorLabel() {
+        return vendorLabel;
+    }
+
+    public void setVendorLabel(String vendorLabel) {
+        this.vendorLabel = vendorLabel;
     }
 
     public Long getAppSystemId() {
