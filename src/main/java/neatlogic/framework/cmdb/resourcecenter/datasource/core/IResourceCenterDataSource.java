@@ -19,6 +19,7 @@ package neatlogic.framework.cmdb.resourcecenter.datasource.core;
 
 import com.alibaba.fastjson.JSONArray;
 import neatlogic.framework.cmdb.dto.resourcecenter.*;
+import neatlogic.framework.cmdb.dto.resourcecenter.config.ResourceEntityVo;
 import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.common.dto.ValueTextVo;
 
@@ -35,6 +36,8 @@ public interface IResourceCenterDataSource {
     }
 
     JSONArray getAppResourceList(Long appSystemId, Long appModuleId, Long envId, List<Long> resourceTypeIdList, String viewName, Integer currentPage, Integer pageSize);
+
+    JSONArray getTbodyList(List<String> fieldList, List<ResourceVo> resourceList, ResourceEntityVo resourceEntityVo);
 
     List<ResourceVo> getResourceList(ResourceSearchVo searchVo);
 
