@@ -809,6 +809,9 @@ public class CiEntityVo extends BasePageVo {
         return attrEntityData;
     }
 
+    public void setAttrEntityData(JSONObject attrEntityData) {
+        this.attrEntityData = attrEntityData;
+    }
 
     public List<AttrEntityVo> getAttrEntityList() {
         attrEntityList = new ArrayList<>();
