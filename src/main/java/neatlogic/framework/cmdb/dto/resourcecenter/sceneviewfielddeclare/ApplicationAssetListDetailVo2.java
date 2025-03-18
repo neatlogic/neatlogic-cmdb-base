@@ -22,8 +22,8 @@ import neatlogic.framework.restful.annotation.EntityField;
 
 import java.util.Date;
 
-@ResourceType(name = "scence_application_asset_list_detail", label = "应用清单资产详情", isMultiple = true, functionPathList = {"配置管理/应用清单"})
-public class ApplicationAssetListDetailVo {
+@ResourceType(name = "scence_application_asset_list_detail2", label = "应用清单资产详情2", isMultiple = true, functionPathList = {"配置管理/资产清单"})
+public class ApplicationAssetListDetailVo2 {
     @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;
