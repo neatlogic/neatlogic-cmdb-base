@@ -20,8 +20,8 @@ import neatlogic.framework.cmdb.annotation.ResourceType;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 
-@ResourceType(name = "scence_database_ip_port_env_appmodule", label = "DB库IP端口环境和模块场景", functionPathList = {"查询发布应用配置DB库下的无模块无环境、无模块同环境、同模块无环境、同模块同环境的数据库接口/deploy/app/config/env/database/search"})
-@ResourceType(name = "scence_appinstance_ip_port_env_appmodule", label = "应用实例IP端口环境和模块场景")
+@ResourceType(name = "scence_database_ip_port_env_appmodule", label = "DB库IP端口环境和模块场景", moduleId= "cmdb", functionPathList = {"查询发布应用配置DB库下的无模块无环境、无模块同环境、同模块无环境、同模块同环境的数据库接口/deploy/app/config/env/database/search"})
+@ResourceType(name = "scence_appinstance_ip_port_env_appmodule", label = "应用实例IP端口环境和模块场景", moduleId= "cmdb")
 public class AppInstanceIpPortEnvAppModuleVo {
     @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")

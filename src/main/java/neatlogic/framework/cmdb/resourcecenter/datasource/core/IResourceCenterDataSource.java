@@ -22,6 +22,7 @@ import neatlogic.framework.cmdb.dto.resourcecenter.*;
 import neatlogic.framework.cmdb.dto.resourcecenter.config.ResourceEntityVo;
 import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.common.dto.ValueTextVo;
+import org.springframework.lang.Nullable;
 
 import java.util.List;
 import java.util.Map;
@@ -36,7 +37,7 @@ public interface IResourceCenterDataSource {
         return Ordered.HIGHEST_PRECEDENCE;
     }
 
-    JSONArray getAppResourceList(Long appSystemId, Long appModuleId, Long envId, List<Long> resourceTypeIdList, String viewName, Integer currentPage, Integer pageSize);
+    JSONArray getAppResourceList(@Nullable Long appSystemId, @Nullable Long appModuleId, @Nullable Long envId, @Nullable List<String> inspectStatusList, @Nullable String viewName, @Nullable Integer currentPage, @Nullable Integer pageSize);
 
     List<ResourceVo> getAppResourceList(ResourceSearchVo searchVo, boolean needPage);
 

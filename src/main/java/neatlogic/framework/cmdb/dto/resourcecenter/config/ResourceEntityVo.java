@@ -52,6 +52,10 @@ public class ResourceEntityVo {
     private ResourceEntityConfigVo config;
     @EntityField(name = "是否支持创建多张视图", type = ApiParamType.BOOLEAN)
     private Boolean isMultiple;
+    @EntityField(name = "所属模块ID", type = ApiParamType.STRING)
+    private String moduleId;
+    @EntityField(name = "所属模块名", type = ApiParamType.STRING)
+    private String moduleName;
     @JSONField(serialize = false)
     private String configStr;
 
@@ -190,5 +194,21 @@ public class ResourceEntityVo {
 
     public void setIsMultiple(Boolean isMultiple) {
         this.isMultiple = isMultiple;
+    }
+
+    public String getModuleId() {
+        return moduleId;
+    }
+
+    public void setModuleId(String moduleId) {
+        this.moduleId = moduleId;
+    }
+
+    public String getModuleName() {
+        return moduleName;
+    }
+
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName;
     }
 }

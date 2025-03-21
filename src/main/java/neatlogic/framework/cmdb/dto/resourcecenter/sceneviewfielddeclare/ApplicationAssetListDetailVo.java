@@ -22,7 +22,7 @@ import neatlogic.framework.restful.annotation.EntityField;
 
 import java.util.Date;
 
-@ResourceType(name = "scence_application_asset_list_detail", label = "应用清单资产详情", isMultiple = true, functionPathList = {"配置管理/应用清单"})
+@ResourceType(name = "scence_application_asset_list_detail", label = "应用清单资产详情", isMultiple = true, moduleId= "cmdb", functionPathList = {"配置管理/应用清单"})
 public class ApplicationAssetListDetailVo {
     @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")

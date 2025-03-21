@@ -33,5 +33,7 @@ public @interface ResourceType {
 
     boolean isMultiple() default false;
 
+    String moduleId() default "";
+
     String[] functionPathList() default {};
 }

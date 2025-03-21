@@ -19,7 +19,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import neatlogic.framework.cmdb.dto.resourcecenter.AccountVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
-import neatlogic.framework.cmdb.dto.resourcecenter.ResourceVo;
 import neatlogic.framework.cmdb.dto.tag.TagVo;
 import neatlogic.framework.crossover.ICrossoverService;
 
@@ -75,7 +74,7 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
      * @param idList         资产id列表
      * @param resourceVoList 资产列表
      */
-    void addResourceAccount(List<Long> idList, List<ResourceVo> resourceVoList);
+//    void addResourceAccount(List<Long> idList, List<ResourceVo> resourceVoList);
 
     /**
      * 补充资产的标签信息
@@ -83,7 +82,7 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
      * @param idList         资产id列表
      * @param resourceVoList 资产列表
      */
-    void addResourceTag(List<Long> idList, List<ResourceVo> resourceVoList);
+//    void addResourceTag(List<Long> idList, List<ResourceVo> resourceVoList);
 
     /**
      * 获取对应模块的应用清单列表
