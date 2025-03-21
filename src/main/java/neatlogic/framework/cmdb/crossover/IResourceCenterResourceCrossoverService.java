@@ -15,16 +15,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.crossover;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import neatlogic.framework.cmdb.dto.resourcecenter.AccountVo;
-import neatlogic.framework.cmdb.dto.resourcecenter.AppEnvVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.ResourceVo;
 import neatlogic.framework.cmdb.dto.tag.TagVo;
 import neatlogic.framework.crossover.ICrossoverService;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -96,13 +94,13 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
      */
     JSONArray getAppModuleResourceList(ResourceSearchVo searchVo);
 
-    /**
-     * 获取模块列表
-     *
-     * @param searchVo resourceSearchVo
-     * @return 模块列表
-     */
-    List<ResourceVo> getAppModuleList(ResourceSearchVo searchVo);
+//    /**
+//     * 获取模块列表
+//     *
+//     * @param searchVo resourceSearchVo
+//     * @return 模块列表
+//     */
+//    List<ResourceVo> getAppModuleList(ResourceSearchVo searchVo);
 
     /**
      * 获取应用巡检批量巡检时的环境列表（环境会包含模块列表，模块还会包含模型列表）
@@ -110,6 +108,6 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
      * @param searchVo resourceSearchVo
      * @return 应用巡检批量巡检时的环境列表
      */
-    Collection<AppEnvVo> getAppEnvList(ResourceSearchVo searchVo);
+//    Collection<AppEnvVo> getAppEnvList(ResourceSearchVo searchVo);
 }
 

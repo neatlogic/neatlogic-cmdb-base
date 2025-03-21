@@ -24,6 +24,7 @@ import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.common.dto.ValueTextVo;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IResourceCenterDataSource {
 
@@ -36,6 +37,10 @@ public interface IResourceCenterDataSource {
     }
 
     JSONArray getAppResourceList(Long appSystemId, Long appModuleId, Long envId, List<Long> resourceTypeIdList, String viewName, Integer currentPage, Integer pageSize);
+
+    List<ResourceVo> getAppResourceList(ResourceSearchVo searchVo, boolean needPage);
+
+    List<Long> getAppResourceIdList(ResourceSearchVo searchVo, boolean needPage);
 
     JSONArray getTbodyList(List<String> fieldList, List<ResourceVo> resourceList, ResourceEntityVo resourceEntityVo);
 
@@ -61,7 +66,13 @@ public interface IResourceCenterDataSource {
 
     List<ResourceVo> getAppEnvListForSelect(BasePageVo searchVo);
 
+    List<AppEnvVo> getAppEnvListByAppSystemId(Long appSystemId);
+
     List<ResourceVo> getStateListForSelect(BasePageVo searchVo);
 
     List<ResourceVo> getVendorListForSelect(BasePageVo searchVo);
+
+    Map<String, List<Long>> getAppResourceTypeIdListByAppSystemId(Long appSystemId);
+
+    Map<String, List<Long>> getAppResourceTypeIdListByAppSystemIdAndAppModuleIdAndEnvId(Long appSystemId, Long appModuleId, Long envId);
 }
