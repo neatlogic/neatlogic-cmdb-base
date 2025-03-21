@@ -20,7 +20,7 @@ import neatlogic.framework.cmdb.annotation.ResourceType;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 
-@ResourceType(name = "scence_softwareservice_os", label = "软件服务与操作系统场景", moduleId= "cmdb")
+@ResourceType(name = "scence_softwareservice_os", label = "软件服务与操作系统场景", moduleId= "autoexec")
 public class SoftwareServiceOsVo {
     @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")

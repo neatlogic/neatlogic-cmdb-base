@@ -20,8 +20,8 @@ import neatlogic.framework.cmdb.annotation.ResourceType;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 
-@ResourceType(name = "scence_softwareservice_ports", label = "软件服务服务端口场景", moduleId= "cmdb", functionPathList = {"下载作业剧本节点接口/autoexec/job/phase/nodes/download"})
-@ResourceType(name = "scence_osservice_ports", label = "操作系统服务端口场景", moduleId= "cmdb", functionPathList = {"下载作业剧本节点接口/autoexec/job/phase/nodes/download"})
+@ResourceType(name = "scence_softwareservice_ports", label = "软件服务服务端口场景", moduleId= "autoexec", functionPathList = {"下载作业剧本节点接口/autoexec/job/phase/nodes/download"})
+@ResourceType(name = "scence_osservice_ports", label = "操作系统服务端口场景", moduleId= "autoexec", functionPathList = {"下载作业剧本节点接口/autoexec/job/phase/nodes/download"})
 public class SoftwareServicePortsVo {
     @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")
