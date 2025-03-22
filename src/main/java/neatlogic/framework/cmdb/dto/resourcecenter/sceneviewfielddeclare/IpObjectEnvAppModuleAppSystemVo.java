@@ -20,6 +20,7 @@ import neatlogic.framework.cmdb.annotation.ResourceType;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 
+@Deprecated
 @ResourceType(name = "scence_ipobject_env_appmodule_appsystem", label = "IP软硬件环境和模块及应用场景", moduleId= "cmdb", functionPathList = {"配置管理/应用清单"})
 public class IpObjectEnvAppModuleAppSystemVo {
     @EntityField(name = "ID", type = ApiParamType.LONG)

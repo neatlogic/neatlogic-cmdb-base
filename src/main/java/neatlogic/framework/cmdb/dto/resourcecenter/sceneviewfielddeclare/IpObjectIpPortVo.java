@@ -16,11 +16,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 package neatlogic.framework.cmdb.dto.resourcecenter.sceneviewfielddeclare;
 
 import neatlogic.framework.cmdb.annotation.ResourceField;
-import neatlogic.framework.cmdb.annotation.ResourceType;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 
-@ResourceType(name = "scence_ipobject_ip_port", label = "IP软硬件IP和端口场景", moduleId= "cmdb")
+//@ResourceType(name = "scence_ipobject_ip_port", label = "IP软硬件IP和端口场景", moduleId= "cmdb")
+@Deprecated
 public class IpObjectIpPortVo {
     @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")

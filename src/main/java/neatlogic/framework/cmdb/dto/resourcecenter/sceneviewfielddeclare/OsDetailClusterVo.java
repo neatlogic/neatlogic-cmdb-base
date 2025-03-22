@@ -23,6 +23,7 @@ import neatlogic.framework.restful.annotation.EntityField;
 import java.util.Date;
 
 @ResourceType(name = "scence_os_detail_cluster", label = "操作系统详情及集群场景", moduleId= "cmdb", functionPathList = {"配置管理/应用清单"})
+@Deprecated
 public class OsDetailClusterVo {
     @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")
