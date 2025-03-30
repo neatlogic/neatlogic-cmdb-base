@@ -25,8 +25,8 @@ import java.util.List;
 public enum AccountType implements IEnum {
     PRIVATE("private", "私有类型"),
     PUBLIC("public", "公有类型");
-    private String value;
-    private String text;
+    private final String value;
+    private final String text;
 
     AccountType(String value, String text) {
         this.value = value;
