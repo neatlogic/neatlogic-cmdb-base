@@ -26,7 +26,15 @@ public class ResourceEntityConfigVo {
     @JSONField(serialize = false)
     private CiVo mainCiVo;
 
+    private ResourceEntityRelNodeVo relNode;
+
+    private List<ResourceEntityRelLinkVo> relLinkList;
+
+    List<ResourceEntityLeftJoinVo> leftJoinList;
+
     private List<ResourceEntityFieldMappingVo> fieldMappingList;
+
+    private String sceneTemplateName;
 
     public String getMainCi() {
         return mainCi;
@@ -44,11 +52,43 @@ public class ResourceEntityConfigVo {
         this.mainCiVo = mainCiVo;
     }
 
+    public ResourceEntityRelNodeVo getRelNode() {
+        return relNode;
+    }
+
+    public void setRelNode(ResourceEntityRelNodeVo relNode) {
+        this.relNode = relNode;
+    }
+
+    public List<ResourceEntityRelLinkVo> getRelLinkList() {
+        return relLinkList;
+    }
+
+    public void setRelLinkList(List<ResourceEntityRelLinkVo> relLinkList) {
+        this.relLinkList = relLinkList;
+    }
+
+    public List<ResourceEntityLeftJoinVo> getLeftJoinList() {
+        return leftJoinList;
+    }
+
+    public void setLeftJoinList(List<ResourceEntityLeftJoinVo> leftJoinList) {
+        this.leftJoinList = leftJoinList;
+    }
+
     public List<ResourceEntityFieldMappingVo> getFieldMappingList() {
         return fieldMappingList;
     }
 
     public void setFieldMappingList(List<ResourceEntityFieldMappingVo> fieldMappingList) {
         this.fieldMappingList = fieldMappingList;
+    }
+
+    public String getSceneTemplateName() {
+        return sceneTemplateName;
+    }
+
+    public void setSceneTemplateName(String sceneTemplateName) {
+        this.sceneTemplateName = sceneTemplateName;
     }
 }

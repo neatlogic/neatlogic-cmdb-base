@@ -33,10 +33,6 @@ public class ResourceEntityVo {
     private String label;
     @EntityField(name = "term.cmdb.ciinfo", type = ApiParamType.JSONOBJECT)
     private CiVo ci;//对应的模型
-    @EntityField(name = "common.attributelist", type = ApiParamType.JSONARRAY)
-    private Set<ResourceEntityAttrVo> attrList;
-    @EntityField(name = "term.cmdb.joinlist", type = ApiParamType.JSONARRAY)
-    private Set<ResourceEntityJoinVo> joinList;
     @EntityField(name = "common.status", type = ApiParamType.ENUM, member = Status.class)
     private String status = "";
     @EntityField(name = "common.statusname", type = ApiParamType.STRING)
@@ -54,6 +50,12 @@ public class ResourceEntityVo {
     private List<ValueTextVo> fieldList;
     @EntityField(name = "common.config", type = ApiParamType.JSONOBJECT)
     private ResourceEntityConfigVo config;
+    @EntityField(name = "是否支持创建多张视图", type = ApiParamType.BOOLEAN)
+    private Boolean isMultiple;
+    @EntityField(name = "所属模块ID", type = ApiParamType.STRING)
+    private String moduleId;
+    @EntityField(name = "所属模块名", type = ApiParamType.STRING)
+    private String moduleName;
     @JSONField(serialize = false)
     private String configStr;
 
@@ -68,20 +70,6 @@ public class ResourceEntityVo {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    public void addJoin(ResourceEntityJoinVo join) {
-        if (joinList == null) {
-            joinList = new HashSet<>();
-        }
-        joinList.add(join);
-    }
-
-    public void addAttr(ResourceEntityAttrVo attr) {
-        if (attrList == null) {
-            attrList = new HashSet<>();
-        }
-        attrList.add(attr);
     }
 
     public String getName() {
@@ -120,14 +108,6 @@ public class ResourceEntityVo {
         this.statusText = statusText;
     }
 
-    public Set<ResourceEntityAttrVo> getAttrList() {
-        return attrList;
-    }
-
-    public void setAttrList(Set<ResourceEntityAttrVo> attrList) {
-        this.attrList = attrList;
-    }
-
     public String getError() {
         return error;
     }
@@ -135,15 +115,6 @@ public class ResourceEntityVo {
     public void setError(String error) {
         this.error = error;
     }
-
-    public Set<ResourceEntityJoinVo> getJoinList() {
-        return joinList;
-    }
-
-    public void setJoinList(Set<ResourceEntityJoinVo> joinList) {
-        this.joinList = joinList;
-    }
-
 
     public CiVo getCi() {
         return ci;
@@ -215,5 +186,29 @@ public class ResourceEntityVo {
 
     public void setConfigStr(String configStr) {
         this.configStr = configStr;
+    }
+
+    public Boolean getIsMultiple() {
+        return isMultiple;
+    }
+
+    public void setIsMultiple(Boolean isMultiple) {
+        this.isMultiple = isMultiple;
+    }
+
+    public String getModuleId() {
+        return moduleId;
+    }
+
+    public void setModuleId(String moduleId) {
+        this.moduleId = moduleId;
+    }
+
+    public String getModuleName() {
+        return moduleName;
+    }
+
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName;
     }
 }

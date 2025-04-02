@@ -22,8 +22,8 @@ import neatlogic.framework.restful.annotation.EntityField;
 
 import java.util.Date;
 
-@ResourceType(name = "scence_os_detail_cluster", label = "操作系统详情及集群场景", functionPathList = {"配置管理/应用清单"})
-public class OsDetailClusterVo {
+@ResourceType(name = "scence_application_asset_list_detail", label = "应用清单资产详情", isMultiple = true, moduleId= "cmdb", functionPathList = {"配置管理/应用清单"})
+public class ApplicationAssetListDetailVo {
     @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;
@@ -83,12 +83,26 @@ public class OsDetailClusterVo {
     @ResourceField(name = "monitor_time")
     private Date monitorTime;
 
+    @EntityField(name = "端口", type = ApiParamType.INTEGER)
+    @ResourceField(name = "port")
+    private Integer port;
+
     @EntityField(name = "分组ID", type = ApiParamType.LONG)
     @ResourceField(name = "bg_id")
     private Long bgId;
     @EntityField(name = "分组名称", type = ApiParamType.STRING)
     @ResourceField(name = "bg_name")
     private String bgName;
+
+    @EntityField(name = "IP列表的ID", type = ApiParamType.LONG)
+    @ResourceField(name = "allip_id")
+    private Long allIpId;
+    @EntityField(name = "IP列表的IP地址", type = ApiParamType.STRING)
+    @ResourceField(name = "allip_ip")
+    private String allIpIp;
+    @EntityField(name = "IP列表的描述", type = ApiParamType.STRING)
+    @ResourceField(name = "allip_label")
+    private String allIpLabel;
 
     @EntityField(name = "用户ID", type = ApiParamType.LONG)
     @ResourceField(name = "user_id")
@@ -110,22 +124,22 @@ public class OsDetailClusterVo {
     @ResourceField(name = "state_label")
     private String stateLabel;
 
+    @EntityField(name = "厂商ID", type = ApiParamType.LONG)
+    @ResourceField(name = "vendor_id")
+    private Long vendorId;
+    @EntityField(name = "厂商名称", type = ApiParamType.STRING)
+    @ResourceField(name = "vendor_name")
+    private String vendorName;
+    @EntityField(name = "厂商描述", type = ApiParamType.STRING)
+    @ResourceField(name = "vendor_label")
+    private String vendorLabel;
+
     @EntityField(name = "数据中心ID", type = ApiParamType.LONG)
     @ResourceField(name = "datacenter_id")
     private Long dataCenterId;
     @EntityField(name = "数据中心名称", type = ApiParamType.STRING)
     @ResourceField(name = "datacenter_name")
     private String dataCenterName;
-
-    @EntityField(name = "集群id", type = ApiParamType.LONG)
-    @ResourceField(name = "cluster_id")
-    private Long clusterId;
-    @EntityField(name = "集群名称", type = ApiParamType.STRING)
-    @ResourceField(name = "cluster_name")
-    private String clusterName;
-    @EntityField(name = "集群类型ID", type = ApiParamType.LONG)
-    @ResourceField(name = "cluster_type_id")
-    private Long clusterTypeId;
 
     @EntityField(name = "环境ID", type = ApiParamType.LONG)
     @ResourceField(name = "env_id")
@@ -136,4 +150,24 @@ public class OsDetailClusterVo {
     @EntityField(name = "环境序号", type = ApiParamType.INTEGER)
     @ResourceField(name = "env_seq_no")
     private Integer envSeqNo;
+
+    @EntityField(name = "应用模块ID", type = ApiParamType.LONG)
+    @ResourceField(name = "app_module_id")
+    private Long appModuleId;
+    @EntityField(name = "应用模块名", type = ApiParamType.STRING)
+    @ResourceField(name = "app_module_name")
+    private String appModuleName;
+    @EntityField(name = "应用模块简称", type = ApiParamType.STRING)
+    @ResourceField(name = "app_module_abbr_name")
+    private String appModuleAbbrName;
+
+    @EntityField(name = "应用系统ID", type = ApiParamType.LONG)
+    @ResourceField(name = "app_system_id")
+    private Long appSystemId;
+    @EntityField(name = "应用系统名", type = ApiParamType.STRING)
+    @ResourceField(name = "app_system_name")
+    private String appSystemName;
+    @EntityField(name = "应用系统简称", type = ApiParamType.STRING)
+    @ResourceField(name = "app_system_abbr_name")
+    private String appSystemAbbrName;
 }

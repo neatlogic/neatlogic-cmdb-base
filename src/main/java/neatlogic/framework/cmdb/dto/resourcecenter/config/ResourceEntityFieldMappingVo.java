@@ -22,10 +22,15 @@ public class ResourceEntityFieldMappingVo {
     private String field;
     private String type;
     private String fromCi;
+    private String fromCiAlias;
     private String fromAttr;
     private String toCi;
+    private String toCiAlias;
     private String toAttr;
     private String direction;
+    private String uuid;
+    private String ciName;
+    private String attr;
     @JSONField(serialize = false)
     private Long fromCiId;
     @JSONField(serialize = false)
@@ -161,5 +166,45 @@ public class ResourceEntityFieldMappingVo {
 
     public void setToCiIsVirtual(Integer toCiIsVirtual) {
         this.toCiIsVirtual = toCiIsVirtual;
+    }
+
+    public String getFromCiAlias() {
+        return fromCiAlias;
+    }
+
+    public void setFromCiAlias(String fromCiAlias) {
+        this.fromCiAlias = fromCiAlias;
+    }
+
+    public String getToCiAlias() {
+        return toCiAlias;
+    }
+
+    public void setToCiAlias(String toCiAlias) {
+        this.toCiAlias = toCiAlias;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getCiName() {
+        return ciName;
+    }
+
+    public void setCiName(String ciName) {
+        this.ciName = ciName;
+    }
+
+    public String getAttr() {
+        return attr;
+    }
+
+    public void setAttr(String attr) {
+        this.attr = attr;
     }
 }

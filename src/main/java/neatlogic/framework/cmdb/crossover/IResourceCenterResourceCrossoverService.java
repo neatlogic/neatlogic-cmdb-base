@@ -15,16 +15,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.crossover;
 
+import com.alibaba.fastjson.JSONObject;
 import neatlogic.framework.cmdb.dto.resourcecenter.AccountVo;
-import neatlogic.framework.cmdb.dto.resourcecenter.AppEnvVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
-import neatlogic.framework.cmdb.dto.resourcecenter.ResourceVo;
 import neatlogic.framework.cmdb.dto.tag.TagVo;
 import neatlogic.framework.crossover.ICrossoverService;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -71,45 +67,5 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
      */
     Map<Long, List<TagVo>> getResourceTagByResourceIdList(List<Long> idList);
 
-    /**
-     * 补充资产的账号信息
-     *
-     * @param idList         资产id列表
-     * @param resourceVoList 资产列表
-     */
-    void addResourceAccount(List<Long> idList, List<ResourceVo> resourceVoList);
-
-    /**
-     * 补充资产的标签信息
-     *
-     * @param idList         资产id列表
-     * @param resourceVoList 资产列表
-     */
-    void addResourceTag(List<Long> idList, List<ResourceVo> resourceVoList);
-
-    /**
-     * 获取对应模块的应用清单列表
-     * 其中清单列表有 系统 存储设备 网络设备 应用实例 应用实例集群 DB实例 DB实例集群 访问入口
-     *
-     * @param searchVo resourceSearchVo
-     * @return tableList
-     */
-    JSONArray getAppModuleResourceList(ResourceSearchVo searchVo);
-
-    /**
-     * 获取模块列表
-     *
-     * @param searchVo resourceSearchVo
-     * @return 模块列表
-     */
-    List<ResourceVo> getAppModuleList(ResourceSearchVo searchVo);
-
-    /**
-     * 获取应用巡检批量巡检时的环境列表（环境会包含模块列表，模块还会包含模型列表）
-     *
-     * @param searchVo resourceSearchVo
-     * @return 应用巡检批量巡检时的环境列表
-     */
-    Collection<AppEnvVo> getAppEnvList(ResourceSearchVo searchVo);
 }
 

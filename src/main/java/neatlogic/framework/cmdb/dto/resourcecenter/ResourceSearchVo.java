@@ -107,6 +107,8 @@ public class ResourceSearchVo extends ConditionConfigVo {
     private Long ipFieldAttrId;
     @EntityField(name = "name字段映射的属性ID", type = ApiParamType.LONG)
     private Long nameFieldAttrId;
+    @EntityField(name = "视图名称", type = ApiParamType.STRING)
+    private String viewName;
 
     public ResourceSearchVo() {
     }
@@ -441,5 +443,13 @@ public class ResourceSearchVo extends ConditionConfigVo {
 
     public boolean isCustomCondition(){
         return CollectionUtils.isNotEmpty(conditionGroupList);
+    }
+
+    public String getViewName() {
+        return viewName;
+    }
+
+    public void setViewName(String viewName) {
+        this.viewName = viewName;
     }
 }
