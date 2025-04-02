@@ -41,14 +41,6 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
 
     List<ResourceVo> getResourceListByIdList(List<Long> idList);
 
-//    int getIpObjectResourceCountByAppSystemIdAndAppModuleIdAndEnvIdAndTypeId(ResourceSearchVo searchVo);
-
-//    List<Long> getIpObjectResourceIdListByAppSystemIdAndAppModuleIdAndEnvIdAndTypeId(ResourceSearchVo searchVo);
-
-//    int getOsResourceCountByAppSystemIdAndAppModuleIdAndEnvIdAndTypeId(ResourceSearchVo searchVo);
-
-//    List<Long> getOsResourceIdListByAppSystemIdAndAppModuleIdListAndEnvIdAndTypeId(ResourceSearchVo searchVo);
-
     List<ResourceVo> getAppInstanceResourceListByIdListSimple(List<Long> idList);
 
     Long getResourceIdByIpAndPortAndName(ResourceSearchVo searchVo);
@@ -67,8 +59,6 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
 
     List<Long> getHasModuleAppSystemIdListByAppSystemIdList(@Param("appSystemIdList") List<Long> appSystemIdList);
 
-//    List<Long> getHasEnvAppSystemIdListByAppSystemIdList(@Param("appSystemIdList") List<Long> appSystemIdList);
-
     List<Long> getAppSystemModuleIdListByAppSystemId(Long appSystemId);
 
     List<Long> getAppSystemModuleIdListByAppSystemIdAndAppModuleIdList(@Param("appSystemId") Long appSystemId, @Param("appModuleIdList") JSONArray appModuleIdList);
@@ -77,15 +67,7 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
 
     List<ResourceVo> getAppModuleListByIdListSimple(@Param("idList") List<Long> idList, @Param("needOrder") boolean needOrder);
 
-//    Set<Long> getIpObjectResourceTypeIdListByAppSystemIdAndEnvId(ResourceSearchVo searchVo);
-
-//    Set<Long> getOsResourceTypeIdListByAppSystemIdAndEnvId(ResourceSearchVo searchVo);
-
-//    Set<Long> getResourceAppSystemIdListByResourceId(Long id);
-
     List<ResourceVo> getResourceListByResourceVoList(@Param("resourceList") List<ResourceVo> resourceList,@Param("searchVo") ResourceSearchVo searchVo);
-
-//    Long getAppSystemIdByResourceId(Long id);
 
     Set<Long> getResourceTypeIdListByAppSystemIdAndModuleIdAndEnvIdAndInspectStatusList(ResourceSearchVo searchVo);
 

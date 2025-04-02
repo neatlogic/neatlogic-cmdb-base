@@ -34,5 +34,4 @@ public interface IAppSystemMapper extends ICrossoverService {
 
     List<AppModuleVo> getAppModuleListByIdList(List<Long> idList);
 
-//    List<AppEnvironmentVo> getAppEnvListByAppSystemIdAndModuleIdList(@Param("appSystemId") Long appSystemId, @Param("appModuleIdList") List<Long> appModuleIdList);
 }
