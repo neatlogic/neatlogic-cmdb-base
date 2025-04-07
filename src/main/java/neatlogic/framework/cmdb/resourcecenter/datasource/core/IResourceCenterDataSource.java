@@ -77,5 +77,9 @@ public interface IResourceCenterDataSource {
 
     Map<String, List<Long>> getAppResourceTypeIdListByAppSystemIdAndAppModuleIdAndEnvId(Long appSystemId, Long appModuleId, Long envId);
 
+    Map<String, List<Long>> getAppResourceTypeIdListByAppSystemIdAndAppModuleIdAndEnvIdAndInspectStatusList(Long appSystemId, Long appModuleId, Long envId, List<String> inspectStatusList);
+
     List<Long> getAppSystemIdListById(Long id);
+
+    List<ResourceEntityVo> getAppViewList();
 }
