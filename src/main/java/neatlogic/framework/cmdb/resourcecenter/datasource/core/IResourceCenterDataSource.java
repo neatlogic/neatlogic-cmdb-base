@@ -65,9 +65,9 @@ public interface IResourceCenterDataSource {
 
     List<ResourceVo> getAppModuleList(ResourceSearchVo searchVo);
 
-    List<ResourceVo> getAppEnvListForSelect(BasePageVo searchVo);
+    List<ResourceVo> getAppEnvListForSelect(BasePageVo searchVo, boolean needPage);
 
-    List<AppEnvVo> getAppEnvListByAppSystemId(Long appSystemId);
+    List<AppEnvVo> getAppEnvListByAppSystemIdAndInspectStatusList(Long appSystemId, List<String> inspectStatusList);
 
     List<ResourceVo> getStateListForSelect(BasePageVo searchVo);
 
