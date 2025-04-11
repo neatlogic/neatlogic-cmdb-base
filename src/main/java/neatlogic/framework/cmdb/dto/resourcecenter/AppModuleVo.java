@@ -15,10 +15,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.dto.resourcecenter;
 
+import neatlogic.framework.cmdb.dto.ci.CiVo;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class AppModuleVo implements Serializable {
     private static final long serialVersionUID = 3794860793337591802L;
@@ -33,6 +35,9 @@ public class AppModuleVo implements Serializable {
     private Long appSystemId;
     @EntityField(name = "term.cmdb.ishasenv", type = ApiParamType.INTEGER)
     private Integer isHasEnv = 0;
+
+    @EntityField(name = "term.cmdb.cilist", type = ApiParamType.JSONARRAY)
+    private List<CiVo> ciList;
 
     public Long getId() {
         return id;
@@ -74,4 +79,11 @@ public class AppModuleVo implements Serializable {
         this.isHasEnv = isHasEnv;
     }
 
+    public List<CiVo> getCiList() {
+        return ciList;
+    }
+
+    public void setCiList(List<CiVo> ciList) {
+        this.ciList = ciList;
+    }
 }
