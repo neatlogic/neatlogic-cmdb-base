@@ -22,4 +22,8 @@ public class RelEntityMultipleException extends ApiRuntimeException {
         super("关系“{0}”不能存在多个", label);
     }
 
+    public RelEntityMultipleException(String relName, String ciEntityName) {
+        super("关系“{0}”的对端配置项“{1}”已经被引用", relName, ciEntityName);
+    }
+
 }
