@@ -24,10 +24,11 @@ import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 import org.apache.commons.collections4.CollectionUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GlobalAttrEntityVo {
+public class GlobalAttrEntityVo implements Serializable {
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long attrId;
     @EntityField(name = "配置项id", type = ApiParamType.LONG)

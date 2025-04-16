@@ -15,7 +15,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.dto.cientity;
 
-public class RelCiEntityFilterVo {
+import java.io.Serializable;
+
+public class RelCiEntityFilterVo implements Serializable {
     private Long relId;
     private String direction;
     private Long ciEntityId;

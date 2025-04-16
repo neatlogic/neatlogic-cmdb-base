@@ -23,4 +23,8 @@ public class GlobalAttrNotFoundException extends ApiRuntimeException {
         super("全局属性“{0}”不存在", id);
     }
 
+    public GlobalAttrNotFoundException(String name) {
+        super("全局属性“{0}”不存在", name);
+    }
+
 }

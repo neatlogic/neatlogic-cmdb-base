@@ -20,7 +20,9 @@ import neatlogic.framework.asynchronization.threadlocal.TenantContext;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 
-public class SortVo {
+import java.io.Serializable;
+
+public class SortVo implements Serializable {
     enum SortType {
         ASC, DESC
     }

@@ -15,6 +15,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.dto.cientity;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
@@ -753,7 +754,7 @@ public class CiEntityVo extends BasePageVo {
             if (CollectionUtils.isNotEmpty(valueObjList)) {
                 List<GlobalAttrItemVo> valueList = new ArrayList<>();
                 for (int i = 0; i < valueObjList.size(); i++) {
-                    GlobalAttrItemVo globalAttrItemVo = JSONObject.toJavaObject(valueObjList.getJSONObject(i), GlobalAttrItemVo.class);
+                    GlobalAttrItemVo globalAttrItemVo = JSON.toJavaObject(valueObjList.getJSONObject(i), GlobalAttrItemVo.class);
                     if (globalAttrItemVo.getId() != null) {
                         valueList.add(globalAttrItemVo);
                     }
@@ -817,8 +818,8 @@ public class CiEntityVo extends BasePageVo {
         attrEntityList = new ArrayList<>();
         if (MapUtils.isNotEmpty(attrEntityData)) {
             for (String key : attrEntityData.keySet()) {
-                Long attrId = Long.parseLong(key.replace("attr_", ""));
-                attrEntityList.add(this.getAttrEntityByAttrId(attrId));
+                Long _attrId = Long.parseLong(key.replace("attr_", ""));
+                attrEntityList.add(this.getAttrEntityByAttrId(_attrId));
             }
         }
         return attrEntityList;
@@ -828,8 +829,8 @@ public class CiEntityVo extends BasePageVo {
         globalAttrEntityList = new ArrayList<>();
         if (MapUtils.isNotEmpty(globalAttrEntityData)) {
             for (String key : globalAttrEntityData.keySet()) {
-                Long attrId = Long.parseLong(key.replace("global_", ""));
-                globalAttrEntityList.add(this.getGlobalAttrEntityByAttrId(attrId));
+                Long _attrId = Long.parseLong(key.replace("global_", ""));
+                globalAttrEntityList.add(this.getGlobalAttrEntityByAttrId(_attrId));
             }
         }
         return globalAttrEntityList;
@@ -844,7 +845,7 @@ public class CiEntityVo extends BasePageVo {
      */
     @JSONField(serialize = false)
     public List<RelEntityVo> getRelEntityByRelIdAndDirection(Long relId, String direction) {
-        List<RelEntityVo> relEntityList = new ArrayList<>();
+        List<RelEntityVo> _relEntityList = new ArrayList<>();
         if (MapUtils.isNotEmpty(this.relEntityData) && relEntityData.containsKey("rel" + direction + "_" + relId)) {
             JSONObject relEntityDataObj = relEntityData.getJSONObject("rel" + direction + "_" + relId);
             JSONArray relDataList = relEntityDataObj.getJSONArray("valueList");
@@ -873,11 +874,11 @@ public class CiEntityVo extends BasePageVo {
                         relEntityVo.setToCiEntityId(this.getId());
                         relEntityVo.setToCiId(this.getCiId());
                     }
-                    relEntityList.add(relEntityVo);
+                    _relEntityList.add(relEntityVo);
                 }
             }
         }
-        return relEntityList;
+        return _relEntityList;
     }
 
     public List<RelEntityVo> getRelEntityList() {
@@ -1106,20 +1107,20 @@ public class CiEntityVo extends BasePageVo {
      */
     public void removeRelEntityData(Long relId, String direction, Long targetId) {
         if (relEntityData.containsKey("rel" + direction + "_" + relId) && relEntityData.getJSONObject("rel" + direction + "_" + relId).containsKey("valueList")) {
-            JSONArray relList = relEntityData.getJSONObject("rel" + direction + "_" + relId).getJSONArray("valueList");
-            if (CollectionUtils.isNotEmpty(relList)) {
+            JSONArray _relList = relEntityData.getJSONObject("rel" + direction + "_" + relId).getJSONArray("valueList");
+            if (CollectionUtils.isNotEmpty(_relList)) {
                 List<Integer> removeList = new ArrayList<>();
-                for (int i = 0; i < relList.size(); i++) {
-                    JSONObject relObj = relList.getJSONObject(i);
+                for (int i = 0; i < _relList.size(); i++) {
+                    JSONObject relObj = _relList.getJSONObject(i);
                     //如果是新增加目标则不会有ciEntityId,所以必须要判断ciEntityId是否为空
                     if (relObj.containsKey("ciEntityId") && relObj.getLong("ciEntityId").equals(targetId)) {
                         removeList.add(i);
                     }
                 }
                 for (int index : removeList) {
-                    relList.remove(index);
+                    _relList.remove(index);
                 }
-                if (CollectionUtils.isEmpty(relList)) {
+                if (CollectionUtils.isEmpty(_relList)) {
                     relEntityData.remove("rel" + direction + "_" + relId);
                 }
             }
