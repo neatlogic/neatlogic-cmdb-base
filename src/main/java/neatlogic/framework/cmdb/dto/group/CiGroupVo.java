@@ -15,11 +15,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.dto.group;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -29,6 +30,12 @@ public class CiGroupVo implements Serializable {
     private Long id;
     @EntityField(name = "模型id", type = ApiParamType.LONG)
     private Long ciId;
+    @EntityField(name = "模型唯一标识", type = ApiParamType.STRING)
+    private String ciName;
+    @EntityField(name = "模型名称", type = ApiParamType.STRING)
+    private String ciLabel;
+    @EntityField(name = "模型图标", type = ApiParamType.STRING)
+    private String ciIcon;
     @EntityField(name = "团体id", type = ApiParamType.LONG)
     private Long groupId;
     @EntityField(name = "规则", type = ApiParamType.JSONOBJECT)
@@ -63,10 +70,34 @@ public class CiGroupVo implements Serializable {
         this.groupId = groupId;
     }
 
+    public String getCiName() {
+        return ciName;
+    }
+
+    public void setCiName(String ciName) {
+        this.ciName = ciName;
+    }
+
+    public String getCiLabel() {
+        return ciLabel;
+    }
+
+    public void setCiLabel(String ciLabel) {
+        this.ciLabel = ciLabel;
+    }
+
+    public String getCiIcon() {
+        return ciIcon;
+    }
+
+    public void setCiIcon(String ciIcon) {
+        this.ciIcon = ciIcon;
+    }
+
     public JSONObject getRule() {
         if (rule == null && StringUtils.isNotBlank(ruleStr)) {
             try {
-                rule = JSONObject.parseObject(ruleStr);
+                rule = JSON.parseObject(ruleStr);
             } catch (Exception ignored) {
 
             }
