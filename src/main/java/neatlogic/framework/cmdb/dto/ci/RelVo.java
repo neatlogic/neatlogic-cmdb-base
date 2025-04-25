@@ -122,9 +122,12 @@ public class RelVo extends BasePageVo {
     private Integer isShowInTopo;
     @JSONField(serialize = false)
     private Long maxRelEntityCount = CiEntityVo.MAX_RELENTITY_COUNT;//限制查询时最多返回多少关系
-
     @EntityField(name = "当先关系的下一个关系", type = ApiParamType.JSONOBJECT)
     private RelVo nextRel;
+    @EntityField(name = "上游配置项数量", type = ApiParamType.INTEGER)
+    private int fromRelEntityCount;
+    @EntityField(name = "下游配置项数量", type = ApiParamType.INTEGER)
+    private int toRelEntityCount;
 
     public RelVo() {
 
@@ -142,6 +145,21 @@ public class RelVo extends BasePageVo {
         return id;
     }
 
+    public int getFromRelEntityCount() {
+        return fromRelEntityCount;
+    }
+
+    public void setFromRelEntityCount(int fromRelEntityCount) {
+        this.fromRelEntityCount = fromRelEntityCount;
+    }
+
+    public int getToRelEntityCount() {
+        return toRelEntityCount;
+    }
+
+    public void setToRelEntityCount(int toRelEntityCount) {
+        this.toRelEntityCount = toRelEntityCount;
+    }
 
     public String getAlias() {
         return alias;
