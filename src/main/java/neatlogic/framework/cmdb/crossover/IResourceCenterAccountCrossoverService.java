@@ -28,19 +28,6 @@ import java.util.Map;
  * @since 2021/11/8 15:09
  **/
 public interface IResourceCenterAccountCrossoverService extends ICrossoverService {
-    /**
-     * 根据账号id刷新账号ip
-     *
-     * @param accountId 账号id
-     */
-    void refreshAccountIpByAccountId(Long accountId);
-
-    /**
-     * 根据资产id刷新账号ip
-     *
-     * @param resourceIdList 资产id
-     */
-    void refreshAccountIpByResourceIdList(List<Long> resourceIdList);
 
     /**
      * 按以下规则顺序匹配account
