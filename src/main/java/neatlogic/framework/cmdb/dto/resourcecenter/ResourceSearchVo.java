@@ -109,6 +109,8 @@ public class ResourceSearchVo extends ConditionConfigVo {
     private Long nameFieldAttrId;
     @EntityField(name = "视图名称", type = ApiParamType.STRING)
     private String viewName;
+    @EntityField(name = "输入节点列表", type = ApiParamType.JSONARRAY)
+    private List<ResourceVo> inputNodeList;
 
     public ResourceSearchVo() {
     }
@@ -451,5 +453,13 @@ public class ResourceSearchVo extends ConditionConfigVo {
 
     public void setViewName(String viewName) {
         this.viewName = viewName;
+    }
+
+    public List<ResourceVo> getInputNodeList() {
+        return inputNodeList;
+    }
+
+    public void setInputNodeList(List<ResourceVo> inputNodeList) {
+        this.inputNodeList = inputNodeList;
     }
 }
