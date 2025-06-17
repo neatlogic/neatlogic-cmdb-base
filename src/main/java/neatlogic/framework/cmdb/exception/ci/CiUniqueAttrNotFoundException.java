@@ -15,11 +15,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.exception.ci;
 
+import com.alibaba.fastjson.JSONObject;
 import neatlogic.framework.cmdb.dto.ci.AttrVo;
 import neatlogic.framework.cmdb.dto.ci.CiVo;
 import neatlogic.framework.cmdb.dto.sync.SyncCiCollectionVo;
 import neatlogic.framework.exception.core.ApiRuntimeException;
-import com.alibaba.fastjson.JSONObject;
 
 public class CiUniqueAttrNotFoundException extends ApiRuntimeException {
 
@@ -32,6 +32,7 @@ public class CiUniqueAttrNotFoundException extends ApiRuntimeException {
     public CiUniqueAttrNotFoundException(CiVo ciVo, AttrVo attrVo) {
         super("nfcec.ciuniqueattrnotfoundexception.ciuniqueattrnotfoundexception_b", ciVo.getLabel(), ciVo.getName(), attrVo.getLabel(), attrVo.getName());
     }
+
 
     public CiUniqueAttrNotFoundException(AttrVo attrVo) {
         super("nfcec.ciuniqueattrnotfoundexception.ciuniqueattrnotfoundexception_c", attrVo.getCiLabel(), attrVo.getCiName(), attrVo.getLabel(), attrVo.getName());
