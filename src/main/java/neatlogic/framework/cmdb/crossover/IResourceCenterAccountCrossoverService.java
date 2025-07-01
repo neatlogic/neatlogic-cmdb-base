@@ -15,6 +15,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.crossover;
 
+import com.alibaba.fastjson.JSONObject;
 import neatlogic.framework.cmdb.dto.resourcecenter.AccountBaseVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.AccountProtocolVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.AccountVo;
@@ -28,19 +29,6 @@ import java.util.Map;
  * @since 2021/11/8 15:09
  **/
 public interface IResourceCenterAccountCrossoverService extends ICrossoverService {
-    /**
-     * 根据账号id刷新账号ip
-     *
-     * @param accountId 账号id
-     */
-    void refreshAccountIpByAccountId(Long accountId);
-
-    /**
-     * 根据资产id刷新账号ip
-     *
-     * @param resourceIdList 资产id
-     */
-    void refreshAccountIpByResourceIdList(List<Long> resourceIdList);
 
     /**
      * 按以下规则顺序匹配account
@@ -66,4 +54,20 @@ public interface IResourceCenterAccountCrossoverService extends ICrossoverServic
      * @param accountIdList 账号idList
      */
     void deleteAccount(List<Long> accountIdList);
+
+    /**
+     * 保存账号
+     * @param id
+     * @param paramAccountVo
+     * @return
+     */
+    JSONObject saveAccount(Long id, AccountVo paramAccountVo);
+
+    /**
+     * 绑定账号与资源关系
+     * @param resourceId
+     * @param accountIdList
+     * @return
+     */
+    JSONObject saveResourceAccount(Long resourceId, List<Long> accountIdList);
 }

@@ -18,6 +18,7 @@ package neatlogic.framework.cmdb.crossover;
 import neatlogic.framework.cmdb.dto.resourcecenter.AccountIpVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.AccountProtocolVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.AccountVo;
+import neatlogic.framework.cmdb.dto.resourcecenter.ResourceAccountVo;
 import neatlogic.framework.crossover.ICrossoverService;
 import org.apache.ibatis.annotations.Param;
 
@@ -29,6 +30,10 @@ public interface IResourceAccountCrossoverMapper extends ICrossoverService {
 
     AccountVo getPublicAccountByName(String name);
 
+    List<AccountVo> getAccountListByIdList(List<Long> accountIdList);
+
+    int checkAccountNameIsRepeats(AccountVo vo);
+
     AccountVo getResourceAccountByIpAndPort(@Param("host") String host, @Param("port") Integer port);
 
     AccountVo getAccountByTagentIpAndPort(@Param("ip") String ip, @Param("port") Integer port);
@@ -36,6 +41,10 @@ public interface IResourceAccountCrossoverMapper extends ICrossoverService {
     List<AccountVo> getAccountListByIpListAndProtocolId(@Param("ipList") List<String> ipList, @Param("protocolId") Long protocolId);
 
     AccountVo getAccountByTagentId(Long id);
+
+    List<AccountVo> getResourceAccountListByResourceIdAndType(@Param("resourceId") Long resourceId, @Param("type") String type);
+
+    List<AccountVo> getResourceAccountListByResourceId(Long resourceId);
 
     List<AccountVo> getAllAccountList();
 
@@ -65,6 +74,8 @@ public interface IResourceAccountCrossoverMapper extends ICrossoverService {
 
     void insertAccount(AccountVo vo);
 
+    int insertIgnoreResourceAccount(List<ResourceAccountVo> resourceAccountVoList);
+
     int insertAccountProtocol(AccountProtocolVo searchVo);
 
     int insertAccountIp(AccountIpVo ipVo);
@@ -76,5 +87,7 @@ public interface IResourceAccountCrossoverMapper extends ICrossoverService {
     int deleteAccountTagByAccountId(Long accountId);
 
     int deleteResourceAccountByAccountId(Long accountId);
+
+    int deleteResourceAccountByResourceIdListAndAccountIdList(@Param("resourceIdList") List<Long> resourceIdList, @Param("accountIdList") List<Long> accountIdList);
 
 }
