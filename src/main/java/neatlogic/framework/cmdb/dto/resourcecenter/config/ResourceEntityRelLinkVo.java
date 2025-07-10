@@ -17,7 +17,9 @@
 
 package neatlogic.framework.cmdb.dto.resourcecenter.config;
 
-public class ResourceEntityRelLinkVo {
+import java.io.Serializable;
+
+public class ResourceEntityRelLinkVo implements Serializable {
     private String leftCi;
 
     private String rightCi;

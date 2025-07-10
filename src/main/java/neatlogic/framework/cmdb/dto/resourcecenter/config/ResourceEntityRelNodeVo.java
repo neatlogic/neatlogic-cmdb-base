@@ -17,10 +17,11 @@
 
 package neatlogic.framework.cmdb.dto.resourcecenter.config;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResourceEntityRelNodeVo {
+public class ResourceEntityRelNodeVo implements Serializable {
     private String uuid;
     private String ciName;
     private String ciLabel;
