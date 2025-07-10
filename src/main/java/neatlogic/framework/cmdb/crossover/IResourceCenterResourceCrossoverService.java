@@ -67,12 +67,33 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
      */
     Map<Long, List<TagVo>> getResourceTagByResourceIdList(List<Long> idList);
 
+    /**
+     * 生成SQL等效于{@link neatlogic.module.cmdb.dao.mapper.resourcecenter.ResourceMapper#getResourceIdList(neatlogic.framework.cmdb.dto.resourcecenter.ResourceSearchVo)}
+     * @param searchVo
+     * @return
+     */
     String buildGetResourceIdListSql(ResourceSearchVo searchVo);
 
+    /**
+     * 生成SQL等效于{@link neatlogic.module.cmdb.dao.mapper.resourcecenter.ResourceMapper#getResourceCount(neatlogic.framework.cmdb.dto.resourcecenter.ResourceSearchVo)}
+     * @param searchVo
+     * @return
+     */
     String buildGetResourceCountSql(ResourceSearchVo searchVo);
 
+    /**
+     * 生成SQL等效于{@link neatlogic.module.cmdb.dao.mapper.resourcecenter.ResourceMapper#getResourceListByIdList(java.util.List)}
+     * @param idList
+     * @param selectFieldNameList
+     * @return
+     */
     String buildGetResourceListSql(List<Long> idList, List<String> selectFieldNameList);
 
+    /**
+     * 生成SQL等效于{@link neatlogic.module.cmdb.dao.mapper.resourcecenter.ResourceMapper#getResourceListByIdList(java.util.List)}
+     * @param idList
+     * @return
+     */
     String buildGetResourceListSql(List<Long> idList);
 
 }
