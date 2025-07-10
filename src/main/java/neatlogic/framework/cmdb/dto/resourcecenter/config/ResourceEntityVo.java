@@ -24,9 +24,10 @@ import neatlogic.framework.common.dto.ValueTextVo;
 import neatlogic.framework.restful.annotation.EntityField;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class ResourceEntityVo {
+public class ResourceEntityVo implements Serializable {
     @EntityField(name = "common.name", type = ApiParamType.STRING)
     private String name;
     @EntityField(name = "common.cnname", type = ApiParamType.STRING)

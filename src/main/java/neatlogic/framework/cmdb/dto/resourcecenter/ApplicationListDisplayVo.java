@@ -21,7 +21,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 
-public class ApplicationListDisplayVo {
+import java.io.Serializable;
+
+public class ApplicationListDisplayVo implements Serializable {
     private Long id;
 
     private Long appSystemId;

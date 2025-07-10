@@ -21,7 +21,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 
-public class AssetListDisplayVo {
+import java.io.Serializable;
+
+public class AssetListDisplayVo implements Serializable {
     private Long id;
 
     private String rootCiName;
