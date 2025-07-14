@@ -36,6 +36,10 @@ public class ResourceEntityConfigVo {
 
     private String sceneTemplateName;
 
+    List<String> selectItemFieldNameList;
+
+    List<String> filterItemFieldNameList;
+
     public String getMainCi() {
         return mainCi;
     }
@@ -90,5 +94,21 @@ public class ResourceEntityConfigVo {
 
     public void setSceneTemplateName(String sceneTemplateName) {
         this.sceneTemplateName = sceneTemplateName;
+    }
+
+    public List<String> getSelectItemFieldNameList() {
+        return selectItemFieldNameList;
+    }
+
+    public void setSelectItemFieldNameList(List<String> selectItemFieldNameList) {
+        this.selectItemFieldNameList = selectItemFieldNameList;
+    }
+
+    public List<String> getFilterItemFieldNameList() {
+        return filterItemFieldNameList;
+    }
+
+    public void setFilterItemFieldNameList(List<String> filterItemFieldNameList) {
+        this.filterItemFieldNameList = filterItemFieldNameList;
     }
 }

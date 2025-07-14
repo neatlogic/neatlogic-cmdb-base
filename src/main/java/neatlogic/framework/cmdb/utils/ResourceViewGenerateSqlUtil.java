@@ -43,26 +43,44 @@ public class ResourceViewGenerateSqlUtil {
     private CiVo mainCiVo;
     private List<ResourceEntityFieldMappingVo> fieldMappingList;
     private List<ResourceEntityLeftJoinVo> leftJoinList;
+
+    List<String> selectItemFieldNameList;
+
+    List<String> filterItemFieldNameList;
     //sql语句中已经存在的表
     private Map<String, Table> joinedTableMap;
     //sql语句关联表中相等的列
     private Map<String, Column> equalColumnMap;
 
+    private Map<String, Column> filterItemFieldName2ColumnMap;
+
     public ResourceViewGenerateSqlUtil(ResourceEntityConfigVo config) {
         this.mainCiVo = config.getMainCiVo();
         this.fieldMappingList = config.getFieldMappingList();
         this.leftJoinList = config.getLeftJoinList();
+        this.selectItemFieldNameList = config.getSelectItemFieldNameList();
+        this.filterItemFieldNameList = config.getFilterItemFieldNameList();
     }
 
-    public String getSql() {
+    public PlainSelect getSql() {
         PlainSelect plainSelect = initPlainSelectByMainResourceId(mainCiVo);
         for (ResourceEntityLeftJoinVo leftJoinVo : leftJoinList) {
             addJoinTable(leftJoinVo, plainSelect);
         }
         for (ResourceEntityFieldMappingVo fieldMappingVo : fieldMappingList) {
-            addJoinTableByFieldMapping(fieldMappingVo, plainSelect, mainCiVo);
+            String field = fieldMappingVo.getField();
+            if (selectItemFieldNameList.contains(field) || filterItemFieldNameList.contains(field)) {
+                Column column = addJoinTableByFieldMapping(fieldMappingVo, plainSelect, mainCiVo);
+                if (filterItemFieldNameList.contains(field)) {
+                    filterItemFieldName2ColumnMap.put(field, column);
+                }
+            }
         }
-        return plainSelect.toString();
+        return plainSelect;
+    }
+
+    public Map<String, Column> getFilterItemFieldName2ColumnMap() {
+        return this.filterItemFieldName2ColumnMap;
     }
 
     private void addJoinTable(Table table) {
@@ -114,6 +132,7 @@ public class ResourceViewGenerateSqlUtil {
     private PlainSelect initPlainSelectByMainResourceId(CiVo mainCiVo) {
         joinedTableMap = new HashMap<>();
         equalColumnMap = new HashMap<>();
+        filterItemFieldName2ColumnMap = new HashMap<>();
         String tableName = "cmdb_" + mainCiVo.getId();
         String tableAlias = tableName + "_" + mainCiVo.getName();
         Table cmdbCiIdTable = new Table(TenantContext.get().getDataDbName(), tableName).withAlias(new Alias(tableAlias).withUseAs(false));
@@ -298,11 +317,15 @@ public class ResourceViewGenerateSqlUtil {
                             toAttr = toAttr.substring(1);
                         }
                         Column column = new Column(cmdbCiIdTable, toAttr);
-                        plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                        if (selectItemFieldNameList.contains(field)) {
+                            plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                        }
                         return column;
                     } else {
                         Column column = new Column(cmdbCiIdTable, "`" + toAttrId + "`");
-                        plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                        if (selectItemFieldNameList.contains(field)) {
+                            plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                        }
                         return column;
                     }
                 } else {
@@ -324,7 +347,9 @@ public class ResourceViewGenerateSqlUtil {
                             toAttr = toAttr.substring(1);
                         }
                         Column column = new Column(attrCiTable, toAttr);
-                        plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                        if (selectItemFieldNameList.contains(field)) {
+                            plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                        }
                         return column;
                     } else {
                         String tableName = "cmdb_" + toAttrCiId;
@@ -340,7 +365,9 @@ public class ResourceViewGenerateSqlUtil {
                             addEqualColumn(cmdbCiIdTableCientityIdColumn, table3IdColumn);
                         }
                         Column column = new Column(cmdbCiIdTable, "`" + toAttrId + "`");
-                        plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                        if (selectItemFieldNameList.contains(field)) {
+                            plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                        }
                         return column;
                     }
                 }
@@ -359,7 +386,9 @@ public class ResourceViewGenerateSqlUtil {
                     addEqualColumn(cmdbCiIdTableCientityIdColumn, attrCiTableIdColumn);
                 }
                 Column column = new Column(cmdbCiIdTable, "`" + fromAttrId + "`");
-                plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                if (selectItemFieldNameList.contains(field)) {
+                    plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                }
                 return column;
             }
         } else if (Objects.equals(type, "rel")) {
@@ -404,7 +433,9 @@ public class ResourceViewGenerateSqlUtil {
                         }
                     }
                     Column column = new Column(attrCiTable, fromAttr);
-                    plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                    if (selectItemFieldNameList.contains(field)) {
+                        plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                    }
                     return column;
                 } else {
                     String tableName = "cmdb_" + fromAttrCiId;
@@ -420,7 +451,9 @@ public class ResourceViewGenerateSqlUtil {
                         addEqualColumn(cmdbCiIdTableCientityIdColumn, attrCiTableIdColumn);
                     }
                     Column column = new Column(cmdbCiIdTable, "`" + fromAttrId + "`");
-                    plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                    if (selectItemFieldNameList.contains(field)) {
+                        plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                    }
                     return column;
                 }
             } else {
@@ -463,7 +496,9 @@ public class ResourceViewGenerateSqlUtil {
                         }
                     }
                     Column column = new Column(attrCiTable, toAttr);
-                    plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                    if (selectItemFieldNameList.contains(field)) {
+                        plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                    }
                     return column;
                 } else {
                     String tableName = "cmdb_" + toAttrCiId;
@@ -479,7 +514,9 @@ public class ResourceViewGenerateSqlUtil {
                         addEqualColumn(cmdbCiIdTableCientityIdColumn, attrCiTableIdColumn);
                     }
                     Column column = new Column(cmdbCiIdTable, "`" + toAttrId + "`");
-                    plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                    if (selectItemFieldNameList.contains(field)) {
+                        plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+                    }
                     return column;
                 }
             }
@@ -535,10 +572,14 @@ public class ResourceViewGenerateSqlUtil {
                 addEqualColumn(globalAttritemTableAttrIdColumn, cmdbCientityGlobalattritemTableAttrIdColumn);
             }
             Column column = new Column(globalAttritemTable, toAttr);
-            plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+            if (selectItemFieldNameList.contains(field)) {
+                plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+            }
             return column;
         }  else if (Objects.equals(type, "empty")) {
-            plainSelect.addSelectItems(new SelectExpressionItem(new NullValue()).withAlias(new Alias(field)));
+            if (selectItemFieldNameList.contains(field)) {
+                plainSelect.addSelectItems(new SelectExpressionItem(new NullValue()).withAlias(new Alias(field)));
+            }
             return null;
         } else {
             //非下拉框属性
@@ -574,7 +615,9 @@ public class ResourceViewGenerateSqlUtil {
                 fromAttr = "label";
             }
             Column column = new Column(new Table("cientity_" + fromCi), fromAttr);
-            plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+            if (selectItemFieldNameList.contains(field)) {
+                plainSelect.addSelectItems(new SelectExpressionItem(column).withAlias(new Alias(field)));
+            }
             return column;
         }
     }

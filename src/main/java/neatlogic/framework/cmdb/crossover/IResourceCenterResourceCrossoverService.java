@@ -67,5 +67,13 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
      */
     Map<Long, List<TagVo>> getResourceTagByResourceIdList(List<Long> idList);
 
+    String buildGetResourceIdListSql(ResourceSearchVo searchVo);
+
+    String buildGetResourceCountSql(ResourceSearchVo searchVo);
+
+    String buildGetResourceListSql(List<Long> idList, List<String> selectFieldNameList);
+
+    String buildGetResourceListSql(List<Long> idList);
+
 }
 
