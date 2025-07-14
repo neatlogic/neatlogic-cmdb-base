@@ -17,7 +17,9 @@
 
 package neatlogic.framework.cmdb.dto.resourcecenter.config;
 
-public class ResourceEntityLeftJoinVo {
+import java.io.Serializable;
+
+public class ResourceEntityLeftJoinVo implements Serializable {
 
     private String fromCi;
 

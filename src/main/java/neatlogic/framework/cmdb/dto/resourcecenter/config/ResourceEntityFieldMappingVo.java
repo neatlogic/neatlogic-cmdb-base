@@ -17,7 +17,9 @@ package neatlogic.framework.cmdb.dto.resourcecenter.config;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-public class ResourceEntityFieldMappingVo {
+import java.io.Serializable;
+
+public class ResourceEntityFieldMappingVo implements Serializable {
 
     private String field;
     private String type;

@@ -18,9 +18,10 @@ package neatlogic.framework.cmdb.dto.resourcecenter.config;
 import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.cmdb.dto.ci.CiVo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ResourceEntityConfigVo {
+public class ResourceEntityConfigVo implements Serializable {
 
     private String mainCi;
     @JSONField(serialize = false)
