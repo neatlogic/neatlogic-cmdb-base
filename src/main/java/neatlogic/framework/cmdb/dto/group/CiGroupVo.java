@@ -26,6 +26,8 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.Serializable;
 
 public class CiGroupVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "模型id", type = ApiParamType.LONG)

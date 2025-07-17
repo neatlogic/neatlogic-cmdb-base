@@ -27,6 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CiViewVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "term.cmdb.ciid", type = ApiParamType.LONG)
     private Long ciId;
     @EntityField(name = "term.ciview.itemid", type = ApiParamType.LONG)

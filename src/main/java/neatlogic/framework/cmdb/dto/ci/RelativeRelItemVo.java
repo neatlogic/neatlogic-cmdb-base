@@ -19,6 +19,9 @@ import java.io.Serializable;
 
 
 public class RelativeRelItemVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
+
     private String direction;
     private Long relId;
 

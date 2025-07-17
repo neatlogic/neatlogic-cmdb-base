@@ -30,6 +30,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GlobalAttrEntityTransactionVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "配置项id", type = ApiParamType.LONG)
     private Long ciEntityId;
     @EntityField(name = "属性id", type = ApiParamType.LONG)

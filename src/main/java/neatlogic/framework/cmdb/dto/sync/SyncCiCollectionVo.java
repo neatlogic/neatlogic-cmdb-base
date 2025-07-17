@@ -36,6 +36,8 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 public class SyncCiCollectionVo extends BasePageVo {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "idList", type = ApiParamType.JSONARRAY)

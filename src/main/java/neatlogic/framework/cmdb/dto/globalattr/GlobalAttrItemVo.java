@@ -24,6 +24,8 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Objects;
 
 public class GlobalAttrItemVo extends BasePageVo {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "common.value", type = ApiParamType.STRING)

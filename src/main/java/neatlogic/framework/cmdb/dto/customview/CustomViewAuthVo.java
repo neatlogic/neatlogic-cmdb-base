@@ -21,6 +21,8 @@ import neatlogic.framework.restful.annotation.EntityField;
 import java.io.Serializable;
 
 public class CustomViewAuthVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "视图id", type = ApiParamType.LONG)
     private Long customViewId;
     @EntityField(name = "授权对象类型", type = ApiParamType.STRING)

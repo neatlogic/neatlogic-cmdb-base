@@ -19,6 +19,8 @@ import java.io.Serializable;
 import java.util.List;
 
 public class GlobalAttrFilterVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     private Long attrId;
     private String name;
     private String label;

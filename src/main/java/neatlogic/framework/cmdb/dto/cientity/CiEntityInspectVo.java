@@ -1,10 +1,10 @@
 package neatlogic.framework.cmdb.dto.cientity;
 
+import com.alibaba.fastjson.JSONObject;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
-import com.alibaba.fastjson.JSONObject;
 
 import java.util.Date;
 
@@ -13,7 +13,8 @@ import java.util.Date;
  * @date 2022/2/22 5:07 下午
  */
 public class CiEntityInspectVo extends BasePageVo {
-
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "作业id", type = ApiParamType.LONG)

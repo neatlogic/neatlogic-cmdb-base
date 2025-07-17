@@ -42,6 +42,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class CiEntityVo extends BasePageVo {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
+
     public static final long MAX_RELENTITY_COUNT = 3L;
     public static final long MAX_ATTRENTITY_COUNT = 3L;
     @EntityField(name = "id", type = ApiParamType.LONG)

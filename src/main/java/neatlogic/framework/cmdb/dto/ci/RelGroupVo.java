@@ -22,7 +22,8 @@ import neatlogic.framework.util.SnowflakeUtil;
 import java.io.Serializable;
 
 public class RelGroupVo implements Serializable {
-    private static final long serialVersionUID = 889439265321343870L;
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "模型id", type = ApiParamType.LONG)

@@ -34,6 +34,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AttrEntityTransactionVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;// 由于需要在SQL批量写入，所以这里使用数据库自增id
     @EntityField(name = "配置项id", type = ApiParamType.LONG)

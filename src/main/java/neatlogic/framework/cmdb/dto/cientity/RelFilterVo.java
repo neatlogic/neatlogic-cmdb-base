@@ -19,6 +19,8 @@ import java.io.Serializable;
 import java.util.List;
 
 public class RelFilterVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     private Long relId;
     private String direction;
     private String expressionName; // 表达式名称

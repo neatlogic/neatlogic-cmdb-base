@@ -18,6 +18,9 @@ package neatlogic.framework.cmdb.dto.cientity;
 import java.io.Serializable;
 
 public class AttrCiEntityFilterVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
+
     private Long attrId;
     private Long fromCiEntityId;
 

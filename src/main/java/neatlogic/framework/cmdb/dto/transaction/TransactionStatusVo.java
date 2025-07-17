@@ -20,9 +20,9 @@ import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.restful.annotation.EntityField;
 
-import java.io.Serializable;
-
-public class TransactionStatusVo extends BasePageVo implements Serializable {
+public class TransactionStatusVo extends BasePageVo {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "状态", type = ApiParamType.STRING, member = TransactionStatus.class)

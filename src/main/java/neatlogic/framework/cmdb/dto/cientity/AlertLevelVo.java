@@ -22,6 +22,7 @@ import neatlogic.framework.util.SnowflakeUtil;
 import org.apache.commons.lang3.StringUtils;
 
 public class AlertLevelVo {
+
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "term.cmdb.alertlevel", type = ApiParamType.INTEGER)

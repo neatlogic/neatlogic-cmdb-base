@@ -15,21 +15,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.dto.batchimport;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.cmdb.enums.ImportStatus;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
-import com.alibaba.fastjson.annotation.JSONField;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class ImportAuditVo extends BasePageVo implements Serializable {
+public class ImportAuditVo extends BasePageVo {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
 
-    private static final long serialVersionUID = 7432609786418756446L;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "模型ID", type = ApiParamType.LONG)

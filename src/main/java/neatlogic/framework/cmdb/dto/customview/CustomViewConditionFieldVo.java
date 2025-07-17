@@ -18,6 +18,8 @@ package neatlogic.framework.cmdb.dto.customview;
 import java.io.Serializable;
 
 public class CustomViewConditionFieldVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     private String name;
     private String type;
 

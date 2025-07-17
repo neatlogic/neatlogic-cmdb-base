@@ -26,6 +26,8 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
 public class SyncConditionVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "策略id", type = ApiParamType.LONG)
     private Long syncPolicyId;
     @EntityField(name = "字段", type = ApiParamType.STRING)
