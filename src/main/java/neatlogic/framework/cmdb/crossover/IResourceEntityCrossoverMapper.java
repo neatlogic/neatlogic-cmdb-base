@@ -15,11 +15,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.crossover;
 
+import neatlogic.framework.cmdb.dto.resourcecenter.config.ResourceEntityVo;
 import neatlogic.framework.crossover.ICrossoverService;
 
 import java.util.List;
 
 public interface IResourceEntityCrossoverMapper extends ICrossoverService {
+
+    ResourceEntityVo getResourceEntityByName(String name);
 
     List<Long> getAllResourceTypeCiIdList();
 }
