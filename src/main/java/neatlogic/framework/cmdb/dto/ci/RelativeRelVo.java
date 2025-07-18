@@ -26,6 +26,8 @@ import java.io.Serializable;
  * 级联关系对象
  */
 public class RelativeRelVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "自增id", type = ApiParamType.LONG)//由于实际的唯一键是relId,relativeRelId,fromPath和toPath，所以增加一个id方便删除和引用
     private Long id;
     @EntityField(name = "关系id", type = ApiParamType.LONG)

@@ -21,7 +21,8 @@ import neatlogic.framework.restful.annotation.EntityField;
 import java.io.Serializable;
 
 public class CiAuthVo implements Serializable {
-    private static final long serialVersionUID = -3120412333445538L;
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "ciId", type = ApiParamType.LONG)
     private Long ciId;
     @EntityField(name = "authType", type = ApiParamType.STRING)

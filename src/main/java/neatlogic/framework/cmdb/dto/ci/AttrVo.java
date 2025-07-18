@@ -37,6 +37,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AttrVo extends BasePageVo {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "模型id，模型id为0代表基础属性", type = ApiParamType.LONG)

@@ -27,6 +27,8 @@ import java.util.Date;
 import java.util.List;
 
 public class CiEntityAlertVo extends BasePageVo {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "模型id", type = ApiParamType.LONG)

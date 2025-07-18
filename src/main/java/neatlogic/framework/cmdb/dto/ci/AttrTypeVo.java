@@ -21,7 +21,9 @@ import neatlogic.framework.restful.annotation.EntityField;
 import java.io.Serializable;
 
 public class AttrTypeVo implements Serializable {
-
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
+    
     @EntityField(name = "唯一标识", type = ApiParamType.STRING)
     private String name;
     @EntityField(name = "名称", type = ApiParamType.STRING)

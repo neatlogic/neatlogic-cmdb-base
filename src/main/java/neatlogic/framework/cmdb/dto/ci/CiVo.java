@@ -28,7 +28,8 @@ import java.io.Serializable;
 import java.util.*;
 
 public class CiVo implements Serializable {
-    private static final long serialVersionUID = -312040937798083138L;
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @JSONField(serialize = false)
     private String keyword;
     @EntityField(name = "id", type = ApiParamType.LONG)

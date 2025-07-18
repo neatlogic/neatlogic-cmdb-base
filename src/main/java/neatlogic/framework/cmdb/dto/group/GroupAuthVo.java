@@ -22,6 +22,8 @@ import neatlogic.framework.restful.annotation.EntityField;
 import java.io.Serializable;
 
 public class GroupAuthVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "团体id", type = ApiParamType.LONG)
     private Long groupId;
     @EntityField(name = "授权类型", type = ApiParamType.ENUM, member = AuthType.class)

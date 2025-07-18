@@ -27,6 +27,8 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.Serializable;
 
 public class CustomViewGlobalAttrVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "uuid", type = ApiParamType.STRING)
     private String uuid;
     @EntityField(name = "视图id", type = ApiParamType.LONG)

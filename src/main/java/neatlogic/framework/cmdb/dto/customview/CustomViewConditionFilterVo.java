@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomViewConditionFilterVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "属性唯一标识", type = ApiParamType.STRING)
     private String attrName;
     @EntityField(name = "属性uuid", type = ApiParamType.STRING)

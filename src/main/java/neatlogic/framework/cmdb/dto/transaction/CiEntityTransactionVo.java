@@ -43,6 +43,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class CiEntityTransactionVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     static Logger logger = LoggerFactory.getLogger(CiEntityTransactionVo.class);
     @JSONField(serialize = false)
     private String ciEntityUuid;// 批量添加时的临时ID，由前端生成

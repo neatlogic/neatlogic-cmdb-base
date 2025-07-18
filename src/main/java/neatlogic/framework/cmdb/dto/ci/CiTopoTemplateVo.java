@@ -24,6 +24,7 @@ import neatlogic.framework.util.SnowflakeUtil;
 import org.apache.commons.lang3.StringUtils;
 
 public class CiTopoTemplateVo {
+
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "term.cmdb.ciid", type = ApiParamType.LONG)

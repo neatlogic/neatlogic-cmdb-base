@@ -26,6 +26,8 @@ import neatlogic.framework.util.SnowflakeUtil;
 import java.util.Date;
 
 public class RelEntityVo extends BasePageVo {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "关系id", type = ApiParamType.LONG)

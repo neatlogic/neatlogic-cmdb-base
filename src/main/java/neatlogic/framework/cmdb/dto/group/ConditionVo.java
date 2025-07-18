@@ -20,6 +20,9 @@ import com.alibaba.fastjson.JSONArray;
 import java.io.Serializable;
 
 public class ConditionVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
+
     private enum Expression {
         EQUAL("equal", " %s == %s "),
         NOTEQUAL("notequal", " not %s contains %s "),

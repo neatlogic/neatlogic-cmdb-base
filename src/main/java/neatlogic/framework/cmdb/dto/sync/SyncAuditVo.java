@@ -33,6 +33,8 @@ import java.util.List;
 import java.util.Set;
 
 public class SyncAuditVo extends BasePageVo {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "同步配置id", type = ApiParamType.LONG)

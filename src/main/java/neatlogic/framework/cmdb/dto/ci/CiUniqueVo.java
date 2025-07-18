@@ -21,6 +21,8 @@ import neatlogic.framework.restful.annotation.EntityField;
 import java.io.Serializable;
 
 public class CiUniqueVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "模型id", type = ApiParamType.LONG)
     private Long ciId;
     @EntityField(name = "属性id", type = ApiParamType.LONG)

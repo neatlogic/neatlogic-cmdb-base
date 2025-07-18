@@ -23,6 +23,9 @@ import neatlogic.framework.restful.annotation.EntityField;
 import java.io.Serializable;
 
 public class SortVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
+
     enum SortType {
         ASC, DESC
     }

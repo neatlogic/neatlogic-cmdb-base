@@ -15,11 +15,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.dto.sync;
 
-import neatlogic.framework.common.constvalue.ApiParamType;
-import neatlogic.framework.restful.annotation.EntityField;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
+import neatlogic.framework.common.constvalue.ApiParamType;
+import neatlogic.framework.restful.annotation.EntityField;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -30,6 +30,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class CollectionVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "集合名称", type = ApiParamType.STRING)
     private String collection;
     @EntityField(name = "名称", type = ApiParamType.STRING)

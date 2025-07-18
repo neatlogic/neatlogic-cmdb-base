@@ -31,6 +31,8 @@ import java.util.List;
 import java.util.Map;
 
 public class TransactionVo extends BasePageVo {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
     @EntityField(name = "nmcac.exportcientityapi.input.param.desc.idlist", type = ApiParamType.JSONARRAY)

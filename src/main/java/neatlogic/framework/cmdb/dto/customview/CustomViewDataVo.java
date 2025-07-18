@@ -15,15 +15,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
 package neatlogic.framework.cmdb.dto.customview;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
-import com.alibaba.fastjson.annotation.JSONField;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 public class CustomViewDataVo implements Serializable {
+    //为了兼容导出数据时忽略版本
+    private static final long serialVersionUID = 1L;
     @EntityField(name = "视图id", type = ApiParamType.LONG)
     private Long customViewId;
     @EntityField(name = "视图名称", type = ApiParamType.STRING)
