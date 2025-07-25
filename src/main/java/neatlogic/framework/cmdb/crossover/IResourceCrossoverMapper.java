@@ -30,19 +30,19 @@ import java.util.List;
 import java.util.Set;
 
 public interface IResourceCrossoverMapper extends ICrossoverService {
-
+    @Deprecated
     int getResourceCount(ResourceSearchVo searchVo);
 
     int getResourceCountBySql(String sql);
 
     int getResourceCountByDynamicCondition(@Param("searchVo") ResourceSearchVo searchVo, @Param("conditionSql") String conditionSql);
-
+    @Deprecated
     List<Long> getResourceIdList(ResourceSearchVo searchVo);
 
     List<Long> getResourceIdListBySql(String sql);
 
     List<Long> getResourceIdListByDynamicCondition(@Param("searchVo") ResourceSearchVo searchVo, @Param("conditionSql") String conditionSql);
-
+    @Deprecated
     List<ResourceVo> getResourceListByIdList(List<Long> idList);
 
     List<ResourceVo> getResourceListBySql(String sql);

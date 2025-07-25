@@ -20,7 +20,9 @@ package neatlogic.framework.cmdb.dto.diagram;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 
-public class DiagramSourceDetailVo {
+import java.io.Serializable;
+
+public class DiagramSourceDetailVo implements Serializable {
     @EntityField(name = "名称", type = ApiParamType.STRING)
     private String name;
     @EntityField(name = "超链接", type = ApiParamType.STRING)
