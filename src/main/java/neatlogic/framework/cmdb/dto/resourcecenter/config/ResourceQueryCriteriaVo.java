@@ -26,6 +26,7 @@ import neatlogic.framework.restful.annotation.EntityField;
 import java.util.List;
 
 public class ResourceQueryCriteriaVo {
+    private String keyword;
     private List<String> keywordList;
     @EntityField(name = "协议id列表", type = ApiParamType.JSONARRAY)
     private List<Long> protocolIdList;
@@ -74,6 +75,7 @@ public class ResourceQueryCriteriaVo {
     }
 
     public ResourceQueryCriteriaVo(ResourceSearchVo searchVo) {
+        this.keyword = searchVo.getKeyword();
         this.keywordList = searchVo.getKeywordList();
         this.protocolIdList = searchVo.getProtocolIdList();
         this.tagIdList = searchVo.getTagIdList();
@@ -96,6 +98,14 @@ public class ResourceQueryCriteriaVo {
         this.authenticationInfo = searchVo.getAuthenticationInfo();
         this.ipFieldAttrId = searchVo.getIpFieldAttrId();
         this.nameFieldAttrId = searchVo.getNameFieldAttrId();
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 
     public List<String> getKeywordList() {

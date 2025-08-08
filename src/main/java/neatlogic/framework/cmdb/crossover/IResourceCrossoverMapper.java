@@ -34,6 +34,8 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
 
     int getResourceCountBySql(String sql);
 
+    int getCountBySql(String sql);
+
     int getResourceCountByDynamicCondition(@Param("searchVo") ResourceSearchVo searchVo, @Param("conditionSql") String conditionSql);
     @Deprecated
     List<Long> getResourceIdList(ResourceSearchVo searchVo);
