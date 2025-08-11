@@ -27,8 +27,8 @@ public interface ICiEntityCrossoverService extends ICrossoverService {
 
     CiEntityVo getCiEntityById(CiEntityVo ciEntityVo);
 
-    List<CiEntityVo> getCiEntityByIdList(CiEntityVo ciEntityVo);
-
+    //List<CiEntityVo> getCiEntityByIdList(CiEntityVo ciEntityVo);
+    List<CiEntityVo> getCiEntityByIdList(List<Long> ciEntityIdList);
 
     List<CiEntityVo> searchCiEntity(CiEntityVo ciEntityVo);
 
