@@ -102,12 +102,13 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
     String buildGetInspectResourceCountSql(ResourceSearchVo searchVo);
     String buildGetInspectResourceCountByIpKeywordSql(ResourceSearchVo searchVo);
     String buildGetInspectResourceCountByNameKeywordSql(ResourceSearchVo searchVo);
-//    String buildgetInspectResourceIdListSql();
-//    String buildgetInspectAutoexecJobNodeResourceCountSql();
-//    String buildgetInspectAutoexecJobNodeResourceCountByIpKeywordSql();
-//    String buildgetInspectAutoexecJobNodeResourceCountByNameKeywordSql();
-//    String buildgetInspectAutoexecJobNodeResourceIdListSql();
-//    String buildgetInspectResourceListByIdListAndJobIdSql();
+    String buildGetInspectResourceIdListSql(ResourceSearchVo searchVo);
+    String buildGetInspectAutoexecJobNodeResourceCountSql(ResourceSearchVo searchVo, Long jobId);
+    String buildGetInspectAutoexecJobNodeResourceCountByIpKeywordSql(ResourceSearchVo searchVo, Long jobId);
+    String buildGetInspectAutoexecJobNodeResourceCountByNameKeywordSql(ResourceSearchVo searchVo, Long jobId);
+    String buildGetInspectAutoexecJobNodeResourceIdListSql(ResourceSearchVo searchVo, Long jobId);
+    String buildGetInspectResourceListByIdListAndJobIdSql(List<Long> IdList, Long jobId);
+    String buildGetInspectResourceListByIdListAndJobIdSql(List<Long> IdList, Long jobId, List<String> selectFieldNameList);
     // InspectConfigFileMapper
 //    String buildgetInspectResourceCountSql();
 //    String buildgetInspectResourceIdListSql();

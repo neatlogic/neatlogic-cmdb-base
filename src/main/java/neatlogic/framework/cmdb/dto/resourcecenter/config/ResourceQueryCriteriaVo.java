@@ -70,7 +70,12 @@ public class ResourceQueryCriteriaVo {
     private Long ipFieldAttrId;
     @EntityField(name = "name字段映射的属性ID", type = ApiParamType.LONG)
     private Long nameFieldAttrId;
-
+    @EntityField(name = "以IP字段排序", type = ApiParamType.INTEGER)
+    private Integer isIpFieldSort;
+    @EntityField(name = "以name字段排序", type = ApiParamType.INTEGER)
+    private Integer isNameFieldSort;
+    @EntityField(name = "作业ID", type = ApiParamType.LONG)
+    private Long jobId;
     public ResourceQueryCriteriaVo() {
     }
 
@@ -98,6 +103,8 @@ public class ResourceQueryCriteriaVo {
         this.authenticationInfo = searchVo.getAuthenticationInfo();
         this.ipFieldAttrId = searchVo.getIpFieldAttrId();
         this.nameFieldAttrId = searchVo.getNameFieldAttrId();
+        this.isIpFieldSort = searchVo.getIsIpFieldSort();
+        this.isNameFieldSort = searchVo.getIsNameFieldSort();
     }
 
     public String getKeyword() {
@@ -282,5 +289,29 @@ public class ResourceQueryCriteriaVo {
 
     public void setNameFieldAttrId(Long nameFieldAttrId) {
         this.nameFieldAttrId = nameFieldAttrId;
+    }
+
+    public Integer getIsIpFieldSort() {
+        return isIpFieldSort;
+    }
+
+    public void setIsIpFieldSort(Integer isIpFieldSort) {
+        this.isIpFieldSort = isIpFieldSort;
+    }
+
+    public Integer getIsNameFieldSort() {
+        return isNameFieldSort;
+    }
+
+    public void setIsNameFieldSort(Integer isNameFieldSort) {
+        this.isNameFieldSort = isNameFieldSort;
+    }
+
+    public Long getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(Long jobId) {
+        this.jobId = jobId;
     }
 }
