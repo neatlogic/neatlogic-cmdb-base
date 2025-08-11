@@ -61,7 +61,8 @@ public class CiEntityVo extends BasePageVo {
     private Long filterCiEntityId;//查询时条件，和idList区别是idList不能允许用户修改，用于框定查询范围，filterCiEntityId允许用户修改
     @JSONField(serialize = false)
     private Long filterCiId;//查询时条件，用于查询抽象模型数据时，可以指定子模型
-
+    @JSONField(serialize = false)
+    private boolean keywordAsName;// 关键字同时匹配名称，需要手动打开，不然性能太差
     @JSONField(serialize = false)
     private List<Long> filterCiIdList;//查询时条件，用于查询抽象模型数据时，可以指定子模型
     @JSONField(serialize = false)
@@ -231,6 +232,14 @@ public class CiEntityVo extends BasePageVo {
 
     public Map<String, Object> getSpecialParamterMap() {
         return specialParamterMap;
+    }
+
+    public boolean isKeywordAsName() {
+        return keywordAsName;
+    }
+
+    public void setKeywordAsName(boolean keywordAsName) {
+        this.keywordAsName = keywordAsName;
     }
 
     public void setSpecialParamterMap(Map<String, Object> specialParamterMap) {
