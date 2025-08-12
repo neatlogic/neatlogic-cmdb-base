@@ -113,10 +113,10 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
 //r    String buildgetInspectResourceCountSql();
     String buildGetInspectConfigFileResourceIdListSql(ResourceSearchVo searchVo);
 //r    String buildgetInspectResourceListByIdListSql();
-//    String buildgetInspectConfigFilePathCountSql();
-//    String buildgetInspectConfigFilePathIdListSql();
-//    String buildgetInspectConfigFilePathListSql();
-//    String buildgetInspectConfigFilePathListByJobIdSql();
+    String buildGetInspectConfigFilePathCountSql(ResourceSearchVo searchVo);
+    String buildGetInspectConfigFilePathIdListSql(ResourceSearchVo searchVo);
+    String buildGetInspectConfigFilePathListSql(List<Long> idList);
+    String buildGetInspectConfigFilePathListByJobIdSql(Long jobId);
 
 }
 
