@@ -27,25 +27,25 @@ import neatlogic.framework.crossover.ICrossoverService;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-import java.util.Set;
 
 public interface IResourceCrossoverMapper extends ICrossoverService {
+
+    int getCountBySql(String sql);
+
+    List<Long> getIdListBySql(String sql);
+
+    List<ResourceVo> getResourceListBySql(String sql);
+
     @Deprecated
     int getResourceCount(ResourceSearchVo searchVo);
-
-    int getResourceCountBySql(String sql);
 
     int getResourceCountByDynamicCondition(@Param("searchVo") ResourceSearchVo searchVo, @Param("conditionSql") String conditionSql);
     @Deprecated
     List<Long> getResourceIdList(ResourceSearchVo searchVo);
 
-    List<Long> getResourceIdListBySql(String sql);
-
     List<Long> getResourceIdListByDynamicCondition(@Param("searchVo") ResourceSearchVo searchVo, @Param("conditionSql") String conditionSql);
     @Deprecated
     List<ResourceVo> getResourceListByIdList(List<Long> idList);
-
-    List<ResourceVo> getResourceListBySql(String sql);
 
     List<ResourceVo> getAppInstanceResourceListByIdListSimple(List<Long> idList);
 
@@ -71,9 +71,10 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
 
     List<ResourceVo> getAppModuleListByIdListSimple(@Param("idList") List<Long> idList, @Param("needOrder") boolean needOrder);
 
+    // 该SQL语句可以使用 getResourceListByIpAndPortAndName 代替
     List<ResourceVo> getResourceListByResourceVoList(@Param("resourceList") List<ResourceVo> resourceList,@Param("searchVo") ResourceSearchVo searchVo);
 
-    Set<Long> getResourceTypeIdListByAppSystemIdAndModuleIdAndEnvIdAndInspectStatusList(ResourceSearchVo searchVo);
+//    Set<Long> getResourceTypeIdListByAppSystemIdAndModuleIdAndEnvIdAndInspectStatusList(ResourceSearchVo searchVo);
 
     List<Long> getResourceIdListByAppSystemIdAndModuleIdAndEnvId(ResourceVo resourceVo);
     /**
