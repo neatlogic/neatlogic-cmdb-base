@@ -118,6 +118,7 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
     String buildGetAppEnvListByAppSystemIdAndAppModuleIdSql(Long appSystemId, Long appModuleId);
 
     String buildGetAppEnvCountMapByAppSystemIdGroupByAppModuleIdSql(Long appSystemId);
+
 //    String buildGetResourceCountByDynamicConditionSql();
 //    String buildGetResourceIdListByDynamicConditionSql();
 
