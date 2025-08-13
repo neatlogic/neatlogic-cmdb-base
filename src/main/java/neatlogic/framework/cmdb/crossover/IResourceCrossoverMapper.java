@@ -29,24 +29,23 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface IResourceCrossoverMapper extends ICrossoverService {
-    @Deprecated
-    int getResourceCount(ResourceSearchVo searchVo);
-
-    int getResourceCountBySql(String sql);
 
     int getCountBySql(String sql);
+
+    List<Long> getIdListBySql(String sql);
+
+    List<ResourceVo> getResourceListBySql(String sql);
+
+    @Deprecated
+    int getResourceCount(ResourceSearchVo searchVo);
 
     int getResourceCountByDynamicCondition(@Param("searchVo") ResourceSearchVo searchVo, @Param("conditionSql") String conditionSql);
     @Deprecated
     List<Long> getResourceIdList(ResourceSearchVo searchVo);
 
-    List<Long> getResourceIdListBySql(String sql);
-
     List<Long> getResourceIdListByDynamicCondition(@Param("searchVo") ResourceSearchVo searchVo, @Param("conditionSql") String conditionSql);
     @Deprecated
     List<ResourceVo> getResourceListByIdList(List<Long> idList);
-
-    List<ResourceVo> getResourceListBySql(String sql);
 
     List<ResourceVo> getAppInstanceResourceListByIdListSimple(List<Long> idList);
 
