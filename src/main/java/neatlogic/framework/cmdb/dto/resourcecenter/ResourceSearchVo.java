@@ -115,6 +115,10 @@ public class ResourceSearchVo extends ConditionConfigVo {
     private List<String> timeRange;
     @EntityField(name = "高级搜索条件", type = ApiParamType.JSONOBJECT)
     ResourceConditionConfigVo conditionConfig;
+    @EntityField(name = "前置高级搜索条件", type = ApiParamType.JSONOBJECT)
+    ResourceSearchVo preCondition;
+    @EntityField(name = "前置高级搜索条件生产的动态where sql", type = ApiParamType.STRING)
+    String preConditionWhereSql;
 
     public ResourceSearchVo() {
     }
@@ -481,5 +485,21 @@ public class ResourceSearchVo extends ConditionConfigVo {
 
     public void setConditionConfig(ResourceConditionConfigVo conditionConfig) {
         this.conditionConfig = conditionConfig;
+    }
+
+    public ResourceSearchVo getPreCondition() {
+        return preCondition;
+    }
+
+    public void setPreCondition(ResourceSearchVo preCondition) {
+        this.preCondition = preCondition;
+    }
+
+    public String getPreConditionWhereSql() {
+        return preConditionWhereSql;
+    }
+
+    public void setPreConditionWhereSql(String preConditionWhereSql) {
+        this.preConditionWhereSql = preConditionWhereSql;
     }
 }
