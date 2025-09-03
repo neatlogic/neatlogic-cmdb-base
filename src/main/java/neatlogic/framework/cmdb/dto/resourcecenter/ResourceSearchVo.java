@@ -113,6 +113,9 @@ public class ResourceSearchVo extends ConditionConfigVo {
     private List<ResourceVo> inputNodeList;
     @EntityField(name = "时间范围", type = ApiParamType.JSONARRAY)
     private List<String> timeRange;
+    @EntityField(name = "高级搜索条件", type = ApiParamType.JSONOBJECT)
+    ResourceConditionConfigVo conditionConfig;
+
     public ResourceSearchVo() {
     }
 
@@ -470,5 +473,13 @@ public class ResourceSearchVo extends ConditionConfigVo {
 
     public void setTimeRange(List<String> timeRange) {
         this.timeRange = timeRange;
+    }
+
+    public ResourceConditionConfigVo getConditionConfig() {
+        return conditionConfig;
+    }
+
+    public void setConditionConfig(ResourceConditionConfigVo conditionConfig) {
+        this.conditionConfig = conditionConfig;
     }
 }
