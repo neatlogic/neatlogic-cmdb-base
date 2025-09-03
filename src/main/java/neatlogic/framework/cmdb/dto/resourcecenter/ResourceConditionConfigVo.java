@@ -99,7 +99,7 @@ public class ResourceConditionConfigVo extends ConditionConfigBaseVo<ResourceCon
             if (flag) {
                 leftExpressionVo = $sql.exp("(", leftExpressionVo, ")");
             }
-        } else {
+        } else if (CollectionUtils.isNotEmpty(conditionGroupList)) {
             ConditionGroupVo<ConditionVo> conditionGroupVo = conditionGroupList.get(0);
             if (conditionGroupVo != null) {
                 leftExpressionVo = conditionGroupVo.buildExpression(sqlVo, fieldName2ColumnMap);
@@ -134,7 +134,7 @@ public class ResourceConditionConfigVo extends ConditionConfigBaseVo<ResourceCon
                 if (flag) {
                     leftExpressionVo = $sql.exp("(", leftExpressionVo, ")");
                 }
-            } else {
+            } else if (CollectionUtils.isNotEmpty(conditionList)) {
                 ConditionVo conditionVo = conditionList.get(0);
                 if (conditionVo != null) {
                     leftExpressionVo = conditionVo.buildExpression(sqlVo, fieldName2ColumnMap);
