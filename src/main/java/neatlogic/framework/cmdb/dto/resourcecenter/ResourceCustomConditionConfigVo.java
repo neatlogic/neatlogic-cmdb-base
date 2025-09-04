@@ -32,7 +32,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 
-public class ResourceConditionConfigVo extends ConditionConfigBaseVo<ResourceConditionConfigVo.ConditionGroupVo<ResourceConditionConfigVo.ConditionVo>> {
+public class ResourceCustomConditionConfigVo extends ConditionConfigBaseVo<ResourceCustomConditionConfigVo.ConditionGroupVo<ResourceCustomConditionConfigVo.ConditionVo>> {
 
     public List<String> getFilterItemFieldNameList() {
         Set<String> filterItemFieldNameSet = new HashSet<>();
