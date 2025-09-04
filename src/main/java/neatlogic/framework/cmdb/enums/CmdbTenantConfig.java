@@ -21,6 +21,7 @@ import neatlogic.framework.util.$;
 public enum CmdbTenantConfig implements ITenantConfig {
     IS_RESOURCECENTER_AUTH("is.resourcecenter.auth", "0", "nfce.cmdbtenantconfig.isresourcecenterauth"),
     RESOURCECENTER_DATA_COMPARISON_MODE_ENABLE("resourcecenter.data.comparison.mode.enable", "0", "是否开启资产清单新SQL和旧SQL查询结果对比模式，结果不一致会打印error日志"),
+    RESOURCECENTER_SQL_MODE("resourcecenter.sql.mode", "jsqlparser", "资产清单SQL模式，可选值为jsqlparser和mybatis，默认值是jsqlparser"),
     ;
 
     String key;
