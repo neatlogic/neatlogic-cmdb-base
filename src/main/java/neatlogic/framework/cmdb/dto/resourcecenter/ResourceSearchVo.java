@@ -118,7 +118,7 @@ public class ResourceSearchVo extends ConditionConfigVo {
     @EntityField(name = "前置高级搜索条件", type = ApiParamType.JSONOBJECT)
     ResourceSearchVo preCondition;
     @EntityField(name = "前置高级搜索条件生产的动态where sql", type = ApiParamType.STRING)
-    String preConditionWhereSql;
+    String conditionWhereSql;
 
     public ResourceSearchVo() {
     }
@@ -495,11 +495,11 @@ public class ResourceSearchVo extends ConditionConfigVo {
         this.preCondition = preCondition;
     }
 
-    public String getPreConditionWhereSql() {
-        return preConditionWhereSql;
+    public String getConditionWhereSql() {
+        return conditionWhereSql;
     }
 
-    public void setPreConditionWhereSql(String preConditionWhereSql) {
-        this.preConditionWhereSql = preConditionWhereSql;
+    public void setConditionWhereSql(String conditionWhereSql) {
+        this.conditionWhereSql = conditionWhereSql;
     }
 }

@@ -13,7 +13,7 @@ public class ScenceIpobjectDetailTable implements ISqlTable {
 
     @Override
     public String getShortName() {
-        return "sid";
+        return "a";
     }
 
     public enum FieldEnum {
