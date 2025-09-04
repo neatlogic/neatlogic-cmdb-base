@@ -18,10 +18,13 @@
 package neatlogic.framework.cmdb.dto.resourcecenter.config;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import neatlogic.framework.cmdb.dto.resourcecenter.ResourceConditionConfigVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.dto.AuthenticationInfoVo;
 import neatlogic.framework.restful.annotation.EntityField;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
 
@@ -76,6 +79,9 @@ public class ResourceQueryCriteriaVo {
     private Integer isNameFieldSort;
     @EntityField(name = "作业ID", type = ApiParamType.LONG)
     private Long jobId;
+    @EntityField(name = "高级搜索条件", type = ApiParamType.JSONOBJECT)
+    ResourceConditionConfigVo conditionConfig;
+
     public ResourceQueryCriteriaVo() {
     }
 
@@ -105,6 +111,12 @@ public class ResourceQueryCriteriaVo {
         this.nameFieldAttrId = searchVo.getNameFieldAttrId();
         this.isIpFieldSort = searchVo.getIsIpFieldSort();
         this.isNameFieldSort = searchVo.getIsNameFieldSort();
+        if (CollectionUtils.isNotEmpty(searchVo.getConditionGroupList())) {
+            JSONObject conditionConfigObj = new JSONObject();
+            conditionConfigObj.put("conditionGroupList", searchVo.getConditionGroupList());
+            conditionConfigObj.put("conditionGroupRelList", searchVo.getConditionGroupRelList());
+            this.conditionConfig = conditionConfigObj.toJavaObject(ResourceConditionConfigVo.class);
+        }
     }
 
     public String getKeyword() {
@@ -313,5 +325,13 @@ public class ResourceQueryCriteriaVo {
 
     public void setJobId(Long jobId) {
         this.jobId = jobId;
+    }
+
+    public ResourceConditionConfigVo getConditionConfig() {
+        return conditionConfig;
+    }
+
+    public void setConditionConfig(ResourceConditionConfigVo conditionConfig) {
+        this.conditionConfig = conditionConfig;
     }
 }
