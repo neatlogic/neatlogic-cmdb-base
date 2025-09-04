@@ -18,6 +18,7 @@ package neatlogic.framework.cmdb.crossover;
 import com.alibaba.fastjson.JSONObject;
 import neatlogic.framework.cmdb.dto.resourcecenter.AccountVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
+import neatlogic.framework.cmdb.dto.resourcecenter.ResourceVo;
 import neatlogic.framework.cmdb.dto.tag.TagVo;
 import neatlogic.framework.crossover.ICrossoverService;
 
@@ -66,6 +67,12 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
      * @return map<资产id ， 标签列表>
      */
     Map<Long, List<TagVo>> getResourceTagByResourceIdList(List<Long> idList);
+
+    int getResourceCount(ResourceSearchVo searchVo);
+
+    List<Long> getResourceIdList(ResourceSearchVo searchVo);
+
+    List<ResourceVo> getResourceListByIdList(List<Long> idList);
 
 }
 
