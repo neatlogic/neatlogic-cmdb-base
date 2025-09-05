@@ -21,11 +21,13 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import neatlogic.framework.cmdb.dto.resourcecenter.ResourceConditionConfigVo;
 import neatlogic.framework.cmdb.dto.resourcecenter.ResourceSearchVo;
+import neatlogic.framework.cmdb.dto.resourcecenter.ResourceVo;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.dto.AuthenticationInfoVo;
 import neatlogic.framework.restful.annotation.EntityField;
 import org.apache.commons.collections4.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ResourceQueryCriteriaVo {
@@ -79,6 +81,8 @@ public class ResourceQueryCriteriaVo {
     private Integer isNameFieldSort;
     @EntityField(name = "作业ID", type = ApiParamType.LONG)
     private Long jobId;
+    @EntityField(name = "输入节点列表", type = ApiParamType.JSONARRAY)
+    private List<ResourceVo> inputNodeList;
     @EntityField(name = "高级搜索条件", type = ApiParamType.JSONOBJECT)
     ResourceConditionConfigVo conditionConfig;
 
@@ -87,30 +91,63 @@ public class ResourceQueryCriteriaVo {
 
     public ResourceQueryCriteriaVo(ResourceSearchVo searchVo) {
         this.keyword = searchVo.getKeyword();
-        this.keywordList = searchVo.getKeywordList();
-        this.protocolIdList = searchVo.getProtocolIdList();
-        this.tagIdList = searchVo.getTagIdList();
-        this.inspectJobPhaseNodeStatusList = searchVo.getInspectJobPhaseNodeStatusList();
+        if (CollectionUtils.isNotEmpty(searchVo.getKeywordList())) {
+            this.keywordList = new ArrayList<>(searchVo.getKeywordList());
+        }
+        if (CollectionUtils.isNotEmpty(searchVo.getProtocolIdList())) {
+            this.protocolIdList = new ArrayList<>(searchVo.getProtocolIdList());
+        }
+        if (CollectionUtils.isNotEmpty(searchVo.getTagIdList())) {
+            this.tagIdList = new ArrayList<>(searchVo.getTagIdList());
+        }
+        if (CollectionUtils.isNotEmpty(searchVo.getInspectJobPhaseNodeStatusList())) {
+            this.inspectJobPhaseNodeStatusList = new ArrayList<>(searchVo.getInspectJobPhaseNodeStatusList());
+        }
         this.isHasAuth = searchVo.getIsHasAuth();
         this.cmdbGroupType = searchVo.getCmdbGroupType();
-        this.batchSearchList = searchVo.getBatchSearchList();
+        if (CollectionUtils.isNotEmpty(searchVo.getBatchSearchList())) {
+            this.batchSearchList = new ArrayList<>(searchVo.getBatchSearchList());
+        }
         this.searchField = searchVo.getSearchField();
-        this.typeIdList = searchVo.getTypeIdList();
-        this.authedTypeIdList = searchVo.getAuthedTypeIdList();
-        this.stateIdList = searchVo.getStateIdList();
-        this.vendorIdList = searchVo.getVendorIdList();
-        this.envIdList = searchVo.getEnvIdList();
+        if (CollectionUtils.isNotEmpty(searchVo.getTypeIdList())) {
+            this.typeIdList = new ArrayList<>(searchVo.getTypeIdList());
+        }
+        if (CollectionUtils.isNotEmpty(searchVo.getAuthedTypeIdList())) {
+            this.authedTypeIdList = new ArrayList<>(searchVo.getAuthedTypeIdList());
+        }
+        if (CollectionUtils.isNotEmpty(searchVo.getStateIdList())) {
+            this.stateIdList = new ArrayList<>(searchVo.getStateIdList());
+        }
+        if (CollectionUtils.isNotEmpty(searchVo.getVendorIdList())) {
+            this.vendorIdList = new ArrayList<>(searchVo.getVendorIdList());
+        }
+        if (CollectionUtils.isNotEmpty(searchVo.getEnvIdList())) {
+            this.envIdList = new ArrayList<>(searchVo.getEnvIdList());
+        }
         this.isExistNoEnv = searchVo.getExistNoEnv();
-        this.appSystemIdList = searchVo.getAppSystemIdList();
-        this.appModuleIdList = searchVo.getAppModuleIdList();
-        this.defaultValue = searchVo.getDefaultValue();
-        this.idList = searchVo.getIdList();
-        this.inspectStatusList = searchVo.getInspectStatusList();
+        if (CollectionUtils.isNotEmpty(searchVo.getAppSystemIdList())) {
+            this.appSystemIdList = new ArrayList<>(searchVo.getAppSystemIdList());
+        }
+        if (CollectionUtils.isNotEmpty(searchVo.getAppModuleIdList())) {
+            this.appModuleIdList = new ArrayList<>(searchVo.getAppModuleIdList());
+        }
+        if (CollectionUtils.isNotEmpty(searchVo.getDefaultValue())) {
+            this.defaultValue = new JSONArray(new ArrayList<>(searchVo.getDefaultValue()));
+        }
+        if (CollectionUtils.isNotEmpty(searchVo.getIdList())) {
+            this.idList = new ArrayList<>(searchVo.getIdList());
+        }
+        if (CollectionUtils.isNotEmpty(searchVo.getInspectStatusList())) {
+            this.inspectStatusList = new ArrayList<>(searchVo.getInspectStatusList());
+        }
         this.authenticationInfo = searchVo.getAuthenticationInfo();
         this.ipFieldAttrId = searchVo.getIpFieldAttrId();
         this.nameFieldAttrId = searchVo.getNameFieldAttrId();
         this.isIpFieldSort = searchVo.getIsIpFieldSort();
         this.isNameFieldSort = searchVo.getIsNameFieldSort();
+        if (CollectionUtils.isNotEmpty(searchVo.getInputNodeList())) {
+            this.inputNodeList = new ArrayList<>(searchVo.getInputNodeList());
+        }
         if (CollectionUtils.isNotEmpty(searchVo.getConditionGroupList())) {
             JSONObject conditionConfigObj = new JSONObject();
             conditionConfigObj.put("conditionGroupList", searchVo.getConditionGroupList());
@@ -325,6 +362,14 @@ public class ResourceQueryCriteriaVo {
 
     public void setJobId(Long jobId) {
         this.jobId = jobId;
+    }
+
+    public List<ResourceVo> getInputNodeList() {
+        return inputNodeList;
+    }
+
+    public void setInputNodeList(List<ResourceVo> inputNodeList) {
+        this.inputNodeList = inputNodeList;
     }
 
     public ResourceConditionConfigVo getConditionConfig() {
