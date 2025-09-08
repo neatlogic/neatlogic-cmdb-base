@@ -47,8 +47,6 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
 
     List<ResourceVo> getAppInstanceResourceListByIdListSimple(List<Long> idList);
 
-    Long getResourceIdByIpAndPortAndName(ResourceSearchVo searchVo);
-
     List<ResourceVo> getResourceByIdList(List<Long> idList);
 
     List<ResourceVo> getAuthResourceList(ResourceSearchVo searchVo);
@@ -68,9 +66,6 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
     List<ModuleVo> getAppModuleListByAppSystemIdList(ResourceSearchVo searchVo);
 
     List<ResourceVo> getAppModuleListByIdListSimple(@Param("idList") List<Long> idList, @Param("needOrder") boolean needOrder);
-
-    // 该SQL语句可以使用 getResourceListByIpAndPortAndName 代替
-    List<ResourceVo> getResourceListByResourceVoList(@Param("resourceList") List<ResourceVo> resourceList,@Param("searchVo") ResourceSearchVo searchVo);
 
     List<Long> getResourceIdListByAppSystemIdAndModuleIdAndEnvId(ResourceVo resourceVo);
     /**
@@ -111,6 +106,4 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
     List<ResourceVo> searchAppSystemListByIdList(List<Long> idList);
 
     List<SoftwareServiceOSVo> getOsResourceListByResourceIdList(List<Long> resourceIdList);
-
-    List<ResourceVo> getResourceListByIpAndPortAndNameWithFilter(ResourceSearchVo searchVo);
 }
