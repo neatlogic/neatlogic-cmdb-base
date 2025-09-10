@@ -22,4 +22,5 @@ import neatlogic.framework.crossover.ICrossoverService;
 
 public interface ICiSchemaViewCrossoverMapper extends ICrossoverService {
     void createCiView(CiVo ciVo);
+    void deleteCiView(CiVo ciVo);
 }
