@@ -39,17 +39,13 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
     @Deprecated
     int getResourceCount(ResourceSearchVo searchVo);
 
-    int getResourceCountByDynamicCondition(@Param("searchVo") ResourceSearchVo searchVo, @Param("conditionSql") String conditionSql);
     @Deprecated
     List<Long> getResourceIdList(ResourceSearchVo searchVo);
 
-    List<Long> getResourceIdListByDynamicCondition(@Param("searchVo") ResourceSearchVo searchVo, @Param("conditionSql") String conditionSql);
     @Deprecated
     List<ResourceVo> getResourceListByIdList(List<Long> idList);
 
     List<ResourceVo> getAppInstanceResourceListByIdListSimple(List<Long> idList);
-
-    Long getResourceIdByIpAndPortAndName(ResourceSearchVo searchVo);
 
     List<ResourceVo> getResourceByIdList(List<Long> idList);
 
@@ -70,11 +66,6 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
     List<ModuleVo> getAppModuleListByAppSystemIdList(ResourceSearchVo searchVo);
 
     List<ResourceVo> getAppModuleListByIdListSimple(@Param("idList") List<Long> idList, @Param("needOrder") boolean needOrder);
-
-    // 该SQL语句可以使用 getResourceListByIpAndPortAndName 代替
-    List<ResourceVo> getResourceListByResourceVoList(@Param("resourceList") List<ResourceVo> resourceList,@Param("searchVo") ResourceSearchVo searchVo);
-
-//    Set<Long> getResourceTypeIdListByAppSystemIdAndModuleIdAndEnvIdAndInspectStatusList(ResourceSearchVo searchVo);
 
     List<Long> getResourceIdListByAppSystemIdAndModuleIdAndEnvId(ResourceVo resourceVo);
     /**
@@ -115,6 +106,4 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
     List<ResourceVo> searchAppSystemListByIdList(List<Long> idList);
 
     List<SoftwareServiceOSVo> getOsResourceListByResourceIdList(List<Long> resourceIdList);
-
-    List<ResourceVo> getResourceListByIpAndPortAndNameWithFilter(ResourceSearchVo searchVo);
 }

@@ -28,7 +28,7 @@ public class CmdbResourcecenterAccountTable implements ISqlTable {
 
     @Override
     public String getShortName() {
-        return "cra";
+        return "c";
     }
 
     public enum FieldEnum {

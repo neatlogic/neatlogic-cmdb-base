@@ -13,7 +13,7 @@ public class CmdbResourcecenterResourceTagTable implements ISqlTable {
 
     @Override
     public String getShortName() {
-        return "crrt";
+        return "d";
     }
 
     public enum FieldEnum {

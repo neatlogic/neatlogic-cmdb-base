@@ -202,10 +202,24 @@ public class ResourceConditionConfigVo extends ConditionConfigBaseVo<ResourceCon
                 valueVo = $sql.value(inspectStatusList);
             } else if (Objects.equals(name, "ip")) {
                 columnName = fieldName2ColumnMap.get("ip").toString();
-                valueVo = $sql.value(valueList.toString());
+                if (valueList instanceof JSONArray) {
+                    JSONArray valueArray = (JSONArray) valueList;
+                    if (CollectionUtils.isNotEmpty(valueArray)) {
+                        valueVo = $sql.value(valueArray.getString(0));
+                    }
+                } else if (valueList != null) {
+                    valueVo = $sql.value(valueList.toString());
+                }
             } else if (Objects.equals(name, "name")) {
                 columnName = fieldName2ColumnMap.get("name").toString();
-                valueVo = $sql.value(valueList.toString());
+                if (valueList instanceof JSONArray) {
+                    JSONArray valueArray = (JSONArray) valueList;
+                    if (CollectionUtils.isNotEmpty(valueArray)) {
+                        valueVo = $sql.value(valueArray.getString(0));
+                    }
+                } else if (valueList != null) {
+                    valueVo = $sql.value(valueList.toString());
+                }
             } else if (Objects.equals(name, "vendorIdList")) {
                 columnName = fieldName2ColumnMap.get("vendor_id").toString();
                 List<Long> vendorIdList = new ArrayList<>();
@@ -275,6 +289,24 @@ public class ResourceConditionConfigVo extends ConditionConfigBaseVo<ResourceCon
                     return $sql.exp(columnName, "is null");
                 } else if (Objects.equals(expression, "is-not-null")) {
                     return $sql.exp(columnName, "is not null");
+                } else if (Objects.equals(expression, "like")) {
+                    String str = null;
+                    if (valueVo != null) {
+                        str = valueVo.getStrValue();
+                    }
+                    if (StringUtils.isNotBlank(str)) {
+                        str = "'" + str + "%'";
+                    }
+                    return $sql.exp(columnName, "like", str);
+                } else if (Objects.equals(expression, "notlike")) {
+                    String str = null;
+                    if (valueVo != null) {
+                        str = valueVo.getStrValue();
+                    }
+                    if (StringUtils.isNotBlank(str)) {
+                        str = "'" + str + "%'";
+                    }
+                    return $sql.exp(columnName, "not like", str);
                 }
             }
             return null;
