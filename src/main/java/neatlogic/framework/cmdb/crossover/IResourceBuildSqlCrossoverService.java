@@ -101,6 +101,11 @@ public interface IResourceBuildSqlCrossoverService extends ICrossoverService {
 
     String buildSearchVendorListByIdListSql(List<Long> idList);
 
+    String buildSearchStateCountSql(BasePageVo searchVo);
+
+    String buildSearchStateIdListSql(BasePageVo searchVo);
+
+    String buildSearchStateListByIdListSql(List<Long> idList);
     // InspectMapper
     String buildGetInspectResourceListByIdListSql(List<Long> idList, List<String> selectFieldNameList);
 
