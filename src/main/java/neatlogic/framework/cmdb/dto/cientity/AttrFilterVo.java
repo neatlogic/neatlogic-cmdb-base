@@ -41,6 +41,8 @@ public class AttrFilterVo implements Serializable {
     private List<String> valueHashList;
     @JSONField(serialize = false)
     private Boolean needTargetCi;
+    @JSONField(serialize = false)
+    private boolean isStrict;//严格模式，主要用于Like和equal下，打开后多值判断必须一致，否则只需要包含即可
 
     @Override
     public String toString() {
@@ -61,6 +63,14 @@ public class AttrFilterVo implements Serializable {
                     .collect(Collectors.toList());
         }
         return null;
+    }
+
+    public boolean getIsStrict() {
+        return isStrict;
+    }
+
+    public void setIsStrict(boolean strict) {
+        isStrict = strict;
     }
 
     public String getName() {
