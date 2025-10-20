@@ -88,7 +88,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
     <update id="updateValidator" parameterType="neatlogic.framework.cmdb.dto.validator.ValidatorVo">
         update cmdb_validator
         set name           = #{name},
-            config         = #{configStr},
+            config         = #{configStr, typeHandler=CompressHandler},
             description    = #{description},
             error_template = #{errorTemplate},
             is_active      = #{isActive}
@@ -106,7 +106,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.-->
         values (#{id},
                 #{name},
                 #{handler},
-                #{configStr},
+                #{configStr, typeHandler=CompressHandler},
                 #{description},
                 #{errorTemplate},
                 #{isActive})
