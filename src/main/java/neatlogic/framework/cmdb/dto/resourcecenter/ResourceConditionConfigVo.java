@@ -41,7 +41,9 @@ public class ResourceConditionConfigVo extends ConditionConfigBaseVo<ResourceCon
                 if (CollectionUtils.isNotEmpty(conditionGroup.getConditionList())) {
                     for (ConditionVo condition : conditionGroup.getConditionList()) {
                         String name = condition.getName();
-                        if (Objects.equals(name, "appSystemIdList")) {
+                        if (Objects.equals(name, "typeIdList")) {
+                            filterItemFieldNameSet.add("type_id");
+                        } else if (Objects.equals(name, "appSystemIdList")) {
                             filterItemFieldNameSet.add("app_system_id");
                             filterItemFieldNameSet.add("app_module_id");
                         } else if (Objects.equals(name, "appModuleIdList")) {
@@ -148,62 +150,24 @@ public class ResourceConditionConfigVo extends ConditionConfigBaseVo<ResourceCon
         public ExpressionVo buildExpression(SqlVo sqlVo, Map<String, Column> fieldName2ColumnMap) {
             String columnName = null;
             ValueVo valueVo = null;
-            if (Objects.equals(name, "appSystemIdList")) {
+            if (Objects.equals(name, "typeIdList")) {
+                columnName = fieldName2ColumnMap.get("type_id").toString();
+                valueVo = $sql.value(convertLongList(valueList));
+            } else if (Objects.equals(name, "appSystemIdList")) {
                 columnName = fieldName2ColumnMap.get("app_system_id").toString();
-                List<Long> appSystemIdList = new ArrayList<>();
-                if (valueList instanceof JSONArray) {
-                    JSONArray jsonArray = (JSONArray) valueList;
-                    for (int i = 0; i < jsonArray.size(); i++) {
-                        Long id = jsonArray.getLong(i);
-                        if (id != null) {
-                            appSystemIdList.add(id);
-                        }
-                    }
-                }
-                valueVo = $sql.value(appSystemIdList);
+                valueVo = $sql.value(convertLongList(valueList));
             } else if (Objects.equals(name, "appModuleIdList")) {
                 columnName = fieldName2ColumnMap.get("app_module_id").toString();
-                List<Long> appModuleIdList = new ArrayList<>();
-                if (valueList instanceof JSONArray) {
-                    JSONArray jsonArray = (JSONArray) valueList;
-                    for (int i = 0; i < jsonArray.size(); i++) {
-                        Long id = jsonArray.getLong(i);
-                        if (id != null) {
-                            appModuleIdList.add(id);
-                        }
-                    }
-                }
-                valueVo = $sql.value(appModuleIdList);
+                valueVo = $sql.value(convertLongList(valueList));
             } else if (Objects.equals(name, "envIdList")) {
                 columnName = fieldName2ColumnMap.get("env_id").toString();
-                List<Long> envIdList = new ArrayList<>();
-                if (valueList instanceof JSONArray) {
-                    JSONArray jsonArray = (JSONArray) valueList;
-                    for (int i = 0; i < jsonArray.size(); i++) {
-                        Long id = jsonArray.getLong(i);
-                        if (id != null) {
-                            envIdList.add(id);
-                        }
-                    }
-                }
-                valueVo = $sql.value(envIdList);
+                valueVo = $sql.value(convertLongList(valueList));
             } else if (Objects.equals(name, "inspectStatusList")) {
                 columnName = fieldName2ColumnMap.get("inspect_status").toString();
-                List<String> inspectStatusList = new ArrayList<>();
-                if (valueList instanceof JSONArray) {
-                    JSONArray jsonArray = (JSONArray) valueList;
-                    for (int i = 0; i < jsonArray.size(); i++) {
-                        String inspectStatus = jsonArray.getString(i);
-                        if (inspectStatus != null) {
-                            inspectStatusList.add(inspectStatus);
-                        }
-                    }
-                }
-                valueVo = $sql.value(inspectStatusList);
+                valueVo = $sql.value(convertStringList(valueList));
             } else if (Objects.equals(name, "ip")) {
                 columnName = fieldName2ColumnMap.get("ip").toString();
-                if (valueList instanceof JSONArray) {
-                    JSONArray valueArray = (JSONArray) valueList;
+                if (valueList instanceof JSONArray valueArray) {
                     if (CollectionUtils.isNotEmpty(valueArray)) {
                         valueVo = $sql.value(valueArray.getString(0));
                     }
@@ -212,8 +176,7 @@ public class ResourceConditionConfigVo extends ConditionConfigBaseVo<ResourceCon
                 }
             } else if (Objects.equals(name, "name")) {
                 columnName = fieldName2ColumnMap.get("name").toString();
-                if (valueList instanceof JSONArray) {
-                    JSONArray valueArray = (JSONArray) valueList;
+                if (valueList instanceof JSONArray valueArray) {
                     if (CollectionUtils.isNotEmpty(valueArray)) {
                         valueVo = $sql.value(valueArray.getString(0));
                     }
@@ -222,59 +185,19 @@ public class ResourceConditionConfigVo extends ConditionConfigBaseVo<ResourceCon
                 }
             } else if (Objects.equals(name, "vendorIdList")) {
                 columnName = fieldName2ColumnMap.get("vendor_id").toString();
-                List<Long> vendorIdList = new ArrayList<>();
-                if (valueList instanceof JSONArray) {
-                    JSONArray jsonArray = (JSONArray) valueList;
-                    for (int i = 0; i < jsonArray.size(); i++) {
-                        Long id = jsonArray.getLong(i);
-                        if (id != null) {
-                            vendorIdList.add(id);
-                        }
-                    }
-                }
-                valueVo = $sql.value(vendorIdList);
+                valueVo = $sql.value(convertLongList(valueList));
             } else if (Objects.equals(name, "tagIdList")) {
                 sqlVo.withAddJoin($sql.join("left join", "cmdb_resourcecenter_resource_tag", "d").withOn($sql.exp("d.resource_id", "=", fieldName2ColumnMap.get("id").toString())));
                 columnName = "d.tag_id";
-                List<Long> tagIdList = new ArrayList<>();
-                if (valueList instanceof JSONArray) {
-                    JSONArray jsonArray = (JSONArray) valueList;
-                    for (int i = 0; i < jsonArray.size(); i++) {
-                        Long id = jsonArray.getLong(i);
-                        if (id != null) {
-                            tagIdList.add(id);
-                        }
-                    }
-                }
-                valueVo = $sql.value(tagIdList);
+                valueVo = $sql.value(convertLongList(valueList));
             } else if (Objects.equals(name, "protocolIdList")) {
                 sqlVo.withAddJoin($sql.join("left join", "cmdb_resourcecenter_resource_account", "b").withOn($sql.exp("b.resource_id", "=", fieldName2ColumnMap.get("id").toString())));
                 sqlVo.withAddJoin($sql.join("left join", "cmdb_resourcecenter_account", "c").withOn($sql.exp("c.id", "=", "b.account_id")));
                 columnName = "c.protocol_id";
-                List<Long> protocolIdList = new ArrayList<>();
-                if (valueList instanceof JSONArray) {
-                    JSONArray jsonArray = (JSONArray) valueList;
-                    for (int i = 0; i < jsonArray.size(); i++) {
-                        Long id = jsonArray.getLong(i);
-                        if (id != null) {
-                            protocolIdList.add(id);
-                        }
-                    }
-                }
-                valueVo = $sql.value(protocolIdList);
+                valueVo = $sql.value(convertLongList(valueList));
             } else if (Objects.equals(name, "stateIdList")) {
                 columnName = fieldName2ColumnMap.get("state_id").toString();
-                List<Long> stateIdList = new ArrayList<>();
-                if (valueList instanceof JSONArray) {
-                    JSONArray jsonArray = (JSONArray) valueList;
-                    for (int i = 0; i < jsonArray.size(); i++) {
-                        Long id = jsonArray.getLong(i);
-                        if (id != null) {
-                            stateIdList.add(id);
-                        }
-                    }
-                }
-                valueVo = $sql.value(stateIdList);
+                valueVo = $sql.value(convertLongList(valueList));
             }
             if (StringUtils.isNotBlank(columnName)) {
                 if (Objects.equals(expression, "include")) {
@@ -310,6 +233,32 @@ public class ResourceConditionConfigVo extends ConditionConfigBaseVo<ResourceCon
                 }
             }
             return null;
+        }
+
+        private List<Long> convertLongList(Object valueList) {
+            List<Long> list = new ArrayList<>();
+            if (valueList instanceof JSONArray valueArray) {
+                for (int i = 0; i < valueArray.size(); i++) {
+                    Long id = valueArray.getLong(i);
+                    if (id != null) {
+                        list.add(id);
+                    }
+                }
+            }
+            return list;
+        }
+
+        private List<String> convertStringList(Object valueList) {
+            List<String> list = new ArrayList<>();
+            if (valueList instanceof JSONArray valueArray) {
+                for (int i = 0; i < valueArray.size(); i++) {
+                    String id = valueArray.getString(i);
+                    if (id != null) {
+                        list.add(id);
+                    }
+                }
+            }
+            return list;
         }
     }
 }
