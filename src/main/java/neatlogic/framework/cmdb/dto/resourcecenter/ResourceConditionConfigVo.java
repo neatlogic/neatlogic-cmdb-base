@@ -18,10 +18,13 @@
 package neatlogic.framework.cmdb.dto.resourcecenter;
 
 import com.alibaba.fastjson.JSONArray;
+import neatlogic.framework.cmdb.crossover.ICiCrossoverMapper;
+import neatlogic.framework.cmdb.dto.ci.CiVo;
 import neatlogic.framework.condition.dto.ConditionBaseVo;
 import neatlogic.framework.condition.dto.ConditionConfigBaseVo;
 import neatlogic.framework.condition.dto.ConditionGroupBaseVo;
 import neatlogic.framework.condition.dto.RelVo;
+import neatlogic.framework.crossover.CrossoverServiceFactory;
 import neatlogic.framework.sqlgenerator.$sql;
 import neatlogic.framework.sqlgenerator.ExpressionVo;
 import neatlogic.framework.sqlgenerator.SqlVo;
@@ -152,7 +155,18 @@ public class ResourceConditionConfigVo extends ConditionConfigBaseVo<ResourceCon
             ValueVo valueVo = null;
             if (Objects.equals(name, "typeIdList")) {
                 columnName = fieldName2ColumnMap.get("type_id").toString();
-                valueVo = $sql.value(convertLongList(valueList));
+                List<Long> typeIdList = convertLongList(valueList);
+                ICiCrossoverMapper ciCrossoverMapper = CrossoverServiceFactory.getApi(ICiCrossoverMapper.class);
+                Set<Long> ciIdSet = new HashSet<>();
+                for (Long ciId : typeIdList) {
+                    CiVo ciVo = ciCrossoverMapper.getCiById(ciId);
+                    if (ciVo != null) {
+                        List<CiVo> ciList = ciCrossoverMapper.getDownwardCiListByLR(ciVo.getLft(), ciVo.getRht());
+                        List<Long> ciIdList = ciList.stream().map(CiVo::getId).toList();
+                        ciIdSet.addAll(ciIdList);
+                    }
+                }
+                valueVo = $sql.value(new ArrayList<>(ciIdSet));
             } else if (Objects.equals(name, "appSystemIdList")) {
                 columnName = fieldName2ColumnMap.get("app_system_id").toString();
                 valueVo = $sql.value(convertLongList(valueList));
