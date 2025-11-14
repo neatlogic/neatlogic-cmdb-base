@@ -69,6 +69,9 @@ public class ResourceViewGenerateSqlUtil {
             if (selectItemFieldNameList.contains(field) || filterItemFieldNameList.contains(field)) {
                 Column column = addJoinTableByFieldMapping(fieldMappingVo, plainSelect, mainCiVo);
                 if (filterItemFieldNameList.contains(field)) {
+                    if (column == null) {
+                        column = new Column("NULL");
+                    }
                     filterItemFieldName2ColumnMap.put(field, column);
                 }
             }
