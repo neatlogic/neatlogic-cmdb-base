@@ -23,6 +23,4 @@ import java.util.List;
 public interface IResourceEntityCrossoverMapper extends ICrossoverService {
 
     ResourceEntityVo getResourceEntityByName(String name);
-
-    List<Long> getAllResourceTypeCiIdList();
 }
