@@ -12,14 +12,15 @@
 
 package neatlogic.framework.cmdb.dto.customview;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class CustomViewConditionFieldVo implements Serializable {
     //为了兼容导出数据时忽略版本
+    @Serial
     private static final long serialVersionUID = 1L;
     private String name;
     private String type;
-
     private String alias;
 
     public CustomViewConditionFieldVo(String _name, String _type) {

@@ -18,15 +18,19 @@ import neatlogic.framework.cmdb.enums.customview.SearchMode;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.restful.annotation.EntityField;
+import org.apache.commons.collections4.CollectionUtils;
 
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 检索条件实体类
  */
 public class CustomViewConditionVo extends BasePageVo {
     //为了兼容导出数据时忽略版本
+    @Serial
     private static final long serialVersionUID = 1L;
     @EntityField(name = "视图id", type = ApiParamType.LONG)
     private Long customViewId;
@@ -46,6 +50,26 @@ public class CustomViewConditionVo extends BasePageVo {
     private Long ciEntityId;//查询单个配置项档案时用
 
     private Integer limit = 10000;//最多返回10000数据，用在count查询
+    @JSONField(serialize = false)
+    private List<CustomViewCiVo> ciList;
+    @JSONField(serialize = false)
+    private boolean hasAggregation = false;
+
+    public boolean isHasAggregation() {
+        if (CollectionUtils.isNotEmpty(ciList)) {
+            hasAggregation = ciList.stream().anyMatch(d -> Objects.equals(1, d.getIsAggregation()));
+        }
+        return hasAggregation;
+    }
+
+
+    public List<CustomViewCiVo> getCiList() {
+        return ciList;
+    }
+
+    public void setCiList(List<CustomViewCiVo> ciList) {
+        this.ciList = ciList;
+    }
 
     public Integer getLimit() {
         return limit;

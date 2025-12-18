@@ -20,6 +20,7 @@ import neatlogic.framework.restful.annotation.EntityField;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -28,6 +29,7 @@ import java.util.Optional;
 
 public class CustomViewCiVo implements Serializable {
     //为了兼容导出数据时忽略版本
+    @Serial
     private static final long serialVersionUID = 1L;
     @EntityField(name = "uuid", type = ApiParamType.STRING)
     private String uuid;
@@ -41,6 +43,8 @@ public class CustomViewCiVo implements Serializable {
     private Integer isHidden = 0;
     @EntityField(name = "是否起始模型", type = ApiParamType.INTEGER)
     private Integer isStart = 0;
+    @EntityField(name = "是否聚合", type = ApiParamType.INTEGER)
+    private Integer isAggregation = 0;
     @EntityField(name = "属性列表", type = ApiParamType.JSONARRAY)
     private List<CustomViewAttrVo> attrList;
     @EntityField(name = "关系属性列表", type = ApiParamType.JSONARRAY)
@@ -71,8 +75,17 @@ public class CustomViewCiVo implements Serializable {
             this.alias = conf.getString("alias");
             this.name = conf.getString("name");
             this.isStart = conf.getIntValue("isStart");
+            this.isAggregation = conf.getIntValue("isAggregation");
         }
         this.uuid = jsonObj.getString("uuid");
+    }
+
+    public Integer getIsAggregation() {
+        return isAggregation;
+    }
+
+    public void setIsAggregation(Integer isAggregation) {
+        this.isAggregation = isAggregation;
     }
 
     public List<JSONObject> getCiEntityList() {
