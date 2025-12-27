@@ -20,11 +20,13 @@ import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serial;
 import java.util.Date;
 import java.util.List;
 
 public class ImportAuditVo extends BasePageVo {
     //为了兼容导出数据时忽略版本
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @EntityField(name = "id", type = ApiParamType.LONG)
@@ -174,11 +176,11 @@ public class ImportAuditVo extends BasePageVo {
     public String getActionText() {
         if (action != null) {
             if (action.equals("append")) {
-                return "增量导入";
+                return "只添加";
             } else if (action.equals("update")) {
-                return "存量导入";
+                return "只更新";
             } else if (action.equals("all")) {
-                return "全量导入";
+                return "添加并更新";
             }
         }
         return actionText;
