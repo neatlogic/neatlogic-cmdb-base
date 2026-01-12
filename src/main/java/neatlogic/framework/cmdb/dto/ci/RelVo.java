@@ -13,7 +13,6 @@
 package neatlogic.framework.cmdb.dto.ci;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.alibaba.nacos.client.naming.utils.CollectionUtils;
 import neatlogic.framework.asynchronization.threadlocal.TenantContext;
 import neatlogic.framework.cmdb.dto.cientity.CiEntityVo;
 import neatlogic.framework.cmdb.enums.InputType;
@@ -24,6 +23,7 @@ import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.common.dto.ValueTextVo;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;

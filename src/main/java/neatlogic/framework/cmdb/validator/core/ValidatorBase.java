@@ -14,12 +14,12 @@ package neatlogic.framework.cmdb.validator.core;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.nacos.client.naming.utils.CollectionUtils;
 import neatlogic.framework.cmdb.dao.mapper.validator.ValidatorMapper;
 import neatlogic.framework.cmdb.dto.ci.AttrVo;
 import neatlogic.framework.cmdb.dto.validator.ValidatorVo;
 import neatlogic.framework.cmdb.exception.validator.AttrInValidatedException;
 import neatlogic.framework.cmdb.exception.validator.ValidatorNotFoundException;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
