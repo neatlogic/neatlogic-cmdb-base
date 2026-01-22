@@ -14,7 +14,8 @@ import neatlogic.framework.userexportfile.core.IUserExportFileType;
 import neatlogic.framework.util.$;
 
 public enum CmdbUserExportFileType implements IUserExportFileType {
-    CUSTOMVIEW_DATA("customViewData", "nfce.cmdbuserexportfiletype.customviewdata")
+    CUSTOMVIEW_DATA("customViewData", "nfce.cmdbuserexportfiletype.customviewdata"),
+    CIENTITY_DATA("cientityData", "term.cmdb.cientitydata")
     ;
 
     private final String value;
