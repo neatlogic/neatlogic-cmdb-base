@@ -103,4 +103,6 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
     List<ResourceVo> searchAppSystemListByIdList(List<Long> idList);
 
     List<SoftwareServiceOSVo> getOsResourceListByResourceIdList(List<Long> resourceIdList);
+
+    List<ResourceVo> getAppResourceListByIdList(ResourceSearchVo searchVo);
 }

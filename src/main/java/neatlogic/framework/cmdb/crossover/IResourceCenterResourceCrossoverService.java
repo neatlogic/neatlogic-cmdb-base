@@ -100,6 +100,8 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
 
     ResourceVo getResourceByIpAndPort(String ip, Integer port);
 
+    ApplicationListDisplayVo getApplicationListDisplay();
+
     List<AccountComponentVo> searchAccountComponent(AccountComponentVo accountComponentVo);
 
     int searchAccountComponentCount(AccountComponentVo accountComponentVo);
@@ -135,4 +137,3 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
     List<ResourceVo> searchStateListByIdList(List<Long> idList);
 
 }
-
