@@ -77,4 +77,6 @@ public interface IResourceCenterDataSource {
     List<Long> getAppSystemIdListById(Long id);
 
     List<ResourceEntityVo> getAppViewList();
+
+    Map<String, List<String>> getApplicationListDisplayViewName2FieldListMap();
 }
