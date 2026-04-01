@@ -24,12 +24,15 @@ import neatlogic.framework.crossover.ICrossoverService;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IResourceCrossoverMapper extends ICrossoverService {
 
     int getCountBySql(String sql);
 
     List<Long> getIdListBySql(String sql);
+
+    ResourceVo getResourceBySql(String sql);
 
     List<ResourceVo> getResourceListBySql(String sql);
 
@@ -41,6 +44,8 @@ public interface IResourceCrossoverMapper extends ICrossoverService {
 
     @Deprecated
     List<ResourceVo> getResourceListByIdList(List<Long> idList);
+
+    List<Map<String, Object>> getMapListBySql(String sql);
 
     List<ResourceVo> getAppInstanceResourceListByIdListSimple(List<Long> idList);
 
