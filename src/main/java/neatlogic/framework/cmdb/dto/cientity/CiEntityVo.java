@@ -96,6 +96,9 @@ public class CiEntityVo extends BasePageVo {
     @JSONField(serialize = false)
     private List<AttrEntityVo> attrEntityList;
 
+    @EntityField(name = "标签列表")
+    private List<CiEntityTagVo> tagList;
+
     @JSONField(serialize = false)
     private List<GlobalAttrEntityVo> globalAttrEntityList;
     @EntityField(name = "属性对象，以'attr_'+attrId为key", type = ApiParamType.JSONOBJECT)
@@ -210,6 +213,14 @@ public class CiEntityVo extends BasePageVo {
     public CiEntityVo(Long ciId, Long id) {
         this.ciId = ciId;
         this.id = id;
+    }
+
+    public List<CiEntityTagVo> getTagList() {
+        return tagList;
+    }
+
+    public void setTagList(List<CiEntityTagVo> tagList) {
+        this.tagList = tagList;
     }
 
     public void addSpecialParameter(String key, Object value) {
