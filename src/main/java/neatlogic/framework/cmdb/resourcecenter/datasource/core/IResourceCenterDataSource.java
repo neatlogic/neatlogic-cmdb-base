@@ -56,6 +56,28 @@ public interface IResourceCenterDataSource {
 
     List<ResourceVo> getAppSystemListForSelect(BasePageVo searchVo);
 
+    /**
+     * 按模块过滤应用树列表，默认兼容旧逻辑。
+     *
+     * @param searchVo 查询条件
+     * @param moduleName 模块名
+     * @return 应用树列表
+     */
+    default List<AppSystemVo> getAppSystemListForTree(BasePageVo searchVo, String moduleName) {
+        return getAppSystemListForTree(searchVo);
+    }
+
+    /**
+     * 按模块过滤应用下拉列表，默认兼容旧逻辑。
+     *
+     * @param searchVo 查询条件
+     * @param moduleName 模块名
+     * @return 应用下拉列表
+     */
+    default List<ResourceVo> getAppSystemListForSelect(BasePageVo searchVo, String moduleName) {
+        return getAppSystemListForSelect(searchVo);
+    }
+
     List<AppModuleVo> getAppModuleListForTree(Long appSystemId);
 
     List<ResourceVo> getAppModuleList(ResourceSearchVo searchVo);
