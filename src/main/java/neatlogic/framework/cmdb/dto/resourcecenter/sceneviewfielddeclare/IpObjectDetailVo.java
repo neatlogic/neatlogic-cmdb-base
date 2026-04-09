@@ -138,6 +138,17 @@ public class IpObjectDetailVo {
     @ResourceField(name = "datacenter_name")
     private String dataCenterName;
 
+    @EntityField(name = "操作系统ID", type = ApiParamType.LONG)
+    @ResourceField(name = "os_id")
+    private Long osId;
+    @EntityField(name = "操作系统名称", type = ApiParamType.STRING)
+    @ResourceField(name = "os_name")
+    private String osName;
+
+    @EntityField(name = "操作系统类型ID", type = ApiParamType.LONG)
+    @ResourceField(name = "os_type_id")
+    private Long osTypeId;
+
     @EntityField(name = "环境ID", type = ApiParamType.LONG)
     @ResourceField(name = "env_id")
     private Long envId;
