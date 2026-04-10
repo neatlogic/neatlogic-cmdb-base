@@ -82,6 +82,8 @@ public class ResourceVo extends BaseEditorVo {
     private String osName;
     @EntityField(name = "操作系统类型ID", type = ApiParamType.LONG)
     private Long osTypeId;
+    @EntityField(name = "操作系统IP", type = ApiParamType.STRING)
+    private Long osIp;
     @EntityField(name = "维护窗口", type = ApiParamType.STRING)
     private String maintenanceWindow;
     @EntityField(name = "描述", type = ApiParamType.STRING)
@@ -176,6 +178,7 @@ public class ResourceVo extends BaseEditorVo {
         this.osId = resourceVo.osId;
         this.osName = resourceVo.osName;
         this.osTypeId = resourceVo.osTypeId;
+        this.osIp = resourceVo.osIp;
         this.maintenanceWindow = resourceVo.maintenanceWindow;
         this.description = resourceVo.description;
         this.ip = resourceVo.ip;
@@ -410,6 +413,14 @@ public class ResourceVo extends BaseEditorVo {
 
     public void setOsTypeId(Long osTypeId) {
         this.osTypeId = osTypeId;
+    }
+
+    public Long getOsIp() {
+        return osIp;
+    }
+
+    public void setOsIp(Long osIp) {
+        this.osIp = osIp;
     }
 
     public String getMaintenanceWindow() {
