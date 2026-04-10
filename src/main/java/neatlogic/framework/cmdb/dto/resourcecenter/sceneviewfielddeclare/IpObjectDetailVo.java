@@ -151,7 +151,7 @@ public class IpObjectDetailVo {
 
     @EntityField(name = "操作系统IP", type = ApiParamType.STRING)
     @ResourceField(name = "os_ip")
-    private Long osIp;
+    private String osIp;
 
     @EntityField(name = "环境ID", type = ApiParamType.LONG)
     @ResourceField(name = "env_id")
