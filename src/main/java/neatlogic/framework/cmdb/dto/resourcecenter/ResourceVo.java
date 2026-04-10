@@ -76,6 +76,12 @@ public class ResourceVo extends BaseEditorVo {
     private String envName;
     @EntityField(name = "应用环境序号", type = ApiParamType.INTEGER)
     private Integer envSeqNo;
+    @EntityField(name = "操作系统ID", type = ApiParamType.LONG)
+    private Long osId;
+    @EntityField(name = "操作系统名称", type = ApiParamType.STRING)
+    private String osName;
+    @EntityField(name = "操作系统类型ID", type = ApiParamType.LONG)
+    private Long osTypeId;
     @EntityField(name = "维护窗口", type = ApiParamType.STRING)
     private String maintenanceWindow;
     @EntityField(name = "描述", type = ApiParamType.STRING)
@@ -167,6 +173,9 @@ public class ResourceVo extends BaseEditorVo {
         this.envId = resourceVo.envId;
         this.envName = resourceVo.envName;
         this.envSeqNo = resourceVo.envSeqNo;
+        this.osId = resourceVo.osId;
+        this.osName = resourceVo.osName;
+        this.osTypeId = resourceVo.osTypeId;
         this.maintenanceWindow = resourceVo.maintenanceWindow;
         this.description = resourceVo.description;
         this.ip = resourceVo.ip;
@@ -377,6 +386,30 @@ public class ResourceVo extends BaseEditorVo {
 
     public void setEnvSeqNo(Integer envSeqNo) {
         this.envSeqNo = envSeqNo;
+    }
+
+    public Long getOsId() {
+        return osId;
+    }
+
+    public void setOsId(Long osId) {
+        this.osId = osId;
+    }
+
+    public String getOsName() {
+        return osName;
+    }
+
+    public void setOsName(String osName) {
+        this.osName = osName;
+    }
+
+    public Long getOsTypeId() {
+        return osTypeId;
+    }
+
+    public void setOsTypeId(Long osTypeId) {
+        this.osTypeId = osTypeId;
     }
 
     public String getMaintenanceWindow() {
