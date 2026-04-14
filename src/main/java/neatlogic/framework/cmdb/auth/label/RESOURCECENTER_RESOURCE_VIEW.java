@@ -14,19 +14,19 @@ package neatlogic.framework.cmdb.auth.label;
 
 import neatlogic.framework.auth.core.AuthBase;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-public class RESOURCECENTER_MODIFY extends AuthBase {
+public class RESOURCECENTER_RESOURCE_VIEW extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "资源中心管理权限";
+        return "资源中心-资产清单查看权限";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "对资源中心进行初始化操作";
+        return "资源中心-资产清单查看权限";
     }
 
     @Override
@@ -41,6 +41,6 @@ public class RESOURCECENTER_MODIFY extends AuthBase {
 
     @Override
     public List<Class<? extends AuthBase>> getIncludeAuths() {
-        return Arrays.asList(RESOURCECENTER_TAG_MODIFY.class, RESOURCECENTER_ACCOUNT_MODIFY.class, RESOURCECENTER_RESOURCE_VIEW.class, RESOURCECENTER_APP_VIEW.class);
+        return Collections.singletonList(CMDB_BASE.class);
     }
 }
