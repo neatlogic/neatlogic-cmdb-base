@@ -82,6 +82,8 @@ public class ResourceVo extends BaseEditorVo {
     private String osName;
     @EntityField(name = "操作系统类型ID", type = ApiParamType.LONG)
     private Long osTypeId;
+    @EntityField(name = "操作系统类型名称", type = ApiParamType.LONG)
+    private String osTypeName;
     @EntityField(name = "操作系统IP", type = ApiParamType.STRING)
     private String osIp;
     @EntityField(name = "维护窗口", type = ApiParamType.STRING)
@@ -603,5 +605,13 @@ public class ResourceVo extends BaseEditorVo {
 
     public void setIsCanDelete(Boolean isCanDelete) {
         this.isCanDelete = isCanDelete;
+    }
+
+    public String getOsTypeName() {
+        return osTypeName;
+    }
+
+    public void setOsTypeName(String osTypeName) {
+        this.osTypeName = osTypeName;
     }
 }
