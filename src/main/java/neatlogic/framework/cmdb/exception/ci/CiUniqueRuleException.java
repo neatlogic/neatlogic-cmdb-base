@@ -16,11 +16,30 @@ import neatlogic.framework.cmdb.dto.ci.CiVo;
 import neatlogic.framework.exception.core.ApiRuntimeException;
 
 public class CiUniqueRuleException extends ApiRuntimeException {
+
+    private final Long ciEntityId;
+
     public CiUniqueRuleException(CiVo ciVo) {
         super("模型“{0}({1})”存在拥有相同唯一规则属性的配置项", ciVo.getLabel(), ciVo.getName());
+        this.ciEntityId = null;
     }
 
     public CiUniqueRuleException(CiVo ciVo, String value) {
         super("模型“{0}({1})”存在拥有相同唯一规则属性的配置项“{2}”", ciVo.getLabel(), ciVo.getName(), value);
+        this.ciEntityId = null;
+    }
+
+    public CiUniqueRuleException(CiVo ciVo, Long ciEntityId) {
+        super("模型“{0}({1})”存在拥有相同唯一规则属性的配置项, ciEntityId为{2}", ciVo.getLabel(), ciVo.getName(), ciEntityId);
+        this.ciEntityId = ciEntityId;
+    }
+
+    public CiUniqueRuleException(CiVo ciVo, String value, Long ciEntityId) {
+        super("模型“{0}({1})”存在拥有相同唯一规则属性的配置项“{2}”, ciEntityId为{3}", ciVo.getLabel(), ciVo.getName(), value, ciEntityId);
+        this.ciEntityId = ciEntityId;
+    }
+
+    public Long getCiEntityId() {
+        return this.ciEntityId;
     }
 }
