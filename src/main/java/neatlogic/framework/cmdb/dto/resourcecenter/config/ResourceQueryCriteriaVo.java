@@ -32,6 +32,8 @@ public class ResourceQueryCriteriaVo {
     private List<Long> protocolIdList;
     @EntityField(name = "标签id列表", type = ApiParamType.JSONARRAY)
     private List<Long> tagIdList;
+    @EntityField(name = "标签匹配模式", type = ApiParamType.STRING)
+    private String tagMatchMode;
     @EntityField(name = "巡检作业状态列表", type = ApiParamType.JSONARRAY)
     private List<String> inspectJobPhaseNodeStatusList;
     @EntityField(name = "是否有cmdb管理权限（模型或配置项管理权限）或 is.resourcecenter.auth = 1", type = ApiParamType.BOOLEAN)
@@ -95,6 +97,7 @@ public class ResourceQueryCriteriaVo {
         if (CollectionUtils.isNotEmpty(searchVo.getTagIdList())) {
             this.tagIdList = new ArrayList<>(searchVo.getTagIdList());
         }
+        this.tagMatchMode = searchVo.getTagMatchMode();
         if (CollectionUtils.isNotEmpty(searchVo.getInspectJobPhaseNodeStatusList())) {
             this.inspectJobPhaseNodeStatusList = new ArrayList<>(searchVo.getInspectJobPhaseNodeStatusList());
         }
@@ -181,6 +184,14 @@ public class ResourceQueryCriteriaVo {
 
     public void setTagIdList(List<Long> tagIdList) {
         this.tagIdList = tagIdList;
+    }
+
+    public String getTagMatchMode() {
+        return tagMatchMode;
+    }
+
+    public void setTagMatchMode(String tagMatchMode) {
+        this.tagMatchMode = tagMatchMode;
     }
 
     public List<String> getInspectJobPhaseNodeStatusList() {

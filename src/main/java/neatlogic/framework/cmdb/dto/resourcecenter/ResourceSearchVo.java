@@ -72,6 +72,8 @@ public class ResourceSearchVo extends ConditionConfigVo {
     private List<Long> appModuleIdList;
     @EntityField(name = "标签id列表", type = ApiParamType.JSONARRAY)
     private List<Long> tagIdList;
+    @EntityField(name = "标签匹配模式", type = ApiParamType.STRING)
+    private String tagMatchMode;
     @EntityField(name = "资产id列表", type = ApiParamType.JSONARRAY)
     private List<Long> idList;
     @EntityField(name = "ip地址列表", type = ApiParamType.JSONARRAY)
@@ -288,6 +290,14 @@ public class ResourceSearchVo extends ConditionConfigVo {
 
     public void setTagIdList(List<Long> tagIdList) {
         this.tagIdList = tagIdList;
+    }
+
+    public String getTagMatchMode() {
+        return tagMatchMode;
+    }
+
+    public void setTagMatchMode(String tagMatchMode) {
+        this.tagMatchMode = tagMatchMode;
     }
 
 //    public List<Long> getIdList() {
