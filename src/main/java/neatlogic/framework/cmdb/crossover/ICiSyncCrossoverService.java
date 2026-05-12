@@ -9,24 +9,15 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *
  */
+
 package neatlogic.framework.cmdb.crossover;
 
+import com.alibaba.fastjson.JSONObject;
 import neatlogic.framework.cmdb.dto.sync.SyncCiCollectionVo;
 import neatlogic.framework.crossover.ICrossoverService;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
- * @author longrf
- * @date 2022/11/21 15:07
- */
-
-public interface ISyncCrossoverMapper extends ICrossoverService {
-
-    List<String> getSyncCiCollectionNameListByCiNameListAndCollectMode(@Param("ciNameList") List<String> ciNameList, @Param("collectMode") String collectMode);
-
-    String getSyncCiCollectionNameListByCiNameAndCollectMode(@Param("ciName") String ciName, @Param("collectMode") String collectMode);
-
-    List<SyncCiCollectionVo> getSyncCiCollectionByCollectionName(String collectionName);
+public interface ICiSyncCrossoverService extends ICrossoverService {
+    void doSync(JSONObject dataObj, List<SyncCiCollectionVo> syncCiCollectionList);
 }
