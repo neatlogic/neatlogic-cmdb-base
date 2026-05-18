@@ -40,7 +40,7 @@ public interface IResourceCenterDataSource {
 
     JSONArray getTbodyList(List<String> fieldList, List<ResourceVo> resourceList, ResourceEntityVo resourceEntityVo);
 
-    List<ResourceVo> getResourceList(ResourceSearchVo searchVo);
+    List<ResourceVo> getResourceList(ResourceSearchVo searchVo, List<String> theadFieldNameList);
 
     List<ResourceTypeVo> getResourceTypeTree(String keyword);
 

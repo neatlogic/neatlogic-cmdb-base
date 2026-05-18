@@ -106,7 +106,7 @@ public class IpObjectDetailVo {
     private Long userId;
     @EntityField(name = "用户UUID", type = ApiParamType.STRING)
     @ResourceField(name = "user_uuid")
-    private String uuid;
+    private String userUuid;
     @EntityField(name = "用户名", type = ApiParamType.STRING)
     @ResourceField(name = "user_name")
     private String userName;

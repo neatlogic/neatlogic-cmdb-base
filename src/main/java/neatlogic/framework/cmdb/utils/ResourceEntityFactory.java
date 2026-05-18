@@ -10,12 +10,14 @@
 
 package neatlogic.framework.cmdb.utils;
 
+import com.alibaba.fastjson.JSONObject;
 import neatlogic.framework.cmdb.annotation.ResourceField;
 import neatlogic.framework.cmdb.annotation.ResourceType;
 import neatlogic.framework.cmdb.annotation.ResourceTypes;
 import neatlogic.framework.cmdb.dto.resourcecenter.config.SceneEntityVo;
 import neatlogic.framework.common.dto.ValueTextVo;
 import neatlogic.framework.restful.annotation.EntityField;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
@@ -34,7 +36,7 @@ public class ResourceEntityFactory {
     /**
      * 视图名称与字段列表映射关系
      */
-    private static Map<String, List<ValueTextVo>> fieldMap = new HashMap<>();
+    private static Map<String, List<JSONObject>> fieldMap = new HashMap<>();
     /**
      * 视图信息列表
      */
@@ -74,7 +76,7 @@ public class ResourceEntityFactory {
                 if (rf != null) {
                     if (StringUtils.isNotBlank(rf.name())) {
                         EntityField ef = field.getAnnotation(EntityField.class);
-                        fieldMap.computeIfAbsent(sceneEntityVo.getName(), key -> new ArrayList<>()).add(new ValueTextVo(rf.name(), ef.name()));
+                        fieldMap.computeIfAbsent(sceneEntityVo.getName(), key -> new ArrayList<>()).add(new JSONObject().fluentPut("property", field.getName()).fluentPut("column", rf.name()).fluentPut("label", ef.name()));
                     }
                 }
             }
@@ -101,7 +103,7 @@ public class ResourceEntityFactory {
                         if (rf != null) {
                             if (StringUtils.isNotBlank(rf.name())) {
                                 EntityField ef = field.getAnnotation(EntityField.class);
-                                fieldMap.computeIfAbsent(sceneEntityVo.getName(), key -> new ArrayList<>()).add(new ValueTextVo(rf.name(), ef.name()));
+                                fieldMap.computeIfAbsent(sceneEntityVo.getName(), key -> new ArrayList<>()).add(new JSONObject().fluentPut("property", field.getName()).fluentPut("column", rf.name()).fluentPut("label", ef.name()));
                             }
                         }
                     }
@@ -151,21 +153,53 @@ public class ResourceEntityFactory {
         return sceneEntityVo;
     }
     public static List<String> getFieldNameListByViewName(String viewName) {
-        List<ValueTextVo> fieldList = fieldMap.get(viewName);
-        if (fieldList == null) {
-            return new ArrayList<>();
-        }
         List<String> fieldNameList = new ArrayList<>();
-        for (ValueTextVo valueTextVo : fieldList) {
-            fieldNameList.add(valueTextVo.getValue().toString());
+        List<JSONObject> list = fieldMap.get(viewName);
+        if (CollectionUtils.isNotEmpty(list)) {
+            for (JSONObject jsonObj : list) {
+                fieldNameList.add(jsonObj.getString("column"));
+            }
+        }
+        return fieldNameList;
+    }
+
+    public static List<String> getFieldNameListByViewNameAndPropertyList(String viewName, List<String> propertyList) {
+        List<String> fieldNameList = new ArrayList<>();
+        List<JSONObject> list = fieldMap.get(viewName);
+        if (CollectionUtils.isNotEmpty(list)) {
+            for (String property : propertyList) {
+                List<String> tempList = new ArrayList<>();
+                if (Objects.equals(property, "allIp")) {
+                    tempList.add("allIpId");
+                    tempList.add("allIpIp");
+                    tempList.add("allIpLabel");
+                } else if (Objects.equals(property, "bgList")) {
+                    tempList.add("bgId");
+                    tempList.add("bgName");
+                } else if (Objects.equals(property, "ownerList")) {
+                    tempList.add("userId");
+                    tempList.add("userUuid");
+                    tempList.add("userName");
+                } else {
+                    tempList.add(property);
+                }
+                for (JSONObject jsonObj : list) {
+                    if (tempList.contains(jsonObj.getString("property"))) {
+                        fieldNameList.add(jsonObj.getString("column"));
+                    }
+                }
+            }
         }
         return fieldNameList;
     }
 
     public static List<ValueTextVo> getFieldListByViewName(String viewName) {
-        List<ValueTextVo> fieldList = fieldMap.get(viewName);
-        if (fieldList == null) {
-            return new ArrayList<>();
+        List<ValueTextVo> fieldList = new ArrayList<>();
+        List<JSONObject> list = fieldMap.get(viewName);
+        if (CollectionUtils.isNotEmpty(list)) {
+            for (JSONObject jsonObj : list) {
+                fieldList.add(new ValueTextVo(jsonObj.getString("column"), jsonObj.getString("label")));
+            }
         }
         return new ArrayList<>(fieldList);
     }
