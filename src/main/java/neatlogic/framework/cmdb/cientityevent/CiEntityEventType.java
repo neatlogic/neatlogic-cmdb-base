@@ -1,4 +1,5 @@
 /*
+ *
  * Copyright (C) 2025  TechSure Co., Ltd.  All Rights Reserved.
  * This file is part of the NeatLogic software.
  * Licensed under the NeatLogic Sustainable Use License (NSUL), Version 4.x – 2025.
@@ -6,19 +7,27 @@
  * See the LICENSE file distributed with this work for the full license text.
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *
  */
 
-package neatlogic.framework.cmdb.crossover;
+package neatlogic.framework.cmdb.cientityevent;
 
-import neatlogic.framework.cmdb.dto.ci.CiVo;
-import neatlogic.framework.cmdb.dto.resourcecenter.config.ResourceEntityVo;
-import neatlogic.framework.crossover.ICrossoverService;
+public enum CiEntityEventType {
+    CREATE("create"),
+    UPDATE("update"),
+    DELETE("delete"),
+    RECOVER("recover");
 
-public interface IResourceEntityCrossoverService extends ICrossoverService {
+    private final String value;
 
-    CiVo getAssetListRootCi();
+    CiEntityEventType(String value) {
+        this.value = value;
+    }
 
-    CiVo getViewRootCi(String viewName);
-
-    ResourceEntityVo getResourceEntityByName(String viewName);
+    /**
+     * 获取事件类型值，用于日志和线程名。
+     */
+    public String getValue() {
+        return value;
+    }
 }
