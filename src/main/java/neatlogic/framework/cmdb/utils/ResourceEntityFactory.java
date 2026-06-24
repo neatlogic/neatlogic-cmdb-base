@@ -180,6 +180,9 @@ public class ResourceEntityFactory {
                     tempList.add("userId");
                     tempList.add("userUuid");
                     tempList.add("userName");
+                } else if (Objects.equals(property, "ip")) {
+                    tempList.add("ip");
+                    tempList.add("port");
                 } else {
                     tempList.add(property);
                 }
