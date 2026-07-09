@@ -12,34 +12,20 @@
 
 package neatlogic.framework.cmdb.cientityevent;
 
-public enum CiEntityEventType {
-    CREATE("create"),
-    UPDATE("update"),
-    DELETE("delete"),
-    RECOVER("recover");
+public enum CiEntityEventStatus {
+    PENDING("pending"),
+    RUNNING("running");
 
     private final String value;
 
-    CiEntityEventType(String value) {
+    CiEntityEventStatus(String value) {
         this.value = value;
     }
 
     /**
-     * 获取事件类型值，用于日志和线程名。
+     * 获取队列状态值，用于数据库持久化。
      */
     public String getValue() {
         return value;
-    }
-
-    /**
-     * 根据持久化值还原事件类型。
-     */
-    public static CiEntityEventType getByValue(String value) {
-        for (CiEntityEventType eventType : values()) {
-            if (eventType.getValue().equals(value)) {
-                return eventType;
-            }
-        }
-        return null;
     }
 }

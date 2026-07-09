@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neatlogic.framework.cmdb.dao.mapper.cientity.CiEntityEventMapper">
+
+    <resultMap id="ciEntityEventResultMap" type="neatlogic.framework.cmdb.dto.cientity.CiEntityEventVo">
+        <id property="id" column="id"/>
+        <result property="eventType" column="eventType"/>
+        <result property="ciEntityId" column="ciEntityId"/>
+        <result property="ciId" column="ciId"/>
+        <result property="status" column="status"/>
+        <result property="serverId" column="serverId"/>
+        <result property="retryCount" column="retryCount"/>
+        <result property="payload" column="payload" typeHandler="CompressHandler"/>
+        <result property="fcd" column="fcd"/>
+        <result property="lcd" column="lcd"/>
+    </resultMap>
+
+    <sql id="ciEntityEventColumn">
+        `id`,
+        `event_type` AS eventType,
+        `cientity_id` AS ciEntityId,
+        `ci_id` AS ciId,
+        `status`,
+        `server_id` AS serverId,
+        `retry_count` AS retryCount,
+        `payload`,
+        `fcd`,
+        `lcd`
+    </sql>
+
+    <select id="getCiEntityEventById" parameterType="java.lang.Long" resultMap="ciEntityEventResultMap">
+        SELECT
+        <include refid="ciEntityEventColumn"></include>
+        FROM `cmdb_cientity_event_queue`
+        WHERE `id` = #{value}
+    </select>
+
+    <select id="getPendingCiEntityEventList" resultMap="ciEntityEventResultMap">
+        SELECT
+        <include refid="ciEntityEventColumn"></include>
+        FROM `cmdb_cientity_event_queue`
+        WHERE `status` = 'pending'
+        ORDER BY `fcd` ASC
+    </select>
+
+    <insert id="insertCiEntityEvent" parameterType="neatlogic.framework.cmdb.dto.cientity.CiEntityEventVo">
+        INSERT INTO `cmdb_cientity_event_queue`
+        (`id`,
+         `event_type`,
+         `cientity_id`,
+         `ci_id`,
+         `status`,
+         `server_id`,
+         `retry_count`,
+         `payload`,
+         `fcd`,
+         `lcd`)
+        VALUES (#{id},
+                #{eventType},
+                #{ciEntityId},
+                #{ciId},
+                #{status},
+                #{serverId},
+                0,
+                #{payload,typeHandler=CompressHandler},
+                NOW(3),
+                NOW(3))
+    </insert>
+
+    <update id="updatePendingCiEntityEventToRunning">
+        UPDATE `cmdb_cientity_event_queue`
+        SET `status` = 'running',
+            `server_id` = #{serverId},
+            `retry_count` = `retry_count` + 1,
+            `lcd` = NOW(3)
+        WHERE `id` = #{id}
+          AND `status` = 'pending'
+    </update>
+
+    <update id="updateRunningCiEntityEventToPendingByServerId">
+        UPDATE `cmdb_cientity_event_queue`
+        SET `status` = 'pending',
+            `lcd` = NOW(3)
+        WHERE `server_id` = #{serverId}
+          AND `status` = 'running'
+    </update>
+
+    <delete id="deleteCiEntityEventById" parameterType="java.lang.Long">
+        DELETE
+        FROM `cmdb_cientity_event_queue`
+        WHERE `id` = #{value}
+    </delete>
+</mapper>
