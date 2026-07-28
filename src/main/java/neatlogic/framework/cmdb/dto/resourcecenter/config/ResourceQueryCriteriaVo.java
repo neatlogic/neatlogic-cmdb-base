@@ -64,6 +64,8 @@ public class ResourceQueryCriteriaVo {
     private JSONArray defaultValue;
     @EntityField(name = "资产id列表", type = ApiParamType.JSONARRAY)
     private List<Long> idList;
+    @EntityField(name = "IP地址列表", type = ApiParamType.JSONARRAY)
+    private List<String> ipList;
     @EntityField(name = "巡检状态列表", type = ApiParamType.JSONARRAY)
     private List<String> inspectStatusList;
     @EntityField(name = "用户分组角色列表", type = ApiParamType.JSONARRAY)
@@ -134,6 +136,9 @@ public class ResourceQueryCriteriaVo {
         }
         if (CollectionUtils.isNotEmpty(searchVo.getIdList())) {
             this.idList = new ArrayList<>(searchVo.getIdList());
+        }
+        if (CollectionUtils.isNotEmpty(searchVo.getIpList())) {
+            this.ipList = new ArrayList<>(searchVo.getIpList());
         }
         if (CollectionUtils.isNotEmpty(searchVo.getInspectStatusList())) {
             this.inspectStatusList = new ArrayList<>(searchVo.getInspectStatusList());
@@ -312,6 +317,14 @@ public class ResourceQueryCriteriaVo {
 
     public void setIdList(List<Long> idList) {
         this.idList = idList;
+    }
+
+    public List<String> getIpList() {
+        return ipList;
+    }
+
+    public void setIpList(List<String> ipList) {
+        this.ipList = ipList;
     }
 
     public List<String> getInspectStatusList() {
