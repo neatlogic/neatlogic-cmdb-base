@@ -17,6 +17,7 @@ import neatlogic.framework.cmdb.annotation.ResourceTypes;
 import neatlogic.framework.cmdb.dto.resourcecenter.config.SceneEntityVo;
 import neatlogic.framework.common.dto.ValueTextVo;
 import neatlogic.framework.restful.annotation.EntityField;
+import neatlogic.framework.util.$;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.reflections.Reflections;
@@ -201,7 +202,7 @@ public class ResourceEntityFactory {
         List<JSONObject> list = fieldMap.get(viewName);
         if (CollectionUtils.isNotEmpty(list)) {
             for (JSONObject jsonObj : list) {
-                fieldList.add(new ValueTextVo(jsonObj.getString("column"), jsonObj.getString("label")));
+                fieldList.add(new ValueTextVo(jsonObj.getString("column"), $.t(jsonObj.getString("label"))));
             }
         }
         return new ArrayList<>(fieldList);

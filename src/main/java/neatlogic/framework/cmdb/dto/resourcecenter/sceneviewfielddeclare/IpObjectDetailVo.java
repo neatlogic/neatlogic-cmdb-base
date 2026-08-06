@@ -19,167 +19,167 @@ import neatlogic.framework.restful.annotation.EntityField;
 
 import java.util.Date;
 
-@ResourceType(name = "scence_ipobject_detail", label = "资产清单视图", moduleId= "cmdb", functionPathList = {"配置管理/资产清单"})
+@ResourceType(name = "scence_ipobject_detail", label = "nfcdrcs.ipobjectdetailvo.resourcetype.scenceipobjectdetail.label", moduleId= "cmdb", functionPathList = {"nfcdrcs.functionpath.assetlist"})
 public class IpObjectDetailVo {
     @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;
 
-    @EntityField(name = "名称", type = ApiParamType.STRING)
+    @EntityField(name = "common.name", type = ApiParamType.STRING)
     @ResourceField(name = "name")
     private String name;
 
-    @EntityField(name = "IP地址", type = ApiParamType.STRING)
+    @EntityField(name = "term.cmdb.ip", type = ApiParamType.STRING)
     @ResourceField(name = "ip")
     private String ip;
 
-    @EntityField(name = "类型ID", type = ApiParamType.LONG)
+    @EntityField(name = "common.typeid", type = ApiParamType.LONG)
     @ResourceField(name = "type_id")
     private Long typeId;
-    @EntityField(name = "类型名称", type = ApiParamType.STRING)
+    @EntityField(name = "common.typename", type = ApiParamType.STRING)
     @ResourceField(name = "type_name")
     private String typeName;
-    @EntityField(name = "类型Label", type = ApiParamType.STRING)
+    @EntityField(name = "nfcdrcs.common.entityfield.typelabel.name", type = ApiParamType.STRING)
     @ResourceField(name = "type_label")
     private String typeLabel;
 
-    @EntityField(name = "创建者", type = ApiParamType.STRING)
+    @EntityField(name = "common.createuser", type = ApiParamType.STRING)
     @ResourceField(name = "fcu")
     private String fcu;
-    @EntityField(name = "创建日期", type = ApiParamType.LONG)
+    @EntityField(name = "common.createdate", type = ApiParamType.LONG)
     @ResourceField(name = "fcd")
     private Date fcd;
-    @EntityField(name = "修改者", type = ApiParamType.STRING)
+    @EntityField(name = "common.editor", type = ApiParamType.STRING)
     @ResourceField(name = "lcu")
     private String lcu;
-    @EntityField(name = "修改日期", type = ApiParamType.LONG)
+    @EntityField(name = "common.editdate", type = ApiParamType.LONG)
     @ResourceField(name = "lcd")
     private Date lcd;
 
-    @EntityField(name = "维护窗口", type = ApiParamType.STRING)
+    @EntityField(name = "term.cmdb.maintenancewindow", type = ApiParamType.STRING)
     @ResourceField(name = "maintenance_window")
     private String maintenanceWindow;
 
-    @EntityField(name = "描述", type = ApiParamType.STRING)
+    @EntityField(name = "common.description", type = ApiParamType.STRING)
     @ResourceField(name = "description")
     private String description;
-    @EntityField(name = "网络区域", type = ApiParamType.STRING)
+    @EntityField(name = "common.networkarea", type = ApiParamType.STRING)
     @ResourceField(name = "network_area")
     private String networkArea;
 
-    @EntityField(name = "巡检状态", type = ApiParamType.STRING)
+    @EntityField(name = "term.cmdb.inspectstatus", type = ApiParamType.STRING)
     @ResourceField(name = "inspect_status")
     private String inspectStatus;
-    @EntityField(name = "巡检时间", type = ApiParamType.LONG)
+    @EntityField(name = "nfcdrcs.common.entityfield.inspecttime.name", type = ApiParamType.LONG)
     @ResourceField(name = "inspect_time")
     private Date inspectTime;
-    @EntityField(name = "监控状态", type = ApiParamType.STRING)
+    @EntityField(name = "term.cmdb.monitorstatus", type = ApiParamType.STRING)
     @ResourceField(name = "monitor_status")
     private String monitorStatus;
-    @EntityField(name = "监控时间", type = ApiParamType.LONG)
+    @EntityField(name = "nfcdrcs.common.entityfield.monitortime.name", type = ApiParamType.LONG)
     @ResourceField(name = "monitor_time")
     private Date monitorTime;
 
-    @EntityField(name = "端口", type = ApiParamType.INTEGER)
+    @EntityField(name = "nfcdrcs.common.entityfield.port.name", type = ApiParamType.INTEGER)
     @ResourceField(name = "port")
     private Integer port;
 
-    @EntityField(name = "分组ID", type = ApiParamType.LONG)
+    @EntityField(name = "nfcdrcs.common.entityfield.groupid.name", type = ApiParamType.LONG)
     @ResourceField(name = "bg_id")
     private Long bgId;
-    @EntityField(name = "分组名称", type = ApiParamType.STRING)
+    @EntityField(name = "nfcdrcs.common.entityfield.groupname.name", type = ApiParamType.STRING)
     @ResourceField(name = "bg_name")
     private String bgName;
 
-    @EntityField(name = "IP列表的ID", type = ApiParamType.LONG)
+    @EntityField(name = "nfcdrcs.common.entityfield.allipid.name", type = ApiParamType.LONG)
     @ResourceField(name = "allip_id")
     private Long allIpId;
-    @EntityField(name = "IP列表的IP地址", type = ApiParamType.STRING)
+    @EntityField(name = "nfcdrcs.common.entityfield.allipip.name", type = ApiParamType.STRING)
     @ResourceField(name = "allip_ip")
     private String allIpIp;
-    @EntityField(name = "IP列表的描述", type = ApiParamType.STRING)
+    @EntityField(name = "nfcdrcs.common.entityfield.allipdescription.name", type = ApiParamType.STRING)
     @ResourceField(name = "allip_label")
     private String allIpLabel;
 
-    @EntityField(name = "用户ID", type = ApiParamType.LONG)
+    @EntityField(name = "common.userid", type = ApiParamType.LONG)
     @ResourceField(name = "user_id")
     private Long userId;
-    @EntityField(name = "用户UUID", type = ApiParamType.STRING)
+    @EntityField(name = "common.useruuid", type = ApiParamType.STRING)
     @ResourceField(name = "user_uuid")
     private String userUuid;
-    @EntityField(name = "用户名", type = ApiParamType.STRING)
+    @EntityField(name = "common.username", type = ApiParamType.STRING)
     @ResourceField(name = "user_name")
     private String userName;
 
-    @EntityField(name = "状态ID", type = ApiParamType.LONG)
+    @EntityField(name = "common.statusid", type = ApiParamType.LONG)
     @ResourceField(name = "state_id")
     private Long stateId;
-    @EntityField(name = "状态名", type = ApiParamType.STRING)
+    @EntityField(name = "common.statusname", type = ApiParamType.STRING)
     @ResourceField(name = "state_name")
     private String stateName;
-    @EntityField(name = "状态描述", type = ApiParamType.STRING)
+    @EntityField(name = "common.statusdescription", type = ApiParamType.STRING)
     @ResourceField(name = "state_label")
     private String stateLabel;
 
-    @EntityField(name = "厂商ID", type = ApiParamType.LONG)
+    @EntityField(name = "nfcdrcs.common.entityfield.vendorid.name", type = ApiParamType.LONG)
     @ResourceField(name = "vendor_id")
     private Long vendorId;
-    @EntityField(name = "厂商名称", type = ApiParamType.STRING)
+    @EntityField(name = "nfcdrcs.common.entityfield.vendorname.name", type = ApiParamType.STRING)
     @ResourceField(name = "vendor_name")
     private String vendorName;
-    @EntityField(name = "厂商描述", type = ApiParamType.STRING)
+    @EntityField(name = "nfcdrcs.common.entityfield.vendordescription.name", type = ApiParamType.STRING)
     @ResourceField(name = "vendor_label")
     private String vendorLabel;
 
-    @EntityField(name = "数据中心ID", type = ApiParamType.LONG)
+    @EntityField(name = "nfcdrcs.common.entityfield.datacenterid.name", type = ApiParamType.LONG)
     @ResourceField(name = "datacenter_id")
     private Long dataCenterId;
-    @EntityField(name = "数据中心名称", type = ApiParamType.STRING)
+    @EntityField(name = "nfcdrcs.common.entityfield.datacentername.name", type = ApiParamType.STRING)
     @ResourceField(name = "datacenter_name")
     private String dataCenterName;
 
-    @EntityField(name = "操作系统ID", type = ApiParamType.LONG)
+    @EntityField(name = "nfcdrcs.common.entityfield.osid.name", type = ApiParamType.LONG)
     @ResourceField(name = "os_id")
     private Long osId;
-    @EntityField(name = "操作系统名称", type = ApiParamType.STRING)
+    @EntityField(name = "nfcdrcs.common.entityfield.osname.name", type = ApiParamType.STRING)
     @ResourceField(name = "os_name")
     private String osName;
 
-    @EntityField(name = "操作系统类型ID", type = ApiParamType.LONG)
+    @EntityField(name = "nfcdrcs.common.entityfield.ostypeid.name", type = ApiParamType.LONG)
     @ResourceField(name = "os_type_id")
     private Long osTypeId;
 
-    @EntityField(name = "操作系统IP", type = ApiParamType.STRING)
+    @EntityField(name = "nfcdrcs.common.entityfield.osipaddress.name", type = ApiParamType.STRING)
     @ResourceField(name = "os_ip")
     private String osIp;
 
-    @EntityField(name = "环境ID", type = ApiParamType.LONG)
+    @EntityField(name = "term.cmdb.envid", type = ApiParamType.LONG)
     @ResourceField(name = "env_id")
     private Long envId;
-    @EntityField(name = "环境名称", type = ApiParamType.STRING)
+    @EntityField(name = "term.cmdb.envname", type = ApiParamType.STRING)
     @ResourceField(name = "env_name")
     private String envName;
-    @EntityField(name = "环境序号", type = ApiParamType.INTEGER)
+    @EntityField(name = "nfcdrcs.common.entityfield.envsequencenumber.name", type = ApiParamType.INTEGER)
     @ResourceField(name = "env_seq_no")
     private Integer envSeqNo;
 
-    @EntityField(name = "应用模块ID", type = ApiParamType.LONG)
+    @EntityField(name = "term.cmdb.appmoduleid", type = ApiParamType.LONG)
     @ResourceField(name = "app_module_id")
     private Long appModuleId;
-    @EntityField(name = "应用模块名", type = ApiParamType.STRING)
+    @EntityField(name = "term.cmdb.appmodulename", type = ApiParamType.STRING)
     @ResourceField(name = "app_module_name")
     private String appModuleName;
-    @EntityField(name = "应用模块简称", type = ApiParamType.STRING)
+    @EntityField(name = "term.cmdb.appmoduleabbrname", type = ApiParamType.STRING)
     @ResourceField(name = "app_module_abbr_name")
     private String appModuleAbbrName;
 
-    @EntityField(name = "应用系统ID", type = ApiParamType.LONG)
+    @EntityField(name = "term.cmdb.appsystemid", type = ApiParamType.LONG)
     @ResourceField(name = "app_system_id")
     private Long appSystemId;
-    @EntityField(name = "应用系统名", type = ApiParamType.STRING)
+    @EntityField(name = "term.cmdb.appsystemname", type = ApiParamType.STRING)
     @ResourceField(name = "app_system_name")
     private String appSystemName;
-    @EntityField(name = "应用系统简称", type = ApiParamType.STRING)
+    @EntityField(name = "term.cmdb.appsystemabbrname", type = ApiParamType.STRING)
     @ResourceField(name = "app_system_abbr_name")
     private String appSystemAbbrName;
 }

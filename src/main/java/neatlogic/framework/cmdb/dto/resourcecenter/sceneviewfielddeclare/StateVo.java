@@ -17,18 +17,18 @@ import neatlogic.framework.cmdb.annotation.ResourceType;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 
-@ResourceType(name = "scence_state", label = "资产状态基本信息场景", moduleId= "cmdb")
-@ResourceType(name = "scence_vendor", label = "厂商基本信息场景", moduleId= "cmdb")
+@ResourceType(name = "scence_state", label = "nfcdrcs.statevo.resourcetype.scencestate.label", moduleId= "cmdb")
+@ResourceType(name = "scence_vendor", label = "nfcdrcs.statevo.resourcetype.scencevendor.label", moduleId= "cmdb")
 public class StateVo {
     @EntityField(name = "ID", type = ApiParamType.LONG)
     @ResourceField(name = "id")
     private Long id;
 
-    @EntityField(name = "名称", type = ApiParamType.STRING)
+    @EntityField(name = "common.name", type = ApiParamType.STRING)
     @ResourceField(name = "name")
     private String name;
 
-    @EntityField(name = "描述", type = ApiParamType.STRING)
+    @EntityField(name = "common.description", type = ApiParamType.STRING)
     @ResourceField(name = "description")
     private String description;
 }

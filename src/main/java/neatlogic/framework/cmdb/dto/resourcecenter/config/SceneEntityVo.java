@@ -17,6 +17,7 @@ import neatlogic.framework.cmdb.dto.ci.CiVo;
 import neatlogic.framework.cmdb.enums.resourcecenter.Status;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
+import neatlogic.framework.util.$;
 
 import java.util.Date;
 
@@ -53,7 +54,7 @@ public class SceneEntityVo {
     }
 
     public String getLabel() {
-        return label;
+        return $.t(label);
     }
 
     public void setLabel(String label) {
@@ -112,7 +113,7 @@ public class SceneEntityVo {
     }
 
     public String getDescription() {
-        return description;
+        return $.t(description);
     }
 
     public void setDescription(String description) {
