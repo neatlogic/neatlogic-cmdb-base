@@ -74,4 +74,6 @@ public interface ICiEntityCrossoverMapper extends ICrossoverService {
     List<CiEntityVo> getVirtualCiEntityBaseInfoByName(CiEntityVo ciEntityVo);
 
     List<CiEntityVo> getCiEntityListByCiIdListAndName(CiEntityVo ciEntityVo);
+
+    Long getCiEntityIdByCiIdAndAttrIdAndAttrValue(@Param("ciId") Long ciId, @Param("attrId") Long attrId, @Param("attrValue") String attrValue);
 }
