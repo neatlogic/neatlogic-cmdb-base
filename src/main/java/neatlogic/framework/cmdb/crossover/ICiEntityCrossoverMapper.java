@@ -6,6 +6,7 @@ import neatlogic.framework.crossover.ICrossoverService;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author longrf
@@ -76,4 +77,6 @@ public interface ICiEntityCrossoverMapper extends ICrossoverService {
     List<CiEntityVo> getCiEntityListByCiIdListAndName(CiEntityVo ciEntityVo);
 
     Long getCiEntityIdByCiIdAndAttrIdAndAttrValue(@Param("ciId") Long ciId, @Param("attrId") Long attrId, @Param("attrValue") String attrValue);
+
+    List<Map<String, Object>> getCiEntityIdAndAttrValueByCiIdAndAttrIdAndKeyword(@Param("ciId") Long ciId, @Param("attrId") Long id, @Param("keyword") String keyword);
 }
