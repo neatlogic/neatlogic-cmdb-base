@@ -196,7 +196,7 @@ public class ResourceConditionConfigVo extends ConditionConfigBaseVo<ResourceCon
                 columnName = fieldName2ColumnMap.get("vendor_id").toString();
                 valueVo = $sql.value(convertLongList(valueList));
             } else if (Objects.equals(name, "tagIdList")) {
-                sqlVo.withAddJoin($sql.join("left join", "cmdb_resourcecenter_resource_tag", "d").withOn($sql.exp("d.resource_id", "=", fieldName2ColumnMap.get("id").toString())));
+                sqlVo.withAddJoin($sql.join("left join", "cmdb_cientity_tag", "d").withOn($sql.exp("d.cientity_id", "=", fieldName2ColumnMap.get("id").toString())));
                 columnName = "d.tag_id";
                 valueVo = $sql.value(convertLongList(valueList));
             } else if (Objects.equals(name, "protocolIdList")) {
