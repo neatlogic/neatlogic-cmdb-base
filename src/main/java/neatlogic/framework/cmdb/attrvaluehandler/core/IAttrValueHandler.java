@@ -95,12 +95,12 @@ public interface IAttrValueHandler {
     boolean isNeedTargetCi();
 
     /**
-     * 是否需要在配置项动态表中创建值字段和哈希字段。
+     * 属性值数据是否保存到cmdb_attr_invoke表。
      *
-     * @return 默认需要动态字段
+     * @return 默认不使用引用表存储
      */
-    default boolean isNeedCiEntityColumn() {
-        return true;
+    default boolean isInvokeAttr() {
+        return false;
     }
 
 

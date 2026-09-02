@@ -472,11 +472,12 @@ public class AttrEntityVo extends BasePageVo {
     }
 
     @JSONField(serialize = false)
-    public boolean getNeedCiEntityColumn() {
+    public boolean isInvokeAttr() {
+        // 配置项属性实体沿用属性处理器的独立引用存储标识。
         if (StringUtils.isNotBlank(this.attrType)) {
             IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.attrType);
-            return handler == null || handler.isNeedCiEntityColumn();
+            return handler != null && handler.isInvokeAttr();
         }
-        return true;
+        return false;
     }
 }
