@@ -589,6 +589,15 @@ public class AttrVo extends BasePageVo {
         return needTargetCi;
     }
 
+    @JSONField(serialize = false)
+    public boolean getNeedCiEntityColumn() {
+        if (StringUtils.isNotBlank(this.type)) {
+            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.type);
+            return handler == null || handler.isNeedCiEntityColumn();
+        }
+        return true;
+    }
+
     public Boolean isNeedConfig() {
         if (StringUtils.isNotBlank(this.type)) {
             IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.type);

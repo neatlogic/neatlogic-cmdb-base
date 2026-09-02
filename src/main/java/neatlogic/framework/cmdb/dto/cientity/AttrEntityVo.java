@@ -470,4 +470,13 @@ public class AttrEntityVo extends BasePageVo {
         }
         return isNeedTargetCi;
     }
+
+    @JSONField(serialize = false)
+    public boolean getNeedCiEntityColumn() {
+        if (StringUtils.isNotBlank(this.attrType)) {
+            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.attrType);
+            return handler == null || handler.isNeedCiEntityColumn();
+        }
+        return true;
+    }
 }

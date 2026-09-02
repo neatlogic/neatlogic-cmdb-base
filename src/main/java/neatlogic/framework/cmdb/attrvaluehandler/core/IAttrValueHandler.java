@@ -14,9 +14,13 @@ package neatlogic.framework.cmdb.attrvaluehandler.core;
 
 import com.alibaba.fastjson.JSONArray;
 import neatlogic.framework.cmdb.dto.ci.AttrVo;
+import neatlogic.framework.cmdb.dto.cientity.AttrInvokeVo;
 import neatlogic.framework.cmdb.enums.SearchExpression;
 import neatlogic.framework.cmdb.exception.attr.AttrValueIrregularException;
 import org.apache.commons.collections4.CollectionUtils;
+
+import java.util.Collections;
+import java.util.List;
 
 public interface IAttrValueHandler {
     /**
@@ -89,6 +93,15 @@ public interface IAttrValueHandler {
      * @return boolean
      */
     boolean isNeedTargetCi();
+
+    /**
+     * 是否需要在配置项动态表中创建值字段和哈希字段。
+     *
+     * @return 默认需要动态字段
+     */
+    default boolean isNeedCiEntityColumn() {
+        return true;
+    }
 
 
     /**
@@ -168,6 +181,13 @@ public interface IAttrValueHandler {
     }
 
     /**
+     * 将值转换成存储形式，并提供当前配置项ID供外部存储属性稳定其引用ID。
+     */
+    default void transferValueListToSave(AttrVo attrVo, Long ciEntityId, JSONArray valueList) {
+        transferValueListToSave(attrVo, valueList);
+    }
+
+    /**
      * 将值转换成显示的形式
      *
      * @param valueList 数据库的数据
@@ -229,5 +249,54 @@ public interface IAttrValueHandler {
      */
     default void afterDelete(AttrVo attrVo) {
 
+    }
+
+    /**
+     * 将属性值转换为独立引用索引。
+     *
+     * @param attrVo     属性定义
+     * @param ciEntityId 配置项ID
+     * @param valueList  属性值
+     * @return 引用索引列表
+     */
+    default List<AttrInvokeVo> convertValueListToAttrInvokeList(AttrVo attrVo, Long ciEntityId, JSONArray valueList) {
+        return Collections.emptyList();
+    }
+
+    /**
+     * 将独立引用索引还原为属性值。
+     *
+     * @param attrVo        属性定义
+     * @param attrInvokeList 引用索引列表
+     * @return 属性值
+     */
+    default JSONArray convertAttrInvokeListToValueList(AttrVo attrVo, List<AttrInvokeVo> attrInvokeList) {
+        return new JSONArray();
+    }
+
+    /**
+     * 保存配置项后，在配置项事务内执行的自定义操作。
+     */
+    default void afterSaveCiEntity(AttrVo attrVo, JSONArray newValueList, JSONArray oldValueList) {
+    }
+
+    /**
+     * 保存配置项后，在配置项事务内执行的自定义操作。
+     */
+    default void afterSaveCiEntity(AttrVo attrVo, Long ciEntityId, JSONArray newValueList, JSONArray oldValueList) {
+        afterSaveCiEntity(attrVo, newValueList, oldValueList);
+    }
+
+    /**
+     * 删除配置项后，在配置项事务内执行的自定义操作。
+     */
+    default void afterDeleteCiEntity(AttrVo attrVo, JSONArray valueList) {
+    }
+
+    /**
+     * 删除配置项后，在配置项事务内执行的自定义操作。
+     */
+    default void afterDeleteCiEntity(AttrVo attrVo, Long ciEntityId, JSONArray valueList) {
+        afterDeleteCiEntity(attrVo, valueList);
     }
 }
