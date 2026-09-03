@@ -15,6 +15,8 @@ package neatlogic.framework.cmdb.dto.cientity;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.asynchronization.threadlocal.TenantContext;
+import neatlogic.framework.cmdb.attrvaluehandler.core.AttrValueHandlerFactory;
+import neatlogic.framework.cmdb.attrvaluehandler.core.IAttrValueHandler;
 import neatlogic.framework.cmdb.enums.SearchExpression;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -41,6 +43,9 @@ public class AttrFilterVo implements Serializable {
     private List<String> valueHashList;
     @JSONField(serialize = false)
     private Boolean needTargetCi;
+    // 标识属性值是否保存于cmdb_attr_invoke表，仅供后端组装查询SQL使用。
+    @JSONField(serialize = false, deserialize = false)
+    private Boolean isInvokeAttr;
 
     @Override
     public String toString() {
@@ -102,6 +107,26 @@ public class AttrFilterVo implements Serializable {
 
     public void setNeedTargetCi(Boolean needTargetCi) {
         this.needTargetCi = needTargetCi;
+    }
+
+    /**
+     * 根据属性处理器判断过滤条件是否需要查询cmdb_attr_invoke表。
+     *
+     * @return true表示属性值保存于cmdb_attr_invoke表
+     */
+    public Boolean getIsInvokeAttr() {
+        if (isInvokeAttr == null) {
+            isInvokeAttr = false;
+            if (StringUtils.isNotBlank(type)) {
+                IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(type);
+                isInvokeAttr = handler != null && handler.isInvokeAttr();
+            }
+        }
+        return isInvokeAttr;
+    }
+
+    public void setIsInvokeAttr(Boolean isInvokeAttr) {
+        this.isInvokeAttr = isInvokeAttr;
     }
 
     public void setCiId(Long ciId) {
@@ -204,5 +229,7 @@ public class AttrFilterVo implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+        // 属性类型改变后清除缓存，确保查询方式始终以最新处理器定义为准。
+        this.isInvokeAttr = null;
     }
 }
