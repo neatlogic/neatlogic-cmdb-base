@@ -12,6 +12,7 @@
 
 package neatlogic.framework.cmdb.dto.cientity;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.asynchronization.threadlocal.TenantContext;
 import neatlogic.framework.cmdb.enums.SearchExpression;
@@ -20,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.DigestUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,7 +36,8 @@ public class AttrFilterVo implements Serializable {
     private String type;
     private String expressionName; // 表达式名称
     private String expression;// 用户sql查询的表达式
-    private List<String> valueList;
+    // 使用JSONArray同时承载普通属性标量值和引用属性结构化值。
+    private JSONArray valueList;
     private List<String> valueHashList;
     @JSONField(serialize = false)
     private Boolean needTargetCi;
@@ -53,8 +56,9 @@ public class AttrFilterVo implements Serializable {
     }
 
     public List<String> getValueHashList() {
-        if (CollectionUtils.isNotEmpty(getValueList())) {
-            return getValueList().stream().map(d -> DigestUtils.md5DigestAsHex(d.toLowerCase().getBytes()))
+        List<String> stringValueList = getStringValueList();
+        if (CollectionUtils.isNotEmpty(stringValueList)) {
+            return stringValueList.stream().map(d -> DigestUtils.md5DigestAsHex(d.toLowerCase().getBytes()))
                     .collect(Collectors.toList());
         }
         return null;
@@ -87,7 +91,7 @@ public class AttrFilterVo implements Serializable {
      */
     public String getValue() {
         if (CollectionUtils.isNotEmpty(valueList)) {
-            return valueList.get(0);
+            return valueList.getString(0);
         }
         return null;
     }
@@ -131,15 +135,56 @@ public class AttrFilterVo implements Serializable {
         this.expression = expression;
     }
 
-    public List<String> getValueList() {
+    public JSONArray getValueList() {
         if (CollectionUtils.isNotEmpty(valueList)) {
-            return valueList.stream().filter(StringUtils::isNotBlank).collect(Collectors.toList());
+            // 普通字符串条件继续过滤空值，JSONObject等结构化引用值原样保留。
+            JSONArray validValueList = new JSONArray();
+            for (Object value : valueList) {
+                if (value != null && (!(value instanceof String) || StringUtils.isNotBlank((String) value))) {
+                    validValueList.add(value);
+                }
+            }
+            return validValueList;
         }
         return valueList;
     }
 
-    public void setValueList(List<String> valueList) {
+    public void setValueList(JSONArray valueList) {
         this.valueList = valueList;
+    }
+
+    /**
+     * 兼容现有Java调用方以List设置普通属性过滤值，统一转换为JSONArray保存。
+     *
+     * @param valueList 普通属性过滤值
+     */
+    @JSONField(serialize = false, deserialize = false)
+    public void setValueList(List<?> valueList) {// 新增
+        if (valueList == null) {
+            this.valueList = null;
+            return;
+        }
+        this.valueList = new JSONArray();
+        this.valueList.addAll(valueList);
+    }
+
+    /**
+     * 获取普通属性逻辑需要的字符串值，避免结构化存储改变原有Java调用方式。
+     *
+     * @return 字符串过滤值列表
+     */
+    @JSONField(serialize = false)
+    public List<String> getStringValueList() {// 新增
+        List<String> stringValueList = new ArrayList<>();
+        JSONArray currentValueList = getValueList();
+        if (CollectionUtils.isNotEmpty(currentValueList)) {
+            for (Object value : currentValueList) {
+                if (value != null) {
+                    stringValueList.add(value.toString());
+                }
+            }
+        }
+        return stringValueList;
     }
 
     public String getExpressionName() {
