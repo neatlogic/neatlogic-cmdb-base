@@ -61,7 +61,7 @@ public class AttrFilterVo implements Serializable {
     }
 
     public List<String> getValueHashList() {
-        List<String> stringValueList = getStringValueList();
+        List<String> stringValueList = getValueList().stream().map(Object::toString).toList();
         if (CollectionUtils.isNotEmpty(stringValueList)) {
             return stringValueList.stream().map(d -> DigestUtils.md5DigestAsHex(d.toLowerCase().getBytes()))
                     .collect(Collectors.toList());
@@ -115,13 +115,13 @@ public class AttrFilterVo implements Serializable {
      * @return true表示属性值保存于cmdb_attr_invoke表
      */
     public Boolean getIsInvokeAttr() {
-        if (isInvokeAttr == null) {
-            isInvokeAttr = false;
-            if (StringUtils.isNotBlank(type)) {
-                IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(type);
-                isInvokeAttr = handler != null && handler.isInvokeAttr();
-            }
-        }
+//        if (isInvokeAttr == null) {
+//            isInvokeAttr = false;
+//            if (StringUtils.isNotBlank(type)) {
+//                IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(type);
+//                isInvokeAttr = handler != null && handler.isInvokeAttr();
+//            }
+//        }
         return isInvokeAttr;
     }
 
@@ -198,19 +198,19 @@ public class AttrFilterVo implements Serializable {
      *
      * @return 字符串过滤值列表
      */
-    @JSONField(serialize = false)
-    public List<String> getStringValueList() {// 新增
-        List<String> stringValueList = new ArrayList<>();
-        JSONArray currentValueList = getValueList();
-        if (CollectionUtils.isNotEmpty(currentValueList)) {
-            for (Object value : currentValueList) {
-                if (value != null) {
-                    stringValueList.add(value.toString());
-                }
-            }
-        }
-        return stringValueList;
-    }
+//    @JSONField(serialize = false)
+//    public List<String> getStringValueList() {// 新增
+//        List<String> stringValueList = new ArrayList<>();
+//        JSONArray currentValueList = getValueList();
+//        if (CollectionUtils.isNotEmpty(currentValueList)) {
+//            for (Object value : currentValueList) {
+//                if (value != null) {
+//                    stringValueList.add(value.toString());
+//                }
+//            }
+//        }
+//        return stringValueList;
+//    }
 
     public String getExpressionName() {
         if (StringUtils.isNotBlank(expression) && StringUtils.isBlank(expressionName)) {

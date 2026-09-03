@@ -28,7 +28,7 @@ public class CiEntityDuplicateException extends ApiRuntimeException {
     public CiEntityDuplicateException(CiEntityVo attrConditionVo, JSONObject dataObj) {
         super("唯一规则：{0} 在模型{1}({2})中找到多个配置项，无法更新或添加，原始数据：{3}",
                 // 唯一规则只处理普通属性，使用DTO提供的字符串视图拼接提示信息。
-                attrConditionVo.getAttrFilterList().stream().map(d -> d.getLabel() + "(" + d.getName() + ") " + d.getExpressionName() + " " + String.join(",", d.getStringValueList()))
+                attrConditionVo.getAttrFilterList().stream().map(d -> d.getLabel() + "(" + d.getName() + ") " + d.getExpressionName() + " " + String.join(",", d.getValueList().stream().map(Object::toString).toList()))
                 .collect(Collectors.joining(" and ")), attrConditionVo.getCiLabel(), attrConditionVo.getCiName(), dataObj.toString());
     }
 
