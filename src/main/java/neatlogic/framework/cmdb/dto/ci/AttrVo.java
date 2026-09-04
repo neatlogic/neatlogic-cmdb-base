@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.asynchronization.threadlocal.TenantContext;
 import neatlogic.framework.cmdb.attrvaluehandler.core.AttrValueHandlerFactory;
+import neatlogic.framework.cmdb.attrvaluehandler.core.IAttrInvokeHandler;
 import neatlogic.framework.cmdb.attrvaluehandler.core.IAttrValueHandler;
 import neatlogic.framework.cmdb.dto.cientity.CiEntityVo;
 import neatlogic.framework.cmdb.enums.InputType;
@@ -594,7 +595,7 @@ public class AttrVo extends BasePageVo {
         // MyBatis通过该属性区分动态表属性和cmdb_attr_invoke引用属性。
         if (StringUtils.isNotBlank(this.type)) {
             IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.type);
-            return handler != null && handler.isInvokeAttr();
+            return handler != null && handler instanceof IAttrInvokeHandler;
         }
         return false;
     }

@@ -99,9 +99,9 @@ public interface IAttrValueHandler {
      *
      * @return 默认不使用引用表存储
      */
-    default boolean isInvokeAttr() {
-        return false;
-    }
+//    default boolean isInvokeAttr() {
+//        return false;
+//    }
 
 
     /**
@@ -259,9 +259,9 @@ public interface IAttrValueHandler {
      * @param valueList  属性值
      * @return 引用索引列表
      */
-    default List<AttrInvokeVo> convertValueListToAttrInvokeList(AttrVo attrVo, Long ciEntityId, JSONArray valueList) {
-        return Collections.emptyList();
-    }
+//    default List<AttrInvokeVo> convertValueListToAttrInvokeList(AttrVo attrVo, Long ciEntityId, JSONArray valueList) {
+//        return Collections.emptyList();
+//    }
 
     /**
      * 将独立引用索引还原为属性值。
@@ -270,33 +270,33 @@ public interface IAttrValueHandler {
      * @param attrInvokeList 引用索引列表
      * @return 属性值
      */
-    default JSONArray convertAttrInvokeListToValueList(AttrVo attrVo, List<AttrInvokeVo> attrInvokeList) {
-        return new JSONArray();
-    }
+//    default JSONArray convertAttrInvokeListToValueList(AttrVo attrVo, List<AttrInvokeVo> attrInvokeList) {
+//        return new JSONArray();
+//    }
 
     /**
      * 保存配置项后，在配置项事务内执行的自定义操作。
      */
-    default void afterSaveCiEntity(AttrVo attrVo, JSONArray newValueList, JSONArray oldValueList) {
-    }
+//    default void afterSaveCiEntity(AttrVo attrVo, JSONArray newValueList, JSONArray oldValueList) {
+//    }
 
     /**
      * 保存配置项后，在配置项事务内执行的自定义操作。
      */
-    default void afterSaveCiEntity(AttrVo attrVo, Long ciEntityId, JSONArray newValueList, JSONArray oldValueList) {
-        afterSaveCiEntity(attrVo, newValueList, oldValueList);
-    }
+//    default void afterSaveCiEntity(AttrVo attrVo, Long ciEntityId, JSONArray newValueList, JSONArray oldValueList) {
+//        afterSaveCiEntity(attrVo, newValueList, oldValueList);
+//    }
 
     /**
      * 删除配置项后，在配置项事务内执行的自定义操作。
      */
-    default void afterDeleteCiEntity(AttrVo attrVo, JSONArray valueList) {
-    }
+//    default void afterDeleteCiEntity(AttrVo attrVo, JSONArray valueList) {
+//    }
 
     /**
      * 删除配置项后，在配置项事务内执行的自定义操作。
      */
-    default void afterDeleteCiEntity(AttrVo attrVo, Long ciEntityId, JSONArray valueList) {
-        afterDeleteCiEntity(attrVo, valueList);
-    }
+//    default void afterDeleteCiEntity(AttrVo attrVo, Long ciEntityId, JSONArray valueList) {
+//        afterDeleteCiEntity(attrVo, valueList);
+//    }
 }

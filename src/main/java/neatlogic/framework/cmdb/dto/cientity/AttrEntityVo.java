@@ -17,6 +17,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.asynchronization.threadlocal.TenantContext;
 import neatlogic.framework.cmdb.attrvaluehandler.core.AttrValueHandlerFactory;
+import neatlogic.framework.cmdb.attrvaluehandler.core.IAttrInvokeHandler;
 import neatlogic.framework.cmdb.attrvaluehandler.core.IAttrValueHandler;
 import neatlogic.framework.cmdb.dto.ci.AttrVo;
 import neatlogic.framework.cmdb.dto.transaction.AttrEntityTransactionVo;
@@ -476,7 +477,7 @@ public class AttrEntityVo extends BasePageVo {
         // 配置项属性实体沿用属性处理器的独立引用存储标识。
         if (StringUtils.isNotBlank(this.attrType)) {
             IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.attrType);
-            return handler != null && handler.isInvokeAttr();
+            return handler != null && handler instanceof IAttrInvokeHandler;
         }
         return false;
     }
