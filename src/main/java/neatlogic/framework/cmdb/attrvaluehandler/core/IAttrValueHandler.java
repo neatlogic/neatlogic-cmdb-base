@@ -94,15 +94,6 @@ public interface IAttrValueHandler {
      */
     boolean isNeedTargetCi();
 
-    /**
-     * 属性值数据是否保存到cmdb_attr_invoke表。
-     *
-     * @return 默认不使用引用表存储
-     */
-//    default boolean isInvokeAttr() {
-//        return false;
-//    }
-
 
     /**
      * 是否需要额外配置（模型配置的时候有额外配置，前端需要有对应vue组件）
@@ -250,53 +241,4 @@ public interface IAttrValueHandler {
     default void afterDelete(AttrVo attrVo) {
 
     }
-
-    /**
-     * 将属性值转换为独立引用索引。
-     *
-     * @param attrVo     属性定义
-     * @param ciEntityId 配置项ID
-     * @param valueList  属性值
-     * @return 引用索引列表
-     */
-//    default List<AttrInvokeVo> convertValueListToAttrInvokeList(AttrVo attrVo, Long ciEntityId, JSONArray valueList) {
-//        return Collections.emptyList();
-//    }
-
-    /**
-     * 将独立引用索引还原为属性值。
-     *
-     * @param attrVo        属性定义
-     * @param attrInvokeList 引用索引列表
-     * @return 属性值
-     */
-//    default JSONArray convertAttrInvokeListToValueList(AttrVo attrVo, List<AttrInvokeVo> attrInvokeList) {
-//        return new JSONArray();
-//    }
-
-    /**
-     * 保存配置项后，在配置项事务内执行的自定义操作。
-     */
-//    default void afterSaveCiEntity(AttrVo attrVo, JSONArray newValueList, JSONArray oldValueList) {
-//    }
-
-    /**
-     * 保存配置项后，在配置项事务内执行的自定义操作。
-     */
-//    default void afterSaveCiEntity(AttrVo attrVo, Long ciEntityId, JSONArray newValueList, JSONArray oldValueList) {
-//        afterSaveCiEntity(attrVo, newValueList, oldValueList);
-//    }
-
-    /**
-     * 删除配置项后，在配置项事务内执行的自定义操作。
-     */
-//    default void afterDeleteCiEntity(AttrVo attrVo, JSONArray valueList) {
-//    }
-
-    /**
-     * 删除配置项后，在配置项事务内执行的自定义操作。
-     */
-//    default void afterDeleteCiEntity(AttrVo attrVo, Long ciEntityId, JSONArray valueList) {
-//        afterDeleteCiEntity(attrVo, valueList);
-//    }
 }

@@ -115,13 +115,6 @@ public class AttrFilterVo implements Serializable {
      * @return true表示属性值保存于cmdb_attr_invoke表
      */
     public Boolean getIsInvokeAttr() {
-//        if (isInvokeAttr == null) {
-//            isInvokeAttr = false;
-//            if (StringUtils.isNotBlank(type)) {
-//                IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(type);
-//                isInvokeAttr = handler != null && handler.isInvokeAttr();
-//            }
-//        }
         return isInvokeAttr;
     }
 
@@ -193,25 +186,6 @@ public class AttrFilterVo implements Serializable {
         this.valueList.addAll(valueList);
     }
 
-    /**
-     * 获取普通属性逻辑需要的字符串值，避免结构化存储改变原有Java调用方式。
-     *
-     * @return 字符串过滤值列表
-     */
-//    @JSONField(serialize = false)
-//    public List<String> getStringValueList() {// 新增
-//        List<String> stringValueList = new ArrayList<>();
-//        JSONArray currentValueList = getValueList();
-//        if (CollectionUtils.isNotEmpty(currentValueList)) {
-//            for (Object value : currentValueList) {
-//                if (value != null) {
-//                    stringValueList.add(value.toString());
-//                }
-//            }
-//        }
-//        return stringValueList;
-//    }
-
     public String getExpressionName() {
         if (StringUtils.isNotBlank(expression) && StringUtils.isBlank(expressionName)) {
             expressionName = SearchExpression.getText(expression);
@@ -229,7 +203,5 @@ public class AttrFilterVo implements Serializable {
 
     public void setType(String type) {
         this.type = type;
-        // 属性类型改变后清除缓存，确保查询方式始终以最新处理器定义为准。
-        this.isInvokeAttr = null;
     }
 }
