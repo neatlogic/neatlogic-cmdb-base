@@ -82,6 +82,8 @@ public class AttrEntityVo extends BasePageVo {
     @JSONField(serialize = false)
     private Boolean isNeedTargetCi;
     @JSONField(serialize = false)
+    private Boolean isInvokeAttr;
+    @JSONField(serialize = false)
     private Integer fromIndex;
 
     public AttrEntityVo() {
@@ -472,13 +474,12 @@ public class AttrEntityVo extends BasePageVo {
         return isNeedTargetCi;
     }
 
-    @JSONField(serialize = false)
-    public boolean isInvokeAttr() {
+    public Boolean isInvokeAttr() {
         // 配置项属性实体沿用属性处理器的独立引用存储标识。
-        if (StringUtils.isNotBlank(this.attrType)) {
+        if (isInvokeAttr == null && StringUtils.isNotBlank(this.attrType)) {
             IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.attrType);
-            return handler != null && handler instanceof IAttrInvokeHandler;
+            isInvokeAttr = handler != null && handler instanceof IAttrInvokeHandler;
         }
-        return false;
+        return isInvokeAttr;
     }
 }

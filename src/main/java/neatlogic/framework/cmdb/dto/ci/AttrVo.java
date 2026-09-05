@@ -96,6 +96,8 @@ public class AttrVo extends BasePageVo {
     private Integer isExtended;
     @EntityField(name = "是否需要关联目标模型", type = ApiParamType.BOOLEAN)
     private Boolean needTargetCi;
+    @EntityField(name = "是否是引用外部数据", type = ApiParamType.BOOLEAN)
+    private Boolean isInvokeAttr;
     @EntityField(name = "是否有额外配置", type = ApiParamType.BOOLEAN)
     private Boolean needConfig;
     @EntityField(name = "是否需要一整行显示编辑组件", type = ApiParamType.BOOLEAN)
@@ -590,14 +592,13 @@ public class AttrVo extends BasePageVo {
         return needTargetCi;
     }
 
-    @JSONField(serialize = false)
-    public boolean isInvokeAttr() {
+    public Boolean getIsInvokeAttr() {
         // MyBatis通过该属性区分动态表属性和cmdb_attr_invoke引用属性。
         if (StringUtils.isNotBlank(this.type)) {
             IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.type);
-            return handler != null && handler instanceof IAttrInvokeHandler;
+            isInvokeAttr = handler != null && handler instanceof IAttrInvokeHandler;
         }
-        return false;
+        return isInvokeAttr;
     }
 
     public Boolean isNeedConfig() {

@@ -29,6 +29,7 @@ public class AttrInvokeVo implements Serializable {
     }
 
     public AttrInvokeVo(Long ciEntityId, Long attrId, String type, Long invokeId) {
+        this.id = SnowflakeUtil.uniqueLong();
         this.ciEntityId = ciEntityId;
         this.attrId = attrId;
         this.type = type;
@@ -36,9 +37,6 @@ public class AttrInvokeVo implements Serializable {
     }
 
     public Long getId() {
-        if (id == null) {
-            id = SnowflakeUtil.uniqueLong();
-        }
         return id;
     }
 
