@@ -171,21 +171,6 @@ public class AttrFilterVo implements Serializable {
         this.valueList = valueList;
     }
 
-    /**
-     * 兼容现有Java调用方以List设置普通属性过滤值，统一转换为JSONArray保存。
-     *
-     * @param valueList 普通属性过滤值
-     */
-//    @JSONField(serialize = false, deserialize = false)
-//    public void setValueList(List<?> valueList) {// 新增
-//        if (valueList == null) {
-//            this.valueList = null;
-//            return;
-//        }
-//        this.valueList = new JSONArray();
-//        this.valueList.addAll(valueList);
-//    }
-
     public String getExpressionName() {
         if (StringUtils.isNotBlank(expression) && StringUtils.isBlank(expressionName)) {
             expressionName = SearchExpression.getText(expression);
