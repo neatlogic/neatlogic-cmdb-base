@@ -19,6 +19,8 @@ import java.util.List;
 
 public interface IAttrInvokeHandler {
 
+    String getNameAttrName(AttrEntityVo attrEntityVo);
+
     void afterSaveCiEntity(AttrEntityVo attrEntityVo, JSONArray oldValueList);
 
     void afterDeleteCiEntity(AttrEntityVo attrEntityVo);
