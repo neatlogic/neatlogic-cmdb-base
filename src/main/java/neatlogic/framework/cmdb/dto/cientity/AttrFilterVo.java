@@ -44,7 +44,7 @@ public class AttrFilterVo implements Serializable {
     @JSONField(serialize = false)
     private Boolean needTargetCi;
     // 标识属性值是否保存于cmdb_attr_invoke表，仅供后端组装查询SQL使用。
-    @JSONField(serialize = false, deserialize = false)
+    @JSONField(serialize = false)
     private Boolean isInvokeAttr;
 
     @Override
