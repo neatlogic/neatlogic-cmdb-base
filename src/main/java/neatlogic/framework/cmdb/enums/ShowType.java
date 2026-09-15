@@ -19,12 +19,13 @@ import neatlogic.framework.util.$;
 
 import java.util.List;
 
+/** 定义字段在列表和明细中的显示范围，展示文案按当前请求语言翻译。 */
 public enum ShowType implements IEnum {
 
-    NONE("none", "不显示"),
-    LIST("list", "仅列表"),
-    ALL("all", "全展示"),
-    DETAIL("detail", "仅明细");
+    NONE("none", "cmdb.showtype.none"),
+    LIST("list", "cmdb.showtype.list"),
+    ALL("all", "cmdb.showtype.all"),
+    DETAIL("detail", "cmdb.showtype.detail");
 
     private final String value;
     private final String text;
