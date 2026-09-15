@@ -10,11 +10,16 @@
 
 package neatlogic.framework.cmdb.crossover;
 
+import neatlogic.framework.cmdb.dto.cientity.AttrInvokeVo;
 import neatlogic.framework.crossover.ICrossoverService;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface ICiEntityAttrInvokeCrossoverMapper extends ICrossoverService {
 
     List<Long> getCiEntityIdListByAttrId(Long attrId);
+
+    // 按device引用记录主键读取完整属性索引，供跨模块属性处理器还原显示值。
+    List<AttrInvokeVo> getAttrInvokeListByDeviceAttrInvokeIdList(@Param("attrInvokeIdList") List<Long> attrInvokeIdList, @Param("attrIdList") List<Long> attrIdList);
 }
