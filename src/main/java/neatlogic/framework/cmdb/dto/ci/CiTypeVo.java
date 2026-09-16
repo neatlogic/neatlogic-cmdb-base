@@ -41,6 +41,8 @@ public class CiTypeVo implements Serializable {
     private int ciCount;
     @EntityField(name = "是否在拓扑图中显示", type = ApiParamType.INTEGER)
     private Integer isShowInTopo;
+    @EntityField(name = "term.cmdb.showincientityquery", type = ApiParamType.INTEGER)
+    private Integer isShowInCiEntityQuery;
 
     public Long getId() {
         if (id == null) {
@@ -55,6 +57,20 @@ public class CiTypeVo implements Serializable {
 
     public void setIsShowInTopo(Integer isShowInTopo) {
         this.isShowInTopo = isShowInTopo;
+    }
+
+    /**
+     * 获取配置项查询显示配置，空值表示调用方未提供配置。
+     */
+    public Integer getIsShowInCiEntityQuery() {
+        return isShowInCiEntityQuery;
+    }
+
+    /**
+     * 设置配置项查询显示配置，允许空值以兼容旧调用。
+     */
+    public void setIsShowInCiEntityQuery(Integer isShowInCiEntityQuery) {
+        this.isShowInCiEntityQuery = isShowInCiEntityQuery;
     }
 
     public void setId(Long id) {
