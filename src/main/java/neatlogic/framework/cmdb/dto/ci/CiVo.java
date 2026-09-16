@@ -85,6 +85,8 @@ public class CiVo implements Serializable {
     private Integer rht;
     @JSONField(serialize = false)
     private Integer isTypeShowInTopo;//类型是否在topo中显示
+    @JSONField(serialize = false)
+    private Integer isShowInCiEntityQuery;//按层级配置过滤配置项查询入口，空值不启用过滤
     @EntityField(name = "唯一属性列表", type = ApiParamType.LONG)
     private List<Long> uniqueAttrIdList;
     @EntityField(name = "名称属性", type = ApiParamType.LONG)
@@ -447,6 +449,20 @@ public class CiVo implements Serializable {
             this.children.add(ciVo);
             ciVo.setParentCi(this);
         }
+    }
+
+    /**
+     * 获取可选的配置项查询层级显示条件。
+     */
+    public Integer getIsShowInCiEntityQuery() {
+        return isShowInCiEntityQuery;
+    }
+
+    /**
+     * 设置配置项查询层级显示条件，空值保留完整结果。
+     */
+    public void setIsShowInCiEntityQuery(Integer isShowInCiEntityQuery) {
+        this.isShowInCiEntityQuery = isShowInCiEntityQuery;
     }
 
     public Integer getIsTypeShowInTopo() {
