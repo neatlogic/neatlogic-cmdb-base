@@ -12,6 +12,7 @@
 
 package neatlogic.framework.cmdb.dto.ci;
 
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.asynchronization.threadlocal.TenantContext;
 import neatlogic.framework.cmdb.dto.cientity.CiEntityVo;
@@ -127,6 +128,84 @@ public class RelVo extends BasePageVo {
     private int fromRelEntityCount;
     @EntityField(name = "下游配置项数量", type = ApiParamType.INTEGER)
     private int toRelEntityCount;
+
+    @EntityField(name = "上游端候选配置项过滤条件", type = ApiParamType.JSONOBJECT)
+    private JSONObject fromFilter;
+    @JSONField(serialize = false, deserialize = false)
+    private boolean fromFilterSpecified;
+
+    /** 返回上游端作为候选模型时的过滤条件。 */
+    public JSONObject getFromFilter() {
+        return fromFilter;
+    }
+
+    /** 记录显式赋值，使空值清空与旧请求缺省能够区分。 */
+    public void setFromFilter(JSONObject filter) {
+        this.fromFilter = filter;
+        this.fromFilterSpecified = true;
+    }
+
+    @JSONField(serialize = false, deserialize = false)
+    public boolean isFromFilterSpecified() {
+        return fromFilterSpecified;
+    }
+
+    /** 供持久化读取使用，不将数据库回显标记为一次修改。 */
+    @JSONField(serialize = false, deserialize = false)
+    public void setFromFilterStr(String filter) {
+        if (StringUtils.isNotBlank(filter)) {
+            this.fromFilter = JSONObject.parseObject(filter);
+        } else {
+            this.fromFilter = null;
+        }
+    }
+
+    @JSONField(serialize = false, deserialize = false)
+    public String getFromFilterStr() {
+        if (fromFilter != null && !fromFilter.isEmpty()) {
+            return fromFilter.toJSONString();
+        }
+        return null;
+    }
+
+    @EntityField(name = "下游端候选配置项过滤条件", type = ApiParamType.JSONOBJECT)
+    private JSONObject toFilter;
+    @JSONField(serialize = false, deserialize = false)
+    private boolean toFilterSpecified;
+
+    /** 返回下游端作为候选模型时的过滤条件。 */
+    public JSONObject getToFilter() {
+        return toFilter;
+    }
+
+    /** 记录显式赋值，使空值清空与旧请求缺省能够区分。 */
+    public void setToFilter(JSONObject filter) {
+        this.toFilter = filter;
+        this.toFilterSpecified = true;
+    }
+
+    @JSONField(serialize = false, deserialize = false)
+    public boolean isToFilterSpecified() {
+        return toFilterSpecified;
+    }
+
+    /** 供持久化读取使用，不将数据库回显标记为一次修改。 */
+    @JSONField(serialize = false, deserialize = false)
+    public void setToFilterStr(String filter) {
+        if (StringUtils.isNotBlank(filter)) {
+            this.toFilter = JSONObject.parseObject(filter);
+        } else {
+            this.toFilter = null;
+        }
+    }
+
+    @JSONField(serialize = false, deserialize = false)
+    public String getToFilterStr() {
+        if (toFilter != null && !toFilter.isEmpty()) {
+            return toFilter.toJSONString();
+        }
+        return null;
+    }
 
     public RelVo() {
 
