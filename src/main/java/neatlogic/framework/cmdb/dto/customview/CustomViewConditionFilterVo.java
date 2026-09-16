@@ -101,16 +101,20 @@ public class CustomViewConditionFilterVo implements Serializable {
 
     public List<String> getValueStringList() {
         List<String> list = new ArrayList<>();
-        for (int i = 0; i < this.valueList.size(); i++) {
-            list.add(this.valueList.getString(i));
+        if (CollectionUtils.isNotEmpty(this.valueList)) {
+            for (int i = 0; i < this.valueList.size(); i++) {
+                list.add(this.valueList.getString(i));
+            }
         }
         return list;
     }
 
     public List<String> getActualValueStringList() {
         List<String> list = new ArrayList<>();
-        for (int i = 0; i < this.actualValueList.size(); i++) {
-            list.add(this.actualValueList.getString(i));
+        if (CollectionUtils.isNotEmpty(this.valueList)) {
+            for (int i = 0; i < this.actualValueList.size(); i++) {
+                list.add(this.actualValueList.getString(i));
+            }
         }
         return list;
     }
