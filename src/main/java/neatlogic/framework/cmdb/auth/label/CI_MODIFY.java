@@ -13,7 +13,6 @@
 package neatlogic.framework.cmdb.auth.label;
 
 import neatlogic.framework.auth.core.AuthBase;
-
 import java.util.Arrays;
 import java.util.List;
 
