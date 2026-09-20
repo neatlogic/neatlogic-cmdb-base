@@ -100,6 +100,17 @@ public interface IResourceCenterResourceCrossoverService extends ICrossoverServi
 
     ResourceVo getResourceByIpAndPort(String ip, Integer port);
 
+    /**
+     * 按一组精确 IP 和端口批量查询资产候选。
+     *
+     * <p>返回全部匹配项，不按 IP 和端口去重，也不截取第一条，调用方可据此识别重复资产。</p>
+     *
+     * @param endpointList 仅使用 {@link ResourceVo#getIp()} 和 {@link ResourceVo#getPort()} 的端点列表
+     * @param fieldNameList 资源中心字段名列表；始终补充 id 用于区分候选，为空时仅返回 id
+     * @return 全部资产候选
+     */
+    List<ResourceVo> getResourceListByIpPortList(List<ResourceVo> endpointList, List<String> fieldNameList);
+
     ApplicationListDisplayVo getApplicationListDisplay();
 
     List<AccountComponentVo> searchAccountComponent(AccountComponentVo accountComponentVo);

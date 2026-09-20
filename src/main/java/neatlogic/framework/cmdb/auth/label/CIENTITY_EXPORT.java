@@ -13,20 +13,20 @@
 package neatlogic.framework.cmdb.auth.label;
 
 import neatlogic.framework.auth.core.AuthBase;
-
 import java.util.Collections;
 import java.util.List;
 
+/** 权限名称与说明使用国际化键，权限标识及校验规则保持不变。 */
 public class CIENTITY_EXPORT extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "导出配置项列表权限";
+        return "auth.cientity_export.name";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "对配置项数据进行导出";
+        return "auth.cientity_export.description";
     }
 
     @Override

@@ -13,20 +13,20 @@
 package neatlogic.framework.cmdb.auth.label;
 
 import neatlogic.framework.auth.core.AuthBase;
-
 import java.util.Collections;
 import java.util.List;
 
+/** 权限名称与说明使用国际化键，权限标识及校验规则保持不变。 */
 public class RESOURCECENTER_APP_VIEW extends AuthBase {
 
     @Override
     public String getAuthDisplayName() {
-        return "资源中心-应用清单查看权限";
+        return "auth.resourcecenter_app_view.name";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "资源中心-应用清单查看权限";
+        return "auth.resourcecenter_app_view.description";
     }
 
     @Override

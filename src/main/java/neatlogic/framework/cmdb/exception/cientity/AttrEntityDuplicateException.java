@@ -19,15 +19,18 @@ import neatlogic.framework.exception.core.ApiRuntimeException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/** 属性唯一性校验失败时，按当前请求语言返回冲突模型、属性及取值。 */
 public class AttrEntityDuplicateException extends ApiRuntimeException {
     private static final long serialVersionUID = 2014077344222321741L;
 
+    /** 接收普通属性的 JSON 值列表，保留原始业务取值。 */
     public AttrEntityDuplicateException(CiVo ciVo, String label, JSONArray valueList) {
-        super("模型“{0}({1})“属性“{2}”值等于“{3}”的配置项已存在", ciVo.getLabel(), ciVo.getName(), label, valueList.stream().map(Object::toString).collect(Collectors.joining("”,“")));
+        super("nfcec.attrentityduplicateexception.attrentityduplicateexception", ciVo.getLabel(), ciVo.getName(), label, valueList.stream().map(Object::toString).collect(Collectors.joining("”,“")));
     }
 
+    /** 接收引用配置项的名称列表，保留原始业务名称。 */
     public AttrEntityDuplicateException(CiVo ciVo, String label, List<String> valueList) {
-        super("模型“{0}({1})“属性“{2}”值等于“{3}”的配置项已存在", ciVo.getLabel(), ciVo.getName(), label, String.join("”,“", valueList));
+        super("nfcec.attrentityduplicateexception.attrentityduplicateexception", ciVo.getLabel(), ciVo.getName(), label, String.join("”,“", valueList));
     }
 
 }

@@ -19,11 +19,12 @@ import neatlogic.framework.util.$;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 事务审计枚举，展示文案按当前请求语言翻译。 */
 public enum TransactionStatus implements IEnum<ValueTextVo> {
-    COMMITED("commited", "已提交"),
-    UNCOMMIT("uncommit", "未提交"),
-    RECOVER("recover", "已恢复"),
-    EXPIRED("expired", "已失效");
+    COMMITED("commited", "cmdb.transaction.status.commited"),
+    UNCOMMIT("uncommit", "cmdb.transaction.status.uncommit"),
+    RECOVER("recover", "cmdb.transaction.status.recover"),
+    EXPIRED("expired", "cmdb.transaction.status.expired");
 
     private final String value;
     private final String text;

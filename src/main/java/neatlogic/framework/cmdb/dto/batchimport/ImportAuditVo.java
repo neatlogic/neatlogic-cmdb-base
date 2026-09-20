@@ -17,6 +17,7 @@ import neatlogic.framework.cmdb.enums.ImportStatus;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.restful.annotation.EntityField;
+import neatlogic.framework.util.$;
 import neatlogic.framework.util.SnowflakeUtil;
 import org.apache.commons.lang3.StringUtils;
 
@@ -173,14 +174,17 @@ public class ImportAuditVo extends BasePageVo {
         this.actionText = actionText;
     }
 
+    /**
+     * 根据导入策略返回当前请求语言的名称，未知策略保留原展示值。
+     */
     public String getActionText() {
         if (action != null) {
             if (action.equals("append")) {
-                return "只添加";
+                return $.t("cmdb.batchimport.action.append");
             } else if (action.equals("update")) {
-                return "只更新";
+                return $.t("cmdb.batchimport.action.update");
             } else if (action.equals("all")) {
-                return "添加并更新";
+                return $.t("cmdb.batchimport.action.all");
             }
         }
         return actionText;

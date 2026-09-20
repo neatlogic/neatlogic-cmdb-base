@@ -19,12 +19,13 @@ import neatlogic.framework.util.$;
 import java.util.ArrayList;
 import java.util.List;
 
+/** 事务审计枚举，展示文案按当前请求语言翻译。 */
 public enum TransactionActionType implements IEnum<JSONObject> {
-    INSERT("insert", "新增"),
-    UPDATE("update", "修改"),
-    DELETE("delete", "删除"),
-    RECOVER("recover", "恢复"),
-    VIEW("view", "查看");
+    INSERT("insert", "cmdb.transaction.action.insert"),
+    UPDATE("update", "cmdb.transaction.action.update"),
+    DELETE("delete", "common.delete"),
+    RECOVER("recover", "cmdb.transaction.action.recover"),
+    VIEW("view", "common.view");
 
     private final String value;
     private final String text;

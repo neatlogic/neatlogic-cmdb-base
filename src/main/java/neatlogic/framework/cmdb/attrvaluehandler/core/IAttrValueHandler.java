@@ -31,9 +31,9 @@ public interface IAttrValueHandler {
     String getType();
 
     /**
-     * 获取名称
+     * 获取名称的国际化键，由展示层按当前请求语言翻译
      *
-     * @return 名称
+     * @return 名称的国际化键
      */
     String getName();
 

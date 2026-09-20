@@ -13,19 +13,19 @@
 package neatlogic.framework.cmdb.auth.label;
 
 import neatlogic.framework.auth.core.AuthBase;
-
 import java.util.Collections;
 import java.util.List;
 
+/** 权限名称与说明使用国际化键，权限标识及校验规则保持不变。 */
 public class TRANSACTION_MANAGE extends AuthBase {
     @Override
     public String getAuthDisplayName() {
-        return "事务审计权限";
+        return "auth.transaction_manage.name";
     }
 
     @Override
     public String getAuthIntroduction() {
-        return "查看事务审计权限，可以查看所有配置项的修改记录";
+        return "auth.transaction_manage.description";
     }
 
     @Override

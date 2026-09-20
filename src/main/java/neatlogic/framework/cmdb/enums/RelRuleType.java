@@ -19,8 +19,9 @@ import neatlogic.framework.util.$;
 
 import java.util.List;
 
+/** 定义关系引用数量，展示文案按当前请求语言翻译。 */
 public enum RelRuleType implements IEnum {
-    O("O", "一个"), N("N", "多个");
+    O("O", "cmdb.relrule.one"), N("N", "cmdb.relrule.many");
 
     private final String value;
     private final String text;

@@ -14,6 +14,7 @@ package neatlogic.framework.cmdb.dto.ci;
 
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
+import neatlogic.framework.util.$;
 
 import java.io.Serializable;
 
@@ -63,7 +64,8 @@ public class AttrTypeVo implements Serializable {
     }
 
     public String getLabel() {
-        return label;
+        // 类型列表在启动时缓存，仅在读取时翻译，避免固定为启动语言。
+        return label != null ? $.t(label) : null;
     }
 
     public void setLabel(String label) {

@@ -19,11 +19,14 @@ import neatlogic.framework.util.$;
 
 import java.util.List;
 
+/**
+ * 导入任务状态，展示名称按当前请求语言翻译。
+ */
 public enum ImportStatus implements IEnum {
 
-    RUNNING("running", "导入中"),
-    SUCCESS("success", "成功"),
-    FAILED("failed", "失败");
+    RUNNING("running", "cmdb.batchimport.status.running"),
+    SUCCESS("success", "cmdb.batchimport.status.success"),
+    FAILED("failed", "common.failed");
 
     private final String value;
     private final String text;

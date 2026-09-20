@@ -27,6 +27,7 @@ import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.common.dto.ValueTextVo;
 import neatlogic.framework.restful.annotation.EntityField;
+import neatlogic.framework.util.$;
 import neatlogic.framework.util.SnowflakeUtil;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -363,7 +364,8 @@ public class AttrVo extends BasePageVo {
             IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(type);
             typeText = handler.getName();
         }
-        return typeText;
+        // 保留缓存中的类型名称键，按当前请求语言返回展示文案。
+        return StringUtils.isNotBlank(typeText) ? $.t(typeText) : typeText;
     }
 
     public void setTypeText(String typeText) {

@@ -13,20 +13,20 @@
 package neatlogic.framework.cmdb.auth.label;
 
 import neatlogic.framework.auth.core.AuthBase;
-
 import java.util.Collections;
 import java.util.List;
 
+/** 权限名称与说明使用国际化键，权限标识及校验规则保持不变。 */
 public class CIENTITY_BATCH_IMPORT extends AuthBase {
 
 	@Override
 	public String getAuthDisplayName() {
-		return "批量导入配置项权限";
+		return "auth.cientity_batch_import.name";
 	}
 
 	@Override
 	public String getAuthIntroduction() {
-		return "批量导入配置项";
+		return "auth.cientity_batch_import.description";
 	}
 
 	@Override
