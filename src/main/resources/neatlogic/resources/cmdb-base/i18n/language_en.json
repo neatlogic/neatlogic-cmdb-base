@@ -1,0 +1,586 @@
+{
+  "auth": {
+    "alertlevel_modify": {
+      "description": "Add, modify, and delete configuration item alert levels.",
+      "name": "Configuration Item Alert Level Management Permission"
+    },
+    "ci_modify": {
+      "description": "Add, modify, and delete configuration item models.",
+      "name": "Configuration Item Model Management Permission"
+    },
+    "cientity_alert_modify": {
+      "description": "Update configuration item alert status.",
+      "name": "Configuration Item Alert Management Permission"
+    },
+    "cientity_batch_import": {
+      "description": "Import configuration items in batches.",
+      "name": "Configuration Item Batch Import Permission"
+    },
+    "cientity_export": {
+      "description": "Export configuration item data.",
+      "name": "Configuration Item Export Permission"
+    },
+    "cientity_modify": {
+      "description": "Add, modify, and delete configuration items, and submit and modify transactions.",
+      "name": "Configuration Item Management Permission"
+    },
+    "customview_modify": {
+      "description": "Add, modify, and delete public views.",
+      "name": "Public Custom View Management Permission"
+    },
+    "graph_modify": {
+      "description": "Add, modify, and delete public topology views.",
+      "name": "Public Topology View Editing Permission"
+    },
+    "group_modify": {
+      "description": "Add, modify, and delete groups.",
+      "name": "Group Management Permission"
+    },
+    "private_customview_modify": {
+      "description": "Add, modify, and delete personal views.",
+      "name": "Personal Custom View Permission"
+    },
+    "reltype_modify": {
+      "description": "Add, modify, and delete relationship types.",
+      "name": "Relationship Type Management Permission"
+    },
+    "resourcecenter_account_modify": {
+      "description": "Add, modify, delete, and edit accounts in the resource center.",
+      "name": "Resource Center Account Management Permission"
+    },
+    "resourcecenter_app_view": {
+      "description": "View the application list in the resource center.",
+      "name": "Resource Center Application List View Permission"
+    },
+    "resourcecenter_modify": {
+      "description": "Initialize the resource center.",
+      "name": "Resource Center Management Permission"
+    },
+    "resourcecenter_resource_view": {
+      "description": "View the asset list in the resource center.",
+      "name": "Resource Center Asset List View Permission"
+    },
+    "resourcecenter_tag_modify": {
+      "description": "Add, modify, delete, and edit tags in the resource center.",
+      "name": "Resource Center Tag Management Permission"
+    },
+    "resourcecenter_view_modify": {
+      "description": "Add, modify, copy, and delete resource center views, and view their data.",
+      "name": "Resource Center View Settings Permission"
+    },
+    "sync_modify": {
+      "description": "Manage mappings between configuration item model attributes or relationships and collected data. Configure these mappings before using automated collection.",
+      "name": "Configuration Item Collection Mapping Management Permission"
+    },
+    "transaction_manage": {
+      "description": "View transaction audits and modification records for all configuration items.",
+      "name": "Transaction Audit Permission"
+    }
+  },
+  "cmdb": {
+    "batchimport": {
+      "action": {
+        "all": "Add and Update",
+        "append": "Add Only",
+        "update": "Update Only"
+      },
+      "status": {
+        "running": "Importing",
+        "success": "Succeeded"
+      }
+    },
+    "ci": "Model",
+    "cimodify": "Model modification",
+    "relrule": {
+      "many": "Many",
+      "one": "One"
+    },
+    "showtype": {
+      "all": "List and Details",
+      "detail": "Details Only",
+      "list": "List Only",
+      "none": "Hidden"
+    },
+    "transaction": {
+      "action": {
+        "insert": "Add",
+        "recover": "Restore",
+        "update": "Update"
+      },
+      "status": {
+        "commited": "Committed",
+        "expired": "Invalidated",
+        "recover": "Restored",
+        "uncommit": "Uncommitted"
+      }
+    }
+  },
+  "exception": {
+    "cmdb": {
+      "relfilterinvalidexception": {
+        "array_required": "{0} must be an array of conditions",
+        "attribute_invalid": "The attribute is invalid or does not belong to the corresponding model",
+        "attribute_operator_invalid": "The attribute does not support the selected operator",
+        "child_model_invalid": "The child model does not belong to the corresponding model",
+        "collection_operator_invalid": "The relationship or global attribute does not support the selected operator",
+        "direction_invalid": "The relationship direction is invalid",
+        "global_attribute_invalid": "The global attribute is invalid or does not belong to the corresponding model",
+        "group_invalid": "The configuration item group is invalid or does not belong to the corresponding model",
+        "id_invalid": "{0} must be a valid ID",
+        "invalid_condition": "{0} contains an invalid condition",
+        "model_missing": "The corresponding model does not exist",
+        "operator_invalid": "The filter operator does not exist",
+        "parameter": "Invalid filter \"{0}\": {1}",
+        "range_array_unsupported": "This attribute does not support a date range array",
+        "range_bound_required": "The range condition requires at least one boundary",
+        "range_bounds_required": "The date range requires two boundaries",
+        "relation_invalid": "The relationship is invalid or its direction does not belong to the corresponding model",
+        "unsupported_condition_field": "The condition contains unsupported fields",
+        "unsupported_field": "Unsupported filter field: {0}",
+        "value_empty": "The filter condition value must not be empty",
+        "value_invalid": "The filter condition value is invalid",
+        "value_required": "The filter condition requires a value"
+      }
+    }
+  },
+  "nfcal": {
+    "cmdb": {
+      "getauthdisplayname": "Configuration Management API Access Permission",
+      "getauthintroduction": "Access underlying configuration management features through APIs, such as resource center data access."
+    },
+    "cmdb_base": {
+      "getauthdisplayname": "Configuration Management Access Permission",
+      "getauthintroduction": "View the configuration management module and use its basic features."
+    }
+  },
+  "nfcdc": {
+    "globalattrentityvo": {
+      "entityfield": {
+        "valuelist": "Attribute value"
+      }
+    }
+  },
+  "nfcdrcs": {
+    "applicationassetlistdetailvo": {
+      "resourcetype": {
+        "scenceapplicationassetlistdetail": {
+          "label": "Application Asset List Details"
+        }
+      }
+    },
+    "appmoduleappsystemvo": {
+      "resourcetype": {
+        "scenceappmoduleappsystem": {
+          "label": "Application Module and Application System Scenario"
+        }
+      }
+    },
+    "appsystemappmodulevo": {
+      "resourcetype": {
+        "scenceappsystemappmodule": {
+          "label": "Application System and Application Module Scenario"
+        }
+      }
+    },
+    "appsystemvo": {
+      "resourcetype": {
+        "scenceappmodule": {
+          "label": "Application Module Scenario"
+        },
+        "scenceappsystem": {
+          "label": "Application System Scenario"
+        }
+      }
+    },
+    "common": {
+      "entityfield": {
+        "allipdescription": {
+          "name": "IP List Description"
+        },
+        "allipid": {
+          "name": "IP List ID"
+        },
+        "allipip": {
+          "name": "IP Address in IP List"
+        },
+        "datacenterid": {
+          "name": "Data Center ID"
+        },
+        "datacentername": {
+          "name": "Data Center Name"
+        },
+        "envsequencenumber": {
+          "name": "Environment Sequence Number"
+        },
+        "groupid": {
+          "name": "Group ID"
+        },
+        "groupname": {
+          "name": "Group Name"
+        },
+        "inspecttime": {
+          "name": "Inspection Time"
+        },
+        "monitortime": {
+          "name": "Monitoring Time"
+        },
+        "osid": {
+          "name": "OS ID"
+        },
+        "osipaddress": {
+          "name": "OS IP Address"
+        },
+        "osname": {
+          "name": "OS Name"
+        },
+        "ostypeid": {
+          "name": "OS Type ID"
+        },
+        "port": {
+          "name": "Port"
+        },
+        "typelabel": {
+          "name": "Type Label"
+        },
+        "vendordescription": {
+          "name": "Vendor Description"
+        },
+        "vendorid": {
+          "name": "Vendor ID"
+        },
+        "vendorname": {
+          "name": "Vendor Name"
+        }
+      }
+    },
+    "functionpath": {
+      "addtagentdatatoconfigurationitems": "Configuration Management / Add Tagent Data to Configuration Items",
+      "applicationlist": "Configuration Management / Application List",
+      "assetlist": "Configuration Management / Asset List"
+    },
+    "ipobjectdetailvo": {
+      "resourcetype": {
+        "scenceipobjectdetail": {
+          "label": "Asset List View"
+        }
+      }
+    },
+    "osvo": {
+      "resourcetype": {
+        "scenceos": {
+          "label": "OS IP View"
+        }
+      }
+    },
+    "statevo": {
+      "resourcetype": {
+        "scencestate": {
+          "label": "Asset Status Information Scenario"
+        },
+        "scencevendor": {
+          "label": "Vendor Information Scenario"
+        }
+      }
+    }
+  },
+  "nfce": {
+    "cmdbtenantconfig": {
+      "isresourcecenterauth": "Is the asset list controlled by model permissions and group permissions"
+    },
+    "cmdbuserexportfiletype": {
+      "customviewdata": "Customize View Data"
+    }
+  },
+  "nfcea": {
+    "attrvalueirregularexception": {
+      "attrvalueirregularexception_a": "The value '{4}' of property '{2} ({3})' in model '{0} ({1})' is not a valid {5} type",
+      "attrvalueirregularexception_b": "The value \"{4}\" of property \"{2} ({3})\" in model \"{0} ({1})\" is not a valid {5} type. Configuration path: {6}, actual path: {7}"
+    }
+  },
+  "nfceb": {
+    "batchimportmouldismustexception": {
+      "batchimportmouldismustexception": "Please fill in the template correctly and choose the appropriate import mode: [Add only] No ID is required; [Update only] ID must be filled in"
+    }
+  },
+  "nfcec": {
+    "attrentityduplicateexception": {
+      "attrentityduplicateexception": "A configuration item in model “{0} ({1})” with attribute “{2}” equal to “{3}” already exists."
+    },
+    "attrentityvalueemptyexception": {
+      "attrentityvalueemptyexception_a": "The value of attribute '{0}' cannot be empty",
+      "attrentityvalueemptyexception_b": "The value of property '{2} ({3})' in model '{0} ({1})' cannot be empty"
+    },
+    "cicatalogisinusedexception": {
+      "cicatalogisinusedexception": "The current directory node: {0} has been referenced. Please remove the reference before deleting it"
+    },
+    "cicatalognamerepeatexception": {
+      "cicatalognamerepeatexception": "Model directory: {0} already exists"
+    },
+    "cicatalognotfoundexception": {
+      "cicatalognotfoundexception": "Model directory: {0} does not exist"
+    },
+    "cientityauthexception": {
+      "action": "You do not have permission for the {0} configuration item",
+      "ciaction": "You do not have permission to configure the item for {0} \"{1} ({2})\"",
+      "cientityidnameaction": "You do not have permission to configure item '{1} ({2})' for {0}",
+      "cilabelaction": "You do not have permission to configure the item for {0} '{1}'"
+    },
+    "ciisabstractedexception": {
+      "ciisabstractedexception_a": "Configuration item model: \"{0} ({1})\" is an abstract model and cannot directly add data. Configuration path: {2}, actual path: {3}",
+      "data": "The configuration item model '{0}' is an abstract model and direct addition of data is not allowed",
+      "updateabstract": "Configuration item model '{0}' has already been inherited or data already exists, cannot change whether it is an abstract model",
+      "updateparent": "The configuration item model '{0}' already has data and cannot change the parent model"
+    },
+    "cinotfoundexception": {
+      "cinotfoundexception_a": "The configuration item model '{0}' does not exist",
+      "cinotfoundexception_b": "Configuration item model '{0}' does not exist, configuration path: {1}, actual path: {2}",
+      "cinotfoundexception_d": "The model corresponding to the configuration item does not exist"
+    },
+    "citopotemplatenotfoundexception": {
+      "citopotemplatenotfoundexception": "Topology template '{0}' does not exist"
+    },
+    "citypenotfoundexception": {
+      "citypenotfoundexception": "Model type: {0} does not exist"
+    },
+    "ciuniqueattrnotfoundexception": {
+      "ciuniqueattrnotfoundexception_a": "Configuration item model '{0}' is missing a unique attribute, please set it",
+      "ciuniqueattrnotfoundexception_b": "The unique rule property '{2} ({3})' of model '{0} ({1})' does not have a matching field configured. Please configure it first",
+      "ciuniqueattrnotfoundexception_c": "The value of the unique rule attribute '{2} ({3})' of model '{0} ({1})' is empty",
+      "ciuniqueattrnotfoundexception_d": "Failed to obtain transaction hash for configuration item of model '{0}', unique attribute '{1}' has no value",
+      "ciuniqueattrnotfoundexception_e": "Configuration“ {0}- >{1} The value of the unique key mapping attribute '{3}' for ({2}) does not exist, original data: {4}",
+      "ciuniqueattrnotfoundexception_f": "The value of the unique rule attribute '{2} ({3})' of model '{0} ({1})' is empty, configured path: {4}, actual path: {5}"
+    },
+    "ciuniqueruleattrtypeirregularexception": {
+      "ciuniqueruleattrtypeirregularexception_a": "The unique rule property '{2} ({3})' of model '{0} ({1})' cannot be an expression property or a reference property",
+      "ciuniqueruleattrtypeirregularexception_b": "The unique rule attribute '{2} ({3})' of model '{0} ({1})' cannot be an expression attribute",
+      "ciuniqueruleattrtypeirregularexception_c": "The unique rule property '{2} ({3})' of model '{0} ({1})' cannot be an expression property, configured path: {4}, actual path: {5}"
+    },
+    "customviewcichangeexception": {
+      "customviewcichangeexception": "The model used in the custom view '{0}' has changed, causing the view query to fail. Please re edit the view configuration"
+    },
+    "downwardcinotfoundexception": {
+      "downwardcinotfoundexception": "Unable to find configuration item model '{2}' in the downstream model of configuration item model '{0} ({1})'",
+      "downwardcinotfoundexception_b": "Configuration item model '{2}' cannot be found in the downstream model of configuration item model '{0} ({1})', configuration path: {3}, actual path: {4}"
+    }
+  },
+  "nfceg": {
+    "globalattrisinusedexception": {
+      "globalattrisinusedexception": "The current attribute is in use and cannot be deleted"
+    },
+    "globalattrvalueirregularexception": {
+      "globalattrvalueirregularexception": "The value '{2}' of global attribute '{0} ({1})' is illegal",
+      "globalattrvalueirregularexception_b": "The value \"{4}\" of the global attribute \"{2} {3}\" in model \"{0} {1}\" is illegal. Configuration path: {5}, actual path: {6}"
+    },
+    "graphisinvokedexception": {
+      "graphisinvokedexception": "The current view is already referenced by another view, please delete it first"
+    },
+    "graphnotfoundexception": {
+      "graphnotfoundexception": "Topology view '{0}' does not exist"
+    },
+    "graphprivilegedeleteexception": {
+      "graphprivilegedeleteexception": "You do not have permission to delete the current topology view"
+    },
+    "graphprivilegereadexception": {
+      "graphprivilegereadexception": "You do not have permission to view the current topology view"
+    },
+    "graphprivilegesaveexception": {
+      "graphprivilegesaveexception": "You do not have permission for the current public topology view"
+    }
+  },
+  "nfcer": {
+    "appenvnotfoundedittargetexception": {
+      "appenvnotfoundedittargetexception": "Environment: {0} does not exist"
+    },
+    "appmodulenotfoundedittargetexception": {
+      "appmodulenotfoundedittargetexception": "Application module: {0} does not exist"
+    },
+    "appsystemnotfoundedittargetexception": {
+      "appsystemnotfoundedittargetexception": "Application: {0} does not exist"
+    },
+    "reltypenotfoundexception": {
+      "reltypenotfoundexception": "Relationship type: {0} does not exist"
+    },
+    "resourceaccountaccesstesthostexception": {
+      "resourceaccountaccesstesthostexception": "'{0}' does not meet the IP format and attempts to resolve domain names have failed"
+    },
+    "resourcecenteraccountnotprivateexception": {
+      "resourcecenteraccountnotprivateexception": "Account: '{0}' is not a private type"
+    },
+    "resourcecenteraccountprotocolnotfoundexception": {
+      "resourcecenteraccountprotocolnotfoundexception": {
+        "id": "Protocol: {0} does not exist"
+      }
+    },
+    "resourcecenterresourcenotexistaccountexception": {
+      "resourcecenterresourcenotexistaccountexception": "Account '{1}' does not exist in resource '{0}'"
+    },
+    "resourcecenterviewconfigexception": {
+      "resourcecenterviewconfigexception": "Field declared in view {0}: {1}, but definition not found in configuration file"
+    },
+    "resourcenotfoundexception": {
+      "resourcenotfoundexception": {
+        "id": "Resource {0} does not exist",
+        "ip": "Find out if the resource does not exist through ip: {0}, port: {1}, nodeName: {2}, nodeType: {3}",
+        "ipname": "Search for non-existent resources through ip: {0}, port: {1}, nodeName: {2}"
+      }
+    },
+    "resourceviewfieldmappingexception": {
+      "resourceviewfieldmappingexception_a": "The main model in resource view {0} is not set",
+      "resourceviewfieldmappingexception_b": "Field list {1} in resource view {0} has no mapping set",
+      "resourceviewfieldmappingexception_c": "The main model {1} in resource view {0} does not exist",
+      "resourceviewfieldmappingexception_d": "The mapping {2} value of field {1} in resource view {0} is {3}, which is not set correctly"
+    }
+  },
+  "nfces": {
+    "objectciisexistsexception": {
+      "objectciisexistsexception": "The object configuration for model {0} already exists"
+    },
+    "objectisexistsexception": {
+      "objectisexistsexception": "object {0}- {1} Existing"
+    }
+  },
+  "nfcev": {
+    "validatornotfoundexception": {
+      "validatornotfoundexception": "Validation rule  {0}  does not exist"
+    }
+  },
+  "term": {
+    "ciview": {
+      "alias": "alias",
+      "alleditdesc": "Is editing allowed? 0 is not allowed, 1 is allowed",
+      "itemid": "Attribute or relationship ID",
+      "label": "Attribute or relationship name",
+      "name": "Unique identification of attributes or relationships",
+      "showtypedesc": "Display method, none: do not display, all: display all, list: only display list, detail: only display details",
+      "showtypetext": "Display Method Name",
+      "type": "Type, attr or rel"
+    },
+    "cmdb": {
+      "abbrname": "Abbreviation",
+      "accountidlist": "Account ID List",
+      "addid": "ID, do not provide a representative to add",
+      "alertlevel": "Level",
+      "allowedit": "Allow editing",
+      "append": "New addition",
+      "appenv": "Application Environment",
+      "appmodule": "Application Module",
+      "appmoduleabbrname": "Application Module Abbreviation",
+      "appmoduleid": "Application Module ID",
+      "appmoduleidlist": "Application Module ID List",
+      "appmodulename": "Application Module Name",
+      "appsystem": "Application System",
+      "appsystemabbrname": "Application System Abbreviation",
+      "appsystemid": "Application System ID",
+      "appsystemname": "Application System Name",
+      "assetstatus": "Asset Status",
+      "attr": "attribute",
+      "attrconfig": "Attribute Configuration",
+      "attridlist": "Model Attribute ID List",
+      "attrtype": "Attribute Type",
+      "autoexec": "Automated operations",
+      "batchsearchlist": "Batch search values",
+      "batchtag": "Batch labels",
+      "cientitydata": "Configuration Item Data",
+      "cientityid": "Configuration Item ID",
+      "cientityname": "Configuration Item Name",
+      "cientityuniquename": "Unique identification of configuration items",
+      "ciid": "Model ID",
+      "ciidlist": "Model ID List",
+      "ciinfo": "Model Information",
+      "cilist": "Model List",
+      "ciname": "Model Name",
+      "ciuniquename": "Model Unique Identification",
+      "cmdbgrouptype": "Filter permissions through groups",
+      "collectionlist": "Collection List",
+      "collectionname": "Collection Name",
+      "collectionobjlist": "Collection Object List",
+      "collectiontype": "Collection type",
+      "collectmode": "Collection method",
+      "customview": {
+        "authhelp": "Only effective for public views",
+        "ciid": "Model ID needs to be provided when saving the scene view"
+      },
+      "envid": "Environment ID",
+      "envidlist": "Environment ID List",
+      "envlist": "Environment List",
+      "envname": "Environment Name",
+      "excludeciid": "Exclude model ID",
+      "filterbycientityqueryvisibility": "Return only levels and models shown in CI Query when set to 1; omit to preserve the existing behavior",
+      "globalattr": "Global Properties",
+      "globalattrid": "Global attribute ID",
+      "globalattridlist": "List of public attribute IDs",
+      "groupdesc": "Configuration Management Platform",
+      "groupname": "CMDB",
+      "importauditid": "Import Record ID",
+      "inspectstatus": "Inspection Status",
+      "ip": "IP Address",
+      "isabstractci": "Is it an abstract model",
+      "isbackbone": "Show only backbone",
+      "iscommit": "Submit or not",
+      "isexistingenv": "Environment Already Exists",
+      "ishasenv": "Does it include the environment",
+      "isprivateci": "Private model or not",
+      "ispushmq": "Whether to push MQ",
+      "issearchable": "Allow search",
+      "isshowinmenu": "Is it displayed in the menu",
+      "isshowpsycollectioni": "Is physical set data displayed",
+      "issimpleattribute": "Is it a simple attribute",
+      "isvirtualci": "Is it a virtual model",
+      "joinlist": "Connection List",
+      "maintain": "maintenance",
+      "maintenancewindow": "Maintenance Window",
+      "mergealias": "Whether to merge aliases",
+      "moduleid": "Module ID",
+      "modulename": "Module Abbreviation",
+      "monitorstatus": "Monitoring Status",
+      "name": "CMDB",
+      "needalias": "Do you need an alias",
+      "needchildren": "Do you want to return the sub model",
+      "needcirel": "Do we need to return the relationship path",
+      "needglobalattritem": "Do you need members",
+      "nodelist": "Node List",
+      "objcategory": "Object categories",
+      "objtype": "object type",
+      "parentcientityid": "Parent Configuration Item ID",
+      "parentciicon": "Parent model icon",
+      "parentciid": "Parent model ID",
+      "port": "Protocol Port",
+      "protocol": "Protocol",
+      "protocolid": "Protocol ID",
+      "protocolidlist": "Protocol ID List",
+      "rel": "relationship",
+      "relidlist": "Model Relationship ID List",
+      "relpath": "Relationship Path",
+      "replace": "replace",
+      "resourceentityinfo": "Resource View Information",
+      "resourceid": "Resource ID",
+      "resourcename": "Resource Name",
+      "rootciid": "Root Model ID",
+      "rootciname": "Root Model Name",
+      "ruleid": "Rule ID",
+      "searchfield": "Batch search fields",
+      "showincientityquery": "Show in CI Query",
+      "sourcerelid": "Source Relationship ID",
+      "startciid": "Starting Model ID",
+      "stateidlist": "Status ID List",
+      "syncid": "Collection ID",
+      "syncidlist": "Collect ID list",
+      "syncisall": "Whether to execute all active collection",
+      "syncmappingid": "Set mapping ID",
+      "sysname": "System Abbreviation",
+      "targetciid": "Target Model ID",
+      "templateconfig": "Template configuration",
+      "transactiongroupid": "Transaction Group ID",
+      "transactionid": "Transaction ID",
+      "typeidlist": "Resource Type ID List",
+      "update": "update",
+      "validateconfig": "proof setup ",
+      "validatehandler": "Verification component",
+      "validatorid": "Validation Rule ID",
+      "vendoridlist": "List of vendor IDs",
+      "viewid": "View ID",
+      "viewname": "View Name",
+      "virtualcifileid": "Virtual model configuration file id"
+    }
+  }
+}
