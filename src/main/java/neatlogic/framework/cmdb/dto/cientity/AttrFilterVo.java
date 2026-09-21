@@ -43,7 +43,7 @@ public class AttrFilterVo implements Serializable {
     private List<String> valueHashList;
     @JSONField(serialize = false)
     private Boolean needTargetCi;
-    // 标识属性值是否保存于cmdb_attr_invoke表，仅供后端组装查询SQL使用。
+    // 标识属性值是否保存于cmdb_invokeentity表，仅供后端组装查询SQL使用。
     @JSONField(serialize = false)
     private Boolean isInvokeAttr;
 
@@ -109,11 +109,6 @@ public class AttrFilterVo implements Serializable {
         this.needTargetCi = needTargetCi;
     }
 
-    /**
-     * 根据属性处理器判断过滤条件是否需要查询cmdb_attr_invoke表。
-     *
-     * @return true表示属性值保存于cmdb_attr_invoke表
-     */
     public Boolean getIsInvokeAttr() {
         return isInvokeAttr;
     }

@@ -595,7 +595,7 @@ public class AttrVo extends BasePageVo {
     }
 
     public Boolean getIsInvokeAttr() {
-        // MyBatis通过该属性区分动态表属性和cmdb_attr_invoke引用属性。
+        // MyBatis通过该属性区分动态表属性和cmdb_invokeentity引用属性。
         if (StringUtils.isNotBlank(this.type)) {
             IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.type);
             isInvokeAttr = handler != null && handler instanceof IAttrInvokeHandler;

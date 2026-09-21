@@ -71,7 +71,7 @@ public class CustomViewConditionFilterVo implements Serializable {
     }
 
     public Boolean getIsInvokeAttr() {
-        // MyBatis通过该属性区分动态表属性和cmdb_attr_invoke引用属性。
+        // MyBatis通过该属性区分动态表属性和cmdb_invokeentity引用属性。
         if (StringUtils.isNotBlank(this.attrType)) {
             IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.attrType);
             isInvokeAttr = handler != null && handler instanceof IAttrInvokeHandler;

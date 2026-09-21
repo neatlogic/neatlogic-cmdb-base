@@ -13,7 +13,7 @@ package neatlogic.framework.cmdb.attrvaluehandler.core;
 import com.alibaba.fastjson.JSONArray;
 import neatlogic.framework.cmdb.dto.ci.AttrVo;
 import neatlogic.framework.cmdb.dto.cientity.AttrEntityVo;
-import neatlogic.framework.cmdb.dto.cientity.AttrInvokeVo;
+import neatlogic.framework.cmdb.dto.cientity.InvokeEntityVo;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public interface IAttrInvokeHandler {
 
     void afterDeleteCiEntity(AttrEntityVo attrEntityVo);
 
-    List<AttrInvokeVo> convertValueListToAttrInvokeList(AttrEntityVo attrEntityVo);
+    List<InvokeEntityVo> convertValueListToAttrInvokeList(AttrEntityVo attrEntityVo);
 
-    JSONArray convertAttrInvokeListToValueList(AttrVo attrVo, List<AttrInvokeVo> attrInvokeList);
+    JSONArray convertAttrInvokeListToValueList(AttrVo attrVo, List<InvokeEntityVo> invokeEntityList);
 }

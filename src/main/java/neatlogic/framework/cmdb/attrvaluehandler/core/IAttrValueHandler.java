@@ -14,7 +14,6 @@ package neatlogic.framework.cmdb.attrvaluehandler.core;
 
 import com.alibaba.fastjson.JSONArray;
 import neatlogic.framework.cmdb.dto.ci.AttrVo;
-import neatlogic.framework.cmdb.dto.cientity.AttrInvokeVo;
 import neatlogic.framework.cmdb.enums.SearchExpression;
 import neatlogic.framework.cmdb.exception.attr.AttrValueIrregularException;
 import org.apache.commons.collections4.CollectionUtils;
