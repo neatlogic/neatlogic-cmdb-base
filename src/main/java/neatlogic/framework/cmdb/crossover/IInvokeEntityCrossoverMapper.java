@@ -16,7 +16,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface ICiEntityAttrInvokeCrossoverMapper extends ICrossoverService {
+public interface IInvokeEntityCrossoverMapper extends ICrossoverService {
 
     List<Long> getCiEntityIdListByAttrId(Long attrId);
 
