@@ -25,7 +25,7 @@ public interface IAttrInvokeHandler {
 
     void afterDeleteCiEntity(AttrEntityVo attrEntityVo);
 
-    List<InvokeEntityVo> convertValueListToAttrInvokeList(AttrEntityVo attrEntityVo);
+    List<InvokeEntityVo> convertValueListToInvokeEntityList(AttrEntityVo attrEntityVo);
 
-    JSONArray convertAttrInvokeListToValueList(AttrVo attrVo, List<InvokeEntityVo> invokeEntityList);
+    JSONArray convertInvokeEntityListToValueList(AttrVo attrVo, List<InvokeEntityVo> invokeEntityList);
 }
