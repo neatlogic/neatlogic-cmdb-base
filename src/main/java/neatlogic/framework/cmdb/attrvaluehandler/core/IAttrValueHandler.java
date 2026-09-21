@@ -18,9 +18,6 @@ import neatlogic.framework.cmdb.enums.SearchExpression;
 import neatlogic.framework.cmdb.exception.attr.AttrValueIrregularException;
 import org.apache.commons.collections4.CollectionUtils;
 
-import java.util.Collections;
-import java.util.List;
-
 public interface IAttrValueHandler {
     /**
      * 获取组件类型，通过组件类型找到实现类
@@ -168,13 +165,6 @@ public interface IAttrValueHandler {
      * @return 用于保存的数据
      */
     default void transferValueListToSave(AttrVo attrVo, JSONArray valueList) {
-    }
-
-    /**
-     * 将值转换成存储形式，并提供当前配置项ID供外部存储属性稳定其引用ID。
-     */
-    default void transferValueListToSave(AttrVo attrVo, Long ciEntityId, JSONArray valueList) {
-        transferValueListToSave(attrVo, valueList);
     }
 
     /**
