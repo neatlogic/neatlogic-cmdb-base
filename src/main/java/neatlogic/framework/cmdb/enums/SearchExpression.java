@@ -18,12 +18,12 @@ public enum SearchExpression {
     EQ("eq", "equal", "等于"),
     //LT("lt", "less-than", "小于"),
     //GT("gt", "greater-than", "大于"),
-    BT("bt", "between", "在此区间"),
-    NE("ne", "notequal", "不等于"),
-    NL("nl", "notlike", "不包含"),
-    LI("li", "like", "包含"),
-    NULL("null", "is-null", "为空"),
-    NOTNULL("notnull", "is-not-null", "不为空");
+    BT("bt", "between", "nmc.search.expression.between"),
+    NE("ne", "notequal", "nmc.search.expression.notequal"),
+    NL("nl", "notlike", "nmc.search.expression.notcontains"),
+    LI("li", "like", "nmc.search.expression.contains"),
+    NULL("null", "is-null", "nmc.search.expression.empty"),
+    NOTNULL("notnull", "is-not-null", "nmc.search.expression.notempty");
 
     private final String value;
     private final String text;
