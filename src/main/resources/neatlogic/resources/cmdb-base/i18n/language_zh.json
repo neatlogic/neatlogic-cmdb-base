@@ -1,0 +1,586 @@
+{
+  "auth": {
+    "alertlevel_modify": {
+      "description": "对配置项告警级别进行添加、修改和删除",
+      "name": "配置项告警级别管理"
+    },
+    "ci_modify": {
+      "description": "对配置项模型进行添加、修改和删除",
+      "name": "配置项模型管理权限"
+    },
+    "cientity_alert_modify": {
+      "description": "更新配置项告警状态",
+      "name": "配置项告警管理权限"
+    },
+    "cientity_batch_import": {
+      "description": "批量导入配置项",
+      "name": "批量导入配置项权限"
+    },
+    "cientity_export": {
+      "description": "对配置项数据进行导出",
+      "name": "导出配置项列表权限"
+    },
+    "cientity_modify": {
+      "description": "对配置项进行添加、修改和删除，对事务进行提交和修改",
+      "name": "配置项管理权限"
+    },
+    "customview_modify": {
+      "description": "对公共视图进行添加、修改和删除",
+      "name": "公共自定义视图管理权限"
+    },
+    "graph_modify": {
+      "description": "对公共拓扑视图进行添加、修改和删除",
+      "name": "公共拓扑视图编辑权限"
+    },
+    "group_modify": {
+      "description": "对团体进行添加、修改和删除",
+      "name": "团体管理权限"
+    },
+    "private_customview_modify": {
+      "description": "对个人视图进行添加、修改和删除",
+      "name": "个人自定义视图权限"
+    },
+    "reltype_modify": {
+      "description": "对关系类型进行添加、修改和删除",
+      "name": "关系类型修改权限"
+    },
+    "resourcecenter_account_modify": {
+      "description": "对资源中心的账号进行新增、修改、删除、编辑操作",
+      "name": "资源中心-账号管理权限"
+    },
+    "resourcecenter_app_view": {
+      "description": "资源中心-应用清单查看权限",
+      "name": "资源中心-应用清单查看权限"
+    },
+    "resourcecenter_modify": {
+      "description": "对资源中心进行初始化操作",
+      "name": "资源中心管理权限"
+    },
+    "resourcecenter_resource_view": {
+      "description": "资源中心-资产清单查看权限",
+      "name": "资源中心-资产清单查看权限"
+    },
+    "resourcecenter_tag_modify": {
+      "description": "对资源中心的标签进行新增、修改、删除、编辑操作",
+      "name": "资源中心-标签管理权限"
+    },
+    "resourcecenter_view_modify": {
+      "description": "对资源中心视图进行新增、修改、复制和删除，并查看视图数据。",
+      "name": "资源中心-视图设置权限"
+    },
+    "sync_modify": {
+      "description": "管理配置项模型的属性或关系与采集数据之间的映射关系，配置了映射关系后才能使用自动采集功能。",
+      "name": "配置项模型自动采集映射管理权限"
+    },
+    "transaction_manage": {
+      "description": "查看事务审计权限，可以查看所有配置项的修改记录",
+      "name": "事务审计权限"
+    }
+  },
+  "cmdb": {
+    "batchimport": {
+      "action": {
+        "all": "添加并更新",
+        "append": "只添加",
+        "update": "只更新"
+      },
+      "status": {
+        "running": "导入中",
+        "success": "成功"
+      }
+    },
+    "ci": "模型",
+    "cimodify": "模型修改",
+    "relrule": {
+      "many": "多个",
+      "one": "一个"
+    },
+    "showtype": {
+      "all": "全展示",
+      "detail": "仅明细",
+      "list": "仅列表",
+      "none": "不显示"
+    },
+    "transaction": {
+      "action": {
+        "insert": "新增",
+        "recover": "恢复",
+        "update": "修改"
+      },
+      "status": {
+        "commited": "已提交",
+        "expired": "已失效",
+        "recover": "已恢复",
+        "uncommit": "未提交"
+      }
+    }
+  },
+  "exception": {
+    "cmdb": {
+      "relfilterinvalidexception": {
+        "array_required": "{0}必须是条件数组",
+        "attribute_invalid": "普通属性已失效或不属于对应模型",
+        "attribute_operator_invalid": "普通属性不支持所选操作符",
+        "child_model_invalid": "子模型不属于对应模型",
+        "collection_operator_invalid": "关系或全局属性不支持所选操作符",
+        "direction_invalid": "关系方向不正确",
+        "global_attribute_invalid": "全局属性已失效或不属于对应模型",
+        "group_invalid": "配置项分组已失效或不属于对应模型",
+        "id_invalid": "{0}必须是有效编号",
+        "invalid_condition": "{0}包含非法条件",
+        "model_missing": "对应模型不存在",
+        "operator_invalid": "过滤操作符不存在",
+        "parameter": "过滤条件“{0}”无效：{1}",
+        "range_array_unsupported": "此属性不支持日期范围数组",
+        "range_bound_required": "范围条件至少需要一个边界",
+        "range_bounds_required": "日期范围必须提供两个边界",
+        "relation_invalid": "关系已失效或方向不属于对应模型",
+        "unsupported_condition_field": "条件包含不支持的字段",
+        "unsupported_field": "不支持的过滤字段：{0}",
+        "value_empty": "过滤条件值不能为空",
+        "value_invalid": "过滤条件值不正确",
+        "value_required": "过滤条件缺少值"
+      }
+    }
+  },
+  "nfcal": {
+    "cmdb": {
+      "getauthdisplayname": "配置管理基础权限（接口）",
+      "getauthintroduction": "拥有此权限可以通过接口访问配置管理一些底层功能，例如消费资源中心等"
+    },
+    "cmdb_base": {
+      "getauthdisplayname": "配置管理基础权限",
+      "getauthintroduction": "拥有此权限才能在页面上查看配置管理模块，使用配置管理基本功能"
+    }
+  },
+  "nfcdc": {
+    "globalattrentityvo": {
+      "entityfield": {
+        "valuelist": "属性值"
+      }
+    }
+  },
+  "nfcdrcs": {
+    "applicationassetlistdetailvo": {
+      "resourcetype": {
+        "scenceapplicationassetlistdetail": {
+          "label": "应用清单资产详情"
+        }
+      }
+    },
+    "appmoduleappsystemvo": {
+      "resourcetype": {
+        "scenceappmoduleappsystem": {
+          "label": "应用模块和应用系统场景"
+        }
+      }
+    },
+    "appsystemappmodulevo": {
+      "resourcetype": {
+        "scenceappsystemappmodule": {
+          "label": "应用系统和应用模块场景"
+        }
+      }
+    },
+    "appsystemvo": {
+      "resourcetype": {
+        "scenceappmodule": {
+          "label": "应用模块场景"
+        },
+        "scenceappsystem": {
+          "label": "应用系统场景"
+        }
+      }
+    },
+    "common": {
+      "entityfield": {
+        "allipdescription": {
+          "name": "IP列表的描述"
+        },
+        "allipid": {
+          "name": "IP列表的ID"
+        },
+        "allipip": {
+          "name": "IP列表的IP地址"
+        },
+        "datacenterid": {
+          "name": "数据中心ID"
+        },
+        "datacentername": {
+          "name": "数据中心名称"
+        },
+        "envsequencenumber": {
+          "name": "环境序号"
+        },
+        "groupid": {
+          "name": "分组ID"
+        },
+        "groupname": {
+          "name": "分组名称"
+        },
+        "inspecttime": {
+          "name": "巡检时间"
+        },
+        "monitortime": {
+          "name": "监控时间"
+        },
+        "osid": {
+          "name": "操作系统ID"
+        },
+        "osipaddress": {
+          "name": "操作系统IP"
+        },
+        "osname": {
+          "name": "操作系统名称"
+        },
+        "ostypeid": {
+          "name": "操作系统类型ID"
+        },
+        "port": {
+          "name": "端口"
+        },
+        "typelabel": {
+          "name": "类型Label"
+        },
+        "vendordescription": {
+          "name": "厂商描述"
+        },
+        "vendorid": {
+          "name": "厂商ID"
+        },
+        "vendorname": {
+          "name": "厂商名称"
+        }
+      }
+    },
+    "functionpath": {
+      "addtagentdatatoconfigurationitems": "配置管理/添加tagent数据进配置项",
+      "applicationlist": "配置管理/应用清单",
+      "assetlist": "配置管理/资产清单"
+    },
+    "ipobjectdetailvo": {
+      "resourcetype": {
+        "scenceipobjectdetail": {
+          "label": "资产清单视图"
+        }
+      }
+    },
+    "osvo": {
+      "resourcetype": {
+        "scenceos": {
+          "label": "操作系统IP视图"
+        }
+      }
+    },
+    "statevo": {
+      "resourcetype": {
+        "scencestate": {
+          "label": "资产状态基本信息场景"
+        },
+        "scencevendor": {
+          "label": "厂商基本信息场景"
+        }
+      }
+    }
+  },
+  "nfce": {
+    "cmdbtenantconfig": {
+      "isresourcecenterauth": "资产清单是否受模型权限和团体权限控制"
+    },
+    "cmdbuserexportfiletype": {
+      "customviewdata": "自定义视图数据"
+    }
+  },
+  "nfcea": {
+    "attrvalueirregularexception": {
+      "attrvalueirregularexception_a": "模型“{0}({1})”属性“{2}({3})”的值“{4}”不是合法的{5}类型",
+      "attrvalueirregularexception_b": "模型“{0}({1})”属性“{2}({3})”的值“{4}”不是合法的{5}类型，配置路径：{6}，实际路径：{7}"
+    }
+  },
+  "nfceb": {
+    "batchimportmouldismustexception": {
+      "batchimportmouldismustexception": "请正确填写模版和选择合适的导入模式：【只添加】不需要填写ID；【只更新】必须填写ID"
+    }
+  },
+  "nfcec": {
+    "attrentityduplicateexception": {
+      "attrentityduplicateexception": "模型“{0}({1})”属性“{2}”值等于“{3}”的配置项已存在"
+    },
+    "attrentityvalueemptyexception": {
+      "attrentityvalueemptyexception_a": "属性“{0}”值不能为空",
+      "attrentityvalueemptyexception_b": "模型“{0}({1})”的属性“{2}({3})”值不能为空"
+    },
+    "cicatalogisinusedexception": {
+      "cicatalogisinusedexception": "当前目录节点：{0} 已被引用，请解除引用后再删除"
+    },
+    "cicatalognamerepeatexception": {
+      "cicatalognamerepeatexception": "模型目录：{0} 已存在"
+    },
+    "cicatalognotfoundexception": {
+      "cicatalognotfoundexception": "模型目录：{0} 不存在"
+    },
+    "cientityauthexception": {
+      "action": "您没有权限{0}配置项",
+      "ciaction": "您没有权限{0}“{1}({2})”的配置项",
+      "cientityidnameaction": "您没有权限{0}配置项“{1}({2})”",
+      "cilabelaction": "您没有权限{0}“{1}”的配置项"
+    },
+    "ciisabstractedexception": {
+      "ciisabstractedexception_a": "配置项模型：“{0}({1})”是抽象模型，不能直接添加数据，配置路径：{2}，实际路径：{3}",
+      "data": "配置项模型“{0}”是抽象模型，不允许直接添加数据",
+      "updateabstract": "配置项模型“{0}”已被继承或已存在数据，不能变更是否抽象模型",
+      "updateparent": "配置项模型“{0}”已存在数据，不能变更父模型"
+    },
+    "cinotfoundexception": {
+      "cinotfoundexception_a": "配置项模型“{0}”不存在",
+      "cinotfoundexception_b": "配置项模型“{0}”不存在，配置路径：{1}，实际路径：{2}",
+      "cinotfoundexception_d": "配置项对应的模型不存在"
+    },
+    "citopotemplatenotfoundexception": {
+      "citopotemplatenotfoundexception": "拓扑模板“{0}”不存在"
+    },
+    "citypenotfoundexception": {
+      "citypenotfoundexception": "模型类型：{0}不存在"
+    },
+    "ciuniqueattrnotfoundexception": {
+      "ciuniqueattrnotfoundexception_a": "配置项模型“{0}”缺少唯一属性，请设置",
+      "ciuniqueattrnotfoundexception_b": "模型“{0}({1})”的唯一规则属性“{2}({3})”没有配置匹配字段，请先配置",
+      "ciuniqueattrnotfoundexception_c": "模型“{0}({1})”的唯一规则属性“{2}({3})”的值为空",
+      "ciuniqueattrnotfoundexception_d": "获取模型“{0}”的配置项事务hash失败，唯一属性“{1}”没有值",
+      "ciuniqueattrnotfoundexception_e": "配置“{0}->{1}({2})”的唯一键映射属性“{3}”的值不存在，原始数据：{4}",
+      "ciuniqueattrnotfoundexception_f": "模型“{0}({1})”的唯一规则属性“{2}({3})”的值为空，配置路径：{4}，实际路径：{5}"
+    },
+    "ciuniqueruleattrtypeirregularexception": {
+      "ciuniqueruleattrtypeirregularexception_a": "模型“{0}({1})”的唯一规则属性“{2}({3})”不能是一个表达式属性或引用型属性",
+      "ciuniqueruleattrtypeirregularexception_b": "模型“{0}({1})”的唯一规则属性“{2}({3})”不能是一个表达式属性",
+      "ciuniqueruleattrtypeirregularexception_c": "模型“{0}({1})”的唯一规则属性“{2}({3})”不能是一个表达式属性，配置路径：{4}，实际路径：{5}"
+    },
+    "customviewcichangeexception": {
+      "customviewcichangeexception": "自定义视图“{0}”使用到的模型发生改变导致视图查询失败，请重新编辑视图配置"
+    },
+    "downwardcinotfoundexception": {
+      "downwardcinotfoundexception": "在配置项模型“{0}({1})”的下游模型中找不到配置项模型“{2}”",
+      "downwardcinotfoundexception_b": "在配置项模型“{0}({1})”的下游模型中找不到配置项模型“{2}”，配置路径：{3}，实际路径：{4}"
+    }
+  },
+  "nfceg": {
+    "globalattrisinusedexception": {
+      "globalattrisinusedexception": "当前属性正在使用中，不能删除"
+    },
+    "globalattrvalueirregularexception": {
+      "globalattrvalueirregularexception": "全局属性“{0}({1})”的值“{2}”是不合法的",
+      "globalattrvalueirregularexception_b": "模型“{0}{1}”全局属性“{2}{3}”的值“{4}”是不合法的，配置路径：{5}，实际路径：{6}"
+    },
+    "graphisinvokedexception": {
+      "graphisinvokedexception": "当前视图已被其他视图引用，请先删除"
+    },
+    "graphnotfoundexception": {
+      "graphnotfoundexception": "拓扑视图“{0}”不存在"
+    },
+    "graphprivilegedeleteexception": {
+      "graphprivilegedeleteexception": "您没有权限删除当前拓扑视图"
+    },
+    "graphprivilegereadexception": {
+      "graphprivilegereadexception": "您没有权限查看当前拓扑视图"
+    },
+    "graphprivilegesaveexception": {
+      "graphprivilegesaveexception": "您没有权限当前公共拓扑视图"
+    }
+  },
+  "nfcer": {
+    "appenvnotfoundedittargetexception": {
+      "appenvnotfoundedittargetexception": "环境：{0}不存在"
+    },
+    "appmodulenotfoundedittargetexception": {
+      "appmodulenotfoundedittargetexception": "应用模块：{0}不存在"
+    },
+    "appsystemnotfoundedittargetexception": {
+      "appsystemnotfoundedittargetexception": "应用：{0}不存在"
+    },
+    "reltypenotfoundexception": {
+      "reltypenotfoundexception": "关系类型：{0} 不存在"
+    },
+    "resourceaccountaccesstesthostexception": {
+      "resourceaccountaccesstesthostexception": "“{0}”不满足ip格式且尝试域名解析失败,请自行指定runner测试"
+    },
+    "resourcecenteraccountnotprivateexception": {
+      "resourcecenteraccountnotprivateexception": "账号：“{0}”不是私有类型"
+    },
+    "resourcecenteraccountprotocolnotfoundexception": {
+      "resourcecenteraccountprotocolnotfoundexception": {
+        "id": "协议：{0}不存在"
+      }
+    },
+    "resourcecenterresourcenotexistaccountexception": {
+      "resourcecenterresourcenotexistaccountexception": "资源“{0}”中不存在账号“{1}”"
+    },
+    "resourcecenterviewconfigexception": {
+      "resourcecenterviewconfigexception": "视图{0}中声明字段：{1}，但在配置文件中没有找到定义"
+    },
+    "resourcenotfoundexception": {
+      "resourcenotfoundexception": {
+        "id": "资源{0}不存在",
+        "ip": "通过ip:{0}、port:{1}、nodeName:{2}、nodeType:{3}查找资源不存在",
+        "ipname": "通过ip:{0}、port:{1}、nodeName:{2}查找资源不存在"
+      }
+    },
+    "resourceviewfieldmappingexception": {
+      "resourceviewfieldmappingexception_a": "资源视图{0}中主模型未设置",
+      "resourceviewfieldmappingexception_b": "资源视图{0}中字段列表{1}未设置映射",
+      "resourceviewfieldmappingexception_c": "资源视图{0}中主模型{1}不存在",
+      "resourceviewfieldmappingexception_d": "资源视图{0}中字段{1}的映射{2}值为{3}，设置不正确"
+    }
+  },
+  "nfces": {
+    "objectciisexistsexception": {
+      "objectciisexistsexception": "模型{0}的对象配置已存在"
+    },
+    "objectisexistsexception": {
+      "objectisexistsexception": "对象{0}-{1}已存在"
+    }
+  },
+  "nfcev": {
+    "validatornotfoundexception": {
+      "validatornotfoundexception": "验证规则“{0}”不存在"
+    }
+  },
+  "term": {
+    "ciview": {
+      "alias": "别名",
+      "alleditdesc": "是否允许编辑，0不允许，1允许",
+      "itemid": "属性或关系id",
+      "label": "属性或关系名称",
+      "name": "属性或关系唯一标识",
+      "showtypedesc": "显示方式，none:不显示，all:全部显示，list:仅列表显示，detail:仅明细显示",
+      "showtypetext": "显示方式名称",
+      "type": "类型，attr或rel"
+    },
+    "cmdb": {
+      "abbrname": "简称",
+      "accountidlist": "账号ID列表",
+      "addid": "id，不提供代表添加",
+      "alertlevel": "级别",
+      "allowedit": "是否允许编辑",
+      "append": "新增",
+      "appenv": "应用环境",
+      "appmodule": "应用模块",
+      "appmoduleabbrname": "应用模块简称",
+      "appmoduleid": "应用模块ID",
+      "appmoduleidlist": "应用模块ID列表",
+      "appmodulename": "应用模块名称",
+      "appsystem": "应用系统",
+      "appsystemabbrname": "应用系统简称",
+      "appsystemid": "应用系统ID",
+      "appsystemname": "应用系统名",
+      "assetstatus": "资产状态",
+      "attr": "属性",
+      "attrconfig": "属性配置",
+      "attridlist": "模型属性ID列表",
+      "attrtype": "属性类型",
+      "autoexec": "自动化操作",
+      "batchsearchlist": "批量搜索值",
+      "batchtag": "批量标签",
+      "cientitydata": "配置项数据",
+      "cientityid": "配置项ID",
+      "cientityname": "配置项名称",
+      "cientityuniquename": "配置项唯一标识",
+      "ciid": "模型ID",
+      "ciidlist": "模型ID列表",
+      "ciinfo": "模型信息",
+      "cilist": "模型列表",
+      "ciname": "模型名称",
+      "ciuniquename": "模型唯一标识",
+      "cmdbgrouptype": "通过团体过滤权限",
+      "collectionlist": "集合列表",
+      "collectionname": "集合名称",
+      "collectionobjlist": "集合对象列表",
+      "collectiontype": "集合类型",
+      "collectmode": "采集方式",
+      "customview": {
+        "authhelp": "仅对公共视图生效",
+        "ciid": "模型id，保存场景视图时需要提供"
+      },
+      "envid": "环境ID",
+      "envidlist": "环境ID列表",
+      "envlist": "环境列表",
+      "envname": "环境名称",
+      "excludeciid": "排除模型id",
+      "filterbycientityqueryvisibility": "仅返回在配置项查询中显示的层级及模型，传1时过滤，不传时保持原逻辑",
+      "globalattr": "全局属性",
+      "globalattrid": "全局属性id",
+      "globalattridlist": "公共属性id列表",
+      "groupdesc": "配置管理平台",
+      "groupname": "配置管理",
+      "importauditid": "导入记录ID",
+      "inspectstatus": "巡检状态",
+      "ip": "IP地址",
+      "isabstractci": "是否抽象模型",
+      "isbackbone": "只显示主干",
+      "iscommit": "是否提交",
+      "isexistingenv": "是否是已经拥有的环境",
+      "ishasenv": "是否包含环境",
+      "isprivateci": "是否私有模型",
+      "ispushmq": "是否推送MQ",
+      "issearchable": "是否允许搜索",
+      "isshowinmenu": "是否在菜单显示",
+      "isshowpsycollectioni": "是否显示物理集合数据",
+      "issimpleattribute": "是否简单属性",
+      "isvirtualci": "是否虚拟模型",
+      "joinlist": "连接列表",
+      "maintain": "维护",
+      "maintenancewindow": "维护窗口",
+      "mergealias": "是否合并别名",
+      "moduleid": "模块ID",
+      "modulename": "模块简称",
+      "monitorstatus": "监控状态",
+      "name": "配置管理",
+      "needalias": "是否需要别名",
+      "needchildren": "是否返回子模型",
+      "needcirel": "是否需要返回关系路径",
+      "needglobalattritem": "是否需要成员",
+      "nodelist": "节点列表",
+      "objcategory": "对象大类",
+      "objtype": "对象类型",
+      "parentcientityid": "父配置项id",
+      "parentciicon": "父模型图标",
+      "parentciid": "父模型id",
+      "port": "协议端口",
+      "protocol": "协议",
+      "protocolid": "协议ID",
+      "protocolidlist": "协议id列表",
+      "rel": "关系",
+      "relidlist": "模型关系ID列表",
+      "relpath": "关系路径",
+      "replace": "替换",
+      "resourceentityinfo": "资源视图信息",
+      "resourceid": "资源ID",
+      "resourcename": "资源名称",
+      "rootciid": "根模型id",
+      "rootciname": "根模型名称",
+      "ruleid": "规则id",
+      "searchfield": "批量搜索字段",
+      "showincientityquery": "配置项查询中显示",
+      "sourcerelid": "来源关系id",
+      "startciid": "起始模型id",
+      "stateidlist": "状态id列表",
+      "syncid": "采集id",
+      "syncidlist": "采集id列表",
+      "syncisall": "是否执行所有主动采集",
+      "syncmappingid": "集合映射id",
+      "sysname": "系统简称",
+      "targetciid": "目标模型id",
+      "templateconfig": "模板配置",
+      "transactiongroupid": "事务组ID",
+      "transactionid": "事务id",
+      "typeidlist": "资源类型id列表",
+      "update": "更新",
+      "validateconfig": "校验设置",
+      "validatehandler": "校验组件",
+      "validatorid": "验证规则id",
+      "vendoridlist": "厂商id列表",
+      "viewid": "视图id",
+      "viewname": "视图名称",
+      "virtualcifileid": "虚拟模型配置文件id"
+    }
+  }
+}
