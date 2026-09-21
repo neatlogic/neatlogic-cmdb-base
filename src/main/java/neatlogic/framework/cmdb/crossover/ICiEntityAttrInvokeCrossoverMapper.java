@@ -21,5 +21,5 @@ public interface ICiEntityAttrInvokeCrossoverMapper extends ICrossoverService {
     List<Long> getCiEntityIdListByAttrId(Long attrId);
 
     // 按视图聚合的引用值读取属性索引，供跨模块属性处理器还原显示值。
-    List<InvokeEntityVo> getAttrInvokeListByInvokeIdList(@Param("invokeIdList") List<Long> invokeIdList, @Param("attrIdList") List<Long> attrIdList);
+    List<InvokeEntityVo> getInvokeEntityListByInvokeIdList(@Param("invokeIdList") List<Long> invokeIdList, @Param("attrIdList") List<Long> attrIdList);
 }
