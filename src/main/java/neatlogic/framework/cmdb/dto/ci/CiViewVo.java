@@ -213,7 +213,7 @@ public class CiViewVo implements Serializable {
     public String getAliasOrLabel() {
         if (StringUtils.isNotBlank(alias)) {
             return alias;
-        } else if ("ciLabel".equals(itemName)) {
+        } else if ("_ciLabel".equals(itemName) || "ciLabel".equals(itemName)) {
             return $.t("nmcac.searchcientityapi.model");
         } else {
             return itemLabel;
