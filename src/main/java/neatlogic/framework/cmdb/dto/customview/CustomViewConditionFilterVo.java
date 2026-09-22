@@ -13,9 +13,13 @@
 package neatlogic.framework.cmdb.dto.customview;
 
 import com.alibaba.fastjson.JSONArray;
+import neatlogic.framework.cmdb.attrvaluehandler.core.AttrValueHandlerFactory;
+import neatlogic.framework.cmdb.attrvaluehandler.core.IAttrInvokeHandler;
+import neatlogic.framework.cmdb.attrvaluehandler.core.IAttrValueHandler;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.restful.annotation.EntityField;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -36,6 +40,7 @@ public class CustomViewConditionFilterVo implements Serializable {
     private List<String> actualValueStringList;
     private String type;//类型，attr或constattr或globalattr
     private String attrType;//属性的类型
+    private Boolean isInvokeAttr;
 
     public CustomViewConditionFilterVo() {
 
@@ -63,6 +68,15 @@ public class CustomViewConditionFilterVo implements Serializable {
 
     public void setAttrType(String attrType) {
         this.attrType = attrType;
+    }
+
+    public Boolean getIsInvokeAttr() {
+        // MyBatis通过该属性区分动态表属性和cmdb_invokeentity引用属性。
+        if (StringUtils.isNotBlank(this.attrType)) {
+            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.attrType);
+            isInvokeAttr = handler != null && handler instanceof IAttrInvokeHandler;
+        }
+        return isInvokeAttr;
     }
 
     public String getType() {
@@ -101,16 +115,20 @@ public class CustomViewConditionFilterVo implements Serializable {
 
     public List<String> getValueStringList() {
         List<String> list = new ArrayList<>();
-        for (int i = 0; i < this.valueList.size(); i++) {
-            list.add(this.valueList.getString(i));
+        if (CollectionUtils.isNotEmpty(this.valueList)) {
+            for (int i = 0; i < this.valueList.size(); i++) {
+                list.add(this.valueList.getString(i));
+            }
         }
         return list;
     }
 
     public List<String> getActualValueStringList() {
         List<String> list = new ArrayList<>();
-        for (int i = 0; i < this.actualValueList.size(); i++) {
-            list.add(this.actualValueList.getString(i));
+        if (CollectionUtils.isNotEmpty(this.valueList)) {
+            for (int i = 0; i < this.actualValueList.size(); i++) {
+                list.add(this.actualValueList.getString(i));
+            }
         }
         return list;
     }

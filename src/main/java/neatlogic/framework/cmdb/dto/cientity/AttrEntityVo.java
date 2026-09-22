@@ -17,6 +17,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.asynchronization.threadlocal.TenantContext;
 import neatlogic.framework.cmdb.attrvaluehandler.core.AttrValueHandlerFactory;
+import neatlogic.framework.cmdb.attrvaluehandler.core.IAttrInvokeHandler;
 import neatlogic.framework.cmdb.attrvaluehandler.core.IAttrValueHandler;
 import neatlogic.framework.cmdb.dto.ci.AttrVo;
 import neatlogic.framework.cmdb.dto.transaction.AttrEntityTransactionVo;
@@ -80,6 +81,8 @@ public class AttrEntityVo extends BasePageVo {
     private Long toCiId;
     @JSONField(serialize = false)
     private Boolean isNeedTargetCi;
+    @JSONField(serialize = false)
+    private Boolean isInvokeAttr;
     @JSONField(serialize = false)
     private Integer fromIndex;
 
@@ -469,5 +472,14 @@ public class AttrEntityVo extends BasePageVo {
             isNeedTargetCi = handler.isNeedTargetCi();
         }
         return isNeedTargetCi;
+    }
+
+    public Boolean isInvokeAttr() {
+        // 配置项属性实体沿用属性处理器的独立引用存储标识。
+        if (isInvokeAttr == null && StringUtils.isNotBlank(this.attrType)) {
+            IAttrValueHandler handler = AttrValueHandlerFactory.getHandler(this.attrType);
+            isInvokeAttr = handler != null && handler instanceof IAttrInvokeHandler;
+        }
+        return isInvokeAttr;
     }
 }

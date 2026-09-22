@@ -736,6 +736,7 @@ public class CiEntityVo extends BasePageVo {
     public AttrEntityVo getAttrEntityByAttrId(Long attrId) {
         if (MapUtils.isNotEmpty(attrEntityData) && attrEntityData.containsKey("attr_" + attrId)) {
             AttrEntityVo attrEntityVo = new AttrEntityVo();
+            attrEntityVo.setCiEntityId(this.id);
             JSONObject attrEntityObj = attrEntityData.getJSONObject("attr_" + attrId);
             attrEntityVo.setAttrId(attrId);
             attrEntityVo.setAttrType(attrEntityObj.getString("type"));

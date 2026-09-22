@@ -1,5 +1,4 @@
 /*
- *
  * Copyright (C) 2025  TechSure Co., Ltd.  All Rights Reserved.
  * This file is part of the NeatLogic software.
  * Licensed under the NeatLogic Sustainable Use License (NSUL), Version 4.x – 2025.
@@ -7,24 +6,24 @@
  * See the LICENSE file distributed with this work for the full license text.
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *
  */
 
-package neatlogic.framework.cmdb.crossover;
+package neatlogic.framework.cmdb.attrvaluehandler.core;
 
+import com.alibaba.fastjson.JSONArray;
 import neatlogic.framework.cmdb.dto.ci.AttrVo;
-import neatlogic.framework.crossover.ICrossoverService;
-import org.apache.ibatis.annotations.Param;
+import neatlogic.framework.cmdb.dto.cientity.AttrEntityVo;
+import neatlogic.framework.cmdb.dto.cientity.InvokeEntityVo;
 
 import java.util.List;
 
-public interface IAttrCrossoverMapper extends ICrossoverService {
-    List<AttrVo> getAttrByCiId(Long ciId);
+public interface IAttrInvokeHandler {
 
-    AttrVo getAttrByCiIdAndName(@Param("ciId") Long ciId, @Param("attrName") String attrName);
+    void afterSaveCiEntity(AttrEntityVo attrEntityVo, JSONArray oldValueList);
 
-    AttrVo getAttrById(Long attrId);
+    void afterDeleteCiEntity(AttrEntityVo attrEntityVo);
 
-    List<AttrVo> getAttrListByType(String type);
+    List<InvokeEntityVo> convertValueListToInvokeEntityList(AttrEntityVo attrEntityVo);
 
+    JSONArray convertInvokeEntityListToValueList(AttrVo attrVo, List<InvokeEntityVo> invokeEntityList);
 }
