@@ -19,16 +19,16 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum ExpressionType {
-    IS("is", "等于", true, new String[]{"String", "float", "int"}),
-    NE("ne", "不等于", true, new String[]{"String", "float", "int"}),
-    IN("in", "包含", true, new String[]{"String"}),
-    NOTIN("notin", "不包含", true, new String[]{"String"}),
+    IS("is", "nmc.search.expression.equal", true, new String[]{"String", "float", "int"}),
+    NE("ne", "nmc.search.expression.notequal", true, new String[]{"String", "float", "int"}),
+    IN("in", "nmc.search.expression.contains", true, new String[]{"String"}),
+    NOTIN("notin", "nmc.search.expression.notcontains", true, new String[]{"String"}),
     //ISNULL("isnull", "为空", false, new String[]{"String", "float", "int"}),
     //ISNOTNULL("isnotnull", "不为空", false, new String[]{"String", "float", "int"}),
-    GT("gt", "大于", true, new String[]{"float", "int"}),
-    LT("lt", "小于", true, new String[]{"float", "int"}),
-    GTE("gte", "大于等于", true, new String[]{"float", "int"}),
-    LTE("lte", "小于等于", true, new String[]{"float", "int"});
+    GT("gt", "nmc.search.expression.greater", true, new String[]{"float", "int"}),
+    LT("lt", "nmc.search.expression.less", true, new String[]{"float", "int"}),
+    GTE("gte", "nmc.search.expression.greaterorequal", true, new String[]{"float", "int"}),
+    LTE("lte", "nmc.search.expression.lessorequal", true, new String[]{"float", "int"});
     private final String type;
     private final String text;
     private final Boolean needValue;

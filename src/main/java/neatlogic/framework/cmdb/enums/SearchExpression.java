@@ -15,7 +15,7 @@ package neatlogic.framework.cmdb.enums;
 import neatlogic.framework.util.$;
 
 public enum SearchExpression {
-    EQ("eq", "equal", "等于"),
+    EQ("eq", "equal", "nmc.search.expression.equal"),
     //LT("lt", "less-than", "小于"),
     //GT("gt", "greater-than", "大于"),
     BT("bt", "between", "nmc.search.expression.between"),
