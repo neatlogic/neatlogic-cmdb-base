@@ -26,4 +26,12 @@ public interface IAttrInvokeHandler {
     List<InvokeEntityVo> convertValueListToInvokeEntityList(AttrEntityVo attrEntityVo);
 
     JSONArray convertInvokeEntityListToValueList(AttrVo attrVo, List<InvokeEntityVo> invokeEntityList);
+
+    /**
+     * 将显示值解析为引用记录条件数组；null表示处理器不支持文本搜索。
+     * 外层数组中的候选组之间为OR，组内type与invokeId条件之间为AND。
+     */
+    default JSONArray getInvokeEntitySearchValueList(String expression, String value) {
+        return null;
+    }
 }
