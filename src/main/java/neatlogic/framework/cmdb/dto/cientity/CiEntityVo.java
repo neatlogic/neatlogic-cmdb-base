@@ -153,6 +153,8 @@ public class CiEntityVo extends BasePageVo {
     private List<Long> idList;// 需要查询的id列表
     @JSONField(serialize = false)
     private List<Long> includeIdList;//需要包含的id列表
+    @JSONField(serialize = false, deserialize = false)
+    private boolean includeExpired;//内部查询开关，同步定位时包含尚未删除的过期配置项
     @JSONField(serialize = false)
     private boolean globalAttrStrictMode;//全局属性严格模式，严格模式下不返回没有全局属性的配置项，只用在配置项搜索
     @EntityField(name = "当前用户权限情况", type = ApiParamType.JSONOBJECT)
@@ -196,6 +198,16 @@ public class CiEntityVo extends BasePageVo {
 
     public CiEntityVo() {
 
+    }
+
+    /** 返回查询是否包含尚未删除的过期配置项，普通查询默认排除。 */
+    public boolean isIncludeExpired() {
+        return includeExpired;
+    }
+
+    /** 由后端按业务场景启用过期配置项查询，不接受前端直接指定。 */
+    public void setIncludeExpired(boolean includeExpired) {
+        this.includeExpired = includeExpired;
     }
 
     public List<Long> getIncludeIdList() {
