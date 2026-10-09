@@ -285,7 +285,9 @@
   },
   "nfce": {
     "cmdbtenantconfig": {
-      "isresourcecenterauth": "Is the asset list controlled by model permissions and group permissions"
+      "isresourcecenterauth": "Is the asset list controlled by model permissions and group permissions",
+      "resourcecentercomparisonmodeenable": "Whether to compare the new and old SQL query results for the asset list; inconsistent results are logged at error level",
+      "resourcecentersqlmode": "Asset list SQL mode; available values are jsqlparser and mybatis; default: jsqlparser"
     },
     "cmdbuserexportfiletype": {
       "customviewdata": "Customize View Data"

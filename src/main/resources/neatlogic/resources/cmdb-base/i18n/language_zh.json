@@ -285,7 +285,9 @@
   },
   "nfce": {
     "cmdbtenantconfig": {
-      "isresourcecenterauth": "资产清单是否受模型权限和团体权限控制"
+      "isresourcecenterauth": "资产清单是否受模型权限和团体权限控制",
+      "resourcecentercomparisonmodeenable": "是否开启资产清单新 SQL 和旧 SQL 查询结果对比模式，结果不一致会打印 error 日志",
+      "resourcecentersqlmode": "资产清单 SQL 模式，可选值为 jsqlparser 和 mybatis，默认值是 jsqlparser"
     },
     "cmdbuserexportfiletype": {
       "customviewdata": "自定义视图数据"
