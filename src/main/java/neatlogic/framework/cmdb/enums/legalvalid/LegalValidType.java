@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum LegalValidType implements IEnum<ValueTextVo> {
-    CI("ci", "模型规则"), CUSTOM("custom", "自定义规则");
+    CI("ci", "nfcel.legalvalidtype.text.ci"), CUSTOM("custom", "nfcel.legalvalidtype.text.custom");
     private final String type;
     private final String text;
 
