@@ -389,6 +389,14 @@
       "graphprivilegesaveexception": "您没有权限当前公共拓扑视图"
     }
   },
+  "nfcel": {
+    "legalvalidtype": {
+      "text": {
+        "ci": "模型规则",
+        "custom": "自定义规则"
+      }
+    }
+  },
   "nfcer": {
     "appenvnotfoundedittargetexception": {
       "appenvnotfoundedittargetexception": "环境：{0}不存在"

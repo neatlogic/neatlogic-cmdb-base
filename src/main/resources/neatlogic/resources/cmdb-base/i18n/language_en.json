@@ -389,6 +389,14 @@
       "graphprivilegesaveexception": "You do not have permission for the current public topology view"
     }
   },
+  "nfcel": {
+    "legalvalidtype": {
+      "text": {
+        "ci": "Model Rules",
+        "custom": "Custom Rules"
+      }
+    }
+  },
   "nfcer": {
     "appenvnotfoundedittargetexception": {
       "appenvnotfoundedittargetexception": "Environment: {0} does not exist"
