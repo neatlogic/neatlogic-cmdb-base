@@ -49,6 +49,7 @@ public class CI_MODIFY extends AuthBase {
 
     @Override
     public List<ISystemUser> getDefaultSystemUserList() {
+        //作业工具库trigcmdbimport会调用/cmdb/sync/cicollection/launch接口
         return List.of(SystemUser.AUTOEXEC);
     }
 }
