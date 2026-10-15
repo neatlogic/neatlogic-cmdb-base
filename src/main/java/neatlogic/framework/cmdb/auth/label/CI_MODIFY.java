@@ -13,6 +13,9 @@
 package neatlogic.framework.cmdb.auth.label;
 
 import neatlogic.framework.auth.core.AuthBase;
+import neatlogic.framework.common.constvalue.systemuser.ISystemUser;
+import neatlogic.framework.common.constvalue.systemuser.SystemUser;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,5 +45,10 @@ public class CI_MODIFY extends AuthBase {
     @Override
     public List<Class<? extends AuthBase>> getIncludeAuths() {
         return Arrays.asList(CMDB_BASE.class, CIENTITY_MODIFY.class);
+    }
+
+    @Override
+    public List<ISystemUser> getDefaultSystemUserList() {
+        return List.of(SystemUser.AUTOEXEC);
     }
 }
