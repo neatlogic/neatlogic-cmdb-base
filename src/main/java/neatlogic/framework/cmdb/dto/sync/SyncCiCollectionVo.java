@@ -12,6 +12,7 @@
 
 package neatlogic.framework.cmdb.dto.sync;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.cmdb.dto.transaction.TransactionGroupVo;
 import neatlogic.framework.cmdb.enums.sync.CollectMode;
@@ -20,6 +21,7 @@ import neatlogic.framework.cmdb.enums.sync.MatchMode;
 import neatlogic.framework.cmdb.enums.sync.SyncStatus;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.common.dto.BasePageVo;
+import neatlogic.framework.exception.type.ParamIrregularException;
 import neatlogic.framework.restful.annotation.EntityField;
 import neatlogic.framework.util.SnowflakeUtil;
 import org.apache.commons.collections4.CollectionUtils;
@@ -95,6 +97,10 @@ public class SyncCiCollectionVo extends BasePageVo {
     private List<SyncPolicyVo> syncPolicyList;
     @EntityField(name = "筛选条件", type = ApiParamType.JSONARRAY)
     private List<SyncConditionVo> conditionList;
+    @EntityField(name = "预设筛选条件", type = ApiParamType.JSONARRAY)
+    private List<SyncConditionVo> defaultConditionList;
+    @JSONField(serialize = false)
+    private String defaultConditionStr;
     @EntityField(name = "执行次数", type = ApiParamType.INTEGER)
     private int execCount;
     @EntityField(name = "最后采集时间", type = ApiParamType.LONG)
@@ -126,6 +132,41 @@ public class SyncCiCollectionVo extends BasePageVo {
 
     public void setConditionList(List<SyncConditionVo> conditionList) {
         this.conditionList = conditionList;
+    }
+
+    /** 读取保存的预设，损坏的数据必须报错，避免静默退化成全量同步。 */
+    public List<SyncConditionVo> getDefaultConditionList() {
+        if (defaultConditionList == null && StringUtils.isNotBlank(defaultConditionStr)) {
+            try {
+                defaultConditionList = JSON.parseArray(defaultConditionStr, SyncConditionVo.class);
+                if (defaultConditionList == null) {
+                    throw new ParamIrregularException("defaultConditionList");
+                }
+            } catch (Exception ex) {
+                throw new ParamIrregularException("defaultConditionList");
+            }
+        }
+        return defaultConditionList;
+    }
+
+    /** 更新预设时同步清除旧序列化值，支持保存空数组清空预设。 */
+    public void setDefaultConditionList(List<SyncConditionVo> defaultConditionList) {
+        this.defaultConditionList = defaultConditionList;
+        this.defaultConditionStr = null;
+    }
+
+    /** 将预设转换为数据库压缩处理器接收的 JSON 字符串。 */
+    public String getDefaultConditionStr() {
+        if (defaultConditionList != null) {
+            return JSON.toJSONString(defaultConditionList);
+        }
+        return defaultConditionStr;
+    }
+
+    /** 从数据库加载预设，延迟解析且不与本次执行条件混用。 */
+    public void setDefaultConditionStr(String defaultConditionStr) {
+        this.defaultConditionStr = defaultConditionStr;
+        this.defaultConditionList = null;
     }
 
     public Long getLastAuditId() {
