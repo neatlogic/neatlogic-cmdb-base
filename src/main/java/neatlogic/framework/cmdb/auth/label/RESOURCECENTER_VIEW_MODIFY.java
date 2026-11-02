@@ -18,10 +18,13 @@
 package neatlogic.framework.cmdb.auth.label;
 
 import neatlogic.framework.auth.core.AuthBase;
+import neatlogic.framework.auth.core.AuthModule;
+
 import java.util.Collections;
 import java.util.List;
 
 /** 资源中心视图设置权限，仅覆盖资源视图及清单显示配置能力。 */
+@AuthModule("cmdb")
 public class RESOURCECENTER_VIEW_MODIFY extends AuthBase {
 
     @Override

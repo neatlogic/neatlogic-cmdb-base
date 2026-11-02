@@ -13,9 +13,12 @@
 package neatlogic.framework.cmdb.auth.label;
 
 import neatlogic.framework.auth.core.AuthBase;
+import neatlogic.framework.auth.core.AuthModule;
+
 import java.util.Collections;
 import java.util.List;
 
+@AuthModule("cmdb")
 public class CMDB_BASE extends AuthBase {
 
     @Override
