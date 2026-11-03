@@ -16,6 +16,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import neatlogic.framework.common.constvalue.ApiParamType;
 import neatlogic.framework.common.dto.BasePageVo;
 import neatlogic.framework.restful.annotation.EntityField;
+import neatlogic.framework.util.$;
 import neatlogic.framework.util.Md5Util;
 import neatlogic.framework.util.SnowflakeUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -28,6 +29,10 @@ public class CiEntityAlertVo extends BasePageVo {
     private static final long serialVersionUID = 1L;
     @EntityField(name = "id", type = ApiParamType.LONG)
     private Long id;
+    @EntityField(name = "告警唯一标识", type = ApiParamType.STRING)
+    private String alertUuid;
+    @EntityField(name = "告警来源", type = ApiParamType.STRING)
+    private String source;
     @EntityField(name = "模型id", type = ApiParamType.LONG)
     private Long ciId;
     @EntityField(name = "配置项id", type = ApiParamType.LONG)
@@ -56,6 +61,15 @@ public class CiEntityAlertVo extends BasePageVo {
     private String ip;
     @EntityField(name = "告警外部链接", type = ApiParamType.STRING)
     private String alertLink;
+
+    /** 返回源端计算的告警标识，用于重复更新和恢复消除。 */
+    public String getAlertUuid() { return alertUuid; }
+
+    public void setAlertUuid(String alertUuid) { this.alertUuid = alertUuid; }
+
+    public String getSource() { return source; }
+
+    public void setSource(String source) { this.source = source; }
 
     public List<Long> getCiEntityIdList() {
         return ciEntityIdList;
@@ -108,6 +122,10 @@ public class CiEntityAlertVo extends BasePageVo {
     }
 
     public String getLevelName() {
+        // 不明级别不能被视作正常状态；独立于级别配置提供统一显示。
+        if (level == 0) {
+            return $.t("cmdb.alert.unknownlevel");
+        }
         return levelName;
     }
 
@@ -116,6 +134,9 @@ public class CiEntityAlertVo extends BasePageVo {
     }
 
     public String getLevelColor() {
+        if (level == 0) {
+            return "#808695";
+        }
         return levelColor;
     }
 

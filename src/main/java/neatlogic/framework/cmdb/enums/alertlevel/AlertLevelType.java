@@ -16,7 +16,8 @@ import neatlogic.framework.util.$;
 
 public enum AlertLevelType {
     INSPECT("inspect", "巡检监控"),
-    MONITOR("monitor", "监控状态");
+    MONITOR("monitor", "监控状态"),
+    INFORMANT("informant", "cmdb.alert.informanttype");
 
     private final String value;
     private final String text;
