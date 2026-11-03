@@ -78,6 +78,11 @@
     }
   },
   "cmdb": {
+    "attr": {
+      "error": {
+        "virtualci": "Virtual model fields are generated from the view configuration and cannot be added, edited or deleted individually"
+      }
+    },
     "batchimport": {
       "action": {
         "all": "Add and Update",

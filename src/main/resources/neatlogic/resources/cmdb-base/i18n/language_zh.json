@@ -78,6 +78,11 @@
     }
   },
   "cmdb": {
+    "attr": {
+      "error": {
+        "virtualci": "虚拟模型字段由视图配置生成，不允许单独新增、编辑或删除"
+      }
+    },
     "batchimport": {
       "action": {
         "all": "添加并更新",
