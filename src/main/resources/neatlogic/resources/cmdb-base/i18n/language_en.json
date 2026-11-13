@@ -459,6 +459,9 @@
       "validatornotfoundexception": "Validation rule  {0}  does not exist"
     }
   },
+  "resourcebinding": {
+    "conflict": "Resource {0} cannot change its binding to account {1}. Refresh the bindings and check protocol and username conflicts."
+  },
   "term": {
     "ciview": {
       "alias": "alias",

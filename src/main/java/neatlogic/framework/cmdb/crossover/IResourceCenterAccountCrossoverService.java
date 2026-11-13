@@ -58,6 +58,12 @@ public interface IResourceCenterAccountCrossoverService extends ICrossoverServic
      * @param paramAccountVo
      * @return
      */
+    /** 只读校验账号定义，沿用资源中心协议、登录账号及公共名称检查。 */
+    void validateAccountDefinition(AccountVo account, boolean creating);
+
+    /** 只读校验资源上的账号名称及协议冲突，返回原有失败原因。 */
+    List<String> validateAccountBinding(Long resourceId, AccountVo account);
+
     JSONObject saveAccount(Long id, AccountVo paramAccountVo);
 
     /**
@@ -67,4 +73,10 @@ public interface IResourceCenterAccountCrossoverService extends ICrossoverServic
      * @return
      */
     JSONObject saveResourceAccount(Long resourceId, List<Long> accountIdList);
+
+    /** 锁定资源账号关系，返回当前已绑定标识供同一事务核对。 */
+    List<Long> lockBoundAccountIds(Long resourceId);
+
+    /** 比对单项绑定基线后追加或移除公共账号，保留同一资源的其他关系。 */
+    void changePublicBinding(Long resourceId, Long accountId, boolean expectedBound, boolean bind);
 }

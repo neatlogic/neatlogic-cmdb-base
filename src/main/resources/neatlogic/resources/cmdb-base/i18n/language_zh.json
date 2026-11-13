@@ -459,6 +459,9 @@
       "validatornotfoundexception": "验证规则“{0}”不存在"
     }
   },
+  "resourcebinding": {
+    "conflict": "资源 {0} 与账号 {1} 的绑定已变化或存在相同协议和用户名，请刷新并重新确认。"
+  },
   "term": {
     "ciview": {
       "alias": "别名",

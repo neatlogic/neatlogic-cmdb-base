@@ -36,6 +36,9 @@ public interface ICiEntityCrossoverService extends ICrossoverService {
 
     List<Long> getCiEntityIdByCiId(CiEntityVo ciEntityVo);
 
+    /** 复用 CMDB 事务校验并返回是否有变更，仅校验传入副本，不保存事务或配置项。 */
+    boolean validateCiEntityTransactionReadOnly(CiEntityTransactionVo transaction);
+
     Long saveCiEntity(List<CiEntityTransactionVo> ciEntityTransactionList);
 
     String getCiEntityNameByCiEntityId(Long ciEntityId);
